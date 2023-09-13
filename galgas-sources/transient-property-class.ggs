@@ -40,7 +40,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring propertyTypeName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST (
-      !propertyTypeName
+      !propertyTypeName,
       !isClass
     )
   }

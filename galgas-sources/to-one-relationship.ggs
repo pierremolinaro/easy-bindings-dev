@@ -21,7 +21,7 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName ,!self.mToOneRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mDestinationEntityName]
@@ -30,7 +30,7 @@ override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPreced
 #·······················································································································
 
 override func @toOneRelationshipAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName !self.mToOneRelationshipName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName ,!self.mToOneRelationshipName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -81,11 +81,11 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@toOneRelationshipAST (
-      !inCurrentEntity
-      !destinationEntityName
-      !relationshipName
-      !opposite
-      !usedForSignature
+      !inCurrentEntity,
+      !destinationEntityName,
+      !relationshipName,
+      !opposite,
+      !usedForSignature,
       !weak
     )
   }
@@ -114,10 +114,10 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
       error self.mDestinationEntityName : "an entity is required here"
     case entity (* graphic * handleOpposite) :
       let kind = @propertyKind.toOne (
-        !typeName: self.mDestinationEntityName
-        !accessibility: .stored
-        !graphic: graphic
-        !opposite: self.mOpposite
+        !typeName: self.mDestinationEntityName,
+        !accessibility: .stored,
+        !graphic: graphic,
+        !opposite: self.mOpposite,
         !weak: self.mWeak
       )
       if self.mOpposite != .none, not handleOpposite then
@@ -142,20 +142,20 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
     case document (*) :
     case entity (* graphic 2*) :
       let kind = @propertyKind.toOne (
-        !typeName: self.mDestinationEntityName
-        !accessibility: .stored
-        !graphic: graphic
-        !opposite: self.mOpposite
+        !typeName: self.mDestinationEntityName,
+        !accessibility: .stored,
+        !graphic: graphic,
+        !opposite: self.mOpposite,
         !weak: self.mWeak
       )
     #--- Code Generation
       mPropertyGenerationList += !@toOnePropertyGeneration (
-        !self.mToOneRelationshipName.string
-        !self.mClassName
-        !kind
-        !self.mOpposite
-        !destinationEntityPropertyMap
-        !self.mUsedForSignature
+        !self.mToOneRelationshipName.string,
+        !self.mClassName,
+        !kind,
+        !self.mOpposite,
+        !destinationEntityPropertyMap,
+        !self.mUsedForSignature,
         !not self.mWeak
       )
     end
@@ -187,13 +187,13 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
                                                    (?let @bool unused inPreferences
                                                     ?let @bool unused inGenerationDirectAccess
                                                     ?let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
   result += " (usedForSignature: " + [self.mUsedForSignature cString]
   result += ", strongRef: " + [self.mStrongRef cString] + ", key: \"" + self.mPropertyName + "\")\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
@@ -209,7 +209,7 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_none = EBTransientProperty <Bool> ()\n\n"
 }
 

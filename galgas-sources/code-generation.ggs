@@ -170,7 +170,7 @@ private proc generateClassProperty (?let @string inOutputDirectory
                                      ?let @bool inComparable
                                      ?let @bool inTransient
                                      ?!@stringset ioGeneratedFileSet) {
-  let contents = [filewrapper standard_properties.classProperty !inClassPropertyTypeName !inComparable !inTransient]
+  let contents = [filewrapper standard_properties.classProperty !inClassPropertyTypeName ,!inComparable ,!inTransient]
 #--- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -188,7 +188,7 @@ private proc generateScalarProperty (?let @string inOutputDirectory
                                     ?let @bool inTransient
                                     ?let @string inComparisonMethod
                                     ?!@stringset ioGeneratedFileSet) {
-  let contents = [filewrapper standard_properties.scalarProperty !inScalarPropertyTypeName !inTransient !inComparisonMethod]
+  let contents = [filewrapper standard_properties.scalarProperty !inScalarPropertyTypeName ,!inTransient ,!inComparisonMethod]
 #--- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName

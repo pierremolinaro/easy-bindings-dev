@@ -147,9 +147,9 @@ private proc generateXcodeProjectInternal(
   ]
 #--- Generate additional files
   var s = [filewrapper additionalXcodeFiles.info_plist
-    !projectName
-    !inXcodeProjectString
-    !"1.0.0"
+    !projectName,
+    !inXcodeProjectString,
+    !"1.0.0",
     !{!projectName}
   ]
   [@string generateFile

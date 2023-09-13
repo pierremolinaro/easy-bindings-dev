@@ -51,13 +51,13 @@ syntax extension easyBindings_syntax {
         $.$
         select
           $identifier$ (?let optionName)
-          outObservablePropertyAST = .rootPropertyWithOption (!propertyName:propertyName !optionName:optionName)
+          outObservablePropertyAST = .rootPropertyWithOption (!propertyName:propertyName ,!optionName:optionName)
         or
           $all$
           $.$
           $identifier$ (?let observablePropertyName)
           outObservablePropertyAST = .rootPropertyRelationship (
-            !relationshipName:propertyName !propertyName:observablePropertyName
+            !relationshipName:propertyName ,!propertyName:observablePropertyName
           )
         or
           $none$
@@ -80,7 +80,7 @@ syntax extension easyBindings_syntax {
             $.$
             $identifier$ (?let elementPropertyName)
             outObservablePropertyAST = .selfPropertyArray (
-              !propertyName:propertyName
+              !propertyName:propertyName,
               !elementPropertyName:elementPropertyName
             )
           or
@@ -88,7 +88,7 @@ syntax extension easyBindings_syntax {
             $.$
             $identifier$ (?let elementPropertyName)
             outObservablePropertyAST = .selfPropertyObject (
-              !propertyName:propertyName
+              !propertyName:propertyName,
               !elementPropertyName:elementPropertyName
             )
           or
@@ -96,7 +96,7 @@ syntax extension easyBindings_syntax {
             outObservablePropertyAST = .selfPropertyNone (!propertyName:propertyName)
           or
             $identifier$ (?let optionName)
-            outObservablePropertyAST = .selfPropertyWithOption (!propertyName:propertyName !optionName:optionName)
+            outObservablePropertyAST = .selfPropertyWithOption (!propertyName:propertyName ,!optionName:optionName)
           end
         end
       end
@@ -109,7 +109,7 @@ syntax extension easyBindings_syntax {
       or
         $.$ ;
         $identifier$ (?let optionName)
-        outObservablePropertyAST = .prefsPropertyWithOption (!propertyName:propertyName !optionName:optionName)
+        outObservablePropertyAST = .prefsPropertyWithOption (!propertyName:propertyName ,!optionName:optionName)
       end
     or
       $controllerName$ (?let controllerName)
@@ -118,17 +118,17 @@ syntax extension easyBindings_syntax {
         $one$
         $.$
         $identifier$ (?let propertyName)
-        outObservablePropertyAST = .selfControllerOneProperty (!controllerName:controllerName !propertyName:propertyName)
+        outObservablePropertyAST = .selfControllerOneProperty (!controllerName:controllerName ,!propertyName:propertyName)
       or
         $identifier$ (?let propertyName)
         select
-          outObservablePropertyAST = .selfControllerProperty (!controllerName:controllerName !propertyName:propertyName)
+          outObservablePropertyAST = .selfControllerProperty (!controllerName:controllerName ,!propertyName:propertyName)
         or
           $.$
           $identifier$ (?let secondaryPropertyName)
           outObservablePropertyAST = .selfControllerSecondaryProperty (
-            !controllerName:controllerName
-            !propertyName:propertyName
+            !controllerName:controllerName,
+            !propertyName:propertyName,
             !secondaryPropertyName:secondaryPropertyName
           )
         or
@@ -137,8 +137,8 @@ syntax extension easyBindings_syntax {
           $.$
           $identifier$ (?let secondaryPropertyName)
           outObservablePropertyAST = .selfControllerAllProperties (
-            !controllerName: controllerName
-            !propertyName: propertyName
+            !controllerName: controllerName,
+            !propertyName: propertyName,
             !secondaryPropertyName: secondaryPropertyName
           )
         end
@@ -160,15 +160,15 @@ syntax extension easyBindings_syntax {
       $identifier$ (?let propertyName)
       select
         outObservablePropertyAST = .superProperty (
-          !superEntityName: superEntityName
+          !superEntityName: superEntityName,
           !propertyName: propertyName
         )
       or
         $default$
         <explicit_value> (?let @abstractDefaultValue defaultValue)
         outObservablePropertyAST = .superPropertyWithDefaultValue (
-          !superEntityName: superEntityName
-          !propertyName: propertyName
+          !superEntityName: superEntityName,
+          !propertyName: propertyName,
           !defaultValue: defaultValue
         )
       end
@@ -391,15 +391,15 @@ proc @observablePropertyAST.analyzeObservableProperty(
   switch self
   case versionShouldChangeProperty (*) :
     let type = @typeKind.boolType
-    outKind = .property (!type: type !accessibility: .transient (!isAbstract: false))
+    outKind = .property (!type: type ,!accessibility: .transient (!isAbstract: false))
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case versionProperty (*) :
     let type = @typeKind.integerType
-    outKind = .property (!type: type !accessibility: .transient (!isAbstract: false))
+    outKind = .property (!type: type ,!accessibility: .transient (!isAbstract: false))
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case signatureProperty (*) :
     let type = @typeKind.integerType
-    outKind = .property (!type: type !accessibility: .transient (!isAbstract: false))
+    outKind = .property (!type: type ,!accessibility: .transient (!isAbstract: false))
     outSwiftTypeStringForTransientFunctionArgument = [type swiftTypeName]
   case rootProperty (@lstring propertyName) :
     [inRootPropertyMap searchKey
@@ -420,7 +420,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case toMany (4*) :
       error relationshipName : "an array property does not accept 'none'" spoil outKind
     case toOne (5*) :
-      outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
+      outKind = .property (!type: .boolType ,!accessibility: .transient (!isAbstract: false))
     case arrayController (2*) :
       error relationshipName : "an array controller does not accept 'none'" spoil outKind
     case selectionController (*) :
@@ -438,7 +438,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a property does not accept any option" spoil outKind
     case toMany (4*) :
       if optionName.string == "count" then
-        outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       else
         error optionName : "unknown option (accepted : 'count')" spoil outKind
       end
@@ -446,9 +446,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a toOne property does not accept any option" spoil outKind
     case arrayController (2*) :
       if optionName.string == "count" then
-        outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       elsif optionName.string == "empty" then
-        outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .boolType ,!accessibility: .transient (!isAbstract: false))
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" spoil outKind
       end
@@ -466,7 +466,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case property (2*) :
       error relationshipName : "a property does not accept 'all'" spoil outKind
     case toMany (typeName 3*) : # Ok
-      [inSemanticContext.mClassMap searchKey !.new (!typeName !relationshipName.location) ?* ?let observablePropertyMap ?2*]
+      [inSemanticContext.mClassMap searchKey !.new (!typeName ,!relationshipName.location) ?* ?let observablePropertyMap ?2*]
       [observablePropertyMap searchKey
         !propertyName
         ?outKind
@@ -500,7 +500,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
   case selfWithoutProperty (*) :
     outSwiftTypeStringForTransientFunctionArgument = "Int"
-    outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+    outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
   case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
     [inBoundModelPropertyMap searchKey
       !propertyName
@@ -512,7 +512,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "an atomic property accepts no option" spoil outKind
     case toMany (4*) :
       if optionName.string == "count" then
-        outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       else
         error optionName : "unknown option (accepted : 'count')" spoil outKind
       end
@@ -520,9 +520,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a toOne property accepts no option" spoil outKind
     case arrayController (2*) :
       if optionName.string == "count" then
-        outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       elsif optionName.string == "empty" then
-        outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .boolType ,!accessibility: .transient (!isAbstract: false))
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" spoil outKind
       end
@@ -591,7 +591,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case toMany (4*) :
       error propertyName : "a toOne property does not accept 'none'" spoil outKind
     case toOne (5*) :
-      outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
+      outKind = .property (!type: .boolType ,!accessibility: .transient (!isAbstract: false))
     case arrayController (2*) :
       error propertyName : "an array controller does not accept 'none'" spoil outKind
     case selectionController (*) :
@@ -599,7 +599,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case prefsProperty (@lstring propertyName) :
-    [inSemanticContext.mClassMap searchKey !.new (!preferencesName () !.nowhere) ?* ?let observablePropertyMap ?2*]
+    [inSemanticContext.mClassMap searchKey !.new (!preferencesName () ,!.nowhere) ?* ?let observablePropertyMap ?2*]
     [observablePropertyMap searchKey
       !propertyName
       ?outKind
@@ -607,7 +607,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     ]
     outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
   case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
-    [inSemanticContext.mClassMap searchKey !.new (!preferencesName () !.nowhere) ?* ?let observablePropertyMap ?2*]
+    [inSemanticContext.mClassMap searchKey !.new (!preferencesName () ,!.nowhere) ?* ?let observablePropertyMap ?2*]
     [observablePropertyMap searchKey
       !propertyName
       ?let kind
@@ -622,9 +622,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a toOne property does not accept any option" spoil outKind
     case arrayController (2*) :
       if optionName.string == "count" then
-        outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       elsif optionName.string == "empty" then
-        outKind = .property (!type: .boolType !accessibility: .transient (!isAbstract: false))
+        outKind = .property (!type: .boolType ,!accessibility: .transient (!isAbstract: false))
       else
         error optionName : "unknown option (accepted : 'count', 'empty')" spoil outKind
       end
@@ -648,9 +648,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case arrayController (typeName graphic) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
         outKind = .toMany (
-          !typeName: typeName
-          !accessibility: .transient (!isAbstract: false)
-          !graphic: graphic
+          !typeName: typeName,
+          !accessibility: .transient (!isAbstract: false),
+          !graphic: graphic,
           !optionKind: .none
         )
       else
@@ -661,7 +661,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       end
     case selectionController (entityName) :
       [inSemanticContext.mClassMap searchKey !
-        .new (!entityName !controllerName.location)
+        .new (!entityName ,!controllerName.location)
         ?*
         ?let observablePropertyMap
         ?2*
@@ -672,9 +672,9 @@ proc @observablePropertyAST.analyzeObservableProperty(
   case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
     [inBoundModelPropertyMap searchKey !controllerName ?3*]
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
-      outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+      outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
-      outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+      outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
     else
       error propertyName : "unknown option" spoil outKind fixit { replace "sortedArray" replace "selectedArray" }
     end
@@ -695,7 +695,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error controllerName : "a toOne relationship does not support 'one'"
     end
     [inSemanticContext.mClassMap searchKey !
-      .new (!controllerTypeName !controllerName.location)
+      .new (!controllerTypeName ,!controllerName.location)
       ?*
       ?let observablePropertyMap
       ?2*
@@ -709,7 +709,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         spoil outKind, outSwiftTypeStringForTransientFunctionArgument
         fixit { replace "selectedArray" }
     else
-      outKind = .property (!type: .integerType !accessibility: .transient (!isAbstract: false))
+      outKind = .property (!type: .integerType ,!accessibility: .transient (!isAbstract: false))
       switch propertyKind
       case property (2*) :
         error propertyName
@@ -725,7 +725,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
           spoil outKind, outSwiftTypeStringForTransientFunctionArgument
       case arrayController (typeName *) :
          [inSemanticContext.mClassMap searchKey !
-          .new (!typeName !controllerName.location)
+          .new (!typeName ,!controllerName.location)
           ?*
           ?let observablePropertyMap
           ?2*
@@ -734,7 +734,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         outSwiftTypeStringForTransientFunctionArgument = "[" + typeName + "_" + secondaryPropertyName + "]"
       case selectionController (entityName) :
         [inSemanticContext.mClassMap searchKey !
-          .new (!entityName !controllerName.location)
+          .new (!entityName ,!controllerName.location)
           ?*
           ?let observablePropertyMap
           ?2*
@@ -770,7 +770,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     switch outKind
     case property (propertyType *) :
       outSwiftTypeStringForTransientFunctionArgument = [outKind swiftTypeName]
-      [inSemanticContext.mClassMap searchKey !.new (!preferencesName () !.nowhere) ?* ?let preferencesPropertyMap ?2*]
+      [inSemanticContext.mClassMap searchKey !.new (!preferencesName () ,!.nowhere) ?* ?let preferencesPropertyMap ?2*]
       [defaultValue analyzeDefaultValueType 
         !{!propertyType}
         !preferencesPropertyMap

@@ -22,7 +22,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mPropertyName ,!self.mPropertyName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mPropertyTypeName]
@@ -32,7 +32,7 @@ override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarati
 #·······················································································································
 
 override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mPropertyName !self.mPropertyName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mPropertyName ,!self.mPropertyName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -96,12 +96,12 @@ syntax extension easyBindings_syntax {
     <explicit_value> (?let @abstractDefaultValue defaultValue)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@atomicPropertyDeclarationAST.new(
-      !inClassName
-      !attributeTypeName
-      !attributeName
-      !defaultValue
-      !generateResetMethod
-      !generateDirectRead
+      !inClassName,
+      !attributeTypeName,
+      !attributeName,
+      !defaultValue,
+      !generateResetMethod,
+      !generateDirectRead,
       !generateDirectAccess
     )
     ioAttributeList +=
@@ -126,7 +126,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
   do
     [ioSemanticContext.mClassMap searchKey !self.mPropertyTypeName ?let classKind ?3*]
     [ioSemanticContext.mClassMap searchKey
-      !.new (!preferencesName () !.nowhere)
+      !.new (!preferencesName () ,!.nowhere)
       ?*
       ?let preferencesPropertyMap
       ?2*
@@ -135,18 +135,18 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     case prefs :
       error self.mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !self.mPropertyName !.property (!type: kind !accessibility: .stored) !{} !false]
+      [!?mPropertyMap insertKey !self.mPropertyName !.property (!type: kind ,!accessibility: .stored) !{} !false]
     #--- Analyze default value
       [self.mDefaultValue analyzeDefaultValueType !{!kind} !preferencesPropertyMap ?let @string swiftDefaultValueAsString]
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration (
-        !self.mPropertyName.string
-        !self.mGenerateResetMethod
-        !self.mGenerateDirectRead
-        !self.mGenerateDirectAccess
-        !kind
-        !false
-        !swiftDefaultValueAsString
+        !self.mPropertyName.string,
+        !self.mGenerateResetMethod,
+        !self.mGenerateDirectRead,
+        !self.mGenerateDirectAccess,
+        !kind,
+        !false,
+        !swiftDefaultValueAsString,
         !self.mClassName.string == preferencesName ()
       )
     case document (*) :
@@ -186,16 +186,16 @@ override func @atomicPropertyGeneration.prefKeyDefinitionCode() -> @string {
 #·······················································································································
 
 override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
 }
 
 #·······················································································································
 
 override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsToBeObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -256,25 +256,25 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
    ?let @stringset unused inOverriddenTransients) -> @string
 {
   if self.mInPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "//   Atomic property: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferencesProperty_" + [self.mType swiftTypeName]
     result += " (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + [self.mType swiftTypeName] + "\n\n"
     if self.mGenerateResetMethod then
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
       result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
       result += "    self." + self.mPropertyName + "_property.setProp (" + self.mDefaultValueInSwift + ")\n"
       result += "  }\n\n"
     end
     let generateAccess = inGenerationDirectAccess || self.mGenerateDirectRead || self.mGenerateDirectAccess
     if generateAccess then
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + " {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
       if self.mGenerateDirectAccess then

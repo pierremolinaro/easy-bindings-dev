@@ -23,13 +23,13 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName ,!self.mToManyRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mDestinationEntityName]
   switch self.mOption
   case hasDependance (masterPropertyName) :
-    let dependanceNode = @lstring (!self.mClassName.string + " " + masterPropertyName !masterPropertyName.location)
+    let dependanceNode = @lstring (!self.mClassName.string + " " + masterPropertyName ,!masterPropertyName.location)
     [!?ioGraph addEdge !node !dependanceNode]
   case hasOpposite (*) :
   case none :
@@ -39,7 +39,7 @@ override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrece
 #·······················································································································
 
 override func @toManyRelationshipAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName !self.mToManyRelationshipName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName ,!self.mToManyRelationshipName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -114,13 +114,13 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@toManyRelationshipAST (
-      !inCurrentEntity
-      !destinationEntityName
-      !relationshipName
-      !toManyRelationshipOption
-      !customStore
-      !usedForSignature
-      !generateDirectAccess
+      !inCurrentEntity,
+      !destinationEntityName,
+      !relationshipName,
+      !toManyRelationshipOption,
+      !customStore,
+      !usedForSignature,
+      !generateDirectAccess,
       !generateDirectRead
     )
   }
@@ -149,9 +149,9 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       error self.mDestinationEntityName : "an entity is required here"
     case entity (* graphic * handleOpposite) :
       let kind = @propertyKind.toMany (
-        !typeName: self.mDestinationEntityName
-        !accessibility: .stored
-        !graphic: graphic
+        !typeName: self.mDestinationEntityName,
+        !accessibility: .stored,
+        !graphic: graphic,
         !optionKind: self.mOption
       )
       if not handleOpposite, let [self.mOption hasOpposite ?oppositeName: *] then
@@ -166,7 +166,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       case hasDependance (masterPropertyName) :
         [mPropertyMap searchKey !masterPropertyName ?let masterPropertyKind ?2*]
         optionForGeneration = .hasDependance (
-          !masterPropertyName: masterPropertyName.string
+          !masterPropertyName: masterPropertyName.string,
           !masterPropertySwiftTypeName: [masterPropertyKind swiftTypeName]
         )
       case hasOpposite (oppositeName) :
@@ -176,13 +176,13 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       end
     #--- Code Generation
       mPropertyGenerationList += !@toManyPropertyGeneration (
-        !self.mToManyRelationshipName.string
-        !self.mGenerateDirectAccess
-        !self.mGenerateDirectRead
-        !kind
-        !optionForGeneration
-        !inPrefs
-        !self.mCustomStore
+        !self.mToManyRelationshipName.string,
+        !self.mGenerateDirectAccess,
+        !self.mGenerateDirectRead,
+        !kind,
+        !optionForGeneration,
+        !inPrefs,
+        !self.mCustomStore,
         !self.mUsedForSignature
       )
       ioGeneration.mGenerateClass_StoredArrayOf_ += !self.mDestinationEntityName.string
@@ -225,13 +225,13 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
                                                             ?let @bool unused inGenerationDirectAccess
                                                             ?let @stringset unused inOverriddenTransients) -> @string {
   if [self.mOption isHasDependance] then
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     [self.mOption hasDependance ?1* ?masterPropertySwiftTypeName: let masterPropertyTypeName]
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + [self.mRelationshipType swiftTypeName]
            + " <" + masterPropertyTypeName + "> ()\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not [self.mOption isHasDependance] then
@@ -239,15 +239,15 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     end
     result += "  }\n\n"
   elsif self.mInPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "//   To many property: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = PreferencesArrayOf_" + [self.mRelationshipType swiftTypeName]
     result += " (prefKey: Preferences_" + self.mPropertyName + ")\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property = "
     if self.mCustomStore then
       result += "Custom_" + [self.mRelationshipType swiftTypeName] + "_"
@@ -261,7 +261,7 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     end
     result += ")\n\n"
     if self.mGenerateDirectAccess || self.mGenerateDirectRead then
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + [self.mRelationshipType swiftTypeName] + "> {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
       if not [self.mOption isHasDependance], self.mGenerateDirectAccess then

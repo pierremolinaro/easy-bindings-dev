@@ -161,15 +161,15 @@ syntax extension easyBindings_syntax {
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST (
-      !outletClassName
-      !userDefined
-      !superClassName
-      !hasRunAction
-      !hasEnabled
-      !handlesTableViewBinding
-      !handlesGraphicControllerBinding
-      !hasHidden
-      !parameterList
+      !outletClassName,
+      !userDefined,
+      !superClassName,
+      !hasRunAction,
+      !hasEnabled,
+      !handlesTableViewBinding,
+      !handlesGraphicControllerBinding,
+      !hasHidden,
+      !parameterList,
       !astAutoLayoutViewFunctionMap
     )
  }
@@ -217,7 +217,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
     mangledName += ")"
-    outMangledName = .new (!mangledName !inFunctionName.location)
+    outMangledName = .new (!mangledName ,!inFunctionName.location)
   }
 
   #·····················································································································

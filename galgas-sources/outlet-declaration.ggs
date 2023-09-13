@@ -94,13 +94,13 @@ syntax extension easyBindings_syntax {
       end
       let @lstring runTargetName
       select
-        runTargetName = @lstring (!"self" !.here)
+        runTargetName = @lstring (!"self" ,!.here)
       or
         $controllerName$ (?runTargetName)
         $.$
       end
       $identifier$ (?let @lstring runActionName)
-      runActionDescriptor = .action (!target:runTargetName !action:runActionName)
+      runActionDescriptor = .action (!target:runTargetName ,!action:runActionName)
   #--- Enabled
     while
       $enabled$
@@ -144,7 +144,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?propertyName)
       end
       if [graphicController isNone] then
-        graphicController = .defined (!controller:graphicControllerName !propertyName: propertyName)
+        graphicController = .defined (!controller:graphicControllerName ,!propertyName: propertyName)
       else
         error graphicControllerName : "binding already defined" ;
       end   

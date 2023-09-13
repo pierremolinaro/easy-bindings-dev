@@ -35,7 +35,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?modelTypeName)
       or
         $enum$
-        modelTypeName = .new (!"enum" !.here)
+        modelTypeName = .new (!"enum" ,!.here)
       end
       outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
     while
@@ -98,7 +98,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "" !constantMap: {} !funcMap: {}) # Any enum type
+          !.enumType (!enumTypeName: "" ,!constantMap: {} ,!funcMap: {}) # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]

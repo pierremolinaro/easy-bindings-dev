@@ -6642,10 +6642,11 @@
       isa = XCBuildConfiguration;
       buildSettings = {
         ONLY_ACTIVE_ARCH = YES;
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 2 ;
       GCC_PREPROCESSOR_DEFINITIONS = (DO_NOT_GENERATE_CHECKINGS) ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.eb.tool" ;
+      CODE_SIGN_IDENTITY = "-" ;
       PRODUCT_NAME = "eb" ;
     };
     name = Default;
@@ -6655,11 +6656,12 @@
       isa = XCBuildConfiguration;
       buildSettings = {
         ONLY_ACTIVE_ARCH = YES;
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_GENERATE_DEBUGGING_SYMBOLS = YES ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
       GCC_WARN_UNUSED_PARAMETER = YES ;
+      PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.eb.tooldebug" ;
+      CODE_SIGN_IDENTITY = "-" ;
       PRODUCT_NAME = "eb-debug" ;
     };
     name = Default;
@@ -6668,9 +6670,9 @@
     4917B24303EE6A220679DAB3 /* Default */ = {
       isa = XCBuildConfiguration;
       buildSettings = {
-      CODE_SIGN_IDENTITY = "-" ;
       GCC_OPTIMIZATION_LEVEL = 0 ;
       GCC_PREPROCESSOR_DEFINITIONS = () ;
+      CODE_SIGN_IDENTITY = "-" ;
       INFOPLIST_FILE = "Info.plist";
       PRODUCT_NAME = "CocoaEb";
       PRODUCT_BUNDLE_IDENTIFIER = "fr.irccyn.eb";

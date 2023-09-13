@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (!enumName !enumConstants)
+    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (!enumName ,!enumConstants)
   }
 
   #·····················································································································
@@ -135,15 +135,15 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
   end
   [!?ioSemanticContext.mClassMap insertKey
     !self.mClassName
-    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName !constantMap: enumConstantMap !funcMap: enumFuncMap))
+    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName ,!constantMap: enumConstantMap ,!funcMap: enumFuncMap))
     !{}
     !{}
     !{}
   ]
 #--- Generation
   ioGeneration.mFileGenerationList += !@enumForGeneration (
-    !self.mClassName
-    !self.mEnumConstantNameList
+    !self.mClassName,
+    !self.mEnumConstantNameList,
     !enumFuncMap
   )
 }
@@ -177,8 +177,8 @@ override proc @enumForGeneration.generateCode(
     ?!@stringset ioGeneratedFileSet) {
   if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
     let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
-      !self.mEnumName
-      !self.mEnumConstantList
+      !self.mEnumName,
+      !self.mEnumConstantList,
       !self.mEnumFuncMap
     ]
     let fileName = "enum-" + self.mEnumName + ".swift"

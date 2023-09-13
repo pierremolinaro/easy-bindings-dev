@@ -30,8 +30,8 @@ proc generateValidationRoutineStubs(
 {
   for (mObjectTypeName mModelName mModelTypeName) in inValidationStubRoutineListForGeneration do
     let s = [filewrapper validationStubExtension.actionGeneration
-      !mObjectTypeName
-      !mModelName
+      !mObjectTypeName,
+      !mModelName,
       !mModelTypeName
     ]
     let fileName = "validation-" + mObjectTypeName + "-" + mModelName + ".swift"

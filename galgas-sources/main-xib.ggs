@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
         ioElementList += !{
-          !.outlet (!outletType:outletType !outletName:outletName)
+          !.outlet (!outletType:outletType ,!outletName:outletName)
         }
       or
         $literal_string$ (?let @lstring s)
@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
         outLineDescription +=
-          !.outlet (!outletType:outletType !outletName:outletName)
+          !.outlet (!outletType:outletType ,!outletName:outletName)
       or
         $literal_string$ (?let @lstring s)
         outLineDescription += !.text (!text:s)
@@ -144,8 +144,8 @@ proc generateTestFile(
       end
     end
     let s = [filewrapper testFiles.test_py
-      !inBundleIdentifier
-      !inProjectName
+      !inBundleIdentifier,
+      !inProjectName,
       !outlet_identifier_list
     ]
     let header = "#!/usr/bin/python\n"

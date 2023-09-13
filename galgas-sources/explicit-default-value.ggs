@@ -53,17 +53,17 @@ syntax extension easyBindings_syntax {
    rule <explicit_value> (!@abstractDefaultValue outDefaultValue) {
     select
       $yes$
-      outDefaultValue = @boolAsDefaultValue (!.new (!true !.here))
+      outDefaultValue = @boolAsDefaultValue (!.new (!true ,!.here))
     or
       $no$
-      outDefaultValue = @boolAsDefaultValue (!.new (!false !.here))
+      outDefaultValue = @boolAsDefaultValue (!.new (!false ,!.here))
     or
       $literal_integer$ (?let @luint integerValue)
-      outDefaultValue = @integerAsDefaultValue (!integerValue !false)
+      outDefaultValue = @integerAsDefaultValue (!integerValue ,!false)
     or
       $-$
       $literal_integer$ (?let @luint integerValue)
-      outDefaultValue = @integerAsDefaultValue (!integerValue !true)
+      outDefaultValue = @integerAsDefaultValue (!integerValue ,!true)
     or
       $literal_double$ (?let @ldouble doubleValue ?*)
       outDefaultValue = @doubleAsDefaultValue (!doubleValue)
@@ -398,7 +398,7 @@ override proc @prefsAsDefaultValue.enterDefaultValuePrecedence(
    ?let @lstring inNode
    ?!@declarationPrecedenceGraph ioGraph)
 {
-  let p = @lstring (!preferencesName () + " " + self.mPrefPropertyName.string !self.mPrefPropertyName.location)
+  let p = @lstring (!preferencesName () + " " + self.mPrefPropertyName.string ,!self.mPrefPropertyName.location)
   [!?ioGraph addEdge !inNode !p]
 }
 

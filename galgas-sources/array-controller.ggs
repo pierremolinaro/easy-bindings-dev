@@ -25,23 +25,23 @@ enum @arrayControllerBoundModelAST {
 #·······················································································································
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      [!?ioGraph addEdge !node !.new (!rootEntityName.string + " " + self.mToManyPropertyName !self.mToManyPropertyName.location)]
+      [!?ioGraph addEdge !node !.new (!rootEntityName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
     end
   case selfToManyRelationship :
-    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName !self.mToManyPropertyName.location)]
+    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
   end
 }
 
 #·······················································································································
 
 override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mControllerName !self.mControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -84,9 +84,9 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST (
-      !inCurrentEntity
-      !controllerName
-      !model
+      !inCurrentEntity,
+      !controllerName,
+      !model,
       !relationshipName
     )
   }
@@ -116,14 +116,14 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController (
-          !typeName: typeName
+          !typeName: typeName,
           !graphic: graphic
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
-        !self.mControllerName.string
-        !"rootObject." + self.mToManyPropertyName
+        !self.mControllerName.string,
+        !"rootObject." + self.mToManyPropertyName,
         !self.mClassName
       )
       case toOne (5*) :
@@ -140,14 +140,14 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error self.mToManyPropertyName : "a toMany relationship is required here"
       case toMany (typeName * graphic *) :
         let kind = @propertyKind.arrayController (
-          !typeName: typeName
+          !typeName: typeName,
           !graphic: graphic
         )
         [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
-        !self.mControllerName.string
-        !self.mToManyPropertyName
+        !self.mControllerName.string,
+        !self.mToManyPropertyName,
         !self.mClassName
       )
       case toOne (5*) :
@@ -223,11 +223,11 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   end
 #---
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration (
-    !self.mClassName
-    !self.mControllerName
-    !"ReadWriteArrayOf_" + elementTypeName
-    !arrayControllerModelKind
-    !elementTypeName
+    !self.mClassName,
+    !self.mControllerName,
+    !"ReadWriteArrayOf_" + elementTypeName,
+    !arrayControllerModelKind,
+    !elementTypeName,
     !graphic
   )
   ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
@@ -249,14 +249,14 @@ override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @
                                                             ?let @bool unused inGenerationDirectAccess
                                                             ?let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "@MainAction let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' !116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
@@ -325,11 +325,11 @@ override proc @arrayControllerGeneration.generateCode(
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
-    !self.mOwnerName
-    !self.mControllerName
-    !self.mArrayControllerModelKind
-    !self.mModelTypeName
-    !self.mElementTypeName
+    !self.mOwnerName,
+    !self.mControllerName,
+    !self.mArrayControllerModelKind,
+    !self.mModelTypeName,
+    !self.mElementTypeName,
     !self.mElementTypeIsGraphic
   ]
   [@string generateFile

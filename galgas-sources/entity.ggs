@@ -114,33 +114,33 @@ syntax extension easyBindings_syntax {
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST (
-      !entityName
-      !isAbstract
-      !superEntityName
-      !handlingOpposite
-      !simpleStoredPropertyList
-      !signatureList
-      !actionDeclarationList
-      !obsoleteEntityNames
-      !graphicEntity
-      !externSwiftDelegateList
+      !entityName,
+      !isAbstract,
+      !superEntityName,
+      !handlingOpposite,
+      !simpleStoredPropertyList,
+      !signatureList,
+      !actionDeclarationList,
+      !obsoleteEntityNames,
+      !graphicEntity,
+      !externSwiftDelegateList,
       !graphicOptionArray
     )
     if isAbstract && graphicEntity then
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
-        !entityName
-        !["" here]
-        !["EBShape" here]
-        !["selectionDisplay" here]
-        !{}
+        !entityName,
+        !["" here],
+        !["EBShape" here],
+        !["selectionDisplay" here],
+        !{},
         !false
       )
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
-        !entityName
-        !["" here]
-        !["EBShape" here]
-        !["objectDisplay" here]
-        !{}
+        !entityName,
+        !["" here],
+        !["EBShape" here],
+        !["objectDisplay" here],
+        !{},
         !false
       )
     end
@@ -160,9 +160,9 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
   [!?ioSemanticContext.mClassMap insertKey
     !self.mClassName
     !.entity (
-      !superEntityName: self.mSuperEntityName.string
-      !isGraphic: self.mIsGraphicEntity
-      !isAbstract: self.mIsAbstract
+      !superEntityName: self.mSuperEntityName.string,
+      !isGraphic: self.mIsGraphicEntity,
+      !isAbstract: self.mIsAbstract,
       !handlingOpposite: self.mHandlingOpposite
      )
     !{}
@@ -300,17 +300,17 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     !self.mClassName.string
     !self.mObsoleteEntityNames
   ioGeneration.mFileGenerationList += !@entityForGeneration (
-    !self.mClassName.string
-    !self.mSuperEntityName.string
-    !self.mHandlingOpposite
-    !propertyGenerationList
-    !self.mSignatureList
-    !self.mIsGraphicEntity
-    !self.mIsAbstract
-    !overridenTransients
-    !self.mExternSwiftDelegateList
-    !hasSubClass
-    !canCopyAndPaste_option
+    !self.mClassName.string,
+    !self.mSuperEntityName.string,
+    !self.mHandlingOpposite,
+    !propertyGenerationList,
+    !self.mSignatureList,
+    !self.mIsGraphicEntity,
+    !self.mIsAbstract,
+    !overridenTransients,
+    !self.mExternSwiftDelegateList,
+    !hasSubClass,
+    !canCopyAndPaste_option,
     !cannotBeDeleted_option
   )
 }
@@ -387,24 +387,24 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
     superEntityName = "EBManagedObject"
   end
   var s = [filewrapper entityGenerationTemplate.entityImplementationInSwift
-    !self.mEntityName
-    !superEntityName
-    !self.mPropertyGenerationList
-    !proxyGenerationList
-    !toManyProxyGenerationList
-    !atomicPropertyGenerationList
-    !transientPropertyGenerationList
-    !computedPropertyGenerationList
-    !toOnePropertyGenerationList
-    !toManyPropertyGenerationList
-    !self.mSignatureSet
-    !self.mIsGraphicEntity
-    !self.mIsAbstract
-    !self.mOverridenTransients
-    !self.mExternSwiftDelegateList
-    !self.mHasSubEntity
-    !self.mCanCopyAndPaste_option
-    !self.mCannotBeDeleted_option
+    !self.mEntityName,
+    !superEntityName,
+    !self.mPropertyGenerationList,
+    !proxyGenerationList,
+    !toManyProxyGenerationList,
+    !atomicPropertyGenerationList,
+    !transientPropertyGenerationList,
+    !computedPropertyGenerationList,
+    !toOnePropertyGenerationList,
+    !toManyPropertyGenerationList,
+    !self.mSignatureSet,
+    !self.mIsGraphicEntity,
+    !self.mIsAbstract,
+    !self.mOverridenTransients,
+    !self.mExternSwiftDelegateList,
+    !self.mHasSubEntity,
+    !self.mCanCopyAndPaste_option,
+    !self.mCannotBeDeleted_option,
     ![inGenerationStruct.mToManyClassImplementations hasKey !self.mEntityName]
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
@@ -416,21 +416,21 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
   ]
   if [inGenerationStruct.mToOneClassImplementations hasKey !self.mEntityName] then
     s = [filewrapper entityGenerationTemplate.entityToOneImplementationInSwift
-      !self.mEntityName
-      !superEntityName
-      !self.mHandlingOpposite
-      !self.mPropertyGenerationList
-      !proxyGenerationList
-      !toManyProxyGenerationList
-      !atomicPropertyGenerationList
-      !transientPropertyGenerationList
-      !computedPropertyGenerationList
-      !toOnePropertyGenerationList
-      !toManyPropertyGenerationList
-      !self.mSignatureSet
-      !self.mIsGraphicEntity
-      !self.mIsAbstract
-      !self.mOverridenTransients
+      !self.mEntityName,
+      !superEntityName,
+      !self.mHandlingOpposite,
+      !self.mPropertyGenerationList,
+      !proxyGenerationList,
+      !toManyProxyGenerationList,
+      !atomicPropertyGenerationList,
+      !transientPropertyGenerationList,
+      !computedPropertyGenerationList,
+      !toOnePropertyGenerationList,
+      !toManyPropertyGenerationList,
+      !self.mSignatureSet,
+      !self.mIsGraphicEntity,
+      !self.mIsAbstract,
+      !self.mOverridenTransients,
       !self.mExternSwiftDelegateList
     ]
   else
@@ -445,26 +445,26 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
   ]
   if [inGenerationStruct.mToManyClassImplementations hasKey !self.mEntityName] then
     s = [filewrapper entityGenerationTemplate.entityToManyImplementationInSwift
-      !self.mEntityName
-      !superEntityName
-      !self.mHandlingOpposite
-      !self.mPropertyGenerationList
-      !proxyGenerationList
-      !toManyProxyGenerationList
-      !atomicPropertyGenerationList
-      !transientPropertyGenerationList
-      !computedPropertyGenerationList
-      !toOnePropertyGenerationList
-      !toManyPropertyGenerationList
-      !self.mSignatureSet
-      !self.mIsGraphicEntity
-      !self.mIsAbstract
-      !self.mOverridenTransients
-      !self.mExternSwiftDelegateList
-      ![inGenerationStruct.mGenerateClass_PreferencesArrayOf_ hasKey !self.mEntityName]
-      ![inGenerationStruct.mGenerateClass_ProxyArrayOf_ hasKey !self.mEntityName]
-      ![inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_ hasKey !self.mEntityName]
-      ![inGenerationStruct.mGenerateClass_TransientArrayOf_ hasKey !self.mEntityName]
+      !self.mEntityName,
+      !superEntityName,
+      !self.mHandlingOpposite,
+      !self.mPropertyGenerationList,
+      !proxyGenerationList,
+      !toManyProxyGenerationList,
+      !atomicPropertyGenerationList,
+      !transientPropertyGenerationList,
+      !computedPropertyGenerationList,
+      !toOnePropertyGenerationList,
+      !toManyPropertyGenerationList,
+      !self.mSignatureSet,
+      !self.mIsGraphicEntity,
+      !self.mIsAbstract,
+      !self.mOverridenTransients,
+      !self.mExternSwiftDelegateList,
+      ![inGenerationStruct.mGenerateClass_PreferencesArrayOf_ hasKey !self.mEntityName],
+      ![inGenerationStruct.mGenerateClass_ProxyArrayOf_ hasKey !self.mEntityName],
+      ![inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_ hasKey !self.mEntityName],
+      ![inGenerationStruct.mGenerateClass_TransientArrayOf_ hasKey !self.mEntityName],
       ![inGenerationStruct.mGenerateClass_StoredArrayOf_ hasKey !self.mEntityName]
     ]
   else

@@ -77,13 +77,13 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST (
-      !outletClassName
-      !userDefined
-      !superClassName
-      !hasRunAction
-      !hasEnabled
-      !handlesTableViewBinding
-      !handlesGraphicControllerBinding
+      !outletClassName,
+      !userDefined,
+      !superClassName,
+      !hasRunAction,
+      !hasEnabled,
+      !handlesTableViewBinding,
+      !handlesGraphicControllerBinding,
       !hasHidden
     )
   }
