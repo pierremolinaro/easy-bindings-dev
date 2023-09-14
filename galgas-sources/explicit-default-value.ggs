@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
       $literal_integer$ (?let @luint integerValue)
       outDefaultValue = @integerAsDefaultValue (!integerValue, true)
     or
-      $literal_double$ (?let @ldouble doubleValue ?*)
+      $literal_double$ (?let @ldouble doubleValue, ?*)
       outDefaultValue = @doubleAsDefaultValue (!doubleValue)
     or
       $literal_string$ (?let @lstring stringValue)
