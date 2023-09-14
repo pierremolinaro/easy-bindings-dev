@@ -30,9 +30,9 @@ syntax extension easyBindings_syntax {
 #------------------------------------------------------------
 
 proc generateXcodeProject(
-  ?let @string inOutputDirectory
-  ?let @string inXcodeProjectString
-  ?let @stringset inGeneratedFileSet
+  ?let @string inOutputDirectory,
+  ?let @string inXcodeProjectString,
+  ?let @stringset inGeneratedFileSet,
   ?let @string projectName)
 {
   if inXcodeProjectString != "" then
@@ -43,9 +43,9 @@ proc generateXcodeProject(
 #------------------------------------------------------------
 
 private proc generateXcodeProjectInternal(
-  ?let @string inOutputDirectory
-  ?let @string inXcodeProjectString
-  ?let @stringset inGeneratedFileSet
+  ?let @string inOutputDirectory,
+  ?let @string inXcodeProjectString,
+  ?let @stringset inGeneratedFileSet,
   ?let @string projectName)
 {
   var xcodeProject = @XcodeProjectDescriptor ()

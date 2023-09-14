@@ -17,7 +17,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <auto_layout_view_binding_specification> (?let @lstring inClassName 
+  rule <auto_layout_view_binding_specification> (?let @lstring inClassName,
                                                 ?!@autoLayoutViewClassBindingSpecificationList ioBindingList) {
     $bindingName$ (?let @lstring bindingName)
     var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
@@ -35,7 +35,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?modelTypeName)
       or
         $enum$
-        modelTypeName = .new (!"enum" ,!.here)
+        modelTypeName = .new (!"enum", .here)
       end
       outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
     while
@@ -90,7 +90,7 @@ map @autoLayoutViewBindingSpecificationMap {
 #·······················································································································
 
 proc buildAutoLayoutBindingSpecificationMap(
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContext ioSemanticContext,
   ?let @autoLayoutViewClassBindingSpecificationList inBindingSpecificationListMap)
 {
   for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
@@ -98,7 +98,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "" ,!constantMap: {} ,!funcMap: {}) # Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: {}, !funcMap: {}) # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]

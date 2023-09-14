@@ -97,7 +97,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @outletClassDeclarationAST.firstAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
   if self.mSuperClassName.string == "" then

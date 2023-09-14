@@ -34,7 +34,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
   #·····················································································································
   
   rule <start_symbol>(
-    ?!@astDeclarationStruct ioDeclarationAST
+    ?!@astDeclarationStruct ioDeclarationAST,
     !@location outEndOfFile)
   {
     repeat

@@ -17,13 +17,13 @@ abstract func @abstractDeclarationAST.nodeKey() -> @lstring
 #·······················································································································
 
 abstract proc @abstractDeclarationAST.firstAnalysisPhase(
-    ?!@semanticContext ioSemanticContext
+    ?!@semanticContext ioSemanticContext,
     ?!@generationStruct ioGeneration)
 
 #·······················································································································
 
 proc @abstractDeclarationAST.secondAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext
+    ?!@semanticContext unused ioSemanticContext,
     ?!@generationStruct unused ioGeneration)
 {
 }
@@ -31,7 +31,7 @@ proc @abstractDeclarationAST.secondAnalysisPhase(
 #·······················································································································
 
 proc @abstractDeclarationAST.thirdAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext
+    ?!@semanticContext unused ioSemanticContext,
     ?!@generationStruct unused ioGeneration)
 {
 }
@@ -39,7 +39,7 @@ proc @abstractDeclarationAST.thirdAnalysisPhase(
 #·······················································································································
 
 proc @abstractDeclarationAST.fourthAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext
+    ?!@semanticContext unused ioSemanticContext,
     ?!@generationStruct unused ioGeneration)
 {
 }
@@ -59,8 +59,8 @@ graph @declarationPrecedenceGraph (@declarationListAST) {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc sortProperties(
-      ?let @string inSourceFile
-      ?let @declarationListAST inDeclarationListAST
+      ?let @string inSourceFile,
+      ?let @declarationListAST inDeclarationListAST,
       !@declarationListAST outSortedDeclarationListAST)
 {
 #------------------------ Enter declarations in graph

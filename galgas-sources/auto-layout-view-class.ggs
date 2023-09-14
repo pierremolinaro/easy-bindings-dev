@@ -176,8 +176,8 @@ syntax extension easyBindings_syntax {
 
  #·····················································································································
   
-  rule <autolayout_formal_parameter_list> (?let @lstring inFunctionName 
-                                          !@autoLayoutClassParameterList ioParameterList
+  rule <autolayout_formal_parameter_list> (?let @lstring inFunctionName,
+                                          !@autoLayoutClassParameterList ioParameterList,
                                           !@lstring outMangledName) {
     ioParameterList = {}
     var mangledName = inFunctionName.string + "("
@@ -217,7 +217,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
     mangledName += ")"
-    outMangledName = .new (!mangledName ,!inFunctionName.location)
+    outMangledName = .new (!mangledName, inFunctionName.location)
   }
 
   #·····················································································································
@@ -229,7 +229,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
   if self.mSuperClassName.string == "" then

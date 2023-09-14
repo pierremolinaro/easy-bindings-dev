@@ -9155,23 +9155,23 @@ GALGAS_generationStruct GALGAS_generationStruct::constructor_default (UNUSED_LOC
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_generationStruct GALGAS_generationStruct::constructor_new (UNUSED_LOCATION_ARGS) {
-  const GALGAS_validationStubRoutineListForGeneration in_mValidationStubRoutineListForGeneration = GALGAS_validationStubRoutineListForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 40)) ;
-  const GALGAS_fileGenerationList in_mFileGenerationList = GALGAS_fileGenerationList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 41)) ;
-  const GALGAS_entityListForGeneratingEBManagedObjectContext in_mEntityListForGeneration = GALGAS_entityListForGeneratingEBManagedObjectContext::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 42)) ;
+  const GALGAS_validationStubRoutineListForGeneration in_mValidationStubRoutineListForGeneration = GALGAS_validationStubRoutineListForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 31)) ;
+  const GALGAS_fileGenerationList in_mFileGenerationList = GALGAS_fileGenerationList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 32)) ;
+  const GALGAS_entityListForGeneratingEBManagedObjectContext in_mEntityListForGeneration = GALGAS_entityListForGeneratingEBManagedObjectContext::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 33)) ;
   const GALGAS_bool in_mGenerateEBManagedXibDocumentSwift = GALGAS_bool (false) ;
   const GALGAS_bool in_mGenerateEBManagedAutoLayoutDocumentSwift = GALGAS_bool (false) ;
-  const GALGAS_stringset in_mNeededOutletClasses = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 45)) ;
-  const GALGAS_mainXibDescriptorList in_mMainXibDescriptorList = GALGAS_mainXibDescriptorList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 46)) ;
-  const GALGAS_stringset in_mToOneClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 48)) ;
-  const GALGAS_stringset in_mToManyClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 49)) ;
-  const GALGAS_selectionControllerForGeneration in_mSelectionControllerListForGeneration = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 51)) ;
-  const GALGAS_stringlist in_mPropertyClassList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 52)) ;
-  const GALGAS_transientExternTypeList in_mTransientPropertyTypeList = GALGAS_transientExternTypeList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 53)) ;
-  const GALGAS_stringset in_mGenerateClass_PreferencesArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 55)) ;
-  const GALGAS_stringset in_mGenerateClass_ProxyArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 56)) ;
-  const GALGAS_stringset in_mGenerateClass_TransientArrayOfSuperOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 57)) ;
-  const GALGAS_stringset in_mGenerateClass_TransientArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 58)) ;
-  const GALGAS_stringset in_mGenerateClass_StoredArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 59)) ;
+  const GALGAS_stringset in_mNeededOutletClasses = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 36)) ;
+  const GALGAS_mainXibDescriptorList in_mMainXibDescriptorList = GALGAS_mainXibDescriptorList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 37)) ;
+  const GALGAS_stringset in_mToOneClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 39)) ;
+  const GALGAS_stringset in_mToManyClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 40)) ;
+  const GALGAS_selectionControllerForGeneration in_mSelectionControllerListForGeneration = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 42)) ;
+  const GALGAS_stringlist in_mPropertyClassList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 43)) ;
+  const GALGAS_transientExternTypeList in_mTransientPropertyTypeList = GALGAS_transientExternTypeList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 44)) ;
+  const GALGAS_stringset in_mGenerateClass_PreferencesArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 46)) ;
+  const GALGAS_stringset in_mGenerateClass_ProxyArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 47)) ;
+  const GALGAS_stringset in_mGenerateClass_TransientArrayOfSuperOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 48)) ;
+  const GALGAS_stringset in_mGenerateClass_TransientArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 49)) ;
+  const GALGAS_stringset in_mGenerateClass_StoredArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 50)) ;
   GALGAS_generationStruct result ;
   if (in_mValidationStubRoutineListForGeneration.isValid () && in_mFileGenerationList.isValid () && in_mEntityListForGeneration.isValid () && in_mGenerateEBManagedXibDocumentSwift.isValid () && in_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && in_mNeededOutletClasses.isValid () && in_mMainXibDescriptorList.isValid () && in_mToOneClassImplementations.isValid () && in_mToManyClassImplementations.isValid () && in_mSelectionControllerListForGeneration.isValid () && in_mPropertyClassList.isValid () && in_mTransientPropertyTypeList.isValid () && in_mGenerateClass_PreferencesArrayOf_.isValid () && in_mGenerateClass_ProxyArrayOf_.isValid () && in_mGenerateClass_TransientArrayOfSuperOf_.isValid () && in_mGenerateClass_TransientArrayOf_.isValid () && in_mGenerateClass_StoredArrayOf_.isValid ()) {
     result = GALGAS_generationStruct (in_mValidationStubRoutineListForGeneration, in_mFileGenerationList, in_mEntityListForGeneration, in_mGenerateEBManagedXibDocumentSwift, in_mGenerateEBManagedAutoLayoutDocumentSwift, in_mNeededOutletClasses, in_mMainXibDescriptorList, in_mToOneClassImplementations, in_mToManyClassImplementations, in_mSelectionControllerListForGeneration, in_mPropertyClassList, in_mTransientPropertyTypeList, in_mGenerateClass_PreferencesArrayOf_, in_mGenerateClass_ProxyArrayOf_, in_mGenerateClass_TransientArrayOfSuperOf_, in_mGenerateClass_TransientArrayOf_, in_mGenerateClass_StoredArrayOf_) ;

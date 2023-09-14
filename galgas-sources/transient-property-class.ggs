@@ -54,7 +54,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @transientClassDeclarationAST.firstAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
   [!?ioSemanticContext.mClassMap insertKey

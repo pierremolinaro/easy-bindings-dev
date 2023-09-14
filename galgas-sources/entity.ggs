@@ -154,7 +154,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
   buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
@@ -173,7 +173,7 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
 
 #·······················································································································
 
-override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct unused ioGeneration) {
   if self.mSuperEntityName.string != "" then
   #--- Search for super entity property map
@@ -214,7 +214,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 
 #·······················································································································
 
-override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
   [ioSemanticContext.mClassMap searchKey
     !self.mClassName
@@ -343,16 +343,8 @@ list @entityListForGeneratingEBManagedObjectContext {
 
 #·······················································································································
 
-override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
-    ?let @generationStruct inGenerationStruct
-#    ?toOne: @stringset inToOneEntities
-#    ?toMany: @stringset inToManyEntities
-#    ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
-#    ?generateClass_StandAloneArrayOf: @stringset inGenerateClass_StandAloneArrayOf
-#    ?generateClass_ProxyArrayOf: @stringset inGenerateClass_ProxyArrayOf
-#    ?generateClass_TransientArrayOfSuperOf: @stringset inGenerateClass_TransientArrayOfSuperOf
-#    ?generateClass_TransientArrayOf: @stringset inGenerateClass_TransientArrayOf
-#    ?generateClass_StoredArrayOf: @stringset inGenerateClass_StoredArrayOf
+override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
+    ?let @generationStruct inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   var @atomicPropertyGenerationList atomicPropertyGenerationList = {}
   var @transientPropertyGenerationList transientPropertyGenerationList = {}
@@ -482,8 +474,8 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory
 #·······················································································································
 
 proc generateEBManagedObjectContext(
-  ?let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration
-  ?let @string inOutputDirectory
+  ?let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
+  ?let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet)
 {
   if inEntityListForGeneration.length () > 0 then

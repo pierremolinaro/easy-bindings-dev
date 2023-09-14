@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
     while
       $&$
       <booleanMultipleBindingComparison> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @andBooleanMultipleBindingExpressionAST.new  (!outBinding ,!binding)
+      outBinding = @andBooleanMultipleBindingExpressionAST.new  (!outBinding, binding)
     end
   }
   
@@ -98,27 +98,27 @@ syntax extension easyBindings_syntax {
     or
       $>$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.greater ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .greater, rightBinding)
     or
       $>=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.greaterOrEqual ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .greaterOrEqual, rightBinding)
     or
       $<=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.lowerOrEqual ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .lowerOrEqual, rightBinding)
     or
       $<$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.lower ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .lower, rightBinding)
     or
       $==$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.equal ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .equal, rightBinding)
     or
       $!=$
       <booleanMultipleBindingTerm> (?let rightBinding)
-      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding ,!.notEqual ,!rightBinding)
+      outBinding = @comparisonMultipleBindingExpressionAST (!outBinding, .notEqual, rightBinding)
     end
   }
   
@@ -132,11 +132,11 @@ syntax extension easyBindings_syntax {
     while
       $|$
       <booleanMultipleBindingOperand> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @orBooleanMultipleBindingExpressionAST.new  (!outBinding ,!binding)
+      outBinding = @orBooleanMultipleBindingExpressionAST.new  (!outBinding, binding)
     while
       $^$
       <booleanMultipleBindingOperand> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @xorBooleanMultipleBindingExpressionAST.new  (!outBinding ,!binding)
+      outBinding = @xorBooleanMultipleBindingExpressionAST.new  (!outBinding, binding)
     end
   }
   
@@ -249,25 +249,25 @@ class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultip
 #-----------------------------------------------------------------------------------------------------------------------
 
 abstract proc @abstractBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 
 #·······················································································································
 
 override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool unused inPreferences
-  ?let @propertyMap unused inRootObservablePropertyMap
-  ?let @semanticContext unused inSemanticContext
-  ?let @propertyMap unused inCurrentObservablePropertyMap
-  ?let @propertyMap unused inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool unused inPreferences,
+  ?let @propertyMap unused inRootObservablePropertyMap,
+  ?let @semanticContext unused inSemanticContext,
+  ?let @propertyMap unused inCurrentObservablePropertyMap,
+  ?let @propertyMap unused inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   outEnableExpression = @booleanMultipleBindingLiteralIntForGeneration (!self.mValue.uint)
@@ -278,13 +278,13 @@ override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultip
 #·······················································································································
 
 override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mProperty analyzeObservableProperty
@@ -316,13 +316,13 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
 #·······················································································································
 
 override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mBinding analyzeExpressionForMultipleBinding
@@ -344,13 +344,13 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
 #·······················································································································
 
 override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
@@ -381,19 +381,19 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration (!leftExpression ,!rightExpression)
+  outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration (!leftExpression, rightExpression)
 }
 
 #·······················································································································
 
 override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
@@ -424,19 +424,19 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration (!leftExpression ,!rightExpression)
+  outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration (!leftExpression, rightExpression)
 }
 
 #·······················································································································
 
 override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
@@ -467,19 +467,19 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   end
   outType = .boolType
   outErrorLocation = outRightLocation
-  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration (!leftExpression ,!rightExpression)
+  outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration (!leftExpression, rightExpression)
 }
 
 #·······················································································································
 
 override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inCurrentObservablePropertyMap
-  ?let @propertyMap inPreferencesObservablePropertyMap
-  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression
-  !@typeKind outType
+  ?prefs: let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inCurrentObservablePropertyMap,
+  ?let @propertyMap inPreferencesObservablePropertyMap,
+  !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
+  !@typeKind outType,
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding

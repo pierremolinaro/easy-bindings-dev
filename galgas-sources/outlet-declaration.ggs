@@ -66,11 +66,11 @@ syntax extension easyBindings_syntax {
  
  #·······················································································································
 
-  rule <outlet_binding> (!@tableValueBinding tableValueBinding
-                        !@runActionDescriptor runActionDescriptor
-                        !@multipleBindingDescriptor enabledBindingDescriptor
-                        !@multipleBindingDescriptor hiddenBindingDescriptor
-                        !@graphicController graphicController
+  rule <outlet_binding> (!@tableValueBinding tableValueBinding,
+                        !@runActionDescriptor runActionDescriptor,
+                        !@multipleBindingDescriptor enabledBindingDescriptor,
+                        !@multipleBindingDescriptor hiddenBindingDescriptor,
+                        !@graphicController graphicController,
                         !@regularBindingList regularBindingList)
 {
     tableValueBinding = @tableValueBinding.noTableValueBinding 
@@ -94,13 +94,13 @@ syntax extension easyBindings_syntax {
       end
       let @lstring runTargetName
       select
-        runTargetName = @lstring (!"self" ,!.here)
+        runTargetName = @lstring (!"self", .here)
       or
         $controllerName$ (?runTargetName)
         $.$
       end
       $identifier$ (?let @lstring runActionName)
-      runActionDescriptor = .action (!target:runTargetName ,!action:runActionName)
+      runActionDescriptor = .action (!target:runTargetName, !action:runActionName)
   #--- Enabled
     while
       $enabled$
@@ -144,7 +144,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?propertyName)
       end
       if graphicController.isNone () then
-        graphicController = .defined (!controller:graphicControllerName ,!propertyName: propertyName)
+        graphicController = .defined (!controller:graphicControllerName, !propertyName: propertyName)
       else
         error graphicControllerName : "binding already defined"
       end   
@@ -181,21 +181,21 @@ list @ebViewGraphicControllerBindingGenerationList {
 #·······················································································································
 
 proc analyzeOutlets(
-  ?let @bool inPreferences
-  ?let @propertyMap inRootObservablePropertyMap
-  ?let @propertyMap inPreferencesPropertyMap
-  ?let @string unused inRootEntityName
-  ?let @semanticContext inSemanticContext
-  ?let @outletDeclarationList inOutletDeclarationList
-  ?let @propertyMap inObservablePropertyMap
-  ?let @actionMap inActionMap
-  ?let @string inReceiverSwiftTypeName
-  ?!@generationStruct ioGeneration
-  !@regularBindingsGenerationList outRegularBindingsGenerationList
-  !@multipleBindingGenerationList outMultipleBindingGenerationList
-  !@actionBindingListForGeneration outTargetActionList
-  !@decoratedOutletMap outletMap
-  !@tableViewBindingGenerationList outTableViewBindingGenerationList
+  ?let @bool inPreferences,
+  ?let @propertyMap inRootObservablePropertyMap,
+  ?let @propertyMap inPreferencesPropertyMap,
+  ?let @string unused inRootEntityName,
+  ?let @semanticContext inSemanticContext,
+  ?let @outletDeclarationList inOutletDeclarationList,
+  ?let @propertyMap inObservablePropertyMap,
+  ?let @actionMap inActionMap,
+  ?let @string inReceiverSwiftTypeName,
+  ?!@generationStruct ioGeneration,
+  !@regularBindingsGenerationList outRegularBindingsGenerationList,
+  !@multipleBindingGenerationList outMultipleBindingGenerationList,
+  !@actionBindingListForGeneration outTargetActionList,
+  !@decoratedOutletMap outletMap,
+  !@tableViewBindingGenerationList outTableViewBindingGenerationList,
   !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList)
 {
   outRegularBindingsGenerationList = {}
@@ -386,14 +386,14 @@ proc analyzeOutlets(
 #·······················································································································
 
 proc analyzeRegularBinding(
-  ?let @propertyMap inRootPropertyMap
-  ?let @propertyMap inPreferencesPropertyMap
-  ?let @semanticContext inSemanticContext
-  ?let @propertyMap inBoundModelPropertyMap
-  ?let @lstring inOutletTypeName
-  ?let @string inOutletName
-  ?let @regularBindingList inRegularBindingList
-  ?let @string inSelfSwiftName
+  ?let @propertyMap inRootPropertyMap,
+  ?let @propertyMap inPreferencesPropertyMap,
+  ?let @semanticContext inSemanticContext,
+  ?let @propertyMap inBoundModelPropertyMap,
+  ?let @lstring inOutletTypeName,
+  ?let @string inOutletName,
+  ?let @regularBindingList inRegularBindingList,
+  ?let @string inSelfSwiftName,
   ?!@regularBindingsGenerationList ioRegularBindingsGenerationList)
 {
   for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do

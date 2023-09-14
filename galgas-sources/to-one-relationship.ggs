@@ -21,7 +21,7 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName ,!self.mToOneRelationshipName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName, self.mToOneRelationshipName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   [!?ioGraph addEdge !node !self.mDestinationEntityName]
@@ -30,7 +30,7 @@ override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPreced
 #·······················································································································
 
 override func @toOneRelationshipAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName ,!self.mToOneRelationshipName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mToOneRelationshipName, self.mToOneRelationshipName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
 
-  rule <toOne_relationship> (?let @lstring inCurrentEntity ?!@astDeclarationStruct ioDeclarationAST) {
+  rule <toOne_relationship> (?let @lstring inCurrentEntity, ?!@astDeclarationStruct ioDeclarationAST) {
     $toOne$
     var usedForSignature = false
     var weak = false
@@ -98,7 +98,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
@@ -130,7 +130,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
@@ -184,16 +184,16 @@ list @toOnePropertyGenerationList {
 #·······················································································································
 
 override func @toOnePropertyGeneration.propertyDeclarationCode
-                                                   (?let @bool unused inPreferences
-                                                    ?let @bool unused inGenerationDirectAccess
+                                                   (?let @bool unused inPreferences,
+                                                    ?let @bool unused inGenerationDirectAccess,
                                                     ?let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + self.mRelationshipType.swiftTypeName ()
   result += " (usedForSignature: " + self.mUsedForSignature.cString ()
   result += ", strongRef: " + self.mStrongRef.cString () + ", key: \"" + self.mPropertyName + "\")\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + self.mRelationshipType.swiftTypeName () + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
@@ -209,7 +209,7 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_none = EBTransientProperty <Bool> ()\n\n"
 }
 

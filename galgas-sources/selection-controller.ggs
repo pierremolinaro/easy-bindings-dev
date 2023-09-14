@@ -17,13 +17,13 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
     !self.mSelectionControllerName.location
   )
   [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mModelControllerName ,!self.mModelControllerName.location)]
+  [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location)]
 }
 
 #·······················································································································
 
 override func @selectionControllerDeclarationAST.nodeKey () -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mSelectionControllerName ,!self.mSelectionControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mSelectionControllerName, self.mSelectionControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -34,9 +34,9 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <controller_declaration> (?let @lstring inCurrentEntity
-                                 ?let @lstring unused inRootEntity
-                                 ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
+  rule <controller_declaration> (?let @lstring inCurrentEntity,
+                                 ?let @lstring unused inRootEntity,
+                                 ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
                                  ?!@astDeclarationStruct ioDeclarationAST) {
     $selectionController$
     $Identifier$ (?let @lstring selectionEntityName)
@@ -63,7 +63,7 @@ syntax extension easyBindings_syntax {
 #   SEMANTIC ANALYSIS                       
 #-----------------------------------------------------------------------------------------------------------------------
 
-override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext
+override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                                      ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
@@ -97,7 +97,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
 #·······················································································································
 
 override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
   [ioSemanticContext.mClassMap searchKey !self.mClassName ?let superClassKind ?let propertyMap ?2*]
   [propertyMap searchKey !self.mModelControllerName ?let propertyKind ?2*]
@@ -162,12 +162,12 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
-   ?let @bool unused inPreferences
-   ?let @bool unused inGenerationDirectAccess
+   ?let @bool unused inPreferences,
+   ?let @bool unused inGenerationDirectAccess,
    ?let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
   result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 
@@ -232,8 +232,8 @@ private filewrapper selectionControllerGenerationTemplate in "generation-templat
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc generateSelectionControllers(
-  ?let @selectionControllerForGeneration inArrayControllerListForGeneration
-  ?let @string inOutputDirectory
+  ?let @selectionControllerForGeneration inArrayControllerListForGeneration,
+  ?let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet) {
   for (ownerName selectionControllerName * * baseTypeName selectionTypeName selectionObservablePropertyMap propertyGenerationList) in inArrayControllerListForGeneration do
     if baseTypeName == selectionTypeName then

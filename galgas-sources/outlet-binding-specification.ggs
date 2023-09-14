@@ -52,7 +52,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?modelTypeName)
       or
         $enum$
-        modelTypeName = .new (!"enum" ,!.here)
+        modelTypeName = .new (!"enum", .here)
       end
       outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
     while
@@ -122,7 +122,7 @@ map @outletBindingSpecificationMap {
 #·······················································································································
 
 proc buildBindingSpecificationMap(
-  ?!@semanticContext ioSemanticContext
+  ?!@semanticContext ioSemanticContext,
   ?let @outletClassBindingSpecificationList inBindingSpecificationListMap)
 {
   for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
@@ -130,7 +130,7 @@ proc buildBindingSpecificationMap(
     for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "" ,!constantMap: {} ,!funcMap: {}) # Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: {}, !funcMap: {}) # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]

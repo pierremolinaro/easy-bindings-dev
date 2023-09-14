@@ -30,20 +30,20 @@ class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   if not self.mIsRoot then
-    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
+    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
   elsif self.mRootEntityName.string != "" then
-    [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
+    [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
   end
 }
 
 #·······················································································································
 
 override func @autoLayoutTableViewControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -55,9 +55,9 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>(
-            ?let @lstring inCurrentEntity
-            ?let @lstring inRootEntity
-            ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST
+            ?let @lstring inCurrentEntity,
+            ?let @lstring inRootEntity,
+            ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     $tableViewController$
@@ -136,7 +136,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
@@ -201,11 +201,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
   [ioSemanticContext.mClassMap searchKey
-    !.new (!preferencesName () ,!.nowhere)
+    !.new (!preferencesName (), .nowhere)
     ?*
     ?let preferencesPropertyMap
     ?2*
@@ -410,19 +410,19 @@ class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarationCode(
-   ?let @bool inPreferences
-   ?let @bool unused inGenerationDirectAccess
+   ?let @bool inPreferences,
+   ?let @bool unused inGenerationDirectAccess,
    ?let @stringset unused inOverriddenTransients) -> @string
 {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
     result += "//   Table View controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
@@ -515,8 +515,8 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generati
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerGeneration.generateCode(
-    ?let @string inOutputDirectory
-    ?let @generationStruct unused inGenerationStruct
+    ?let @string inOutputDirectory,
+    ?let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = {}

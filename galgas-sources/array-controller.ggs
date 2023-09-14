@@ -25,23 +25,23 @@ enum @arrayControllerBoundModelAST {
 #·······················································································································
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
+  let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
   [!?ioGraph addNode !node !self]
   [!?ioGraph addEdge !node !self.mClassName]
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      [!?ioGraph addEdge !node !.new (!rootEntityName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
+      [!?ioGraph addEdge !node !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
     end
   case selfToManyRelationship :
-    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName ,!self.mToManyPropertyName.location)]
+    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
   end
 }
 
 #·······················································································································
 
 override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mControllerName ,!self.mControllerName.location)
+  result = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -53,9 +53,9 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>(
-            ?let @lstring inCurrentEntity
-            ?let @lstring inRootEntity
-            ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST
+            ?let @lstring inCurrentEntity,
+            ?let @lstring inRootEntity,
+            ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     $arrayController$
@@ -100,7 +100,7 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
@@ -166,7 +166,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
   let @propertyMap boundModelPropertyMap
@@ -245,18 +245,18 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @bool inPreferences
-                                                            ?let @bool unused inGenerationDirectAccess
+override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @bool inPreferences,
+                                                            ?let @bool unused inGenerationDirectAccess,
                                                             ?let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
     result += "@MainAction let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
@@ -320,8 +320,8 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCode(
-    ?let @string inOutputDirectory
-    ?let @generationStruct unused inGenerationStruct
+    ?let @string inOutputDirectory,
+    ?let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:

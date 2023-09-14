@@ -15,17 +15,8 @@ abstract class @abstractFileGeneration {
 #·······················································································································
 
 abstract proc @abstractFileGeneration.generateCode(
-    ?let @string inOutputDirectory
-    ?let @generationStruct inGenerationStruct
-#    ?toOne: @stringset inToOneEntities
-#    ?toMany: @stringset inToManyEntities
-#    ?generateClass_PreferencesArrayOf: @stringset inGenerateClass_PreferencesArrayOf
-#    ?generateClass_StandAloneArrayOf: @stringset inGenerateClass_StandAloneArrayOf
-#    ?generateClass_ProxyArrayOf: @stringset inGenerateClass_ProxyArrayOf
-#    ?generateClass_TransientArrayOfSuperOf: @stringset inGenerateClass_TransientArrayOfSuperOf
-#    ?generateClass_TransientArrayOf: @stringset inGenerateClass_TransientArrayOf
-#    ?generateClass_StoredArrayOf: @stringset inGenerateClass_StoredArrayOf
-#    ?generateClass_TransientObject: @stringset inGenerateClass_TransientObject
+    ?let @string inOutputDirectory,
+    ?let @generationStruct inGenerationStruct,
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -64,8 +55,8 @@ struct @generationStruct {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc generateCode(
-  ?let @string inXcodeProjectString
-  ?let @generationStruct inGeneration
+  ?let @string inXcodeProjectString,
+  ?let @generationStruct inGeneration,
   ?let @string inSourceFile)
 {
   let outputDirectory = inSourceFile.stringByDeletingLastPathComponent ()
@@ -134,9 +125,9 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 
 #·······················································································································
 
-private proc generateStandardProperties (?let @string inOutputDirectory
-                                         ?let @stringlist inPropertyClassList
-                                         ?let @transientExternTypeList inTransientPropertyExternTypeList
+private proc generateStandardProperties (?let @string inOutputDirectory,
+                                         ?let @stringlist inPropertyClassList,
+                                         ?let @transientExternTypeList inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
 #--- Add scalar property types
   generateScalarProperty (!inOutputDirectory !"UInt32" !false !"" !?ioGeneratedFileSet)
@@ -165,10 +156,10 @@ private proc generateStandardProperties (?let @string inOutputDirectory
 
 #·······················································································································
 
-private proc generateClassProperty (?let @string inOutputDirectory
-                                     ?let @string inClassPropertyTypeName
-                                     ?let @bool inComparable
-                                     ?let @bool inTransient
+private proc generateClassProperty (?let @string inOutputDirectory,
+                                     ?let @string inClassPropertyTypeName,
+                                     ?let @bool inComparable,
+                                     ?let @bool inTransient,
                                      ?!@stringset ioGeneratedFileSet) {
   let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inComparable, inTransient]
 #--- Generate file
@@ -183,12 +174,12 @@ private proc generateClassProperty (?let @string inOutputDirectory
 
 #·······················································································································
 
-private proc generateScalarProperty (?let @string inOutputDirectory
-                                    ?let @string inScalarPropertyTypeName
-                                    ?let @bool inTransient
-                                    ?let @string inComparisonMethod
+private proc generateScalarProperty (?let @string inOutputDirectory,
+                                    ?let @string inScalarPropertyTypeName,
+                                    ?let @bool inTransient,
+                                    ?let @string inComparisonMethod,
                                     ?!@stringset ioGeneratedFileSet) {
-  let contents = filewrapper [standard_properties.scalarProperty: !inScalarPropertyTypeName ,!inTransient ,!inComparisonMethod]
+  let contents = filewrapper [standard_properties.scalarProperty: !inScalarPropertyTypeName, inTransient, inComparisonMethod]
 #--- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName

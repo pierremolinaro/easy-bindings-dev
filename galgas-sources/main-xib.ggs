@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
         ioElementList += !{
-          !.outlet (!outletType:outletType ,!outletName:outletName)
+          !.outlet (!outletType:outletType, !outletName:outletName)
         }
       or
         $literal_string$ (?let @lstring s)
@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
         outLineDescription +=
-          !.outlet (!outletType:outletType ,!outletName:outletName)
+          !.outlet (!outletType:outletType, !outletName:outletName)
       or
         $literal_string$ (?let @lstring s)
         outLineDescription += !.text (!text:s)
@@ -127,9 +127,9 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
 #·······················································································································
 
 proc generateTestFile(
-  ?let @string inBundleIdentifier
-  ?let @string inProjectName
-  ?let @mainXibDescriptorList inMainXibDescriptorList
+  ?let @string inBundleIdentifier,
+  ?let @string inProjectName,
+  ?let @mainXibDescriptorList inMainXibDescriptorList,
   ?let @string inOutputDirectory)
 {
   if (inMainXibDescriptorList.length () > 0) && (inBundleIdentifier != "") then

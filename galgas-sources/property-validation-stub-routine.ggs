@@ -24,8 +24,8 @@ filewrapper validationStubExtension in "generation-templates" {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc generateValidationRoutineStubs(
-  ?let @string inOutputDirectory
-  ?let @validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration
+  ?let @string inOutputDirectory,
+  ?let @validationStubRoutineListForGeneration inValidationStubRoutineListForGeneration,
   ?!@stringset ioGeneratedFileSet)
 {
   for (mObjectTypeName mModelName mModelTypeName) in inValidationStubRoutineListForGeneration do

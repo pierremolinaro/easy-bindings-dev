@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (!enumName ,!enumConstants)
+    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (!enumName, enumConstants)
   }
 
   #·····················································································································
@@ -105,7 +105,7 @@ map @enumFuncMap {
 #·······················································································································
 
 override proc @enumerationDeclarationAST.firstAnalysisPhase(
-       ?!@semanticContext ioSemanticContext
+       ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
   var @enumConstantMap enumConstantMap = {}
@@ -135,7 +135,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
   end
   [!?ioSemanticContext.mClassMap insertKey
     !self.mClassName
-    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName ,!constantMap: enumConstantMap ,!funcMap: enumFuncMap))
+    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName, !constantMap: enumConstantMap, !funcMap: enumFuncMap))
     !{}
     !{}
     !{}
@@ -172,8 +172,8 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
 #·······················································································································
 
 override proc @enumForGeneration.generateCode(
-    ?let @string inOutputDirectory
-    ?let @generationStruct unused inGenerationStruct
+    ?let @string inOutputDirectory,
+    ?let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   if self.mEnumConstantList.length () > 0 then # Empty list is the generic type "Enum"
     let s = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
