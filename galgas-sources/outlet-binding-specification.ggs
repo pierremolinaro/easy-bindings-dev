@@ -137,13 +137,13 @@ proc buildBindingSpecificationMap(
         let @typeKind typeKind
         switch classKind
         case prefs :
-          error mModelTypeName : "an atomic class is required here" spoil typeKind
+          error mModelTypeName : "an atomic class is required here" spoil (typeKind)
         case atomic (@typeKind kind) :
           typeKind = kind
         case document (*) :
-          error mModelTypeName : "an atomic class is required here" spoil typeKind
+          error mModelTypeName : "an atomic class is required here" spoil (typeKind)
         case entity (4*) :
-          error mModelTypeName : "an atomic class is required here" spoil typeKind
+          error mModelTypeName : "an atomic class is required here" spoil (typeKind)
         end
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
       end
@@ -154,13 +154,13 @@ proc buildBindingSpecificationMap(
       let @typeKind typeKind
       switch classKind
       case prefs :
-        error mOptionTypeName : "an atomic class is required here" spoil typeKind
+        error mOptionTypeName : "an atomic class is required here" spoil (typeKind)
       case atomic (@typeKind kind) :
         typeKind = kind
       case document (*) :
-        error mOptionTypeName : "an atomic class is required here" spoil typeKind
+        error mOptionTypeName : "an atomic class is required here" spoil (typeKind)
       case entity (4*) :
-        error mOptionTypeName : "an atomic class is required here" spoil typeKind
+        error mOptionTypeName : "an atomic class is required here" spoil (typeKind)
       end
       controllerBindingOptionDecoratedList += !typeKind !mOptionName
     end

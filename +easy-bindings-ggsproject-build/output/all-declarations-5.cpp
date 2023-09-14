@@ -8874,23 +8874,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
       inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 88)), GALGAS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 88)) ;
     }
   }
-  GALGAS_lstring var_attributeTypeName_3781 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_attributeTypeName_3784 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 90)) ;
-  GALGAS_lstring var_attributeName_3828 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_attributeName_3831 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 91)) ;
   enumGalgasBool test_17 = kBoolTrue ;
   if (kBoolTrue == test_17) {
     test_17 = var_usedForSignature_2336.boolEnum () ;
     if (kBoolTrue == test_17) {
-      ioArgument_ioSignatureList.addAssign_operation (var_attributeName_3828.readProperty_string ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 93)) ;
+      ioArgument_ioSignatureList.addAssign_operation (var_attributeName_3831.readProperty_string ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 93)) ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 95)) ;
-  GALGAS_abstractDefaultValue var_defaultValue_3989 ;
-  nt_explicit_5F_value_ (var_defaultValue_3989, inCompiler) ;
+  GALGAS_abstractDefaultValue var_defaultValue_3992 ;
+  nt_explicit_5F_value_ (var_defaultValue_3992, inCompiler) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_atomicPropertyDeclarationAST::constructor_new (constinArgument_inClassName, var_attributeTypeName_3781, var_attributeName_3828, var_defaultValue_3989, var_generateResetMethod_2372, var_generateDirectRead_2407, var_generateDirectAccess_2444  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
-  ioArgument_ioAttributeList.addAssign_operation (var_attributeTypeName_3781, var_attributeName_3828, var_defaultValue_3989  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 107)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_atomicPropertyDeclarationAST::constructor_new (constinArgument_inClassName, var_attributeTypeName_3784, var_attributeName_3831, var_defaultValue_3992, var_generateResetMethod_2372, var_generateDirectRead_2407, var_generateDirectAccess_2444  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
+  ioArgument_ioAttributeList.addAssign_operation (var_attributeTypeName_3784, var_attributeName_3831, var_defaultValue_3992  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 107)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -8998,29 +8998,29 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
       break ;
     }
   }
-  GALGAS_lstring var_destinationEntityName_2790 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_destinationEntityName_2791 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 65)) ;
-  GALGAS_lstring var_relationshipName_2840 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_relationshipName_2841 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 66)) ;
-  GALGAS_toOneOppositeRelationship var_opposite_2885 ;
+  GALGAS_toOneOppositeRelationship var_opposite_2886 ;
   switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
   case 1: {
-    var_opposite_2885 = GALGAS_toOneOppositeRelationship::constructor_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
+    var_opposite_2886 = GALGAS_toOneOppositeRelationship::constructor_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.ggs", 71)) ;
     switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 73)) ;
-      GALGAS_lstring var_inverseRelationshipName_3022 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_inverseRelationshipName_3023 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 74)) ;
-      var_opposite_2885 = GALGAS_toOneOppositeRelationship::constructor_oppositeIsToOne (var_inverseRelationshipName_3022  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
+      var_opposite_2886 = GALGAS_toOneOppositeRelationship::constructor_oppositeIsToOne (var_inverseRelationshipName_3023  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-one-relationship.ggs", 77)) ;
-      GALGAS_lstring var_inverseRelationshipName_3189 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_inverseRelationshipName_3190 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 78)) ;
-      var_opposite_2885 = GALGAS_toOneOppositeRelationship::constructor_oppositeIsToMany (var_inverseRelationshipName_3189  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
+      var_opposite_2886 = GALGAS_toOneOppositeRelationship::constructor_oppositeIsToMany (var_inverseRelationshipName_3190  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
     } break ;
     default:
       break ;
@@ -9030,7 +9030,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
     break ;
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_toOneRelationshipAST::constructor_new (constinArgument_inCurrentEntity, var_destinationEntityName_2790, var_relationshipName_2840, var_opposite_2885, var_usedForSignature_2149, var_weak_2170  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83))  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_toOneRelationshipAST::constructor_new (constinArgument_inCurrentEntity, var_destinationEntityName_2791, var_relationshipName_2841, var_opposite_2886, var_usedForSignature_2149, var_weak_2170  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83))  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -9229,42 +9229,42 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
       inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)), GALGAS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)) ;
     }
   }
-  GALGAS_lstring var_destinationEntityName_3964 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_destinationEntityName_3967 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 95)) ;
-  GALGAS_lstring var_relationshipName_4005 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_relationshipName_4008 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 96)) ;
   enumGalgasBool test_17 = kBoolTrue ;
   if (kBoolTrue == test_17) {
     test_17 = var_usedForSignature_2564.boolEnum () ;
     if (kBoolTrue == test_17) {
-      ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_4005.readProperty_string ()  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 98)) ;
+      ioArgument_ioSignatureList.addAssign_operation (var_relationshipName_4008.readProperty_string ()  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 98)) ;
     }
   }
-  GALGAS_toManyRelationshipOptionAST var_toManyRelationshipOption_4155 ;
+  GALGAS_toManyRelationshipOptionAST var_toManyRelationshipOption_4158 ;
   switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-many-relationship.ggs", 102)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-many-relationship.ggs", 103)) ;
-    GALGAS_lstring var_inserseRelationshipName_4245 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_inserseRelationshipName_4248 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 104)) ;
-    var_toManyRelationshipOption_4155 = GALGAS_toManyRelationshipOptionAST::constructor_hasOpposite (var_inserseRelationshipName_4245  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 105)) ;
+    var_toManyRelationshipOption_4158 = GALGAS_toManyRelationshipOptionAST::constructor_hasOpposite (var_inserseRelationshipName_4248  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 105)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("to-many-relationship.ggs", 107)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("to-many-relationship.ggs", 108)) ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 109)) ;
-    GALGAS_lstring var_masterPropertyName_4427 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_masterPropertyName_4430 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 110)) ;
-    var_toManyRelationshipOption_4155 = GALGAS_toManyRelationshipOptionAST::constructor_hasDependance (var_masterPropertyName_4427  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 111)) ;
+    var_toManyRelationshipOption_4158 = GALGAS_toManyRelationshipOptionAST::constructor_hasDependance (var_masterPropertyName_4430  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 111)) ;
   } break ;
   case 3: {
-    var_toManyRelationshipOption_4155 = GALGAS_toManyRelationshipOptionAST::constructor_none (SOURCE_FILE ("to-many-relationship.ggs", 113)) ;
+    var_toManyRelationshipOption_4158 = GALGAS_toManyRelationshipOptionAST::constructor_none (SOURCE_FILE ("to-many-relationship.ggs", 113)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 115)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_toManyRelationshipAST::constructor_new (constinArgument_inCurrentEntity, var_destinationEntityName_3964, var_relationshipName_4005, var_toManyRelationshipOption_4155, var_customStore_2592, var_usedForSignature_2564, var_generateDirectAccess_2629, var_generateDirectRead_2664  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116))  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_toManyRelationshipAST::constructor_new (constinArgument_inCurrentEntity, var_destinationEntityName_3967, var_relationshipName_4008, var_toManyRelationshipOption_4158, var_customStore_2592, var_usedForSignature_2564, var_generateDirectAccess_2629, var_generateDirectRead_2664  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116))  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*

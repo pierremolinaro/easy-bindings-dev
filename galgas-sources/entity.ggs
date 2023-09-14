@@ -280,11 +280,11 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       end
      cannotBeDeleted_option = true
     else
-      error graphicOption : "unkown graphic option" fixit {
-         replace "acceptedTranslation"
-         replace "canCopyAndPaste"
+      error graphicOption : "unkown graphic option" fixit (
+         replace "acceptedTranslation",
+         replace "canCopyAndPaste",
          replace "cannotBeDeleted"
-      }
+      )
     end
   end
 #--- Search for a subclass

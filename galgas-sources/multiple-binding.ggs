@@ -299,13 +299,13 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   case property (type *) :
     outType = type
   case toMany (4*) :
-    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil (outType)
   case toOne (5*) :
-    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil (outType)
   case arrayController (2*) :
-    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil (outType)
   case selectionController (*) :
-    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil (outType)
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration (
     self.mProperty.modelStringForSelf (if inPreferences then "preferences_" else "self." end)

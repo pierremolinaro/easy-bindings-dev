@@ -59,29 +59,29 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         usedForSignature = true
       elsif attributeName.string == "generateResetMethod" then
         if generateResetMethod then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         generateResetMethod = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         generateDirectAccess = true
       else
-        error attributeName : "unknow attribute" fixit {
-          replace "@signature" replace "@generateResetMethod"
-          replace "@generateDirectRead" replace "@generateDirectAccess"
-        }
+        error attributeName : "unknow attribute" fixit (
+          replace "@signature", replace "@generateResetMethod",
+          replace "@generateDirectRead", replace "@generateDirectAccess"
+        )
       end
     end
     if generateDirectAccess && generateDirectRead then

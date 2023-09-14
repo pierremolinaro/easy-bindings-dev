@@ -199,7 +199,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   case property (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil graphic, arrayControllerModelKind, elementTypeName
+      spoil (graphic, arrayControllerModelKind, elementTypeName)
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
@@ -211,15 +211,15 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil graphic, arrayControllerModelKind, elementTypeName
+      spoil (graphic, arrayControllerModelKind, elementTypeName)
   case arrayController (2*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil graphic, arrayControllerModelKind, elementTypeName
+      spoil (graphic, arrayControllerModelKind, elementTypeName)
   case selectionController (*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil graphic, arrayControllerModelKind, elementTypeName
+      spoil (graphic, arrayControllerModelKind, elementTypeName)
   end
 #---
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration (

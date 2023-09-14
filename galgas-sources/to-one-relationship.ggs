@@ -50,16 +50,16 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         usedForSignature = true
       elsif attributeName.string == "weak" then
         if weak then
-          error attributeName : "duplicated attribute" fixit { remove }
+          error attributeName : "duplicated attribute" fixit ( remove )
         end
         weak = true
       else
-        error attributeName : "unknow attribute" fixit { replace "@signature" replace "@weak" }
+        error attributeName : "unknow attribute" fixit ( replace "@signature", replace "@weak" )
       end
     end
     $Identifier$ (?let @lstring destinationEntityName)
