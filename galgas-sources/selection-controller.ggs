@@ -237,7 +237,7 @@ proc generateSelectionControllers(
   ?!@stringset ioGeneratedFileSet) {
   for (ownerName selectionControllerName * * baseTypeName selectionTypeName selectionObservablePropertyMap propertyGenerationList) in inArrayControllerListForGeneration do
     if baseTypeName == selectionTypeName then
-      let s = [filewrapper selectionControllerGenerationTemplate.baseSelectionControllerImplementation
+      let s = filewrapper [selectionControllerGenerationTemplate.baseSelectionControllerImplementation:
         !ownerName,
         !selectionControllerName,
         !baseTypeName,
@@ -255,7 +255,7 @@ proc generateSelectionControllers(
       for (property) in propertyGenerationList while not hasAtomicStoredProperties do
         hasAtomicStoredProperties = property is == @atomicPropertyGeneration
       end
-      let s = [filewrapper selectionControllerGenerationTemplate.derivedSelectionControllerImplementation
+      let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
         !ownerName,
         !selectionControllerName,
         !baseTypeName,

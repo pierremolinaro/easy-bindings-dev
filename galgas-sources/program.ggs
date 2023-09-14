@@ -3,14 +3,14 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @semanticContext {
-  public var @classMap mClassMap
-  public var @outletClassMap mOutletClassMap
-  public var @bindingSpecificationMap mBindingSpecificationMap
-  public var @autolayoutViewClassMap mAutolayoutViewClassMap
-  public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap
-  public var @enumerationFunctionListAST mEnumerationFunctionListAST
+  public var @classMap mClassMap = {}
+  public var @outletClassMap mOutletClassMap = {}
+  public var @bindingSpecificationMap mBindingSpecificationMap = {}
+  public var @autolayoutViewClassMap mAutolayoutViewClassMap = {}
+  public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap = {}
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = {}
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = {}
+  public var @enumerationFunctionListAST mEnumerationFunctionListAST = {}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -20,9 +20,9 @@ case ."eb"
   grammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile
 {
-  var @astDeclarationStruct declarationStruct = .default
+  var declarationStruct = @astDeclarationStruct ()
 #----------------------------------------- Parse predefined outlets files
-  grammar easyBindings_grammar (!?declarationStruct ?*) on [filewrapper predefinedOutletClasses.sourceFile]:""
+  grammar easyBindings_grammar (!?declarationStruct ?*) on filewrapper [predefinedOutletClasses.sourceFile:]:""
 #----------------------------------------- Parse source file
   grammar easyBindings_grammar (!?declarationStruct ?let @location unused endOfSourceFile) in inSourceFile
 #------------------------ Add prefs declaration
@@ -35,11 +35,11 @@ case ."eb"
 #----------------------------------------- Sort properties
   sortProperties (!inSourceFile.string !declarationStruct.mUnifiedDeclarationList ?let sortedDeclarationListAST)
 #----------------------------------------- Semantic Analysis, first phase
-  var @semanticContext semanticContext = .default
+  var semanticContext = @semanticContext ()
   semanticContext.mAutoLayoutVStackFunctionMap = declarationStruct.mAutoLayoutVStackFunctionMap
   semanticContext.mAutoLayoutHStackFunctionMap = declarationStruct.mAutoLayoutHStackFunctionMap
   semanticContext.mEnumerationFunctionListAST = declarationStruct.mEnumerationFunctionListAST
-  var @generationStruct generation = .default
+  var generation = @generationStruct ()
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     [declaration firstAnalysisPhase !?semanticContext !?generation]
   end
@@ -72,11 +72,11 @@ case ."eb"
   if @uint.errorCount == 0 then
     for (enumTypeName * *) in semanticContext.mEnumerationFunctionListAST do
       [semanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
-      if not [type isAtomic] then
+      if not type.isAtomic () then
         error enumTypeName : "this type should be an enum type"
       else
         [type atomic ?kind:let typeKind]
-        if not [typeKind isEnumType] then
+        if not typeKind.isEnumType () then
           error enumTypeName : "this type should be an enum type"
         end
       end
@@ -84,7 +84,7 @@ case ."eb"
   end
 #----------------------------------------- Semantic Analysis, graphviz
   if @uint.errorCount == 0 then
-    graphvizAnalysis (![inSourceFile stringByDeletingLastPathComponent] !semanticContext !declarationStruct.mGraphvizList)
+    graphvizAnalysis (!inSourceFile.stringByDeletingLastPathComponent () !semanticContext !declarationStruct.mGraphvizList)
   end
 #----------------------------------------- Generate code
   if @uint.errorCount == 0 then

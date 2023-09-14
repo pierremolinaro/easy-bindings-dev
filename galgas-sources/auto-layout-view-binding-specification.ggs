@@ -135,7 +135,7 @@ proc buildAutoLayoutBindingSpecificationMap(
   #--- Insert in binding map
     var @autoLayoutViewBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
-    if [ioSemanticContext.mAutoLayoutBindingSpecificationMap hasKey !mOutletClassName.string] then
+    if ioSemanticContext.mAutoLayoutBindingSpecificationMap.hasKey (mOutletClassName.string) then
       [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else
       bindingMap = {}

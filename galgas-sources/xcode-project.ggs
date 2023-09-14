@@ -48,7 +48,7 @@ private proc generateXcodeProjectInternal(
   ?let @stringset inGeneratedFileSet
   ?let @string projectName)
 {
-  var xcodeProject = @XcodeProjectDescriptor.default
+  var xcodeProject = @XcodeProjectDescriptor ()
 #--- Default build configuration
   let SDK = "macosx"
   let DEPLOYMENT = "10.10"
@@ -146,7 +146,7 @@ private proc generateXcodeProjectInternal(
     !cacheFilePath:sourceDir + projectName + ".xcodeproj.txt"
   ]
 #--- Generate additional files
-  var s = [filewrapper additionalXcodeFiles.info_plist
+  var s = filewrapper [additionalXcodeFiles.info_plist:
     !projectName,
     !inXcodeProjectString,
     !"1.0.0",
@@ -157,7 +157,7 @@ private proc generateXcodeProjectInternal(
     !"Info.plist"
     !s
   ]
-  s = [filewrapper additionalXcodeFiles.main_xib
+  s = filewrapper [additionalXcodeFiles.main_xib:
     !projectName
   ]
   [@string generateFile
@@ -165,9 +165,7 @@ private proc generateXcodeProjectInternal(
     !"MainMenu.xib"
     !s
   ]
-  s = [filewrapper additionalXcodeFiles.build_command
-    !projectName
-  ]
+  s = filewrapper [additionalXcodeFiles.build_command: projectName]
   [s writeToExecutableFileWhenDifferentContents
     !inOutputDirectory + "/build.py"
     ?*

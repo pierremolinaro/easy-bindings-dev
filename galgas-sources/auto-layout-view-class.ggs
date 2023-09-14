@@ -117,11 +117,11 @@ syntax extension easyBindings_syntax {
     select
       parameterList = {}
     or
-      <autolayout_formal_parameter_list> (!["" nowhere] ?parameterList ?*)
+      <autolayout_formal_parameter_list> (!"".nowhere () ?parameterList ?*)
     end
     let @lstring superClassName
     select
-      superClassName = ["" here]
+      superClassName = "".here ()
     or
       $:$
       $Identifier$ (?superClassName)
@@ -235,7 +235,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
   if self.mSuperClassName.string == "" then
     [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
       !self.mClassName
-      !["" nowhere]  # No super class
+      !"".nowhere ()  # No super class
       !self.mHasRunAction
       !self.mHandlesTableValueBinding
       !self.mHasEnabled

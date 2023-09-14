@@ -87,7 +87,7 @@ list @typeKindList {
 func @propertyKind.typeName() -> @string {
   switch self
   case property (type *) :
-    result = [type typeName]
+    result = type.typeName ()
   case toMany (typeName 3*) :
     result = typeName
   case toOne (typeName 4*) :
@@ -104,7 +104,7 @@ func @propertyKind.typeName() -> @string {
 func @propertyKind.swiftTypeName() -> @string {
   switch self
   case property (type *) :
-    result = [type swiftTypeName]
+    result = type.swiftTypeName ()
   case toMany (typeName 3*) :
     result = typeName
   case toOne (typeName 4*) :
@@ -142,9 +142,9 @@ func @typeKind.swiftTypeName() -> @string outResult {
 
 func @propertyKind.isTransient() -> @bool {
   switch self
-  case property (* accessibility) : result = [accessibility isTransient]
-  case toMany (* accessibility 2*) : result = [accessibility isTransient]
-  case toOne (* accessibility 3*) : result = [accessibility isTransient]
+  case property (* accessibility) : result = accessibility.isTransient ()
+  case toMany (* accessibility 2*) : result = accessibility.isTransient ()
+  case toOne (* accessibility 3*) : result = accessibility.isTransient ()
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
@@ -154,7 +154,7 @@ func @propertyKind.isTransient() -> @bool {
 
 func @propertyKind.isComparable() -> @bool {
   switch self
-  case property (type *) : result = [type isComparable]
+  case property (type *) : result = type.isComparable ()
   case toMany (4*) : result = false
   case toOne (5*) : result = false
   case arrayController (2*) : result = false
@@ -178,7 +178,7 @@ func @propertyKind.isEntityType() -> @bool {
 
 func @propertyKind.isEnumType() -> @bool {
   switch self
-  case property (type *) : result = [type isEnumType]
+  case property (type *) : result = type.isEnumType ()
   case toMany (4*) : result = false
   case toOne (5*) : result = false
   case arrayController (2*) : result = false

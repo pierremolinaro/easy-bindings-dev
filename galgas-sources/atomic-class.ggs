@@ -23,18 +23,18 @@ override func @atomicClassDeclarationAST.nodeKey() -> @lstring {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc enterAtomicClassesIn (?!declarationList: @declarationListAST ioDeclarationListAST) {
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["Double" nowhere] ,!.doubleType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["String" nowhere] ,!.stringType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["Int" nowhere]    ,!.integerType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["UInt32" nowhere] ,!.uint32Type)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["Bool" nowhere]   ,!.boolType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"Double".nowhere () ,!.doubleType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"String".nowhere () ,!.stringType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"Int".nowhere ()    ,!.integerType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"UInt32".nowhere () ,!.uint32Type)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"Bool".nowhere ()   ,!.boolType)
 
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["NSColor" nowhere] ,!.colorType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["NSFont" nowhere]  ,!.fontType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["Date" nowhere]    ,!.dateType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["Data" nowhere]    ,!.dataType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["NSBezierPath" nowhere] ,!.bezierPathType)
-  ioDeclarationListAST += !@atomicClassDeclarationAST (!["BezierPathArray" nowhere] ,!.bezierPathArrayType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"NSColor".nowhere () ,!.colorType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"NSFont".nowhere ()  ,!.fontType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"Date".nowhere ()    ,!.dateType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"Data".nowhere ()    ,!.dataType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"NSBezierPath".nowhere () ,!.bezierPathType)
+  ioDeclarationListAST += !@atomicClassDeclarationAST (!"BezierPathArray".nowhere () ,!.bezierPathArrayType)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

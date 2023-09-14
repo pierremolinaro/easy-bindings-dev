@@ -299,18 +299,18 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   case property (type *) :
     outType = type
   case toMany (4*) :
-    error [self.mProperty location] : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
   case toOne (5*) :
-    error [self.mProperty location] : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
   case arrayController (2*) :
-    error [self.mProperty location] : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
   case selectionController (*) :
-    error [self.mProperty location] : "only an atomic property can be observed" spoil outType
+    error self.mProperty.location () : "only an atomic property can be observed" spoil outType
   end
   outEnableExpression = @observablePropertyAsBooleanMultipleBindingExpressionForGeneration (
-    ![self.mProperty modelStringForSelf !if inPreferences then "preferences_" else "self." end]
+    self.mProperty.modelStringForSelf (if inPreferences then "preferences_" else "self." end)
   )
-  outErrorLocation = [self.mProperty location]
+  outErrorLocation = self.mProperty.location ()
 }
 
 #·······················································································································
@@ -335,7 +335,7 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
     ?outType
     ?outErrorLocation
   ]
-  if not [outType isBoolType] then
+  if not outType.isBoolType () then
     error outErrorLocation : "cannot apply negation: operand is not boolean"
   end
   outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration (!expression)
@@ -363,7 +363,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
     ?let outLeftType
     ?let outLeftLocation
   ]
-  if not [outLeftType isBoolType] then
+  if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
@@ -376,7 +376,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
     ?let outRightType
     ?let outRightLocation
   ]
-  if not [outRightType isBoolType] then
+  if not outRightType.isBoolType () then
     error outRightLocation : "cannot apply 'or': right operand is not boolean"
   end
   outType = .boolType
@@ -406,7 +406,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outLeftType
     ?let outLeftLocation
   ]
-  if not [outLeftType isBoolType] then
+  if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
@@ -419,7 +419,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType
     ?let outRightLocation
   ]
-  if not [outRightType isBoolType] then
+  if not outRightType.isBoolType () then
     error outRightLocation : "cannot apply 'or': right operand is not boolean"
   end
   outType = .boolType
@@ -449,7 +449,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outLeftType
     ?let outLeftLocation
   ]
-  if not [outLeftType isBoolType] then
+  if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'and': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
@@ -462,7 +462,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType
     ?let outRightLocation
   ]
-  if not [outRightType isBoolType] then
+  if not outRightType.isBoolType () then
     error outRightLocation : "cannot apply 'and': right operand is not boolean"
   end
   outType = .boolType
@@ -502,7 +502,7 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType
     ?let outRightLocation
   ]
-  if not ([outLeftType isBoolType] || [outLeftType isIntegerType]) then
+  if not (outLeftType.isBoolType () || outLeftType.isIntegerType ()) then
     error outLeftLocation : "cannot compare: left operand is neither boolean nor integer"
   end
   if outRightType != outLeftType then
@@ -525,8 +525,8 @@ abstract func @abstractBooleanMultipleBindingExpressionForGeneration.expressionS
 
 override func @booleanMultipleBindingLiteralIntForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".literalInt (" + [self.mValue string] + ")"
-#  outExpressionString = "MultipleBindingLiteralInt (" + [self.mValue string] + ")"
+  outExpressionString = ".literalInt (" + self.mValue.string () + ")"
+#  outExpressionString = "MultipleBindingLiteralInt (" + [self.mValue.string () + ")"
 }
 
 #·······················································································································
@@ -541,7 +541,7 @@ override func @observablePropertyAsBooleanMultipleBindingExpressionForGeneration
 
 override func @negateBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".not (" + [self.mBinding expressionString] + ")"
+  outExpressionString = ".not (" + self.mBinding.expressionString () + ")"
 #  outExpressionString = "MultipleBindingNot (" + [self.mBinding expressionString] + ")"
 }
 
@@ -549,32 +549,32 @@ override func @negateBooleanMultipleBindingExpressionForGeneration.expressionStr
 
 override func @orBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .or, " + [self.mRightBinding expressionString] + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .or, " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString () +  ", .or, " + self.mRightBinding.expressionString () + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .or, " + self.mRightBinding.expressionString () + ")"
 }
 
 #·······················································································································
 
 override func @xorBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .xor, " + [self.mRightBinding expressionString] + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .xor, " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString () +  ", .xor, " + self.mRightBinding.expressionString () + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .xor, " + self.mRightBinding.expressionString () + ")"
 }
 
 #·······················································································································
 
 override func @andBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".boolcmp (" + [self.mLeftBinding expressionString] +  ", .and, " + [self.mRightBinding expressionString] + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + [self.mLeftBinding expressionString] +  ", .and, " + [self.mRightBinding expressionString] + ")"
+  outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString () +  ", .and, " + self.mRightBinding.expressionString () + ")"
+#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .and, " + self.mRightBinding.expressionString () + ")"
 }
 
 #·······················································································································
 
 override func @comparisonMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
-  outExpressionString = ".intcmp (" + [self.mLeftBinding expressionString] + ", "
-#  outExpressionString = "MultipleBindingIntCmp (" + [self.mLeftBinding expressionString] + ", "
+  outExpressionString = ".intcmp (" + self.mLeftBinding.expressionString () + ", "
+#  outExpressionString = "MultipleBindingIntCmp (" + self.mLeftBinding.expressionString () + ", "
   switch self.mOperator
   case equal : outExpressionString += ".eq"
   case notEqual : outExpressionString += ".ne"
@@ -583,7 +583,7 @@ override func @comparisonMultipleBindingExpressionForGeneration.expressionString
   case greater : outExpressionString += ".gt"
   case greaterOrEqual : outExpressionString += ".ge"
   end
-  outExpressionString += ", " + [self.mRightBinding expressionString] + ")"
+  outExpressionString += ", " + self.mRightBinding.expressionString () + ")"
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

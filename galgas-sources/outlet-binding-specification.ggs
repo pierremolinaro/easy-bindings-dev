@@ -167,7 +167,7 @@ proc buildBindingSpecificationMap(
   #--- Insert in binding map
     var @outletBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
-    if [ioSemanticContext.mBindingSpecificationMap hasKey !mOutletClassName.string] then
+    if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
       [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
     else
       bindingMap = {}

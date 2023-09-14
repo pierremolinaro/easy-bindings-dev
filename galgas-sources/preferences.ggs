@@ -3,13 +3,13 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
-  public var @outletDeclarationList mOutletDeclarationList
-  public var @simpleStoredPropertyList mSimpleStoredAttributeList
-  public var @lstringlist mActionDeclarationList
-  public var @externSwiftFunctionList mExternSwiftFunctionList
-  public var @stringset mSignatureList
-  public var @mainXibDescriptorList mMainXibDescriptorList
-  public var @astViewDeclarationList mViewDeclarationList
+  public var @outletDeclarationList mOutletDeclarationList = {}
+  public var @simpleStoredPropertyList mSimpleStoredAttributeList = {}
+  public var @lstringlist mActionDeclarationList = {}
+  public var @externSwiftFunctionList mExternSwiftFunctionList = {}
+  public var @stringset mSignatureList = {}
+  public var @mainXibDescriptorList mMainXibDescriptorList = {}
+  public var @astViewDeclarationList mViewDeclarationList = {}
 }
 
 #·······················································································································
@@ -68,13 +68,13 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> (!?ioDeclarationAST.mPreferences.mOutletDeclarationList)
     while
-      <transient_declaration> (!prefs !["" nowhere] !?ioDeclarationAST)
+      <transient_declaration> (!prefs !"".nowhere () !?ioDeclarationAST)
     while
       <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
       <toMany_relationship> (!prefs !?* !?ioDeclarationAST)
     while
-      <controller_declaration> (!prefs !["" nowhere] !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!prefs !"".nowhere () !?arrayControllerBindingListAST !?ioDeclarationAST)
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -122,7 +122,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @externFunctionMap externFunctionMap = {}
   for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     [!?externFunctionMap insertKey !mExternSwiftFunctionName]
-    if not [availableCallers hasKey !mCallerName.string] then
+    if not availableCallers.hasKey (mCallerName.string) then
       var s = "invalid caller; available callers:"
       for (str) in availableCallers do
         s += "\n  - " + str
@@ -183,7 +183,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     ]
     viewGenerationList += !viewName !viewGeneration
   end
-  if not [viewDeclarationMap hasKey !"mPrefsMainView"] then
+  if not viewDeclarationMap.hasKey ("mPrefsMainView") then
     error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
   end
 #--- Code generation
@@ -250,7 +250,7 @@ override proc @preferencesForGeneration.generateCode(
     ?let @string inOutputDirectory
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
-  let s = [filewrapper prefsGenerationTemplate.preferences
+  let s = filewrapper [prefsGenerationTemplate.preferences:
     !self.mPropertyListForGeneration,
     !self.mMainXibDescriptorList,
     !self.mOutletMap,
@@ -273,7 +273,7 @@ override proc @preferencesForGeneration.generateCode(
   ]
 #--- Configurators
   for (outletName outletTypeName) in self.mConfiguratorMap do
-    let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation
+    let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       !"Preferences",
       !outletName.string,
       !outletTypeName

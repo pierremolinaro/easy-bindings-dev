@@ -5111,24 +5111,7 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_generationStruct constructor_new (const class GALGAS_validationStubRoutineListForGeneration & inOperand0,
-                                                                const class GALGAS_fileGenerationList & inOperand1,
-                                                                const class GALGAS_entityListForGeneratingEBManagedObjectContext & inOperand2,
-                                                                const class GALGAS_bool & inOperand3,
-                                                                const class GALGAS_bool & inOperand4,
-                                                                const class GALGAS_stringset & inOperand5,
-                                                                const class GALGAS_mainXibDescriptorList & inOperand6,
-                                                                const class GALGAS_stringset & inOperand7,
-                                                                const class GALGAS_stringset & inOperand8,
-                                                                const class GALGAS_selectionControllerForGeneration & inOperand9,
-                                                                const class GALGAS_stringlist & inOperand10,
-                                                                const class GALGAS_transientExternTypeList & inOperand11,
-                                                                const class GALGAS_stringset & inOperand12,
-                                                                const class GALGAS_stringset & inOperand13,
-                                                                const class GALGAS_stringset & inOperand14,
-                                                                const class GALGAS_stringset & inOperand15,
-                                                                const class GALGAS_stringset & inOperand16
-                                                                COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_generationStruct constructor_new (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,

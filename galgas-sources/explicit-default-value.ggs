@@ -141,13 +141,13 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case integerType :
-      outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + [self.mValue.uint string]
+      outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + self.mValue.uint.string ()
       found = true
     case uint32Type :
       if self.mNegative then
         error self.mValue : "Uint32 value should be ≥ 0"
       end
-      outSwiftDefaultValueAsString = [self.mValue.uint string]
+      outSwiftDefaultValueAsString = self.mValue.uint.string ()
       found = true
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + self.mValue.uint + ".0)"
@@ -177,7 +177,7 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case doubleType :
-      outSwiftDefaultValueAsString = [self.mValue.double string]
+      outSwiftDefaultValueAsString = self.mValue.double.string ()
       found = true
     case boolType, dateType, dataType, integerType, uint32Type,
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :
@@ -288,7 +288,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
     switch mType 
     case dateType :
       found = true
-      if [predefinedDates () hasKey !self.mValue.string] then
+      if predefinedDates ().hasKey (self.mValue.string) then
         if self.mValue.string == "now" then
           outSwiftDefaultValueAsString = "Date ()"
         elsif self.mValue.string == "distantPast" then
@@ -316,7 +316,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
     case enumType (@string enumTypeName @enumConstantMap constantMap *
     ) :
       found = true
-      if [constantMap hasKey !self.mValue.string] then
+      if constantMap.hasKey (self.mValue.string) then
         outSwiftDefaultValueAsString = enumTypeName + "." + self.mValue.string
       else
         error self.mValue
@@ -347,7 +347,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
     case fontType :
       error self.mValue : "invalid font type"
     case colorType :
-      if [predefinedColors () hasKey !self.mValue.string] then
+      if predefinedColors ().hasKey (self.mValue.string) then
         outSwiftDefaultValueAsString = "NSColor." + self.mValue.string
         found = true
       else

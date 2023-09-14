@@ -136,8 +136,8 @@ syntax extension easyBindings_syntax {
     ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
       !documentName,
       !rootEntityName,
-      !["String" here],
-      !["documentFileName" here],
+      !"String".here (),
+      !"documentFileName".here (),
       !{},
       !false
     )
@@ -234,7 +234,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
         ?let @typeKind type
         ?let @location errorLocation
       ]
-      if not [type isBoolType] then
+      if not type.isBoolType () then
         error errorLocation : "expression is not boolean"
       end
       multipleBindingGenerationList +=
@@ -301,7 +301,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
   var @stringset linkerNameSet = {}
   for (linkerName ouletNameList) in self.mOutletLinkerList do
-    if [linkerNameSet hasKey !linkerName.string] then
+    if linkerNameSet.hasKey (linkerName.string) then
       error linkerName : "duplicated linker name"
     end
     linkerNameSet += !linkerName.string
@@ -376,7 +376,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
-  let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentImplementation
+  let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentImplementation:
     !self.mDocumentName,
     !self.mRootEntityName,
     !self.mMainViewName,
@@ -401,7 +401,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     !s
   ]
   for (outletName outletTypeName) in self.mConfiguratorMap do
-    let s = [filewrapper autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation
+    let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       !self.mDocumentName,
       !outletName.string,
       !outletTypeName
@@ -426,7 +426,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     ]
   end
   for (linkerName outletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
-    let s = [filewrapper autoLayoutDocumentGenerationTemplate.outletLinkerImplementation
+    let s = filewrapper [autoLayoutDocumentGenerationTemplate.outletLinkerImplementation:
       !self.mDocumentName,
       !linkerName,
       !outletNameAndTypeNameList

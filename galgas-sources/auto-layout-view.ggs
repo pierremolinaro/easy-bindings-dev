@@ -216,7 +216,7 @@ syntax extension easyBindings_syntax {
     while
       $view$
       $identifier$ (?let localViewName)
-      if not [ioStackViewInstances hasKey !localViewName.string] then
+      if not ioStackViewInstances.hasKey (localViewName.string) then
         error localViewName : "the view is not instancied"
       end
       ioInstructionList += !@astLocalViewInstruction (!localViewName)
@@ -257,13 +257,13 @@ syntax extension easyBindings_syntax {
     let @lstring outletName
     let @bool outletIsArray
     select
-      outletName = ["" nowhere]
-      configuratorName = ["" nowhere]
+      outletName = "".nowhere ()
+      configuratorName = "".nowhere ()
       outletIsArray = false
     or
       $[$
       select
-        outletName = ["" nowhere]
+        outletName = "".nowhere ()
         outletIsArray = false
       or
         $outlet$
@@ -275,7 +275,7 @@ syntax extension easyBindings_syntax {
         outletIsArray = true
       end
       select
-        configuratorName = ["" nowhere]
+        configuratorName = "".nowhere ()
       or
         $configurator$
         $identifier$ (?configuratorName)
@@ -375,7 +375,7 @@ syntax extension easyBindings_syntax {
         or
           $view$
           $identifier$ (?let viewName)
-          if not [ioStackViewInstances hasKey !viewName.string] then
+          if not ioStackViewInstances.hasKey (viewName.string) then
             error viewName : "view is not instancied"
           end
           outParameterList += !parameterName !.typeView !.string (!value: viewName.string)
@@ -387,14 +387,14 @@ syntax extension easyBindings_syntax {
           outParameterList += !parameterName !.typeBool !.string (!value: "false")
         or
           $literal_integer$ (?let uint32)
-          outParameterList += !parameterName !.typeInt !.string (!value: [uint32.uint string])
+          outParameterList += !parameterName !.typeInt !.string (!value: uint32.uint.string ())
         or
           $-$
           $literal_integer$ (?let uint32)
-          outParameterList += !parameterName !.typeInt !.string (!value: "-" + [uint32.uint string])
+          outParameterList += !parameterName !.typeInt !.string (!value: "-" + uint32.uint.string ())
         or
           $literal_string$ (?let literalString)
-          outParameterList += !parameterName !.typeString !.string (!value: [literalString.string utf8Representation])
+          outParameterList += !parameterName !.typeString !.string (!value: literalString.string.utf8Representation ())
         or
           $.$
           $identifier$ (?let enumConstantName)
@@ -539,9 +539,9 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
     mangleName += ")"
     [inFunctionMap searchKey !.new (!mangleName ,!functionName.location) ?let formalParameterList]
     var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
-    if [formalParameterList length] != [actualParameterList length] then
+    if formalParameterList.length () != actualParameterList.length () then
       error functionName 
-      : [[formalParameterList length] string] + " parameter(s) required, " + [actualParameterList length] + " provided"
+      : formalParameterList.length ().string () + " parameter(s) required, " + actualParameterList.length () + " provided"
     else
       for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
         if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
@@ -574,13 +574,13 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !?ioOutletMap
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
-          parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
+          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
         case entity (entityName) :
           [inClassMap searchKey !entityName ?let classKind ?3*]
-          if not [classKind isEntity] then
+          if not classKind.isEntity () then
             error entityName: "an entity is required here"
           end
           parameterList += !name !entityName.string + ".self"
@@ -589,7 +589,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !run
             !handlesRunAction: true
             !inPreferences
-            !["" nowhere] # mAutoLayoutViewClassName # inTypeName
+            !"".nowhere () # mAutoLayoutViewClassName # inTypeName
             !inActionMap
             !inObservablePropertyMap
             !inReceiverSwiftTypeName
@@ -605,7 +605,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !prefsMap: inPreferencesPropertyMap
             ?let enabledBindingGeneration
           )
-          var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
+          var s = "AutoLayoutMenuItemDescriptor (title: " + title.utf8Representation ()
           switch runBindingGeneration 
           case none :
             s += ", target: nil, selector: nil"
@@ -616,17 +616,17 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           case none :
             s += ", enableBinding: .alwaysTrue"
           case enabled (binding) :
-            s += ", enableBinding: " + [binding expressionString]
+            s += ", enableBinding: " + binding.expressionString ()
           end
           s += ")"
           parameterList += !name !s
         case enumFunc (enumTypeName funcName) :
           [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
-          if not [type isAtomic] then
+          if not type.isAtomic () then
             error enumTypeName : "this type should be an enum type"
           else
             [type atomic ?kind:let typeKind]
-            if [typeKind isEnumType] then
+            if typeKind.isEnumType () then
               [typeKind enumType ?2* ?funcMap:let funcMap]
               [funcMap searchKey !funcName ?*]
             else
@@ -867,9 +867,9 @@ override proc @astComputedViewInstruction.generateViewCode(
      ?let functionMap
   ]
   var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
-  if [formalParameterList length] != [self.mParameterList length] then
+  if formalParameterList.length () != self.mParameterList.length () then
     error self.mAutoLayoutViewClassName 
-    : [[formalParameterList length] string] + " parameter(s) required, " + [self.mParameterList length] + " provided"
+    : formalParameterList.length ().string () + " parameter(s) required, " + self.mParameterList.length () + " provided"
   else
     for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
       if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
@@ -902,11 +902,11 @@ override proc @astComputedViewInstruction.generateViewCode(
             !?ioOutletMap
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
-          parameterList += !name !"self.computeImplicitView_" + [ioImplicitViewFunctionGenerationList length] + " ()"
+          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
       case entity (entityName) :
         [inClassMap searchKey !entityName ?let classKind ?3*]
-        if not [classKind isEntity] then
+        if not classKind.isEntity () then
           error entityName: "an entity is required here"
         end
         parameterList += !name !entityName.string + ".self"
@@ -917,7 +917,7 @@ override proc @astComputedViewInstruction.generateViewCode(
           !run
           !handlesRunAction: true
           !inPreferences
-          !["" nowhere] # mAutoLayoutViewClassName # inTypeName
+          !"".nowhere () # mAutoLayoutViewClassName # inTypeName
           !inActionMap
           !inObservablePropertyMap
           !inReceiverSwiftTypeName
@@ -933,7 +933,7 @@ override proc @astComputedViewInstruction.generateViewCode(
           !prefsMap: inPreferencesPropertyMap
           ?let enabledBindingGeneration
         )
-        var s = "AutoLayoutMenuItemDescriptor (title: " + [title utf8Representation]
+        var s = "AutoLayoutMenuItemDescriptor (title: " + title.utf8Representation ()
         switch runBindingGeneration 
         case none :
           s += ", target: nil, selector: nil"
@@ -944,17 +944,17 @@ override proc @astComputedViewInstruction.generateViewCode(
         case none :
           s += ", enableBinding: .alwaysTrue"
         case enabled (binding) :
-          s += ", enableBinding: " + [binding expressionString]
+          s += ", enableBinding: " + binding.expressionString ()
         end
         s += ")"
         parameterList += !name !s
       case enumFunc (enumTypeName funcName) :
         [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
-        if not [type isAtomic] then
+        if not type.isAtomic () then
           error enumTypeName : "this type should be an enum type"
         else
           [type atomic ?kind:let typeKind]
-          if [typeKind isEnumType] then
+          if typeKind.isEnumType () then
             [typeKind enumType ?2* ?funcMap:let funcMap]
             [funcMap searchKey !funcName ?*]
           else
@@ -1135,7 +1135,7 @@ proc analyzeAutoLayoutBinding(
         ?let @propertyKind kind
         ?2*
       ]
-      if not [kind isArrayController] then
+      if not kind.isArrayController () then
         error controllerName : "the bound model should be an array controller"
       end
       outTableViewBindingGeneration = controllerName.string
@@ -1145,7 +1145,7 @@ proc analyzeAutoLayoutBinding(
         ?let @propertyKind kind
         ?2*
       ]
-      if not [kind isArrayController] then
+      if not kind.isArrayController () then
         error controllerName : "the bound model should be an array controller"
       end
       outTableViewBindingGeneration = controllerName.string
@@ -1192,7 +1192,7 @@ proc analyzeAutoLayoutBinding(
       ?let @typeKind type
       ?let @location errorLocation
     ]
-    if not [type isBoolType] then
+    if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
     if not handlesHiddenBinding then
@@ -1245,7 +1245,7 @@ proc analyzeAutoLayoutEnableBinding(
     if not inHandlesEnabledBinding then
       error errorLocation : "cet outlet n'accepte pas le binding $enabled"
     end
-    if not [type isBoolType] then
+    if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
     outEnabledBindingGeneration = .enabled (!binding: enableExpression)
@@ -1324,30 +1324,30 @@ proc analyzeAutoLayoutRegularBinding(
       switch kind
       case property (2*) : # Ok
       case toMany (4*) :
-        error [mObservableProperty location]:"a toMany property cannot be bound"
+        error mObservableProperty.location () :"a toMany property cannot be bound"
       case toOne (5*) :
-        error [mObservableProperty location]:"a toOne property cannot be bound"
+        error mObservableProperty.location () :"a toOne property cannot be bound"
       case arrayController (2*) :
-        error [mObservableProperty location]:"an array controller cannot be bound"
+        error mObservableProperty.location () :"an array controller cannot be bound"
       case selectionController (*) :
-        error [mObservableProperty location]:"a selection controller cannot be bound"
+        error mObservableProperty.location () :"a selection controller cannot be bound"
       end
-      boundModelListForGeneration += ![mObservableProperty modelStringForSelf !inSelfSwiftName] !kind
-      boundModelTypeList += !kind ![mObservableProperty location]
+      boundModelListForGeneration += !mObservableProperty.modelStringForSelf (inSelfSwiftName) !kind
+      boundModelTypeList += !kind !mObservableProperty.location () 
     end
   #--- Analyze outlet binding
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     var outletTypeName = inOutletTypeName
     var continues = true
-    loop ([inSemanticContext.mBindingSpecificationMap count] + 1) while (outletTypeName.string != "") & continues do
+    loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
       continues = false
       [inSemanticContext.mAutoLayoutBindingSpecificationMap searchKey
         !outletTypeName
         ?let superOutletClassName
         ?let bindingMap
       ]
-      if [bindingMap hasKey !mBindingName.string] then
+      if bindingMap.hasKey (mBindingName.string) then
         [bindingMap searchKey
           !mBindingName
           ?outletBindingSpecificationModelList
@@ -1360,32 +1360,32 @@ proc analyzeAutoLayoutRegularBinding(
     end
     if continues then
       error mBindingName : "this binding is not defined"
-    elsif [boundModelTypeList length] != [outletBindingSpecificationModelList length] then
+    elsif boundModelTypeList.length () != outletBindingSpecificationModelList.length () then
       error mBindingName
-      : [[outletBindingSpecificationModelList length] string]
+      : outletBindingSpecificationModelList.length ().string ()
         + " model(s) required for this binding (found: "
-        + [boundModelTypeList length] + ")"
+        + boundModelTypeList.length () + ")"
     else
       for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
-        if required_mModelShouldBeWritableProperty && [found_mKind isTransient] then
+        if required_mModelShouldBeWritableProperty && found_mKind.isTransient () then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
-        if [required_mModelType isEnumType] && [found_mKind isEnumType] then # Ok
-        elsif [required_mModelType swiftTypeName] != [found_mKind swiftTypeName] then
-          error found_mErrorLocation : "the model type should be " + [required_mModelType swiftTypeName]
+        if required_mModelType.isEnumType () && found_mKind.isEnumType () then # Ok
+        elsif required_mModelType.swiftTypeName () != found_mKind.swiftTypeName () then
+          error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName ()
         end
       end
     end
   #--- Check options
     var bindingOptionString = ""
-    if [controllerBindingOptionDecoratedList length] != [mBindingOptionList length] then
+    if controllerBindingOptionDecoratedList.length () != mBindingOptionList.length () then
       var @string s
-      if [controllerBindingOptionDecoratedList length] == 0 then
+      if controllerBindingOptionDecoratedList.length () == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"
         for (mOptionType mOptionName) in controllerBindingOptionDecoratedList do
-          s += "\n  - " + mOptionName + " : " + [mOptionType swiftTypeName]
+          s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName ()
         end
       end
       error mBindingName : s
@@ -1457,7 +1457,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
       ?let @typeKind type
       ?let @location errorLocation
     ]
-    if not [type isBoolType] then
+    if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
     multipleBindingGenerationList +=
@@ -1537,7 +1537,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
       ?let @typeKind type
       ?let @location errorLocation
     ]
-    if not [type isBoolType] then
+    if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
     multipleBindingGenerationList +=
@@ -1748,7 +1748,7 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
   end
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
-    result += [instruction generateViewInstruction !prefs: inPreferences ,!name ,!"    "]
+    result += instruction.generateViewInstruction (!prefs: inPreferences ,!name ,!"    ")
     result += "    _ = hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
@@ -1767,7 +1767,7 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
   end
   for (instruction) in self.mInstructionList do (index)
     let name = "view_" + index
-    result += [instruction generateViewInstruction !prefs: inPreferences ,!name ,!"    "]
+    result += instruction.generateViewInstruction (!prefs: inPreferences ,!name ,!"    ")
     result += "    _ = vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
@@ -1849,7 +1849,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
     result += optionListString + ")\n"
   end
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
-    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
   switch self.mRunBindingGeneration
   case none :
@@ -1889,7 +1889,7 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
   [self.mFuncCallList generate !inIndentation !?result]
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
-    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
   for (instance type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
@@ -1898,7 +1898,7 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generateViewInstruction  !prefs: inPreferences ,!name ,!indentation]
+     result += instruction.generateViewInstruction (!prefs: inPreferences ,!name ,!indentation)
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"
@@ -1913,7 +1913,7 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
   [self.mFuncCallList generate !inIndentation !?result]
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
-    result += inIndentation + "  .bind_" + bindingName + " (" + [binding expressionString] + ")\n"
+    result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
   for (instance type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
@@ -1922,7 +1922,7 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   let indentation = inIndentation + "  "
   for (instruction) in self.mInstructionList do (index)
      let name = inName + "_" + index
-     result += [instruction generateViewInstruction !prefs: inPreferences ,!name ,!indentation]
+     result += instruction.generateViewInstruction (!prefs: inPreferences ,!name ,!indentation)
      result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
   result += inIndentation + "}\n"

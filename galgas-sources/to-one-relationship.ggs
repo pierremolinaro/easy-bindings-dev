@@ -190,11 +190,11 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = StoredObject_" + [self.mRelationshipType swiftTypeName]
-  result += " (usedForSignature: " + [self.mUsedForSignature cString]
-  result += ", strongRef: " + [self.mStrongRef cString] + ", key: \"" + self.mPropertyName + "\")\n\n"
+  result += "  final let " + self.mPropertyName + "_property = StoredObject_" + self.mRelationshipType.swiftTypeName ()
+  result += " (usedForSignature: " + self.mUsedForSignature.cString ()
+  result += ", strongRef: " + self.mStrongRef.cString () + ", key: \"" + self.mPropertyName + "\")\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  final var " + self.mPropertyName + " : " + [self.mRelationshipType swiftTypeName] + "? {\n"
+  result += "  final var " + self.mPropertyName + " : " + self.mRelationshipType.swiftTypeName () + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
   result += "    }\n"
@@ -253,7 +253,7 @@ override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> 
   result += "        dictionary: inDictionary,\n"
   result += "        managedObjectArray: inManagedObjectArray\n"
   result += "      )\n"
-  result += "      if let entity = possibleEntity as? " + [self.mRelationshipType swiftTypeName] + " {\n"
+  result += "      if let entity = possibleEntity as? " + self.mRelationshipType.swiftTypeName () + " {\n"
   result += "        self." + self.mPropertyName + "_property.setProp (entity)\n"
   result += "      }\n"
   result += "    }\n"

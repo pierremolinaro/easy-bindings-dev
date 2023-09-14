@@ -103,7 +103,7 @@ syntax extension easyBindings_syntax {
         <view_actual_parameter_list> (!?* ?let columnParameterListAST) #§
         let @lstring sortPropertyName
         select
-          sortPropertyName = ["" nowhere]
+          sortPropertyName = "".nowhere ()
         or
           $sortkey$
           $identifier$ (?sortPropertyName)
@@ -142,7 +142,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    let @actionMap controllerActions = {!["add" nowhere], !["remove" nowhere] }
+    let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
     if self.mIsRoot then
       [ioSemanticContext.mClassMap searchKey !self.mRootEntityName ?* ?let rootProperties ?2*]
       [rootProperties searchKey !self.mToManyPropertyName ?let classKind ?2*]
@@ -216,9 +216,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   var @stringset definedAttributes = {}
   var @2stringlist attributeListForGeneration = {}
   for (name value) in self.mTableViewControllerAttributListAST do
-    if not [attributes hasKey !name.string] then
+    if not attributes.hasKey (name.string) then
       error name : "unknown attribute"
-    elsif [definedAttributes hasKey !name.string] then
+    elsif definedAttributes.hasKey (name.string) then
       error name : "attribute multiply defined"
     else
       definedAttributes += !name.string
@@ -227,7 +227,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     attributeListForGeneration += !name.string !valueAsString
   end
   for s in attributes do
-    if not [definedAttributes hasKey !s] then
+    if not definedAttributes.hasKey (s) then
       error self.mControllerName : "attribute '" + s + "' not defined"
     end
   end
@@ -266,7 +266,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
-    arrayControllerModelKind = if [accessibility isTransient]
+    arrayControllerModelKind = if accessibility.isTransient ()
       then .transientArray
       else .entityArray
     end
@@ -312,14 +312,14 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #    )
   #-------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = {}
-    formalArgumentList += !["title" nowhere] !.typeString
-    formalArgumentList += !["minWidth" nowhere] !.typeInt
-    formalArgumentList += !["maxWidth" nowhere] !.typeInt
-    formalArgumentList += !["headerAlignment" nowhere] !.typeEnum (!name: ["TextAlignment" nowhere])
-    formalArgumentList += !["contentAlignment" nowhere] !.typeEnum (!name: ["TextAlignment" nowhere])
+    formalArgumentList += !"title".nowhere () !.typeString
+    formalArgumentList += !"minWidth".nowhere () !.typeInt
+    formalArgumentList += !"maxWidth".nowhere () !.typeInt
+    formalArgumentList += !"headerAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
+    formalArgumentList += !"contentAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
     var @2stringlist actualParameterList = {}
-    if [formalArgumentList length] != [columnParameterList length] then
-      error propertyName : [[columnParameterList length] string] + " parameter(s), " + [formalArgumentList length] + " required"
+    if formalArgumentList.length () != columnParameterList.length () then
+      error propertyName : columnParameterList.length ().string () + " parameter(s), " + formalArgumentList.length () + " required"
     else
       for (formalName formalType) in formalArgumentList, (actualName actualType actualParameter) in columnParameterList do
         if formalName.string != actualName.string then
@@ -349,7 +349,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         ?let sortPropertyKind
         ?2*
       ]
-      if not [sortPropertyKind isComparable] then
+      if not sortPropertyKind.isComparable () then
         error sortPropertyName : "this property is not comparable"
       end 
       arrayControllerSortedColumnListForGeneration +=    
@@ -367,7 +367,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       !editable
       !sortPropertyName.string
       !propertyName.string
-      ![propertyKind swiftTypeName] # columnOutletTypeName.string
+      !propertyKind.swiftTypeName () # columnOutletTypeName.string
       !"" # columnBindings.mRunActionName.string
       !actualParameterList
   #--- Outlet class is needed ?
@@ -523,7 +523,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
   for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
-  let s = [filewrapper autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation
+  let s = filewrapper [autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation:
     !self.mOwnerName,
     !self.mControllerName,
     !self.mModelString,

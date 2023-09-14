@@ -110,7 +110,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
 {
   var @enumConstantMap enumConstantMap = {}
   for (s) in self.mEnumConstantNameList do
-    [!?enumConstantMap insertKey !s ![enumConstantMap count]]
+    [!?enumConstantMap insertKey !s !enumConstantMap.count ()]
   end
   var @enumFuncMap enumFuncMap = {}
   for (enumTypeName funcName associationList) in ioSemanticContext.mEnumerationFunctionListAST do
@@ -120,13 +120,13 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
       for (constantName associatedString) in associationList do
         [enumConstantMap searchKey !constantName ?let idx]
         associationSortedList += !idx !associatedString.string
-        if [definedConstantNameSet hasKey !constantName] then
+        if definedConstantNameSet.hasKey (constantName) then
           error constantName : "Duplicated constant"
         end
         definedConstantNameSet += !constantName
       end
       for (s) in self.mEnumConstantNameList do
-        if not [definedConstantNameSet hasKey !s] then
+        if not definedConstantNameSet.hasKey (s) then
           error funcName : "No association for '" + s + "' constant"
         end
       end
@@ -175,8 +175,8 @@ override proc @enumForGeneration.generateCode(
     ?let @string inOutputDirectory
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
-  if [self.mEnumConstantList length] > 0 then # Empty list is the generic type "Enum"
-    let s = [filewrapper enumGenerationTemplate.enumGenerationInSwift
+  if self.mEnumConstantList.length () > 0 then # Empty list is the generic type "Enum"
+    let s = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
       !self.mEnumName,
       !self.mEnumConstantList,
       !self.mEnumFuncMap

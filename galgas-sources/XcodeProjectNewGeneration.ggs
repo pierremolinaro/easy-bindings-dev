@@ -223,48 +223,48 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
 #---
   var @stringlist childrenRefs = {}
   for (f) in inFileNames do
-    if [f pathExtension] == "cpp" then
+    if f.pathExtension () == "cpp" then
       [!?self addCppFile !fileName:f ?fileRef:let @string cppFileRef]
       childrenRefs += !cppFileRef
       [!?self addBuildFile !fileRef:cppFileRef !fileName:f ?buildRef:let @string buildRef]
       ioCppFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "h" then
+    elsif f.pathExtension () == "h" then
       [!?self addHeaderFile !fileName:f ?fileRef:let @string headerFileRef]
       childrenRefs += !headerFileRef
-    elsif [f pathExtension] == "m" then
+    elsif f.pathExtension () == "m" then
       [!?self addMFile !fileName:f ?fileRef:let @string m_FileRef]
       [!?self addBuildFile !fileRef:m_FileRef !fileName:f ?buildRef:let @string buildRef]
       childrenRefs += !m_FileRef
       ioMFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "swift" then
+    elsif f.pathExtension () == "swift" then
       [!?self addSwiftFile !fileName:f ?fileRef:let @string swift_FileRef]
       [!?self addBuildFile !fileRef:swift_FileRef !fileName:f ?buildRef:let @string buildRef]
       childrenRefs += !swift_FileRef
       ioSwiftFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "mm" then
+    elsif f.pathExtension () == "mm" then
       [!?self addMMFile !fileName:f ?fileRef:let @string m_FileRef]
       [!?self addBuildFile !fileRef:m_FileRef !fileName:f ?buildRef:let @string buildRef]
       childrenRefs += !m_FileRef
       ioMMFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "framework" then
+    elsif f.pathExtension () == "framework" then
       [!?self addFrameworkFile !fileName:f ?fileRef:let @string framework_FileRef]
       [!?self addBuildFile !fileRef:framework_FileRef !fileName:f ?buildRef:let @string buildRef]
       childrenRefs += !framework_FileRef
       ioFrameWorkFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "plist" then
+    elsif f.pathExtension () == "plist" then
       [!?self addInfoPlistFile !fileName:f ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
-    elsif [f pathExtension] == "xib" then
+    elsif f.pathExtension () == "xib" then
       [!?self addXIBFile !fileName:f ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
       [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
       ioResourceFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "tiff" then
+    elsif f.pathExtension () == "tiff" then
       [!?self addTIFF_file !fileName:f ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
       [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
       ioResourceFileBuildRefs += !buildRef
-    elsif [f pathExtension] == "icns" then
+    elsif f.pathExtension () == "icns" then
       [!?self addICNS_file !fileName:f ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
       [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
@@ -347,39 +347,39 @@ list @BuildFileList {
 
 mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
   if self.mProjectObjectReference == "" then
-    self.mProjectObjectReference = [[[self.mSequenceNumber string] md5] rightSubString!24]
+    self.mProjectObjectReference = self.mSequenceNumber.string ().md5 ().rightSubString (24)
     self.mSequenceNumber += 1
   end
-  outRef = [[[self.mSequenceNumber string] md5] rightSubString!24]
+  outRef = self.mSequenceNumber.string ().md5().rightSubString (24)
   self.mSequenceNumber += 1
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
 
 struct @XcodeProjectDescriptor {
-  public var @uint mSequenceNumber
-  public var @string mMainGroupReference
-  public var @stringlist mMainGroupChildrenRefs
-  public var @string mProjectObjectReference
-  public var @XCodeGroupList mGroupList
-  public var @XCodeToolTargetList mToolTargetList
-  public var @XCodeAppTargetList mAppTargetList
-  public var @2stringlist mCppFileList
-  public var @2stringlist m_M_FileList
-  public var @2stringlist m_MM_FileList
-  public var @2stringlist m_SwiftFileList
-  public var @2stringlist mFrameworkFileList
-  public var @2stringlist mHeaderFileList
-  public var @BuildFileList mBuildFileList
+  public var @uint mSequenceNumber = 0
+  public var @string mMainGroupReference = ""
+  public var @stringlist mMainGroupChildrenRefs = {}
+  public var @string mProjectObjectReference = ""
+  public var @XCodeGroupList mGroupList = {}
+  public var @XCodeToolTargetList mToolTargetList = {}
+  public var @XCodeAppTargetList mAppTargetList = {}
+  public var @2stringlist mCppFileList = {}
+  public var @2stringlist m_M_FileList = {}
+  public var @2stringlist m_MM_FileList = {}
+  public var @2stringlist m_SwiftFileList = {}
+  public var @2stringlist mFrameworkFileList = {}
+  public var @2stringlist mHeaderFileList = {}
+  public var @BuildFileList mBuildFileList = {}
 #--- Default configuration
-  public var @string mDefaultConfigurationRef
-  public var @stringlist mDefaultConfigurationSettingList
-  public var @string mProjectBuildConfigurationRef
+  public var @string mDefaultConfigurationRef = ""
+  public var @stringlist mDefaultConfigurationSettingList = {}
+  public var @string mProjectBuildConfigurationRef = ""
 #--- Resource files
-  public var @2stringlist mInfoPlistFileList
-  public var @2stringlist mXIB_fileList
-  public var @2stringlist mTIFF_fileList
-  public var @2stringlist mICNS_fileList
+  public var @2stringlist mInfoPlistFileList = {}
+  public var @2stringlist mXIB_fileList = {}
+  public var @2stringlist mTIFF_fileList = {}
+  public var @2stringlist mICNS_fileList = {}
 }
 
 #----------------------------------------------------------------------------------------------------------------------*
@@ -415,7 +415,7 @@ private filewrapper xcodeProjectGenerationFilewrapper in "generation-templates/x
 proc @XcodeProjectDescriptor.generateAtPath(
   ?xcodeprojPath:let @string inPath
   ?cacheFilePath:let @string inCacheFilePath) {
-  let contents = [filewrapper xcodeProjectGenerationFilewrapper.xcodeproj
+  let contents = filewrapper [xcodeProjectGenerationFilewrapper.xcodeproj:
     !self.mProjectObjectReference,
     !self.mMainGroupReference,
     !self.mGroupList,
@@ -438,7 +438,7 @@ proc @XcodeProjectDescriptor.generateAtPath(
     !self.mProjectBuildConfigurationRef
   ]
   let projectCoreFile = inPath + "/project.pbxproj"
-  if (not [projectCoreFile fileExists]) || (not [inCacheFilePath fileExists]) || (@string.stringWithContentsOfFile (!inCacheFilePath) != contents) then 
+  if (not projectCoreFile.fileExists ()) || (not inCacheFilePath.fileExists ()) || (@string.stringWithContentsOfFile (!inCacheFilePath) != contents) then 
     [contents writeToFileWhenDifferentContents !inCacheFilePath ?*]
     [contents makeDirectoryAndWriteToFile !projectCoreFile]
   end

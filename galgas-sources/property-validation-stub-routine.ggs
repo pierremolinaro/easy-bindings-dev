@@ -29,7 +29,7 @@ proc generateValidationRoutineStubs(
   ?!@stringset ioGeneratedFileSet)
 {
   for (mObjectTypeName mModelName mModelTypeName) in inValidationStubRoutineListForGeneration do
-    let s = [filewrapper validationStubExtension.actionGeneration
+    let s = filewrapper [validationStubExtension.actionGeneration:
       !mObjectTypeName,
       !mModelName,
       !mModelTypeName

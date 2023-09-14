@@ -64,7 +64,7 @@ override proc @actionFileGeneration.generateCode(
     ?let @string inOutputDirectory
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
- let s = [filewrapper actionGenerationTemplate.actionGeneration
+ let s = filewrapper [actionGenerationTemplate.actionGeneration:
     !self.mClassName,
     !self.mActionName
   ]

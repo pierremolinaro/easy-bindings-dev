@@ -1727,16 +1727,7 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_astDeclarationStruct constructor_new (const class GALGAS_declarationListAST & inOperand0,
-                                                                    const class GALGAS_outletClassBindingSpecificationList & inOperand1,
-                                                                    const class GALGAS_autoLayoutViewClassBindingSpecificationList & inOperand2,
-                                                                    const class GALGAS_prefDeclaration & inOperand3,
-                                                                    const class GALGAS_lstring & inOperand4,
-                                                                    const class GALGAS_lstringlist & inOperand5,
-                                                                    const class GALGAS_astAutoLayoutViewFunctionMap & inOperand6,
-                                                                    const class GALGAS_astAutoLayoutViewFunctionMap & inOperand7,
-                                                                    const class GALGAS_enumerationFunctionListAST & inOperand8
-                                                                    COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_astDeclarationStruct constructor_new (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,

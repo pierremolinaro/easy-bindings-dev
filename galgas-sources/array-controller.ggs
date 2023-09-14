@@ -106,7 +106,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    let @actionMap controllerActions = {!["add" nowhere], !["remove" nowhere] }
+    let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
       [ioSemanticContext.mClassMap searchKey !rootEntityName ?* ?let rootProperties ?2*]
@@ -203,7 +203,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   case toMany (typeName accessibility isGraphic *) :
     elementTypeName = typeName
     graphic = isGraphic
-    arrayControllerModelKind = if [accessibility isTransient]
+    arrayControllerModelKind = if accessibility.isTransient ()
       then .transientArray
       else .entityArray
     end
@@ -324,7 +324,7 @@ override proc @arrayControllerGeneration.generateCode(
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
-  let s = [filewrapper arrayControllerGenerationTemplate.arrayControllerImplementationInSwift
+  let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:
     !self.mOwnerName,
     !self.mControllerName,
     !self.mArrayControllerModelKind,

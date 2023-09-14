@@ -291,7 +291,7 @@ override func @atomicProxyGeneration.declarationInSelectionControllerCode() -> @
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
 }
 
 #·······················································································································
@@ -314,7 +314,7 @@ override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @st
   result += "        case .multiple :\n"
   result += "          return .multiple\n"
   result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
+  result += "          var s = Set <" + self.mType.swiftTypeName () + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
   result += "            switch object." + self.mPropertyName + "_property.selection {\n"
@@ -341,7 +341,7 @@ override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @st
   result += "      }\n"
   result += "    }\n"
 
-  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [self.mType swiftTypeName] + ") in\n"
+  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + self.mType.swiftTypeName () + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
@@ -366,9 +366,9 @@ override func @atomicProxyGeneration.propertyDeclarationCode(
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  var " + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
+  result += "  var " + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.optionalValue\n"
   result += "    }\n"
@@ -402,7 +402,7 @@ override func @atomicProxyGeneration.configurationCode (?let @bool unused inPref
   result += "        return .empty\n"
   result += "      }\n"
   result += "    }\n"
-  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (_ inValue : " + [self.mType swiftTypeName] + ") in\n"
+  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (_ inValue : " + self.mType.swiftTypeName () + ") in\n"
   result += "      self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + "_property.setProp (inValue)\n"
   result += "    }\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName

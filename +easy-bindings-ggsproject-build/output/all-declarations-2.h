@@ -1143,15 +1143,7 @@ class GALGAS_semanticContext : public AC_GALGAS_root {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_semanticContext constructor_new (const class GALGAS_classMap & inOperand0,
-                                                               const class GALGAS_outletClassMap & inOperand1,
-                                                               const class GALGAS_bindingSpecificationMap & inOperand2,
-                                                               const class GALGAS_autolayoutViewClassMap & inOperand3,
-                                                               const class GALGAS_autoLayoutBindingSpecificationMap & inOperand4,
-                                                               const class GALGAS_astAutoLayoutViewFunctionMap & inOperand5,
-                                                               const class GALGAS_astAutoLayoutViewFunctionMap & inOperand6,
-                                                               const class GALGAS_enumerationFunctionListAST & inOperand7
-                                                               COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_semanticContext constructor_new (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,

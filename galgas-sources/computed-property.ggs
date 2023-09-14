@@ -195,13 +195,13 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
+      error mObservableProperty.location () : "only an atomic property can be observed"
     case selectionController (*) :
-      error [mObservableProperty location] : "only an atomic property can be observed"
+      error mObservableProperty.location () : "only an atomic property can be observed"
     end
     dependencies +=
       !mObservableProperty
-      ![mObservableProperty modelStringFunctionArgument]
+      !mObservableProperty.modelStringFunctionArgument ()
       !swiftTypeStringForTransientFunctionArgument
       !defaultValueAsString
   end
@@ -269,7 +269,7 @@ override func @computedPropertyGeneration.declarationInSelectionControllerCode()
   result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
 }
 
 #·······················································································································
@@ -292,7 +292,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
   result += "        case .multiple :\n"
   result += "          return .multiple\n"
   result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + [self.mType swiftTypeName] + "> ()\n"
+  result += "          var s = Set <" + self.mType.swiftTypeName () + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
   result += "            switch object." + self.mPropertyName + "_property.selection {\n"
@@ -319,7 +319,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
   result += "      }\n"
   result += "    }\n"
 
-  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + [self.mType swiftTypeName] + ") in\n"
+  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + self.mType.swiftTypeName () + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
@@ -342,21 +342,21 @@ override func @computedPropertyGeneration.propertyDeclarationCode(
    ?let @stringset inOverriddenTransients) -> @string
 {
   result  = ""
-  if self.mGenerate & not [inOverriddenTransients hasKey !self.mPropertyName] then
+  if self.mGenerate & not inOverriddenTransients.hasKey (self.mPropertyName) then
     if inPreferences then
       result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-      result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+      result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-      result += "  var preferences_" + self.mPropertyName + " : " + [self.mType swiftTypeName] + "? {\n"
+      result += "  var preferences_" + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
       result += "    return preferences_" + self.mPropertyName + "_property.optionalValue\n"
      result += "  }\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  (!'·' ,!116) + "\n\n"
-      result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + [self.mType swiftTypeName] + " ()\n\n"
+      result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
     end
   end
 }
@@ -366,24 +366,24 @@ override func @computedPropertyGeneration.propertyDeclarationCode(
 override func @computedPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
-  if [self.mDependencyList length] > 0 then
-    let needs_unwSelf = [self.mDependencyList needs_unwSelf !inPreferences]
+  if self.mDependencyList.length () > 0 then
+    let needs_unwSelf = self.mDependencyList.needs_unwSelf (inPreferences)
     result += "  //--- Computed property: " + self.mPropertyName + "\n"
     if needs_unwSelf then
       result += "    " + prefix + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
       result += "      if let unwSelf = self {\n"
-      result += [self.mDependencyList transientComputeFunctionCall !inPreferences ,!self.mClassName ,!self.mPropertyName ,!"computed"]
+      result += self.mDependencyList.transientComputeFunctionCall (inPreferences ,!self.mClassName ,!self.mPropertyName ,!"computed")
       result += "      }else{\n"
       result += "        return .empty\n"
       result += "      }\n"
     else
       result += "    " + prefix + self.mPropertyName + "_property.mReadModelFunction = {\n"
-      result += [self.mDependencyList transientComputeFunctionCall !inPreferences ,!self.mClassName ,!self.mPropertyName ,!"computed"]
+      result += self.mDependencyList.transientComputeFunctionCall (inPreferences ,!self.mClassName ,!self.mPropertyName ,!"computed")
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
     for (mDependency 3*) in self.mDependencyList do
-      let s = [mDependency generateAddObserverCall !inPreferences]
+      let s = mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
       end
@@ -408,8 +408,8 @@ override proc @computeRoutineGeneration.generateCode(
     ?let @string inOutputDirectory
     ?let @generationStruct unused inGenerationStruct
     ?!@stringset ioGeneratedFileSet) {
-  if [self.mDependencyList length] > 0 then
-    let s = [filewrapper computedPropertyManager.computedComputationFunctionFile
+  if self.mDependencyList.length () > 0 then
+    let s = filewrapper [computedPropertyManager.computedComputationFunctionFile:
       !self.mOwnerName,
       !self.mTransientName,
       !self.mTransientType

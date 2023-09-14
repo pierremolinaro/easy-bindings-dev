@@ -48,7 +48,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring outletClassName)
     let @lstring superClassName
     select
-      superClassName = ["" here]
+      superClassName = "".here ()
     or
       $:$
       $Identifier$ (?superClassName)
@@ -103,7 +103,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
   if self.mSuperClassName.string == "" then
     [!?ioSemanticContext.mOutletClassMap insertKey
       !self.mClassName
-      !["" nowhere]  # No super class
+      !"".nowhere ()  # No super class
       !self.mHasRunAction
       !self.mHandlesTableValueBinding
       !self.mHasEnabled

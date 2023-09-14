@@ -37,26 +37,26 @@ list @fileGenerationList {
 #·······················································································································
 
 struct @generationStruct {
-  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration
-  public var @fileGenerationList mFileGenerationList
-  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration
-  public var @bool mGenerateEBManagedXibDocumentSwift
-  public var @bool mGenerateEBManagedAutoLayoutDocumentSwift
-  public var @stringset mNeededOutletClasses
-  public var @mainXibDescriptorList mMainXibDescriptorList
+  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration = {}
+  public var @fileGenerationList mFileGenerationList = {}
+  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = {}
+  public var @bool mGenerateEBManagedXibDocumentSwift = false
+  public var @bool mGenerateEBManagedAutoLayoutDocumentSwift = false
+  public var @stringset mNeededOutletClasses = {}
+  public var @mainXibDescriptorList mMainXibDescriptorList = {}
  
-  public var @stringset mToOneClassImplementations
-  public var @stringset mToManyClassImplementations
+  public var @stringset mToOneClassImplementations = {}
+  public var @stringset mToManyClassImplementations = {}
 
-  public var @selectionControllerForGeneration mSelectionControllerListForGeneration
-  public var @stringlist mPropertyClassList
-  public var @transientExternTypeList mTransientPropertyTypeList
+  public var @selectionControllerForGeneration mSelectionControllerListForGeneration = {}
+  public var @stringlist mPropertyClassList = {}
+  public var @transientExternTypeList mTransientPropertyTypeList = {}
 
-  public var @stringset mGenerateClass_PreferencesArrayOf_
-  public var @stringset mGenerateClass_ProxyArrayOf_
-  public var @stringset mGenerateClass_TransientArrayOfSuperOf_
-  public var @stringset mGenerateClass_TransientArrayOf_
-  public var @stringset mGenerateClass_StoredArrayOf_
+  public var @stringset mGenerateClass_PreferencesArrayOf_ = {}
+  public var @stringset mGenerateClass_ProxyArrayOf_ = {}
+  public var @stringset mGenerateClass_TransientArrayOfSuperOf_ = {}
+  public var @stringset mGenerateClass_TransientArrayOf_ = {}
+  public var @stringset mGenerateClass_StoredArrayOf_ = {}
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -68,8 +68,8 @@ proc generateCode(
   ?let @generationStruct inGeneration
   ?let @string inSourceFile)
 {
-  let outputDirectory = [inSourceFile stringByDeletingLastPathComponent]
-  let projectName = [[inSourceFile lastPathComponent] stringByDeletingPathExtension]
+  let outputDirectory = inSourceFile.stringByDeletingLastPathComponent ()
+  let projectName = inSourceFile.lastPathComponent ().stringByDeletingPathExtension ()
   let fileOutputDirectory = outputDirectory + "/" + projectName
   var @stringset generatedFileSet = {}
   for (fileGeneration) in inGeneration.mFileGenerationList do
@@ -170,7 +170,7 @@ private proc generateClassProperty (?let @string inOutputDirectory
                                      ?let @bool inComparable
                                      ?let @bool inTransient
                                      ?!@stringset ioGeneratedFileSet) {
-  let contents = [filewrapper standard_properties.classProperty !inClassPropertyTypeName ,!inComparable ,!inTransient]
+  let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inComparable, inTransient]
 #--- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -188,7 +188,7 @@ private proc generateScalarProperty (?let @string inOutputDirectory
                                     ?let @bool inTransient
                                     ?let @string inComparisonMethod
                                     ?!@stringset ioGeneratedFileSet) {
-  let contents = [filewrapper standard_properties.scalarProperty !inScalarPropertyTypeName ,!inTransient ,!inComparisonMethod]
+  let contents = filewrapper [standard_properties.scalarProperty: !inScalarPropertyTypeName ,!inTransient ,!inComparisonMethod]
 #--- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
