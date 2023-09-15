@@ -183,11 +183,11 @@ override proc @enumForGeneration.generateCode(
     ]
     let fileName = "enum-" + self.mEnumName + ".swift"
     ioGeneratedFileSet += !fileName
-    [@string generateFile
+    @string.generateFile (
       !inOutputDirectory,
       !fileName,
       !s
-    ]
+    )
   end
 }
 

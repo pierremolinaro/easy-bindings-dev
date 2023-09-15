@@ -423,7 +423,7 @@ override proc @computeRoutineGeneration.generateCode(
     generatedZone3 += "  //" + @string.stringWithSequenceOfCharacters (!'·', 116) + "\n\n"
     generatedZone3 += "}\n\n"
     generatedZone3 += "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,
       !lineComment: "//",
@@ -433,7 +433,7 @@ override proc @computeRoutineGeneration.generateCode(
       !defaultUserZone2: "\n",
       !generatedZone3: generatedZone3,
       !makeExecutable: false
-    ]
+    )
   end
 }
 

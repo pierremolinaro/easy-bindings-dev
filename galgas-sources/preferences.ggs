@@ -266,11 +266,11 @@ override proc @preferencesForGeneration.generateCode(
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !s
-  ]
+  )
 #--- Configurators
   for (outletName outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
@@ -285,7 +285,7 @@ override proc @preferencesForGeneration.generateCode(
       + "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
     let fileName = "configurator-Preferences-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,
       !lineComment:"//",
@@ -295,7 +295,7 @@ override proc @preferencesForGeneration.generateCode(
       !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
-    ]
+    )
   end
 }
 

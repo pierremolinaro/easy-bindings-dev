@@ -152,19 +152,19 @@ private proc generateXcodeProjectInternal(
     !"1.0.0",
     !{!projectName}
   ]
-  [@string generateFile
+  @string.generateFile (
     !sourceDir,
     !"Info.plist",
     !s
-  ]
+  )
   s = filewrapper [additionalXcodeFiles.main_xib:
     !projectName
   ]
-  [@string generateFile
+  @string.generateFile (
     !sourceDir,
     !"MainMenu.xib",
     !s
-  ]
+  )
   s = filewrapper [additionalXcodeFiles.build_command: projectName]
   [s writeToExecutableFileWhenDifferentContents
     !inOutputDirectory + "/build.py",

@@ -245,11 +245,11 @@ proc generateSelectionControllers(
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
-      [@string generateFile
+      @string.generateFile (
         !inOutputDirectory,
         !fileName,
         !s
-      ]
+      )
     else
       var hasAtomicStoredProperties = false
       for (property) in propertyGenerationList while not hasAtomicStoredProperties do
@@ -265,11 +265,11 @@ proc generateSelectionControllers(
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
-      [@string generateFile
+      @string.generateFile (
         !inOutputDirectory,
         !fileName,
         !s
-      ]
+      )
     end
   end
 }

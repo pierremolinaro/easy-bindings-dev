@@ -610,7 +610,7 @@ override proc @transientRoutineGeneration.generateCode(
       + "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
    let fileName = self.mGeneratedFunctionNamePrefix + "-" + self.mOwnerName + "-" + self.mTransientName + ".swift"
     ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath:inOutputDirectory,
       !fileName:fileName,
       !lineComment:"//",
@@ -620,7 +620,7 @@ override proc @transientRoutineGeneration.generateCode(
       !defaultUserZone2:"\n", # Defaut user zone2
       !generatedZone3:"}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
-    ]
+    )
   end
 }
 

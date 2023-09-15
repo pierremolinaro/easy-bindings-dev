@@ -332,11 +332,11 @@ override proc @arrayControllerGeneration.generateCode(
     !self.mElementTypeName,
     !self.mElementTypeIsGraphic
   ]
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !"controller-array-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
     !s
-  ]
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

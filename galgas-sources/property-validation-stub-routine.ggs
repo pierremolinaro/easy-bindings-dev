@@ -45,7 +45,7 @@ proc generateValidationRoutineStubs(
       + "      result = .rejectWithAlert (\"Rejected in \\(#file), line \\(#line)\")\n"
       + "    }\n"
       + "    return result\n"    
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath:inOutputDirectory,
       !fileName:fileName,
       !lineComment:"//",
@@ -55,7 +55,7 @@ proc generateValidationRoutineStubs(
       !defaultUserZone2:defaultUserZone2,
       !generatedZone3:"  }\n},\n\n//---------------------------------------------------------------------------------------------------------------------*\n",
       !makeExecutable:false
-    ]
+    )
   end
 }
 

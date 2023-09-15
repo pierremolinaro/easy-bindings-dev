@@ -535,11 +535,11 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     !observedProperties,
     !self.mAttributeListForGeneration
   ]
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !"controller-table-view-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
     !s
-  ]
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

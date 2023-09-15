@@ -383,11 +383,11 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
   ]
   let fileName = "document-" + self.mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !s
-  ]
+  )
   for (outletName outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       !self.mDocumentName,
@@ -401,7 +401,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       + "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
     let fileName = "configurator-" + self.mDocumentName + "-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,
       !lineComment:"//",
@@ -411,7 +411,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
-    ]
+    )
   end
   for (linkerName outletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.outletLinkerImplementation:
@@ -426,7 +426,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       + "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
     let fileName = "linker-" + self.mDocumentName + "-" + linkerName + ".swift"
     ioGeneratedFileSet += !fileName
-    [@string generateFileWithPattern
+    @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,
       !lineComment:"//",
@@ -436,7 +436,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
-    ]
+    )
   end
 }
 

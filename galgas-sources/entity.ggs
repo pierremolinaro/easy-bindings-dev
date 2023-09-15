@@ -401,11 +401,11 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !s
-  ]
+  )
   if inGenerationStruct.mToOneClassImplementations.hasKey (self.mEntityName) then
     s = filewrapper [entityGenerationTemplate.entityToOneImplementationInSwift:
       !self.mEntityName,
@@ -430,11 +430,11 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   end
   fileName = "toone-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !s
-  ]
+  )
   if inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName) then
     s = filewrapper [entityGenerationTemplate.entityToManyImplementationInSwift:
       !self.mEntityName,
@@ -464,11 +464,11 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   end
   fileName = "tomany-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !s
-  ]
+  )
 }
 
 #·······················································································································
@@ -482,11 +482,11 @@ proc generateEBManagedObjectContext(
     let fileName = "EBManagedObjectFactory.swift"
     ioGeneratedFileSet += !fileName
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]
-    [@string generateFile
+    @string.generateFile (
       !inOutputDirectory,
       !fileName,
       !s
-    ]
+    )
   end
 }
 

@@ -165,11 +165,11 @@ private proc generateClassProperty (?let @string inOutputDirectory,
 #--- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !contents
-  ]
+  )
 }
 
 #·······················································································································
@@ -183,11 +183,11 @@ private proc generateScalarProperty (?let @string inOutputDirectory,
 #--- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
-  [@string generateFile
+  @string.generateFile (
     !inOutputDirectory,
     !fileName,
     !contents
-  ]
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
