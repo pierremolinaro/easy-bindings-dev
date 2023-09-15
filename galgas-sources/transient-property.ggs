@@ -14,57 +14,57 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 
 override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mTransientName, self.mTransientName.location)
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !self.mClassName]
-  [!?ioGraph addEdge !node !self.mTransientTypeName]
+  [!?ioGraph addNode !node, !self]
+  [!?ioGraph addEdge !node, !self.mClassName]
+  [!?ioGraph addEdge !node, !self.mTransientTypeName]
   for dependency in self.mDependencyList do
     switch dependency.mObservableProperty
     case rootProperty (propertyName) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
+        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
       end
     case rootPropertyWithOption (propertyName *) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
+        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
       end
     case rootPropertyRelationship (relationshipName *) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
+        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
       end
     case rootPropertyNone (relationshipName) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
+        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
       end
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
     case selfPropertyWithOption (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
     case selfPropertyArray (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
     case selfPropertyObject (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
     case selfPropertyNone (@lstring propertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
     case prefsProperty (@lstring propertyName) :
-      [!?ioGraph addEdge !node !.new (!preferencesName () + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!preferencesName () + " " + propertyName, propertyName.location)]
     case prefsPropertyWithOption (@lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new (!preferencesName () + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!preferencesName () + " " + propertyName, propertyName.location)]
     case selfControllerProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
     case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
     case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
     case selfControllerOneProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName @lstring propertyName) :
-      [!?ioGraph addEdge !node !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
     case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
-      [!?ioGraph addEdge !node !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
     end
   end
 }
@@ -151,15 +151,15 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName, ?let classKind, ?3*]
     switch classKind
     case prefs :
       error self.mTransientTypeName : "an atomic class is required here"
     case atomic (kind) :
       [!?mPropertyMap insertKey
-        !self.mTransientName
-        !.property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.length () == 0))
-        !{}
+        !self.mTransientName,
+        !.property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.length () == 0)),
+        !{},
         !self.mIsOverriding
       ]
     case document (*) :
@@ -178,7 +178,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
 #--- Property type
-  [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName ?let classKind ?3*]
+  [ioSemanticContext.mClassMap searchKey !self.mTransientTypeName, ?let classKind, ?3*]
 #--- Check type
   let @typeKind typeKind
   switch classKind
@@ -196,19 +196,19 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
-    [ioSemanticContext.mClassMap searchKey !self.mRootEntityName ?* ?rootProperties ?2*]
+    [ioSemanticContext.mClassMap searchKey !self.mRootEntityName, ?*, ?rootProperties, ?2*]
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey !self.mClassName ?let currentClassKind ?let properties ?2*]
+  [ioSemanticContext.mClassMap searchKey !self.mClassName, ?let currentClassKind, ?let properties, ?2*]
 #--- Analyse master properties
   var @transientDependencyListForGeneration dependencies = {}
   for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
-      !rootProperties
-      !ioSemanticContext
-      !properties
-      ?let @propertyKind dependencyKind
-      ?let @string swiftTypeStringForTransientFunctionArgument
+      !rootProperties,
+      !ioSemanticContext,
+      !properties,
+      ?let @propertyKind dependencyKind,
+      ?let @string swiftTypeStringForTransientFunctionArgument,
       ?let @string defaultValueAsString
     ]
 #    message "defaultValueAsString " + defaultValueAsString + "\n"
@@ -611,14 +611,14 @@ override proc @transientRoutineGeneration.generateCode(
    let fileName = self.mGeneratedFunctionNamePrefix + "-" + self.mOwnerName + "-" + self.mTransientName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:fileName
-      !lineComment:"//"
-      !header:header
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"\n" # Defaut user zone2
-      !generatedZone3:"}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+      !startPath:inOutputDirectory,
+      !fileName:fileName,
+      !lineComment:"//",
+      !header:header,
+      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !generatedZone2:s,
+      !defaultUserZone2:"\n", # Defaut user zone2
+      !generatedZone3:"}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
     ]
   end

@@ -46,7 +46,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
         !filePath.string.absolutePathFromPath (@string.stringWithSourceFilePath.stringByDeletingLastPathComponent ()),
         !filePath.location
       )
-      grammar easyBindings_grammar (!?ioDeclarationAST ?*) in sourceFile
+      grammar easyBindings_grammar (!?ioDeclarationAST, ?*) in sourceFile
     while
       <autolayout_class_declaration> (!?ioDeclarationAST)
    while

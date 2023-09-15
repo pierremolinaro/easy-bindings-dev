@@ -72,7 +72,7 @@ proc sortProperties(
   if option easyBindings_options [outputDeclarationDependencyGraph.value] then
     let s = declarationPrecedenceGraph.graphviz ()
     let path = inSourceFile + ".declarationDependancy.dot"
-    [s writeToFileWhenDifferentContents !path ?*]
+    [s writeToFileWhenDifferentContents !path, ?*]
   end
 #------------------------  Get ordered declaration list
   outSortedDeclarationListAST = {}
@@ -82,9 +82,9 @@ proc sortProperties(
     end
   else
     [declarationPrecedenceGraph topologicalSort
-      ?outSortedDeclarationListAST
-      ?*
-      ?let unsortedSemanticDeclarationListAST
+      ?outSortedDeclarationListAST,
+      ?*,
+      ?let unsortedSemanticDeclarationListAST,
       ?*
     ]
     if unsortedSemanticDeclarationListAST.length () > 0 then

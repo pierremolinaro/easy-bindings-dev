@@ -370,7 +370,7 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
   ?let @propertyMap inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
-  [inPreferencesPropertyMap searchKey !self.mPrefPropertyName ?let @propertyKind kind ?2*]
+  [inPreferencesPropertyMap searchKey !self.mPrefPropertyName, ?let @propertyKind kind, ?2*]
   switch kind
   case property (@typeKind type *) :
     var found = false
@@ -399,7 +399,7 @@ override proc @prefsAsDefaultValue.enterDefaultValuePrecedence(
    ?!@declarationPrecedenceGraph ioGraph)
 {
   let p = @lstring (!preferencesName () + " " + self.mPrefPropertyName.string, self.mPrefPropertyName.location)
-  [!?ioGraph addEdge !inNode !p]
+  [!?ioGraph addEdge !inNode, !p]
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

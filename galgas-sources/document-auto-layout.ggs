@@ -44,8 +44,8 @@ list @autoLayoutOutletLinkerGenerationList {
 #·······················································································································
 
 override proc @autoLayoutDocumentDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
-  [!?ioGraph addEdge !self.mClassName !self.mRootEntityName]
+  [!?ioGraph addNode !self.mClassName, !self]
+  [!?ioGraph addEdge !self.mClassName, !self.mRootEntityName]
 }
 
 #·······················································································································
@@ -90,23 +90,11 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> (!?actionDeclarationList)
     while
-      <transient_declaration> (!documentName !rootEntityName !?ioDeclarationAST)
+      <transient_declaration> (!documentName, !rootEntityName, !?ioDeclarationAST)
     while
       <outlet_declaration> (!?outletDeclarationList)
     while
-      <controller_declaration> (!documentName !rootEntityName !?arrayControllerBindingListAST !?ioDeclarationAST)
-#    while
-#      $toolbarItem$
-#      select
-#        $space$
-#        $;$
-#        autoLayoutToolbarItemList += !.space
-#      or
-#        $literal_string$ (?let title)
-#        $:$
-#        <computed_view_instruction> (!?* ?let instruction) #§
-#        autoLayoutToolbarItemList += !.view (!title: title !instruction: instruction)
-#      end
+      <controller_declaration> (!documentName, !rootEntityName, !?arrayControllerBindingListAST, !?ioDeclarationAST)
     while
       $linker$
       $identifier$ (?let linkerName)
@@ -155,12 +143,12 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mActionDeclarationList, ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
-    !self.mClassName
-    !.document (!rootEntityName: self.mRootEntityName)
-    !{}
-    !actionMap
+    !self.mClassName,
+    !.document (!rootEntityName: self.mRootEntityName),
+    !{},
+    !actionMap,
     !{}
   ]
   for (lkey) in actionMap do
@@ -178,44 +166,44 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   [ioSemanticContext.mClassMap searchKey
-    !.new (!preferencesName (), .nowhere)
-    ?*
-    ?let preferencesPropertyMap
+    !.new (!preferencesName (), .nowhere),
+    ?*,
+    ?let preferencesPropertyMap,
     ?2*
   ]
 #--- Get document property map
   [ioSemanticContext.mClassMap searchKey
-    !.new (!self.mClassName, .nowhere)
-    ?*
-    ?let documentPropertyMap
-    ?let documentActionMap
+    !.new (!self.mClassName, .nowhere),
+    ?*,
+    ?let documentPropertyMap,
+    ?let documentActionMap,
     ?let documentPropertyGenerationList
   ]
 #--- Get root entity property map
   [ioSemanticContext.mClassMap searchKey
-    !self.mRootEntityName
-    ?*
-    ?let rootPropertyMap
-    ?let unused rootActionMap
+    !self.mRootEntityName,
+    ?*,
+    ?let rootPropertyMap,
+    ?let unused rootActionMap,
     ?let unused rootPropertyGenerationList
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
-    !false
-    !rootPropertyMap
-    !preferencesPropertyMap
-    !self.mRootEntityName.string
-    !ioSemanticContext
-    !self.mOutletDeclarationList
-    !documentPropertyMap
-    !documentActionMap
-    !self.mClassName
-    !?ioGeneration
-    ?let @regularBindingsGenerationList regularBindingsGenerationList
-    ?@multipleBindingGenerationList multipleBindingGenerationList
-    ?let @actionBindingListForGeneration actionBindingListForGeneration
-    ?let @decoratedOutletMap outletMap
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    !false,
+    !rootPropertyMap,
+    !preferencesPropertyMap,
+    !self.mRootEntityName.string,
+    !ioSemanticContext,
+    !self.mOutletDeclarationList,
+    !documentPropertyMap,
+    !documentActionMap,
+    !self.mClassName,
+    !?ioGeneration,
+    ?let @regularBindingsGenerationList regularBindingsGenerationList,
+    ?@multipleBindingGenerationList multipleBindingGenerationList,
+    ?let @actionBindingListForGeneration actionBindingListForGeneration,
+    ?let @decoratedOutletMap outletMap,
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Analyze controller bindings
@@ -225,13 +213,13 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !prefs: false
-        !rootPropertyMap
-        !ioSemanticContext
-        !documentPropertyMap
-        !preferencesPropertyMap
-        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
-        ?let @typeKind type
+        !prefs: false,
+        !rootPropertyMap,
+        !ioSemanticContext,
+        !documentPropertyMap,
+        !preferencesPropertyMap,
+        ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
+        ?let @typeKind type,
         ?let @location errorLocation
       ]
       if not type.isBoolType () then
@@ -252,19 +240,19 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
     [viewDeclaration checkView
-      !viewName
-      !viewDeclarationMap
-      !prefs: false
-      !rootPropertyMap
-      !preferencesPropertyMap
-      !ioSemanticContext
-      !documentPropertyMap
-      !documentActionMap
-      !self.mClassName
-      !ioSemanticContext.mClassMap
-      !?implicitViewFunctionGenerationList
-      !?configuratorMap
-      !?autoLayoutOutletMap
+      !viewName,
+      !viewDeclarationMap,
+      !prefs: false,
+      !rootPropertyMap,
+      !preferencesPropertyMap,
+      !ioSemanticContext,
+      !documentPropertyMap,
+      !documentActionMap,
+      !self.mClassName,
+      !ioSemanticContext.mClassMap,
+      !?implicitViewFunctionGenerationList,
+      !?configuratorMap,
+      !?autoLayoutOutletMap,
       ?let viewGeneration
     ]
     viewGenerationList += !viewName !viewGeneration
@@ -307,7 +295,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     linkerNameSet += !linkerName.string
     var @2stringlist outletNameAndTypeNameList = {}
     for (outletName) in ouletNameList do
-      [autoLayoutOutletMap searchKey !outletName ?let outletTypeName ?let unused outletIsArray]
+      [autoLayoutOutletMap searchKey !outletName, ?let outletTypeName, ?let unused outletIsArray]
       outletNameAndTypeNameList += !outletName.string !outletTypeName
     end
     outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList
@@ -396,8 +384,8 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
   let fileName = "document-" + self.mDocumentName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
-    !inOutputDirectory
-    !fileName
+    !inOutputDirectory,
+    !fileName,
     !s
   ]
   for (outletName outletTypeName) in self.mConfiguratorMap do
@@ -414,14 +402,14 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     let fileName = "configurator-" + self.mDocumentName + "-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !startPath: inOutputDirectory
-      !fileName: fileName
-      !lineComment:"//"
-      !header:header
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+      !startPath: inOutputDirectory,
+      !fileName: fileName,
+      !lineComment:"//",
+      !header:header,
+      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !generatedZone2:s,
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
     ]
   end
@@ -439,14 +427,14 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     let fileName = "linker-" + self.mDocumentName + "-" + linkerName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !startPath: inOutputDirectory
-      !fileName: fileName
-      !lineComment:"//"
-      !header:header
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+      !startPath: inOutputDirectory,
+      !fileName: fileName,
+      !lineComment:"//",
+      !header:header,
+      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !generatedZone2:s,
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
     ]
   end

@@ -36,7 +36,7 @@ proc generateXcodeProject(
   ?let @string projectName)
 {
   if inXcodeProjectString != "" then
-    generateXcodeProjectInternal (!inOutputDirectory !inXcodeProjectString !inGeneratedFileSet !projectName)
+    generateXcodeProjectInternal (!inOutputDirectory, !inXcodeProjectString, !inGeneratedFileSet, !projectName)
   end
 }
 
@@ -98,51 +98,51 @@ private proc generateXcodeProjectInternal(
   var generatedFileSet = inGeneratedFileSet
   generatedFileSet += !"MainMenu.xib"
   [!?xcodeProject addGroupWithFiles
-    !groupName:"Sources"
-    !groupPath:projectName
-    !fileNames:generatedFileSet
-    !?cppFileRefs:*
-    !?mFileRefs:*
-    !?mmFileRefs:*
-    !?swiftFileRefs:swiftFileRefList
-    !?frameworkFileRefs:*
-    !?resourceFileRefs:resourceFileRefList
+    !groupName:"Sources",
+    !groupPath:projectName,
+    !fileNames:generatedFileSet,
+    !?cppFileRefs:*,
+    !?mFileRefs:*,
+    !?mmFileRefs:*,
+    !?swiftFileRefs:swiftFileRefList,
+    !?frameworkFileRefs:*,
+    !?resourceFileRefs:resourceFileRefList,
     ?groupRef:@string groupRef
   ]
   [!?xcodeProject placeGroupAsMainGroup !groupRef:groupRef]
   [!?xcodeProject addGroupWithFiles
-    !groupName:"Resources"
-    !groupPath:projectName
-    !fileNames:{!"Info.plist"}
-    !?cppFileRefs:*
-    !?mFileRefs:*
-    !?mmFileRefs:*
-    !?swiftFileRefs:swiftFileRefList
-    !?frameworkFileRefs:*
-    !?resourceFileRefs:resourceFileRefList
+    !groupName:"Resources",
+    !groupPath:projectName,
+    !fileNames:{!"Info.plist"},
+    !?cppFileRefs:*,
+    !?mFileRefs:*,
+    !?mmFileRefs:*,
+    !?swiftFileRefs:swiftFileRefList,
+    !?frameworkFileRefs:*,
+    !?resourceFileRefs:resourceFileRefList,
     ?groupRef:groupRef
   ]
   [!?xcodeProject placeGroupAsMainGroup !groupRef:groupRef]
 #--- Add Cocoa target
   [!?xcodeProject addAppTarget
-    !targetName:projectName
-    !productFileName:projectName
-    !sources:swiftFileRefList
-    !frameworkFileRefs:{}
-    !resourceFileRefs:resourceFileRefList
+    !targetName:projectName,
+    !productFileName:projectName,
+    !sources:swiftFileRefList,
+    !frameworkFileRefs:{},
+    !resourceFileRefs:resourceFileRefList,
     !buildConfigurationSettingList:{
       !"GCC_OPTIMIZATION_LEVEL = 0",
       !"GCC_PREPROCESSOR_DEFINITIONS = ()"
-    }
-    !dependantTargetList:{}
-    !productCopyList:{} # {!"MainMenu.xib" !"EBAllocationDebug.xib"}
-    !infoPList:projectName + "/Info.plist"
+    },
+    !dependantTargetList:{},
+    !productCopyList:{}, # {!"MainMenu.xib" !"EBAllocationDebug.xib"}
+    !infoPList:projectName + "/Info.plist",
     ?productFileRef:*
   ]
 #--- Generate project
   let sourceDir = inOutputDirectory + "/" + projectName + "/"
   [xcodeProject generateAtPath
-    !xcodeprojPath:inOutputDirectory + "/" + projectName + ".xcodeproj"
+    !xcodeprojPath:inOutputDirectory + "/" + projectName + ".xcodeproj",
     !cacheFilePath:sourceDir + projectName + ".xcodeproj.txt"
   ]
 #--- Generate additional files
@@ -153,21 +153,21 @@ private proc generateXcodeProjectInternal(
     !{!projectName}
   ]
   [@string generateFile
-    !sourceDir
-    !"Info.plist"
+    !sourceDir,
+    !"Info.plist",
     !s
   ]
   s = filewrapper [additionalXcodeFiles.main_xib:
     !projectName
   ]
   [@string generateFile
-    !sourceDir
-    !"MainMenu.xib"
+    !sourceDir,
+    !"MainMenu.xib",
     !s
   ]
   s = filewrapper [additionalXcodeFiles.build_command: projectName]
   [s writeToExecutableFileWhenDifferentContents
-    !inOutputDirectory + "/build.py"
+    !inOutputDirectory + "/build.py",
     ?*
   ]
 }

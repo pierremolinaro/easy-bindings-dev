@@ -9,7 +9,7 @@ class @transientClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @transientClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
 }
 
 #·······················································································································
@@ -58,11 +58,11 @@ override proc @transientClassDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   [!?ioSemanticContext.mClassMap insertKey
-    !self.mClassName
-    !.atomic (!kind: .transientPropertyExternType (!externTypeName: self.mClassName))
-    !{}
-    !{}
-    !{}
+    self.mClassName,
+    .atomic (!kind: .transientPropertyExternType (!externTypeName: self.mClassName)),
+    {},
+    {},
+    {}
   ]
   ioGeneration.mTransientPropertyTypeList += !self.mClassName.string !self.mIsClass
 }

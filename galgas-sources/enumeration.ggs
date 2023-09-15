@@ -9,7 +9,7 @@ class @enumerationDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @enumerationDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
 }
 
 #·······················································································································
@@ -110,7 +110,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
 {
   var @enumConstantMap enumConstantMap = {}
   for (s) in self.mEnumConstantNameList do
-    [!?enumConstantMap insertKey !s !enumConstantMap.count ()]
+    [!?enumConstantMap insertKey !s, !enumConstantMap.count ()]
   end
   var @enumFuncMap enumFuncMap = {}
   for (enumTypeName funcName associationList) in ioSemanticContext.mEnumerationFunctionListAST do
@@ -118,7 +118,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
       var @stringset definedConstantNameSet = {}
       var @enumFunAssociationSortedList associationSortedList = {}
       for (constantName associatedString) in associationList do
-        [enumConstantMap searchKey !constantName ?let idx]
+        [enumConstantMap searchKey !constantName, ?let idx]
         associationSortedList += !idx !associatedString.string
         if definedConstantNameSet.hasKey (constantName) then
           error constantName : "Duplicated constant"
@@ -130,14 +130,14 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
           error funcName : "No association for '" + s + "' constant"
         end
       end
-      [!?enumFuncMap insertKey !funcName !associationSortedList]
+      [!?enumFuncMap insertKey !funcName, !associationSortedList]
     end
   end
   [!?ioSemanticContext.mClassMap insertKey
-    !self.mClassName
-    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName, !constantMap: enumConstantMap, !funcMap: enumFuncMap))
-    !{}
-    !{}
+    !self.mClassName,
+    !.atomic (!kind: .enumType (!enumTypeName:self.mClassName, !constantMap: enumConstantMap, !funcMap: enumFuncMap)),
+    !{},
+    !{},
     !{}
   ]
 #--- Generation
@@ -184,8 +184,8 @@ override proc @enumForGeneration.generateCode(
     let fileName = "enum-" + self.mEnumName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFile
-      !inOutputDirectory
-      !fileName
+      !inOutputDirectory,
+      !fileName,
       !s
     ]
   end

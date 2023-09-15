@@ -21,9 +21,9 @@ class @proxyDeclarationAST : @abstractDeclarationAST {
 
 override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mProxyName, self.mProxyName.location)
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !self.mClassName]
-  [!?ioGraph addEdge !node !self.mProxyTypeName]
+  [!?ioGraph addNode !node, !self]
+  [!?ioGraph addEdge !node, !self.mClassName]
+  [!?ioGraph addEdge !node, !self.mProxyTypeName]
 }
 
 #·······················································································································
@@ -87,7 +87,7 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !self.mProxyTypeName ?let proxyKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mProxyTypeName, ?let proxyKind, ?3*]
     switch proxyKind
     case prefs :
       error self.mProxyTypeName : "an atomic type is required here"
@@ -100,14 +100,14 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
         !graphic: isGraphic,
         !optionKind: .none
       )
-      [!?mPropertyMap insertKey !self.mProxyName !k !{} !false]
+      [!?mPropertyMap insertKey !self.mProxyName, !k, !{}, !false]
       case propertyProxy :
         error self.mProxyTypeName : "this type should be an entity"
       end
     case document (*) :
       error self.mProxyTypeName : "an atomic type is required here"
     case atomic (type) :
-      [!?mPropertyMap insertKey !self.mProxyName !.property (!type: type, !accessibility: .stored) !{} !false]
+      [!?mPropertyMap insertKey !self.mProxyName, !.property (!type: type, !accessibility: .stored), !{}, !false]
     end
   end
 }
@@ -119,7 +119,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !self.mToOneRelationshipName ?let relationshipKind ?2*]
+    [mPropertyMap searchKey !self.mToOneRelationshipName, ?let relationshipKind, ?2*]
     switch relationshipKind
     case arrayController (2*) :
       error self.mToOneRelationshipName : "a toOne relationship is required here"
@@ -130,8 +130,8 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
     case toMany (4*) :
       error self.mToOneRelationshipName : "a toOne relationship is required here"
     case toOne (toOneTypeName 4*) :
-      [ioSemanticContext.mClassMap searchKey !toOneTypeName ?* ?let propertyMap ?2*]
-      [propertyMap searchKey !self.mPropertyName ?let propertyKind ?2*]
+      [ioSemanticContext.mClassMap searchKey !toOneTypeName, ?*, ?let propertyMap, ?2*]
+      [propertyMap searchKey !self.mPropertyName, ?let propertyKind, ?2*]
       switch propertyKind
       case property (propertyType 1*) :
         mPropertyGenerationList += !@atomicProxyGeneration (
@@ -145,7 +145,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
           error self.mPropertyName : "this property is not atomic"
         end
       case toMany (toManyTypeName 3*) :
-        [ioSemanticContext.mClassMap searchKey !toManyTypeName ?4*]
+        [ioSemanticContext.mClassMap searchKey !toManyTypeName, ?4*]
         mPropertyGenerationList += !@toManyProxyGeneration (
           !self.mProxyName.string,
           !self.mProxyKind,

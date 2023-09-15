@@ -148,12 +148,12 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let viewName)
     $vStack$
-    <auto_layout_func_call_list> (!?* ?let functionCallList) #§
+    <auto_layout_func_call_list> (!?*, ?let functionCallList)
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
     var @stringset stackViewInstances = {}
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: false !?stackViewInstances !?astNewStackViewDeclarationList !?instructionList)
+    <view_instruction_list> (!horizontal: false, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
     ioViewDeclarationList +=
       !viewName
@@ -166,12 +166,12 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let viewName)
     $hStack$
-    <auto_layout_func_call_list> (!?* ?let functionCallList) #§
+    <auto_layout_func_call_list> (!?*, ?let functionCallList)
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
     var @stringset stackViewInstances = {}
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?stackViewInstances !?astNewStackViewDeclarationList !?instructionList)
+    <view_instruction_list> (!horizontal: true, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
     ioViewDeclarationList +=
       !viewName
@@ -186,7 +186,7 @@ syntax extension easyBindings_syntax {
    repeat
     while
        $identifier$ (?let functionName)
-       <view_actual_parameter_list> (!?ioStackViewInstances ?let actualParameterList)
+       <view_actual_parameter_list> (!?ioStackViewInstances, ?let actualParameterList)
        outFunctionCallList += !functionName !actualParameterList
     end
   }
@@ -221,7 +221,7 @@ syntax extension easyBindings_syntax {
       end
       ioInstructionList += !@astLocalViewInstruction (!localViewName)
     while
-      <view_instruction> (!?ioStackViewInstances ?let instruction)
+      <view_instruction> (!?ioStackViewInstances, ?let instruction)
       ioInstructionList += !instruction
     end
   }
@@ -238,7 +238,7 @@ syntax extension easyBindings_syntax {
  
   rule <view_instruction> (?!@stringset ioStackViewInstances,
                            !@astAbstractViewInstructionDeclaration outInstruction) {
-    <computed_view_instruction> (!?ioStackViewInstances ?let instruction)
+    <computed_view_instruction> (!?ioStackViewInstances, ?let instruction)
     outInstruction = instruction
   }
   
@@ -251,7 +251,7 @@ syntax extension easyBindings_syntax {
     select
       instanciationParameterList = {}
     or
-      <view_actual_parameter_list> (!?ioStackViewInstances ?instanciationParameterList)
+      <view_actual_parameter_list> (!?ioStackViewInstances, ?instanciationParameterList)
     end
     let @lstring configuratorName
     let @lstring outletName
@@ -299,12 +299,12 @@ syntax extension easyBindings_syntax {
       autoLayoutViewFunctionCallList = {}
     or
       ${$
-      <auto_layout_func_call_list> (!?ioStackViewInstances ?autoLayoutViewFunctionCallList)
-      <outlet_binding> (?tableValueBinding
-                        ?runActionDescriptor
-                        ?enabledBindingDescriptor
-                        ?hiddenBindingDescriptor
-                        ?graphicController
+      <auto_layout_func_call_list> (!?ioStackViewInstances, ?autoLayoutViewFunctionCallList)
+      <outlet_binding> (?tableValueBinding,
+                        ?runActionDescriptor,
+                        ?enabledBindingDescriptor,
+                        ?hiddenBindingDescriptor,
+                        ?graphicController,
                         ?regularBindingList)
       $}$
     end
@@ -336,7 +336,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let parameterName)
         $:$
         select
-          <view_instruction> (!?ioStackViewInstances ?let @astAbstractViewInstructionDeclaration instruction)
+          <view_instruction> (!?ioStackViewInstances, ?let @astAbstractViewInstructionDeclaration instruction)
           outParameterList += !parameterName !.typeView !.viewFunc (!instruction: instruction)
         or
           $entity$
@@ -420,7 +420,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> (?!@stringset ioStackViewInstances,
                            !@astAbstractViewInstructionDeclaration outInstruction) {
     $vStack$
-    <auto_layout_func_call_list> (!?ioStackViewInstances ?let functionCallList)
+    <auto_layout_func_call_list> (!?ioStackViewInstances, ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -432,8 +432,8 @@ syntax extension easyBindings_syntax {
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: false !?ioStackViewInstances !?astNewStackViewDeclarationList !?instructionList)
-    outInstruction = @astVStackViewInstructionDeclaration (!functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
+    <view_instruction_list> (!horizontal: false, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
+    outInstruction = @astVStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
     $}$
   }
   
@@ -442,7 +442,7 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> (?!@stringset ioStackViewInstances,
                            !@astAbstractViewInstructionDeclaration outInstruction) {
     $hStack$
-    <auto_layout_func_call_list> (!?ioStackViewInstances ?let functionCallList)
+    <auto_layout_func_call_list> (!?ioStackViewInstances, ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
       optionalHiddenBinding = .noBinding
@@ -454,8 +454,8 @@ syntax extension easyBindings_syntax {
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
     var instructionList = @astViewInstructionList {}
-    <view_instruction_list> (!horizontal: true !?ioStackViewInstances !?astNewStackViewDeclarationList !?instructionList)
-    outInstruction = @astHStackViewInstructionDeclaration (!functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
+    <view_instruction_list> (!horizontal: true, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
+    outInstruction = @astHStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
     $}$
   }
   
@@ -537,7 +537,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
       mangleName += parameterName.string + ":"
     end
     mangleName += ")"
-    [inFunctionMap searchKey !.new (!mangleName, functionName.location) ?let formalParameterList]
+    [inFunctionMap searchKey !.new (!mangleName, functionName.location), ?let formalParameterList]
     var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
     if formalParameterList.length () != actualParameterList.length () then
       error functionName 
@@ -545,9 +545,9 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
     else
       for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
         if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
-          [inClassMap searchKey !enumTypeName ?let typeKind ?3*]
+          [inClassMap searchKey !enumTypeName, ?let typeKind, ?3*]
           if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
-            [constantMap searchKey !constantName ?*]
+            [constantMap searchKey !constantName, ?*]
           else
             error enumTypeName : "this type name is not an enum"
           end
@@ -560,18 +560,18 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
         switch value
         case viewFunc (instruction) :
           [instruction generateViewCode 
-            !inViewDeclarationMap
-            !prefs: inPreferences
-            !inRootObservablePropertyMap
-            !inPreferencesPropertyMap
-            !inSemanticContext
-            !inObservablePropertyMap
-            !inActionMap
-            !inReceiverSwiftTypeName
-            !inClassMap
-            !?ioImplicitViewFunctionGenerationList
-            !?ioConfiguratorMap
-            !?ioOutletMap
+            !inViewDeclarationMap,
+            !prefs: inPreferences,
+            !inRootObservablePropertyMap,
+            !inPreferencesPropertyMap,
+            !inSemanticContext,
+            !inObservablePropertyMap,
+            !inActionMap,
+            !inReceiverSwiftTypeName,
+            !inClassMap,
+            !?ioImplicitViewFunctionGenerationList,
+            !?ioConfiguratorMap,
+            !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
           parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
@@ -579,30 +579,30 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
         case string (stringValue) :
           parameterList += !name !stringValue
         case entity (entityName) :
-          [inClassMap searchKey !entityName ?let classKind ?3*]
+          [inClassMap searchKey !entityName, ?let classKind, ?3*]
           if not classKind.isEntity () then
             error entityName: "an entity is required here"
           end
           parameterList += !name !entityName.string + ".self"
         case menuItem (title run enabledBinding) :
           analyzeAutoLayoutRunBinding (
-            !run
-            !handlesRunAction: true
-            !inPreferences
-            !"".nowhere () # mAutoLayoutViewClassName # inTypeName
-            !inActionMap
-            !inObservablePropertyMap
-            !inReceiverSwiftTypeName
+            !run,
+            !handlesRunAction: true,
+            !inPreferences,
+            !"".nowhere (), # mAutoLayoutViewClassName # inTypeName
+            !inActionMap,
+            !inObservablePropertyMap,
+            !inReceiverSwiftTypeName,
             ?let runBindingGeneration
           )
           analyzeAutoLayoutEnableBinding (
-            !enabledBinding
-            !handlesEnabledBinding: true
-            !prefs: inPreferences
-            !inRootObservablePropertyMap
-            !inSemanticContext
-            !inObservablePropertyMap
-            !prefsMap: inPreferencesPropertyMap
+            !enabledBinding,
+            !handlesEnabledBinding: true,
+            !prefs: inPreferences,
+            !inRootObservablePropertyMap,
+            !inSemanticContext,
+            !inObservablePropertyMap,
+            !prefsMap: inPreferencesPropertyMap,
             ?let enabledBindingGeneration
           )
           var s = "AutoLayoutMenuItemDescriptor (title: " + title.utf8Representation ()
@@ -621,14 +621,14 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           s += ")"
           parameterList += !name !s
         case enumFunc (enumTypeName funcName) :
-          [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
+          [inSemanticContext.mClassMap searchKey !enumTypeName, ?let type, ?3*]
           if not type.isAtomic () then
             error enumTypeName : "this type should be an enum type"
           else
             [type atomic ?kind:let typeKind]
             if typeKind.isEnumType () then
-              [typeKind enumType ?2* ?funcMap:let funcMap]
-              [funcMap searchKey !funcName ?*]
+              [typeKind enumType ?2*, ?funcMap:let funcMap]
+              [funcMap searchKey !funcName, ?*]
             else
               error enumTypeName : "this type should be an enum type"
             end
@@ -659,36 +659,36 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
                                   ?!@autoLayoutOutletMap ioOutletMap,
                                   !@abstractViewGeneration outGeneration) {
   [self.mFunctionCallList checkViewFunctionCallList
-     !inSemanticContext.mAutoLayoutHStackFunctionMap
-     !inViewDeclarationMap
-     !inPreferences
-     !inRootObservablePropertyMap
-     !inPreferencesPropertyMap
-     !inSemanticContext
-     !inObservablePropertyMap
-     !inActionMap
-     !inReceiverSwiftTypeName
-     !inClassMap
-     !?ioImplicitViewFunctionGenerationList
-     !?ioConfiguratorMap
-     !?ioOutletMap
+     !inSemanticContext.mAutoLayoutHStackFunctionMap,
+     !inViewDeclarationMap,
+     !inPreferences,
+     !inRootObservablePropertyMap,
+     !inPreferencesPropertyMap,
+     !inSemanticContext,
+     !inObservablePropertyMap,
+     !inActionMap,
+     !inReceiverSwiftTypeName,
+     !inClassMap,
+     !?ioImplicitViewFunctionGenerationList,
+     !?ioConfiguratorMap,
+     !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   var @autoLayoutViewInstructionGenerationList instructionList = {}
   for (instruction) in self.mInstructionList do
     [instruction generateViewCode
-      !inViewDeclarationMap
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inPreferencesPropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inActionMap
-      !inReceiverSwiftTypeName
-      !inClassMap
-      !?ioImplicitViewFunctionGenerationList
-      !?ioConfiguratorMap
-      !?ioOutletMap
+      !inViewDeclarationMap,
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inActionMap,
+      !inReceiverSwiftTypeName,
+      !inClassMap,
+      !?ioImplicitViewFunctionGenerationList,
+      !?ioConfiguratorMap,
+      !?ioOutletMap,
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -715,35 +715,35 @@ override proc @astComputedVerticalViewDeclaration.checkView(
                                   !@abstractViewGeneration outGeneration) {
   var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList checkViewFunctionCallList
-     !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inViewDeclarationMap
-     !inPreferences
-     !inRootObservablePropertyMap
-     !inPreferencesPropertyMap
-     !inSemanticContext
-     !inObservablePropertyMap
-     !inActionMap
-     !inReceiverSwiftTypeName
-     !inClassMap
-     !?ioImplicitViewFunctionGenerationList
-     !?ioConfiguratorMap
-     !?ioOutletMap
+     !inSemanticContext.mAutoLayoutVStackFunctionMap,
+     !inViewDeclarationMap,
+     !inPreferences,
+     !inRootObservablePropertyMap,
+     !inPreferencesPropertyMap,
+     !inSemanticContext,
+     !inObservablePropertyMap,
+     !inActionMap,
+     !inReceiverSwiftTypeName,
+     !inClassMap,
+     !?ioImplicitViewFunctionGenerationList,
+     !?ioConfiguratorMap,
+     !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   for (instruction) in self.mInstructionList do
    [instruction generateViewCode
-      !inViewDeclarationMap
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inPreferencesPropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inActionMap
-      !inReceiverSwiftTypeName
-      !inClassMap
-      !?ioImplicitViewFunctionGenerationList
-      !?ioConfiguratorMap
-      !?ioOutletMap
+      !inViewDeclarationMap,
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inActionMap,
+      !inReceiverSwiftTypeName,
+      !inClassMap,
+      !?ioImplicitViewFunctionGenerationList,
+      !?ioConfiguratorMap,
+      !?ioOutletMap,
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -861,9 +861,10 @@ override proc @astComputedViewInstruction.generateViewCode(
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                                 ?!@autoLayoutOutletMap ioOutletMap,
                                 !@abstractViewInstructionGeneration outInstruction) {
-  [inSemanticContext.mAutolayoutViewClassMap searchKey !self.mAutoLayoutViewClassName
-     ?7*
-     ?let formalParameterList
+  [inSemanticContext.mAutolayoutViewClassMap searchKey
+     !self.mAutoLayoutViewClassName,
+     ?7*,
+     ?let formalParameterList,
      ?let functionMap
   ]
   var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
@@ -873,9 +874,9 @@ override proc @astComputedViewInstruction.generateViewCode(
   else
     for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
       if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
-        [inClassMap searchKey !enumTypeName ?let typeKind ?3*]
+        [inClassMap searchKey !enumTypeName, ?let typeKind, ?3*]
         if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
-          [constantMap searchKey !constantName ?*]
+          [constantMap searchKey !constantName, ?*]
         else
           error enumTypeName : "this type name is not an enum"
         end
@@ -888,24 +889,24 @@ override proc @astComputedViewInstruction.generateViewCode(
       switch value
         case viewFunc (instruction) :
           [instruction generateViewCode 
-            !inViewDeclarationMap
-            !prefs: inPreferences
-            !inRootObservablePropertyMap
-            !inPreferencesPropertyMap
-            !inSemanticContext
-            !inObservablePropertyMap
-            !inActionMap
-            !inReceiverSwiftTypeName
-            !inClassMap
-            !?ioImplicitViewFunctionGenerationList
-            !?ioConfiguratorMap
-            !?ioOutletMap
+            !inViewDeclarationMap,
+            !prefs: inPreferences,
+            !inRootObservablePropertyMap,
+            !inPreferencesPropertyMap,
+            !inSemanticContext,
+            !inObservablePropertyMap,
+            !inActionMap,
+            !inReceiverSwiftTypeName,
+            !inClassMap,
+            !?ioImplicitViewFunctionGenerationList,
+            !?ioConfiguratorMap,
+            !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
           parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
       case entity (entityName) :
-        [inClassMap searchKey !entityName ?let classKind ?3*]
+        [inClassMap searchKey !entityName, ?let classKind, ?3*]
         if not classKind.isEntity () then
           error entityName: "an entity is required here"
         end
@@ -914,23 +915,23 @@ override proc @astComputedViewInstruction.generateViewCode(
         parameterList += !name !stringValue
       case menuItem (title run enabledBinding) :
         analyzeAutoLayoutRunBinding (
-          !run
-          !handlesRunAction: true
-          !inPreferences
-          !"".nowhere () # mAutoLayoutViewClassName # inTypeName
-          !inActionMap
-          !inObservablePropertyMap
-          !inReceiverSwiftTypeName
+          !run,
+          !handlesRunAction: true,
+          !inPreferences,
+          !"".nowhere (), # mAutoLayoutViewClassName # inTypeName
+          !inActionMap,
+          !inObservablePropertyMap,
+          !inReceiverSwiftTypeName,
           ?let runBindingGeneration
         )
         analyzeAutoLayoutEnableBinding (
-          !enabledBinding
-          !handlesEnabledBinding: true
-          !prefs: inPreferences
-          !inRootObservablePropertyMap
-          !inSemanticContext
-          !inObservablePropertyMap
-          !prefsMap: inPreferencesPropertyMap
+          !enabledBinding,
+          !handlesEnabledBinding: true,
+          !prefs: inPreferences,
+          !inRootObservablePropertyMap,
+          !inSemanticContext,
+          !inObservablePropertyMap,
+          !prefsMap: inPreferencesPropertyMap,
           ?let enabledBindingGeneration
         )
         var s = "AutoLayoutMenuItemDescriptor (title: " + title.utf8Representation ()
@@ -949,14 +950,14 @@ override proc @astComputedViewInstruction.generateViewCode(
         s += ")"
         parameterList += !name !s
       case enumFunc (enumTypeName funcName) :
-        [inSemanticContext.mClassMap searchKey !enumTypeName ?let type ?3*]
+        [inSemanticContext.mClassMap searchKey !enumTypeName, ?let type, ?3*]
         if not type.isAtomic () then
           error enumTypeName : "this type should be an enum type"
         else
           [type atomic ?kind:let typeKind]
           if typeKind.isEnumType () then
-            [typeKind enumType ?2* ?funcMap:let funcMap]
-            [funcMap searchKey !funcName ?*]
+            [typeKind enumType ?2*, ?funcMap:let funcMap]
+            [funcMap searchKey !funcName, ?*]
           else
             error enumTypeName : "this type should be an enum type"
           end
@@ -967,52 +968,52 @@ override proc @astComputedViewInstruction.generateViewCode(
   end
 #--- Bindings
   analyzeAutoLayoutBinding (
-    !inPreferences
-    !inRootObservablePropertyMap
-    !inPreferencesPropertyMap
-    !inSemanticContext
-    !inObservablePropertyMap
-    !inActionMap
-    !inReceiverSwiftTypeName
+    !inPreferences,
+    !inRootObservablePropertyMap,
+    !inPreferencesPropertyMap,
+    !inSemanticContext,
+    !inObservablePropertyMap,
+    !inActionMap,
+    !inReceiverSwiftTypeName,
 
-    !self.mAutoLayoutViewClassName
+    !self.mAutoLayoutViewClassName,
 
-    ! self.mTableValueBinding
-    ! self.mRunActionDescriptor
-    ! self.mEnabledBindingDescriptor
-    ! self.mHiddenBindingDescriptor
-    ! self.mGraphicController
-    ! self.mRegularBindingList
+    ! self.mTableValueBinding,
+    ! self.mRunActionDescriptor,
+    ! self.mEnabledBindingDescriptor,
+    ! self.mHiddenBindingDescriptor,
+    ! self.mGraphicController,
+    ! self.mRegularBindingList,
 
-    ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList
-    ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList
-    ?let @autolayoutRunBindingForGeneration runBindingGeneration
-    ?let @string inTableViewBindingGeneration
+    ?let @autoLayoutRegularBindingsGenerationList regularBindingsGenerationList,
+    ?let @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList,
+    ?let @autolayoutRunBindingForGeneration runBindingGeneration,
+    ?let @string inTableViewBindingGeneration,
     ?let @autoLayoutViewGraphicControllerBindingGeneration ebViewGraphicControllerBindingGeneration
   )
   [self.mFunctionCallList checkViewFunctionCallList
-     !functionMap
-     !inViewDeclarationMap
-     !inPreferences
-     !inRootObservablePropertyMap
-     !inPreferencesPropertyMap
-     !inSemanticContext
-     !inObservablePropertyMap
-     !inActionMap
-     !inReceiverSwiftTypeName
-     !inClassMap
-     !?ioImplicitViewFunctionGenerationList
-     !?ioConfiguratorMap
-     !?ioOutletMap
+     !functionMap,
+     !inViewDeclarationMap,
+     !inPreferences,
+     !inRootObservablePropertyMap,
+     !inPreferencesPropertyMap,
+     !inSemanticContext,
+     !inObservablePropertyMap,
+     !inActionMap,
+     !inReceiverSwiftTypeName,
+     !inClassMap,
+     !?ioImplicitViewFunctionGenerationList,
+     !?ioConfiguratorMap,
+     !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
 #--- Check outlet
   if self.mOutletName.string != "" then
-    [!?ioOutletMap insertKey !self.mOutletName !self.mAutoLayoutViewClassName !self.mOutletIsArray]
+    [!?ioOutletMap insertKey !self.mOutletName, !self.mAutoLayoutViewClassName, !self.mOutletIsArray]
   end
 #--- Check configurator
   if self.mConfiguratorName.string != "" then
-    [!?ioConfiguratorMap insertKey !self.mConfiguratorName !self.mAutoLayoutViewClassName]
+    [!?ioConfiguratorMap insertKey !self.mConfiguratorName, !self.mAutoLayoutViewClassName]
   end
 #---  
   outInstruction = @autoLayoutComputedViewInstructionGeneration (
@@ -1059,13 +1060,13 @@ proc analyzeAutoLayoutBinding(
   outMultipleBindingGenerationList = {}
   outTableViewBindingGeneration = "" # Empty String means no binding
   [inSemanticContext.mAutolayoutViewClassMap searchKey
-    !inTypeName
-    ?*
-    ?let @bool handlesRunAction
-    ?let @bool handlesTableViewBinding
-    ?let @bool handlesEnabledBinding
-    ?let @bool handlesHiddenBinding
-    ?let @bool handleGraphicControllerBinding
+    !inTypeName,
+    ?*,
+    ?let @bool handlesRunAction,
+    ?let @bool handlesTableViewBinding,
+    ?let @bool handlesEnabledBinding,
+    ?let @bool handlesHiddenBinding,
+    ?let @bool handleGraphicControllerBinding,
     ?3*
   ]
 #--- $graphicController
@@ -1077,8 +1078,8 @@ proc analyzeAutoLayoutBinding(
       error inTypeName : "the '" + inTypeName + "' type does not handle the $graphicController binding"
     else
       [inObservablePropertyMap searchKey
-        !controllerName
-        ?let @propertyKind kind
+        !controllerName,
+        ?let @propertyKind kind,
         ?2*
       ]
       switch kind 
@@ -1095,12 +1096,12 @@ proc analyzeAutoLayoutBinding(
           end
         else
           [inSemanticContext.mClassMap searchKey
-            !entityName
-            ?*
-            ?let observablePropertyMap
+            !entityName,
+            ?*,
+            ?let observablePropertyMap,
             ?2*
           ]
-          [observablePropertyMap searchKey !propertyName ?let propertyKind ?2*]
+          [observablePropertyMap searchKey !propertyName, ?let propertyKind, ?2*]
           switch propertyKind 
           case property (2*) :
             error controllerName : "the bound model should be a toMany property"
@@ -1130,8 +1131,8 @@ proc analyzeAutoLayoutBinding(
       error inTypeName : "the '" + inTypeName + "' type does not handle the $tableView binding"
     elsif inPreferences then
       [inPreferencesPropertyMap searchKey
-        !controllerName
-        ?let @propertyKind kind
+        !controllerName,
+        ?let @propertyKind kind,
         ?2*
       ]
       if not kind.isArrayController () then
@@ -1140,8 +1141,8 @@ proc analyzeAutoLayoutBinding(
       outTableViewBindingGeneration = controllerName.string
     else
       [inObservablePropertyMap searchKey
-        !controllerName
-        ?let @propertyKind kind
+        !controllerName,
+        ?let @propertyKind kind,
         ?2*
       ]
       if not kind.isArrayController () then
@@ -1152,24 +1153,24 @@ proc analyzeAutoLayoutBinding(
   end
 #--- $run
   analyzeAutoLayoutRunBinding (
-    !inRunActionDescriptor
-    !handlesRunAction: handlesRunAction
-    !inPreferences
-    !inTypeName
-    !inActionMap
-    !inObservablePropertyMap
-    !inReceiverSwiftTypeName
+    !inRunActionDescriptor,
+    !handlesRunAction: handlesRunAction,
+    !inPreferences,
+    !inTypeName,
+    !inActionMap,
+    !inObservablePropertyMap,
+    !inReceiverSwiftTypeName,
     ?outRunBindingGeneration
   )
 #--- Enabled
   analyzeAutoLayoutEnableBinding (
-    !inEnabledBindingDescriptor
-    !handlesEnabledBinding: handlesEnabledBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inObservablePropertyMap
-    !prefsMap: inPreferencesPropertyMap
+    !inEnabledBindingDescriptor,
+    !handlesEnabledBinding: handlesEnabledBinding,
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inObservablePropertyMap,
+    !prefsMap: inPreferencesPropertyMap,
     ?let enabledBindingGeneration
   )
   switch enabledBindingGeneration
@@ -1182,13 +1183,13 @@ proc analyzeAutoLayoutBinding(
   case noBinding :
   case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
     [expression analyzeExpressionForMultipleBinding
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inPreferencesPropertyMap
-      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
-      ?let @typeKind type
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
+      ?let @typeKind type,
       ?let @location errorLocation
     ]
     if not type.isBoolType () then
@@ -1203,14 +1204,14 @@ proc analyzeAutoLayoutBinding(
   end
 #---------------------------------- Regular bindings
   analyzeAutoLayoutRegularBinding (
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inPreferencesPropertyMap
-    !inSemanticContext
-    !inObservablePropertyMap
-    !inTypeName
-    !inRegularBindingList
-    !if inPreferences then "preferences_" else "self." end
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inPreferencesPropertyMap,
+    !inSemanticContext,
+    !inObservablePropertyMap,
+    !inTypeName,
+    !inRegularBindingList,
+    !if inPreferences then "preferences_" else "self." end,
     !?outRegularBindingsGenerationList
   )
 }
@@ -1232,13 +1233,13 @@ proc analyzeAutoLayoutEnableBinding(
     outEnabledBindingGeneration = .none
   case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
     [expression analyzeExpressionForMultipleBinding
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inPreferencesPropertyMap
-      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression
-      ?let @typeKind type
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression,
+      ?let @typeKind type,
       ?let @location errorLocation
     ]
     if not inHandlesEnabledBinding then
@@ -1279,9 +1280,9 @@ proc analyzeAutoLayoutRunBinding(
       )
     else # It is a controller
       [inObservablePropertyMap searchKey
-        !target
-        ?*
-        ?let @actionMap controllerActionMap
+        !target,
+        ?*,
+        ?let @actionMap controllerActionMap,
         ?*
       ]
       [controllerActionMap searchKey !action]
@@ -1313,11 +1314,11 @@ proc analyzeAutoLayoutRegularBinding(
     var @boundObjectList boundModelListForGeneration = {}
     for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
-        !inRootPropertyMap
-        !inSemanticContext
-        !if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end
-        ?let @propertyKind kind
-        ?let @string unused swiftTypeStringForTransientFunctionArgument
+        !inRootPropertyMap,
+        !inSemanticContext,
+        !if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end,
+        ?let @propertyKind kind,
+        ?let @string unused swiftTypeStringForTransientFunctionArgument,
         ?let @string unused defaultValueAsString
       ]
       switch kind
@@ -1342,14 +1343,14 @@ proc analyzeAutoLayoutRegularBinding(
     loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
       continues = false
       [inSemanticContext.mAutoLayoutBindingSpecificationMap searchKey
-        !outletTypeName
-        ?let superOutletClassName
+        !outletTypeName,
+        ?let superOutletClassName,
         ?let bindingMap
       ]
       if bindingMap.hasKey (mBindingName.string) then
         [bindingMap searchKey
-          !mBindingName
-          ?outletBindingSpecificationModelList
+          !mBindingName,
+          ?outletBindingSpecificationModelList,
           ?controllerBindingOptionDecoratedList
         ]
       else
@@ -1394,8 +1395,8 @@ proc analyzeAutoLayoutRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         [binding_mOptionValue analyzeDefaultValueType 
-          !{!controller_mOptionType}
-          !inPreferencesPropertyMap
+          !{!controller_mOptionType},
+          !inPreferencesPropertyMap,
           ?let @string optionValueAsString
         ]
         bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
@@ -1427,19 +1428,19 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         !@abstractViewInstructionGeneration outInstruction) {
   var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList checkViewFunctionCallList
-     !inSemanticContext.mAutoLayoutHStackFunctionMap
-     !inViewDeclarationMap
-     !inPreferences
-     !inRootObservablePropertyMap
-     !inPreferencesPropertyMap
-     !inSemanticContext
-     !inObservablePropertyMap
-     !inActionMap
-     !inReceiverSwiftTypeName
-     !inClassMap
-     !?ioImplicitViewFunctionGenerationList
-     !?ioConfiguratorMap
-     !?ioOutletMap
+     !inSemanticContext.mAutoLayoutHStackFunctionMap,
+     !inViewDeclarationMap,
+     !inPreferences,
+     !inRootObservablePropertyMap,
+     !inPreferencesPropertyMap,
+     !inSemanticContext,
+     !inObservablePropertyMap,
+     !inActionMap,
+     !inReceiverSwiftTypeName,
+     !inClassMap,
+     !?ioImplicitViewFunctionGenerationList,
+     !?ioConfiguratorMap,
+     !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
@@ -1447,13 +1448,13 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inPreferencesPropertyMap
-      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
-      ?let @typeKind type
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
+      ?let @typeKind type,
       ?let @location errorLocation
     ]
     if not type.isBoolType () then
@@ -1465,18 +1466,18 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
   end
   for (instruction) in self.mInstructionList do
    [instruction generateViewCode
-      !inViewDeclarationMap
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inPreferencesPropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inActionMap
-      !inReceiverSwiftTypeName
-      !inClassMap
-      !?ioImplicitViewFunctionGenerationList
-      !?ioConfiguratorMap
-      !?ioOutletMap
+      !inViewDeclarationMap,
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inActionMap,
+      !inReceiverSwiftTypeName,
+      !inClassMap,
+      !?ioImplicitViewFunctionGenerationList,
+      !?ioConfiguratorMap,
+      !?ioOutletMap,
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -1507,19 +1508,19 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         !@abstractViewInstructionGeneration outInstruction) {
   var @autoLayoutViewInstructionGenerationList instructionList = {}
   [self.mFunctionCallList checkViewFunctionCallList
-     !inSemanticContext.mAutoLayoutVStackFunctionMap
-     !inViewDeclarationMap
-     !inPreferences
-     !inRootObservablePropertyMap
-     !inPreferencesPropertyMap
-     !inSemanticContext
-     !inObservablePropertyMap
-     !inActionMap
-     !inReceiverSwiftTypeName
-     !inClassMap
-     !?ioImplicitViewFunctionGenerationList
-     !?ioConfiguratorMap
-     !?ioOutletMap
+     !inSemanticContext.mAutoLayoutVStackFunctionMap,
+     !inViewDeclarationMap,
+     !inPreferences,
+     !inRootObservablePropertyMap,
+     !inPreferencesPropertyMap,
+     !inSemanticContext,
+     !inObservablePropertyMap,
+     !inActionMap,
+     !inReceiverSwiftTypeName,
+     !inClassMap,
+     !?ioImplicitViewFunctionGenerationList,
+     !?ioConfiguratorMap,
+     !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
   var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
@@ -1527,13 +1528,13 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
   case noBinding :
   case binding (hiddenBindingExpression) :
     [hiddenBindingExpression analyzeExpressionForMultipleBinding
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inPreferencesPropertyMap
-      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression
-      ?let @typeKind type
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
+      ?let @typeKind type,
       ?let @location errorLocation
     ]
     if not type.isBoolType () then
@@ -1545,18 +1546,18 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
   end
   for (instruction) in self.mInstructionList do
    [instruction generateViewCode
-      !inViewDeclarationMap
-      !prefs: inPreferences
-      !inRootObservablePropertyMap
-      !inPreferencesPropertyMap
-      !inSemanticContext
-      !inObservablePropertyMap
-      !inActionMap
-      !inReceiverSwiftTypeName
-      !inClassMap
-      !?ioImplicitViewFunctionGenerationList
-      !?ioConfiguratorMap
-      !?ioOutletMap
+      !inViewDeclarationMap,
+      !prefs: inPreferences,
+      !inRootObservablePropertyMap,
+      !inPreferencesPropertyMap,
+      !inSemanticContext,
+      !inObservablePropertyMap,
+      !inActionMap,
+      !inReceiverSwiftTypeName,
+      !inClassMap,
+      !?ioImplicitViewFunctionGenerationList,
+      !?ioConfiguratorMap,
+      !?ioOutletMap,
       ?let generatedInstruction
     ]
     instructionList += !generatedInstruction
@@ -1741,7 +1742,7 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
                                                                      ?let @string inViewName) -> @string {
   result = "  final func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
-  [self.mFuncCallList generate !"    " !?result]
+  [self.mFuncCallList generate !"    ", !?result]
   for (instance type) in self.mNewStackViewDeclarationList do
     result += "    let " + instance + " = self." + type + " ()\n"
   end
@@ -1760,7 +1761,7 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
                                                                    ?let @string inViewName) -> @string {
   result = "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
-  [self.mFuncCallList generate !"    " !?result]
+  [self.mFuncCallList generate !"    ", !?result]
   for (instance type) in self.mNewStackViewDeclarationList do
     result += "    let " + instance + " = self." + type + " ()\n"
   end
@@ -1838,7 +1839,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
     result += ", "
   end
   result += ")\n"
-  [self.mFunctionCallList generate !inIndentation !?result]
+  [self.mFunctionCallList generate !inIndentation, !?result]
   for (bindingName boundObjectList optionListString) in self.mRegularBindingsGenerationList do
     result += inIndentation + "  .bind_" + bindingName + " ("
     for (boundObjectString *) in boundObjectList
@@ -1886,7 +1887,7 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
                          ?let @string inName,
                          ?let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
-  [self.mFuncCallList generate !inIndentation !?result]
+  [self.mFuncCallList generate !inIndentation, !?result]
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
@@ -1910,7 +1911,7 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
                          ?let @string inName,
                          ?let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
-  [self.mFuncCallList generate !inIndentation !?result]
+  [self.mFuncCallList generate !inIndentation, !?result]
   for (bindingName binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end

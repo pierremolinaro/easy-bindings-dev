@@ -24,13 +24,13 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !self.mClassName]
-  [!?ioGraph addEdge !node !self.mDestinationEntityName]
+  [!?ioGraph addNode !node, !self]
+  [!?ioGraph addEdge !node, !self.mClassName]
+  [!?ioGraph addEdge !node, !self.mDestinationEntityName]
   switch self.mOption
   case hasDependance (masterPropertyName) :
     let dependanceNode = @lstring (!self.mClassName.string + " " + masterPropertyName, masterPropertyName.location)
-    [!?ioGraph addEdge !node !dependanceNode]
+    [!?ioGraph addEdge !node, !dependanceNode]
   case hasOpposite (*) :
   case none :
   end
@@ -139,7 +139,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
     error message searchKey
   do
     ioGeneration.mToManyClassImplementations += !self.mDestinationEntityName
-    [ioSemanticContext.mClassMap searchKey !self.mDestinationEntityName ?let classKind ?3*]
+    [ioSemanticContext.mClassMap searchKey !self.mDestinationEntityName, ?let classKind, ?3*]
     switch classKind
     case prefs :
       error self.mDestinationEntityName : "an entity is required here"
@@ -157,14 +157,14 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       if not handleOpposite, let [self.mOption hasOpposite ?oppositeName: *] then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
-      [!?mPropertyMap insertKey !self.mToManyRelationshipName !kind !{} !false]
+      [!?mPropertyMap insertKey !self.mToManyRelationshipName, !kind, !{}, !false]
     #--- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
     #--- Option
       let @toManyRelationshipOptionGeneration optionForGeneration
       switch self.mOption
       case hasDependance (masterPropertyName) :
-        [mPropertyMap searchKey !masterPropertyName ?let masterPropertyKind ?2*]
+        [mPropertyMap searchKey !masterPropertyName, ?let masterPropertyKind, ?2*]
         optionForGeneration = .hasDependance (
           !masterPropertyName: masterPropertyName.string,
           !masterPropertySwiftTypeName: masterPropertyKind.swiftTypeName ()
@@ -228,7 +228,7 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (?let @bool unus
     result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
-    [self.mOption hasDependance ?1* ?masterPropertySwiftTypeName: let masterPropertyTypeName]
+    [self.mOption hasDependance ?1*, ?masterPropertySwiftTypeName: let masterPropertyTypeName]
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + self.mRelationshipType.swiftTypeName ()
            + " <" + masterPropertyTypeName + "> ()\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"

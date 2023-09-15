@@ -15,9 +15,9 @@ class @outletClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @outletClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
   if self.mSuperClassName.string != "" then
-    [!?ioGraph addEdge !self.mClassName !self.mSuperClassName]
+    [!?ioGraph addEdge !self.mClassName, !self.mSuperClassName]
   end
 }
 
@@ -102,24 +102,24 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
 {
   if self.mSuperClassName.string == "" then
     [!?ioSemanticContext.mOutletClassMap insertKey
-      !self.mClassName
-      !"".nowhere ()  # No super class
-      !self.mHasRunAction
-      !self.mHandlesTableValueBinding
-      !self.mHasEnabled
-      !self.mHasHidden
-      !self.mHandlesGraphicControllerBinding
+      !self.mClassName,
+      !"".nowhere (),  # No super class
+      !self.mHasRunAction,
+      !self.mHandlesTableValueBinding,
+      !self.mHasEnabled,
+      !self.mHasHidden,
+      !self.mHandlesGraphicControllerBinding,
       !self.mUserDefined
     ]
   else
     [ioSemanticContext.mOutletClassMap searchKey
-      !self.mSuperClassName
-      ?*
-      ?let hasRunAction
-      ?let handlesTableValueBinding
-      ?let hasEnabled
-      ?let hasHidden
-      ?let handlesGraphicControllerBinding
+      !self.mSuperClassName,
+      ?*,
+      ?let hasRunAction,
+      ?let handlesTableValueBinding,
+      ?let hasEnabled,
+      ?let hasHidden,
+      ?let handlesGraphicControllerBinding,
       ?*
     ]
     if self.mHasRunAction & hasRunAction then
@@ -138,13 +138,13 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       error self.mClassName : "$graphicController binding already defined in superclass"
     end
     [!?ioSemanticContext.mOutletClassMap insertKey
-      !self.mClassName
-      !self.mSuperClassName
-      !self.mHasRunAction | hasRunAction
-      !self.mHandlesTableValueBinding | handlesTableValueBinding
-      !self.mHasEnabled | hasEnabled
-      !self.mHasHidden | hasHidden
-      !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding
+      !self.mClassName,
+      !self.mSuperClassName,
+      !self.mHasRunAction | hasRunAction,
+      !self.mHandlesTableValueBinding | handlesTableValueBinding,
+      !self.mHasEnabled | hasEnabled,
+      !self.mHasHidden | hasHidden,
+      !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding,
       !self.mUserDefined
     ]
   end

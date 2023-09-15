@@ -21,7 +21,7 @@ class @prefsDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @prefsDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
 }
 
 #·······················································································································
@@ -60,21 +60,21 @@ syntax extension easyBindings_syntax {
     while
       var @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>(
-        !prefs
-        !?simpleStoredPropertyList
-        !?signatureList
+        !prefs,
+        !?simpleStoredPropertyList,
+        !?signatureList,
         !?ioDeclarationAST)
       ioDeclarationAST.mPreferences.mSimpleStoredAttributeList += simpleStoredPropertyList
     while
       <outlet_declaration> (!?ioDeclarationAST.mPreferences.mOutletDeclarationList)
     while
-      <transient_declaration> (!prefs !"".nowhere () !?ioDeclarationAST)
+      <transient_declaration> (!prefs, !"".nowhere (), !?ioDeclarationAST)
     while
       <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
-      <toMany_relationship> (!prefs !?* !?ioDeclarationAST)
+      <toMany_relationship> (!prefs, !?*, !?ioDeclarationAST)
     while
-      <controller_declaration> (!prefs !"".nowhere () !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!prefs, !"".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -92,12 +92,12 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  buildActionMap (!self.mDeclaration.mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
-    !.new (!preferencesName (), .here)
-    !.prefs
-    !{}
-    !actionMap
+    !.new (!preferencesName (), .here),
+    !.prefs,
+    !{},
+    !actionMap,
     !{}
   ]
   for (lkey) in actionMap do
@@ -132,29 +132,29 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   end
 #--- Get preference property map
   [ioSemanticContext.mClassMap searchKey
-    !.new (!preferencesName (), .nowhere)
-    ?*
-    ?let preferencesPropertyMap
-    ?let actionMap
+    !.new (!preferencesName (), .nowhere),
+    ?*,
+    ?let preferencesPropertyMap,
+    ?let actionMap,
     ?let propertyGenerationList
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
-    !true
-    !{} # No root entity
-    !preferencesPropertyMap
-    !"" # No root entity
-    !ioSemanticContext
-    !self.mDeclaration.mOutletDeclarationList
-    !preferencesPropertyMap
-    !actionMap
-    !preferencesName ()
-    !?ioGeneration
-    ?let @regularBindingsGenerationList regularBindingsGenerationList
-    ?let @multipleBindingGenerationList multipleBindingGenerationList
-    ?let @actionBindingListForGeneration actionBindingListForGeneration
-    ?let @decoratedOutletMap outletMap
-    ?let @tableViewBindingGenerationList tableViewBindingGenerationList
+    !true,
+    !{}, # No root entity
+    !preferencesPropertyMap,
+    !"", # No root entity
+    !ioSemanticContext,
+    !self.mDeclaration.mOutletDeclarationList,
+    !preferencesPropertyMap,
+    !actionMap,
+    !preferencesName (),
+    !?ioGeneration,
+    ?let @regularBindingsGenerationList regularBindingsGenerationList,
+    ?let @multipleBindingGenerationList multipleBindingGenerationList,
+    ?let @actionBindingListForGeneration actionBindingListForGeneration,
+    ?let @decoratedOutletMap outletMap,
+    ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Check auto layout view declarations
@@ -166,19 +166,19 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     [!?viewDeclarationMap insertKey !viewName]
     [viewDeclaration checkView
-      !viewName
-      !viewDeclarationMap
-      !prefs: true
-      !{} # rootPropertyMap
-      !preferencesPropertyMap
-      !ioSemanticContext
-      !{} # documentPropertyMap
-      !actionMap
-      !self.mClassName
-      !ioSemanticContext.mClassMap
-      !?implicitViewFunctionGenerationList
-      !?configuratorMap
-      !?autoLayoutOutletMap
+      !viewName,
+      !viewDeclarationMap,
+      !prefs: true,
+      !{}, # rootPropertyMap
+      !preferencesPropertyMap,
+      !ioSemanticContext,
+      !{}, # documentPropertyMap
+      !actionMap,
+      !self.mClassName,
+      !ioSemanticContext.mClassMap,
+      !?implicitViewFunctionGenerationList,
+      !?configuratorMap,
+      !?autoLayoutOutletMap,
       ?let viewGeneration
     ]
     viewGenerationList += !viewName !viewGeneration
@@ -267,8 +267,8 @@ override proc @preferencesForGeneration.generateCode(
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
-    !inOutputDirectory
-    !fileName
+    !inOutputDirectory,
+    !fileName,
     !s
   ]
 #--- Configurators
@@ -286,14 +286,14 @@ override proc @preferencesForGeneration.generateCode(
     let fileName = "configurator-Preferences-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
     [@string generateFileWithPattern
-      !startPath: inOutputDirectory
-      !fileName: fileName
-      !lineComment:"//"
-      !header:header
-      !defaultUserZone1:"\n\n" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n" # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+      !startPath: inOutputDirectory,
+      !fileName: fileName,
+      !lineComment:"//",
+      !header:header,
+      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !generatedZone2:s,
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
       !makeExecutable:false
     ]
   end

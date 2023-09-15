@@ -18,9 +18,9 @@ class @entityDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
   if self.mSuperEntityName.string != "" then
-    [!?ioGraph addEdge !self.mClassName !self.mSuperEntityName]
+    [!?ioGraph addEdge !self.mClassName, !self.mSuperEntityName]
   end
 }
 
@@ -90,17 +90,17 @@ syntax extension easyBindings_syntax {
     var @lstringlist graphicOptionArray = {}
     repeat
     while
-      <simple_stored_declaration> (!entityName !?simpleStoredPropertyList !?signatureList !?ioDeclarationAST)
+      <simple_stored_declaration> (!entityName, !?simpleStoredPropertyList, !?signatureList, !?ioDeclarationAST)
     while
-      <transient_declaration> (!entityName !"".nowhere () !?ioDeclarationAST)
+      <transient_declaration> (!entityName, !"".nowhere (), !?ioDeclarationAST)
     while
-      <toMany_relationship> (!entityName !?signatureList !?ioDeclarationAST)
+      <toMany_relationship> (!entityName, !?signatureList, !?ioDeclarationAST)
     while
-      <toOne_relationship> (!entityName !?ioDeclarationAST)
+      <toOne_relationship> (!entityName ,!?ioDeclarationAST)
     while
       <action_declaration> (!?actionDeclarationList)
     while
-      <controller_declaration> (!entityName !"".nowhere () !?arrayControllerBindingListAST !?ioDeclarationAST)
+      <controller_declaration> (!entityName, !"".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
     while
       <extern_swift_delegate> (!?externSwiftDelegateList)
     while
@@ -156,17 +156,17 @@ syntax extension easyBindings_syntax {
 
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
-  buildActionMap (!self.mActionDeclarationList ?let @actionMap actionMap)
+  buildActionMap (!self.mActionDeclarationList, ?let @actionMap actionMap)
   [!?ioSemanticContext.mClassMap insertKey
-    !self.mClassName
+    !self.mClassName,
     !.entity (
       !superEntityName: self.mSuperEntityName.string,
       !isGraphic: self.mIsGraphicEntity,
       !isAbstract: self.mIsAbstract,
       !handlingOpposite: self.mHandlingOpposite
-     )
-    !{}
-    !actionMap
+     ),
+    !{},
+    !actionMap,
     !{}
   ]
 }
@@ -178,16 +178,16 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
   if self.mSuperEntityName.string != "" then
   #--- Search for super entity property map
     [ioSemanticContext.mClassMap searchKey
-      !self.mSuperEntityName
-      ?*
-      ?let @propertyMap inheritedPropertyMap
+      !self.mSuperEntityName,
+      ?*,
+      ?let @propertyMap inheritedPropertyMap,
       ?2*
     ]  
   #--- Search for current entity property map
     [ioSemanticContext.mClassMap searchKey
-      !self.mClassName
-      ?*
-      ?let @propertyMap propertyMap
+      !self.mClassName,
+      ?*,
+      ?let @propertyMap propertyMap,
       ?2*
     ]
   #--- Merge properties
@@ -197,10 +197,10 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 #    end
     for (lkey kind actionMap isOverriding) in propertyMap do
       if isOverriding then
-        [inheritedPropertyMap searchKey !lkey ?3*]
+        [inheritedPropertyMap searchKey !lkey, ?3*]
       else
 #        message "  insert '" + lkey + "'\n"
-        [!?newPropertyMap insertKey !lkey !kind !actionMap !false]
+        [!?newPropertyMap insertKey !lkey, !kind, !actionMap, !false]
       end
     end
   #--- Replace property map
@@ -217,19 +217,19 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
   [ioSemanticContext.mClassMap searchKey
-    !self.mClassName
-    ?*
-    ?let @propertyMap propertyMap
-    ?*
+    !self.mClassName,
+    ?*,
+    ?let @propertyMap propertyMap,
+    ?*,
     ?let @propertyGenerationList propertyGenerationList
   ]
 #--- If super entity is abstract, and current is not, check all transient properties are implemented
   var @stringset overridenTransients = {}
   if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
-      !self.mSuperEntityName
-      ?let @classKind superClassKind
-      ?let @propertyMap superPropertyMap
+      !self.mSuperEntityName,
+      ?let @classKind superClassKind,
+      ?let @propertyMap superPropertyMap,
       ?2*
     ]
     switch superClassKind
@@ -248,7 +248,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
           if superProperty.isAbstract () then
             if propertyMap.hasKey (superProperty.lkey.string) then
               overridenTransients += !superProperty.lkey.string
-              [propertyMap searchKey !superProperty.lkey ?let @propertyKind propertyKind ?2*]
+              [propertyMap searchKey !superProperty.lkey, ?let @propertyKind propertyKind, ?2*]
               let typeName = propertyKind.typeName ()
               let superTypeName = superProperty.mKind.typeName ()
               if typeName != superTypeName then
@@ -291,7 +291,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
     if classDeclaration.mClassKind.isEntity () then
-      [classDeclaration.mClassKind entity ?superEntityName: let superEntityName ?3*]
+      [classDeclaration.mClassKind entity ?superEntityName: let superEntityName, ?3*]
       hasSubClass = self.mClassName.string == superEntityName
     end 
   end
@@ -402,8 +402,8 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
-    !inOutputDirectory
-    !fileName
+    !inOutputDirectory,
+    !fileName,
     !s
   ]
   if inGenerationStruct.mToOneClassImplementations.hasKey (self.mEntityName) then
@@ -431,8 +431,8 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   fileName = "toone-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
-    !inOutputDirectory
-    !fileName
+    !inOutputDirectory,
+    !fileName,
     !s
   ]
   if inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName) then
@@ -465,8 +465,8 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   fileName = "tomany-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFile
-    !inOutputDirectory
-    !fileName
+    !inOutputDirectory,
+    !fileName,
     !s
   ]
 }
@@ -483,8 +483,8 @@ proc generateEBManagedObjectContext(
     ioGeneratedFileSet += !fileName
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]
     [@string generateFile
-      !inOutputDirectory
-      !fileName
+      !inOutputDirectory,
+      !fileName,
       !s
     ]
   end

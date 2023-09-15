@@ -9,7 +9,7 @@ class @atomicClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @atomicClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName !self]
+  [!?ioGraph addNode !self.mClassName, !self]
 }
 
 #·······················································································································
@@ -46,10 +46,10 @@ override proc @atomicClassDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct unused ioGeneration)
 {
   [!?ioSemanticContext.mClassMap insertKey
-    !self.mClassName
-    !.atomic (!kind: self.mKind)
-    !{}
-    !{}
+    !self.mClassName,
+    !.atomic (!kind: self.mKind),
+    !{},
+    !{},
     !{}
   ]
 }

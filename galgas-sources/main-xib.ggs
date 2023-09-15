@@ -153,14 +153,14 @@ proc generateTestFile(
       "# https://pypi.python.org/pypi/atomac\n"
       "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n\n"
     [@string generateFileWithPattern
-      !startPath:inOutputDirectory
-      !fileName:"test.py"
-      !lineComment:"#"
-      !header:header
-      !defaultUserZone1:"" # Defaut user zone1
-      !generatedZone2:s
-      !defaultUserZone2:"#    ENTER USER CODE HERE\n" # Defaut user zone2
-      !generatedZone3:"\nquitApplication ()\n\n#----------------------------------------------------------------------------*\n"
+      !startPath:inOutputDirectory,
+      !fileName:"test.py",
+      !lineComment:"#",
+      !header:header,
+      !defaultUserZone1:"", # Defaut user zone1
+      !generatedZone2:s,
+      !defaultUserZone2:"#    ENTER USER CODE HERE\n", # Defaut user zone2
+      !generatedZone3:"\nquitApplication ()\n\n#----------------------------------------------------------------------------*\n",
       !makeExecutable:true
     ]
   end

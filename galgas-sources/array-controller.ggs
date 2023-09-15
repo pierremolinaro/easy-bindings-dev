@@ -26,15 +26,15 @@ enum @arrayControllerBoundModelAST {
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !self.mClassName]
+  [!?ioGraph addNode !node, !self]
+  [!?ioGraph addEdge !node, !self.mClassName]
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      [!?ioGraph addEdge !node !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
+      [!?ioGraph addEdge !node, !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
     end
   case selfToManyRelationship :
-    [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
+    [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
   end
 }
 
@@ -109,8 +109,8 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
     let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
-      [ioSemanticContext.mClassMap searchKey !rootEntityName ?* ?let rootProperties ?2*]
-      [rootProperties searchKey !self.mToManyPropertyName ?let classKind ?2*]
+      [ioSemanticContext.mClassMap searchKey !rootEntityName, ?*, ?let rootProperties, ?2*]
+      [rootProperties searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -119,7 +119,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
+        [!?mPropertyMap insertKey !self.mControllerName, !kind, !controllerActions, !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string,
@@ -134,7 +134,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      [mPropertyMap searchKey !self.mToManyPropertyName ?let classKind ?2*]
+      [mPropertyMap searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -143,7 +143,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        [!?mPropertyMap insertKey !self.mControllerName !kind !controllerActions !false]
+        [!?mPropertyMap insertKey !self.mControllerName, !kind, !controllerActions, !false]
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string,
@@ -173,22 +173,22 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
-       !rootEntityName
-       ?*
-       ?boundModelPropertyMap 
+       !rootEntityName,
+       ?*,
+       ?boundModelPropertyMap,
        ?2*
     ]
   case selfToManyRelationship :
     [ioSemanticContext.mClassMap searchKey
-       !self.mClassName
-       ?*
-       ?boundModelPropertyMap 
+       !self.mClassName,
+       ?*,
+       ?boundModelPropertyMap,
        ?2*
      ]  
   end
   [boundModelPropertyMap searchKey
-     !self.mToManyPropertyName
-     ?let boundModelClassKind
+     !self.mToManyPropertyName,
+     ?let boundModelClassKind,
      ?2*
   ]
 #------------------------------------------------------------ Check colum bound models
@@ -207,7 +207,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey !typeName ?* ?3*]
+    [ioSemanticContext.mClassMap searchKey !typeName, ?*, ?3*]
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
@@ -333,8 +333,8 @@ override proc @arrayControllerGeneration.generateCode(
     !self.mElementTypeIsGraphic
   ]
   [@string generateFile
-    !inOutputDirectory
-    !"controller-array-" + self.mOwnerName + "-" +  self.mControllerName + ".swift"
+    !inOutputDirectory,
+    !"controller-array-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
     !s
   ]
 }

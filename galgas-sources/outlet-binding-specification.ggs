@@ -133,7 +133,7 @@ proc buildBindingSpecificationMap(
           !.enumType (!enumTypeName: "", !constantMap: {}, !funcMap: {}) # Any enum type
           !mModelShouldBeWritableProperty
       else
-        [ioSemanticContext.mClassMap searchKey !mModelTypeName ?let @classKind classKind ?3*]
+        [ioSemanticContext.mClassMap searchKey !mModelTypeName, ?let @classKind classKind, ?3*]
         let @typeKind typeKind
         switch classKind
         case prefs :
@@ -150,7 +150,7 @@ proc buildBindingSpecificationMap(
     end
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
     for (mOptionName mOptionTypeName) in mBindingOptionList do
-      [ioSemanticContext.mClassMap searchKey !mOptionTypeName ?let @classKind classKind ?3*]
+      [ioSemanticContext.mClassMap searchKey !mOptionTypeName, ?let @classKind classKind, ?3*]
       let @typeKind typeKind
       switch classKind
       case prefs :
@@ -168,17 +168,17 @@ proc buildBindingSpecificationMap(
     var @outletBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
     if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
-      [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName ?outletSuperClassName ?bindingMap]
+      [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName, ?outletSuperClassName, ?bindingMap]
     else
       bindingMap = {}
-      [ioSemanticContext.mOutletClassMap searchKey !mOutletClassName ?outletSuperClassName ?6*]
+      [ioSemanticContext.mOutletClassMap searchKey !mOutletClassName, ?outletSuperClassName, ?6*]
     end
     [!?bindingMap insertKey
-      !mBindingName
-      !outletBindingSpecificationModelList
+      !mBindingName,
+      !outletBindingSpecificationModelList,
       !controllerBindingOptionDecoratedList
     ]
-    [!?ioSemanticContext.mBindingSpecificationMap insertKey !mOutletClassName !outletSuperClassName !bindingMap]
+    [!?ioSemanticContext.mBindingSpecificationMap insertKey !mOutletClassName, !outletSuperClassName, !bindingMap]
   end
 }
 

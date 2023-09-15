@@ -288,11 +288,11 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   !@location outErrorLocation)
 {
   [self.mProperty analyzeObservableProperty
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end
-    ?let @propertyKind kind
-    ?let @string unused swiftTypeStringForTransientFunctionArgument
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end,
+    ?let @propertyKind kind,
+    ?let @string unused swiftTypeStringForTransientFunctionArgument,
     ?let @string unused defaultValueAsString
   ]
   switch kind
@@ -326,13 +326,13 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
   !@location outErrorLocation)
 {
   [self.mBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration expression
-    ?outType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration expression,
+    ?outType,
     ?outErrorLocation
   ]
   if not outType.isBoolType () then
@@ -354,26 +354,26 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
-    ?let outLeftType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression,
+    ?let outLeftType,
     ?let outLeftLocation
   ]
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
-    ?let outRightType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression,
+    ?let outRightType,
     ?let outRightLocation
   ]
   if not outRightType.isBoolType () then
@@ -397,26 +397,26 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
-    ?let outLeftType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression,
+    ?let outLeftType,
     ?let outLeftLocation
   ]
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
-    ?let outRightType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression,
+    ?let outRightType,
     ?let outRightLocation
   ]
   if not outRightType.isBoolType () then
@@ -440,26 +440,26 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
-    ?let outLeftType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression,
+    ?let outLeftType,
     ?let outLeftLocation
   ]
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'and': left operand is not boolean"
   end
   [self.mRightBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
-    ?let outRightType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression,
+    ?let outRightType,
     ?let outRightLocation
   ]
   if not outRightType.isBoolType () then
@@ -483,23 +483,23 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@location outErrorLocation)
 {
   [self.mLeftBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression
-    ?let outLeftType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration leftExpression,
+    ?let outLeftType,
     ?let outLeftLocation
   ]
   [self.mRightBinding analyzeExpressionForMultipleBinding
-    !prefs: inPreferences
-    !inRootObservablePropertyMap
-    !inSemanticContext
-    !inCurrentObservablePropertyMap
-    !inPreferencesObservablePropertyMap
-    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression
-    ?let outRightType
+    !prefs: inPreferences,
+    !inRootObservablePropertyMap,
+    !inSemanticContext,
+    !inCurrentObservablePropertyMap,
+    !inPreferencesObservablePropertyMap,
+    ?let @abstractBooleanMultipleBindingExpressionForGeneration rightExpression,
+    ?let outRightType,
     ?let outRightLocation
   ]
   if not (outLeftType.isBoolType () || outLeftType.isIntegerType ()) then

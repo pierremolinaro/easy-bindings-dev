@@ -71,14 +71,14 @@ override proc @actionFileGeneration.generateCode(
   let fileName = "action-" + self.mClassName + "-" + self.mActionName + ".swift"
   ioGeneratedFileSet += !fileName
   [@string generateFileWithPattern
-    !startPath:inOutputDirectory
-    !fileName:fileName
-    !lineComment:"//"
-    !header:""
-    !defaultUserZone1:"\n\n" # Defaut user zone1
-    !generatedZone2:s
-    !defaultUserZone2:"    ENTER USER CODE HERE\n" # Defaut user zone2
-    !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters  (!'—', 118) + "\n"
+    !startPath:inOutputDirectory,
+    !fileName:fileName,
+    !lineComment:"//",
+    !header:"",
+    !defaultUserZone1:"\n\n", # Defaut user zone1
+    !generatedZone2:s,
+    !defaultUserZone2:"    ENTER USER CODE HERE\n", # Defaut user zone2
+    !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters  (!'—', 118) + "\n",
     !makeExecutable:false
   ]
 }

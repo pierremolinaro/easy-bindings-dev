@@ -156,7 +156,7 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
   end
   var @stringlist resourceFileBuildRefs = inResourceFileBuildRefs
   for (ref name) in inProductCopyList do
-    [!?self addBuildFile !fileRef:ref !fileName:name ?buildRef:let @string buildRef]
+    [!?self addBuildFile !fileRef:ref, !fileName:name, ?buildRef:let @string buildRef]
     resourceFileBuildRefs += !buildRef
   end
   self.mAppTargetList +=
@@ -224,50 +224,50 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   var @stringlist childrenRefs = {}
   for (f) in inFileNames do
     if f.pathExtension () == "cpp" then
-      [!?self addCppFile !fileName:f ?fileRef:let @string cppFileRef]
+      [!?self addCppFile !fileName:f, ?fileRef:let @string cppFileRef]
       childrenRefs += !cppFileRef
-      [!?self addBuildFile !fileRef:cppFileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addBuildFile !fileRef:cppFileRef, !fileName:f, ?buildRef:let @string buildRef]
       ioCppFileBuildRefs += !buildRef
     elsif f.pathExtension () == "h" then
-      [!?self addHeaderFile !fileName:f ?fileRef:let @string headerFileRef]
+      [!?self addHeaderFile !fileName:f, ?fileRef:let @string headerFileRef]
       childrenRefs += !headerFileRef
     elsif f.pathExtension () == "m" then
-      [!?self addMFile !fileName:f ?fileRef:let @string m_FileRef]
-      [!?self addBuildFile !fileRef:m_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addMFile !fileName:f, ?fileRef:let @string m_FileRef]
+      [!?self addBuildFile !fileRef:m_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       childrenRefs += !m_FileRef
       ioMFileBuildRefs += !buildRef
     elsif f.pathExtension () == "swift" then
-      [!?self addSwiftFile !fileName:f ?fileRef:let @string swift_FileRef]
-      [!?self addBuildFile !fileRef:swift_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addSwiftFile !fileName:f, ?fileRef:let @string swift_FileRef]
+      [!?self addBuildFile !fileRef:swift_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       childrenRefs += !swift_FileRef
       ioSwiftFileBuildRefs += !buildRef
     elsif f.pathExtension () == "mm" then
-      [!?self addMMFile !fileName:f ?fileRef:let @string m_FileRef]
-      [!?self addBuildFile !fileRef:m_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addMMFile !fileName:f, ?fileRef:let @string m_FileRef]
+      [!?self addBuildFile !fileRef:m_FileRef ,!fileName:f, ?buildRef:let @string buildRef]
       childrenRefs += !m_FileRef
       ioMMFileBuildRefs += !buildRef
     elsif f.pathExtension () == "framework" then
-      [!?self addFrameworkFile !fileName:f ?fileRef:let @string framework_FileRef]
-      [!?self addBuildFile !fileRef:framework_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addFrameworkFile !fileName:f, ?fileRef:let @string framework_FileRef]
+      [!?self addBuildFile !fileRef:framework_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       childrenRefs += !framework_FileRef
       ioFrameWorkFileBuildRefs += !buildRef
     elsif f.pathExtension () == "plist" then
-      [!?self addInfoPlistFile !fileName:f ?fileRef:let @string resource_FileRef]
+      [!?self addInfoPlistFile !fileName:f, ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
     elsif f.pathExtension () == "xib" then
-      [!?self addXIBFile !fileName:f ?fileRef:let @string resource_FileRef]
+      [!?self addXIBFile !fileName:f, ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
-      [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addBuildFile !fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       ioResourceFileBuildRefs += !buildRef
     elsif f.pathExtension () == "tiff" then
-      [!?self addTIFF_file !fileName:f ?fileRef:let @string resource_FileRef]
+      [!?self addTIFF_file !fileName:f, ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
-      [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addBuildFile !fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       ioResourceFileBuildRefs += !buildRef
     elsif f.pathExtension () == "icns" then
-      [!?self addICNS_file !fileName:f ?fileRef:let @string resource_FileRef]
+      [!?self addICNS_file !fileName:f, ?fileRef:let @string resource_FileRef]
       childrenRefs += !resource_FileRef
-      [!?self addBuildFile !fileRef:resource_FileRef !fileName:f ?buildRef:let @string buildRef]
+      [!?self addBuildFile !fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef]
       ioResourceFileBuildRefs += !buildRef
     else
       error @location.nowhere : "unhandled extension for file '" + f + "'"
@@ -439,7 +439,7 @@ proc @XcodeProjectDescriptor.generateAtPath(
   ]
   let projectCoreFile = inPath + "/project.pbxproj"
   if (not projectCoreFile.fileExists ()) || (not inCacheFilePath.fileExists ()) || (@string.stringWithContentsOfFile (!inCacheFilePath) != contents) then 
-    [contents writeToFileWhenDifferentContents !inCacheFilePath ?*]
+    [contents writeToFileWhenDifferentContents !inCacheFilePath, ?*]
     [contents makeDirectoryAndWriteToFile !projectCoreFile]
   end
 }

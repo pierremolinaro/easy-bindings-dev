@@ -16,8 +16,8 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
     !self.mClassName.string + " " + self.mSelectionControllerName,
     !self.mSelectionControllerName.location
   )
-  [!?ioGraph addNode !node !self]
-  [!?ioGraph addEdge !node !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location)]
+  [!?ioGraph addNode !node, !self]
+  [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location)]
 }
 
 #·······················································································································
@@ -68,7 +68,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !self.mModelControllerName ?let propertyKind ?2*]
+    [mPropertyMap searchKey !self.mModelControllerName, ?let propertyKind, ?2*]
     switch propertyKind
     case property (2*) :
       error self.mModelControllerName : "an array controller is required here"
@@ -83,7 +83,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
         error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
-      [!?mPropertyMap insertKey !self.mSelectionControllerName !kind !{} !false]
+      [!?mPropertyMap insertKey !self.mSelectionControllerName, !kind, !{}, !false]
       mPropertyGenerationList += !@selectionControllerPropertyGeneration (
         !self.mSelectionControllerName.string,
         !self.mClassName,
@@ -99,8 +99,8 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
 override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
-  [ioSemanticContext.mClassMap searchKey !self.mClassName ?let superClassKind ?let propertyMap ?2*]
-  [propertyMap searchKey !self.mModelControllerName ?let propertyKind ?2*]
+  [ioSemanticContext.mClassMap searchKey !self.mClassName, ?let superClassKind, ?let propertyMap, ?2*]
+  [propertyMap searchKey !self.mModelControllerName, ?let propertyKind, ?2*]
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
@@ -108,10 +108,10 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
    case selectionController (*) :
    case arrayController (typeName *) :
      [ioSemanticContext.mClassMap searchKey
-       !self.mSelectionEntityName
-       ?*
-       ?let selectionObservablePropertyMap
-       ?*
+       !self.mSelectionEntityName,
+       ?*,
+       ?let selectionObservablePropertyMap,
+       ?*,
        ?let selectionGenerationList
      ]
      ioGeneration.mSelectionControllerListForGeneration +=
@@ -246,8 +246,8 @@ proc generateSelectionControllers(
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
       [@string generateFile
-        !inOutputDirectory
-        !fileName
+        !inOutputDirectory,
+        !fileName,
         !s
       ]
     else
@@ -266,8 +266,8 @@ proc generateSelectionControllers(
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
       [@string generateFile
-        !inOutputDirectory
-        !fileName
+        !inOutputDirectory,
+        !fileName,
         !s
       ]
     end
