@@ -40,12 +40,12 @@ map @actionMap {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc buildActionMap(
-  ?let @lstringlist inActionDeclarationList,
+  let @lstringlist inActionDeclarationList,
   !@actionMap outActionMap)
 {
   outActionMap = {}
   for (mValue) in inActionDeclarationList do
-    !?outActionMap.insertKey (!mValue)
+    !?outActionMap.insertKey (mValue)
   end
 }
 
@@ -61,12 +61,12 @@ class @actionFileGeneration : @abstractFileGeneration {
 #·······················································································································
 
 override proc @actionFileGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct unused inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
  let s = filewrapper [actionGenerationTemplate.actionGeneration:
-    !self.mClassName,
-    !self.mActionName
+    self.mClassName,
+    self.mActionName
   ]
   let fileName = "action-" + self.mClassName + "-" + self.mActionName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -78,7 +78,7 @@ override proc @actionFileGeneration.generateCode(
     !defaultUserZone1:"\n\n", # Defaut user zone1
     !generatedZone2:s,
     !defaultUserZone2:"    ENTER USER CODE HERE\n", # Defaut user zone2
-    !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters  (!'—', 118) + "\n",
+    !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters  ('—', 118) + "\n",
     !makeExecutable:false
   )
 }

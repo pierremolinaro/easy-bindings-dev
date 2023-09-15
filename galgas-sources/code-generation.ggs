@@ -15,8 +15,8 @@ abstract class @abstractFileGeneration {
 #·······················································································································
 
 abstract proc @abstractFileGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct inGenerationStruct,
     ?!@stringset ioGeneratedFileSet)
 
 #·······················································································································
@@ -55,9 +55,9 @@ struct @generationStruct {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc generateCode(
-  ?let @string inXcodeProjectString,
-  ?let @generationStruct inGeneration,
-  ?let @string inSourceFile)
+  let @string inXcodeProjectString,
+  let @generationStruct inGeneration,
+  let @string inSourceFile)
 {
   let outputDirectory = inSourceFile.stringByDeletingLastPathComponent ()
   let projectName = inSourceFile.lastPathComponent ().stringByDeletingPathExtension ()
@@ -65,43 +65,43 @@ proc generateCode(
   var @stringset generatedFileSet = {}
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode
-      !fileOutputDirectory,
-      !inGeneration,
+      fileOutputDirectory,
+      inGeneration,
       !?generatedFileSet
     ]
   end
   generateEBManagedObjectContext (
-    !inGeneration.mEntityListForGeneration,
-    !fileOutputDirectory,
+    inGeneration.mEntityListForGeneration,
+    fileOutputDirectory,
     !?generatedFileSet
   )
   generateSelectionControllers (
-    !inGeneration.mSelectionControllerListForGeneration,
-    !fileOutputDirectory,
+    inGeneration.mSelectionControllerListForGeneration,
+    fileOutputDirectory,
     !?generatedFileSet
   )
   generateValidationRoutineStubs (
-    !fileOutputDirectory,
-    !inGeneration.mValidationStubRoutineListForGeneration,
+    fileOutputDirectory,
+    inGeneration.mValidationStubRoutineListForGeneration,
     !?generatedFileSet
   )
   generateStandardProperties (
-    !fileOutputDirectory,
-    !inGeneration.mPropertyClassList,
-    !inGeneration.mTransientPropertyTypeList,
+    fileOutputDirectory,
+    inGeneration.mPropertyClassList,
+    inGeneration.mTransientPropertyTypeList,
     !?generatedFileSet
   )
   generateXcodeProject (
-    !outputDirectory,
-    !inXcodeProjectString,
-    !generatedFileSet,
-    !projectName
+    outputDirectory,
+    inXcodeProjectString,
+    generatedFileSet,
+    projectName
   )
   generateTestFile (
-    !inXcodeProjectString,
-    !projectName,
-    !inGeneration.mMainXibDescriptorList,
-    !outputDirectory
+    inXcodeProjectString,
+    projectName,
+    inGeneration.mMainXibDescriptorList,
+    outputDirectory
   )
 }
 
@@ -125,68 +125,68 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 
 #·······················································································································
 
-private proc generateStandardProperties (?let @string inOutputDirectory,
-                                         ?let @stringlist inPropertyClassList,
-                                         ?let @transientExternTypeList inTransientPropertyExternTypeList,
+private proc generateStandardProperties (let @string inOutputDirectory,
+                                         let @stringlist inPropertyClassList,
+                                         let @transientExternTypeList inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
 #--- Add scalar property types
-  generateScalarProperty (!inOutputDirectory, !"UInt32", !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"Int",    !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"Bool",   !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"Double", !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"String", !false, !"localizedStandardCompare", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"Data",   !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"Date",   !false, !"", !?ioGeneratedFileSet)
-  generateScalarProperty (!inOutputDirectory, !"BezierPathArray", !false, !"", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "UInt32", false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Int",    false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Bool",   false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Double", false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "String", false, "localizedStandardCompare", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Data",   false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Date",   false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "BezierPathArray", false, "", !?ioGeneratedFileSet)
 #--- Add class property types
   for (propertyClass) in inPropertyClassList do
-    generateClassProperty (!inOutputDirectory, !propertyClass, !false, !false, !?ioGeneratedFileSet)
+    generateClassProperty (inOutputDirectory, propertyClass, false, false, !?ioGeneratedFileSet)
   end
   for (propertyType isClass) in inTransientPropertyExternTypeList do
     if isClass then
-      generateClassProperty (!inOutputDirectory, !propertyType, !false, !true, !?ioGeneratedFileSet)
+      generateClassProperty (inOutputDirectory, propertyType, false, true, !?ioGeneratedFileSet)
     else
-      generateScalarProperty (!inOutputDirectory, !propertyType, !true, !"", !?ioGeneratedFileSet)
+      generateScalarProperty (inOutputDirectory, propertyType, true, "", !?ioGeneratedFileSet)
     end
   end
-  generateClassProperty (!inOutputDirectory, !"NSBezierPath", !false, !false, !?ioGeneratedFileSet)
-  generateClassProperty (!inOutputDirectory, !"NSFont",  !false, !false, !?ioGeneratedFileSet)
-  generateClassProperty (!inOutputDirectory, !"NSColor", !false, !false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSBezierPath", false, false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSFont",  false, false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSColor", false, false, !?ioGeneratedFileSet)
 }
 
 #·······················································································································
 
-private proc generateClassProperty (?let @string inOutputDirectory,
-                                     ?let @string inClassPropertyTypeName,
-                                     ?let @bool inComparable,
-                                     ?let @bool inTransient,
+private proc generateClassProperty (let @string inOutputDirectory,
+                                     let @string inClassPropertyTypeName,
+                                     let @bool inComparable,
+                                     let @bool inTransient,
                                      ?!@stringset ioGeneratedFileSet) {
   let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inComparable, inTransient]
 #--- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !contents
+    inOutputDirectory,
+    fileName,
+    contents
   )
 }
 
 #·······················································································································
 
-private proc generateScalarProperty (?let @string inOutputDirectory,
-                                    ?let @string inScalarPropertyTypeName,
-                                    ?let @bool inTransient,
-                                    ?let @string inComparisonMethod,
+private proc generateScalarProperty (let @string inOutputDirectory,
+                                    let @string inScalarPropertyTypeName,
+                                    let @bool inTransient,
+                                    let @string inComparisonMethod,
                                     ?!@stringset ioGeneratedFileSet) {
-  let contents = filewrapper [standard_properties.scalarProperty: !inScalarPropertyTypeName, inTransient, inComparisonMethod]
+  let contents = filewrapper [standard_properties.scalarProperty: inScalarPropertyTypeName, inTransient, inComparisonMethod]
 #--- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !contents
+    inOutputDirectory,
+    fileName,
+    contents
   )
 }
 

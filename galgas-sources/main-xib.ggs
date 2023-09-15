@@ -127,10 +127,10 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
 #·······················································································································
 
 proc generateTestFile(
-  ?let @string inBundleIdentifier,
-  ?let @string inProjectName,
-  ?let @mainXibDescriptorList inMainXibDescriptorList,
-  ?let @string inOutputDirectory)
+  let @string inBundleIdentifier,
+  let @string inProjectName,
+  let @mainXibDescriptorList inMainXibDescriptorList,
+  let @string inOutputDirectory)
 {
   if (inMainXibDescriptorList.length () > 0) && (inBundleIdentifier != "") then
     var @stringlist outlet_identifier_list = {}
@@ -144,9 +144,9 @@ proc generateTestFile(
       end
     end
     let s = filewrapper [testFiles.test_py:
-      !inBundleIdentifier,
-      !inProjectName,
-      !outlet_identifier_list
+      inBundleIdentifier,
+      inProjectName,
+      outlet_identifier_list
     ]
     let header = "#!/usr/bin/python\n"
       "# coding=utf-8\n\n"

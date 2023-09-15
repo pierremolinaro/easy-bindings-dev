@@ -22,23 +22,23 @@ syntax extension easyBindings_syntax {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc graphvizAnalysis (
-  ?let @string inSourceFileDirectory,
-  ?let @semanticContext inSemanticContext,
-  ?let @lstringlist inGraphvizList)
+  let @string inSourceFileDirectory,
+  let @semanticContext inSemanticContext,
+  let @lstringlist inGraphvizList)
 {
   if @uint.errorCount == 0 then
     for (rootEntityName) in inGraphvizList do
-      graphvizRootEntityAnalysis (!inSourceFileDirectory, !inSemanticContext, !rootEntityName.string)
-      graphvizRootEntityStrongAnalysis (!inSourceFileDirectory, !inSemanticContext, !rootEntityName.string)
+      graphvizRootEntityAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
+      graphvizRootEntityStrongAnalysis (inSourceFileDirectory, inSemanticContext, rootEntityName.string)
     end
   end
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-private proc graphvizRootEntityAnalysis (?let @string inSourceFileDirectory,
-                                         ?let @semanticContext inSemanticContext,
-                                         ?let @string inRootEntityName) {
+private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
+                                         let @semanticContext inSemanticContext,
+                                         let @string inRootEntityName) {
   var @stringset reachableEntityNameSet = {!inRootEntityName}
   var @stringlist exploreArray = {!inRootEntityName}
   var @stringlist nodeList = {}
@@ -46,7 +46,7 @@ private proc graphvizRootEntityAnalysis (?let @string inSourceFileDirectory,
   loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
     !?exploreArray.popLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
-    [inSemanticContext.mClassMap searchKey !entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*]
+    [inSemanticContext.mClassMap searchKey entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*]
     [entityKind entity ?superEntityName: let superEntityName, ?3*]
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
@@ -134,7 +134,7 @@ private proc graphvizRootEntityAnalysis (?let @string inSourceFileDirectory,
   s += "}\n"
   let filePath = inSourceFileDirectory + "/models/graph-" + inRootEntityName + ".dot"
   [filePath.stringByDeletingLastPathComponent () makeDirectory]
-  [s writeToFileWhenDifferentContents !filePath, ?*]
+  [s writeToFileWhenDifferentContents filePath, ?*]
 }
 
 #·······················································································································
@@ -145,9 +145,9 @@ graph @entityStrongReferenceGraph (@stringlist) {
 
 #-----------------------------------------------------------------------------------------------------------------------
 
-private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirectory,
-                                               ?let @semanticContext inSemanticContext,
-                                               ?let @string inRootEntityName) {
+private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory,
+                                               let @semanticContext inSemanticContext,
+                                               let @string inRootEntityName) {
   var @stringset reachableEntityNameSet = {!inRootEntityName}
   var @stringlist exploreArray = {!inRootEntityName}
   var @stringlist nodeList = {}
@@ -156,8 +156,8 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
   loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
     !?exploreArray.popLast (?let @string entityName)
     nodeList += !entityName
-    !?entityStrongReferenceGraph.addNode (!.new (!entityName, .nowhere), !entityName)
-    [inSemanticContext.mClassMap searchKey !entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*]
+    !?entityStrongReferenceGraph.addNode (.new (entityName, .nowhere), entityName)
+    [inSemanticContext.mClassMap searchKey entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*]
     [entityKind entity ?superEntityName: let superEntityName, ?3*]
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
@@ -165,7 +165,7 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
         exploreArray += !superEntityName
       end
       arrowList += !superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]"
-      !?entityStrongReferenceGraph.addEdge (!.new (!superEntityName, .nowhere), !.new (!entityName, .nowhere))
+      !?entityStrongReferenceGraph.addEdge (.new (superEntityName, .nowhere), .new (entityName, .nowhere))
     end
     for (* propertyKind 2*) in propertyMap do
       switch propertyKind
@@ -174,7 +174,7 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
       case selectionController (*) :
       case toMany (@lstring typeName @propertyAccessibility accessibility * *) :
         arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
-        !?entityStrongReferenceGraph.addEdge (!.new (!entityName, .nowhere), !.new (!typeName, .nowhere))
+        !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
         if accessibility.isStored () then
           if not reachableEntityNameSet.hasKey (typeName) then
              reachableEntityNameSet += !typeName
@@ -184,7 +184,7 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
       case toOne (@lstring typeName @propertyAccessibility accessibility * opposite weak) :
         if not weak then
           arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
-          !?entityStrongReferenceGraph.addEdge (!.new (!entityName, .nowhere), !.new (!typeName, .nowhere))
+          !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
         end
         if accessibility.isStored () then
           switch opposite
@@ -217,10 +217,10 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
   s += "}\n"
   var filePath = inSourceFileDirectory + "/models/strong-" + inRootEntityName + ".dot"
   [filePath.stringByDeletingLastPathComponent () makeDirectory]
-  [s writeToFileWhenDifferentContents !filePath, ?*]
+  [s writeToFileWhenDifferentContents filePath, ?*]
 #--- Print graph
   filePath = inSourceFileDirectory + "/models/strong-dep-" + inRootEntityName + ".dot"
-  [entityStrongReferenceGraph.graphviz () writeToFileWhenDifferentContents !filePath, ?*]
+  [entityStrongReferenceGraph.graphviz () writeToFileWhenDifferentContents filePath, ?*]
 #--- Check all node are defined
   let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList ()
   if undefinedNodeList.length () > 0 then
@@ -232,8 +232,8 @@ private proc graphvizRootEntityStrongAnalysis (?let @string inSourceFileDirector
   end
 #--- Check accessibility
   if undefinedNodeList.length () == 0 then
-    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ({!.new (!inRootEntityName, .nowhere)}, {})
-    let accessibleNodeSet = @stringset.setWithLStringList (!accessibleNodeList)
+    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ({!.new (inRootEntityName, .nowhere)}, {})
+    let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
     for (node) in nodeList do
       if not accessibleNodeSet.hasKey (node) then
         error .nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName

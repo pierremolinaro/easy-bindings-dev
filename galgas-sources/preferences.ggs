@@ -21,7 +21,7 @@ class @prefsDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @prefsDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  !?ioGraph.addNode (!self.mClassName, !self)
+  !?ioGraph.addNode (self.mClassName, self)
 }
 
 #·······················································································································
@@ -46,7 +46,7 @@ syntax extension easyBindings_syntax {
   
   rule <preferences_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $prefs$
-    let prefs = @lstring (!preferencesName (), .here)
+    let prefs = @lstring (preferencesName (), .here)
     ${$
     var @stringset signatureList = {}
     var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
@@ -60,7 +60,7 @@ syntax extension easyBindings_syntax {
     while
       var @simpleStoredPropertyList simpleStoredPropertyList = {}
       <simple_stored_declaration>(
-        !prefs,
+        prefs,
         !?simpleStoredPropertyList,
         !?signatureList,
         !?ioDeclarationAST)
@@ -68,13 +68,13 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> (!?ioDeclarationAST.mPreferences.mOutletDeclarationList)
     while
-      <transient_declaration> (!prefs, !"".nowhere (), !?ioDeclarationAST)
+      <transient_declaration> (prefs, "".nowhere (), !?ioDeclarationAST)
     while
       <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
-      <toMany_relationship> (!prefs, !?*, !?ioDeclarationAST)
+      <toMany_relationship> (prefs, !?*, !?ioDeclarationAST)
     while
-      <controller_declaration> (!prefs, !"".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
+      <controller_declaration> (prefs, "".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -92,18 +92,18 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  buildActionMap (!self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
+  buildActionMap (self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
-    !.new (!preferencesName (), .here),
-    !.prefs,
-    !{},
-    !actionMap,
-    !{}
+    .new (preferencesName (), .here),
+    .prefs,
+    {},
+    actionMap,
+    {}
   )
   for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration (
-      !self.mClassName.string,
-      !lkey.string
+      self.mClassName.string,
+      lkey.string
     )
   end
   ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
@@ -121,7 +121,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
   var @externFunctionMap externFunctionMap = {}
   for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
-    !?externFunctionMap.insertKey (!mExternSwiftFunctionName)
+    !?externFunctionMap.insertKey (mExternSwiftFunctionName)
     if not availableCallers.hasKey (mCallerName.string) then
       var s = "invalid caller; available callers:"
       for (str) in availableCallers do
@@ -132,7 +132,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   end
 #--- Get preference property map
   [ioSemanticContext.mClassMap searchKey
-    !.new (!preferencesName (), .nowhere),
+    .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?let actionMap,
@@ -140,15 +140,15 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   ]
 #--- Analyze outlets and bindings
   analyzeOutlets (
-    !true,
-    !{}, # No root entity
-    !preferencesPropertyMap,
-    !"", # No root entity
-    !ioSemanticContext,
-    !self.mDeclaration.mOutletDeclarationList,
-    !preferencesPropertyMap,
-    !actionMap,
-    !preferencesName (),
+    true,
+    {}, # No root entity
+    preferencesPropertyMap,
+    "", # No root entity
+    ioSemanticContext,
+    self.mDeclaration.mOutletDeclarationList,
+    preferencesPropertyMap,
+    actionMap,
+    preferencesName (),
     !?ioGeneration,
     ?let @regularBindingsGenerationList regularBindingsGenerationList,
     ?let @multipleBindingGenerationList multipleBindingGenerationList,
@@ -164,18 +164,18 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutConfiguratorMap configuratorMap = {}
   var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
-    !?viewDeclarationMap.insertKey (!viewName)
+    !?viewDeclarationMap.insertKey (viewName)
     [viewDeclaration checkView
-      !viewName,
-      !viewDeclarationMap,
+      viewName,
+      viewDeclarationMap,
       !prefs: true,
-      !{}, # rootPropertyMap
-      !preferencesPropertyMap,
-      !ioSemanticContext,
-      !{}, # documentPropertyMap
-      !actionMap,
-      !self.mClassName,
-      !ioSemanticContext.mClassMap,
+      {}, # rootPropertyMap
+      preferencesPropertyMap,
+      ioSemanticContext,
+      {}, # documentPropertyMap
+      actionMap,
+      self.mClassName,
+      ioSemanticContext.mClassMap,
       !?implicitViewFunctionGenerationList,
       !?configuratorMap,
       !?autoLayoutOutletMap,
@@ -188,19 +188,19 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   end
 #--- Code generation
   ioGeneration.mFileGenerationList += !@preferencesForGeneration (
-    !propertyGenerationList,
-    !ioGeneration.mMainXibDescriptorList,
-    !regularBindingsGenerationList,
-    !multipleBindingGenerationList,
-    !actionBindingListForGeneration,
-    !outletMap,
-    !self.mDeclaration.mExternSwiftFunctionList,
-    !tableViewBindingGenerationList,
-    !ebViewGraphicControllerBindingGenerationList,
-    !viewGenerationList,
-    !implicitViewFunctionGenerationList,
-    !configuratorMap,
-    !autoLayoutOutletMap
+    propertyGenerationList,
+    ioGeneration.mMainXibDescriptorList,
+    regularBindingsGenerationList,
+    multipleBindingGenerationList,
+    actionBindingListForGeneration,
+    outletMap,
+    self.mDeclaration.mExternSwiftFunctionList,
+    tableViewBindingGenerationList,
+    ebViewGraphicControllerBindingGenerationList,
+    viewGenerationList,
+    implicitViewFunctionGenerationList,
+    configuratorMap,
+    autoLayoutOutletMap
   )
 }
 
@@ -247,42 +247,42 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
 #·······················································································································
 
 override proc @preferencesForGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct unused inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   let s = filewrapper [prefsGenerationTemplate.preferences:
-    !self.mPropertyListForGeneration,
-    !self.mMainXibDescriptorList,
-    !self.mOutletMap,
-    !self.mRegularBindingsGenerationList,
-    !self.mActionBindingListForGeneration,
-    !self.mMultipleBindingGenerationList,
-    !self.mExternSwiftFunctionList,
-    !self.mTableViewBindingGenerationList,
-    !self.mEBViewBindingGenerationList,
-    !self.mViewGenerationList,
-    !self.mImplicitViewFunctionGenerationList,
-    !self.mAutoLayoutOutletMap
+    self.mPropertyListForGeneration,
+    self.mMainXibDescriptorList,
+    self.mOutletMap,
+    self.mRegularBindingsGenerationList,
+    self.mActionBindingListForGeneration,
+    self.mMultipleBindingGenerationList,
+    self.mExternSwiftFunctionList,
+    self.mTableViewBindingGenerationList,
+    self.mEBViewBindingGenerationList,
+    self.mViewGenerationList,
+    self.mImplicitViewFunctionGenerationList,
+    self.mAutoLayoutOutletMap
   ]
   let fileName = preferencesName () + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !s
+    inOutputDirectory,
+    fileName,
+    s
   )
 #--- Configurators
   for (outletName outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
-      !"Preferences",
-      !outletName.string,
-      !outletTypeName
+      "Preferences",
+      outletName.string,
+      outletTypeName
     ]
-    let header = "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+    let header = "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n"
       "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
-      "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
+      "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
       + "import AppKit\n\n"
-      + "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
+      + "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     let fileName = "configurator-Preferences-" + outletName + ".swift"
     ioGeneratedFileSet += !fileName
     @string.generateFileWithPattern (
@@ -293,7 +293,7 @@ override proc @preferencesForGeneration.generateCode(
       !defaultUserZone1:"\n\n", # Defaut user zone1
       !generatedZone2:s,
       !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
-      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n",
+      !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n",
       !makeExecutable:false
     )
   end

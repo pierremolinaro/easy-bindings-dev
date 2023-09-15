@@ -13,17 +13,17 @@ class @selectionControllerDeclarationAST : @abstractDeclarationAST {
 
 override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (
-    !self.mClassName.string + " " + self.mSelectionControllerName,
-    !self.mSelectionControllerName.location
+    self.mClassName.string + " " + self.mSelectionControllerName,
+    self.mSelectionControllerName.location
   )
-  !?ioGraph.addNode (!node, !self)
-  !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
+  !?ioGraph.addNode (node, self)
+  !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
 }
 
 #·······················································································································
 
 override func @selectionControllerDeclarationAST.nodeKey () -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mSelectionControllerName, self.mSelectionControllerName.location)
+  result = @lstring (self.mClassName.string + " " + self.mSelectionControllerName, self.mSelectionControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -34,8 +34,8 @@ syntax extension easyBindings_syntax {
 
   #·····················································································································
   
-  rule <controller_declaration> (?let @lstring inCurrentEntity,
-                                 ?let @lstring unused inRootEntity,
+  rule <controller_declaration> (let @lstring inCurrentEntity,
+                                 let @lstring unused inRootEntity,
                                  ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
                                  ?!@astDeclarationStruct ioDeclarationAST) {
     $selectionController$
@@ -47,11 +47,11 @@ syntax extension easyBindings_syntax {
     $identifier$ (?let @lstring propertyName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST (
-      !inCurrentEntity,
-      !selectionControllerName,
-      !modelControllerName,
-      !propertyName,
-      !selectionEntityName
+      inCurrentEntity,
+      selectionControllerName,
+      modelControllerName,
+      propertyName,
+      selectionEntityName
     )
   }
 
@@ -68,7 +68,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey !self.mModelControllerName, ?let propertyKind, ?2*]
+    [mPropertyMap searchKey self.mModelControllerName, ?let propertyKind, ?2*]
     switch propertyKind
     case property (2*) :
       error self.mModelControllerName : "an array controller is required here"
@@ -83,12 +83,12 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
         error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
-      !?mPropertyMap.insertKey (!self.mSelectionControllerName, !kind, !{}, !false)
+      !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, {}, false)
       mPropertyGenerationList += !@selectionControllerPropertyGeneration (
-        !self.mSelectionControllerName.string,
-        !self.mClassName,
-        !self.mModelControllerName.string,
-        !self.mModelControllerPropertyName.string
+        self.mSelectionControllerName.string,
+        self.mClassName,
+        self.mModelControllerName.string,
+        self.mModelControllerPropertyName.string
       )
     end
   end
@@ -99,8 +99,8 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
 override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
-  [ioSemanticContext.mClassMap searchKey !self.mClassName, ?let superClassKind, ?let propertyMap, ?2*]
-  [propertyMap searchKey !self.mModelControllerName, ?let propertyKind, ?2*]
+  [ioSemanticContext.mClassMap searchKey self.mClassName, ?let superClassKind, ?let propertyMap, ?2*]
+  [propertyMap searchKey self.mModelControllerName, ?let propertyKind, ?2*]
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
@@ -108,7 +108,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
    case selectionController (*) :
    case arrayController (typeName *) :
      [ioSemanticContext.mClassMap searchKey
-       !self.mSelectionEntityName,
+       self.mSelectionEntityName,
        ?*,
        ?let selectionObservablePropertyMap,
        ?*,
@@ -162,18 +162,18 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
-   ?let @bool unused inPreferences,
-   ?let @bool unused inGenerationDirectAccess,
-   ?let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+   let @bool unused inPreferences,
+   let @bool unused inGenerationDirectAccess,
+   let @stringset unused inOverriddenTransients) -> @string {
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
   result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 
 #·······················································································································
 
-override func @selectionControllerPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
+override func @selectionControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_selection (model: self." + self.mModelControllerName
     + "." + self.mModelControllerPropertyName + "_property)\n"
@@ -232,23 +232,23 @@ private filewrapper selectionControllerGenerationTemplate in "generation-templat
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc generateSelectionControllers(
-  ?let @selectionControllerForGeneration inArrayControllerListForGeneration,
-  ?let @string inOutputDirectory,
+  let @selectionControllerForGeneration inArrayControllerListForGeneration,
+  let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet) {
   for (ownerName selectionControllerName * * baseTypeName selectionTypeName selectionObservablePropertyMap propertyGenerationList) in inArrayControllerListForGeneration do
     if baseTypeName == selectionTypeName then
       let s = filewrapper [selectionControllerGenerationTemplate.baseSelectionControllerImplementation:
-        !ownerName,
-        !selectionControllerName,
-        !baseTypeName,
-        !selectionObservablePropertyMap
+        ownerName,
+        selectionControllerName,
+        baseTypeName,
+        selectionObservablePropertyMap
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
       @string.generateFile (
-        !inOutputDirectory,
-        !fileName,
-        !s
+        inOutputDirectory,
+        fileName,
+        s
       )
     else
       var hasAtomicStoredProperties = false
@@ -256,19 +256,19 @@ proc generateSelectionControllers(
         hasAtomicStoredProperties = property is == @atomicPropertyGeneration
       end
       let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
-        !ownerName,
-        !selectionControllerName,
-        !baseTypeName,
-        !selectionTypeName,
-        !propertyGenerationList,
-        !hasAtomicStoredProperties
+        ownerName,
+        selectionControllerName,
+        baseTypeName,
+        selectionTypeName,
+        propertyGenerationList,
+        hasAtomicStoredProperties
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
       ioGeneratedFileSet += !fileName
       @string.generateFile (
-        !inOutputDirectory,
-        !fileName,
-        !s
+        inOutputDirectory,
+        fileName,
+        s
       )
     end
   end

@@ -9,7 +9,7 @@ class @transientClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @transientClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  !?ioGraph.addNode (!self.mClassName, !self)
+  !?ioGraph.addNode (self.mClassName, self)
 }
 
 #·······················································································································
@@ -40,8 +40,8 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring propertyTypeName)
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST (
-      !propertyTypeName,
-      !isClass
+      propertyTypeName,
+      isClass
     )
   }
 

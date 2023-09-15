@@ -27,13 +27,13 @@ case ."eb"
   grammar easyBindings_grammar (!?declarationStruct, ?let @location unused endOfSourceFile) in inSourceFile
 #------------------------ Add prefs declaration
   declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST (
-    !.new(!preferencesName (), .nowhere),
-    !declarationStruct.mPreferences
+    .new(preferencesName (), .nowhere),
+    declarationStruct.mPreferences
   )
 #----------------------------------------- Add Atomic type declarations
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
 #----------------------------------------- Sort properties
-  sortProperties (!inSourceFile.string, !declarationStruct.mUnifiedDeclarationList, ?let sortedDeclarationListAST)
+  sortProperties (inSourceFile.string, declarationStruct.mUnifiedDeclarationList, ?let sortedDeclarationListAST)
 #----------------------------------------- Semantic Analysis, first phase
   var semanticContext = @semanticContext ()
   semanticContext.mAutoLayoutVStackFunctionMap = declarationStruct.mAutoLayoutVStackFunctionMap
@@ -47,13 +47,13 @@ case ."eb"
   if @uint.errorCount == 0 then
     buildBindingSpecificationMap (
       !?semanticContext,
-      !declarationStruct.mBindingSpecificationListMap
+      declarationStruct.mBindingSpecificationListMap
     )
   end
   if @uint.errorCount == 0 then
     buildAutoLayoutBindingSpecificationMap (
       !?semanticContext,
-      !declarationStruct.mAutoLayoutBindingSpecificationList
+      declarationStruct.mAutoLayoutBindingSpecificationList
     )
   end
 #----------------------------------------- Semantic Analysis, second phase
@@ -71,7 +71,7 @@ case ."eb"
 #----------------------------------------- Check enum type is declared for every enum function
   if @uint.errorCount == 0 then
     for (enumTypeName * *) in semanticContext.mEnumerationFunctionListAST do
-      [semanticContext.mClassMap searchKey !enumTypeName, ?let type, ?3*]
+      [semanticContext.mClassMap searchKey enumTypeName, ?let type, ?3*]
       if not type.isAtomic () then
         error enumTypeName : "this type should be an enum type"
       else
@@ -84,14 +84,14 @@ case ."eb"
   end
 #----------------------------------------- Semantic Analysis, graphviz
   if @uint.errorCount == 0 then
-    graphvizAnalysis (!inSourceFile.stringByDeletingLastPathComponent (), !semanticContext, !declarationStruct.mGraphvizList)
+    graphvizAnalysis (inSourceFile.stringByDeletingLastPathComponent (), semanticContext, declarationStruct.mGraphvizList)
   end
 #----------------------------------------- Generate code
   if @uint.errorCount == 0 then
     generateCode (
-      !declarationStruct.mXcodeProject.string,
-      !generation,
-      !inSourceFile.string
+      declarationStruct.mXcodeProject.string,
+      generation,
+      inSourceFile.string
     )
   end
 }

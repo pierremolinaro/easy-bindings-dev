@@ -30,23 +30,23 @@ syntax extension easyBindings_syntax {
 #------------------------------------------------------------
 
 proc generateXcodeProject(
-  ?let @string inOutputDirectory,
-  ?let @string inXcodeProjectString,
-  ?let @stringset inGeneratedFileSet,
-  ?let @string projectName)
+  let @string inOutputDirectory,
+  let @string inXcodeProjectString,
+  let @stringset inGeneratedFileSet,
+  let @string projectName)
 {
   if inXcodeProjectString != "" then
-    generateXcodeProjectInternal (!inOutputDirectory, !inXcodeProjectString, !inGeneratedFileSet, !projectName)
+    generateXcodeProjectInternal (inOutputDirectory, inXcodeProjectString, inGeneratedFileSet, projectName)
   end
 }
 
 #------------------------------------------------------------
 
 private proc generateXcodeProjectInternal(
-  ?let @string inOutputDirectory,
-  ?let @string inXcodeProjectString,
-  ?let @stringset inGeneratedFileSet,
-  ?let @string projectName)
+  let @string inOutputDirectory,
+  let @string inXcodeProjectString,
+  let @stringset inGeneratedFileSet,
+  let @string projectName)
 {
   var xcodeProject = @XcodeProjectDescriptor ()
 #--- Default build configuration
@@ -135,7 +135,7 @@ private proc generateXcodeProjectInternal(
       !"GCC_PREPROCESSOR_DEFINITIONS = ()"
     },
     !dependantTargetList:{},
-    !productCopyList:{}, # {!"MainMenu.xib" !"EBAllocationDebug.xib"}
+    !productCopyList:{},
     !infoPList:projectName + "/Info.plist",
     ?productFileRef:*
   )
@@ -147,27 +147,27 @@ private proc generateXcodeProjectInternal(
   ]
 #--- Generate additional files
   var s = filewrapper [additionalXcodeFiles.info_plist:
-    !projectName,
-    !inXcodeProjectString,
-    !"1.0.0",
-    !{!projectName}
+    projectName,
+    inXcodeProjectString,
+    "1.0.0",
+    {!projectName}
   ]
   @string.generateFile (
-    !sourceDir,
-    !"Info.plist",
-    !s
+    sourceDir,
+    "Info.plist",
+    s
   )
   s = filewrapper [additionalXcodeFiles.main_xib:
-    !projectName
+    projectName
   ]
   @string.generateFile (
-    !sourceDir,
-    !"MainMenu.xib",
-    !s
+    sourceDir,
+    "MainMenu.xib",
+    s
   )
   s = filewrapper [additionalXcodeFiles.build_command: projectName]
   [s writeToExecutableFileWhenDifferentContents
-    !inOutputDirectory + "/build.py",
+    inOutputDirectory + "/build.py",
     ?*
   ]
 }

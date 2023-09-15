@@ -25,23 +25,23 @@ enum @arrayControllerBoundModelAST {
 #·······················································································································
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
-  !?ioGraph.addNode (!node, !self)
-  !?ioGraph.addEdge (!node, !self.mClassName)
+  let node = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
+  !?ioGraph.addNode (node, self)
+  !?ioGraph.addEdge (node, self.mClassName)
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      !?ioGraph.addEdge (!node, !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+      !?ioGraph.addEdge (node, .new (rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
     end
   case selfToManyRelationship :
-    !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
 #·······················································································································
 
 override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
+  result = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -53,8 +53,8 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>(
-            ?let @lstring inCurrentEntity,
-            ?let @lstring inRootEntity,
+            let @lstring inCurrentEntity,
+            let @lstring inRootEntity,
             ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
@@ -84,10 +84,10 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST (
-      !inCurrentEntity,
-      !controllerName,
-      !model,
-      !relationshipName
+      inCurrentEntity,
+      controllerName,
+      model,
+      relationshipName
     )
   }
   
@@ -109,8 +109,8 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
     let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
-      [ioSemanticContext.mClassMap searchKey !rootEntityName, ?*, ?let rootProperties, ?2*]
-      [rootProperties searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
+      [ioSemanticContext.mClassMap searchKey rootEntityName, ?*, ?let rootProperties, ?2*]
+      [rootProperties searchKey self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -119,12 +119,12 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
+        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
-        !self.mControllerName.string,
-        !"rootObject." + self.mToManyPropertyName,
-        !self.mClassName
+        self.mControllerName.string,
+        "rootObject." + self.mToManyPropertyName,
+        self.mClassName
       )
       case toOne (5*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -134,7 +134,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      [mPropertyMap searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
+      [mPropertyMap searchKey self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -143,12 +143,12 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
+        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
-        !self.mControllerName.string,
-        !self.mToManyPropertyName,
-        !self.mClassName
+        self.mControllerName.string,
+        self.mToManyPropertyName,
+        self.mClassName
       )
       case toOne (5*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -173,21 +173,21 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
-       !rootEntityName,
+       rootEntityName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
     ]
   case selfToManyRelationship :
     [ioSemanticContext.mClassMap searchKey
-       !self.mClassName,
+       self.mClassName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
      ]  
   end
   [boundModelPropertyMap searchKey
-     !self.mToManyPropertyName,
+     self.mToManyPropertyName,
      ?let boundModelClassKind,
      ?2*
   ]
@@ -207,7 +207,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey !typeName, ?*, ?3*]
+    [ioSemanticContext.mClassMap searchKey typeName, ?*, ?3*]
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
@@ -223,12 +223,12 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   end
 #---
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration (
-    !self.mClassName,
-    !self.mControllerName,
-    !"ReadWriteArrayOf_" + elementTypeName,
-    !arrayControllerModelKind,
-    !elementTypeName,
-    !graphic
+    self.mClassName,
+    self.mControllerName,
+    "ReadWriteArrayOf_" + elementTypeName,
+    arrayControllerModelKind,
+    elementTypeName,
+    graphic
   )
   ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
 }
@@ -245,18 +245,18 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration.propertyDeclarationCode (?let @bool inPreferences,
-                                                            ?let @bool unused inGenerationDirectAccess,
-                                                            ?let @stringset unused inOverriddenTransients) -> @string {
+override func @arrayControllerPropertyGeneration.propertyDeclarationCode (let @bool inPreferences,
+                                                            let @bool unused inGenerationDirectAccess,
+                                                            let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
     result += "@MainAction let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
@@ -269,7 +269,7 @@ override func @arrayControllerPropertyGeneration.initCode() -> @string {
 
 #·······················································································································
 
-override func @arrayControllerPropertyGeneration.configurationCode (?let @bool unused inPreferences) -> @string {
+override func @arrayControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.undoManager)\n"
 }
@@ -320,22 +320,22 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct unused inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:
-    !self.mOwnerName,
-    !self.mControllerName,
-    !self.mArrayControllerModelKind,
-    !self.mModelTypeName,
-    !self.mElementTypeName,
-    !self.mElementTypeIsGraphic
+    self.mOwnerName,
+    self.mControllerName,
+    self.mArrayControllerModelKind,
+    self.mModelTypeName,
+    self.mElementTypeName,
+    self.mElementTypeIsGraphic
   ]
   @string.generateFile (
-    !inOutputDirectory,
-    !"controller-array-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
-    !s
+    inOutputDirectory,
+    "controller-array-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
+    s
   )
 }
 

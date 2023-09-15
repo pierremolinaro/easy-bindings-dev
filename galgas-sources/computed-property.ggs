@@ -13,58 +13,58 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
-  !?ioGraph.addNode (!node, !self)
-  !?ioGraph.addEdge (!node, !self.mClassName)
-  !?ioGraph.addEdge (!node, !self.mComputedPropertyTypeName)
+  let node = @lstring (self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
+  !?ioGraph.addNode (node, self)
+  !?ioGraph.addEdge (node, self.mClassName)
+  !?ioGraph.addEdge (node, self.mComputedPropertyTypeName)
   for dependency in self.mDependencyList do
     switch dependency.mObservableProperty
     case rootProperty (propertyName) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location))
+        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyWithOption (propertyName *) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location))
+        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyRelationship (relationshipName *) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
+        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case rootPropertyNone (relationshipName) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
+        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyWithOption (@lstring propertyName *) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyArray (@lstring propertyName *) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyObject (@lstring propertyName *) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyNone (@lstring propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case prefsProperty (@lstring propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!preferencesName () + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
     case prefsPropertyWithOption (@lstring propertyName *) :
-      !?ioGraph.addEdge (!node, !.new (!preferencesName () + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
     case selfControllerProperty (@lstring controllerName unused propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerOneProperty (@lstring controllerName unused propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName @lstring propertyName) :
-      !?ioGraph.addEdge (!node, !.new (!superEntityName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
     case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
-      !?ioGraph.addEdge (!node, !.new (!superEntityName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
     end
   end
 }
@@ -72,7 +72,7 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
 #·······················································································································
 
 override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
+  result = @lstring (self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -84,8 +84,8 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <transient_declaration>(
-            ?let @lstring inCurrentEntity,
-            ?let @lstring inRootEntity,
+            let @lstring inCurrentEntity,
+            let @lstring inRootEntity,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
 #    @bool isOverriding
@@ -108,11 +108,11 @@ syntax extension easyBindings_syntax {
     end
     $;$
     ioDeclarationAST.mUnifiedDeclarationList += !@computedPropertyDeclarationAST (
-      !inCurrentEntity,
-      !inRootEntity,
-      !transientTypeName,
-      !transientName,
-      !dependanceList
+      inCurrentEntity,
+      inRootEntity,
+      transientTypeName,
+      transientName,
+      dependanceList
 #      !isOverriding
     )
   }
@@ -129,16 +129,16 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey !self.mComputedPropertyTypeName, ?let classKind, ?3*]
+    [ioSemanticContext.mClassMap searchKey self.mComputedPropertyTypeName, ?let classKind, ?3*]
     switch classKind
     case prefs :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
       !?mPropertyMap.insertKey (
-        !self.mComputedPropertyName,
-        !.property (!type: kind, !accessibility: .computed),
-        !{},
-        !false
+        self.mComputedPropertyName,
+        .property (!type: kind, !accessibility: .computed),
+        {},
+        false
       )
     case document (*) :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
@@ -157,7 +157,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
 #--- Property type
-  [ioSemanticContext.mClassMap searchKey !self.mComputedPropertyTypeName, ?let classKind, ?3*]
+  [ioSemanticContext.mClassMap searchKey self.mComputedPropertyTypeName, ?let classKind, ?3*]
 #--- Check type
   let @typeKind typeKind
   switch classKind
@@ -175,17 +175,17 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   if self.mRootEntityName.string == "" then
     rootProperties = {}
   else
-    [ioSemanticContext.mClassMap searchKey !self.mRootEntityName, ?*, ?rootProperties, ?2*]
+    [ioSemanticContext.mClassMap searchKey self.mRootEntityName, ?*, ?rootProperties, ?2*]
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey !self.mClassName, ?let currentClassKind, ?let properties, ?2*]
+  [ioSemanticContext.mClassMap searchKey self.mClassName, ?let currentClassKind, ?let properties, ?2*]
 #--- Analyse master properties
   var @transientDependencyListForGeneration dependencies = {}
   for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
-      !rootProperties,
-      !ioSemanticContext,
-      !properties,
+      rootProperties,
+      ioSemanticContext,
+      properties,
       ?let @propertyKind dependencyKind,
       ?let @string swiftTypeStringForTransientFunctionArgument,
       ?let @string defaultValueAsString
@@ -206,17 +206,17 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       !defaultValueAsString
   end
   ioGeneration.mFileGenerationList += !@transientRoutineGeneration (
-    !self.mClassName,
-    !self.mComputedPropertyName.string,
-    !typeKind,
-    !"computed",
-    !dependencies
+    self.mClassName,
+    self.mComputedPropertyName.string,
+    typeKind,
+    "computed",
+    dependencies
   )
   ioGeneration.mFileGenerationList += !@computeRoutineGeneration (
-    !self.mClassName,
-    !self.mComputedPropertyName.string,
-    !typeKind,
-    !dependencies
+    self.mClassName,
+    self.mComputedPropertyName.string,
+    typeKind,
+    dependencies
   )
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
@@ -237,11 +237,11 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       end
     end
     mPropertyGenerationList += !@computedPropertyGeneration (
-      !self.mComputedPropertyName.string,
-      !self.mClassName.string,
-      !typeKind,
-      !dependencies,
-      !generate
+      self.mComputedPropertyName.string,
+      self.mClassName.string,
+      typeKind,
+      dependencies,
+      generate
     )
   end
 }
@@ -266,9 +266,9 @@ list @computedPropertyGenerationList {
 #·······················································································································
 
 override func @computedPropertyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
 }
 
@@ -281,7 +281,7 @@ override func @computedPropertyGeneration.initCode() -> @string {
 #·······················································································································
 
 override func @computedPropertyGeneration.bindPropertyInSelectionController () -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsToBeObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -342,18 +342,18 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
   result  = ""
   if self.mGenerate & not inOverriddenTransients.hasKey (self.mPropertyName) then
     if inPreferences then
-      result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
       result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
       result += "  var preferences_" + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
       result += "    return preferences_" + self.mPropertyName + "_property.optionalValue\n"
      result += "  }\n\n"
     else
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
       result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
     end
   end
@@ -361,7 +361,7 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
 
 #·······················································································································
 
-override func @computedPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
+override func @computedPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
   if self.mDependencyList.length () > 0 then
@@ -403,26 +403,26 @@ class @computeRoutineGeneration : @abstractFileGeneration {
 #·······················································································································
 
 override proc @computeRoutineGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct unused inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   if self.mDependencyList.length () > 0 then
     let s = filewrapper [computedPropertyManager.computedComputationFunctionFile:
-      !self.mOwnerName,
-      !self.mTransientName,
-      !self.mTransientType
+      self.mOwnerName,
+      self.mTransientName,
+      self.mTransientType
     ]
     let fileName = "compute-" + self.mOwnerName + "-" + self.mTransientName + ".swift"
     ioGeneratedFileSet += !fileName
-    var header = "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n"
+    var header = "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n"
     header += "//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n"
-    header += "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
+    header += "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     header += "import AppKit\n\n"
-    header += "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
+    header += "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     var generatedZone3 = "  }\n\n"
-    generatedZone3 += "  //" + @string.stringWithSequenceOfCharacters (!'·', 116) + "\n\n"
+    generatedZone3 += "  //" + @string.stringWithSequenceOfCharacters ('·', 116) + "\n\n"
     generatedZone3 += "}\n\n"
-    generatedZone3 += "//" + @string.stringWithSequenceOfCharacters (!'—', 118) + "\n\n"
+    generatedZone3 += "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,

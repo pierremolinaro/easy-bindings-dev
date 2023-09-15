@@ -60,9 +60,9 @@ map @astAutoLayoutViewFunctionMap {
 #·······················································································································
 
 override proc @autoLayoutViewClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  !?ioGraph.addNode (!self.mClassName, !self)
+  !?ioGraph.addNode (self.mClassName, self)
   if self.mSuperClassName.string != "" then
-    !?ioGraph.addEdge (!self.mClassName, !self.mSuperClassName)
+    !?ioGraph.addEdge (self.mClassName, self.mSuperClassName)
   end
 }
 
@@ -84,9 +84,9 @@ syntax extension easyBindings_syntax {
     $vStack$
     $func$
     $identifier$ (?let functionName)
-    <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
+    <autolayout_formal_parameter_list> (functionName, ?let parameterList, ?let mangledName)
     $;$
-    !?ioDeclarationAST.mAutoLayoutVStackFunctionMap.insertKey (!mangledName, !parameterList)
+    !?ioDeclarationAST.mAutoLayoutVStackFunctionMap.insertKey (mangledName, parameterList)
   }
   
  #·····················································································································
@@ -95,9 +95,9 @@ syntax extension easyBindings_syntax {
     $hStack$
     $func$
     $identifier$ (?let functionName)
-    <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
+    <autolayout_formal_parameter_list> (functionName, ?let parameterList, ?let mangledName)
     $;$
-    !?ioDeclarationAST.mAutoLayoutHStackFunctionMap.insertKey (!mangledName, !parameterList)
+    !?ioDeclarationAST.mAutoLayoutHStackFunctionMap.insertKey (mangledName, parameterList)
   }
   
   #·····················································································································
@@ -117,7 +117,7 @@ syntax extension easyBindings_syntax {
     select
       parameterList = {}
     or
-      <autolayout_formal_parameter_list> (!"".nowhere (), ?parameterList, ?*)
+      <autolayout_formal_parameter_list> ("".nowhere (), ?parameterList, ?*)
     end
     let @lstring superClassName
     select
@@ -154,29 +154,29 @@ syntax extension easyBindings_syntax {
     while
       $func$
       $identifier$ (?let functionName)
-      <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
-      !?astAutoLayoutViewFunctionMap.insertKey (!mangledName, !parameterList)
+      <autolayout_formal_parameter_list> (functionName, ?let parameterList, ?let mangledName)
+      !?astAutoLayoutViewFunctionMap.insertKey (mangledName, parameterList)
     while
-      <auto_layout_view_binding_specification> (!outletClassName, !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
+      <auto_layout_view_binding_specification> (outletClassName, !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST (
-      !outletClassName,
-      !userDefined,
-      !superClassName,
-      !hasRunAction,
-      !hasEnabled,
-      !handlesTableViewBinding,
-      !handlesGraphicControllerBinding,
-      !hasHidden,
-      !parameterList,
-      !astAutoLayoutViewFunctionMap
+      outletClassName,
+      userDefined,
+      superClassName,
+      hasRunAction,
+      hasEnabled,
+      handlesTableViewBinding,
+      handlesGraphicControllerBinding,
+      hasHidden,
+      parameterList,
+      astAutoLayoutViewFunctionMap
     )
  }
 
  #·····················································································································
   
-  rule <autolayout_formal_parameter_list> (?let @lstring inFunctionName,
+  rule <autolayout_formal_parameter_list> (let @lstring inFunctionName,
                                           !@autoLayoutClassParameterList ioParameterList,
                                           !@lstring outMangledName) {
     ioParameterList = {}
@@ -217,7 +217,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
     mangledName += ")"
-    outMangledName = .new (!mangledName, inFunctionName.location)
+    outMangledName = .new (mangledName, inFunctionName.location)
   }
 
   #·····················································································································
@@ -234,20 +234,20 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
 {
   if self.mSuperClassName.string == "" then
     !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
-      !self.mClassName,
-      !"".nowhere (),  # No super class
-      !self.mHasRunAction,
-      !self.mHandlesTableValueBinding,
-      !self.mHasEnabled,
-      !self.mHasHidden,
-      !self.mHandlesGraphicControllerBinding,
-      !self.mUserDefined,
-      !self.mParameterList,
-      !self.mAutoLayoutViewFunctionMap
+      self.mClassName,
+      "".nowhere (),  # No super class
+      self.mHasRunAction,
+      self.mHandlesTableValueBinding,
+      self.mHasEnabled,
+      self.mHasHidden,
+      self.mHandlesGraphicControllerBinding,
+      self.mUserDefined,
+      self.mParameterList,
+      self.mAutoLayoutViewFunctionMap
     )
   else
     [ioSemanticContext.mAutolayoutViewClassMap searchKey
-      !self.mSuperClassName,
+      self.mSuperClassName,
       ?*,
       ?let hasRunAction,
       ?let handlesTableValueBinding,
@@ -273,16 +273,16 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
     end
   #---
     !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
-      !self.mClassName,
-      !self.mSuperClassName,
-      !self.mHasRunAction | hasRunAction,
-      !self.mHandlesTableValueBinding | handlesTableValueBinding,
-      !self.mHasEnabled | hasEnabled,
-      !self.mHasHidden | hasHidden,
-      !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding,
-      !self.mUserDefined,
-      !self.mParameterList,
-      !self.mAutoLayoutViewFunctionMap
+      self.mClassName,
+      self.mSuperClassName,
+      self.mHasRunAction | hasRunAction,
+      self.mHandlesTableValueBinding | handlesTableValueBinding,
+      self.mHasEnabled | hasEnabled,
+      self.mHasHidden | hasHidden,
+      self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding,
+      self.mUserDefined,
+      self.mParameterList,
+      self.mAutoLayoutViewFunctionMap
     )
   end
 }

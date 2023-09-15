@@ -18,9 +18,9 @@ class @entityDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  !?ioGraph.addNode (!self.mClassName, !self)
+  !?ioGraph.addNode (self.mClassName, self)
   if self.mSuperEntityName.string != "" then
-    !?ioGraph.addEdge (!self.mClassName, !self.mSuperEntityName)
+    !?ioGraph.addEdge (self.mClassName, self.mSuperEntityName)
   end
 }
 
@@ -90,17 +90,17 @@ syntax extension easyBindings_syntax {
     var @lstringlist graphicOptionArray = {}
     repeat
     while
-      <simple_stored_declaration> (!entityName, !?simpleStoredPropertyList, !?signatureList, !?ioDeclarationAST)
+      <simple_stored_declaration> (entityName, !?simpleStoredPropertyList, !?signatureList, !?ioDeclarationAST)
     while
-      <transient_declaration> (!entityName, !"".nowhere (), !?ioDeclarationAST)
+      <transient_declaration> (entityName, "".nowhere (), !?ioDeclarationAST)
     while
-      <toMany_relationship> (!entityName, !?signatureList, !?ioDeclarationAST)
+      <toMany_relationship> (entityName, !?signatureList, !?ioDeclarationAST)
     while
-      <toOne_relationship> (!entityName ,!?ioDeclarationAST)
+      <toOne_relationship> (entityName ,!?ioDeclarationAST)
     while
       <action_declaration> (!?actionDeclarationList)
     while
-      <controller_declaration> (!entityName, !"".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
+      <controller_declaration> (entityName, "".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
     while
       <extern_swift_delegate> (!?externSwiftDelegateList)
     while
@@ -114,34 +114,34 @@ syntax extension easyBindings_syntax {
     end
     $}$
     ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST (
-      !entityName,
-      !isAbstract,
-      !superEntityName,
-      !handlingOpposite,
-      !simpleStoredPropertyList,
-      !signatureList,
-      !actionDeclarationList,
-      !obsoleteEntityNames,
-      !graphicEntity,
-      !externSwiftDelegateList,
-      !graphicOptionArray
+      entityName,
+      isAbstract,
+      superEntityName,
+      handlingOpposite,
+      simpleStoredPropertyList,
+      signatureList,
+      actionDeclarationList,
+      obsoleteEntityNames,
+      graphicEntity,
+      externSwiftDelegateList,
+      graphicOptionArray
     )
     if isAbstract && graphicEntity then
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
-        !entityName,
-        !"".here (),
-        !"EBShape".here (),
-        !"selectionDisplay".here (),
-        !{},
-        !false
+        entityName,
+        "".here (),
+        "EBShape".here (),
+        "selectionDisplay".here (),
+        {},
+        false
       )
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
-        !entityName,
-        !"".here (),
-        !"EBShape".here (),
-        !"objectDisplay".here (),
-        !{},
-        !false
+        entityName,
+        "".here (),
+        "EBShape".here (),
+        "objectDisplay".here (),
+        {},
+        false
       )
     end
  }
@@ -156,18 +156,18 @@ syntax extension easyBindings_syntax {
 
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
-  buildActionMap (!self.mActionDeclarationList, ?let @actionMap actionMap)
+  buildActionMap (self.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
-    !self.mClassName,
-    !.entity (
+    self.mClassName,
+    .entity (
       !superEntityName: self.mSuperEntityName.string,
       !isGraphic: self.mIsGraphicEntity,
       !isAbstract: self.mIsAbstract,
       !handlingOpposite: self.mHandlingOpposite
      ),
-    !{},
-    !actionMap,
-    !{}
+    {},
+    actionMap,
+    {}
   )
 }
 
@@ -178,14 +178,14 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
   if self.mSuperEntityName.string != "" then
   #--- Search for super entity property map
     [ioSemanticContext.mClassMap searchKey
-      !self.mSuperEntityName,
+      self.mSuperEntityName,
       ?*,
       ?let @propertyMap inheritedPropertyMap,
       ?2*
     ]  
   #--- Search for current entity property map
     [ioSemanticContext.mClassMap searchKey
-      !self.mClassName,
+      self.mClassName,
       ?*,
       ?let @propertyMap propertyMap,
       ?2*
@@ -197,10 +197,10 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 #    end
     for (lkey kind actionMap isOverriding) in propertyMap do
       if isOverriding then
-        [inheritedPropertyMap searchKey !lkey, ?3*]
+        [inheritedPropertyMap searchKey lkey, ?3*]
       else
 #        message "  insert '" + lkey + "'\n"
-        !?newPropertyMap.insertKey (!lkey, !kind, !actionMap, !false)
+        !?newPropertyMap.insertKey (lkey, kind, actionMap, false)
       end
     end
   #--- Replace property map
@@ -217,7 +217,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
   [ioSemanticContext.mClassMap searchKey
-    !self.mClassName,
+    self.mClassName,
     ?*,
     ?let @propertyMap propertyMap,
     ?*,
@@ -227,7 +227,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   var @stringset overridenTransients = {}
   if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
-      !self.mSuperEntityName,
+      self.mSuperEntityName,
       ?let @classKind superClassKind,
       ?let @propertyMap superPropertyMap,
       ?2*
@@ -248,7 +248,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
           if superProperty.isAbstract () then
             if propertyMap.hasKey (superProperty.lkey.string) then
               overridenTransients += !superProperty.lkey.string
-              [propertyMap searchKey !superProperty.lkey, ?let @propertyKind propertyKind, ?2*]
+              [propertyMap searchKey superProperty.lkey, ?let @propertyKind propertyKind, ?2*]
               let typeName = propertyKind.typeName ()
               let superTypeName = superProperty.mKind.typeName ()
               if typeName != superTypeName then
@@ -300,18 +300,18 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     !self.mClassName.string
     !self.mObsoleteEntityNames
   ioGeneration.mFileGenerationList += !@entityForGeneration (
-    !self.mClassName.string,
-    !self.mSuperEntityName.string,
-    !self.mHandlingOpposite,
-    !propertyGenerationList,
-    !self.mSignatureList,
-    !self.mIsGraphicEntity,
-    !self.mIsAbstract,
-    !overridenTransients,
-    !self.mExternSwiftDelegateList,
-    !hasSubClass,
-    !canCopyAndPaste_option,
-    !cannotBeDeleted_option
+    self.mClassName.string,
+    self.mSuperEntityName.string,
+    self.mHandlingOpposite,
+    propertyGenerationList,
+    self.mSignatureList,
+    self.mIsGraphicEntity,
+    self.mIsAbstract,
+    overridenTransients,
+    self.mExternSwiftDelegateList,
+    hasSubClass,
+    canCopyAndPaste_option,
+    cannotBeDeleted_option
   )
 }
 
@@ -343,8 +343,8 @@ list @entityListForGeneratingEBManagedObjectContext {
 
 #·······················································································································
 
-override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
-    ?let @generationStruct inGenerationStruct,
+override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
+    let @generationStruct inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   var @atomicPropertyGenerationList atomicPropertyGenerationList = {}
   var @transientPropertyGenerationList transientPropertyGenerationList = {}
@@ -381,49 +381,49 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   var s = filewrapper [entityGenerationTemplate.entityImplementationInSwift:
     self.mEntityName,
     superEntityName,
-    !self.mPropertyGenerationList,
-    !proxyGenerationList,
-    !toManyProxyGenerationList,
-    !atomicPropertyGenerationList,
-    !transientPropertyGenerationList,
-    !computedPropertyGenerationList,
-    !toOnePropertyGenerationList,
-    !toManyPropertyGenerationList,
-    !self.mSignatureSet,
-    !self.mIsGraphicEntity,
-    !self.mIsAbstract,
-    !self.mOverridenTransients,
-    !self.mExternSwiftDelegateList,
-    !self.mHasSubEntity,
-    !self.mCanCopyAndPaste_option,
-    !self.mCannotBeDeleted_option,
-    !inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName)
+    self.mPropertyGenerationList,
+    proxyGenerationList,
+    toManyProxyGenerationList,
+    atomicPropertyGenerationList,
+    transientPropertyGenerationList,
+    computedPropertyGenerationList,
+    toOnePropertyGenerationList,
+    toManyPropertyGenerationList,
+    self.mSignatureSet,
+    self.mIsGraphicEntity,
+    self.mIsAbstract,
+    self.mOverridenTransients,
+    self.mExternSwiftDelegateList,
+    self.mHasSubEntity,
+    self.mCanCopyAndPaste_option,
+    self.mCannotBeDeleted_option,
+    inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName)
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !s
+    inOutputDirectory,
+    fileName,
+    s
   )
   if inGenerationStruct.mToOneClassImplementations.hasKey (self.mEntityName) then
     s = filewrapper [entityGenerationTemplate.entityToOneImplementationInSwift:
-      !self.mEntityName,
-      !superEntityName,
-      !self.mHandlingOpposite,
-      !self.mPropertyGenerationList,
-      !proxyGenerationList,
-      !toManyProxyGenerationList,
-      !atomicPropertyGenerationList,
-      !transientPropertyGenerationList,
-      !computedPropertyGenerationList,
-      !toOnePropertyGenerationList,
-      !toManyPropertyGenerationList,
-      !self.mSignatureSet,
-      !self.mIsGraphicEntity,
-      !self.mIsAbstract,
-      !self.mOverridenTransients,
-      !self.mExternSwiftDelegateList
+      self.mEntityName,
+      superEntityName,
+      self.mHandlingOpposite,
+      self.mPropertyGenerationList,
+      proxyGenerationList,
+      toManyProxyGenerationList,
+      atomicPropertyGenerationList,
+      transientPropertyGenerationList,
+      computedPropertyGenerationList,
+      toOnePropertyGenerationList,
+      toManyPropertyGenerationList,
+      self.mSignatureSet,
+      self.mIsGraphicEntity,
+      self.mIsAbstract,
+      self.mOverridenTransients,
+      self.mExternSwiftDelegateList
     ]
   else
     s = "// Unused code, not generated by EasyBinding compiler\n"
@@ -431,33 +431,33 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   fileName = "toone-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !s
+    inOutputDirectory,
+    fileName,
+    s
   )
   if inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName) then
     s = filewrapper [entityGenerationTemplate.entityToManyImplementationInSwift:
-      !self.mEntityName,
-      !superEntityName,
-      !self.mHandlingOpposite,
-      !self.mPropertyGenerationList,
-      !proxyGenerationList,
-      !toManyProxyGenerationList,
-      !atomicPropertyGenerationList,
-      !transientPropertyGenerationList,
-      !computedPropertyGenerationList,
-      !toOnePropertyGenerationList,
-      !toManyPropertyGenerationList,
-      !self.mSignatureSet,
-      !self.mIsGraphicEntity,
-      !self.mIsAbstract,
-      !self.mOverridenTransients,
-      !self.mExternSwiftDelegateList,
-      !inGenerationStruct.mGenerateClass_PreferencesArrayOf_.hasKey (self.mEntityName),
-      !inGenerationStruct.mGenerateClass_ProxyArrayOf_.hasKey (self.mEntityName),
-      !inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_.hasKey (self.mEntityName),
-      !inGenerationStruct.mGenerateClass_TransientArrayOf_.hasKey (self.mEntityName),
-      !inGenerationStruct.mGenerateClass_StoredArrayOf_.hasKey (self.mEntityName)
+      self.mEntityName,
+      superEntityName,
+      self.mHandlingOpposite,
+      self.mPropertyGenerationList,
+      proxyGenerationList,
+      toManyProxyGenerationList,
+      atomicPropertyGenerationList,
+      transientPropertyGenerationList,
+      computedPropertyGenerationList,
+      toOnePropertyGenerationList,
+      toManyPropertyGenerationList,
+      self.mSignatureSet,
+      self.mIsGraphicEntity,
+      self.mIsAbstract,
+      self.mOverridenTransients,
+      self.mExternSwiftDelegateList,
+      inGenerationStruct.mGenerateClass_PreferencesArrayOf_.hasKey (self.mEntityName),
+      inGenerationStruct.mGenerateClass_ProxyArrayOf_.hasKey (self.mEntityName),
+      inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_.hasKey (self.mEntityName),
+      inGenerationStruct.mGenerateClass_TransientArrayOf_.hasKey (self.mEntityName),
+      inGenerationStruct.mGenerateClass_StoredArrayOf_.hasKey (self.mEntityName)
     ]
   else
     s = "// Unused code, not generated by EasyBinding compiler\n"
@@ -465,17 +465,17 @@ override proc @entityForGeneration.generateCode (?let @string inOutputDirectory,
   fileName = "tomany-" + self.mEntityName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
-    !inOutputDirectory,
-    !fileName,
-    !s
+    inOutputDirectory,
+    fileName,
+    s
   )
 }
 
 #·······················································································································
 
 proc generateEBManagedObjectContext(
-  ?let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
-  ?let @string inOutputDirectory,
+  let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
+  let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet)
 {
   if inEntityListForGeneration.length () > 0 then
@@ -483,9 +483,9 @@ proc generateEBManagedObjectContext(
     ioGeneratedFileSet += !fileName
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]
     @string.generateFile (
-      !inOutputDirectory,
-      !fileName,
-      !s
+      inOutputDirectory,
+      fileName,
+      s
     )
   end
 }

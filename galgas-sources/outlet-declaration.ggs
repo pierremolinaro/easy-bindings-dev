@@ -94,7 +94,7 @@ syntax extension easyBindings_syntax {
       end
       let @lstring runTargetName
       select
-        runTargetName = @lstring (!"self", .here)
+        runTargetName = @lstring ("self", .here)
       or
         $controllerName$ (?runTargetName)
         $.$
@@ -181,15 +181,15 @@ list @ebViewGraphicControllerBindingGenerationList {
 #·······················································································································
 
 proc analyzeOutlets(
-  ?let @bool inPreferences,
-  ?let @propertyMap inRootObservablePropertyMap,
-  ?let @propertyMap inPreferencesPropertyMap,
-  ?let @string unused inRootEntityName,
-  ?let @semanticContext inSemanticContext,
-  ?let @outletDeclarationList inOutletDeclarationList,
-  ?let @propertyMap inObservablePropertyMap,
-  ?let @actionMap inActionMap,
-  ?let @string inReceiverSwiftTypeName,
+  let @bool inPreferences,
+  let @propertyMap inRootObservablePropertyMap,
+  let @propertyMap inPreferencesPropertyMap,
+  let @string unused inRootEntityName,
+  let @semanticContext inSemanticContext,
+  let @outletDeclarationList inOutletDeclarationList,
+  let @propertyMap inObservablePropertyMap,
+  let @actionMap inActionMap,
+  let @string inReceiverSwiftTypeName,
   ?!@generationStruct ioGeneration,
   !@regularBindingsGenerationList outRegularBindingsGenerationList,
   !@multipleBindingGenerationList outMultipleBindingGenerationList,
@@ -205,9 +205,9 @@ proc analyzeOutlets(
   outTableViewBindingGenerationList = {}
   outEBViewGraphicControllerBindingGenerationList = {}
   for (outlet_mOutletTypeName outlet_mOutletName outlet_mTableValueBindingDescriptor outlet_mRunDescriptor outlet_mEnabledBindingDescriptor outlet_mHiddenBindingDescriptor outlet_mRegularBindingList outlet_mGraphicController) in inOutletDeclarationList do
-    !?outletMap.insertKey (!outlet_mOutletName, !outlet_mOutletTypeName.string)
+    !?outletMap.insertKey (outlet_mOutletName, outlet_mOutletTypeName.string)
     [inSemanticContext.mOutletClassMap searchKey
-      !outlet_mOutletTypeName,
+      outlet_mOutletTypeName,
       ?*,
       ?let @bool handlesRunAction,
       ?let @bool handlesTableViewBinding,
@@ -227,7 +227,7 @@ proc analyzeOutlets(
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
       else
         [inObservablePropertyMap searchKey
-          !controllerName,
+          controllerName,
           ?let @propertyKind kind,
           ?2*
         ]
@@ -245,12 +245,12 @@ proc analyzeOutlets(
             end
           else
             [inSemanticContext.mClassMap searchKey
-              !entityName,
+              entityName,
               ?*,
               ?let observablePropertyMap,
               ?2*
             ]
-            [observablePropertyMap searchKey !propertyName, ?let propertyKind, ?2*]
+            [observablePropertyMap searchKey propertyName, ?let propertyKind, ?2*]
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
@@ -280,7 +280,7 @@ proc analyzeOutlets(
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding"
       else
         [inObservablePropertyMap searchKey
-          !controllerName,
+          controllerName,
           ?let @propertyKind unused kind,
           ?2*
         ]
@@ -297,7 +297,7 @@ proc analyzeOutlets(
       if not handlesRunAction then
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
       elsif target.string == "self" then
-        [inActionMap searchKey !action]
+        [inActionMap searchKey action]
         outTargetActionList +=
           !outlet_mOutletName.string
           !"self"
@@ -305,12 +305,12 @@ proc analyzeOutlets(
           !inReceiverSwiftTypeName
       else # It is a controller
         [inObservablePropertyMap searchKey
-          !target,
+          target,
           ?*,
           ?let @actionMap controllerActionMap,
           ?*
         ]
-        [controllerActionMap searchKey !action]
+        [controllerActionMap searchKey action]
         outTargetActionList +=
           !outlet_mOutletName.string
           !if inPreferences then "preferences_" else "" end + target.string
@@ -324,10 +324,10 @@ proc analyzeOutlets(
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
         !prefs: inPreferences,
-        !inRootObservablePropertyMap,
-        !inSemanticContext,
-        !inObservablePropertyMap,
-        !inPreferencesPropertyMap,
+        inRootObservablePropertyMap,
+        inSemanticContext,
+        inObservablePropertyMap,
+        inPreferencesPropertyMap,
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression,
         ?let @typeKind type,
         ?let @location errorLocation
@@ -349,10 +349,10 @@ proc analyzeOutlets(
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
         !prefs: inPreferences,
-        !inRootObservablePropertyMap,
-        !inSemanticContext,
-        !inObservablePropertyMap,
-        !inPreferencesPropertyMap,
+        inRootObservablePropertyMap,
+        inSemanticContext,
+        inObservablePropertyMap,
+        inPreferencesPropertyMap,
         ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
         ?let @typeKind type,
         ?let @location errorLocation
@@ -370,14 +370,14 @@ proc analyzeOutlets(
     end
   #---------------------------------- Regular bindings
     analyzeRegularBinding (
-      !inRootObservablePropertyMap,
-      !inPreferencesPropertyMap,
-      !inSemanticContext,
-      !inObservablePropertyMap,
-      !outlet_mOutletTypeName,
-      !outlet_mOutletName.string,
-      !outlet_mRegularBindingList,
-      !if inPreferences then "preferences_" else "self." end,
+      inRootObservablePropertyMap,
+      inPreferencesPropertyMap,
+      inSemanticContext,
+      inObservablePropertyMap,
+      outlet_mOutletTypeName,
+      outlet_mOutletName.string,
+      outlet_mRegularBindingList,
+      if inPreferences then "preferences_" else "self." end,
       !?outRegularBindingsGenerationList
     )
   end
@@ -386,14 +386,14 @@ proc analyzeOutlets(
 #·······················································································································
 
 proc analyzeRegularBinding(
-  ?let @propertyMap inRootPropertyMap,
-  ?let @propertyMap inPreferencesPropertyMap,
-  ?let @semanticContext inSemanticContext,
-  ?let @propertyMap inBoundModelPropertyMap,
-  ?let @lstring inOutletTypeName,
-  ?let @string inOutletName,
-  ?let @regularBindingList inRegularBindingList,
-  ?let @string inSelfSwiftName,
+  let @propertyMap inRootPropertyMap,
+  let @propertyMap inPreferencesPropertyMap,
+  let @semanticContext inSemanticContext,
+  let @propertyMap inBoundModelPropertyMap,
+  let @lstring inOutletTypeName,
+  let @string inOutletName,
+  let @regularBindingList inRegularBindingList,
+  let @string inSelfSwiftName,
   ?!@regularBindingsGenerationList ioRegularBindingsGenerationList)
 {
   for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
@@ -402,9 +402,9 @@ proc analyzeRegularBinding(
     var @boundObjectList boundModelListForGeneration = {}
     for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
-        !inRootPropertyMap,
-        !inSemanticContext,
-        !inBoundModelPropertyMap,
+        inRootPropertyMap,
+        inSemanticContext,
+        inBoundModelPropertyMap,
         ?let @propertyKind kind,
         ?let @string unused swiftTypeStringForTransientFunctionArgument,
         ?let @string unused defaultValueAsString
@@ -431,13 +431,13 @@ proc analyzeRegularBinding(
     loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
       continues = false
       [inSemanticContext.mBindingSpecificationMap searchKey
-        !outletTypeName,
+        outletTypeName,
         ?let superOutletClassName,
         ?let @outletBindingSpecificationMap bindingMap
       ]
       if bindingMap.hasKey (mBindingName.string) then
         [bindingMap searchKey
-          !mBindingName,
+          mBindingName,
           ?outletBindingSpecificationModelList,
           ?controllerBindingOptionDecoratedList
         ]
@@ -484,8 +484,8 @@ proc analyzeRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         [binding_mOptionValue analyzeDefaultValueType 
-          !{!controller_mOptionType},
-          !inPreferencesPropertyMap,
+          {!controller_mOptionType},
+          inPreferencesPropertyMap,
           ?let @string optionValueAsString
         ]
         bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString

@@ -29,13 +29,13 @@ func @propertyGeneration.bindPropertyInSelectionController() -> @string { result
 
 #·······················································································································
 
-abstract func @propertyGeneration.propertyDeclarationCode (?let @bool inPreferences,
-                                                           ?let @bool inGenerationDirectAccess,
-                                                           ?let @stringset inOverriddenTransients) -> @string
+abstract func @propertyGeneration.propertyDeclarationCode (let @bool inPreferences,
+                                                           let @bool inGenerationDirectAccess,
+                                                           let @stringset inOverriddenTransients) -> @string
 
 #·······················································································································
 
-abstract func @propertyGeneration.configurationCode (?let @bool inPreferences) -> @string
+abstract func @propertyGeneration.configurationCode (let @bool inPreferences) -> @string
 
 #·······················································································································
 

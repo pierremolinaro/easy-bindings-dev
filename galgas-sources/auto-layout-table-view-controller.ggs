@@ -30,20 +30,20 @@ class @autoLayoutTableViewControllerDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
-  !?ioGraph.addNode (!node, !self)
-  !?ioGraph.addEdge (!node, !self.mClassName)
+  let node = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
+  !?ioGraph.addNode (node, self)
+  !?ioGraph.addEdge (node, self.mClassName)
   if not self.mIsRoot then
-    !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   elsif self.mRootEntityName.string != "" then
-    !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
 #·······················································································································
 
 override func @autoLayoutTableViewControllerDeclarationAST.nodeKey() -> @lstring {
-  result = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
+  result = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -55,8 +55,8 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <controller_declaration>(
-            ?let @lstring inCurrentEntity,
-            ?let @lstring inRootEntity,
+            let @lstring inCurrentEntity,
+            let @lstring inRootEntity,
             ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
@@ -117,13 +117,13 @@ syntax extension easyBindings_syntax {
       $}$
     end
     ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutTableViewControllerDeclarationAST (
-      !inCurrentEntity,
-      !controllerName,
-      !isRoot,
-      !inRootEntity,
-      !relationshipName,
-      !arrayControllerBoundColumnListAST,
-      !arrayControllerAttributListAST
+      inCurrentEntity,
+      controllerName,
+      isRoot,
+      inRootEntity,
+      relationshipName,
+      arrayControllerBoundColumnListAST,
+      arrayControllerAttributListAST
     )
   }
 
@@ -144,8 +144,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   do
     let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
     if self.mIsRoot then
-      [ioSemanticContext.mClassMap searchKey !self.mRootEntityName, ?*, ?let rootProperties, ?2*]
-      [rootProperties searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
+      [ioSemanticContext.mClassMap searchKey self.mRootEntityName, ?*, ?let rootProperties, ?2*]
+      [rootProperties searchKey self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -154,12 +154,12 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
+        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     #--- Code Generation
       mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
-        !self.mControllerName.string,
-        !"rootObject." + self.mToManyPropertyName,
-        !self.mClassName
+        self.mControllerName.string,
+        "rootObject." + self.mToManyPropertyName,
+        self.mClassName
       )
       case toOne (5*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -169,7 +169,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         error self.mRootEntityName : "a toMany relationship is required here"
       end
     else
-      [mPropertyMap searchKey !self.mToManyPropertyName, ?let classKind, ?2*]
+      [mPropertyMap searchKey self.mToManyPropertyName, ?let classKind, ?2*]
       switch classKind
       case property (2*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -178,12 +178,12 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
+        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     #--- Code Generation
       mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
-        !self.mControllerName.string,
-        !self.mToManyPropertyName,
-        !self.mClassName
+        self.mControllerName.string,
+        self.mToManyPropertyName,
+        self.mClassName
       )
       case toOne (5*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -205,7 +205,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   [ioSemanticContext.mClassMap searchKey
-    !.new (!preferencesName (), .nowhere),
+    .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
@@ -223,7 +223,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     else
       definedAttributes += !name.string
     end
-    [value analyzeDefaultValueType !allowedTypes, !preferencesPropertyMap, ?let valueAsString]
+    [value analyzeDefaultValueType allowedTypes, preferencesPropertyMap, ?let valueAsString]
     attributeListForGeneration += !name.string !valueAsString
   end
   for s in attributes do
@@ -235,21 +235,21 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   let @propertyMap boundModelPropertyMap
   if self.mIsRoot then
     [ioSemanticContext.mClassMap searchKey
-       !self.mRootEntityName,
+       self.mRootEntityName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
      ]
   else
     [ioSemanticContext.mClassMap searchKey
-       !self.mClassName,
+       self.mClassName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
      ]  
   end
   [boundModelPropertyMap searchKey
-     !self.mToManyPropertyName,
+     self.mToManyPropertyName,
      ?let @propertyKind boundModelClassKind,
      ?2*
   ]
@@ -270,7 +270,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey !typeName, ?*, ?propertyMap, ?*, ?*]
+    [ioSemanticContext.mClassMap searchKey typeName, ?*, ?propertyMap, ?*, ?*]
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"
@@ -326,9 +326,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
           error actualName : "required argument name: " + formalName
         end
         if let [formalType typeEnum ?name: let enumTypeName], let [actualType typeEnum ?name: let constantName] then
-          [ioSemanticContext.mClassMap searchKey !enumTypeName, ?let typeKind, ?3*]
+          [ioSemanticContext.mClassMap searchKey enumTypeName, ?let typeKind, ?3*]
           if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
-            [constantMap searchKey !constantName, ?*]
+            [constantMap searchKey constantName, ?*]
           else
             error enumTypeName : "this type name is not an enum"
           end
@@ -345,7 +345,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   #--- Sorted ?
     if sortPropertyName.string != "" then
       [propertyMap searchKey
-        !sortPropertyName,
+        sortPropertyName,
         ?let sortPropertyKind,
         ?2*
       ]
@@ -359,7 +359,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     end
   #-------- Column generation
     [propertyMap searchKey
-      !propertyName,
+      propertyName,
       ?let propertyKind,
       ?2*
     ]
@@ -382,16 +382,16 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   end
 #---
   ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration (
-    !self.mClassName,
-    !self.mControllerName,
-    !modelString,
-    !arrayControllerBoundColumnListForGeneration,
-    !arrayControllerSortedColumnListForGeneration,
-    !"ReadWriteArrayOf_" + elementTypeName,
-    !arrayControllerModelKind,
-    !elementTypeName,
-    !graphic,
-    !attributeListForGeneration
+    self.mClassName,
+    self.mControllerName,
+    modelString,
+    arrayControllerBoundColumnListForGeneration,
+    arrayControllerSortedColumnListForGeneration,
+    "ReadWriteArrayOf_" + elementTypeName,
+    arrayControllerModelKind,
+    elementTypeName,
+    graphic,
+    attributeListForGeneration
   )
   ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
   ioGeneration.mGenerateClass_TransientArrayOf_ += !elementTypeName
@@ -410,26 +410,26 @@ class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
 #·······················································································································
 
 override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarationCode(
-   ?let @bool inPreferences,
-   ?let @bool unused inGenerationDirectAccess,
-   ?let @stringset unused inOverriddenTransients) -> @string
+   let @bool inPreferences,
+   let @bool unused inGenerationDirectAccess,
+   let @stringset unused inOverriddenTransients) -> @string
 {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "//   Table View controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  (!'·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
 
 #·······················································································································
 
-override func @autoLayoutTableViewControllerPropertyGeneration.configurationCode (?let @bool inPreferences) -> @string {
+override func @autoLayoutTableViewControllerPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    " + prefix + self.mPropertyName + ".bind_model (" + prefix + self.mModelString + "_property, self.undoManager)\n"
@@ -515,8 +515,8 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generati
 #-----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerGeneration.generateCode(
-    ?let @string inOutputDirectory,
-    ?let @generationStruct unused inGenerationStruct,
+    let @string inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = {}
@@ -524,21 +524,21 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     observedProperties += !mObservablePropertyForSorting
   end
   let s = filewrapper [autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation:
-    !self.mOwnerName,
-    !self.mControllerName,
-    !self.mModelString,
-    !self.mTableViewControllerModelKind,
-    !self.mModelTypeName,
-    !self.mTableViewControllerBoundColumnListForGeneration,
-    !self.mTableViewControllerSortedColumnListForGeneration,
-    !self.mElementTypeName,
-    !observedProperties,
-    !self.mAttributeListForGeneration
+    self.mOwnerName,
+    self.mControllerName,
+    self.mModelString,
+    self.mTableViewControllerModelKind,
+    self.mModelTypeName,
+    self.mTableViewControllerBoundColumnListForGeneration,
+    self.mTableViewControllerSortedColumnListForGeneration,
+    self.mElementTypeName,
+    observedProperties,
+    self.mAttributeListForGeneration
   ]
   @string.generateFile (
-    !inOutputDirectory,
-    !"controller-table-view-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
-    !s
+    inOutputDirectory,
+    "controller-table-view-" + self.mOwnerName + "-" +  self.mControllerName + ".swift",
+    s
   )
 }
 

@@ -59,8 +59,8 @@ graph @declarationPrecedenceGraph (@declarationListAST) {
 #-----------------------------------------------------------------------------------------------------------------------
 
 proc sortProperties(
-      ?let @string inSourceFile,
-      ?let @declarationListAST inDeclarationListAST,
+      let @string inSourceFile,
+      let @declarationListAST inDeclarationListAST,
       !@declarationListAST outSortedDeclarationListAST)
 {
 #------------------------ Enter declarations in graph
@@ -72,7 +72,7 @@ proc sortProperties(
   if option easyBindings_options [outputDeclarationDependencyGraph.value] then
     let s = declarationPrecedenceGraph.graphviz ()
     let path = inSourceFile + ".declarationDependancy.dot"
-    [s writeToFileWhenDifferentContents !path, ?*]
+    [s writeToFileWhenDifferentContents path, ?*]
   end
 #------------------------  Get ordered declaration list
   outSortedDeclarationListAST = {}
