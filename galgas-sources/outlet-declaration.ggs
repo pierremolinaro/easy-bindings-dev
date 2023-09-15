@@ -205,7 +205,7 @@ proc analyzeOutlets(
   outTableViewBindingGenerationList = {}
   outEBViewGraphicControllerBindingGenerationList = {}
   for (outlet_mOutletTypeName outlet_mOutletName outlet_mTableValueBindingDescriptor outlet_mRunDescriptor outlet_mEnabledBindingDescriptor outlet_mHiddenBindingDescriptor outlet_mRegularBindingList outlet_mGraphicController) in inOutletDeclarationList do
-    [!?outletMap insertKey !outlet_mOutletName, !outlet_mOutletTypeName.string]
+    !?outletMap.insertKey (!outlet_mOutletName, !outlet_mOutletTypeName.string)
     [inSemanticContext.mOutletClassMap searchKey
       !outlet_mOutletTypeName,
       ?*,

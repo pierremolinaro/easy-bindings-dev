@@ -21,7 +21,7 @@ class @prefsDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @prefsDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName, !self]
+  !?ioGraph.addNode (!self.mClassName, !self)
 }
 
 #·······················································································································
@@ -93,13 +93,13 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   buildActionMap (!self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
-  [!?ioSemanticContext.mClassMap insertKey
+  !?ioSemanticContext.mClassMap.insertKey (
     !.new (!preferencesName (), .here),
     !.prefs,
     !{},
     !actionMap,
     !{}
-  ]
+  )
   for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration (
       !self.mClassName.string,
@@ -121,7 +121,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   let @stringset availableCallers = {!"awakeFromNib", !"init"}
   var @externFunctionMap externFunctionMap = {}
   for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
-    [!?externFunctionMap insertKey !mExternSwiftFunctionName]
+    !?externFunctionMap.insertKey (!mExternSwiftFunctionName)
     if not availableCallers.hasKey (mCallerName.string) then
       var s = "invalid caller; available callers:"
       for (str) in availableCallers do
@@ -164,7 +164,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutConfiguratorMap configuratorMap = {}
   var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
-    [!?viewDeclarationMap insertKey !viewName]
+    !?viewDeclarationMap.insertKey (!viewName)
     [viewDeclaration checkView
       !viewName,
       !viewDeclarationMap,

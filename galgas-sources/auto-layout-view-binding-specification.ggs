@@ -136,17 +136,17 @@ proc buildAutoLayoutBindingSpecificationMap(
     var @autoLayoutViewBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
     if ioSemanticContext.mAutoLayoutBindingSpecificationMap.hasKey (mOutletClassName.string) then
-      [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap removeKey !mOutletClassName, ?outletSuperClassName, ?bindingMap]
+      !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.removeKey (!mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
       bindingMap = {}
       [ioSemanticContext.mAutolayoutViewClassMap searchKey !mOutletClassName, ?outletSuperClassName, ?8*]
     end
-    [!?bindingMap insertKey
+    !?bindingMap.insertKey (
       !mBindingName,
       !outletBindingSpecificationModelList,
       !controllerBindingOptionDecoratedList
-    ]
-    [!?ioSemanticContext.mAutoLayoutBindingSpecificationMap insertKey !mOutletClassName, !outletSuperClassName, !bindingMap]
+    )
+    !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.insertKey (!mOutletClassName, !outletSuperClassName, !bindingMap)
   end
 }
 

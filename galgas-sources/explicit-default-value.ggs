@@ -399,7 +399,7 @@ override proc @prefsAsDefaultValue.enterDefaultValuePrecedence(
    ?!@declarationPrecedenceGraph ioGraph)
 {
   let p = @lstring (!preferencesName () + " " + self.mPrefPropertyName.string, self.mPrefPropertyName.location)
-  [!?ioGraph addEdge !inNode, !p]
+  !?ioGraph.addEdge (!inNode, !p)
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

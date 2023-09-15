@@ -23,9 +23,9 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
-  [!?ioGraph addNode !node, !self]
-  [!?ioGraph addEdge !node, !self.mClassName]
-  [!?ioGraph addEdge !node, !self.mPropertyTypeName]
+  !?ioGraph.addNode (!node, !self)
+  !?ioGraph.addEdge (!node, !self.mClassName)
+  !?ioGraph.addEdge (!node, !self.mPropertyTypeName)
   [self.mDefaultValue enterDefaultValuePrecedence !node, !?ioGraph]
 }
 
@@ -135,7 +135,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     case prefs :
       error self.mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey !self.mPropertyName, !.property (!type: kind, !accessibility: .stored), !{}, !false]
+      !?mPropertyMap.insertKey (!self.mPropertyName, !.property (!type: kind, !accessibility: .stored), !{}, !false)
     #--- Analyze default value
       [self.mDefaultValue analyzeDefaultValueType !{!kind}, !preferencesPropertyMap, ?let @string swiftDefaultValueAsString]
     #--- Code Generation

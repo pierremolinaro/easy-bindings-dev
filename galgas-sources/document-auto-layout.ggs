@@ -44,8 +44,8 @@ list @autoLayoutOutletLinkerGenerationList {
 #·······················································································································
 
 override proc @autoLayoutDocumentDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName, !self]
-  [!?ioGraph addEdge !self.mClassName, !self.mRootEntityName]
+  !?ioGraph.addNode (!self.mClassName, !self)
+  !?ioGraph.addEdge (!self.mClassName, !self.mRootEntityName)
 }
 
 #·······················································································································
@@ -144,13 +144,13 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   buildActionMap (!self.mActionDeclarationList, ?let @actionMap actionMap)
-  [!?ioSemanticContext.mClassMap insertKey
+  !?ioSemanticContext.mClassMap.insertKey (
     !self.mClassName,
     !.document (!rootEntityName: self.mRootEntityName),
     !{},
     !actionMap,
     !{}
-  ]
+  )
   for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration (
       !self.mClassName.string,
@@ -238,7 +238,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutConfiguratorMap configuratorMap = {}
   var @autoLayoutOutletMap autoLayoutOutletMap = {}
   for (viewName viewDeclaration) in self.mViewDeclarationList do
-    [!?viewDeclarationMap insertKey !viewName]
+    !?viewDeclarationMap.insertKey (!viewName)
     [viewDeclaration checkView
       !viewName,
       !viewDeclarationMap,

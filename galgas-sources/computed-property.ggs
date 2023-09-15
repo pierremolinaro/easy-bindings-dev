@@ -14,57 +14,57 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
 
 override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
-  [!?ioGraph addNode !node, !self]
-  [!?ioGraph addEdge !node, !self.mClassName]
-  [!?ioGraph addEdge !node, !self.mComputedPropertyTypeName]
+  !?ioGraph.addNode (!node, !self)
+  !?ioGraph.addEdge (!node, !self.mClassName)
+  !?ioGraph.addEdge (!node, !self.mComputedPropertyTypeName)
   for dependency in self.mDependencyList do
     switch dependency.mObservableProperty
     case rootProperty (propertyName) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
+        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyWithOption (propertyName *) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location)]
+        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyRelationship (relationshipName *) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
+        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case rootPropertyNone (relationshipName) :
       if self.mRootEntityName.string != "" then
-        [!?ioGraph addEdge !node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location)]
+        !?ioGraph.addEdge (!node, !.new (!self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyWithOption (@lstring propertyName *) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyArray (@lstring propertyName *) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyObject (@lstring propertyName *) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyNone (@lstring propertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + propertyName, propertyName.location))
     case prefsProperty (@lstring propertyName) :
-      [!?ioGraph addEdge !node, !.new (!preferencesName () + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!preferencesName () + " " + propertyName, propertyName.location))
     case prefsPropertyWithOption (@lstring propertyName *) :
-      [!?ioGraph addEdge !node, !.new (!preferencesName () + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!preferencesName () + " " + propertyName, propertyName.location))
     case selfControllerProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerOneProperty (@lstring controllerName unused propertyName) :
-      [!?ioGraph addEdge !node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location)]
+      !?ioGraph.addEdge (!node, !.new (!self.mClassName.string  + " " + controllerName, controllerName.location))
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName @lstring propertyName) :
-      [!?ioGraph addEdge !node, !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!superEntityName.string + " " + propertyName, propertyName.location))
     case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
-      [!?ioGraph addEdge !node, !.new (!superEntityName.string + " " + propertyName, propertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!superEntityName.string + " " + propertyName, propertyName.location))
     end
   end
 }
@@ -134,12 +134,12 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
     case prefs :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      [!?mPropertyMap insertKey
+      !?mPropertyMap.insertKey (
         !self.mComputedPropertyName,
         !.property (!type: kind, !accessibility: .computed),
         !{},
         !false
-      ]
+      )
     case document (*) :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
     case entity (4*) :

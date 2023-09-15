@@ -24,13 +24,13 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
-  [!?ioGraph addNode !node, !self]
-  [!?ioGraph addEdge !node, !self.mClassName]
-  [!?ioGraph addEdge !node, !self.mDestinationEntityName]
+  !?ioGraph.addNode (!node, !self)
+  !?ioGraph.addEdge (!node, !self.mClassName)
+  !?ioGraph.addEdge (!node, !self.mDestinationEntityName)
   switch self.mOption
   case hasDependance (masterPropertyName) :
     let dependanceNode = @lstring (!self.mClassName.string + " " + masterPropertyName, masterPropertyName.location)
-    [!?ioGraph addEdge !node, !dependanceNode]
+    !?ioGraph.addEdge (!node, !dependanceNode)
   case hasOpposite (*) :
   case none :
   end
@@ -157,7 +157,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       if not handleOpposite, let [self.mOption hasOpposite ?oppositeName: *] then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
-      [!?mPropertyMap insertKey !self.mToManyRelationshipName, !kind, !{}, !false]
+      !?mPropertyMap.insertKey (!self.mToManyRelationshipName, !kind, !{}, !false)
     #--- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
     #--- Option

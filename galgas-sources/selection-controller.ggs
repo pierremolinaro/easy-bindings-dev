@@ -16,8 +16,8 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
     !self.mClassName.string + " " + self.mSelectionControllerName,
     !self.mSelectionControllerName.location
   )
-  [!?ioGraph addNode !node, !self]
-  [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location)]
+  !?ioGraph.addNode (!node, !self)
+  !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
 }
 
 #·······················································································································
@@ -83,7 +83,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
         error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
-      [!?mPropertyMap insertKey !self.mSelectionControllerName, !kind, !{}, !false]
+      !?mPropertyMap.insertKey (!self.mSelectionControllerName, !kind, !{}, !false)
       mPropertyGenerationList += !@selectionControllerPropertyGeneration (
         !self.mSelectionControllerName.string,
         !self.mClassName,

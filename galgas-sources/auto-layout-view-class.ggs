@@ -60,9 +60,9 @@ map @astAutoLayoutViewFunctionMap {
 #·······················································································································
 
 override proc @autoLayoutViewClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName, !self]
+  !?ioGraph.addNode (!self.mClassName, !self)
   if self.mSuperClassName.string != "" then
-    [!?ioGraph addEdge !self.mClassName, !self.mSuperClassName]
+    !?ioGraph.addEdge (!self.mClassName, !self.mSuperClassName)
   end
 }
 
@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
     $identifier$ (?let functionName)
     <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
     $;$
-    [!?ioDeclarationAST.mAutoLayoutVStackFunctionMap insertKey !mangledName, !parameterList]
+    !?ioDeclarationAST.mAutoLayoutVStackFunctionMap.insertKey (!mangledName, !parameterList)
   }
   
  #·····················································································································
@@ -97,7 +97,7 @@ syntax extension easyBindings_syntax {
     $identifier$ (?let functionName)
     <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
     $;$
-    [!?ioDeclarationAST.mAutoLayoutHStackFunctionMap insertKey !mangledName, !parameterList]
+    !?ioDeclarationAST.mAutoLayoutHStackFunctionMap.insertKey (!mangledName, !parameterList)
   }
   
   #·····················································································································
@@ -155,7 +155,7 @@ syntax extension easyBindings_syntax {
       $func$
       $identifier$ (?let functionName)
       <autolayout_formal_parameter_list> (!functionName, ?let parameterList, ?let mangledName)
-      [!?astAutoLayoutViewFunctionMap insertKey !mangledName, !parameterList]
+      !?astAutoLayoutViewFunctionMap.insertKey (!mangledName, !parameterList)
     while
       <auto_layout_view_binding_specification> (!outletClassName, !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
     end
@@ -233,7 +233,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct unused ioGeneration)
 {
   if self.mSuperClassName.string == "" then
-    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+    !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
       !self.mClassName,
       !"".nowhere (),  # No super class
       !self.mHasRunAction,
@@ -244,7 +244,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       !self.mUserDefined,
       !self.mParameterList,
       !self.mAutoLayoutViewFunctionMap
-    ]
+    )
   else
     [ioSemanticContext.mAutolayoutViewClassMap searchKey
       !self.mSuperClassName,
@@ -272,7 +272,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       error self.mClassName : "$graphicController binding already defined in superclass"
     end
   #---
-    [!?ioSemanticContext.mAutolayoutViewClassMap insertKey
+    !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
       !self.mClassName,
       !self.mSuperClassName,
       !self.mHasRunAction | hasRunAction,
@@ -283,7 +283,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       !self.mUserDefined,
       !self.mParameterList,
       !self.mAutoLayoutViewFunctionMap
-    ]
+    )
   end
 }
 

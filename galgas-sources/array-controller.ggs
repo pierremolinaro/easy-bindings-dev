@@ -26,15 +26,15 @@ enum @arrayControllerBoundModelAST {
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (!self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
-  [!?ioGraph addNode !node, !self]
-  [!?ioGraph addEdge !node, !self.mClassName]
+  !?ioGraph.addNode (!node, !self)
+  !?ioGraph.addEdge (!node, !self.mClassName)
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      [!?ioGraph addEdge !node, !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
+      !?ioGraph.addEdge (!node, !.new (!rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
     end
   case selfToManyRelationship :
-    [!?ioGraph addEdge !node, !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location)]
+    !?ioGraph.addEdge (!node, !.new (!self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
@@ -119,7 +119,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        [!?mPropertyMap insertKey !self.mControllerName, !kind, !controllerActions, !false]
+        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string,
@@ -143,7 +143,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        [!?mPropertyMap insertKey !self.mControllerName, !kind, !controllerActions, !false]
+        !?mPropertyMap.insertKey (!self.mControllerName, !kind, !controllerActions, !false)
     #--- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         !self.mControllerName.string,

@@ -1009,11 +1009,11 @@ override proc @astComputedViewInstruction.generateViewCode(
   ]
 #--- Check outlet
   if self.mOutletName.string != "" then
-    [!?ioOutletMap insertKey !self.mOutletName, !self.mAutoLayoutViewClassName, !self.mOutletIsArray]
+    !?ioOutletMap.insertKey (!self.mOutletName, !self.mAutoLayoutViewClassName, !self.mOutletIsArray)
   end
 #--- Check configurator
   if self.mConfiguratorName.string != "" then
-    [!?ioConfiguratorMap insertKey !self.mConfiguratorName, !self.mAutoLayoutViewClassName]
+    !?ioConfiguratorMap.insertKey (!self.mConfiguratorName, !self.mAutoLayoutViewClassName)
   end
 #---  
   outInstruction = @autoLayoutComputedViewInstructionGeneration (

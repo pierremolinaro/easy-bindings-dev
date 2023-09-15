@@ -168,17 +168,17 @@ proc buildBindingSpecificationMap(
     var @outletBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
     if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
-      [!?ioSemanticContext.mBindingSpecificationMap removeKey !mOutletClassName, ?outletSuperClassName, ?bindingMap]
+      !?ioSemanticContext.mBindingSpecificationMap.removeKey (!mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
       bindingMap = {}
       [ioSemanticContext.mOutletClassMap searchKey !mOutletClassName, ?outletSuperClassName, ?6*]
     end
-    [!?bindingMap insertKey
+    !?bindingMap.insertKey (
       !mBindingName,
       !outletBindingSpecificationModelList,
       !controllerBindingOptionDecoratedList
-    ]
-    [!?ioSemanticContext.mBindingSpecificationMap insertKey !mOutletClassName, !outletSuperClassName, !bindingMap]
+    )
+    !?ioSemanticContext.mBindingSpecificationMap.insertKey (!mOutletClassName, !outletSuperClassName, !bindingMap)
   end
 }
 

@@ -52,7 +52,7 @@ private proc generateXcodeProjectInternal(
 #--- Default build configuration
   let SDK = "macosx"
   let DEPLOYMENT = "10.10"
-  [!?xcodeProject addSettingsToDefaultConfiguration !settingList:{
+  !?xcodeProject.addSettingsToDefaultConfiguration (!settingList:{
     !"ALWAYS_SEARCH_USER_PATHS = NO",
     !"ARCHS = \"$(ARCHS_STANDARD_64_BIT)\"",
     !"CLANG_ENABLE_OBJC_ARC = YES",
@@ -91,13 +91,13 @@ private proc generateXcodeProjectInternal(
     !"COPY_PHASE_STRIP = NO",
     !"SWIFT_VERSION = 4.2",
     !"LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\""
-  }]
+  })
 #--- Add "Hand coded sources (App)" group
   var @stringlist swiftFileRefList = {}
   var @stringlist resourceFileRefList = {}
   var generatedFileSet = inGeneratedFileSet
   generatedFileSet += !"MainMenu.xib"
-  [!?xcodeProject addGroupWithFiles
+  !?xcodeProject.addGroupWithFiles (
     !groupName:"Sources",
     !groupPath:projectName,
     !fileNames:generatedFileSet,
@@ -108,9 +108,9 @@ private proc generateXcodeProjectInternal(
     !?frameworkFileRefs:*,
     !?resourceFileRefs:resourceFileRefList,
     ?groupRef:@string groupRef
-  ]
-  [!?xcodeProject placeGroupAsMainGroup !groupRef:groupRef]
-  [!?xcodeProject addGroupWithFiles
+  )
+  !?xcodeProject.placeGroupAsMainGroup (!groupRef:groupRef)
+  !?xcodeProject.addGroupWithFiles (
     !groupName:"Resources",
     !groupPath:projectName,
     !fileNames:{!"Info.plist"},
@@ -121,10 +121,10 @@ private proc generateXcodeProjectInternal(
     !?frameworkFileRefs:*,
     !?resourceFileRefs:resourceFileRefList,
     ?groupRef:groupRef
-  ]
-  [!?xcodeProject placeGroupAsMainGroup !groupRef:groupRef]
+  )
+  !?xcodeProject.placeGroupAsMainGroup (!groupRef:groupRef)
 #--- Add Cocoa target
-  [!?xcodeProject addAppTarget
+  !?xcodeProject.addAppTarget (
     !targetName:projectName,
     !productFileName:projectName,
     !sources:swiftFileRefList,
@@ -138,7 +138,7 @@ private proc generateXcodeProjectInternal(
     !productCopyList:{}, # {!"MainMenu.xib" !"EBAllocationDebug.xib"}
     !infoPList:projectName + "/Info.plist",
     ?productFileRef:*
-  ]
+  )
 #--- Generate project
   let sourceDir = inOutputDirectory + "/" + projectName + "/"
   [xcodeProject generateAtPath

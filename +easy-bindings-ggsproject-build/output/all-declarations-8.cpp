@@ -6501,51 +6501,51 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
   GALGAS_stringlist var_resourceFileRefList_3560 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 97)) ;
   GALGAS_stringset var_generatedFileSet_3588 = constinArgument_inGeneratedFileSet ;
   var_generatedFileSet_3588.addAssign_operation (GALGAS_string ("MainMenu.xib")  COMMA_SOURCE_FILE ("xcode-project.ggs", 99)) ;
-  GALGAS_stringlist joker_3789 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 104)) ;
-  GALGAS_stringlist joker_3808 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 105)) ;
-  GALGAS_stringlist joker_3828 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 106)) ;
-  GALGAS_stringlist joker_3893 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 108)) ;
-  GALGAS_string var_groupRef_3970 ;
+  GALGAS_stringlist joker_3790 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 104)) ;
+  GALGAS_stringlist joker_3809 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 105)) ;
+  GALGAS_stringlist joker_3829 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 106)) ;
+  GALGAS_stringlist joker_3894 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 108)) ;
+  GALGAS_string var_groupRef_3971 ;
   {
-  extensionSetter_addGroupWithFiles (var_xcodeProject_1617, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet_3588, joker_3789, joker_3808, joker_3828, var_swiftFileRefList_3517, joker_3893, var_resourceFileRefList_3560, var_groupRef_3970, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 100)) ;
+  extensionSetter_addGroupWithFiles (var_xcodeProject_1617, GALGAS_string ("Sources"), constinArgument_projectName, var_generatedFileSet_3588, joker_3790, joker_3809, joker_3829, var_swiftFileRefList_3517, joker_3894, var_resourceFileRefList_3560, var_groupRef_3971, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 100)) ;
   }
   {
-  extensionSetter_placeGroupAsMainGroup (var_xcodeProject_1617, var_groupRef_3970, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 112)) ;
+  extensionSetter_placeGroupAsMainGroup (var_xcodeProject_1617, var_groupRef_3971, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 112)) ;
   }
-  GALGAS_stringlist joker_4177 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 117)) ;
-  GALGAS_stringlist joker_4196 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 118)) ;
-  GALGAS_stringlist joker_4216 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 119)) ;
-  GALGAS_stringlist joker_4281 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 121)) ;
+  GALGAS_stringlist joker_4179 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 117)) ;
+  GALGAS_stringlist joker_4198 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 118)) ;
+  GALGAS_stringlist joker_4218 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 119)) ;
+  GALGAS_stringlist joker_4283 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 121)) ;
   {
   GALGAS_stringset temp_1 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.ggs", 116)) ;
   temp_1.addAssign_operation (GALGAS_string ("Info.plist")  COMMA_SOURCE_FILE ("xcode-project.ggs", 116)) ;
-  extensionSetter_addGroupWithFiles (var_xcodeProject_1617, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4177, joker_4196, joker_4216, var_swiftFileRefList_3517, joker_4281, var_resourceFileRefList_3560, var_groupRef_3970, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 113)) ;
+  extensionSetter_addGroupWithFiles (var_xcodeProject_1617, GALGAS_string ("Resources"), constinArgument_projectName, temp_1, joker_4179, joker_4198, joker_4218, var_swiftFileRefList_3517, joker_4283, var_resourceFileRefList_3560, var_groupRef_3971, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 113)) ;
   }
   {
-  extensionSetter_placeGroupAsMainGroup (var_xcodeProject_1617, var_groupRef_3970, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 125)) ;
+  extensionSetter_placeGroupAsMainGroup (var_xcodeProject_1617, var_groupRef_3971, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 125)) ;
   }
   {
   GALGAS_stringlist temp_2 = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 135)) ;
   temp_2.addAssign_operation (GALGAS_string ("GCC_OPTIMIZATION_LEVEL = 0")  COMMA_SOURCE_FILE ("xcode-project.ggs", 134)) ;
   temp_2.addAssign_operation (GALGAS_string ("GCC_PREPROCESSOR_DEFINITIONS = ()")  COMMA_SOURCE_FILE ("xcode-project.ggs", 135)) ;
-  GALGAS_string joker_4919 ; // Joker input parameter
-  extensionSetter_addAppTarget (var_xcodeProject_1617, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList_3517, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 131)), var_resourceFileRefList_3560, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 137)), GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 138)), constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 139)), joker_4919, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 127)) ;
+  GALGAS_string joker_4922 ; // Joker input parameter
+  extensionSetter_addAppTarget (var_xcodeProject_1617, constinArgument_projectName, constinArgument_projectName, var_swiftFileRefList_3517, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 131)), var_resourceFileRefList_3560, temp_2, GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 137)), GALGAS__32_stringlist::constructor_emptyList (SOURCE_FILE ("xcode-project.ggs", 138)), constinArgument_projectName.add_operation (GALGAS_string ("/Info.plist"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 139)), joker_4922, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 127)) ;
   }
-  GALGAS_string var_sourceDir_4962 = constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)).add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)) ;
-  extensionMethod_generateAtPath (var_xcodeProject_1617, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)), var_sourceDir_4962.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 146)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 146)), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 144)) ;
+  GALGAS_string var_sourceDir_4965 = constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)).add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 143)) ;
+  extensionMethod_generateAtPath (var_xcodeProject_1617, constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)).add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)).add_operation (GALGAS_string (".xcodeproj"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 145)), var_sourceDir_4965.add_operation (constinArgument_projectName, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 146)).add_operation (GALGAS_string (".xcodeproj.txt"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 146)), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 144)) ;
   GALGAS_stringset temp_3 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("xcode-project.ggs", 153)) ;
   temp_3.addAssign_operation (constinArgument_projectName  COMMA_SOURCE_FILE ("xcode-project.ggs", 153)) ;
-  GALGAS_string var_s_5217 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_info_5F_plist (inCompiler, constinArgument_projectName, constinArgument_inXcodeProjectString, GALGAS_string ("1.0.0"), temp_3 COMMA_SOURCE_FILE ("xcode-project.ggs", 149))) ;
+  GALGAS_string var_s_5220 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_info_5F_plist (inCompiler, constinArgument_projectName, constinArgument_inXcodeProjectString, GALGAS_string ("1.0.0"), temp_3 COMMA_SOURCE_FILE ("xcode-project.ggs", 149))) ;
   {
-  GALGAS_string::class_method_generateFile (var_sourceDir_4962, GALGAS_string ("Info.plist"), var_s_5217, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 155)) ;
+  GALGAS_string::class_method_generateFile (var_sourceDir_4965, GALGAS_string ("Info.plist"), var_s_5220, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 155)) ;
   }
-  var_s_5217 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_main_5F_xib (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.ggs", 160))) ;
+  var_s_5220 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_main_5F_xib (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.ggs", 160))) ;
   {
-  GALGAS_string::class_method_generateFile (var_sourceDir_4962, GALGAS_string ("MainMenu.xib"), var_s_5217, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 163)) ;
+  GALGAS_string::class_method_generateFile (var_sourceDir_4965, GALGAS_string ("MainMenu.xib"), var_s_5220, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 163)) ;
   }
-  var_s_5217 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_build_5F_command (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.ggs", 168))) ;
-  GALGAS_bool joker_5723 ; // Joker input parameter
-  var_s_5217.method_writeToExecutableFileWhenDifferentContents (constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/build.py"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 170)), joker_5723, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 169)) ;
+  var_s_5220 = GALGAS_string (filewrapperTemplate_additionalXcodeFiles_build_5F_command (inCompiler, constinArgument_projectName COMMA_SOURCE_FILE ("xcode-project.ggs", 168))) ;
+  GALGAS_bool joker_5726 ; // Joker input parameter
+  var_s_5220.method_writeToExecutableFileWhenDifferentContents (constinArgument_inOutputDirectory.add_operation (GALGAS_string ("/build.py"), inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 170)), joker_5726, inCompiler COMMA_SOURCE_FILE ("xcode-project.ggs", 169)) ;
 }
 
 

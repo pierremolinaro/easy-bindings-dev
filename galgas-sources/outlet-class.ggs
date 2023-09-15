@@ -15,9 +15,9 @@ class @outletClassDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @outletClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName, !self]
+  !?ioGraph.addNode (!self.mClassName, !self)
   if self.mSuperClassName.string != "" then
-    [!?ioGraph addEdge !self.mClassName, !self.mSuperClassName]
+    !?ioGraph.addEdge (!self.mClassName, !self.mSuperClassName)
   end
 }
 
@@ -101,7 +101,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct unused ioGeneration)
 {
   if self.mSuperClassName.string == "" then
-    [!?ioSemanticContext.mOutletClassMap insertKey
+    !?ioSemanticContext.mOutletClassMap.insertKey (
       !self.mClassName,
       !"".nowhere (),  # No super class
       !self.mHasRunAction,
@@ -110,7 +110,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       !self.mHasHidden,
       !self.mHandlesGraphicControllerBinding,
       !self.mUserDefined
-    ]
+    )
   else
     [ioSemanticContext.mOutletClassMap searchKey
       !self.mSuperClassName,
@@ -137,7 +137,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
     if self.mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
       error self.mClassName : "$graphicController binding already defined in superclass"
     end
-    [!?ioSemanticContext.mOutletClassMap insertKey
+    !?ioSemanticContext.mOutletClassMap.insertKey (
       !self.mClassName,
       !self.mSuperClassName,
       !self.mHasRunAction | hasRunAction,
@@ -146,7 +146,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       !self.mHasHidden | hasHidden,
       !self.mHandlesGraphicControllerBinding | handlesGraphicControllerBinding,
       !self.mUserDefined
-    ]
+    )
   end
 }
 

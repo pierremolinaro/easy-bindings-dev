@@ -18,9 +18,9 @@ class @entityDeclarationAST : @abstractDeclarationAST {
 #·······················································································································
 
 override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
-  [!?ioGraph addNode !self.mClassName, !self]
+  !?ioGraph.addNode (!self.mClassName, !self)
   if self.mSuperEntityName.string != "" then
-    [!?ioGraph addEdge !self.mClassName, !self.mSuperEntityName]
+    !?ioGraph.addEdge (!self.mClassName, !self.mSuperEntityName)
   end
 }
 
@@ -157,7 +157,7 @@ syntax extension easyBindings_syntax {
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
   buildActionMap (!self.mActionDeclarationList, ?let @actionMap actionMap)
-  [!?ioSemanticContext.mClassMap insertKey
+  !?ioSemanticContext.mClassMap.insertKey (
     !self.mClassName,
     !.entity (
       !superEntityName: self.mSuperEntityName.string,
@@ -168,7 +168,7 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
     !{},
     !actionMap,
     !{}
-  ]
+  )
 }
 
 #·······················································································································
@@ -200,7 +200,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
         [inheritedPropertyMap searchKey !lkey, ?3*]
       else
 #        message "  insert '" + lkey + "'\n"
-        [!?newPropertyMap insertKey !lkey, !kind, !actionMap, !false]
+        !?newPropertyMap.insertKey (!lkey, !kind, !actionMap, !false)
       end
     end
   #--- Replace property map
