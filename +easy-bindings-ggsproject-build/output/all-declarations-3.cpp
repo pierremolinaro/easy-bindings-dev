@@ -6681,7 +6681,6 @@ mProperty_mIsOverriding (in_mIsOverriding) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_propertyMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mKind.isValid () && mProperty_mActionMap.isValid () && mProperty_mIsOverriding.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6788,6 +6787,20 @@ void GALGAS_propertyMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@propertyMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_propertyMap GALGAS_propertyMap::add_operation (const GALGAS_propertyMap & inOperand,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_propertyMap result = *this ;
+  cEnumerator_propertyMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mKind (HERE), enumerator.current_mActionMap (HERE), enumerator.current_mIsOverriding (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9588,7 +9601,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_actionMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -9671,6 +9683,20 @@ void GALGAS_actionMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@actionMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_actionMap GALGAS_actionMap::add_operation (const GALGAS_actionMap & inOperand,
+                                                  C_Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_actionMap result = *this ;
+  cEnumerator_actionMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------

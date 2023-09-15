@@ -98,7 +98,7 @@ syntax extension easyBindings_syntax {
       inRootEntity,
       transientTypeName,
       transientName,
-      {},
+      [],
       false
     )
   }
@@ -121,7 +121,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let transientTypeName)
     $identifier$ (?let @lstring transientName)
     $dependsFrom$
-    var @observablePropertyList dependanceList = {}
+    var @observablePropertyList dependanceList = []
     repeat
       <observable_property> (?let @observablePropertyAST observablePropertyAST)
       dependanceList += !observablePropertyAST
@@ -159,7 +159,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
       !?mPropertyMap.insertKey (
         self.mTransientName,
         .property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.length () == 0)),
-        {},
+        [],
         self.mIsOverriding
       )
     case document (*) :
@@ -194,14 +194,14 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
 #--- Root properties
   let @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
-    rootProperties = {}
+    rootProperties = []
   else
     [ioSemanticContext.mClassMap searchKey self.mRootEntityName, ?*, ?rootProperties, ?2*]
   end
 #--- Current class properties
   [ioSemanticContext.mClassMap searchKey self.mClassName, ?let currentClassKind, ?let properties, ?2*]
 #--- Analyse master properties
-  var @transientDependencyListForGeneration dependencies = {}
+  var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
       rootProperties,

@@ -28,26 +28,26 @@ list @fileGenerationList {
 #·······················································································································
 
 struct @generationStruct {
-  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration = {}
-  public var @fileGenerationList mFileGenerationList = {}
-  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = {}
+  public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration = []
+  public var @fileGenerationList mFileGenerationList = []
+  public var @entityListForGeneratingEBManagedObjectContext mEntityListForGeneration = []
   public var @bool mGenerateEBManagedXibDocumentSwift = false
   public var @bool mGenerateEBManagedAutoLayoutDocumentSwift = false
-  public var @stringset mNeededOutletClasses = {}
-  public var @mainXibDescriptorList mMainXibDescriptorList = {}
+  public var @stringset mNeededOutletClasses = []
+  public var @mainXibDescriptorList mMainXibDescriptorList = []
  
-  public var @stringset mToOneClassImplementations = {}
-  public var @stringset mToManyClassImplementations = {}
+  public var @stringset mToOneClassImplementations = []
+  public var @stringset mToManyClassImplementations = []
 
-  public var @selectionControllerForGeneration mSelectionControllerListForGeneration = {}
-  public var @stringlist mPropertyClassList = {}
-  public var @transientExternTypeList mTransientPropertyTypeList = {}
+  public var @selectionControllerForGeneration mSelectionControllerListForGeneration = []
+  public var @stringlist mPropertyClassList = []
+  public var @transientExternTypeList mTransientPropertyTypeList = []
 
-  public var @stringset mGenerateClass_PreferencesArrayOf_ = {}
-  public var @stringset mGenerateClass_ProxyArrayOf_ = {}
-  public var @stringset mGenerateClass_TransientArrayOfSuperOf_ = {}
-  public var @stringset mGenerateClass_TransientArrayOf_ = {}
-  public var @stringset mGenerateClass_StoredArrayOf_ = {}
+  public var @stringset mGenerateClass_PreferencesArrayOf_ = []
+  public var @stringset mGenerateClass_ProxyArrayOf_ = []
+  public var @stringset mGenerateClass_TransientArrayOfSuperOf_ = []
+  public var @stringset mGenerateClass_TransientArrayOf_ = []
+  public var @stringset mGenerateClass_StoredArrayOf_ = []
 }
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ proc generateCode(
   let outputDirectory = inSourceFile.stringByDeletingLastPathComponent ()
   let projectName = inSourceFile.lastPathComponent ().stringByDeletingPathExtension ()
   let fileOutputDirectory = outputDirectory + "/" + projectName
-  var @stringset generatedFileSet = {}
+  var @stringset generatedFileSet = []
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode
       fileOutputDirectory,

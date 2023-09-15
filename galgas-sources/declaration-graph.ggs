@@ -75,7 +75,7 @@ proc sortProperties(
     [s writeToFileWhenDifferentContents path, ?*]
   end
 #------------------------  Get ordered declaration list
-  outSortedDeclarationListAST = {}
+  outSortedDeclarationListAST = []
   if declarationPrecedenceGraph.undefinedNodeCount () > 0 then
     for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList () do
       error mValue : "the property " + mValue.string + " is not defined"

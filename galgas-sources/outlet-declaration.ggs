@@ -78,7 +78,7 @@ syntax extension easyBindings_syntax {
     enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
     hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
     graphicController = @graphicController.none
-    regularBindingList = {}
+    regularBindingList = []
     repeat
     while
       $tableValue$
@@ -120,7 +120,7 @@ syntax extension easyBindings_syntax {
   #--- Regular binding
     while
       $bindingName$ (?let @lstring bindingName)
-      var @observablePropertyList observablePropertyList = {}
+      var @observablePropertyList observablePropertyList = []
       repeat
         <observable_property> (?let @observablePropertyAST observableProperty)
         observablePropertyList += !observableProperty
@@ -198,12 +198,12 @@ proc analyzeOutlets(
   !@tableViewBindingGenerationList outTableViewBindingGenerationList,
   !@ebViewGraphicControllerBindingGenerationList outEBViewGraphicControllerBindingGenerationList)
 {
-  outRegularBindingsGenerationList = {}
-  outTargetActionList = {}
-  outMultipleBindingGenerationList = {}
-  outletMap = {}
-  outTableViewBindingGenerationList = {}
-  outEBViewGraphicControllerBindingGenerationList = {}
+  outRegularBindingsGenerationList = []
+  outTargetActionList = []
+  outMultipleBindingGenerationList = []
+  outletMap = []
+  outTableViewBindingGenerationList = []
+  outEBViewGraphicControllerBindingGenerationList = []
   for (outlet_mOutletTypeName outlet_mOutletName outlet_mTableValueBindingDescriptor outlet_mRunDescriptor outlet_mEnabledBindingDescriptor outlet_mHiddenBindingDescriptor outlet_mRegularBindingList outlet_mGraphicController) in inOutletDeclarationList do
     !?outletMap.insertKey (outlet_mOutletName, outlet_mOutletTypeName.string)
     [inSemanticContext.mOutletClassMap searchKey
@@ -398,8 +398,8 @@ proc analyzeRegularBinding(
 {
   for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
   #--- Analyze model
-    var @outletBindingModelList boundModelTypeList = {}
-    var @boundObjectList boundModelListForGeneration = {}
+    var @outletBindingModelList boundModelTypeList = []
+    var @boundObjectList boundModelListForGeneration = []
     for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
         inRootPropertyMap,
@@ -424,8 +424,8 @@ proc analyzeRegularBinding(
       boundModelTypeList += !kind !mObservableProperty.location ()
     end
   #--- Analyze outlet binding
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     var outletTypeName = inOutletTypeName
     var continues = true
     loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
@@ -484,7 +484,7 @@ proc analyzeRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         [binding_mOptionValue analyzeDefaultValueType 
-          {!controller_mOptionType},
+          [controller_mOptionType],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         ]

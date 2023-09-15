@@ -17,7 +17,7 @@ syntax extension easyBindings_syntax {
   #·····················································································································
   
   rule <binding_option_list> (!@bindingOptionList outBindingOptions) {
-    outBindingOptions = {}
+    outBindingOptions = []
     select
     or
       $($

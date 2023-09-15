@@ -4583,7 +4583,6 @@ mProperty_mFomalParameterList (in_mFomalParameterList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_astAutoLayoutViewFunctionMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mFomalParameterList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -4674,6 +4673,20 @@ void GALGAS_astAutoLayoutViewFunctionMap::addAssign_operation (const GALGAS_lstr
   const char * kInsertErrorMessage = "@astAutoLayoutViewFunctionMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_astAutoLayoutViewFunctionMap GALGAS_astAutoLayoutViewFunctionMap::add_operation (const GALGAS_astAutoLayoutViewFunctionMap & inOperand,
+                                                                                        C_Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
+  GALGAS_astAutoLayoutViewFunctionMap result = *this ;
+  cEnumerator_astAutoLayoutViewFunctionMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mFomalParameterList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5408,7 +5421,6 @@ mProperty_mPropertyGenerationList (in_mPropertyGenerationList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_classMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mClassKind.isValid () && mProperty_mPropertyMap.isValid () && mProperty_mActionMap.isValid () && mProperty_mPropertyGenerationList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -5523,6 +5535,20 @@ void GALGAS_classMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@classMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_classMap GALGAS_classMap::add_operation (const GALGAS_classMap & inOperand,
+                                                C_Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
+  GALGAS_classMap result = *this ;
+  cEnumerator_classMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mClassKind (HERE), enumerator.current_mPropertyMap (HERE), enumerator.current_mActionMap (HERE), enumerator.current_mPropertyGenerationList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5848,7 +5874,6 @@ mProperty_mUserDefined (in_mUserDefined) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_outletClassMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -5987,6 +6012,20 @@ void GALGAS_outletClassMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@outletClassMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_outletClassMap GALGAS_outletClassMap::add_operation (const GALGAS_outletClassMap & inOperand,
+                                                            C_Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_outletClassMap result = *this ;
+  cEnumerator_outletClassMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mSuperClassName (HERE), enumerator.current_mHandlesRunAction (HERE), enumerator.current_mHandlesTableValueBinding (HERE), enumerator.current_mHandleEnabledBinding (HERE), enumerator.current_mHandleHiddenBinding (HERE), enumerator.current_mHandleGraphicControllerBinding (HERE), enumerator.current_mUserDefined (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6434,7 +6473,6 @@ mProperty_mBindingMap (in_mBindingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_bindingSpecificationMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6533,6 +6571,20 @@ void GALGAS_bindingSpecificationMap::addAssign_operation (const GALGAS_lstring &
   const char * kInsertErrorMessage = "@bindingSpecificationMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_bindingSpecificationMap GALGAS_bindingSpecificationMap::add_operation (const GALGAS_bindingSpecificationMap & inOperand,
+                                                                              C_Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_bindingSpecificationMap result = *this ;
+  cEnumerator_bindingSpecificationMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletSuperClassName (HERE), enumerator.current_mBindingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6795,7 +6847,6 @@ mProperty_mAutoLayoutViewFunctionMap (in_mAutoLayoutViewFunctionMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autolayoutViewClassMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () && mProperty_mParameterList.isValid () && mProperty_mAutoLayoutViewFunctionMap.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -6950,6 +7001,20 @@ void GALGAS_autolayoutViewClassMap::addAssign_operation (const GALGAS_lstring & 
   const char * kInsertErrorMessage = "@autolayoutViewClassMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autolayoutViewClassMap GALGAS_autolayoutViewClassMap::add_operation (const GALGAS_autolayoutViewClassMap & inOperand,
+                                                                            C_Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_autolayoutViewClassMap result = *this ;
+  cEnumerator_autolayoutViewClassMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mSuperClassName (HERE), enumerator.current_mHandlesRunAction (HERE), enumerator.current_mHandlesTableValueBinding (HERE), enumerator.current_mHandleEnabledBinding (HERE), enumerator.current_mHandleHiddenBinding (HERE), enumerator.current_mHandleGraphicControllerBinding (HERE), enumerator.current_mUserDefined (HERE), enumerator.current_mParameterList (HERE), enumerator.current_mAutoLayoutViewFunctionMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7485,7 +7550,6 @@ mProperty_mBindingMap (in_mBindingMap) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_autoLayoutBindingSpecificationMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mOutletSuperClassName.isValid () && mProperty_mBindingMap.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -7584,6 +7648,20 @@ void GALGAS_autoLayoutBindingSpecificationMap::addAssign_operation (const GALGAS
   const char * kInsertErrorMessage = "@autoLayoutBindingSpecificationMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutBindingSpecificationMap GALGAS_autoLayoutBindingSpecificationMap::add_operation (const GALGAS_autoLayoutBindingSpecificationMap & inOperand,
+                                                                                                  C_Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_autoLayoutBindingSpecificationMap result = *this ;
+  cEnumerator_autoLayoutBindingSpecificationMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletSuperClassName (HERE), enumerator.current_mBindingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9021,7 +9099,6 @@ cMapElement (inKey COMMA_THERE) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_externFunctionMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -9104,6 +9181,20 @@ void GALGAS_externFunctionMap::addAssign_operation (const GALGAS_lstring & inKey
   const char * kInsertErrorMessage = "@externFunctionMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_externFunctionMap GALGAS_externFunctionMap::add_operation (const GALGAS_externFunctionMap & inOperand,
+                                                                  C_Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  GALGAS_externFunctionMap result = *this ;
+  cEnumerator_externFunctionMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -9444,7 +9535,6 @@ mProperty_mIndex (in_mIndex) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_enumConstantMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mIndex.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -9535,6 +9625,20 @@ void GALGAS_enumConstantMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@enumConstantMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_enumConstantMap GALGAS_enumConstantMap::add_operation (const GALGAS_enumConstantMap & inOperand,
+                                                              C_Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  GALGAS_enumConstantMap result = *this ;
+  cEnumerator_enumConstantMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIndex (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -10009,7 +10113,6 @@ mProperty_mAssociationSortedList (in_mAssociationSortedList) {
 //----------------------------------------------------------------------------------------------------------------------
 
 bool cMapElement_enumFuncMap::isValid (void) const {
-  /* return mProperty_lkey.isValid () && mProperty_mAssociationSortedList.isValid () ; */
   return mProperty_lkey.isValid () ;
 }
 
@@ -10100,6 +10203,20 @@ void GALGAS_enumFuncMap::addAssign_operation (const GALGAS_lstring & inKey,
   const char * kInsertErrorMessage = "@enumFuncMap insert error: '%K' already in map" ;
   const char * kShadowErrorMessage = "" ;
   performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+GALGAS_enumFuncMap GALGAS_enumFuncMap::add_operation (const GALGAS_enumFuncMap & inOperand,
+                                                      C_Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const {
+  GALGAS_enumFuncMap result = *this ;
+  cEnumerator_enumFuncMap enumerator (inOperand, kENUMERATION_UP) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mAssociationSortedList (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -15241,117 +15358,6 @@ GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::extra
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutOutletLinkerList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::objectCompare (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (void) :
-GALGAS_abstractDeclarationAST_2D_weak () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::operator = (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) :
-GALGAS_abstractDeclarationAST_2D_weak (inSource) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::constructor_nil (LOCATION_ARGS) {
-  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::bang_autoLayoutDocumentDeclarationAST_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutDocumentDeclarationAST result ;
-  if (mProxyPtr != NULL) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_autoLayoutDocumentDeclarationAST) ;
-      result = GALGAS_autoLayoutDocumentDeclarationAST ((cPtr_autoLayoutDocumentDeclarationAST *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutDocumentDeclarationAST-weak generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ("autoLayoutDocumentDeclarationAST-weak",
-                                                                 & kTypeDescriptor_GALGAS_abstractDeclarationAST_2D_weak) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                C_Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
-  const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak * p = (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutDocumentDeclarationAST-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

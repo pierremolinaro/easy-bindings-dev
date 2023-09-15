@@ -14,15 +14,15 @@ grammar easyBindings_grammar "SLR" {
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @astDeclarationStruct {
-  public var @declarationListAST mUnifiedDeclarationList = {}
-  public var @outletClassBindingSpecificationList mBindingSpecificationListMap = {}
-  public var @autoLayoutViewClassBindingSpecificationList mAutoLayoutBindingSpecificationList = {}
+  public var @declarationListAST mUnifiedDeclarationList = []
+  public var @outletClassBindingSpecificationList mBindingSpecificationListMap = []
+  public var @autoLayoutViewClassBindingSpecificationList mAutoLayoutBindingSpecificationList = []
   public var @prefDeclaration mPreferences = @prefDeclaration ()
   public var @lstring mXcodeProject = "".nowhere ()
-  public var @lstringlist mGraphvizList = {}
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = {}
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = {}
-  public var @enumerationFunctionListAST mEnumerationFunctionListAST = {}
+  public var @lstringlist mGraphvizList = []
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = []
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = []
+  public var @enumerationFunctionListAST mEnumerationFunctionListAST = []
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

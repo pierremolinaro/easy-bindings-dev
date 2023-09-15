@@ -39,10 +39,10 @@ proc graphvizAnalysis (
 private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
                                          let @semanticContext inSemanticContext,
                                          let @string inRootEntityName) {
-  var @stringset reachableEntityNameSet = {!inRootEntityName}
-  var @stringlist exploreArray = {!inRootEntityName}
-  var @stringlist nodeList = {}
-  var @stringlist arrowList = {}
+  var @stringset reachableEntityNameSet = [inRootEntityName]
+  var @stringlist exploreArray = [inRootEntityName]
+  var @stringlist nodeList = []
+  var @stringlist arrowList = []
   loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
     !?exploreArray.popLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
@@ -148,10 +148,10 @@ graph @entityStrongReferenceGraph (@stringlist) {
 private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory,
                                                let @semanticContext inSemanticContext,
                                                let @string inRootEntityName) {
-  var @stringset reachableEntityNameSet = {!inRootEntityName}
-  var @stringlist exploreArray = {!inRootEntityName}
-  var @stringlist nodeList = {}
-  var @stringlist arrowList = {}
+  var @stringset reachableEntityNameSet = [inRootEntityName]
+  var @stringlist exploreArray = [inRootEntityName]
+  var @stringlist nodeList = []
+  var @stringlist arrowList = []
   var @entityStrongReferenceGraph entityStrongReferenceGraph = .emptyGraph
   loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
     !?exploreArray.popLast (?let @string entityName)
@@ -232,7 +232,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   end
 #--- Check accessibility
   if undefinedNodeList.length () == 0 then
-    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ({!.new (inRootEntityName, .nowhere)}, {})
+    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ([.new (inRootEntityName, .nowhere)], [])
     let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
     for (node) in nodeList do
       if not accessibleNodeSet.hasKey (node) then

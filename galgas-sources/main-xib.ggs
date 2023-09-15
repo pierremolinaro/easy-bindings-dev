@@ -36,12 +36,10 @@ syntax extension easyBindings_syntax {
       select
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
-        ioElementList += !{
-          !.outlet (!outletType:outletType, !outletName:outletName)
-        }
+        ioElementList += ![.outlet (!outletType:outletType, !outletName:outletName)]
       or
         $literal_string$ (?let @lstring s)
-        ioElementList += !{!.text (!text:s)}
+        ioElementList += ![.text (!text:s)]
       or
         ${$
         <main_xib_line> (?let @mainXibLineDescriptorList lineDescription)
@@ -59,7 +57,7 @@ syntax extension easyBindings_syntax {
   rule <main_xib_line>(
     !@mainXibLineDescriptorList outLineDescription)
   {
-    outLineDescription = {}
+    outLineDescription = []
     repeat
       select
         $Identifier$ (?let @lstring outletType)
@@ -133,7 +131,7 @@ proc generateTestFile(
   let @string inOutputDirectory)
 {
   if (inMainXibDescriptorList.length () > 0) && (inBundleIdentifier != "") then
-    var @stringlist outlet_identifier_list = {}
+    var @stringlist outlet_identifier_list = []
     for (mLine) in inMainXibDescriptorList do
       for (mElement) in mLine do
         switch mElement

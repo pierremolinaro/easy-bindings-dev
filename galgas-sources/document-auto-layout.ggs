@@ -78,12 +78,12 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let @lstring mainViewName)
     ${$
-    var @outletDeclarationList outletDeclarationList = {}
-    var @lstringlist actionDeclarationList = {}
-    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
-    var @astViewDeclarationList viewDeclarationList = {}
-#    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = {}
-    var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = {}
+    var @outletDeclarationList outletDeclarationList = []
+    var @lstringlist actionDeclarationList = []
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = []
+    var @astViewDeclarationList viewDeclarationList = []
+#    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = []
+    var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = []
     repeat
     while
       <stack_view_declaration> (!?viewDeclarationList)
@@ -99,7 +99,7 @@ syntax extension easyBindings_syntax {
       $linker$
       $identifier$ (?let linkerName)
       $($
-      var @lstringlist outletNameList = {}
+      var @lstringlist outletNameList = []
       repeat
         $identifier$ (?let outletName)
         outletNameList += !outletName
@@ -126,7 +126,7 @@ syntax extension easyBindings_syntax {
       rootEntityName,
       "String".here (),
       "documentFileName".here (),
-      {},
+      [],
       false
     )
   }
@@ -147,9 +147,9 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .document (!rootEntityName: self.mRootEntityName),
-    {},
+    [],
     actionMap,
-    {}
+    []
   )
   for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration (
@@ -232,11 +232,11 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     end
   end
 #--- Check auto layout view declarations
-  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
-  var @viewGenerationList viewGenerationList = {}
-  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
-  var @autoLayoutConfiguratorMap configuratorMap = {}
-  var @autoLayoutOutletMap autoLayoutOutletMap = {}
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = []
+  var @viewGenerationList viewGenerationList = []
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
+  var @autoLayoutConfiguratorMap configuratorMap = []
+  var @autoLayoutOutletMap autoLayoutOutletMap = []
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     [viewDeclaration checkView
@@ -259,7 +259,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   end
   [viewDeclarationMap searchKey self.mMainViewName]
 #--- Analyze toolbar item declarations
-#  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = {}
+#  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = []
 #  for (item) in self.mAutoLayoutToolbarItemList do
 #    switch item
 #    case space :
@@ -286,14 +286,14 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
 #--- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 #--- Check outlet linker
-  var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = {}
-  var @stringset linkerNameSet = {}
+  var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = []
+  var @stringset linkerNameSet = []
   for (linkerName ouletNameList) in self.mOutletLinkerList do
     if linkerNameSet.hasKey (linkerName.string) then
       error linkerName : "duplicated linker name"
     end
     linkerNameSet += !linkerName.string
-    var @2stringlist outletNameAndTypeNameList = {}
+    var @2stringlist outletNameAndTypeNameList = []
     for (outletName) in ouletNameList do
       [autoLayoutOutletMap searchKey outletName, ?let outletTypeName, ?let unused outletIsArray]
       outletNameAndTypeNameList += !outletName.string !outletTypeName

@@ -149,7 +149,7 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
   !?self.getReferenceKey (?ref: let buildConfigurationRef)
   !?self.getReferenceKey (?ref: let frameworkBuildRef)
   !?self.getReferenceKey (?ref: let resourceBuildRef)
-  var @2stringlist dependentTargets = {}
+  var @2stringlist dependentTargets = []
   for (ref) in inDependentTargetRefList do
     !?self.getReferenceKey (?ref: let dependencyBuildRef)
     dependentTargets += !dependencyBuildRef !ref
@@ -221,7 +221,7 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   end
   !?self.getReferenceKey (?ref: outGroupRef)
 #---
-  var @stringlist childrenRefs = {}
+  var @stringlist childrenRefs = []
   for (f) in inFileNames do
     if f.pathExtension () == "cpp" then
       !?self.addCppFile (!fileName:f, ?fileRef:let @string cppFileRef)
@@ -359,27 +359,27 @@ mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
 struct @XcodeProjectDescriptor {
   public var @uint mSequenceNumber = 0
   public var @string mMainGroupReference = ""
-  public var @stringlist mMainGroupChildrenRefs = {}
+  public var @stringlist mMainGroupChildrenRefs = []
   public var @string mProjectObjectReference = ""
-  public var @XCodeGroupList mGroupList = {}
-  public var @XCodeToolTargetList mToolTargetList = {}
-  public var @XCodeAppTargetList mAppTargetList = {}
-  public var @2stringlist mCppFileList = {}
-  public var @2stringlist m_M_FileList = {}
-  public var @2stringlist m_MM_FileList = {}
-  public var @2stringlist m_SwiftFileList = {}
-  public var @2stringlist mFrameworkFileList = {}
-  public var @2stringlist mHeaderFileList = {}
-  public var @BuildFileList mBuildFileList = {}
+  public var @XCodeGroupList mGroupList = []
+  public var @XCodeToolTargetList mToolTargetList = []
+  public var @XCodeAppTargetList mAppTargetList = []
+  public var @2stringlist mCppFileList = []
+  public var @2stringlist m_M_FileList = []
+  public var @2stringlist m_MM_FileList = []
+  public var @2stringlist m_SwiftFileList = []
+  public var @2stringlist mFrameworkFileList = []
+  public var @2stringlist mHeaderFileList = []
+  public var @BuildFileList mBuildFileList = []
 #--- Default configuration
   public var @string mDefaultConfigurationRef = ""
-  public var @stringlist mDefaultConfigurationSettingList = {}
+  public var @stringlist mDefaultConfigurationSettingList = []
   public var @string mProjectBuildConfigurationRef = ""
 #--- Resource files
-  public var @2stringlist mInfoPlistFileList = {}
-  public var @2stringlist mXIB_fileList = {}
-  public var @2stringlist mTIFF_fileList = {}
-  public var @2stringlist mICNS_fileList = {}
+  public var @2stringlist mInfoPlistFileList = []
+  public var @2stringlist mXIB_fileList = []
+  public var @2stringlist mTIFF_fileList = []
+  public var @2stringlist mICNS_fileList = []
 }
 
 #----------------------------------------------------------------------------------------------------------------------*

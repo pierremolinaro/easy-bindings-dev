@@ -115,7 +115,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring outletClassName)
     let @autoLayoutClassParameterList parameterList
     select
-      parameterList = {}
+      parameterList = []
     or
       <autolayout_formal_parameter_list> ("".nowhere (), ?parameterList, ?*)
     end
@@ -148,7 +148,7 @@ syntax extension easyBindings_syntax {
       $graphicController$
       handlesGraphicControllerBinding = true
     end
-    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = {}
+    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = []
     ${$
     repeat
     while
@@ -179,7 +179,7 @@ syntax extension easyBindings_syntax {
   rule <autolayout_formal_parameter_list> (let @lstring inFunctionName,
                                           !@autoLayoutClassParameterList ioParameterList,
                                           !@lstring outMangledName) {
-    ioParameterList = {}
+    ioParameterList = []
     var mangledName = inFunctionName.string + "("
     $($
     select

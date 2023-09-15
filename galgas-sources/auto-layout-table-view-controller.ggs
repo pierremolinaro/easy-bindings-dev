@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
   {
     $tableViewController$
     $controllerName$ (?let @lstring controllerName)
-    var @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = {}
+    var @autoLayoutTableViewControllerAttributListAST arrayControllerAttributListAST = []
     $($
     repeat
       $identifier$ (?let @lstring attributeName)
@@ -84,7 +84,7 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ (?let @lstring relationshipName)
-    var @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = {}
+    var @autoLayoutTableViewControllerBoundColumnListAST arrayControllerBoundColumnListAST = []
     select
       $;$
     or
@@ -142,7 +142,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    let @actionMap controllerActions = {!"add".nowhere (), !"remove".nowhere () }
+    let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
     if self.mIsRoot then
       [ioSemanticContext.mClassMap searchKey self.mRootEntityName, ?*, ?let rootProperties, ?2*]
       [rootProperties searchKey self.mToManyPropertyName, ?let classKind, ?2*]
@@ -211,10 +211,10 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     ?2*
   ]
 #------------------------------------------------------------ Check array controller attributes
-  let attributes = @stringset {!"allowsEmptySelection", !"allowsMultipleSelection"}
-  let allowedTypes = @typeKindList {!.boolType}
-  var @stringset definedAttributes = {}
-  var @2stringlist attributeListForGeneration = {}
+  let attributes = @stringset ["allowsEmptySelection" : "allowsMultipleSelection"]
+  let allowedTypes = @typeKindList [.boolType]
+  var @stringset definedAttributes = []
+  var @2stringlist attributeListForGeneration = []
   for (name value) in self.mTableViewControllerAttributListAST do
     if not attributes.hasKey (name.string) then
       error name : "unknown attribute"
@@ -284,8 +284,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       : "a toMany property is required here"
       spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   end
-  var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = {}
-  var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = {}
+  var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
+  var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
   for (editable propertyName columnParameterList sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
   #-------- Run action ? Check action is declared
 #    if columnBindings.mRunActionName.string != "" then
@@ -298,9 +298,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #      ?let preferencesPropertyMap
 #      ?2*
 #    ]
-#    @regularBindingsGenerationList regularBindingsGenerationList = {}
+#    @regularBindingsGenerationList regularBindingsGenerationList = []
 #    analyzeRegularBinding (
-#      !{} # No root observable property map
+#      ![] # No root observable property map
 #      !preferencesPropertyMap
 #      !ioSemanticContext
 #      !propertyMap
@@ -311,13 +311,13 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #      !?regularBindingsGenerationList
 #    )
   #-------- Arguments
-    var @autoLayoutClassParameterList formalArgumentList = {}
+    var @autoLayoutClassParameterList formalArgumentList = []
     formalArgumentList += !"title".nowhere () !.typeString
     formalArgumentList += !"minWidth".nowhere () !.typeInt
     formalArgumentList += !"maxWidth".nowhere () !.typeInt
     formalArgumentList += !"headerAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
     formalArgumentList += !"contentAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
-    var @2stringlist actualParameterList = {}
+    var @2stringlist actualParameterList = []
     if formalArgumentList.length () != columnParameterList.length () then
       error propertyName : columnParameterList.length ().string () + " parameter(s), " + formalArgumentList.length () + " required"
     else
@@ -519,7 +519,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
 #--- Build observed property set (for sorting and filtering)
-  var @stringset observedProperties = {}
+  var @stringset observedProperties = []
   for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end

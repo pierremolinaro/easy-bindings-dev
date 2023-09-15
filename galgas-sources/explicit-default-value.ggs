@@ -224,7 +224,7 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
 #·······················································································································
 
 func %once predefinedDates() -> @stringset {
-  result = {}
+  result = []
   result += !"now"
   result += !"distantPast"
 }
@@ -232,7 +232,7 @@ func %once predefinedDates() -> @stringset {
 #·······················································································································
 
 func %once predefinedColors() -> @stringset {
-  result = {}
+  result = []
   result += !"black"
   result += !"blue"
   result += !"brown"

@@ -38,7 +38,7 @@ syntax extension easyBindings_syntax {
     $enum$
     $Identifier$ (?let @lstring enumName)
     ${$
-    var @lstringlist enumConstants = {}
+    var @lstringlist enumConstants = []
     repeat
       $identifier$ (?let @lstring constantName)
       enumConstants += !constantName
@@ -58,7 +58,7 @@ syntax extension easyBindings_syntax {
     $.$    
     $identifier$ (?let @lstring funcName)
     ${$
-    var @2lstringlist associationList = {}
+    var @2lstringlist associationList = []
     repeat
     while
       $identifier$ (?let @lstring constantName)
@@ -108,15 +108,15 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  var @enumConstantMap enumConstantMap = {}
+  var @enumConstantMap enumConstantMap = []
   for (s) in self.mEnumConstantNameList do
     !?enumConstantMap.insertKey (s, enumConstantMap.count ())
   end
-  var @enumFuncMap enumFuncMap = {}
+  var @enumFuncMap enumFuncMap = []
   for (enumTypeName funcName associationList) in ioSemanticContext.mEnumerationFunctionListAST do
     if enumTypeName.string == self.mClassName.string then
-      var @stringset definedConstantNameSet = {}
-      var @enumFunAssociationSortedList associationSortedList = {}
+      var @stringset definedConstantNameSet = []
+      var @enumFunAssociationSortedList associationSortedList = []
       for (constantName associatedString) in associationList do
         [enumConstantMap searchKey constantName, ?let idx]
         associationSortedList += !idx !associatedString.string
@@ -136,9 +136,9 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .atomic (!kind: .enumType (!enumTypeName:self.mClassName, !constantMap: enumConstantMap, !funcMap: enumFuncMap)),
-    {},
-    {},
-    {}
+    [],
+    [],
+    []
   )
 #--- Generation
   ioGeneration.mFileGenerationList += !@enumForGeneration (

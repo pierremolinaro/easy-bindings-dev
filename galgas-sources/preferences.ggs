@@ -3,13 +3,13 @@
 #-----------------------------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
-  public var @outletDeclarationList mOutletDeclarationList = {}
-  public var @simpleStoredPropertyList mSimpleStoredAttributeList = {}
-  public var @lstringlist mActionDeclarationList = {}
-  public var @externSwiftFunctionList mExternSwiftFunctionList = {}
-  public var @stringset mSignatureList = {}
-  public var @mainXibDescriptorList mMainXibDescriptorList = {}
-  public var @astViewDeclarationList mViewDeclarationList = {}
+  public var @outletDeclarationList mOutletDeclarationList = []
+  public var @simpleStoredPropertyList mSimpleStoredAttributeList = []
+  public var @lstringlist mActionDeclarationList = []
+  public var @externSwiftFunctionList mExternSwiftFunctionList = []
+  public var @stringset mSignatureList = []
+  public var @mainXibDescriptorList mMainXibDescriptorList = []
+  public var @astViewDeclarationList mViewDeclarationList = []
 }
 
 #·······················································································································
@@ -48,17 +48,17 @@ syntax extension easyBindings_syntax {
     $prefs$
     let prefs = @lstring (preferencesName (), .here)
     ${$
-    var @stringset signatureList = {}
-    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
+    var @stringset signatureList = []
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = []
     repeat
     while
-      var @astViewDeclarationList viewDeclarationList = {}
+      var @astViewDeclarationList viewDeclarationList = []
       <stack_view_declaration> (!?viewDeclarationList)
       ioDeclarationAST.mPreferences.mViewDeclarationList += viewDeclarationList
     while
       <action_declaration> (!?ioDeclarationAST.mPreferences.mActionDeclarationList)
     while
-      var @simpleStoredPropertyList simpleStoredPropertyList = {}
+      var @simpleStoredPropertyList simpleStoredPropertyList = []
       <simple_stored_declaration>(
         prefs,
         !?simpleStoredPropertyList,
@@ -96,9 +96,9 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     .new (preferencesName (), .here),
     .prefs,
-    {},
+    [],
     actionMap,
-    {}
+    []
   )
   for (lkey) in actionMap do
     ioGeneration.mFileGenerationList += !@actionFileGeneration (
@@ -118,8 +118,8 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
 #--- Analyze extern functions
-  let @stringset availableCallers = {!"awakeFromNib", !"init"}
-  var @externFunctionMap externFunctionMap = {}
+  let @stringset availableCallers = ["awakeFromNib" : "init"]
+  var @externFunctionMap externFunctionMap = []
   for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     !?externFunctionMap.insertKey (mExternSwiftFunctionName)
     if not availableCallers.hasKey (mCallerName.string) then
@@ -141,7 +141,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 #--- Analyze outlets and bindings
   analyzeOutlets (
     true,
-    {}, # No root entity
+    [], # No root entity
     preferencesPropertyMap,
     "", # No root entity
     ioSemanticContext,
@@ -158,21 +158,21 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 #--- Check auto layout view declarations
-  var @autoLayoutViewDeclarationMap viewDeclarationMap = {}
-  var @viewGenerationList viewGenerationList = {}
-  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = {}
-  var @autoLayoutConfiguratorMap configuratorMap = {}
-  var @autoLayoutOutletMap autoLayoutOutletMap = {}
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = []
+  var @viewGenerationList viewGenerationList = []
+  var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
+  var @autoLayoutConfiguratorMap configuratorMap = []
+  var @autoLayoutOutletMap autoLayoutOutletMap = []
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     [viewDeclaration checkView
       viewName,
       viewDeclarationMap,
       !prefs: true,
-      {}, # rootPropertyMap
+      [], # rootPropertyMap
       preferencesPropertyMap,
       ioSemanticContext,
-      {}, # documentPropertyMap
+      [], # documentPropertyMap
       actionMap,
       self.mClassName,
       ioSemanticContext.mClassMap,

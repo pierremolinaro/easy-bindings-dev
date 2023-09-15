@@ -62,7 +62,7 @@ syntax extension easyBindings_syntax {
     end
     $entity$
     $Identifier$ (?let @lstring entityName)
-    var @lstringlist obsoleteEntityNames = {}
+    var @lstringlist obsoleteEntityNames = []
     select
     or
       $($
@@ -82,12 +82,12 @@ syntax extension easyBindings_syntax {
       $Identifier$ (? superEntityName)
     end
     ${$
-    var @simpleStoredPropertyList simpleStoredPropertyList = {}
-    var @stringset signatureList = {}
-    var @lstringlist actionDeclarationList = {}
-    var @externSwiftDelegateList externSwiftDelegateList = {}
-    var @arrayControllerBindingListAST arrayControllerBindingListAST = {}
-    var @lstringlist graphicOptionArray = {}
+    var @simpleStoredPropertyList simpleStoredPropertyList = []
+    var @stringset signatureList = []
+    var @lstringlist actionDeclarationList = []
+    var @externSwiftDelegateList externSwiftDelegateList = []
+    var @arrayControllerBindingListAST arrayControllerBindingListAST = []
+    var @lstringlist graphicOptionArray = []
     repeat
     while
       <simple_stored_declaration> (entityName, !?simpleStoredPropertyList, !?signatureList, !?ioDeclarationAST)
@@ -132,7 +132,7 @@ syntax extension easyBindings_syntax {
         "".here (),
         "EBShape".here (),
         "selectionDisplay".here (),
-        {},
+        [],
         false
       )
       ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
@@ -140,7 +140,7 @@ syntax extension easyBindings_syntax {
         "".here (),
         "EBShape".here (),
         "objectDisplay".here (),
-        {},
+        [],
         false
       )
     end
@@ -165,9 +165,9 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
       !isAbstract: self.mIsAbstract,
       !handlingOpposite: self.mHandlingOpposite
      ),
-    {},
+    [],
     actionMap,
-    {}
+    []
   )
 }
 
@@ -224,7 +224,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     ?let @propertyGenerationList propertyGenerationList
   ]
 #--- If super entity is abstract, and current is not, check all transient properties are implemented
-  var @stringset overridenTransients = {}
+  var @stringset overridenTransients = []
   if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     [ioSemanticContext.mClassMap searchKey
       self.mSuperEntityName,
@@ -346,13 +346,13 @@ list @entityListForGeneratingEBManagedObjectContext {
 override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
     let @generationStruct inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
-  var @atomicPropertyGenerationList atomicPropertyGenerationList = {}
-  var @transientPropertyGenerationList transientPropertyGenerationList = {}
-  var @computedPropertyGenerationList computedPropertyGenerationList = {}
-  var @toOnePropertyGenerationList toOnePropertyGenerationList = {}
-  var @toManyPropertyGenerationList toManyPropertyGenerationList = {}
-  var @atomicProxyGenerationList proxyGenerationList = {}
-  var @toManyProxyGenerationList toManyProxyGenerationList = {}
+  var @atomicPropertyGenerationList atomicPropertyGenerationList = []
+  var @transientPropertyGenerationList transientPropertyGenerationList = []
+  var @computedPropertyGenerationList computedPropertyGenerationList = []
+  var @toOnePropertyGenerationList toOnePropertyGenerationList = []
+  var @toManyPropertyGenerationList toManyPropertyGenerationList = []
+  var @atomicProxyGenerationList proxyGenerationList = []
+  var @toManyProxyGenerationList toManyProxyGenerationList = []
   for (property) in self.mPropertyGenerationList do
     if let atomicProperty = property as @atomicPropertyGeneration then
       atomicPropertyGenerationList += !atomicProperty

@@ -157,7 +157,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       if not handleOpposite, let [self.mOption hasOpposite ?oppositeName: *] then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
-      !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, {}, false)
+      !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, [], false)
     #--- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
     #--- Option

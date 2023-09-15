@@ -20,7 +20,7 @@ syntax extension easyBindings_syntax {
   rule <auto_layout_view_binding_specification> (let @lstring inClassName,
                                                 ?!@autoLayoutViewClassBindingSpecificationList ioBindingList) {
     $bindingName$ (?let @lstring bindingName)
-    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
+    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = []
     repeat
       let @bool modelShouldBeWritableProperty
       select
@@ -41,7 +41,7 @@ syntax extension easyBindings_syntax {
     while
       $,$
     end
-    var @controllerBindingOptionList bindingOptionList = {}
+    var @controllerBindingOptionList bindingOptionList = []
     select
     or
       $($
@@ -94,11 +94,11 @@ proc buildAutoLayoutBindingSpecificationMap(
   let @autoLayoutViewClassBindingSpecificationList inBindingSpecificationListMap)
 {
   for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
     for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "", !constantMap: {}, !funcMap: {}) # Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []) # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey mModelTypeName, ?let @classKind classKind, ?3*]
@@ -116,7 +116,7 @@ proc buildAutoLayoutBindingSpecificationMap(
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
       end
     end
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     for (mOptionName mOptionTypeName) in mBindingOptionList do
       [ioSemanticContext.mClassMap searchKey mOptionTypeName, ?let @classKind classKind, ?3*]
       let @typeKind typeKind
@@ -138,7 +138,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     if ioSemanticContext.mAutoLayoutBindingSpecificationMap.hasKey (mOutletClassName.string) then
       !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
-      bindingMap = {}
+      bindingMap = []
       [ioSemanticContext.mAutolayoutViewClassMap searchKey mOutletClassName, ?outletSuperClassName, ?8*]
     end
     !?bindingMap.insertKey (

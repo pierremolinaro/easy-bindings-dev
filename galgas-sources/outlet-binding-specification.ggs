@@ -37,7 +37,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring outletClassName)
     $bindingName$ (?let @lstring bindingName)
     $:$
-    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = {}
+    var @outletClassBindingSpecificationModelList outletClassBindingSpecificationModelList = []
     repeat
       let @bool modelShouldBeWritableProperty
       select
@@ -58,7 +58,7 @@ syntax extension easyBindings_syntax {
     while
       $,$
     end
-    var @controllerBindingOptionList bindingOptionList = {}
+    var @controllerBindingOptionList bindingOptionList = []
     select
     or
       ${$
@@ -126,11 +126,11 @@ proc buildBindingSpecificationMap(
   let @outletClassBindingSpecificationList inBindingSpecificationListMap)
 {
   for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
     for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "", !constantMap: {}, !funcMap: {}) # Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []) # Any enum type
           !mModelShouldBeWritableProperty
       else
         [ioSemanticContext.mClassMap searchKey mModelTypeName, ?let @classKind classKind, ?3*]
@@ -148,7 +148,7 @@ proc buildBindingSpecificationMap(
         outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
       end
     end
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     for (mOptionName mOptionTypeName) in mBindingOptionList do
       [ioSemanticContext.mClassMap searchKey mOptionTypeName, ?let @classKind classKind, ?3*]
       let @typeKind typeKind
@@ -170,7 +170,7 @@ proc buildBindingSpecificationMap(
     if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
       !?ioSemanticContext.mBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
-      bindingMap = {}
+      bindingMap = []
       [ioSemanticContext.mOutletClassMap searchKey mOutletClassName, ?outletSuperClassName, ?6*]
     end
     !?bindingMap.insertKey (

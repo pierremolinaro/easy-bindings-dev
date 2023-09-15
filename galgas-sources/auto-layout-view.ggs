@@ -150,9 +150,9 @@ syntax extension easyBindings_syntax {
     $vStack$
     <auto_layout_func_call_list> (!?*, ?let functionCallList)
     ${$
-    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
-    var @stringset stackViewInstances = {}
-    var instructionList = @astViewInstructionList {}
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
+    var @stringset stackViewInstances = []
+    var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: false, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
     ioViewDeclarationList +=
@@ -168,9 +168,9 @@ syntax extension easyBindings_syntax {
     $hStack$
     <auto_layout_func_call_list> (!?*, ?let functionCallList)
     ${$
-    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
-    var @stringset stackViewInstances = {}
-    var instructionList = @astViewInstructionList {}
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
+    var @stringset stackViewInstances = []
+    var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: true, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
     ioViewDeclarationList +=
@@ -182,7 +182,7 @@ syntax extension easyBindings_syntax {
   
   rule <auto_layout_func_call_list> (?!@stringset ioStackViewInstances,
                                      !@astAutoLayoutViewFunctionCallList outFunctionCallList) {
-   outFunctionCallList = {}
+   outFunctionCallList = []
    repeat
     while
        $identifier$ (?let functionName)
@@ -249,7 +249,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (? let viewClassName)
     let @astAutoLayoutViewInstructionParameterList instanciationParameterList
     select
-      instanciationParameterList = {}
+      instanciationParameterList = []
     or
       <view_actual_parameter_list> (!?ioStackViewInstances, ?instanciationParameterList)
     end
@@ -295,8 +295,8 @@ syntax extension easyBindings_syntax {
       enabledBindingDescriptor = .noBinding
       hiddenBindingDescriptor = .noBinding
       graphicController = .none
-      regularBindingList = {}
-      autoLayoutViewFunctionCallList = {}
+      regularBindingList = []
+      autoLayoutViewFunctionCallList = []
     or
       ${$
       <auto_layout_func_call_list> (!?ioStackViewInstances, ?autoLayoutViewFunctionCallList)
@@ -328,7 +328,7 @@ syntax extension easyBindings_syntax {
  
   rule <view_actual_parameter_list> (?!@stringset ioStackViewInstances,
                                      !@astAutoLayoutViewInstructionParameterList outParameterList) {
-    outParameterList = {}
+    outParameterList = []
     $($
     select
     or
@@ -430,8 +430,8 @@ syntax extension easyBindings_syntax {
       optionalHiddenBinding = .binding (!hidden: bindingExpression)
     end
     ${$
-    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
-    var instructionList = @astViewInstructionList {}
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
+    var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: false, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     outInstruction = @astVStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
     $}$
@@ -452,8 +452,8 @@ syntax extension easyBindings_syntax {
       optionalHiddenBinding = .binding (!hidden: bindingExpression)
     end
     ${$
-    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = {}
-    var instructionList = @astViewInstructionList {}
+    var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
+    var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: true, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     outInstruction = @astHStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
     $}$
@@ -530,7 +530,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
                                 ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                                 ?!@autoLayoutOutletMap ioOutletMap,
                                 !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList) {
-  outFuncCallList = {}
+  outFuncCallList = []
   for (functionName actualParameterList) in self do
     var mangleName = functionName.string + "("
     for (parameterName 2*) in actualParameterList do
@@ -538,7 +538,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
     end
     mangleName += ")"
     [inFunctionMap searchKey .new (mangleName, functionName.location), ?let formalParameterList]
-    var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
+    var @autoLayoutViewInstructionGenerationParameterList parameterList = []
     if formalParameterList.length () != actualParameterList.length () then
       error functionName 
       : formalParameterList.length ().string () + " parameter(s) required, " + actualParameterList.length () + " provided"
@@ -674,7 +674,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
      !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  var @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = []
   for (instruction) in self.mInstructionList do
     [instruction generateViewCode
       inViewDeclarationMap,
@@ -713,7 +713,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                                   ?!@autoLayoutOutletMap ioOutletMap,
                                   !@abstractViewGeneration outGeneration) {
-  var @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = []
   [self.mFunctionCallList checkViewFunctionCallList
      inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
@@ -867,7 +867,7 @@ override proc @astComputedViewInstruction.generateViewCode(
      ?let formalParameterList,
      ?let functionMap
   ]
-  var @autoLayoutViewInstructionGenerationParameterList parameterList = {}
+  var @autoLayoutViewInstructionGenerationParameterList parameterList = []
   if formalParameterList.length () != self.mParameterList.length () then
     error self.mAutoLayoutViewClassName 
     : formalParameterList.length ().string () + " parameter(s) required, " + self.mParameterList.length () + " provided"
@@ -1056,8 +1056,8 @@ proc analyzeAutoLayoutBinding(
   !@autolayoutRunBindingForGeneration outRunBindingGeneration,
   !@string outTableViewBindingGeneration,
   !@autoLayoutViewGraphicControllerBindingGeneration outEBViewGraphicControllerBindingGeneration) {
-  outRegularBindingsGenerationList = {}
-  outMultipleBindingGenerationList = {}
+  outRegularBindingsGenerationList = []
+  outMultipleBindingGenerationList = []
   outTableViewBindingGeneration = "" # Empty String means no binding
   [inSemanticContext.mAutolayoutViewClassMap searchKey
     inTypeName,
@@ -1310,8 +1310,8 @@ proc analyzeAutoLayoutRegularBinding(
 {
   for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
   #--- Analyze model
-    var @outletBindingModelList boundModelTypeList = {}
-    var @boundObjectList boundModelListForGeneration = {}
+    var @outletBindingModelList boundModelTypeList = []
+    var @boundObjectList boundModelListForGeneration = []
     for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
         inRootPropertyMap,
@@ -1336,8 +1336,8 @@ proc analyzeAutoLayoutRegularBinding(
       boundModelTypeList += !kind !mObservableProperty.location () 
     end
   #--- Analyze outlet binding
-    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = {}
-    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = {}
+    var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
+    var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     var outletTypeName = inOutletTypeName
     var continues = true
     loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
@@ -1395,7 +1395,7 @@ proc analyzeAutoLayoutRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         [binding_mOptionValue analyzeDefaultValueType 
-          {!controller_mOptionType},
+          [controller_mOptionType],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         ]
@@ -1426,7 +1426,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
-  var @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = []
   [self.mFunctionCallList checkViewFunctionCallList
      inSemanticContext.mAutoLayoutHStackFunctionMap,
      inViewDeclarationMap,
@@ -1443,7 +1443,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
      !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = []
   switch self.mOptionalHiddenBinding 
   case noBinding :
   case binding (hiddenBindingExpression) :
@@ -1506,7 +1506,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
-  var @autoLayoutViewInstructionGenerationList instructionList = {}
+  var @autoLayoutViewInstructionGenerationList instructionList = []
   [self.mFunctionCallList checkViewFunctionCallList
      inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
@@ -1523,7 +1523,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
      !?ioOutletMap,
      ?let @autoLayoutViewInstructionGenerationFuncCallList funcCallList
   ]
-  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = {}
+  var @autoLayoutMultipleBindingGenerationList multipleBindingGenerationList = []
   switch self.mOptionalHiddenBinding 
   case noBinding :
   case binding (hiddenBindingExpression) :
