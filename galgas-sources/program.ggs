@@ -103,7 +103,7 @@ case ."eb"
 filewrapper predefinedOutletClasses in "generation-templates" {
 }{
 }{
-  template sourceFile "predefinedOutletClasses.eb"
+  template sourceFile : "predefinedOutletClasses.eb" ()
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

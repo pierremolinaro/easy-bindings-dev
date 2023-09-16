@@ -497,17 +497,18 @@ list @autoLayoutTableViewControllerSortedColumnListForGeneration {
 private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
-  template autoLayoutTableViewControllerImplementation "auto-layout-table-view-controller.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string TABLE_VIEW_CONTROLLER_NAME
-    ?@string MODEL_STRING
-    ?@autoLayoutTableViewControllerModelKind MODEL_KIND
-    ?@string MODEL_TYPE_NAME
-    ?@autoLayoutTableViewControllerBoundColumnListForGeneration BOUND_COLUMNS
-    ?@autoLayoutTableViewControllerSortedColumnListForGeneration SORTED_COLUMNS
-    ?@string ELEMENT_TYPE_NAME
-    ?@stringset OBSERVED_PROPERTIES_FOR_SORTING
-    ?@2stringlist ATTRIBUTE_VALUES
+  template autoLayoutTableViewControllerImplementation : "auto-layout-table-view-controller.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string TABLE_VIEW_CONTROLLER_NAME,
+    @string MODEL_STRING,
+    @autoLayoutTableViewControllerModelKind MODEL_KIND,
+    @string MODEL_TYPE_NAME,
+    @autoLayoutTableViewControllerBoundColumnListForGeneration BOUND_COLUMNS,
+    @autoLayoutTableViewControllerSortedColumnListForGeneration SORTED_COLUMNS,
+    @string ELEMENT_TYPE_NAME,
+    @stringset OBSERVED_PROPERTIES_FOR_SORTING,
+    @2stringlist ATTRIBUTE_VALUES
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

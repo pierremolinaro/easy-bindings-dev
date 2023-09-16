@@ -445,33 +445,35 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
 filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
 }{
 }{
-  template documentImplementation "document-auto-layout.swift.galgasTemplate"
-    ?@string DOCUMENT_CLASS_NAME
-    ?@string ROOT_ENTITY_NAME
-    ?@string MAIN_VIEW_NAME
-    ?@propertyGenerationList DOCUMENT_PROPERTY_LIST
-    ?@decoratedOutletMap OUTLET_GENERATION_MAP
-    ?@autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
-    ?@actionBindingListForGeneration TARGET_ACTION_LIST
-    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
-    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
-    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
-    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
-    ?@viewGenerationList VIEW_GENERATION_LIST
-#    ?@autoLayoutToolbarItemGenerationList TOOLBAR_ITEM_LIST
-    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
-    ?@string DOCUMENT_SUPER_CLASS_NAME
-    ?@autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
+  template documentImplementation : "document-auto-layout.swift.galgasTemplate" (
+    @string DOCUMENT_CLASS_NAME,
+    @string ROOT_ENTITY_NAME,
+    @string MAIN_VIEW_NAME,
+    @propertyGenerationList DOCUMENT_PROPERTY_LIST,
+    @decoratedOutletMap OUTLET_GENERATION_MAP,
+    @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP,
+    @actionBindingListForGeneration TARGET_ACTION_LIST,
+    @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
+    @multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST,
+    @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
+    @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
+    @viewGenerationList VIEW_GENERATION_LIST,
+    @implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
+    @string DOCUMENT_SUPER_CLASS_NAME,
+    @autoLayoutOutletLinkerGenerationList AUTO_LAYOUT_LINKER_LIST
+  )
 
-  template documentOutletConfiguratorImplementation "configure-auto-layout-outlet.swift.galgasTemplate"
-    ?@string DOCUMENT_TYPE_NAME
-    ?@string OUTLET_NAME
-    ?@string OUTLET_TYPE_NAME
+  template documentOutletConfiguratorImplementation : "configure-auto-layout-outlet.swift.galgasTemplate" (
+    @string DOCUMENT_TYPE_NAME,
+    @string OUTLET_NAME,
+    @string OUTLET_TYPE_NAME
+  )
 
-  template outletLinkerImplementation "linker-auto-layout-outlet.swift.galgasTemplate"
-    ?@string DOCUMENT_TYPE_NAME
-    ?@string LINKER_NAME
-    ?@2stringlist OUTLET_NAME_AND_TYPE_NAME_LIST
+  template outletLinkerImplementation : "linker-auto-layout-outlet.swift.galgasTemplate" (
+    @string DOCUMENT_TYPE_NAME,
+    @string LINKER_NAME,
+    @2stringlist OUTLET_NAME_AND_TYPE_NAME_LIST
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

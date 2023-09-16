@@ -229,19 +229,20 @@ class @preferencesForGeneration : @abstractFileGeneration {
 private filewrapper prefsGenerationTemplate in "generation-templates" {
 }{
 }{
-  template preferences "preferences.swift.galgasTemplate"
-    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-    ?@mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST
-    ?@decoratedOutletMap OUTLET_MAP
-    ?@regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST 
-    ?@actionBindingListForGeneration TARGET_ACTION_LIST
-    ?@multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST
-    ?@externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST
-    ?@tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST
-    ?@ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST
-    ?@viewGenerationList VIEW_GENERATION_LIST
-    ?@implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST
-    ?@autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
+  template preferences : "preferences.swift.galgasTemplate" (
+    @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    @mainXibDescriptorList MAIN_XIB_DESCRIPTOR_LIST,
+    @decoratedOutletMap OUTLET_MAP,
+    @regularBindingsGenerationList REGULAR_BINDINGS_GENERATION_LIST,
+    @actionBindingListForGeneration TARGET_ACTION_LIST,
+    @multipleBindingGenerationList MULTIPLE_BINDING_GENERATION_LIST,
+    @externSwiftFunctionList EXTERN_SWIFT_FUNCTION_LIST,
+    @tableViewBindingGenerationList TABLE_VALUE_BINDING_GENERATION_LIST,
+    @ebViewGraphicControllerBindingGenerationList EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST,
+    @viewGenerationList VIEW_GENERATION_LIST,
+    @implicitViewFunctionGenerationList IMPLICIT_VIEW_GENERATION_FUNCTION_LIST,
+    @autoLayoutOutletMap AUTO_LAYOUT_OUTLET_MAP
+  )
 }
 
 #·······················································································································

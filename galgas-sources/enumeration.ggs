@@ -163,10 +163,11 @@ class @enumForGeneration : @abstractFileGeneration {
 private filewrapper enumGenerationTemplate in "generation-templates" {
 }{
 }{
-  template enumGenerationInSwift "enum.swift.galgasTemplate"
-    ?@string ENUM_TYPE_NAME
-    ?@lstringlist CONSTANT_ORDERED_LIST
-    ?@enumFuncMap FUNCTION_MAP
+  template enumGenerationInSwift : "enum.swift.galgasTemplate" (
+    @string ENUM_TYPE_NAME,
+    @lstringlist CONSTANT_ORDERED_LIST,
+    @enumFuncMap FUNCTION_MAP
+  )
 }
 
 #·······················································································································

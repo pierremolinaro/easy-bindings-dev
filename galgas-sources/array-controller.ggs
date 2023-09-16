@@ -306,13 +306,14 @@ class @arrayControllerGeneration : @abstractFileGeneration {
 private filewrapper arrayControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
-  template arrayControllerImplementationInSwift "array-controller.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string ARRAY_CONTROLLER_NAME
-    ?@arrayControllerModelKind MODEL_KIND
-    ?@string MODEL_TYPE_NAME
-    ?@string ELEMENT_TYPE_NAME
-    ?@bool ELEMENT_TYPE_IS_GRAPHIC
+  template arrayControllerImplementationInSwift : "array-controller.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string ARRAY_CONTROLLER_NAME,
+    @arrayControllerModelKind MODEL_KIND,
+    @string MODEL_TYPE_NAME,
+    @string ELEMENT_TYPE_NAME,
+    @bool ELEMENT_TYPE_IS_GRAPHIC
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

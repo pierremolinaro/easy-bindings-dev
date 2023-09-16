@@ -629,12 +629,13 @@ override proc @transientRoutineGeneration.generateCode(
 private filewrapper transientManager in "generation-templates" {
 }{
 }{
-  template transientComputationFunctionFile "transient-computation-function.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string TRANSIENT_NAME
-    ?@transientDependencyListForGeneration DEPENDENCY_LIST
-    ?@typeKind TRANSIENT_TYPE
-    ?@string TRANSIENT_FUNCTION_NAME_PREFIX
+  template transientComputationFunctionFile : "transient-computation-function.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string TRANSIENT_NAME,
+    @transientDependencyListForGeneration DEPENDENCY_LIST,
+    @typeKind TRANSIENT_TYPE,
+    @string TRANSIENT_FUNCTION_NAME_PREFIX
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

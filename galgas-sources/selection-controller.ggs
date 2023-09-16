@@ -212,19 +212,21 @@ list @selectionControllerForGeneration {
 private filewrapper selectionControllerGenerationTemplate in "generation-templates/controllers" {
 }{
 }{
-  template baseSelectionControllerImplementation "base-selection-controller.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string SELECTION_CONTROLLER_NAME
-    ?@string ELEMENT_TYPE_NAME
-    ?@propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+  template baseSelectionControllerImplementation : "base-selection-controller.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string SELECTION_CONTROLLER_NAME,
+    @string ELEMENT_TYPE_NAME,
+    @propertyMap SELECTION_OBSERVABLE_PROPERTY_MAP
+  )
 
-  template derivedSelectionControllerImplementation "derived-selection-controller.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string SELECTION_CONTROLLER_NAME
-    ?@string BASE_ELEMENT_TYPE_NAME
-    ?@string DERIVED_ELEMENT_TYPE_NAME
-    ?@propertyGenerationList PROPERTY_GENERATION_LIST
-    ?@bool HAS_ATOMIC_PROPERTIES
+  template derivedSelectionControllerImplementation : "derived-selection-controller.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string SELECTION_CONTROLLER_NAME,
+    @string BASE_ELEMENT_TYPE_NAME,
+    @string DERIVED_ELEMENT_TYPE_NAME,
+    @propertyGenerationList PROPERTY_GENERATION_LIST,
+    @bool HAS_ATOMIC_PROPERTIES
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

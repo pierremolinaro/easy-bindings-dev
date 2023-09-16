@@ -13,11 +13,12 @@ list @validationStubRoutineListForGeneration {
 filewrapper validationStubExtension in "generation-templates" {
 }{
 }{
-  template actionGeneration "validation-stub-extension.swift.galgasTemplate"
-    ?@string OBJECT_TYPE_NAME
-    ?@string MODEL_NAME
-    ?@string MODEL_TYPE_NAME
- }
+  template actionGeneration : "validation-stub-extension.swift.galgasTemplate" (
+    @string OBJECT_TYPE_NAME,
+    @string MODEL_NAME,
+    @string MODEL_TYPE_NAME
+  )
+}
 
 #-----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            

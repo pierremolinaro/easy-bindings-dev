@@ -175,17 +175,20 @@ private filewrapper additionalXcodeFiles in "generation-templates/xcode-project"
 }{
 }{
 
-  template main_xib "MainMenu.xib.galgasTemplate"
-    ?@string PROJECT_NAME
+  template main_xib : "MainMenu.xib.galgasTemplate" (
+    @string PROJECT_NAME
+  )
 
-  template info_plist "Info.plist.txt"
-    ?@string PROJECT_NAME
-    ?@string APPLICATION_BUNDLE_BASE
-    ?@string VERSION_STRING
-    ?@stringset HANDLED_EXTENSION_SET
+  template info_plist : "Info.plist.txt" (
+    @string PROJECT_NAME,
+    @string APPLICATION_BUNDLE_BASE,
+    @string VERSION_STRING,
+    @stringset HANDLED_EXTENSION_SET
+  )
 
-  template build_command "build.py.galgasTemplate"
-    ?@string PROJECT_NAME
+  template build_command : "build.py.galgasTemplate" (
+    @string PROJECT_NAME
+  )
 }
 
 #------------------------------------------------------------

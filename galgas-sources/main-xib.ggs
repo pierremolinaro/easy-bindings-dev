@@ -146,7 +146,7 @@ proc generateTestFile(
       inProjectName,
       outlet_identifier_list
     ]
-    let header = "#!/usr/bin/python\n"
+    let header = "#!/usr/bin/python3\n"
       "# coding=utf-8\n\n"
       "# https://pypi.python.org/pypi/atomac\n"
       "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n\n"
@@ -169,10 +169,11 @@ proc generateTestFile(
 private filewrapper testFiles in "generation-templates/xcode-project" {
 }{
 }{
-  template test_py "test.py.galgasTemplate"
-    ?@string BUNDLE_IDENTIFIER
-    ?@string PROJECT_NAME
-    ?@stringlist OUTLET_IDENTIFIER_LIST
+  template test_py : "test.py.galgasTemplate" (
+    @string BUNDLE_IDENTIFIER,
+    @string PROJECT_NAME,
+    @stringlist OUTLET_IDENTIFIER_LIST
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

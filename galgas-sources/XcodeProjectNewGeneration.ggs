@@ -387,27 +387,28 @@ struct @XcodeProjectDescriptor {
 private filewrapper xcodeProjectGenerationFilewrapper in "generation-templates/xcode-project" {
 }{
 }{
-  template xcodeproj "project.pbxproj.galgasTemplate"
-    ?@string PROJECT_REF
-    ?@string MAIN_GROUP_REF
-    ?@XCodeGroupList GROUPS
-    ?@stringlist MAIN_GROUP_CHILDREN_REFS
-    ?@XCodeToolTargetList TOOL_TARGET_LIST
-    ?@XCodeAppTargetList APP_TARGET_LIST
-    ?@2stringlist CPP_FILE_LIST
-    ?@2stringlist M_FILE_LIST
-    ?@2stringlist MM_FILE_LIST
-    ?@2stringlist SWIFT_FILE_LIST
-    ?@2stringlist FRAMEWORK_FILE_LIST
-    ?@2stringlist HEADER_FILE_LIST
-    ?@2stringlist PLIST_FILE_LIST
-    ?@2stringlist TIFF_FILE_LIST
-    ?@2stringlist ICNS_FILE_LIST
-    ?@2stringlist XIB_FILE_LIST
-    ?@BuildFileList BUILD_FILE_LIST
-    ?@string DEFAULT_CONFIGURATION_REF
-    ?@stringlist DEFAULT_CONFIGURATION_SETTING_LIST
-    ?@string PROJECT_BUILD_DEFAULT_CONFIGURATION_REF
+  template xcodeproj : "project.pbxproj.galgasTemplate" (
+    @string PROJECT_REF,
+    @string MAIN_GROUP_REF,
+    @XCodeGroupList GROUPS,
+    @stringlist MAIN_GROUP_CHILDREN_REFS,
+    @XCodeToolTargetList TOOL_TARGET_LIST,
+    @XCodeAppTargetList APP_TARGET_LIST,
+    @2stringlist CPP_FILE_LIST,
+    @2stringlist M_FILE_LIST,
+    @2stringlist MM_FILE_LIST,
+    @2stringlist SWIFT_FILE_LIST,
+    @2stringlist FRAMEWORK_FILE_LIST,
+    @2stringlist HEADER_FILE_LIST,
+    @2stringlist PLIST_FILE_LIST,
+    @2stringlist TIFF_FILE_LIST,
+    @2stringlist ICNS_FILE_LIST,
+    @2stringlist XIB_FILE_LIST,
+    @BuildFileList BUILD_FILE_LIST,
+    @string DEFAULT_CONFIGURATION_REF,
+    @stringlist DEFAULT_CONFIGURATION_SETTING_LIST,
+    @string PROJECT_BUILD_DEFAULT_CONFIGURATION_REF
+  )
 }
 
 #----------------------------------------------------------------------------------------------------------------------*

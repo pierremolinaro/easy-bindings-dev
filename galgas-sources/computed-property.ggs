@@ -442,10 +442,11 @@ override proc @computeRoutineGeneration.generateCode(
 private filewrapper computedPropertyManager in "generation-templates" {
 }{
 }{
-  template computedComputationFunctionFile "compute-property-function.swift.galgasTemplate"
-    ?@string OWNER_NAME
-    ?@string COMPUTED_PROPERTY_NAME
-    ?@typeKind TRANSIENT_TYPE
+  template computedComputationFunctionFile : "compute-property-function.swift.galgasTemplate" (
+    @string OWNER_NAME,
+    @string COMPUTED_PROPERTY_NAME,
+    @typeKind TRANSIENT_TYPE
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -495,71 +495,74 @@ proc generateEBManagedObjectContext(
 private filewrapper entityGenerationTemplate in "generation-templates" {
 }{
 }{
-  template entityImplementationInSwift "entity.swift.galgasTemplate"
-    ?@string ENTITY_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-    ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
-    ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
-    ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
-    ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
-    ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
-    ?@stringset SIGNATURE_SET
-    ?@bool IS_GRAPHIC_ENTITY
-    ?@bool IS_ABSTRACT
-    ?@stringset OVERRIDEN_TRANSIENTS
-    ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
-    ?@bool HAS_SUB_ENTITY
-    ?@bool OPTION_CanCopyAndPaste
-    ?@bool OPTION_CannotBeDeleted
-    ?@bool GENERATE_PROPERTY_ACCESS_PROTOCOLS
+  template entityImplementationInSwift : "entity.swift.galgasTemplate" (
+    @string ENTITY_NAME,
+    @string SUPER_CLASS_NAME,
+    @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    @atomicProxyGenerationList PROXY_LIST_FOR_GENERATION,
+    @toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION,
+    @atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION,
+    @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
+    @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
+    @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
+    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    @stringset SIGNATURE_SET,
+    @bool IS_GRAPHIC_ENTITY,
+    @bool IS_ABSTRACT,
+    @stringset OVERRIDEN_TRANSIENTS,
+    @externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION,
+    @bool HAS_SUB_ENTITY,
+    @bool OPTION_CanCopyAndPaste,
+    @bool OPTION_CannotBeDeleted,
+    @bool GENERATE_PROPERTY_ACCESS_PROTOCOLS
+  )
 
-  template entityToManyImplementationInSwift "entity-tomany.swift.galgasTemplate"
-    ?@string ENTITY_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@bool HANDLING_OPPOSITE
-    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-    ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
-    ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
-    ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
-    ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
-    ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
-    ?@stringset SIGNATURE_SET
-    ?@bool IS_GRAPHIC_ENTITY
-    ?@bool IS_ABSTRACT
-    ?@stringset OVERRIDEN_TRANSIENTS
-    ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
-    ?@bool GENERATE_CLASS_PreferencesArrayOf_
-    ?@bool GENERATE_CLASS_ProxyArrayOf_
-    ?@bool GENERATE_CLASS_TransientArrayOfSuperOf_
-    ?@bool GENERATE_CLASS_TransientArrayOf_
-    ?@bool GENERATE_CLASS_StoredArrayOf_
+  template entityToManyImplementationInSwift : "entity-tomany.swift.galgasTemplate" (
+    @string ENTITY_NAME,
+    @string SUPER_CLASS_NAME,
+    @bool HANDLING_OPPOSITE,
+    @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    @atomicProxyGenerationList PROXY_LIST_FOR_GENERATION,
+    @toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION,
+    @atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION,
+    @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
+    @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
+    @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
+    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    @stringset SIGNATURE_SET,
+    @bool IS_GRAPHIC_ENTITY,
+    @bool IS_ABSTRACT,
+    @stringset OVERRIDEN_TRANSIENTS,
+    @externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION,
+    @bool GENERATE_CLASS_PreferencesArrayOf_,
+    @bool GENERATE_CLASS_ProxyArrayOf_,
+    @bool GENERATE_CLASS_TransientArrayOfSuperOf_,
+    @bool GENERATE_CLASS_TransientArrayOf_,
+    @bool GENERATE_CLASS_StoredArrayOf_
+  )
 
-  template entityToOneImplementationInSwift "entity-toone.swift.galgasTemplate"
-    ?@string ENTITY_NAME
-    ?@string SUPER_CLASS_NAME
-    ?@bool HANDLING_OPPOSITE
-    ?@propertyGenerationList PROPERTY_LIST_FOR_GENERATION
-    ?@atomicProxyGenerationList PROXY_LIST_FOR_GENERATION
-    ?@toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION
-    ?@atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION
-    ?@transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION
-    ?@computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION
-    ?@toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST
-    ?@toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST
-    ?@stringset SIGNATURE_SET
-    ?@bool IS_GRAPHIC_ENTITY
-    ?@bool IS_ABSTRACT
-    ?@stringset OVERRIDEN_TRANSIENTS
-    ?@externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
-#    ?@bool GENERATE_CLASS_ProxyObject_
+  template entityToOneImplementationInSwift : "entity-toone.swift.galgasTemplate" (
+    @string ENTITY_NAME,
+    @string SUPER_CLASS_NAME,
+    @bool HANDLING_OPPOSITE,
+    @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    @atomicProxyGenerationList PROXY_LIST_FOR_GENERATION,
+    @toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION,
+    @atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION,
+    @transientPropertyGenerationList TRANSIENT_LIST_FOR_IMPLEMENTATION,
+    @computedPropertyGenerationList COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION,
+    @toOnePropertyGenerationList TO_ONE_RELATIONSHIP_LIST,
+    @toManyPropertyGenerationList TO_MANY_RELATIONSHIP_LIST,
+    @stringset SIGNATURE_SET,
+    @bool IS_GRAPHIC_ENTITY,
+    @bool IS_ABSTRACT,
+    @stringset OVERRIDEN_TRANSIENTS,
+    @externSwiftDelegateList EXTERN_DELEGATE_LIST_FOR_IMPLEMENTATION
+  )
 
-  template managedObjectFactory "EBManagedObjectFactory.swift.galgasTemplate"
-    ?@entityListForGeneratingEBManagedObjectContext ENTITY_LIST
+  template managedObjectFactory : "EBManagedObjectFactory.swift.galgasTemplate" (
+    @entityListForGeneratingEBManagedObjectContext ENTITY_LIST
+  )
 }
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -112,15 +112,17 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 }{
 #  template stub "standard-properties-stub.swift.galgasTemplate"
 
-  template scalarProperty "scalar-standard-property.swift.galgasTemplate"
-    ?@string TYPE
-    ?@bool TRANSIENT
-    ?@string COMPARISON_METHOD
+  template scalarProperty : "scalar-standard-property.swift.galgasTemplate" (
+    @string TYPE,
+    @bool TRANSIENT,
+    @string COMPARISON_METHOD
+  )
 
-  template classProperty "class-standard-property.swift.galgasTemplate"
-    ?@string CLASS_NAME
-    ?@bool COMPARABLE
-    ?@bool TRANSIENT
+  template classProperty : "class-standard-property.swift.galgasTemplate" (
+    @string CLASS_NAME,
+    @bool COMPARABLE,
+    @bool TRANSIENT
+  )
 }
 
 #·······················································································································
