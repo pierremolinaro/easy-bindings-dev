@@ -136,7 +136,7 @@ end
 %  }
 
 %
-if [MAIN_XIB_DESCRIPTOR_LIST length] > 0 then
+if [MAIN_XIB_DESCRIPTOR_LIST count] > 0 then
 %  //····················································································································
 
   @IBOutlet private final var window : NSWindow?

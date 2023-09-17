@@ -158,7 +158,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
     case atomic (kind) :
       !?mPropertyMap.insertKey (
         self.mTransientName,
-        .property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.length () == 0)),
+        .property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.count () == 0)),
         [],
         self.mIsOverriding
       )
@@ -369,7 +369,7 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
 override func @transientPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
-  if self.mDependencyList.length () > 0 then
+  if self.mDependencyList.count () > 0 then
     let needs_unwSelf = self.mDependencyList.needs_unwSelf (inPreferences)
     result += "  //--- Atomic property: " + self.mPropertyName + "\n"
     if needs_unwSelf then
@@ -595,7 +595,7 @@ override proc @transientRoutineGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
-  if self.mDependencyList.length () > 0 then
+  if self.mDependencyList.count () > 0 then
     let s = filewrapper [transientManager.transientComputationFunctionFile:
       self.mOwnerName,
       self.mTransientName,

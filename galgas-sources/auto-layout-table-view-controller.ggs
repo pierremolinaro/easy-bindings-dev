@@ -318,8 +318,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     formalArgumentList += !"headerAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
     formalArgumentList += !"contentAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
     var @2stringlist actualParameterList = []
-    if formalArgumentList.length () != columnParameterList.length () then
-      error propertyName : columnParameterList.length ().string () + " parameter(s), " + formalArgumentList.length () + " required"
+    if formalArgumentList.count () != columnParameterList.count () then
+      error propertyName : columnParameterList.count ().string () + " parameter(s), " + formalArgumentList.count () + " required"
     else
       for (formalName formalType) in formalArgumentList, (actualName actualType actualParameter) in columnParameterList do
         if formalName.string != actualName.string then

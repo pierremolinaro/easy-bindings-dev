@@ -478,7 +478,7 @@ proc generateEBManagedObjectContext(
   let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet)
 {
-  if inEntityListForGeneration.length () > 0 then
+  if inEntityListForGeneration.count () > 0 then
     let fileName = "EBManagedObjectFactory.swift"
     ioGeneratedFileSet += !fileName
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]

@@ -87,9 +87,9 @@ proc sortProperties(
       ?let unsortedSemanticDeclarationListAST,
       ?*
     ]
-    if unsortedSemanticDeclarationListAST.length () > 0 then
+    if unsortedSemanticDeclarationListAST.count () > 0 then
       var s = "semantic analysis not performed, "
-            + unsortedSemanticDeclarationListAST.length ()
+            + unsortedSemanticDeclarationListAST.count ()
             + " declarations are involved in circular definition:"
       for (declaration) in  unsortedSemanticDeclarationListAST do
         s += "\n-  " + declaration.nodeKey ()

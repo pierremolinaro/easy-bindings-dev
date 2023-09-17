@@ -539,9 +539,9 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
     mangleName += ")"
     [inFunctionMap searchKey .new (mangleName, functionName.location), ?let formalParameterList]
     var @autoLayoutViewInstructionGenerationParameterList parameterList = []
-    if formalParameterList.length () != actualParameterList.length () then
+    if formalParameterList.count () != actualParameterList.count () then
       error functionName 
-      : formalParameterList.length ().string () + " parameter(s) required, " + actualParameterList.length () + " provided"
+      : formalParameterList.count ().string () + " parameter(s) required, " + actualParameterList.count () + " provided"
     else
       for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
         if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
@@ -574,7 +574,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
-          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
+          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
         case string (stringValue) :
           parameterList += !name !stringValue
@@ -868,9 +868,9 @@ override proc @astComputedViewInstruction.generateViewCode(
      ?let functionMap
   ]
   var @autoLayoutViewInstructionGenerationParameterList parameterList = []
-  if formalParameterList.length () != self.mParameterList.length () then
+  if formalParameterList.count () != self.mParameterList.count () then
     error self.mAutoLayoutViewClassName 
-    : formalParameterList.length ().string () + " parameter(s) required, " + self.mParameterList.length () + " provided"
+    : formalParameterList.count ().string () + " parameter(s) required, " + self.mParameterList.count () + " provided"
   else
     for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
       if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
@@ -903,7 +903,7 @@ override proc @astComputedViewInstruction.generateViewCode(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           ]
-          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.length () + " ()"
+          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()"
           ioImplicitViewFunctionGenerationList += !viewInstruction
       case entity (entityName) :
         [inClassMap searchKey entityName, ?let classKind, ?3*]
@@ -1360,11 +1360,11 @@ proc analyzeAutoLayoutRegularBinding(
     end
     if continues then
       error mBindingName : "this binding is not defined"
-    elsif boundModelTypeList.length () != outletBindingSpecificationModelList.length () then
+    elsif boundModelTypeList.count () != outletBindingSpecificationModelList.count () then
       error mBindingName
-      : outletBindingSpecificationModelList.length ().string ()
+      : outletBindingSpecificationModelList.count ().string ()
         + " model(s) required for this binding (found: "
-        + boundModelTypeList.length () + ")"
+        + boundModelTypeList.count () + ")"
     else
       for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient () then
@@ -1378,9 +1378,9 @@ proc analyzeAutoLayoutRegularBinding(
     end
   #--- Check options
     var bindingOptionString = ""
-    if controllerBindingOptionDecoratedList.length () != mBindingOptionList.length () then
+    if controllerBindingOptionDecoratedList.count () != mBindingOptionList.count () then
       var @string s
-      if controllerBindingOptionDecoratedList.length () == 0 then
+      if controllerBindingOptionDecoratedList.count () == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"

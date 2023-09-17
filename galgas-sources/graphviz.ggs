@@ -43,7 +43,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
   var @stringlist exploreArray = [inRootEntityName]
   var @stringlist nodeList = []
   var @stringlist arrowList = []
-  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
+  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.count () > 0 do
     !?exploreArray.popLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
     [inSemanticContext.mClassMap searchKey entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*]
@@ -153,7 +153,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   var @stringlist nodeList = []
   var @stringlist arrowList = []
   var @entityStrongReferenceGraph entityStrongReferenceGraph = .emptyGraph
-  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.length () > 0 do
+  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.count () > 0 do
     !?exploreArray.popLast (?let @string entityName)
     nodeList += !entityName
     !?entityStrongReferenceGraph.addNode (.new (entityName, .nowhere), entityName)
@@ -223,7 +223,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   [entityStrongReferenceGraph.graphviz () writeToFileWhenDifferentContents filePath, ?*]
 #--- Check all node are defined
   let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList ()
-  if undefinedNodeList.length () > 0 then
+  if undefinedNodeList.count () > 0 then
     var s = "for " + inRootEntityName + " graph , the following entities are not defined"
     for (node) in undefinedNodeList do
       s += "\n -- " + node
@@ -231,7 +231,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     error .nowhere : s
   end
 #--- Check accessibility
-  if undefinedNodeList.length () == 0 then
+  if undefinedNodeList.count () == 0 then
     let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ([.new (inRootEntityName, .nowhere)], [])
     let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
     for (node) in nodeList do
@@ -241,10 +241,10 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     end
   end
 #--- Check no circularities
-  if undefinedNodeList.length () == 0 then 
+  if undefinedNodeList.count () == 0 then 
     [entityStrongReferenceGraph circularities ?*, ?let @lstringlist unsortedNodeList]
-    if unsortedNodeList.length () > 0 then
-      var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.length ()
+    if unsortedNodeList.count () > 0 then
+      var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.count ()
       s += " entities are involved in a strong reference cycle"
       for (node) in unsortedNodeList do
         s += "\n -- " + node

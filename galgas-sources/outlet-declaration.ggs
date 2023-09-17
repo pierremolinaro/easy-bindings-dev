@@ -448,11 +448,11 @@ proc analyzeRegularBinding(
     end
     if continues then
       error mBindingName : "this binding is not defined"
-    elsif boundModelTypeList.length () != outletBindingSpecificationModelList.length () then
+    elsif boundModelTypeList.count () != outletBindingSpecificationModelList.count () then
       error mBindingName
-      : outletBindingSpecificationModelList.length ().string ()
+      : outletBindingSpecificationModelList.count ().string ()
         + " model(s) required for this binding (found: "
-        + boundModelTypeList.length () + ")"
+        + boundModelTypeList.count () + ")"
     else
       for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient () then
@@ -466,9 +466,9 @@ proc analyzeRegularBinding(
     end
   #--- Check options
     var bindingOptionString = ""
-    if controllerBindingOptionDecoratedList.length () != mBindingOptionList.length () then
+    if controllerBindingOptionDecoratedList.count () != mBindingOptionList.count () then
       var @string s
-      if controllerBindingOptionDecoratedList.length () == 0 then
+      if controllerBindingOptionDecoratedList.count () == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"

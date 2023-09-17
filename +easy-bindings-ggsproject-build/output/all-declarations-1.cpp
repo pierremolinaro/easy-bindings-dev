@@ -7274,9 +7274,9 @@ GALGAS_string extensionGetter_string (const GALGAS_autoLayoutClassParameterType 
     break ;
   case GALGAS_autoLayoutClassParameterType::kEnum_typeEnum:
     {
-      const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum * extractPtr_1553 = (const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_1512_name = extractPtr_1553->mAssociatedValue0 ;
-      result_result = GALGAS_string ("the ").add_operation (extractedValue_1512_name.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GALGAS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
+      const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum * extractPtr_1542 = (const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_1509_name = extractPtr_1542->mAssociatedValue0 ;
+      result_result = GALGAS_string ("the ").add_operation (extractedValue_1509_name.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GALGAS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
     }
     break ;
   }
