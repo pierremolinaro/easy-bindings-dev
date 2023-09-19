@@ -129,7 +129,7 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey self.mComputedPropertyTypeName, ?let classKind, ?3*]
+    [ioSemanticContext.mClassMap searchKey (self.mComputedPropertyTypeName, ?let classKind, ?3*)
     switch classKind
     case prefs :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
@@ -157,7 +157,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
 #--- Property type
-  [ioSemanticContext.mClassMap searchKey self.mComputedPropertyTypeName, ?let classKind, ?3*]
+  [ioSemanticContext.mClassMap searchKey (self.mComputedPropertyTypeName, ?let classKind, ?3*)
 #--- Check type
   let @typeKind typeKind
   switch classKind
@@ -175,21 +175,21 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   if self.mRootEntityName.string == "" then
     rootProperties = []
   else
-    [ioSemanticContext.mClassMap searchKey self.mRootEntityName, ?*, ?rootProperties, ?2*]
+    [ioSemanticContext.mClassMap searchKey (self.mRootEntityName, ?*, ?rootProperties, ?2*)
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey self.mClassName, ?let currentClassKind, ?let properties, ?2*]
+  [ioSemanticContext.mClassMap searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
 #--- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
     [mObservableProperty analyzeObservableProperty
-      rootProperties,
+      (rootProperties,
       ioSemanticContext,
       properties,
       ?let @propertyKind dependencyKind,
       ?let @string swiftTypeStringForTransientFunctionArgument,
       ?let @string defaultValueAsString
-    ]
+    )
     switch dependencyKind
     case property (* *) :
     case toMany (4*) :

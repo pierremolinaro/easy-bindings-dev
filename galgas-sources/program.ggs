@@ -41,7 +41,7 @@ case ."eb"
   semanticContext.mEnumerationFunctionListAST = declarationStruct.mEnumerationFunctionListAST
   var generation = @generationStruct ()
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
-    [declaration firstAnalysisPhase !?semanticContext, !?generation]
+    [declaration firstAnalysisPhase (!?semanticContext, !?generation)
   end
 #----------------------------------------- Build binding specification map
   if @uint.errorCount == 0 then
@@ -58,24 +58,24 @@ case ."eb"
   end
 #----------------------------------------- Semantic Analysis, second phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
-    [declaration secondAnalysisPhase !?semanticContext, !?generation]
+    [declaration secondAnalysisPhase (!?semanticContext, !?generation)
   end
 #----------------------------------------- Semantic Analysis, third phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
-    [declaration thirdAnalysisPhase !?semanticContext, !?generation]
+    [declaration thirdAnalysisPhase (!?semanticContext, !?generation)
   end
 #----------------------------------------- Semantic Analysis, fourth phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
-    [declaration fourthAnalysisPhase !?semanticContext, !?generation]
+    [declaration fourthAnalysisPhase (!?semanticContext, !?generation)
   end
 #----------------------------------------- Check enum type is declared for every enum function
   if @uint.errorCount == 0 then
     for (enumTypeName * *) in semanticContext.mEnumerationFunctionListAST do
-      [semanticContext.mClassMap searchKey enumTypeName, ?let type, ?3*]
+      [semanticContext.mClassMap searchKey (enumTypeName, ?let type, ?3*)
       if not type.isAtomic () then
         error enumTypeName : "this type should be an enum type"
       else
-        [type atomic ?kind:let typeKind]
+        [type atomic (?kind:let typeKind)
         if not typeKind.isEnumType () then
           error enumTypeName : "this type should be an enum type"
         end

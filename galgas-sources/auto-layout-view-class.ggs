@@ -247,7 +247,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
     )
   else
     [ioSemanticContext.mAutolayoutViewClassMap searchKey
-      self.mSuperClassName,
+      (self.mSuperClassName,
       ?*,
       ?let hasRunAction,
       ?let handlesTableValueBinding,
@@ -255,7 +255,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       ?let hasHidden,
       ?let handlesGraphicControllerBinding,
       ?3*
-    ]
+    )
     if self.mHasRunAction & hasRunAction then
       error self.mClassName : "$run binding already defined in superclass"
     end

@@ -66,13 +66,13 @@ proc sortProperties(
 #------------------------ Enter declarations in graph
   var @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
   for (declaration) in inDeclarationListAST do
-    [declaration enterInPrecedenceGraph !?declarationPrecedenceGraph]
+    [declaration enterInPrecedenceGraph (!?declarationPrecedenceGraph)
   end
 #------------------------ dot files
   if option easyBindings_options [outputDeclarationDependencyGraph.value] then
     let s = declarationPrecedenceGraph.graphviz ()
     let path = inSourceFile + ".declarationDependancy.dot"
-    [s writeToFileWhenDifferentContents path, ?*]
+    [s writeToFileWhenDifferentContents (path, ?*)
   end
 #------------------------  Get ordered declaration list
   outSortedDeclarationListAST = []
@@ -82,11 +82,11 @@ proc sortProperties(
     end
   else
     [declarationPrecedenceGraph topologicalSort
-      ?outSortedDeclarationListAST,
+      (?outSortedDeclarationListAST,
       ?*,
       ?let unsortedSemanticDeclarationListAST,
       ?*
-    ]
+    )
     if unsortedSemanticDeclarationListAST.count () > 0 then
       var s = "semantic analysis not performed, "
             + unsortedSemanticDeclarationListAST.count ()

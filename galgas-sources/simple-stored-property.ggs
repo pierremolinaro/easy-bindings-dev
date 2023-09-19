@@ -26,7 +26,7 @@ override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarati
   !?ioGraph.addNode (node, self)
   !?ioGraph.addEdge (node, self.mClassName)
   !?ioGraph.addEdge (node, self.mPropertyTypeName)
-  [self.mDefaultValue enterDefaultValuePrecedence node, !?ioGraph]
+  [self.mDefaultValue enterDefaultValuePrecedence (node, !?ioGraph)
 }
 
 #·······················································································································
@@ -124,20 +124,20 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey self.mPropertyTypeName, ?let classKind, ?3*]
-    [ioSemanticContext.mClassMap searchKey
+    [ioSemanticContext.mClassMap searchKey (self.mPropertyTypeName, ?let classKind, ?3*)
+    [ioSemanticContext.mClassMap searchKey (
       .new (preferencesName (), .nowhere),
       ?*,
       ?let preferencesPropertyMap,
       ?2*
-    ]
+    )
     switch classKind
     case prefs :
       error self.mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
       !?mPropertyMap.insertKey (self.mPropertyName, .property (!type: kind, !accessibility: .stored), [], false)
     #--- Analyze default value
-      [self.mDefaultValue analyzeDefaultValueType [kind], preferencesPropertyMap, ?let @string swiftDefaultValueAsString]
+      [self.mDefaultValue analyzeDefaultValueType ([kind], preferencesPropertyMap, ?let @string swiftDefaultValueAsString)
     #--- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration (
         self.mPropertyName.string,

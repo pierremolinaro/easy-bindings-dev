@@ -131,13 +131,13 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     end
   end
 #--- Get preference property map
-  [ioSemanticContext.mClassMap searchKey
+  [ioSemanticContext.mClassMap searchKey (
     .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?let actionMap,
     ?let propertyGenerationList
-  ]
+  )
 #--- Analyze outlets and bindings
   analyzeOutlets (
     true,
@@ -166,7 +166,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     [viewDeclaration checkView
-      viewName,
+      (viewName,
       viewDeclarationMap,
       !prefs: true,
       [], # rootPropertyMap
@@ -180,7 +180,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
       !?configuratorMap,
       !?autoLayoutOutletMap,
       ?let viewGeneration
-    ]
+    )
     viewGenerationList += !viewName !viewGeneration
   end
   if not viewDeclarationMap.hasKey ("mPrefsMainView") then

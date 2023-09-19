@@ -65,10 +65,10 @@ proc generateCode(
   var @stringset generatedFileSet = []
   for (fileGeneration) in inGeneration.mFileGenerationList do
     [fileGeneration generateCode
-      fileOutputDirectory,
+      (fileOutputDirectory,
       inGeneration,
       !?generatedFileSet
-    ]
+    )
   end
   generateEBManagedObjectContext (
     inGeneration.mEntityListForGeneration,

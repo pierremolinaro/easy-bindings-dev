@@ -370,7 +370,7 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
   let @propertyMap inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
-  [inPreferencesPropertyMap searchKey self.mPrefPropertyName, ?let @propertyKind kind, ?2*]
+  [inPreferencesPropertyMap searchKey (self.mPrefPropertyName, ?let @propertyKind kind, ?2*)
   switch kind
   case property (@typeKind type *) :
     var found = false

@@ -165,28 +165,28 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  [ioSemanticContext.mClassMap searchKey
+  [ioSemanticContext.mClassMap searchKey (
     .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
-  ]
+  )
 #--- Get document property map
-  [ioSemanticContext.mClassMap searchKey
+  [ioSemanticContext.mClassMap searchKey (
     .new (self.mClassName, .nowhere),
     ?*,
     ?let documentPropertyMap,
     ?let documentActionMap,
     ?let documentPropertyGenerationList
-  ]
+  )
 #--- Get root entity property map
   [ioSemanticContext.mClassMap searchKey
-    self.mRootEntityName,
+    (self.mRootEntityName,
     ?*,
     ?let rootPropertyMap,
     ?let unused rootActionMap,
     ?let unused rootPropertyGenerationList
-  ]
+  )
 #--- Analyze outlets and bindings
   analyzeOutlets (
     false,
@@ -213,7 +213,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !prefs: false,
+        (!prefs: false,
         rootPropertyMap,
         ioSemanticContext,
         documentPropertyMap,
@@ -221,7 +221,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
         ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
         ?let @typeKind type,
         ?let @location errorLocation
-      ]
+      )
       if not type.isBoolType () then
         error errorLocation : "expression is not boolean"
       end
@@ -240,7 +240,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     [viewDeclaration checkView
-      viewName,
+      (viewName,
       viewDeclarationMap,
       !prefs: false,
       rootPropertyMap,
@@ -254,10 +254,10 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       !?configuratorMap,
       !?autoLayoutOutletMap,
       ?let viewGeneration
-    ]
+    )
     viewGenerationList += !viewName !viewGeneration
   end
-  [viewDeclarationMap searchKey self.mMainViewName]
+  [viewDeclarationMap searchKey (self.mMainViewName)
 #--- Analyze toolbar item declarations
 #  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = []
 #  for (item) in self.mAutoLayoutToolbarItemList do
@@ -295,7 +295,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     linkerNameSet += !linkerName.string
     var @2stringlist outletNameAndTypeNameList = []
     for (outletName) in ouletNameList do
-      [autoLayoutOutletMap searchKey outletName, ?let outletTypeName, ?let unused outletIsArray]
+      [autoLayoutOutletMap searchKey (outletName, ?let outletTypeName, ?let unused outletIsArray)
       outletNameAndTypeNameList += !outletName.string !outletTypeName
     end
     outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList

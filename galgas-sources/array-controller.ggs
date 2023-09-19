@@ -109,8 +109,8 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
     let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
-      [ioSemanticContext.mClassMap searchKey rootEntityName, ?*, ?let rootProperties, ?2*]
-      [rootProperties searchKey self.mToManyPropertyName, ?let classKind, ?2*]
+      [ioSemanticContext.mClassMap searchKey (rootEntityName, ?*, ?let rootProperties, ?2*)
+      [rootProperties searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -134,7 +134,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      [mPropertyMap searchKey self.mToManyPropertyName, ?let classKind, ?2*]
+      [mPropertyMap searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -173,24 +173,24 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
     [ioSemanticContext.mClassMap searchKey
-       rootEntityName,
+       (rootEntityName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
-    ]
+    )
   case selfToManyRelationship :
     [ioSemanticContext.mClassMap searchKey
-       self.mClassName,
+       (self.mClassName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
-     ]  
+     )  
   end
   [boundModelPropertyMap searchKey
-     self.mToManyPropertyName,
+     (self.mToManyPropertyName,
      ?let boundModelClassKind,
      ?2*
-  ]
+  )
 #------------------------------------------------------------ Check colum bound models
   let @arrayControllerModelKind arrayControllerModelKind
   let @bool graphic
@@ -207,7 +207,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey typeName, ?*, ?3*]
+    [ioSemanticContext.mClassMap searchKey (typeName, ?*, ?3*)
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"

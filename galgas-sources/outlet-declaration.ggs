@@ -207,7 +207,7 @@ proc analyzeOutlets(
   for (outlet_mOutletTypeName outlet_mOutletName outlet_mTableValueBindingDescriptor outlet_mRunDescriptor outlet_mEnabledBindingDescriptor outlet_mHiddenBindingDescriptor outlet_mRegularBindingList outlet_mGraphicController) in inOutletDeclarationList do
     !?outletMap.insertKey (outlet_mOutletName, outlet_mOutletTypeName.string)
     [inSemanticContext.mOutletClassMap searchKey
-      outlet_mOutletTypeName,
+      (outlet_mOutletTypeName,
       ?*,
       ?let @bool handlesRunAction,
       ?let @bool handlesTableViewBinding,
@@ -215,7 +215,7 @@ proc analyzeOutlets(
       ?let @bool handlesHiddenBinding,
       ?let @bool handleGraphicControllerBinding,
       ?let @bool outletClassIsUserDefined
-    ]
+    )
     if not outletClassIsUserDefined then
       ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
     end
@@ -227,10 +227,10 @@ proc analyzeOutlets(
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
       else
         [inObservablePropertyMap searchKey
-          controllerName,
+          (controllerName,
           ?let @propertyKind kind,
           ?2*
-        ]
+        )
         switch kind 
         case property (2*) :
           error controllerName : "the bound model should be an array controller"
@@ -245,12 +245,12 @@ proc analyzeOutlets(
             end
           else
             [inSemanticContext.mClassMap searchKey
-              entityName,
+              (entityName,
               ?*,
               ?let observablePropertyMap,
               ?2*
-            ]
-            [observablePropertyMap searchKey propertyName, ?let propertyKind, ?2*]
+            )
+            [observablePropertyMap searchKey (propertyName, ?let propertyKind, ?2*)
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
@@ -280,10 +280,10 @@ proc analyzeOutlets(
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding"
       else
         [inObservablePropertyMap searchKey
-          controllerName,
+          (controllerName,
           ?let @propertyKind unused kind,
           ?2*
-        ]
+        )
         if not kind.isArrayController () then
           error controllerName : "the bound model should be an array controller"
         end
@@ -297,7 +297,7 @@ proc analyzeOutlets(
       if not handlesRunAction then
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
       elsif target.string == "self" then
-        [inActionMap searchKey action]
+        [inActionMap searchKey (action)
         outTargetActionList +=
           !outlet_mOutletName.string
           !"self"
@@ -305,12 +305,12 @@ proc analyzeOutlets(
           !inReceiverSwiftTypeName
       else # It is a controller
         [inObservablePropertyMap searchKey
-          target,
+          (target,
           ?*,
           ?let @actionMap controllerActionMap,
           ?*
-        ]
-        [controllerActionMap searchKey action]
+        )
+        [controllerActionMap searchKey (action)
         outTargetActionList +=
           !outlet_mOutletName.string
           !if inPreferences then "preferences_" else "" end + target.string
@@ -323,7 +323,7 @@ proc analyzeOutlets(
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !prefs: inPreferences,
+        (!prefs: inPreferences,
         inRootObservablePropertyMap,
         inSemanticContext,
         inObservablePropertyMap,
@@ -331,7 +331,7 @@ proc analyzeOutlets(
         ?let @abstractBooleanMultipleBindingExpressionForGeneration enableExpression,
         ?let @typeKind type,
         ?let @location errorLocation
-      ]
+      )
       if not handlesEnabledBinding then
         error errorLocation : "cet outlet n'accepte pas le binding $enabled"
       end
@@ -348,7 +348,7 @@ proc analyzeOutlets(
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
       [expression analyzeExpressionForMultipleBinding
-        !prefs: inPreferences,
+        (!prefs: inPreferences,
         inRootObservablePropertyMap,
         inSemanticContext,
         inObservablePropertyMap,
@@ -356,7 +356,7 @@ proc analyzeOutlets(
         ?let @abstractBooleanMultipleBindingExpressionForGeneration hiddenExpression,
         ?let @typeKind type,
         ?let @location errorLocation
-      ]
+      )
       if not type.isBoolType () then
         error errorLocation : "expression is not boolean"
       end
@@ -402,13 +402,13 @@ proc analyzeRegularBinding(
     var @boundObjectList boundModelListForGeneration = []
     for (mObservableProperty) in mObservablePropertyList do
       [mObservableProperty analyzeObservableProperty
-        inRootPropertyMap,
+        (inRootPropertyMap,
         inSemanticContext,
         inBoundModelPropertyMap,
         ?let @propertyKind kind,
         ?let @string unused swiftTypeStringForTransientFunctionArgument,
         ?let @string unused defaultValueAsString
-      ]
+      )
       switch kind
       case property (2*) : # Ok
       case toMany (4*) :
@@ -431,16 +431,16 @@ proc analyzeRegularBinding(
     loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
       continues = false
       [inSemanticContext.mBindingSpecificationMap searchKey
-        outletTypeName,
+        (outletTypeName,
         ?let superOutletClassName,
         ?let @outletBindingSpecificationMap bindingMap
-      ]
+      )
       if bindingMap.hasKey (mBindingName.string) then
         [bindingMap searchKey
-          mBindingName,
+          (mBindingName,
           ?outletBindingSpecificationModelList,
           ?controllerBindingOptionDecoratedList
-        ]
+        )
       else
         continues = true
         outletTypeName = superOutletClassName
@@ -483,11 +483,11 @@ proc analyzeRegularBinding(
         if controller_mOptionName.string != binding_mOptionName.string then
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
-        [binding_mOptionValue analyzeDefaultValueType 
+        [binding_mOptionValue analyzeDefaultValueType (
           [controller_mOptionType],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
-        ]
+        )
         bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
       end
     end

@@ -113,7 +113,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
     )
   else
     [ioSemanticContext.mOutletClassMap searchKey
-      self.mSuperClassName,
+      (self.mSuperClassName,
       ?*,
       ?let hasRunAction,
       ?let handlesTableValueBinding,
@@ -121,7 +121,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       ?let hasHidden,
       ?let handlesGraphicControllerBinding,
       ?*
-    ]
+    )
     if self.mHasRunAction & hasRunAction then
       error self.mClassName : "$run binding already defined in superclass"
     end
