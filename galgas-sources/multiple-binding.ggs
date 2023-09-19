@@ -287,7 +287,7 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mProperty analyzeObservableProperty
+  self.mProperty.analyzeObservableProperty
     (inRootObservablePropertyMap,
     inSemanticContext,
     if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end,
@@ -325,7 +325,7 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mBinding analyzeExpressionForMultipleBinding
+  self.mBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -353,7 +353,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mLeftBinding analyzeExpressionForMultipleBinding
+  self.mLeftBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -366,7 +366,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
-  [self.mRightBinding analyzeExpressionForMultipleBinding
+  self.mRightBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -396,7 +396,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mLeftBinding analyzeExpressionForMultipleBinding
+  self.mLeftBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -409,7 +409,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
-  [self.mRightBinding analyzeExpressionForMultipleBinding
+  self.mRightBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -439,7 +439,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mLeftBinding analyzeExpressionForMultipleBinding
+  self.mLeftBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -452,7 +452,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   if not outLeftType.isBoolType () then
     error outLeftLocation : "cannot apply 'and': left operand is not boolean"
   end
-  [self.mRightBinding analyzeExpressionForMultipleBinding
+  self.mRightBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -482,7 +482,7 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  [self.mLeftBinding analyzeExpressionForMultipleBinding
+  self.mLeftBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,
@@ -492,7 +492,7 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outLeftType,
     ?let outLeftLocation
   )
-  [self.mRightBinding analyzeExpressionForMultipleBinding
+  self.mRightBinding.analyzeExpressionForMultipleBinding
     (!prefs: inPreferences,
     inRootObservablePropertyMap,
     inSemanticContext,

@@ -165,14 +165,14 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  [ioSemanticContext.mClassMap searchKey (
+  ioSemanticContext.mClassMap.searchKey (
     .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
   )
 #--- Get document property map
-  [ioSemanticContext.mClassMap searchKey (
+  ioSemanticContext.mClassMap.searchKey (
     .new (self.mClassName, .nowhere),
     ?*,
     ?let documentPropertyMap,
@@ -180,7 +180,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     ?let documentPropertyGenerationList
   )
 #--- Get root entity property map
-  [ioSemanticContext.mClassMap searchKey
+  ioSemanticContext.mClassMap.searchKey
     (self.mRootEntityName,
     ?*,
     ?let rootPropertyMap,
@@ -212,7 +212,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     switch hiddenBinding
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      [expression analyzeExpressionForMultipleBinding
+      expression.analyzeExpressionForMultipleBinding
         (!prefs: false,
         rootPropertyMap,
         ioSemanticContext,
@@ -239,7 +239,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutOutletMap autoLayoutOutletMap = []
   for (viewName viewDeclaration) in self.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
-    [viewDeclaration checkView
+    viewDeclaration.checkView
       (viewName,
       viewDeclarationMap,
       !prefs: false,
@@ -257,7 +257,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     )
     viewGenerationList += !viewName !viewGeneration
   end
-  [viewDeclarationMap searchKey (self.mMainViewName)
+  viewDeclarationMap.searchKey (self.mMainViewName)
 #--- Analyze toolbar item declarations
 #  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = []
 #  for (item) in self.mAutoLayoutToolbarItemList do
@@ -295,7 +295,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     linkerNameSet += !linkerName.string
     var @2stringlist outletNameAndTypeNameList = []
     for (outletName) in ouletNameList do
-      [autoLayoutOutletMap searchKey (outletName, ?let outletTypeName, ?let unused outletIsArray)
+      autoLayoutOutletMap.searchKey (outletName, ?let outletTypeName, ?let unused outletIsArray)
       outletNameAndTypeNameList += !outletName.string !outletTypeName
     end
     outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList

@@ -131,7 +131,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     end
   end
 #--- Get preference property map
-  [ioSemanticContext.mClassMap searchKey (
+  ioSemanticContext.mClassMap.searchKey (
     .new (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
@@ -165,7 +165,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutOutletMap autoLayoutOutletMap = []
   for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
-    [viewDeclaration checkView
+    viewDeclaration.checkView
       (viewName,
       viewDeclarationMap,
       !prefs: true,

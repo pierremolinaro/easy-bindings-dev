@@ -8544,8 +8544,8 @@ void extensionMethod_generateAtPath (const GALGAS_XcodeProjectDescriptor inObjec
     }
     test_20 = test_22.boolEnum () ;
     if (kBoolTrue == test_20) {
-      GALGAS_bool joker_17989 ; // Joker input parameter
-      var_contents_17080.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_17989, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 443)) ;
+      GALGAS_bool joker_17988 ; // Joker input parameter
+      var_contents_17080.method_writeToFileWhenDifferentContents (constinArgument_inCacheFilePath, joker_17988, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 443)) ;
       var_contents_17080.method_makeDirectoryAndWriteToFile (var_projectCoreFile_17724, inCompiler COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 444)) ;
     }
   }

@@ -64,7 +64,7 @@ proc generateCode(
   let fileOutputDirectory = outputDirectory + "/" + projectName
   var @stringset generatedFileSet = []
   for (fileGeneration) in inGeneration.mFileGenerationList do
-    [fileGeneration generateCode
+    fileGeneration.generateCode
       (fileOutputDirectory,
       inGeneration,
       !?generatedFileSet

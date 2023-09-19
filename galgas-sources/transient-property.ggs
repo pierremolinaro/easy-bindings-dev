@@ -151,7 +151,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey (self.mTransientTypeName, ?let classKind, ?3*)
+    ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
     switch classKind
     case prefs :
       error self.mTransientTypeName : "an atomic class is required here"
@@ -178,7 +178,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
 #--- Property type
-  [ioSemanticContext.mClassMap searchKey (self.mTransientTypeName, ?let classKind, ?3*)
+  ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
 #--- Check type
   let @typeKind typeKind
   switch classKind
@@ -196,14 +196,14 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   if self.mRootEntityName.string == "" then
     rootProperties = []
   else
-    [ioSemanticContext.mClassMap searchKey (self.mRootEntityName, ?*, ?rootProperties, ?2*)
+    ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?rootProperties, ?2*)
   end
 #--- Current class properties
-  [ioSemanticContext.mClassMap searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
+  ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
 #--- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
-    [mObservableProperty analyzeObservableProperty
+    mObservableProperty.analyzeObservableProperty
       (rootProperties,
       ioSemanticContext,
       properties,

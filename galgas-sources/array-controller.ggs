@@ -109,8 +109,8 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
     let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
-      [ioSemanticContext.mClassMap searchKey (rootEntityName, ?*, ?let rootProperties, ?2*)
-      [rootProperties searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
+      ioSemanticContext.mClassMap.searchKey (rootEntityName, ?*, ?let rootProperties, ?2*)
+      rootProperties.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -134,7 +134,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      [mPropertyMap searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
+      mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -172,21 +172,21 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   let @propertyMap boundModelPropertyMap
   switch self.mModel
   case rootToManyRelationship (@lstring rootEntityName) :
-    [ioSemanticContext.mClassMap searchKey
+    ioSemanticContext.mClassMap.searchKey
        (rootEntityName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
     )
   case selfToManyRelationship :
-    [ioSemanticContext.mClassMap searchKey
+    ioSemanticContext.mClassMap.searchKey
        (self.mClassName,
        ?*,
        ?boundModelPropertyMap,
        ?2*
      )  
   end
-  [boundModelPropertyMap searchKey
+  boundModelPropertyMap.searchKey
      (self.mToManyPropertyName,
      ?let boundModelClassKind,
      ?2*
@@ -207,7 +207,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       then .transientArray
       else .entityArray
     end
-    [ioSemanticContext.mClassMap searchKey (typeName, ?*, ?3*)
+    ioSemanticContext.mClassMap.searchKey (typeName, ?*, ?3*)
   case toOne (5*) :
     error self.mToManyPropertyName
       : "a toMany property is required here"

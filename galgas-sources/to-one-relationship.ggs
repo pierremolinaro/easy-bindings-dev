@@ -104,7 +104,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
     error message searchKey
   do
     ioGeneration.mToOneClassImplementations += !self.mDestinationEntityName
-    [ioSemanticContext.mClassMap searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
+    ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
     case prefs :
       error self.mDestinationEntityName : "an entity is required here"
@@ -135,7 +135,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [ioSemanticContext.mClassMap searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
+    ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
     switch classKind
     case prefs :
     case atomic (*) :

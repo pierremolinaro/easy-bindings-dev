@@ -118,7 +118,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
       var @stringset definedConstantNameSet = []
       var @enumFunAssociationSortedList associationSortedList = []
       for (constantName associatedString) in associationList do
-        [enumConstantMap searchKey (constantName, ?let idx)
+        enumConstantMap.searchKey (constantName, ?let idx)
         associationSortedList += !idx !associatedString.string
         if definedConstantNameSet.hasKey (constantName) then
           error constantName : "Duplicated constant"

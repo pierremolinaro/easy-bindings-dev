@@ -68,7 +68,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
   with self.mClassName in !?ioSemanticContext.mClassMap 
     error message searchKey
   do
-    [mPropertyMap searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
+    mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
     switch propertyKind
     case property (2*) :
       error self.mModelControllerName : "an array controller is required here"
@@ -99,15 +99,15 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
 override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
-  [ioSemanticContext.mClassMap searchKey (self.mClassName, ?let superClassKind, ?let propertyMap, ?2*)
-  [propertyMap searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
+  ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let superClassKind, ?let propertyMap, ?2*)
+  propertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
    switch propertyKind
    case property (2*) :
    case toMany (4*) :
    case toOne (5*) :
    case selectionController (*) :
    case arrayController (typeName *) :
-     [ioSemanticContext.mClassMap searchKey
+     ioSemanticContext.mClassMap.searchKey
        (self.mSelectionEntityName,
        ?*,
        ?let selectionObservablePropertyMap,

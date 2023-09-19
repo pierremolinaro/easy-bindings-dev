@@ -138,7 +138,7 @@ private proc generateXcodeProjectInternal(
   )
 #--- Generate project
   let sourceDir = inOutputDirectory + "/" + projectName + "/"
-  [xcodeProject generateAtPath
+  xcodeProject.generateAtPath
     (!xcodeprojPath:inOutputDirectory + "/" + projectName + ".xcodeproj",
     !cacheFilePath:sourceDir + projectName + ".xcodeproj.txt"
   )
@@ -163,7 +163,7 @@ private proc generateXcodeProjectInternal(
     s
   )
   s = filewrapper [additionalXcodeFiles.build_command: projectName]
-  [s writeToExecutableFileWhenDifferentContents
+  s.writeToExecutableFileWhenDifferentContents
     (inOutputDirectory + "/build.py",
     ?*
   )

@@ -246,7 +246,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       self.mAutoLayoutViewFunctionMap
     )
   else
-    [ioSemanticContext.mAutolayoutViewClassMap searchKey
+    ioSemanticContext.mAutolayoutViewClassMap.searchKey
       (self.mSuperClassName,
       ?*,
       ?let hasRunAction,

@@ -112,7 +112,7 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       self.mUserDefined
     )
   else
-    [ioSemanticContext.mOutletClassMap searchKey
+    ioSemanticContext.mOutletClassMap.searchKey
       (self.mSuperClassName,
       ?*,
       ?let hasRunAction,

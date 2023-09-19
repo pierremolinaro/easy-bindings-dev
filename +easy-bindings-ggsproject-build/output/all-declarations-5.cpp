@@ -8768,81 +8768,81 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
                                                                                                        GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                        C_Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 52)) ;
-  GALGAS_bool var_usedForSignature_2316 = GALGAS_bool (false) ;
-  GALGAS_bool var_generateResetMethod_2349 = GALGAS_bool (false) ;
-  GALGAS_bool var_generateDirectRead_2385 = GALGAS_bool (false) ;
-  GALGAS_bool var_generateDirectAccess_2420 = GALGAS_bool (false) ;
+  GALGAS_bool var_usedForSignature_2315 = GALGAS_bool (false) ;
+  GALGAS_bool var_generateResetMethod_2348 = GALGAS_bool (false) ;
+  GALGAS_bool var_generateDirectRead_2384 = GALGAS_bool (false) ;
+  GALGAS_bool var_generateDirectAccess_2419 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
     case 2: {
-      GALGAS_lstring var_attributeName_2495 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_attributeName_2494 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.ggs", 59)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (kIsEqual, var_attributeName_2495.readProperty_string ().objectCompare (GALGAS_string ("signature"))).boolEnum () ;
+        test_1 = GALGAS_bool (kIsEqual, var_attributeName_2494.readProperty_string ().objectCompare (GALGAS_string ("signature"))).boolEnum () ;
         if (kBoolTrue == test_1) {
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
-            test_2 = var_usedForSignature_2316.boolEnum () ;
+            test_2 = var_usedForSignature_2315.boolEnum () ;
             if (kBoolTrue == test_2) {
               TC_Array <C_FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-              inCompiler->emitSemanticError (var_attributeName_2495.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 62)) ;
+              inCompiler->emitSemanticError (var_attributeName_2494.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 62)) ;
             }
           }
-          var_usedForSignature_2316 = GALGAS_bool (true) ;
+          var_usedForSignature_2315 = GALGAS_bool (true) ;
         }
       }
       if (kBoolFalse == test_1) {
         enumGalgasBool test_4 = kBoolTrue ;
         if (kBoolTrue == test_4) {
-          test_4 = GALGAS_bool (kIsEqual, var_attributeName_2495.readProperty_string ().objectCompare (GALGAS_string ("generateResetMethod"))).boolEnum () ;
+          test_4 = GALGAS_bool (kIsEqual, var_attributeName_2494.readProperty_string ().objectCompare (GALGAS_string ("generateResetMethod"))).boolEnum () ;
           if (kBoolTrue == test_4) {
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
-              test_5 = var_generateResetMethod_2349.boolEnum () ;
+              test_5 = var_generateResetMethod_2348.boolEnum () ;
               if (kBoolTrue == test_5) {
                 TC_Array <C_FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-                inCompiler->emitSemanticError (var_attributeName_2495.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 67)) ;
+                inCompiler->emitSemanticError (var_attributeName_2494.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 67)) ;
               }
             }
-            var_generateResetMethod_2349 = GALGAS_bool (true) ;
+            var_generateResetMethod_2348 = GALGAS_bool (true) ;
           }
         }
         if (kBoolFalse == test_4) {
           enumGalgasBool test_7 = kBoolTrue ;
           if (kBoolTrue == test_7) {
-            test_7 = GALGAS_bool (kIsEqual, var_attributeName_2495.readProperty_string ().objectCompare (GALGAS_string ("generateDirectRead"))).boolEnum () ;
+            test_7 = GALGAS_bool (kIsEqual, var_attributeName_2494.readProperty_string ().objectCompare (GALGAS_string ("generateDirectRead"))).boolEnum () ;
             if (kBoolTrue == test_7) {
               enumGalgasBool test_8 = kBoolTrue ;
               if (kBoolTrue == test_8) {
-                test_8 = var_generateDirectRead_2385.boolEnum () ;
+                test_8 = var_generateDirectRead_2384.boolEnum () ;
                 if (kBoolTrue == test_8) {
                   TC_Array <C_FixItDescription> fixItArray9 ;
                   fixItArray9.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-                  inCompiler->emitSemanticError (var_attributeName_2495.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 72)) ;
+                  inCompiler->emitSemanticError (var_attributeName_2494.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 72)) ;
                 }
               }
-              var_generateDirectRead_2385 = GALGAS_bool (true) ;
+              var_generateDirectRead_2384 = GALGAS_bool (true) ;
             }
           }
           if (kBoolFalse == test_7) {
             enumGalgasBool test_10 = kBoolTrue ;
             if (kBoolTrue == test_10) {
-              test_10 = GALGAS_bool (kIsEqual, var_attributeName_2495.readProperty_string ().objectCompare (GALGAS_string ("generateDirectAccess"))).boolEnum () ;
+              test_10 = GALGAS_bool (kIsEqual, var_attributeName_2494.readProperty_string ().objectCompare (GALGAS_string ("generateDirectAccess"))).boolEnum () ;
               if (kBoolTrue == test_10) {
                 enumGalgasBool test_11 = kBoolTrue ;
                 if (kBoolTrue == test_11) {
-                  test_11 = var_generateDirectAccess_2420.boolEnum () ;
+                  test_11 = var_generateDirectAccess_2419.boolEnum () ;
                   if (kBoolTrue == test_11) {
                     TC_Array <C_FixItDescription> fixItArray12 ;
                     fixItArray12.appendObject (C_FixItDescription (kFixItRemove, "")) ;
-                    inCompiler->emitSemanticError (var_attributeName_2495.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 77)) ;
+                    inCompiler->emitSemanticError (var_attributeName_2494.readProperty_location (), GALGAS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 77)) ;
                   }
                 }
-                var_generateDirectAccess_2420 = GALGAS_bool (true) ;
+                var_generateDirectAccess_2419 = GALGAS_bool (true) ;
               }
             }
             if (kBoolFalse == test_10) {
@@ -8851,7 +8851,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
               appendFixItActions (fixItArray13, kFixItReplace, GALGAS_string ("@generateResetMethod")) ;
               appendFixItActions (fixItArray13, kFixItReplace, GALGAS_string ("@generateDirectRead")) ;
               appendFixItActions (fixItArray13, kFixItReplace, GALGAS_string ("@generateDirectAccess")) ;
-              inCompiler->emitSemanticError (var_attributeName_2495.readProperty_location (), GALGAS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 81)) ;
+              inCompiler->emitSemanticError (var_attributeName_2494.readProperty_location (), GALGAS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 81)) ;
             }
           }
         }
@@ -8864,9 +8864,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   }
   enumGalgasBool test_14 = kBoolTrue ;
   if (kBoolTrue == test_14) {
-    GALGAS_bool test_15 = var_generateDirectAccess_2420 ;
+    GALGAS_bool test_15 = var_generateDirectAccess_2419 ;
     if (kBoolTrue == test_15.boolEnum ()) {
-      test_15 = var_generateDirectRead_2385 ;
+      test_15 = var_generateDirectRead_2384 ;
     }
     test_14 = test_15.boolEnum () ;
     if (kBoolTrue == test_14) {
@@ -8874,23 +8874,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
       inCompiler->emitSemanticError (GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 88)), GALGAS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 88)) ;
     }
   }
-  GALGAS_lstring var_attributeTypeName_3763 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_attributeTypeName_3762 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 90)) ;
-  GALGAS_lstring var_attributeName_3814 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_attributeName_3813 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 91)) ;
   enumGalgasBool test_17 = kBoolTrue ;
   if (kBoolTrue == test_17) {
-    test_17 = var_usedForSignature_2316.boolEnum () ;
+    test_17 = var_usedForSignature_2315.boolEnum () ;
     if (kBoolTrue == test_17) {
-      ioArgument_ioSignatureList.addAssign_operation (var_attributeName_3814.readProperty_string ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 93)) ;
+      ioArgument_ioSignatureList.addAssign_operation (var_attributeName_3813.readProperty_string ()  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 93)) ;
     }
   }
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 95)) ;
-  GALGAS_abstractDefaultValue var_defaultValue_3976 ;
-  nt_explicit_5F_value_ (var_defaultValue_3976, inCompiler) ;
+  GALGAS_abstractDefaultValue var_defaultValue_3975 ;
+  nt_explicit_5F_value_ (var_defaultValue_3975, inCompiler) ;
   inCompiler->acceptTerminal (C_Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_atomicPropertyDeclarationAST::constructor_new (constinArgument_inClassName, var_attributeTypeName_3763, var_attributeName_3814, var_defaultValue_3976, var_generateResetMethod_2349, var_generateDirectRead_2385, var_generateDirectAccess_2420  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
-  ioArgument_ioAttributeList.addAssign_operation (var_attributeTypeName_3763, var_attributeName_3814, var_defaultValue_3976  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 107)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.addAssign_operation (GALGAS_atomicPropertyDeclarationAST::constructor_new (constinArgument_inClassName, var_attributeTypeName_3762, var_attributeName_3813, var_defaultValue_3975, var_generateResetMethod_2348, var_generateDirectRead_2384, var_generateDirectAccess_2419  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
+  ioArgument_ioAttributeList.addAssign_operation (var_attributeTypeName_3762, var_attributeName_3813, var_defaultValue_3975  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 107)) ;
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
