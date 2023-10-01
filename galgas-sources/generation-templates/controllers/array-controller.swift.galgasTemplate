@@ -540,6 +540,18 @@ case entityArray :
 if ELEMENT_TYPE_IS_GRAPHIC then
 %
   //····················································································································
+  //  DOCUMENT  
+  //····················································································································
+
+  private final weak var mDocument : EBAutoLayoutManagedDocument? = nil
+
+  //····················································································································
+
+  final func set (document inDocument : EBAutoLayoutManagedDocument) {
+    self.mDocument = inDocument
+  }
+
+  //····················································································································
   //  SELECTION OPERATIONS
   //····················································································································
 
@@ -663,7 +675,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
         if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as? %!ELEMENT_TYPE_NAME% {
           if errorMessage.isEmpty {
             errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],
-                                                         optionalDocument: self.document,
+                                                         optionalDocument: self.mDocument,
                                                          objectArray: self.objectArray.values)
           }
           if errorMessage.isEmpty {
