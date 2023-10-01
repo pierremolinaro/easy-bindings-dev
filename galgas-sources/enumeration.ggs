@@ -3,7 +3,8 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 class @enumerationDeclarationAST : @abstractDeclarationAST {
-  public var @lstringlist mEnumConstantNameList
+  let @lstringlist mEnumConstantNameList
+  let @bool mCaseIterable
 }
 
 #·······················································································································
@@ -37,6 +38,16 @@ syntax extension easyBindings_syntax {
   rule <enum_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $enum$
     $Identifier$ (?let @lstring enumName)
+    let @bool caseIterable
+    select
+      caseIterable = false
+    or
+      $@attribute$ (?let attribute)
+      if attribute.string != "CaseIterable" then
+        error attribute : "only @CaseIterable attribute is allowed here" fixit ( replace "@CaseIterable" )
+      end
+      caseIterable = true
+    end
     ${$
     var @lstringlist enumConstants = []
     repeat
@@ -46,7 +57,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (enumName, enumConstants)
+    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (enumName, enumConstants, caseIterable)
   }
 
   #·····················································································································
@@ -144,7 +155,8 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
   ioGeneration.mFileGenerationList += !@enumForGeneration (
     self.mClassName,
     self.mEnumConstantNameList,
-    enumFuncMap
+    enumFuncMap,
+    self.mCaseIterable
   )
 }
 
@@ -153,9 +165,10 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
 //----------------------------------------------------------------------------------------------------------------------
 
 class @enumForGeneration : @abstractFileGeneration {
-  public var @string mEnumName
-  public var @lstringlist mEnumConstantList
-  public var @enumFuncMap mEnumFuncMap
+  let @string mEnumName
+  let @lstringlist mEnumConstantList
+  let @enumFuncMap mEnumFuncMap
+  let @bool mCaseIterable
 }
 
 #·······················································································································
@@ -166,7 +179,8 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
   template enumGenerationInSwift : "enum.swift.galgasTemplate" (
     @string ENUM_TYPE_NAME,
     @lstringlist CONSTANT_ORDERED_LIST,
-    @enumFuncMap FUNCTION_MAP
+    @enumFuncMap FUNCTION_MAP,
+    @bool CASE_ITERABLE
   )
 }
 
@@ -180,7 +194,8 @@ override proc @enumForGeneration.generateCode(
     let s = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
       self.mEnumName,
       self.mEnumConstantList,
-      self.mEnumFuncMap
+      self.mEnumFuncMap,
+      self.mCaseIterable
     ]
     let fileName = "enum-" + self.mEnumName + ".swift"
     ioGeneratedFileSet += !fileName

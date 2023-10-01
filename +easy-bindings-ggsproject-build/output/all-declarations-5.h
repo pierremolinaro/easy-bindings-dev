@@ -924,6 +924,8 @@ class cParser_easyBindings_5F_syntax {
 
   protected: virtual int32_t select_easyBindings_5F_syntax_92 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
 
+  protected: virtual int32_t select_easyBindings_5F_syntax_93 (C_Lexique_easyBindings_5F_lexique *) = 0 ;
+
 
 } ;
 
@@ -1599,6 +1601,8 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual int32_t select_easyBindings_5F_syntax_91 (C_Lexique_easyBindings_5F_lexique *) ;
 
   public: virtual int32_t select_easyBindings_5F_syntax_92 (C_Lexique_easyBindings_5F_lexique *) ;
+
+  public: virtual int32_t select_easyBindings_5F_syntax_93 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1846,6 +1850,8 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_enumFuncMap readProperty_mEnumFuncMap (void) const ;
 
+  public: class GALGAS_bool readProperty_mCaseIterable (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -1859,22 +1865,14 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_enumForGeneration constructor_new (const class GALGAS_string & inOperand0,
                                                                  const class GALGAS_lstringlist & inOperand1,
-                                                                 const class GALGAS_enumFuncMap & inOperand2
+                                                                 const class GALGAS_enumFuncMap & inOperand2,
+                                                                 const class GALGAS_bool & inOperand3
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_enumForGeneration & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMEnumConstantList (class GALGAS_lstringlist inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMEnumFuncMap (class GALGAS_enumFuncMap inArgument0
-                                                        COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMEnumName (class GALGAS_string inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1914,11 +1912,13 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
   public: GALGAS_string mProperty_mEnumName ;
   public: GALGAS_lstringlist mProperty_mEnumConstantList ;
   public: GALGAS_enumFuncMap mProperty_mEnumFuncMap ;
+  public: GALGAS_bool mProperty_mCaseIterable ;
 
 //--- Constructor
   public: cPtr_enumForGeneration (const GALGAS_string & in_mEnumName,
                                   const GALGAS_lstringlist & in_mEnumConstantList,
-                                  const GALGAS_enumFuncMap & in_mEnumFuncMap
+                                  const GALGAS_enumFuncMap & in_mEnumFuncMap,
+                                  const GALGAS_bool & in_mCaseIterable
                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication

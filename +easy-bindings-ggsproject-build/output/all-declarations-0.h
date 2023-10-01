@@ -5426,6 +5426,8 @@ class GALGAS_enumerationDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Property read access
   public: class GALGAS_lstringlist readProperty_mEnumConstantNameList (void) const ;
 
+  public: class GALGAS_bool readProperty_mCaseIterable (void) const ;
+
 //-- Start of generic part --*
 
 //--------------------------------- Object cloning
@@ -5438,16 +5440,14 @@ class GALGAS_enumerationDeclarationAST : public GALGAS_abstractDeclarationAST {
 
 //--------------------------------- GALGAS constructors
   public: static class GALGAS_enumerationDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                         const class GALGAS_lstringlist & inOperand1
+                                                                         const class GALGAS_lstringlist & inOperand1,
+                                                                         const class GALGAS_bool & inOperand2
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_enumerationDeclarationAST & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMEnumConstantNameList (class GALGAS_lstringlist inArgument0
-                                                                 COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5491,10 +5491,12 @@ class cPtr_enumerationDeclarationAST : public cPtr_abstractDeclarationAST {
 
 //--- Properties
   public: GALGAS_lstringlist mProperty_mEnumConstantNameList ;
+  public: GALGAS_bool mProperty_mCaseIterable ;
 
 //--- Constructor
   public: cPtr_enumerationDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                          const GALGAS_lstringlist & in_mEnumConstantNameList
+                                          const GALGAS_lstringlist & in_mEnumConstantNameList,
+                                          const GALGAS_bool & in_mCaseIterable
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication

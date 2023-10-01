@@ -121,7 +121,8 @@ extern const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate ;
 GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class C_Compiler * inCompiler,
                                                                                 const class GALGAS_string & in_ENUM_5F_TYPE_5F_NAME,
                                                                                 const class GALGAS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST,
-                                                                                const class GALGAS_enumFuncMap & in_FUNCTION_5F_MAP
+                                                                                const class GALGAS_enumFuncMap & in_FUNCTION_5F_MAP,
+                                                                                const class GALGAS_bool & in_CASE_5F_ITERABLE
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //----------------------------------------------------------------------------------------------------------------------

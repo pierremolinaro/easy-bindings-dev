@@ -6,7 +6,7 @@ import AppKit
 
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol, Hashable, CaseIterable {
+enum %!ENUM_TYPE_NAME% : Int, EnumPropertyProtocol, Hashable%if CASE_ITERABLE then%, CaseIterable%end% {
 %
 for (mValue) in CONSTANT_ORDERED_LIST do (idx)
    %  case %!mValue.string% = %![idx string]%\n%
