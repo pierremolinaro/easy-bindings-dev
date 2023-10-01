@@ -6128,7 +6128,6 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compiler * /* inCompiler */,
                                                                         const GALGAS_string & in_CLASS_5F_NAME,
-                                                                        const GALGAS_bool & in_COMPARABLE,
                                                                         const GALGAS_bool & in_TRANSIENT
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
@@ -6144,18 +6143,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << "\n" ;
   }
   result << "//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n" ;
-  const enumGalgasBool test_1 = in_TRANSIENT.boolEnum () ;
+  const enumGalgasBool test_1 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 17)).boolEnum () ;
   if (kBoolTrue == test_1) {
-    result << "typealias EBReadOnlyPropertyArray_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "  = EBObservableProperty <[" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "]>\ntypealias EBTransientPropertyArray_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBTransientProperty <[" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "]>\n" ;
-  }else if (kBoolFalse == test_1) {
     result << "typealias EBReadWriteProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "   = EBObservableMutableProperty <" ;
@@ -6169,19 +6158,9 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << "      = EBStoredProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
+  }else if (kBoolFalse == test_1) {
   }
   result << "\n" ;
-  const enumGalgasBool test_2 = in_COMPARABLE.boolEnum () ;
-  if (kBoolTrue == test_2) {
-    result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfunc compare_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "_properties (_ left : EBObservableProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">,\n                                       _ right : EBObservableProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">) -> ComparisonResult {\n  switch left.prop {\n  case .empty :\n    switch right.prop {\n    case .empty :\n      return .orderedSame\n    default:\n      return .orderedAscending\n    }\n  case .multiple :\n    switch right.prop {\n    case .empty :\n      return .OrderedDescending\n    case .multiple :\n      return .OrderedSame\n   case .single (_) :\n      return .OrderedAscending\n   }\n case .single (let currentValue) :\n    switch right.prop {\n    case .empty, .multiple :\n      return .orderedDescending\n    case .single (let otherValue) :\n      if currentValue < otherValue {\n        return .orderedAscending\n      }else if currentValue > otherValue {\n        return .orderedDescending\n      }else{\n        return .orderedSame\n      }\n    }\n  }\n}\n" ;
-  }else if (kBoolFalse == test_2) {
-  }
   return GALGAS_string (result) ;
 }
 
@@ -6198,62 +6177,62 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
                                          C_Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("UInt32"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 135)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("UInt32"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 133)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Int"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 136)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Int"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 134)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Bool"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 137)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Bool"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 135)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Double"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 138)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Double"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 136)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("String"), GALGAS_bool (false), GALGAS_string ("localizedStandardCompare"), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 139)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("String"), GALGAS_bool (false), GALGAS_string ("localizedStandardCompare"), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 137)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Data"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 140)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Data"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 138)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Date"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 141)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("Date"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 139)) ;
   }
   {
-  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("BezierPathArray"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 142)) ;
+  routine_generateScalarProperty (constinArgument_inOutputDirectory, GALGAS_string ("BezierPathArray"), GALGAS_bool (false), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 140)) ;
   }
   cEnumerator_stringlist enumerator_5790 (constinArgument_inPropertyClassList, kENUMERATION_UP) ;
   while (enumerator_5790.hasCurrentObject ()) {
     {
-    routine_generateClassProperty (constinArgument_inOutputDirectory, enumerator_5790.current_mValue (HERE), GALGAS_bool (false), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 145)) ;
+    routine_generateClassProperty (constinArgument_inOutputDirectory, enumerator_5790.current_mValue (HERE), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 143)) ;
     }
     enumerator_5790.gotoNextObject () ;
   }
-  cEnumerator_transientExternTypeList enumerator_5954 (constinArgument_inTransientPropertyExternTypeList, kENUMERATION_UP) ;
-  while (enumerator_5954.hasCurrentObject ()) {
+  cEnumerator_transientExternTypeList enumerator_5959 (constinArgument_inTransientPropertyExternTypeList, kENUMERATION_UP) ;
+  while (enumerator_5959.hasCurrentObject ()) {
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = enumerator_5954.current_mIsClass (HERE).boolEnum () ;
+      test_0 = enumerator_5959.current_mIsClass (HERE).boolEnum () ;
       if (kBoolTrue == test_0) {
         {
-        routine_generateClassProperty (constinArgument_inOutputDirectory, enumerator_5954.current_mTypeName (HERE), GALGAS_bool (false), GALGAS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 149)) ;
+        routine_generateClassProperty (constinArgument_inOutputDirectory, enumerator_5959.current_mTypeName (HERE), GALGAS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 147)) ;
         }
       }
     }
     if (kBoolFalse == test_0) {
       {
-      routine_generateScalarProperty (constinArgument_inOutputDirectory, enumerator_5954.current_mTypeName (HERE), GALGAS_bool (true), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 151)) ;
+      routine_generateScalarProperty (constinArgument_inOutputDirectory, enumerator_5959.current_mTypeName (HERE), GALGAS_bool (true), GALGAS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 149)) ;
       }
     }
-    enumerator_5954.gotoNextObject () ;
+    enumerator_5959.gotoNextObject () ;
   }
   {
-  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSBezierPath"), GALGAS_bool (false), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 154)) ;
+  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSBezierPath"), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 152)) ;
   }
   {
-  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSFont"), GALGAS_bool (false), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 155)) ;
+  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSFont"), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 153)) ;
   }
   {
-  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSColor"), GALGAS_bool (false), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 156)) ;
+  routine_generateClassProperty (constinArgument_inOutputDirectory, GALGAS_string ("NSColor"), GALGAS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 154)) ;
   }
 }
 
@@ -6266,16 +6245,15 @@ void routine_generateStandardProperties (const GALGAS_string constinArgument_inO
 
 void routine_generateClassProperty (const GALGAS_string constinArgument_inOutputDirectory,
                                     const GALGAS_string constinArgument_inClassPropertyTypeName,
-                                    const GALGAS_bool constinArgument_inComparable,
                                     const GALGAS_bool constinArgument_inTransient,
                                     GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                     C_Compiler * inCompiler
                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_6981 = GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inComparable, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 166))) ;
-  GALGAS_string var_fileName_7117 = GALGAS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 168)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 168)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7117  COMMA_SOURCE_FILE ("code-generation.ggs", 169)) ;
+  GALGAS_string var_contents_6968 = GALGAS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 163))) ;
+  GALGAS_string var_fileName_7090 = GALGAS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7090  COMMA_SOURCE_FILE ("code-generation.ggs", 166)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7117, var_contents_6981, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 170)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7090, var_contents_6968, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 167)) ;
   }
 }
 
@@ -6293,11 +6271,11 @@ void routine_generateScalarProperty (const GALGAS_string constinArgument_inOutpu
                                      GALGAS_stringset & ioArgument_ioGeneratedFileSet,
                                      C_Compiler * inCompiler
                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_string var_contents_7761 = GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 184))) ;
-  GALGAS_string var_fileName_7905 = GALGAS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 186)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 186)) ;
-  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7905  COMMA_SOURCE_FILE ("code-generation.ggs", 187)) ;
+  GALGAS_string var_contents_7746 = GALGAS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 181))) ;
+  GALGAS_string var_fileName_7890 = GALGAS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)) ;
+  ioArgument_ioGeneratedFileSet.addAssign_operation (var_fileName_7890  COMMA_SOURCE_FILE ("code-generation.ggs", 184)) ;
   {
-  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7905, var_contents_7761, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 188)) ;
+  GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7890, var_contents_7746, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 185)) ;
   }
 }
 

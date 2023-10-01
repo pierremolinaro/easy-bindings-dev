@@ -318,7 +318,6 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (class C
 
 GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_Compiler * inCompiler,
                                                                         const class GALGAS_string & in_CLASS_5F_NAME,
-                                                                        const class GALGAS_bool & in_COMPARABLE,
                                                                         const class GALGAS_bool & in_TRANSIENT
                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -331,8 +330,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class C_
 void routine_generateClassProperty (const class GALGAS_string constinArgument0,
                                     const class GALGAS_string constinArgument1,
                                     const class GALGAS_bool constinArgument2,
-                                    const class GALGAS_bool constinArgument3,
-                                    class GALGAS_stringset & ioArgument4,
+                                    class GALGAS_stringset & ioArgument3,
                                     class C_Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 

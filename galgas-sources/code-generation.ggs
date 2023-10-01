@@ -110,7 +110,6 @@ proc generateCode(
 filewrapper standard_properties in "generation-templates/standard-properties" {
 }{
 }{
-#  template stub "standard-properties-stub.swift.galgasTemplate"
 
   template scalarProperty : "scalar-standard-property.swift.galgasTemplate" (
     @string TYPE,
@@ -120,7 +119,6 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 
   template classProperty : "class-standard-property.swift.galgasTemplate" (
     @string CLASS_NAME,
-    @bool COMPARABLE,
     @bool TRANSIENT
   )
 }
@@ -132,38 +130,37 @@ private proc generateStandardProperties (let @string inOutputDirectory,
                                          let @transientExternTypeList inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
 //-- Add scalar property types
-  generateScalarProperty (inOutputDirectory, "UInt32", false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "Int",    false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "Bool",   false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "Double", false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "String", false, "localizedStandardCompare", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "Data",   false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "Date",   false, "", !?ioGeneratedFileSet)
-  generateScalarProperty (inOutputDirectory, "BezierPathArray", false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "UInt32", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Int", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Bool", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Double", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "String", !transient: false, "localizedStandardCompare", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Data", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "Date", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "BezierPathArray", !transient: false, "", !?ioGeneratedFileSet)
 //-- Add class property types
   for (propertyClass) in inPropertyClassList do
-    generateClassProperty (inOutputDirectory, propertyClass, false, false, !?ioGeneratedFileSet)
+    generateClassProperty (inOutputDirectory, propertyClass, !transient: false, !?ioGeneratedFileSet)
   end
   for (propertyType isClass) in inTransientPropertyExternTypeList do
     if isClass then
-      generateClassProperty (inOutputDirectory, propertyType, false, true, !?ioGeneratedFileSet)
+      generateClassProperty (inOutputDirectory, propertyType, !transient: true, !?ioGeneratedFileSet)
     else
-      generateScalarProperty (inOutputDirectory, propertyType, true, "", !?ioGeneratedFileSet)
+      generateScalarProperty (inOutputDirectory, propertyType, !transient: true, "", !?ioGeneratedFileSet)
     end
   end
-  generateClassProperty (inOutputDirectory, "NSBezierPath", false, false, !?ioGeneratedFileSet)
-  generateClassProperty (inOutputDirectory, "NSFont",  false, false, !?ioGeneratedFileSet)
-  generateClassProperty (inOutputDirectory, "NSColor", false, false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSBezierPath", !transient: false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSFont", !transient: false, !?ioGeneratedFileSet)
+  generateClassProperty (inOutputDirectory, "NSColor", !transient: false, !?ioGeneratedFileSet)
 }
 
 #·······················································································································
 
 private proc generateClassProperty (let @string inOutputDirectory,
                                      let @string inClassPropertyTypeName,
-                                     let @bool inComparable,
-                                     let @bool inTransient,
+                                     ?transient: let @bool inTransient,
                                      ?!@stringset ioGeneratedFileSet) {
-  let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inComparable, inTransient]
+  let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inTransient]
 //-- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
@@ -178,7 +175,7 @@ private proc generateClassProperty (let @string inOutputDirectory,
 
 private proc generateScalarProperty (let @string inOutputDirectory,
                                     let @string inScalarPropertyTypeName,
-                                    let @bool inTransient,
+                                    ?transient: let @bool inTransient,
                                     let @string inComparisonMethod,
                                     ?!@stringset ioGeneratedFileSet) {
   let contents = filewrapper [standard_properties.scalarProperty: inScalarPropertyTypeName, inTransient, inComparisonMethod]

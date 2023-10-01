@@ -14,53 +14,9 @@ end
 %//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 %
-if TRANSIENT then
-  %typealias EBReadOnlyPropertyArray_%!CLASS_NAME%  = EBObservableProperty <[%!CLASS_NAME%]>\n%
-  %typealias EBTransientPropertyArray_%!CLASS_NAME% = EBTransientProperty <[%!CLASS_NAME%]>\n%
-else
+if not TRANSIENT then
   %typealias EBReadWriteProperty_%!CLASS_NAME%   = EBObservableMutableProperty <%!CLASS_NAME%>\n%
   %typealias EBComputedProperty_%!CLASS_NAME%    = EBComputedProperty <%!CLASS_NAME%>\n%
   %typealias EBStoredProperty_%!CLASS_NAME%      = EBStoredProperty <%!CLASS_NAME%>\n%
 end
 %
-%
-if COMPARABLE then
-%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-func compare_%!CLASS_NAME%_properties (_ left : EBObservableProperty <%!CLASS_NAME%>,
-                                       _ right : EBObservableProperty <%!CLASS_NAME%>) -> ComparisonResult {
-  switch left.prop {
-  case .empty :
-    switch right.prop {
-    case .empty :
-      return .orderedSame
-    default:
-      return .orderedAscending
-    }
-  case .multiple :
-    switch right.prop {
-    case .empty :
-      return .OrderedDescending
-    case .multiple :
-      return .OrderedSame
-   case .single (_) :
-      return .OrderedAscending
-   }
- case .single (let currentValue) :
-    switch right.prop {
-    case .empty, .multiple :
-      return .orderedDescending
-    case .single (let otherValue) :
-      if currentValue < otherValue {
-        return .orderedAscending
-      }else if currentValue > otherValue {
-        return .orderedDescending
-      }else{
-        return .orderedSame
-      }
-    }
-  }
-}
-%
-end
