@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 abstract class @abstractDeclarationAST {
   public var @lstring mClassName
@@ -56,25 +56,25 @@ graph @declarationPrecedenceGraph (@declarationListAST) {
   insert addNode error message "the '%K' symbol is already declared at %L"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 proc sortProperties(
       let @string inSourceFile,
       let @declarationListAST inDeclarationListAST,
       !@declarationListAST outSortedDeclarationListAST)
 {
-#------------------------ Enter declarations in graph
+//----------------------- Enter declarations in graph
   var @declarationPrecedenceGraph declarationPrecedenceGraph = .emptyGraph
   for (declaration) in inDeclarationListAST do
     declaration.enterInPrecedenceGraph (!?declarationPrecedenceGraph)
   end
-#------------------------ dot files
+//----------------------- dot files
   if option easyBindings_options [outputDeclarationDependencyGraph.value] then
     let s = declarationPrecedenceGraph.graphviz ()
     let path = inSourceFile + ".declarationDependancy.dot"
     s.writeToFileWhenDifferentContents (path, ?*)
   end
-#------------------------  Get ordered declaration list
+//-----------------------  Get ordered declaration list
   outSortedDeclarationListAST = []
   if declarationPrecedenceGraph.undefinedNodeCount () > 0 then
     for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList () do
@@ -102,4 +102,4 @@ proc sortProperties(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

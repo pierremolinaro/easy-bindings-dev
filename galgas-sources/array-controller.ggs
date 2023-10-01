@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   public var @lstring mControllerName
@@ -44,9 +44,9 @@ override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -60,7 +60,7 @@ syntax extension easyBindings_syntax {
   {
     $arrayController$
     $controllerName$ (?let @lstring controllerName)
-  #--- Model
+  //-- Model
     let @arrayControllerBoundModelAST model
     $:$
     select
@@ -72,7 +72,7 @@ syntax extension easyBindings_syntax {
     end
     $.$
     $identifier$ (?let @lstring relationshipName)
-  #--- Hidden binding ?
+  //-- Hidden binding ?
     select
     or
       $hidden$
@@ -95,9 +95,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -120,7 +120,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !graphic: graphic
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         "rootObject." + self.mToManyPropertyName,
@@ -144,7 +144,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !graphic: graphic
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
@@ -161,9 +161,9 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SECOND ANALYSIS PHASE
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -191,7 +191,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
      ?let boundModelClassKind,
      ?2*
   )
-#------------------------------------------------------------ Check colum bound models
+//----------------------------------------------------------- Check colum bound models
   let @arrayControllerModelKind arrayControllerModelKind
   let @bool graphic
   let @string elementTypeName
@@ -221,7 +221,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       : "a toMany property is required here"
       spoil (graphic, arrayControllerModelKind, elementTypeName)
   end
-#---
+//--
   ioGeneration.mFileGenerationList += !@arrayControllerGeneration (
     self.mClassName,
     self.mControllerName,
@@ -234,9 +234,9 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
 }
 
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @arrayControllerPropertyGeneration : @propertyGeneration {
   public var @string mModelString
@@ -281,16 +281,16 @@ override func @arrayControllerPropertyGeneration.populateExplorerWindowCode() ->
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION TYPES
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 enum @arrayControllerModelKind {
   case entityArray
   case transientArray
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @arrayControllerGeneration : @abstractFileGeneration {
   public var @string mOwnerName # document name, prefs name, ...
@@ -316,15 +316,15 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
-#--- Build observed property set (for sorting and filtering)
+//-- Build observed property set (for sorting and filtering)
   let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:
     self.mOwnerName,
     self.mControllerName,
@@ -340,4 +340,4 @@ override proc @arrayControllerGeneration.generateCode(
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

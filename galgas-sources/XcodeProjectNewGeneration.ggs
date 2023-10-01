@@ -1,4 +1,4 @@
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addICNS_file(
   ?fileName:let @string inFileName,
@@ -7,7 +7,7 @@ mutating proc @XcodeProjectDescriptor.addICNS_file(
   self.mICNS_fileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addTIFF_file(
   ?fileName:let @string inFileName,
@@ -16,7 +16,7 @@ mutating proc @XcodeProjectDescriptor.addTIFF_file(
   self.mTIFF_fileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addInfoPlistFile(
   ?fileName:let @string inFileName,
@@ -25,7 +25,7 @@ mutating proc @XcodeProjectDescriptor.addInfoPlistFile(
   self.mInfoPlistFileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addXIBFile(
   ?fileName:let @string inFileName,
@@ -34,7 +34,7 @@ mutating proc @XcodeProjectDescriptor.addXIBFile(
   self.mXIB_fileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addFrameworkFile(
   ?fileName:let @string inFileName,
@@ -43,7 +43,7 @@ mutating proc @XcodeProjectDescriptor.addFrameworkFile(
   self.mFrameworkFileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addMFile(
   ?fileName:let @string inFileName,
@@ -52,7 +52,7 @@ mutating proc @XcodeProjectDescriptor.addMFile(
   self.m_M_FileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addSwiftFile(
   ?fileName:let @string inFileName,
@@ -61,7 +61,7 @@ mutating proc @XcodeProjectDescriptor.addSwiftFile(
   self.m_SwiftFileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addMMFile(
   ?fileName:let @string inFileName,
@@ -70,7 +70,7 @@ mutating proc @XcodeProjectDescriptor.addMMFile(
   self.m_MM_FileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addCppFile(
   ?fileName:let @string inFileName,
@@ -79,7 +79,7 @@ mutating proc @XcodeProjectDescriptor.addCppFile(
   self.mCppFileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addHeaderFile(
   ?fileName:let @string inFileName,
@@ -88,7 +88,7 @@ mutating proc @XcodeProjectDescriptor.addHeaderFile(
   self.mHeaderFileList += !outFileRef !inFileName
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addBuildFile(
   ?fileRef:let @string inFileReference,
@@ -98,7 +98,7 @@ mutating proc @XcodeProjectDescriptor.addBuildFile(
   self.mBuildFileList += !inFileReference !inFileName !outBuildRef
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addToolTarget(
   ?targetName:let @string inTargetName,
@@ -128,7 +128,7 @@ mutating proc @XcodeProjectDescriptor.addToolTarget(
     !frameworkBuildRef
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addAppTarget(
   ?targetName:let @string inTargetName,
@@ -177,7 +177,7 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
     !inInfoPList
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addGroup(
   ?groupName:let @string inGroupName,
@@ -197,7 +197,7 @@ mutating proc @XcodeProjectDescriptor.addGroup(
   self.mGroupList += !outGroupRef !inGroupName !inGroupPath !inChildrenRefs
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   ?groupName:let @string inGroupName,
@@ -220,7 +220,7 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
     !?self.getReferenceKey (?ref: self.mMainGroupReference)
   end
   !?self.getReferenceKey (?ref: outGroupRef)
-#---
+//--
   var @stringlist childrenRefs = []
   for (f) in inFileNames do
     if f.pathExtension () == "cpp" then
@@ -276,21 +276,21 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   self.mGroupList += !outGroupRef !inGroupName !inGroupPath !childrenRefs
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.placeGroupAsMainGroup(
   ?groupRef:let @string inGroupRef) {
   self.mMainGroupChildrenRefs += !inGroupRef
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addSettingsToDefaultConfiguration(
   ?settingList:let @stringlist inSettingList) {
   self.mDefaultConfigurationSettingList += inSettingList
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeGroupList {
   public var @string mGroupReference
@@ -299,7 +299,7 @@ list @XCodeGroupList {
   public var @stringlist mChildrenRefs
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeToolTargetList {
   public var @string mTargetRef
@@ -315,7 +315,7 @@ list @XCodeToolTargetList {
   public var @string mFrameworkBuildPhaseRef
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 list @XCodeAppTargetList {
   public var @string mTargetRef
@@ -335,7 +335,7 @@ list @XCodeAppTargetList {
   public var @string mInfoPListFile
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 list @BuildFileList {
   public var @string mFileReference
@@ -343,7 +343,7 @@ list @BuildFileList {
   public var @string mBuildReference
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
   if self.mProjectObjectReference == "" then
@@ -354,7 +354,7 @@ mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
   self.mSequenceNumber += 1
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 struct @XcodeProjectDescriptor {
   public var @uint mSequenceNumber = 0
@@ -371,18 +371,18 @@ struct @XcodeProjectDescriptor {
   public var @2stringlist mFrameworkFileList = []
   public var @2stringlist mHeaderFileList = []
   public var @BuildFileList mBuildFileList = []
-#--- Default configuration
+//-- Default configuration
   public var @string mDefaultConfigurationRef = ""
   public var @stringlist mDefaultConfigurationSettingList = []
   public var @string mProjectBuildConfigurationRef = ""
-#--- Resource files
+//-- Resource files
   public var @2stringlist mInfoPlistFileList = []
   public var @2stringlist mXIB_fileList = []
   public var @2stringlist mTIFF_fileList = []
   public var @2stringlist mICNS_fileList = []
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 private filewrapper xcodeProjectGenerationFilewrapper in "generation-templates/xcode-project" {
 }{
@@ -411,7 +411,7 @@ private filewrapper xcodeProjectGenerationFilewrapper in "generation-templates/x
   )
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 proc @XcodeProjectDescriptor.generateAtPath(
   ?xcodeprojPath:let @string inPath,
@@ -445,5 +445,5 @@ proc @XcodeProjectDescriptor.generateAtPath(
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 

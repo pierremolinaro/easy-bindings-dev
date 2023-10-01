@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
   public var @outletDeclarationList mOutletDeclarationList = []
@@ -36,9 +36,9 @@ func %once preferencesName() -> @string outResult {
   outResult = "Preferences"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -84,9 +84,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @prefsDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -109,15 +109,15 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
   ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   THIRD ANALYSIS PHASE
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @prefsDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-#--- Analyze extern functions
+//-- Analyze extern functions
   let @stringset availableCallers = ["awakeFromNib" : "init"]
   var @externFunctionMap externFunctionMap = []
   for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
@@ -130,7 +130,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
       error mCallerName : s
     end
   end
-#--- Get preference property map
+//-- Get preference property map
   ioSemanticContext.mClassMap.searchKey (
     .new (preferencesName (), .nowhere),
     ?*,
@@ -138,7 +138,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     ?let actionMap,
     ?let propertyGenerationList
   )
-#--- Analyze outlets and bindings
+//-- Analyze outlets and bindings
   analyzeOutlets (
     true,
     [], # No root entity
@@ -157,7 +157,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     ?let @tableViewBindingGenerationList tableViewBindingGenerationList,
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
-#--- Check auto layout view declarations
+//-- Check auto layout view declarations
   var @autoLayoutViewDeclarationMap viewDeclarationMap = []
   var @viewGenerationList viewGenerationList = []
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
@@ -186,7 +186,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   if not viewDeclarationMap.hasKey ("mPrefsMainView") then
     error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
   end
-#--- Code generation
+//-- Code generation
   ioGeneration.mFileGenerationList += !@preferencesForGeneration (
     propertyGenerationList,
     ioGeneration.mMainXibDescriptorList,
@@ -204,9 +204,9 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @preferencesForGeneration : @abstractFileGeneration {
   public let @propertyGenerationList mPropertyListForGeneration
@@ -272,7 +272,7 @@ override proc @preferencesForGeneration.generateCode(
     fileName,
     s
   )
-#--- Configurators
+//-- Configurators
   for (outletName outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       "Preferences",
@@ -300,4 +300,4 @@ override proc @preferencesForGeneration.generateCode(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

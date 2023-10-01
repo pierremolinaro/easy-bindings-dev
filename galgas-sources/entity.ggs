@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @entityDeclarationAST : @abstractDeclarationAST {
   public let @bool mIsAbstract
@@ -30,9 +30,9 @@ override func @entityDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -150,9 +150,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
@@ -176,21 +176,21 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
 override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct unused ioGeneration) {
   if self.mSuperEntityName.string != "" then
-  #--- Search for super entity property map
+  //-- Search for super entity property map
     ioSemanticContext.mClassMap.searchKey
       (self.mSuperEntityName,
       ?*,
       ?let @propertyMap inheritedPropertyMap,
       ?2*
     )  
-  #--- Search for current entity property map
+  //-- Search for current entity property map
     ioSemanticContext.mClassMap.searchKey
       (self.mClassName,
       ?*,
       ?let @propertyMap propertyMap,
       ?2*
     )
-  #--- Merge properties
+  //-- Merge properties
     var newPropertyMap = inheritedPropertyMap
 #    for (lkey 3*) in inheritedPropertyMap do
 #        message "  inherit '" + lkey + "'\n"
@@ -203,7 +203,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
         !?newPropertyMap.insertKey (lkey, kind, actionMap, false)
       end
     end
-  #--- Replace property map
+  //-- Replace property map
     with self.mClassName in !?ioSemanticContext.mClassMap 
       error message searchKey
     do
@@ -223,7 +223,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     ?*,
     ?let @propertyGenerationList propertyGenerationList
   )
-#--- If super entity is abstract, and current is not, check all transient properties are implemented
+//-- If super entity is abstract, and current is not, check all transient properties are implemented
   var @stringset overridenTransients = []
   if (self.mSuperEntityName.string != "") & not self.mIsAbstract then
     ioSemanticContext.mClassMap.searchKey
@@ -264,7 +264,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       end
     end
   end
-#--- Graphic options
+//-- Graphic options
   var canCopyAndPaste_option = false
   var cannotBeDeleted_option = false
   
@@ -287,7 +287,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       )
     end
   end
-#--- Search for a subclass
+//-- Search for a subclass
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
     if classDeclaration.mClassKind.isEntity () then
@@ -295,7 +295,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       hasSubClass = self.mClassName.string == superEntityName
     end 
   end
-#--- Generation    
+//-- Generation    
   ioGeneration.mEntityListForGeneration +=
     !self.mClassName.string
     !self.mObsoleteEntityNames
@@ -315,9 +315,9 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @entityForGeneration : @abstractFileGeneration {
   public let @string mEntityName
@@ -565,4 +565,4 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

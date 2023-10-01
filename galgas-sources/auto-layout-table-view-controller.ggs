@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @autoLayoutTableViewControllerBoundColumnListAST {
   public let @bool mEditable
@@ -46,9 +46,9 @@ override func @autoLayoutTableViewControllerDeclarationAST.nodeKey() -> @lstring
   result = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -73,7 +73,7 @@ syntax extension easyBindings_syntax {
       $,$
     end
     $)$
-  #--- Model
+  //-- Model
     let @bool isRoot
     select
       $root$
@@ -131,9 +131,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -155,7 +155,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !graphic: graphic
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
         self.mControllerName.string,
         "rootObject." + self.mToManyPropertyName,
@@ -179,7 +179,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !graphic: graphic
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
@@ -196,9 +196,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SECOND ANALYSIS PHASE
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -210,7 +210,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     ?let preferencesPropertyMap,
     ?2*
   )
-#------------------------------------------------------------ Check array controller attributes
+//----------------------------------------------------------- Check array controller attributes
   let attributes = @stringset ["allowsEmptySelection" : "allowsMultipleSelection"]
   let allowedTypes = @typeKindList [.boolType]
   var @stringset definedAttributes = []
@@ -231,7 +231,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       error self.mControllerName : "attribute '" + s + "' not defined"
     end
   end
-#------
+//-----
   let @propertyMap boundModelPropertyMap
   if self.mIsRoot then
     ioSemanticContext.mClassMap.searchKey
@@ -253,7 +253,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
      ?let @propertyKind boundModelClassKind,
      ?2*
   )
-#------------------------------------------------------------ Check colum bound models
+//----------------------------------------------------------- Check colum bound models
   let @propertyMap propertyMap
   let @autoLayoutTableViewControllerModelKind arrayControllerModelKind
   let @bool graphic
@@ -287,11 +287,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
   var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
   for (editable propertyName columnParameterList sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
-  #-------- Run action ? Check action is declared
+  //------- Run action ? Check action is declared
 #    if columnBindings.mRunActionName.string != "" then
 #      actionMap.searchKey !columnBindings.mRunActionName]
 #    end
-  #-------- Simple bindings
+  //------- Simple bindings
 #    ioSemanticContext.mClassMap.searchKey
 #      !.new {!preferencesName () !.nowhere}
 #      ?*
@@ -310,7 +310,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #      !"object."
 #      !?regularBindingsGenerationList
 #    )
-  #-------- Arguments
+  //------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = []
     formalArgumentList += !"title".nowhere () !.typeString
     formalArgumentList += !"minWidth".nowhere () !.typeInt
@@ -342,7 +342,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         end
       end
     end
-  #--- Sorted ?
+  //-- Sorted ?
     if sortPropertyName.string != "" then
       propertyMap.searchKey
         (sortPropertyName,
@@ -357,7 +357,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         !sortPropertyKind
         !sortPropertyName.string
     end
-  #-------- Column generation
+  //------- Column generation
     propertyMap.searchKey
       (propertyName,
       ?let propertyKind,
@@ -370,7 +370,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       !propertyKind.swiftTypeName () # columnOutletTypeName.string
       !"" # columnBindings.mRunActionName.string
       !actualParameterList
-  #--- Outlet class is needed ?
+  //-- Outlet class is needed ?
 #    ioSemanticContext.mOutletClassMap.searchKey !columnOutletTypeName ?6* ?let outletClassIsUserDefined]
 #    if not outletClassIsUserDefined then
 #      ioGeneration.mNeededOutletClasses += !columnOutletTypeName.string
@@ -380,7 +380,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     then "self.rootObject." + self.mToManyPropertyName + "_property"
     else "self." + self.mToManyPropertyName + "_property"
   end
-#---
+//--
   ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration (
     self.mClassName,
     self.mControllerName,
@@ -398,9 +398,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 }
 
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutTableViewControllerPropertyGeneration : @propertyGeneration {
   public let @string mModelString
@@ -448,9 +448,9 @@ override func @autoLayoutTableViewControllerPropertyGeneration.populateExplorerW
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION TYPES
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 enum @autoLayoutTableViewControllerModelKind {
   case entityArray
@@ -458,7 +458,7 @@ enum @autoLayoutTableViewControllerModelKind {
   case transientArray
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
   public let @string mOwnerName # document name, prefs name, ...
@@ -511,15 +511,15 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generati
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutTableViewControllerGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset unused ioGeneratedFileSet) {
-#--- Build observed property set (for sorting and filtering)
+//-- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = []
   for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
@@ -543,4 +543,4 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

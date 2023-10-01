@@ -28,7 +28,7 @@ import AppKit
 %  //····················································································································\n\n%
   if not [mKind isEntityType] then
     if [mKind isTransient] then
-      %  var %!lkey.string%_property = EBTransientProperty_%![mKind swiftTypeName]% ()\n\n%
+      %  var %!lkey.string%_property = EBTransientProperty <%![mKind swiftTypeName]%> ()\n\n%
     else
       %  var %!lkey.string%_property = EBComputedProperty_%![mKind swiftTypeName]% ()\n\n%
     end

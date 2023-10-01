@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @simpleStoredPropertyList {
   public var @lstring mPropertyTypeName
@@ -35,9 +35,9 @@ override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -114,9 +114,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -136,9 +136,9 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
       error self.mPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
       !?mPropertyMap.insertKey (self.mPropertyName, .property (!type: kind, !accessibility: .stored), [], false)
-    #--- Analyze default value
+    //-- Analyze default value
       self.mDefaultValue.analyzeDefaultValueType ([kind], preferencesPropertyMap, ?let @string swiftDefaultValueAsString)
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@atomicPropertyGeneration (
         self.mPropertyName.string,
         self.mGenerateResetMethod,
@@ -157,9 +157,9 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
   public let @bool mGenerateResetMethod
@@ -259,8 +259,8 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
     result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "//   Atomic property: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
-    result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferencesProperty_" + self.mType.swiftTypeName ()
-    result += " (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
+    result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferenceProperty <" + self.mType.swiftTypeName ()
+    result += "> (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
@@ -299,4 +299,4 @@ override func @atomicPropertyGeneration.configurationCode (let @bool unused inPr
   result = ""
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

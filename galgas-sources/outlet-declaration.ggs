@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #  AST    
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @bindingOptionList {
   public var @lstring mOptionName
@@ -34,9 +34,9 @@ list @outletDeclarationList {
   public var @graphicController mGraphicController
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #  SYNTAX 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -101,7 +101,7 @@ syntax extension easyBindings_syntax {
       end
       $identifier$ (?let @lstring runActionName)
       runActionDescriptor = .action (!target:runTargetName, !action:runActionName)
-  #--- Enabled
+  //-- Enabled
     while
       $enabled$
       if enabledBindingDescriptor != .noBinding then
@@ -109,7 +109,7 @@ syntax extension easyBindings_syntax {
       end
       <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       enabledBindingDescriptor = .binding (!expression:bindingExpression)
-  #--- Hidden
+  //-- Hidden
     while
       $hidden$
       if hiddenBindingDescriptor != .noBinding then
@@ -117,7 +117,7 @@ syntax extension easyBindings_syntax {
       end
       <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       hiddenBindingDescriptor = .binding (!expression:bindingExpression)
-  #--- Regular binding
+  //-- Regular binding
     while
       $bindingName$ (?let @lstring bindingName)
       var @observablePropertyList observablePropertyList = []
@@ -132,7 +132,7 @@ syntax extension easyBindings_syntax {
         !bindingName
         !observablePropertyList
         !bindingOptions
-  #--- Graphic controller binding
+  //-- Graphic controller binding
     while
       $graphicController$
       $controllerName$ (?let @lstring graphicControllerName)
@@ -155,9 +155,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #  SEMANTICS                              
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @outletBindingModelList {
   public var @propertyKind mKind
@@ -219,7 +219,7 @@ proc analyzeOutlets(
     if not outletClassIsUserDefined then
       ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
     end
-  #--- $graphicController
+  //-- $graphicController
     switch outlet_mGraphicController
     case none :
     case defined (@lstring controllerName @lstring propertyName) :
@@ -272,7 +272,7 @@ proc analyzeOutlets(
         outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
-  #--- $tableView
+  //-- $tableView
     switch outlet_mTableValueBindingDescriptor
     case noTableValueBinding :
     case tableValueBinding (@lstring controllerName) :
@@ -290,7 +290,7 @@ proc analyzeOutlets(
         outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
       end
     end
-  #--- $run
+  //-- $run
     switch outlet_mRunDescriptor
     case noAction :
     case action (@lstring target @lstring action) :
@@ -318,7 +318,7 @@ proc analyzeOutlets(
           !"Controller_" + inReceiverSwiftTypeName + "_" + target
       end
     end
-  #--- Enabled
+  //-- Enabled
     switch outlet_mEnabledBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
@@ -343,7 +343,7 @@ proc analyzeOutlets(
         !"enabled"
         !enableExpression
     end
-  #--- Hidden
+  //-- Hidden
     switch outlet_mHiddenBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
@@ -368,7 +368,7 @@ proc analyzeOutlets(
         !"hidden"
         !hiddenExpression
     end
-  #---------------------------------- Regular bindings
+  //--------------------------------- Regular bindings
     analyzeRegularBinding (
       inRootObservablePropertyMap,
       inPreferencesPropertyMap,
@@ -397,7 +397,7 @@ proc analyzeRegularBinding(
   ?!@regularBindingsGenerationList ioRegularBindingsGenerationList)
 {
   for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
-  #--- Analyze model
+  //-- Analyze model
     var @outletBindingModelList boundModelTypeList = []
     var @boundObjectList boundModelListForGeneration = []
     for (mObservableProperty) in mObservablePropertyList do
@@ -423,7 +423,7 @@ proc analyzeRegularBinding(
       boundModelListForGeneration += !mObservableProperty.modelStringForSelf (inSelfSwiftName) !kind
       boundModelTypeList += !kind !mObservableProperty.location ()
     end
-  #--- Analyze outlet binding
+  //-- Analyze outlet binding
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     var outletTypeName = inOutletTypeName
@@ -464,7 +464,7 @@ proc analyzeRegularBinding(
         end
       end
     end
-  #--- Check options
+  //-- Check options
     var bindingOptionString = ""
     if controllerBindingOptionDecoratedList.count () != mBindingOptionList.count () then
       var @string s
@@ -491,7 +491,7 @@ proc analyzeRegularBinding(
         bindingOptionString += ", " + controller_mOptionName.string + ":" + optionValueAsString
       end
     end
-  #--- Generate binding
+  //-- Generate binding
     ioRegularBindingsGenerationList +=
       !inOutletName
       !mBindingName.string
@@ -500,9 +500,9 @@ proc analyzeRegularBinding(
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 #   GENERATION TYPES                      
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @boundObjectList {
   public var @string mBoundObjectString
@@ -535,4 +535,4 @@ map @decoratedOutletMap {
   search searchKey error message "the '%K' outlet is not declared"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

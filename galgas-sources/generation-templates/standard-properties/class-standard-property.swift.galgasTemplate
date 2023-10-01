@@ -15,18 +15,12 @@ end
 
 %
 if TRANSIENT then
-  %typealias EBReadOnlyProperty_%!CLASS_NAME%       = EBObservableProperty <%!CLASS_NAME%>\n%
-  %typealias EBTransientProperty_%!CLASS_NAME%      = EBTransientProperty <%!CLASS_NAME%>\n%
   %typealias EBReadOnlyPropertyArray_%!CLASS_NAME%  = EBObservableProperty <[%!CLASS_NAME%]>\n%
   %typealias EBTransientPropertyArray_%!CLASS_NAME% = EBTransientProperty <[%!CLASS_NAME%]>\n%
 else
-  %typealias EBReadOnlyProperty_%!CLASS_NAME%    = EBObservableProperty <%!CLASS_NAME%>\n%
-  %typealias EBTransientProperty_%!CLASS_NAME%   = EBTransientProperty <%!CLASS_NAME%>\n%
   %typealias EBReadWriteProperty_%!CLASS_NAME%   = EBObservableMutableProperty <%!CLASS_NAME%>\n%
   %typealias EBComputedProperty_%!CLASS_NAME%    = EBComputedProperty <%!CLASS_NAME%>\n%
   %typealias EBStoredProperty_%!CLASS_NAME%      = EBStoredProperty <%!CLASS_NAME%>\n%
-  %typealias EBPreferencesProperty_%!CLASS_NAME% = EBPreferenceProperty <%!CLASS_NAME%>\n%
-  %typealias EBReadWritePropertyController_%!CLASS_NAME% = EBGenericReadWritePropertyController <%!CLASS_NAME%>\n%
 end
 %
 %
@@ -34,7 +28,8 @@ if COMPARABLE then
 %
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-func compare_%!CLASS_NAME%_properties (_ left : EBReadOnlyProperty_%!CLASS_NAME%, _ right : EBReadOnlyProperty_%!CLASS_NAME%) -> ComparisonResult {
+func compare_%!CLASS_NAME%_properties (_ left : EBObservableProperty <%!CLASS_NAME%>,
+                                       _ right : EBObservableProperty <%!CLASS_NAME%>) -> ComparisonResult {
   switch left.prop {
   case .empty :
     switch right.prop {
@@ -69,45 +64,3 @@ func compare_%!CLASS_NAME%_properties (_ left : EBReadOnlyProperty_%!CLASS_NAME%
 }
 %
 end
-if not TRANSIENT then%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-
-/*final class EBReadWritePropertyController_%!CLASS_NAME% : EBObservablePropertyController {
-
-  //····················································································································
-
-  private weak var mObject : EBReadWriteProperty_%!CLASS_NAME%?
-
-  //····················································································································
-
-  init (observedObject inObject : EBReadWriteProperty_%!CLASS_NAME%, callBack inCallBack : @escaping () -> Void) {
-    self.mObject = inObject
-    super.init (observedObjects : [inObject], callBack : inCallBack)
-  }
-
-  //····················································································································
-
-  func updateModel (withValue inValue : %!CLASS_NAME%) {
-    self.mObject?.setProp (inValue)
-  }
-
-  //····················································································································
-
-  var value : %!CLASS_NAME%? {
-    if let s = self.mObject?.selection {
-      switch s {
-      case .empty, .multiple :
-        return nil
-      case .single (let v) :
-        return v
-      }
-    }else{
-      return nil
-    }
-  }
-
-  //····················································································································
-
-}*/
-%end%
-//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

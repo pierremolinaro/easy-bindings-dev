@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -17,9 +17,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SEMANTIC TYPES                        
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 proc graphvizAnalysis (
   let @string inSourceFileDirectory,
@@ -34,7 +34,7 @@ proc graphvizAnalysis (
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
                                          let @semanticContext inSemanticContext,
@@ -121,7 +121,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
     node += "\"]"
     nodeList += !node
   end
-#--- Generation
+//-- Generation
   var s = "digraph G {\n"
   s += "  rankdir=LR ;\n"
   s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
@@ -143,7 +143,7 @@ graph @entityStrongReferenceGraph (@stringlist) {
   insert addNode error message "the '%K' entity is already declared at %L"
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory,
                                                let @semanticContext inSemanticContext,
@@ -204,7 +204,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       end
     end
   end
-#--- Generation
+//-- Generation
   var s = "digraph G {\n"
   s += "  rankdir=LR ;\n"
   s += "  node [shape=record fontname=helvetica style=rounded] ;\n"
@@ -218,10 +218,10 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   var filePath = inSourceFileDirectory + "/models/strong-" + inRootEntityName + ".dot"
   let temp = filePath.stringByDeletingLastPathComponent () ; temp.makeDirectory ()
   s.writeToFileWhenDifferentContents (filePath, ?*)
-#--- Print graph
+//-- Print graph
   filePath = inSourceFileDirectory + "/models/strong-dep-" + inRootEntityName + ".dot"
   let temp2 = entityStrongReferenceGraph.graphviz () ; temp2.writeToFileWhenDifferentContents (filePath, ?*)
-#--- Check all node are defined
+//-- Check all node are defined
   let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList ()
   if undefinedNodeList.count () > 0 then
     var s = "for " + inRootEntityName + " graph , the following entities are not defined"
@@ -230,7 +230,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     end
     error .nowhere : s
   end
-#--- Check accessibility
+//-- Check accessibility
   if undefinedNodeList.count () == 0 then
     let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ([.new (inRootEntityName, .nowhere)], [])
     let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
@@ -240,7 +240,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       end
     end
   end
-#--- Check no circularities
+//-- Check no circularities
   if undefinedNodeList.count () == 0 then 
     entityStrongReferenceGraph.circularities (?*, ?let @lstringlist unsortedNodeList)
     if unsortedNodeList.count () > 0 then
@@ -254,5 +254,5 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 

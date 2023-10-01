@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @computedPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mRootEntityName
@@ -75,9 +75,9 @@ override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -118,9 +118,9 @@ syntax extension easyBindings_syntax {
   }
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -148,17 +148,17 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SECOND ANALYSIS PHASE
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-#--- Property type
+//-- Property type
   ioSemanticContext.mClassMap.searchKey (self.mComputedPropertyTypeName, ?let classKind, ?3*)
-#--- Check type
+//-- Check type
   let @typeKind typeKind
   switch classKind
   case prefs :
@@ -170,16 +170,16 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   case entity (4*) :
     error self.mComputedPropertyTypeName: "an atomic class is required here" spoil (typeKind)
   end
-#--- Root properties
+//-- Root properties
   let @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = []
   else
     ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?rootProperties, ?2*)
   end
-#--- Current class properties
+//-- Current class properties
   ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
-#--- Analyse master properties
+//-- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
     mObservableProperty.analyzeObservableProperty
@@ -246,9 +246,9 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @computedPropertyGeneration : @propertyGeneration {
   public var @string mClassName
@@ -389,9 +389,9 @@ override func @computedPropertyGeneration.configurationCode (let @bool inPrefere
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #    COMPUTE ROUTINE GENERATION         
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @computeRoutineGeneration : @abstractFileGeneration {
   public var @string mOwnerName
@@ -449,4 +449,4 @@ private filewrapper computedPropertyManager in "generation-templates" {
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

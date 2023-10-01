@@ -1092,10 +1092,10 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_propertyDeclarationCode (con
       result_result.plusAssign_operation(GALGAS_string ("//").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 261)) ;
       const GALGAS_atomicPropertyGeneration temp_3 = this ;
       const GALGAS_atomicPropertyGeneration temp_4 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("@MainActor let preferences_").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (GALGAS_string ("_property = EBPreferencesProperty_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)) ;
+      result_result.plusAssign_operation(GALGAS_string ("@MainActor let preferences_").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (GALGAS_string ("_property = EBPreferenceProperty <"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)).add_operation (extensionGetter_swiftTypeName (temp_4.readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 262)) ;
       const GALGAS_atomicPropertyGeneration temp_5 = this ;
       const GALGAS_atomicPropertyGeneration temp_6 = this ;
-      result_result.plusAssign_operation(GALGAS_string (" (defaultValue: ").add_operation (temp_5.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (", prefKey: Preferences_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (")\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)) ;
+      result_result.plusAssign_operation(GALGAS_string ("> (defaultValue: ").add_operation (temp_5.readProperty_mDefaultValueInSwift (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (", prefKey: Preferences_"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)).add_operation (GALGAS_string (")\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 263)) ;
     }
   }
   if (kBoolFalse == test_0) {
@@ -1130,10 +1130,10 @@ GALGAS_string cPtr_atomicPropertyGeneration::getter_propertyDeclarationCode (con
       const GALGAS_atomicPropertyGeneration temp_18 = this ;
       test_17 = temp_18.readProperty_mGenerateDirectAccess () ;
     }
-    GALGAS_bool var_generateAccess_12247 = test_17 ;
+    GALGAS_bool var_generateAccess_12248 = test_17 ;
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = var_generateAccess_12247.boolEnum () ;
+      test_19 = var_generateAccess_12248.boolEnum () ;
       if (kBoolTrue == test_19) {
         result_result.plusAssign_operation(GALGAS_string ("  //").add_operation (GALGAS_string::constructor_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (183)), GALGAS_uint (uint32_t (116U))  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)), inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 277)) ;
         const GALGAS_atomicPropertyGeneration temp_20 = this ;
@@ -3537,9 +3537,9 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "] ()\n      var userSet = EBReferenceSet <EBManagedObject> ()\n      var idx = -1\n      var errorMessage = \"\"\n      for dictionary in dictionaryArray {\n        idx += 1\n        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as\? " ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << " {\n          if errorMessage.isEmpty {\n            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],\n                                                         optionalDocument: self.document,\n                                                         objectArray: self.objectArray.values)\n          }\n          if errorMessage.isEmpty {\n            object.translate (xBy: X, yBy: Y, userSet: &userSet)\n            newObjects.append (object)\n          }\n        }\n      }\n      if errorMessage.isEmpty {\n        var objects = self.objectArray\n        objects.append (objects: newObjects)\n        self.mModel\?.setProp (objects)\n        self.selectedSet = EBReferenceSet (newObjects)\n      }else{\n         let alert = NSAlert ()\n         alert.messageText = errorMessage\n         _ = alert.addButton (withTitle: \"Ok\")\n         alert.beginSheetModal (for: inWindow) { (inReturnCode : NSApplication.ModalResponse) in }\n      }\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canDelete () -> Bool {\n    if self.selectedArray_property.propset.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n\n  final var mAfterObjectRemovingCallback : Optional < () -> Void > = nil\n\n  //····················································································································\n\n  func deleteSelectedObjects () {\n    if self.canDelete (), let model = self.mModel {\n    //--- Remove selected objects\n      let objectsToRemove = self.selectedArray_property.propset\n      for object in objectsToRemove.values {\n        object.operationBeforeRemoving ()\n        var objects = model.propval\n        if let idx = objects.firstIndex (of: object) {\n          objects.remove (at: idx)\n          model.setProp (objects)\n        }\n      }\n    //---\n      self.mAfterObjectRemovingCallback\? ()\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func selectAllObjects () {\n    self.selectedSet = EBReferenceSet (self.objectArray.values)\n  }\n\n  //····················································································································\n  // BRING FORWARD\n  // MARK: -\n  //····················································································································\n\n  var canBringForward_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  var canBringForward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray.last! < (objects.count - 1)\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func bringForward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n       let object = objects [idx]\n       objects.remove (at: idx)\n       objects.insert (object, at: idx+1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // BRING TO FRONT\n  // MARK: -\n  //····················································································································\n\n  var canBringToFront_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  var canBringToFront : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var top = objects.count - 1\n      for idx in sortedIndexArray.reversed () {\n        if idx < top {\n          return true\n        }\n        top -= 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n\n  func bringToFront () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.append (object)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND BACKWARD\n   // MARK: -\n //····················································································································\n\n  var canSendBackward_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  var canSendBackward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray [0] > 0\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func sendBackward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.insert (object, at: idx-1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND TO BACK\n  // MARK: -\n  //····················································································································\n\n  var canSendToBack_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  func sendToBack () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    var newObjectArray = EBReferenceArray <" ;
+    result << " {\n          if errorMessage.isEmpty {\n            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],\n                                                         optionalDocument: self.document,\n                                                         objectArray: self.objectArray.values)\n          }\n          if errorMessage.isEmpty {\n            object.translate (xBy: X, yBy: Y, userSet: &userSet)\n            newObjects.append (object)\n          }\n        }\n      }\n      if errorMessage.isEmpty {\n        var objects = self.objectArray\n        objects.append (objects: newObjects)\n        self.mModel\?.setProp (objects)\n        self.selectedSet = EBReferenceSet (newObjects)\n      }else{\n         let alert = NSAlert ()\n         alert.messageText = errorMessage\n         _ = alert.addButton (withTitle: \"Ok\")\n         alert.beginSheetModal (for: inWindow) { (inReturnCode : NSApplication.ModalResponse) in }\n      }\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canDelete () -> Bool {\n    if self.selectedArray_property.propset.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n\n  final var mAfterObjectRemovingCallback : Optional < () -> Void > = nil\n\n  //····················································································································\n\n  func deleteSelectedObjects () {\n    if self.canDelete (), let model = self.mModel {\n    //--- Remove selected objects\n      let objectsToRemove = self.selectedArray_property.propset\n      for object in objectsToRemove.values {\n        object.operationBeforeRemoving ()\n        var objects = model.propval\n        if let idx = objects.firstIndex (of: object) {\n          objects.remove (at: idx)\n          model.setProp (objects)\n        }\n      }\n    //---\n      self.mAfterObjectRemovingCallback\? ()\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func selectAllObjects () {\n    self.selectedSet = EBReferenceSet (self.objectArray.values)\n  }\n\n  //····················································································································\n  // BRING FORWARD\n  // MARK: -\n  //····················································································································\n\n  var canBringForward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringForward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray.last! < (objects.count - 1)\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func bringForward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n       let object = objects [idx]\n       objects.remove (at: idx)\n       objects.insert (object, at: idx+1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // BRING TO FRONT\n  // MARK: -\n  //····················································································································\n\n  var canBringToFront_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringToFront : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var top = objects.count - 1\n      for idx in sortedIndexArray.reversed () {\n        if idx < top {\n          return true\n        }\n        top -= 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n\n  func bringToFront () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.append (object)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND BACKWARD\n   // MARK: -\n //····················································································································\n\n  var canSendBackward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canSendBackward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray [0] > 0\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func sendBackward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.insert (object, at: idx-1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND TO BACK\n  // MARK: -\n  //····················································································································\n\n  var canSendToBack_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func sendToBack () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    var newObjectArray = EBReferenceArray <" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
-    result << "> ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      newObjectArray.append (object)\n    }\n    newObjectArray.reverse ()\n    newObjectArray.append (objects: objects)\n    self.mModel\?.setProp (newObjectArray)\n  }\n\n  //····················································································································\n\n  var canSendToBack : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var bottom = 0\n      for idx in sortedIndexArray {\n        if idx > bottom {\n          return true\n        }\n        bottom += 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n  // SNAP TO GRID\n  // MARK: -\n  //····················································································································\n\n  func snapToGrid (_ inGrid : Int) {\n    for object in self.selectedArray_property.propset.values {\n      object.snapToGrid (inGrid)\n    }\n  }\n\n  //····················································································································\n\n  func canSnapToGrid (_ inGrid : Int) -> Bool {\n    for object in self.selectedArray_property.propset.values {\n      if object.canSnapToGrid (inGrid) {\n        return true\n      }\n    }\n    return false\n  }\n\n\n //····················································································································\n  // HORIZONTAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipHorizontally_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  func flipHorizontally () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipHorizontally ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipHorizontally : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipHorizontally () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // VERTICAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipVertically_property = EBTransientProperty_Bool ()\n\n  //····················································································································\n\n  func flipVertically () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipVertically ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipVertically : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipVertically () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // ROTATE 90\n  // MARK: -\n  //····················································································································\n\n  var canRotate90_property = EBTransientProperty_Bool ()\n  private var mRotate90PointSet = Set <CanariPoint> ()\n\n //····················································································································\n\n  var canRotate90 : Bool {\n    self.mRotate90PointSet.removeAll ()\n    if self.selectedArray.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray.values {\n        if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {\n          return false\n        }\n      }\n      return !self.mRotate90PointSet.isEmpty\n    }\n  }\n\n  //····················································································································\n\n  func rotate90Clockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90Clockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n\n  func rotate90CounterClockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func addToSelection (objects inObjects : [" ;
+    result << "> ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      newObjectArray.append (object)\n    }\n    newObjectArray.reverse ()\n    newObjectArray.append (objects: objects)\n    self.mModel\?.setProp (newObjectArray)\n  }\n\n  //····················································································································\n\n  var canSendToBack : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var bottom = 0\n      for idx in sortedIndexArray {\n        if idx > bottom {\n          return true\n        }\n        bottom += 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n  // SNAP TO GRID\n  // MARK: -\n  //····················································································································\n\n  func snapToGrid (_ inGrid : Int) {\n    for object in self.selectedArray_property.propset.values {\n      object.snapToGrid (inGrid)\n    }\n  }\n\n  //····················································································································\n\n  func canSnapToGrid (_ inGrid : Int) -> Bool {\n    for object in self.selectedArray_property.propset.values {\n      if object.canSnapToGrid (inGrid) {\n        return true\n      }\n    }\n    return false\n  }\n\n\n //····················································································································\n  // HORIZONTAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipHorizontally_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipHorizontally () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipHorizontally ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipHorizontally : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipHorizontally () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // VERTICAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipVertically_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipVertically () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipVertically ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipVertically : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipVertically () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // ROTATE 90\n  // MARK: -\n  //····················································································································\n\n  var canRotate90_property = EBTransientProperty <Bool> ()\n  private var mRotate90PointSet = Set <CanariPoint> ()\n\n //····················································································································\n\n  var canRotate90 : Bool {\n    self.mRotate90PointSet.removeAll ()\n    if self.selectedArray.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray.values {\n        if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {\n          return false\n        }\n      }\n      return !self.mRotate90PointSet.isEmpty\n    }\n  }\n\n  //····················································································································\n\n  func rotate90Clockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90Clockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n\n  func rotate90CounterClockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func addToSelection (objects inObjects : [" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
     result << "]) {\n    if let objectSet = self.mModel\?.propset {\n      var newSelectedSet = self.selectedArray_property.propset\n      for object in inObjects {\n        if objectSet.contains (object) {\n          newSelectedSet.insert (object)\n        }\n      }\n      self.selectedSet = newSelectedSet\n    }\n  }\n\n  //····················································································································\n\n /* func addToSelection (objectsWithIndex inIndexes : [Int]) {\n    let objects = self.objectArray\n    var newSelectedSet = self.selectedArray_property.propset\n    for idx in inIndexes {\n      let newSelectedObject = objects [idx]\n      newSelectedSet.insert (newSelectedObject)\n    }\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n/*  func removeFromSelection (objectWithIndex inIndex : Int) {\n    let objects = self.objectArray\n    let object = objects [inIndex]\n    var newSelectedSet = self.selectedArray_property.propset\n    newSelectedSet.remove (object)\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n  func clearSelection () {\n    self.selectedSet = EBReferenceSet ()\n  }\n\n  //····················································································································\n\n  func setSelection (objectsWithIndexes inIndexes : [Int]) {\n    let objects = self.objectArray\n    var selectedObjects = [" ;
     result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
@@ -4909,9 +4909,9 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
         if (kBoolTrue == test_1) {
           result << "  var " ;
           result << enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue () ;
-          result << "_property = EBTransientProperty_" ;
+          result << "_property = EBTransientProperty <" ;
           result << extensionGetter_swiftTypeName (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 31)).stringValue () ;
-          result << " ()\n\n" ;
+          result << "> ()\n\n" ;
         }else if (kBoolFalse == test_1) {
           result << "  var " ;
           result << enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue () ;
@@ -4930,89 +4930,89 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
   result << "\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  final func bind_selection (model : ReadOnlyArrayOf_" ;
   result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
   result << ") {\n    self.mModel = model\n" ;
-  GALGAS_uint index_2399_ (0) ;
+  GALGAS_uint index_2401_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_2399 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_2399.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = extensionGetter_isEntityType (enumerator_2399.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_2401 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_2401.hasCurrentObject ()) {
+      const enumGalgasBool test_2 = extensionGetter_isEntityType (enumerator_2401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
       if (kBoolTrue == test_2) {
         result << "    self.bind_property_" ;
-        result << enumerator_2399.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_2401.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << " (model: model)\n" ;
       }else if (kBoolFalse == test_2) {
       }
-      index_2399_.increment () ;
-      enumerator_2399.gotoNextObject () ;
+      index_2401_.increment () ;
+      enumerator_2401.gotoNextObject () ;
     }
   }
   result << "  }\n\n  //····················································································································\n  //   UNBIND SELECTION\n  //····················································································································\n\n  /* final func unbind_selection () {\n" ;
-  GALGAS_uint index_2902_ (0) ;
+  GALGAS_uint index_2904_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_2902 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_2902.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = extensionGetter_isEntityType (enumerator_2902.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_2904 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_2904.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = extensionGetter_isEntityType (enumerator_2904.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).boolEnum () ;
       if (kBoolTrue == test_3) {
         result << "  //--- " ;
-        result << enumerator_2902.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "\n    self." ;
-        result << enumerator_2902.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property.mReadModelFunction = nil \n" ;
-        const enumGalgasBool test_4 = extensionGetter_isTransient (enumerator_2902.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
+        const enumGalgasBool test_4 = extensionGetter_isTransient (enumerator_2904.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
         if (kBoolTrue == test_4) {
           result << "    self." ;
-          result << enumerator_2902.current_lkey (HERE).readProperty_string ().stringValue () ;
+          result << enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue () ;
           result << "_property.mWriteModelFunction = nil \n" ;
         }else if (kBoolFalse == test_4) {
         }
         result << "    self.mModel\?.toMany_" ;
-        result << enumerator_2902.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_StopsBeingObserved (by: self." ;
-        result << enumerator_2902.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property)\n" ;
       }else if (kBoolFalse == test_3) {
       }
-      index_2902_.increment () ;
-      enumerator_2902.gotoNextObject () ;
+      index_2904_.increment () ;
+      enumerator_2904.gotoNextObject () ;
     }
   }
   result << "  //---\n    self.mModel = nil\n  } */\n\n" ;
-  GALGAS_uint index_3401_ (0) ;
+  GALGAS_uint index_3403_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
-    cEnumerator_propertyMap enumerator_3401 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_3401.hasCurrentObject ()) {
-      const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_3401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).boolEnum () ;
+    cEnumerator_propertyMap enumerator_3403 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_3403.hasCurrentObject ()) {
+      const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).boolEnum () ;
       if (kBoolTrue == test_5) {
         result << "  //···················································································································*\n\n  private final func bind_property_" ;
-        result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << " (model : ReadOnlyArrayOf_" ;
         result << in_ELEMENT_5F_TYPE_5F_NAME.stringValue () ;
         result << ") {\n    model.toMany_" ;
-        result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_StartsToBeObserved (by: self." ;
-        result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property)\n    self." ;
-        result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property.mReadModelFunction = { [weak self] in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          var s = Set <" ;
-        result << extensionGetter_swiftTypeName (enumerator_3401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 87)).stringValue () ;
+        result << extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 87)).stringValue () ;
         result << "> ()\n          var isMultipleSelection = false\n          for object in v {\n            switch object." ;
-        result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+        result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
         result << "_property.selection {\n            case .empty :\n              return .empty\n            case .multiple :\n              isMultipleSelection = true\n            case .single (let vProp) :\n              s.insert (vProp)\n            }\n          }\n          if isMultipleSelection {\n            return .multiple\n          }else if s.count == 0 {\n            return .empty\n          }else if s.count == 1 {\n            return .single (s.first!)\n          }else{\n            return .multiple\n          }\n        }\n      }else{\n        return .empty\n      }\n    }\n" ;
-        const enumGalgasBool test_6 = extensionGetter_isTransient (enumerator_3401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).boolEnum () ;
+        const enumGalgasBool test_6 = extensionGetter_isTransient (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).boolEnum () ;
         if (kBoolTrue == test_6) {
           result << "    self." ;
-          result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+          result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
           result << "_property.mWriteModelFunction = { [weak self] (inValue : " ;
-          result << extensionGetter_swiftTypeName (enumerator_3401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 114)).stringValue () ;
+          result << extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 114)).stringValue () ;
           result << ") in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty, .multiple :\n          break\n        case .single (let v) :\n          for object in v {\n            object." ;
-          result << enumerator_3401.current_lkey (HERE).readProperty_string ().stringValue () ;
+          result << enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue () ;
           result << "_property.setProp (inValue)\n          }\n        }\n      }\n    }\n" ;
         }else if (kBoolFalse == test_6) {
         }
         result << "  }\n\n" ;
       }else if (kBoolFalse == test_5) {
       }
-      index_3401_.increment () ;
-      enumerator_3401.gotoNextObject () ;
+      index_3403_.increment () ;
+      enumerator_3403.gotoNextObject () ;
     }
   }
   result << "\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n" ;
@@ -6093,22 +6093,13 @@ const cDirectoryWrapper gWrapperDirectory_0_standard_5F_properties (
 GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compiler * /* inCompiler */,
                                                                          const GALGAS_string & in_TYPE,
                                                                          const GALGAS_bool & in_TRANSIENT,
-                                                                         const GALGAS_string & in_COMPARISON_5F_METHOD
+                                                                         const GALGAS_string & /* in_COMPARISON_5F_METHOD */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  uint32_t columnMarker = 0 ;
   result << "//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//   Scalar property " ;
   result << in_TYPE.stringValue () ;
-  result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\ntypealias EBReadOnlyProperty_" ;
-  result << in_TYPE.stringValue () ;
-  result << "    = EBObservableProperty <" ;
-  result << in_TYPE.stringValue () ;
-  result << ">\ntypealias EBTransientProperty_" ;
-  result << in_TYPE.stringValue () ;
-  result << "   = EBTransientProperty <" ;
-  result << in_TYPE.stringValue () ;
-  result << ">\n" ;
-  const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 13)).boolEnum () ;
+  result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n" ;
+  const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 11)).boolEnum () ;
   if (kBoolTrue == test_0) {
     result << "typealias EBReadWriteProperty_" ;
     result << in_TYPE.stringValue () ;
@@ -6122,73 +6113,8 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (C_Compi
     result << in_TYPE.stringValue () ;
     result << "      = EBStoredProperty <" ;
     result << in_TYPE.stringValue () ;
-    result << ">\ntypealias EBPreferencesProperty_" ;
-    result << in_TYPE.stringValue () ;
-    result << " = EBPreferenceProperty <" ;
-    result << in_TYPE.stringValue () ;
-    result << ">\ntypealias EBReadWritePropertyController_" ;
-    result << in_TYPE.stringValue () ;
-    result << " = EBGenericReadWritePropertyController <" ;
-    result << in_TYPE.stringValue () ;
-    result << ">\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/* func values_" ;
-    result << in_TYPE.stringValue () ;
-    result << "_are_ordered (" ;
-    columnMarker = result.currentColumn () ;
-    result << "_ inLeft : " ;
-    result << in_TYPE.stringValue () ;
-    result << ",\n        " ;
-    result.appendSpacesUntilColumn (columnMarker) ;
-    result << "_ inAscending : Bool,\n        " ;
-    result.appendSpacesUntilColumn (columnMarker) ;
-    result << "_ inRight : " ;
-    result << in_TYPE.stringValue () ;
-    result << ") -> Bool {\n  let left  = inAscending \? inLeft  : inRight\n  let right = inAscending \? inRight : inLeft\n" ;
-    const enumGalgasBool test_1 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_1) {
-      result << "  return left." ;
-      result << in_COMPARISON_5F_METHOD.stringValue () ;
-      result << " (right) == .orderedAscending\n" ;
-    }else if (kBoolFalse == test_1) {
-      result << "  return left < right\n" ;
-    }
-    result << "} */\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/* @MainActor func compare_" ;
-    result << in_TYPE.stringValue () ;
-    result << "_properties (" ;
-    columnMarker = result.currentColumn () ;
-    result << "_ inLeft : EBReadOnlyProperty_" ;
-    result << in_TYPE.stringValue () ;
-    result << ",\n        " ;
-    result.appendSpacesUntilColumn (columnMarker) ;
-    result << "_ inAscending : Bool,\n        " ;
-    result.appendSpacesUntilColumn (columnMarker) ;
-    result << "_ inRight : EBReadOnlyProperty_" ;
-    result << in_TYPE.stringValue () ;
-    result << ") -> ComparisonResult {\n  let left  = inAscending \? inLeft  : inRight\n  let right = inAscending \? inRight : inLeft\n  switch left.selection {\n  case .empty :\n    switch right.selection {\n    case .empty :\n      return .orderedSame\n    default:\n      return .orderedAscending\n    }\n  case .multiple :\n    switch right.selection {\n    case .empty :\n      return .orderedDescending\n    case .multiple :\n      return .orderedSame\n   case .single (_) :\n      return .orderedAscending\n   }\n case .single (let currentValue) :\n    switch right.selection {\n    case .empty, .multiple :\n      return .orderedDescending\n    case .single (let otherValue) :\n" ;
-    const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, in_COMPARISON_5F_METHOD.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      result << "      return currentValue." ;
-      result << in_COMPARISON_5F_METHOD.stringValue () ;
-      result << " (otherValue)\n" ;
-    }else if (kBoolFalse == test_2) {
-      result << "      if currentValue < otherValue {\n        return .orderedAscending\n      }else if currentValue > otherValue {\n        return .orderedDescending\n      }else{\n        return .orderedSame\n      }\n" ;
-    }
-    result << "    }\n  }\n} */\n" ;
+    result << ">\n" ;
   }else if (kBoolFalse == test_0) {
-  }
-  const enumGalgasBool test_3 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 80)).boolEnum () ;
-  if (kBoolTrue == test_3) {
-    result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/*final class EBReadWritePropertyController_" ;
-    result << in_TYPE.stringValue () ;
-    result << " : EBObservablePropertyController {\n\n  //····················································································································\n\n  private weak var mObject : EBReadWriteProperty_" ;
-    result << in_TYPE.stringValue () ;
-    result << "\?\n\n  //····················································································································\n\n  init (observedObject inObject : EBReadWriteProperty_" ;
-    result << in_TYPE.stringValue () ;
-    result << ", callBack inCallBack : @escaping () -> Void) {\n    self.mObject = inObject\n    super.init (observedObjects : [inObject], callBack : inCallBack)\n  }\n\n  //····················································································································\n\n  func updateModel (withValue inValue : " ;
-    result << in_TYPE.stringValue () ;
-    result << ") {\n    self.mObject\?.setProp (inValue)\n  }\n\n  //····················································································································\n\n  var value : " ;
-    result << in_TYPE.stringValue () ;
-    result << "\? {\n    if let s = self.mObject\?.selection {\n      switch s {\n      case .empty, .multiple :\n        return nil\n      case .single (let v) :\n        return v\n      }\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n}*/\n" ;
-  }else if (kBoolFalse == test_3) {
   }
   result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n" ;
   return GALGAS_string (result) ;
@@ -6220,15 +6146,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
   result << "//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n" ;
   const enumGalgasBool test_1 = in_TRANSIENT.boolEnum () ;
   if (kBoolTrue == test_1) {
-    result << "typealias EBReadOnlyProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "       = EBObservableProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBTransientProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "      = EBTransientProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBReadOnlyPropertyArray_" ;
+    result << "typealias EBReadOnlyPropertyArray_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "  = EBObservableProperty <[" ;
     result << in_CLASS_5F_NAME.stringValue () ;
@@ -6238,15 +6156,7 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "]>\n" ;
   }else if (kBoolFalse == test_1) {
-    result << "typealias EBReadOnlyProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "    = EBObservableProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBTransientProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "   = EBTransientProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBReadWriteProperty_" ;
+    result << "typealias EBReadWriteProperty_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "   = EBObservableMutableProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
@@ -6258,14 +6168,6 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
     result << in_CLASS_5F_NAME.stringValue () ;
     result << "      = EBStoredProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBPreferencesProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBPreferenceProperty <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ">\ntypealias EBReadWritePropertyController_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << " = EBGenericReadWritePropertyController <" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
     result << ">\n" ;
   }
   result << "\n" ;
@@ -6273,29 +6175,13 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (C_Compil
   if (kBoolTrue == test_2) {
     result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfunc compare_" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << "_properties (_ left : EBReadOnlyProperty_" ;
+    result << "_properties (_ left : EBObservableProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << ", _ right : EBReadOnlyProperty_" ;
+    result << ">,\n                                       _ right : EBObservableProperty <" ;
     result << in_CLASS_5F_NAME.stringValue () ;
-    result << ") -> ComparisonResult {\n  switch left.prop {\n  case .empty :\n    switch right.prop {\n    case .empty :\n      return .orderedSame\n    default:\n      return .orderedAscending\n    }\n  case .multiple :\n    switch right.prop {\n    case .empty :\n      return .OrderedDescending\n    case .multiple :\n      return .OrderedSame\n   case .single (_) :\n      return .OrderedAscending\n   }\n case .single (let currentValue) :\n    switch right.prop {\n    case .empty, .multiple :\n      return .orderedDescending\n    case .single (let otherValue) :\n      if currentValue < otherValue {\n        return .orderedAscending\n      }else if currentValue > otherValue {\n        return .orderedDescending\n      }else{\n        return .orderedSame\n      }\n    }\n  }\n}\n" ;
+    result << ">) -> ComparisonResult {\n  switch left.prop {\n  case .empty :\n    switch right.prop {\n    case .empty :\n      return .orderedSame\n    default:\n      return .orderedAscending\n    }\n  case .multiple :\n    switch right.prop {\n    case .empty :\n      return .OrderedDescending\n    case .multiple :\n      return .OrderedSame\n   case .single (_) :\n      return .OrderedAscending\n   }\n case .single (let currentValue) :\n    switch right.prop {\n    case .empty, .multiple :\n      return .orderedDescending\n    case .single (let otherValue) :\n      if currentValue < otherValue {\n        return .orderedAscending\n      }else if currentValue > otherValue {\n        return .orderedDescending\n      }else{\n        return .orderedSame\n      }\n    }\n  }\n}\n" ;
   }else if (kBoolFalse == test_2) {
   }
-  const enumGalgasBool test_3 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 72)).boolEnum () ;
-  if (kBoolTrue == test_3) {
-    result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n/*final class EBReadWritePropertyController_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << " : EBObservablePropertyController {\n\n  //····················································································································\n\n  private weak var mObject : EBReadWriteProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "\?\n\n  //····················································································································\n\n  init (observedObject inObject : EBReadWriteProperty_" ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ", callBack inCallBack : @escaping () -> Void) {\n    self.mObject = inObject\n    super.init (observedObjects : [inObject], callBack : inCallBack)\n  }\n\n  //····················································································································\n\n  func updateModel (withValue inValue : " ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << ") {\n    self.mObject\?.setProp (inValue)\n  }\n\n  //····················································································································\n\n  var value : " ;
-    result << in_CLASS_5F_NAME.stringValue () ;
-    result << "\? {\n    if let s = self.mObject\?.selection {\n      switch s {\n      case .empty, .multiple :\n        return nil\n      case .single (let v) :\n        return v\n      }\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n}*/\n" ;
-  }else if (kBoolFalse == test_3) {
-  }
-  result << "\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -6655,11 +6541,11 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
                                                                          const GALGAS_string & in_PROJECT_5F_NAME
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "#! /usr/bin/env python\n# -*- coding: UTF-8 -*-\n\n#------------------------------------------------------------------------------*\n\nimport subprocess, os, sys, atexit\n\n#------------------------------------------------------------------------------*\n\ndef cleanup () :\n  if buildProcess.poll () == None :\n    buildProcess.kill ()\n    print 'Build process killed'\n\n#------------------------------------------------------------------------------*\n\n#------------------- Register a function for killing build subprocess\natexit.register (cleanup)\n#------------------- Get compiler as first argument\ncompiler = \"eb\" # Default compiler\nif len (sys.argv) > 1 :\n  compiler = sys.argv [1]\n#------------------- Get script absolute path\nscriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\nos.chdir (scriptDir)\n#------------------- Build\nprint \"+ \" + compiler + \" " ;
+  result << "#! /usr/bin/env python\n# -*- coding: UTF-8 -*-\n\n//-----------------------------------------------------------------------------*\n\nimport subprocess, os, sys, atexit\n\n//-----------------------------------------------------------------------------*\n\ndef cleanup () :\n  if buildProcess.poll () == None :\n    buildProcess.kill ()\n    print 'Build process killed'\n\n//-----------------------------------------------------------------------------*\n\n//------------------ Register a function for killing build subprocess\natexit.register (cleanup)\n//------------------ Get compiler as first argument\ncompiler = \"eb\" # Default compiler\nif len (sys.argv) > 1 :\n  compiler = sys.argv [1]\n//------------------ Get script absolute path\nscriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\nos.chdir (scriptDir)\n//------------------ Build\nprint \"+ \" + compiler + \" " ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".eb\"\nbuildProcess = subprocess.Popen ([compiler, \"" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
-  result << ".eb\"])\nbuildProcess.wait ()\n#------------------- Xcode build\nif buildProcess.returncode == 0 :\n  buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n  buildProcess.wait ()\n#------------------- Result\nif buildProcess.returncode != 0 :\n  sys.exit (buildProcess.returncode)\n\n#------------------------------------------------------------------------------*\n" ;
+  result << ".eb\"])\nbuildProcess.wait ()\n//------------------ Xcode build\nif buildProcess.returncode == 0 :\n  buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n  buildProcess.wait ()\n//------------------ Result\nif buildProcess.returncode != 0 :\n  sys.exit (buildProcess.returncode)\n\n//-----------------------------------------------------------------------------*\n" ;
   return GALGAS_string (result) ;
 }
 
@@ -7365,7 +7251,7 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
       GALGAS_string var_s_5588 = GALGAS_string (filewrapperTemplate_testFiles_test_5F_py (inCompiler, constinArgument_inBundleIdentifier, constinArgument_inProjectName, var_outlet_5F_identifier_5F_list_5303 COMMA_SOURCE_FILE ("main-xib.ggs", 144))) ;
       GALGAS_string var_header_5714 = GALGAS_string ("#!/usr/bin/python3\n# coding=utf-8\n\n# https://pypi.python.org/pypi/atomac\n# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n\n") ;
       {
-      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, GALGAS_string ("test.py"), GALGAS_string ("#"), var_header_5714, GALGAS_string::makeEmptyString (), var_s_5588, GALGAS_string ("#    ENTER USER CODE HERE\n"), GALGAS_string ("\nquitApplication ()\n\n#----------------------------------------------------------------------------*\n"), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 153)) ;
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, GALGAS_string ("test.py"), GALGAS_string ("#"), var_header_5714, GALGAS_string::makeEmptyString (), var_s_5588, GALGAS_string ("#    ENTER USER CODE HERE\n"), GALGAS_string ("\nquitApplication ()\n\n//---------------------------------------------------------------------------*\n"), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 153)) ;
       }
     }
   }
@@ -7413,17 +7299,17 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (C_Compiler * /* inCompil
                                                         const GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
                                                         COMMA_UNUSED_LOCATION_ARGS) {
   C_String result ;
-  result << "#------------------------------------------------------------------------------*\n\nimport random, string\n\nimport subprocess, os, sys, atexit\nimport atomac, sys, time, inspect\n\n#------------------------------------------------------------------------------*\n#   GET SOURCE LINE NUMBER                                                     *\n#------------------------------------------------------------------------------*\n\ndef lineno():\n  return inspect.currentframe().f_back.f_lineno\n\n#------------------------------------------------------------------------------*\n#   LAUNCH APPLICATION                                                         *\n#------------------------------------------------------------------------------*\n\ndef launchApplication ():\n  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/" ;
+  result << "//-----------------------------------------------------------------------------*\n\nimport random, string\n\nimport subprocess, os, sys, atexit\nimport atomac, sys, time, inspect\n\n//-----------------------------------------------------------------------------*\n#   GET SOURCE LINE NUMBER                                                     *\n//-----------------------------------------------------------------------------*\n\ndef lineno():\n  return inspect.currentframe().f_back.f_lineno\n\n//-----------------------------------------------------------------------------*\n#   LAUNCH APPLICATION                                                         *\n//-----------------------------------------------------------------------------*\n\ndef launchApplication ():\n  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << ".app\")\n  time.sleep (0.5)\n  application = atomac.getAppRefByBundleId ('" ;
   result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
   result << "." ;
   result << in_PROJECT_5F_NAME.stringValue () ;
-  result << "')\n  return application\n\n#------------------------------------------------------------------------------*\n#   QUIT APPLICATION                                                           *\n#------------------------------------------------------------------------------*\n\ndef quitApplication ():\n  atomac.terminateAppByBundleId ('" ;
+  result << "')\n  return application\n\n//-----------------------------------------------------------------------------*\n#   QUIT APPLICATION                                                           *\n//-----------------------------------------------------------------------------*\n\ndef quitApplication ():\n  atomac.terminateAppByBundleId ('" ;
   result << in_BUNDLE_5F_IDENTIFIER.stringValue () ;
   result << "." ;
   result << in_PROJECT_5F_NAME.stringValue () ;
-  result << "')\n  time.sleep (0.5)\n\n#------------------------------------------------------------------------------*\n#   PREFERENCES WINDOW                                                         *\n#------------------------------------------------------------------------------*\n\ndef setUpPreferencesWindow (application) :\n  time.sleep (0.5)\n  window = application.windows ('" ;
+  result << "')\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   PREFERENCES WINDOW                                                         *\n//-----------------------------------------------------------------------------*\n\ndef setUpPreferencesWindow (application) :\n  time.sleep (0.5)\n  window = application.windows ('" ;
   result << in_PROJECT_5F_NAME.stringValue () ;
   result << "')[0]\n" ;
   GALGAS_uint index_1784_ (0) ;
@@ -7441,7 +7327,7 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (C_Compiler * /* inCompil
       enumerator_1784.gotoNextObject () ;
     }
   }
-  result << "\n#------------------------------------------------------------------------------*\n#   CHECK TEXT FIELD VALUE                                                     *\n#------------------------------------------------------------------------------*\n\ndef checkTextFieldValue (textField, expectedValue, line):\n  if textField.AXValue != expectedValue :\n    print '*** Check error at line ' + str (line) + ' ***'\n    sys.exit (1)\n\n#------------------------------------------------------------------------------*\n#   SET TEXT FIELD                                                             *\n#------------------------------------------------------------------------------*\n\ndef setTextFieldValue (textField, value):\n  textField.AXFocused = True\n  textField.AXValue = value\n  textField.Confirm ()\n  time.sleep (0.5)\n\n#------------------------------------------------------------------------------*\n#   MAIN                                                                       *\n#------------------------------------------------------------------------------*\n\napplication = launchApplication ()\nsetUpPreferencesWindow (application)\n\n\n" ;
+  result << "\n//-----------------------------------------------------------------------------*\n#   CHECK TEXT FIELD VALUE                                                     *\n//-----------------------------------------------------------------------------*\n\ndef checkTextFieldValue (textField, expectedValue, line):\n  if textField.AXValue != expectedValue :\n    print '*** Check error at line ' + str (line) + ' ***'\n    sys.exit (1)\n\n//-----------------------------------------------------------------------------*\n#   SET TEXT FIELD                                                             *\n//-----------------------------------------------------------------------------*\n\ndef setTextFieldValue (textField, value):\n  textField.AXFocused = True\n  textField.AXValue = value\n  textField.Confirm ()\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   MAIN                                                                       *\n//-----------------------------------------------------------------------------*\n\napplication = launchApplication ()\nsetUpPreferencesWindow (application)\n\n\n" ;
   return GALGAS_string (result) ;
 }
 

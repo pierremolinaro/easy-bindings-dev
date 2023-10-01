@@ -1,6 +1,6 @@
-#------------------------------------------------------------
+//-----------------------------------------------------------
 #   SYNTAX
-#------------------------------------------------------------
+//-----------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -25,9 +25,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#------------------------------------------------------------
+//-----------------------------------------------------------
 #   CODE GENERATION                       
-#------------------------------------------------------------
+//-----------------------------------------------------------
 
 proc generateXcodeProject(
   let @string inOutputDirectory,
@@ -40,7 +40,7 @@ proc generateXcodeProject(
   end
 }
 
-#------------------------------------------------------------
+//-----------------------------------------------------------
 
 private proc generateXcodeProjectInternal(
   let @string inOutputDirectory,
@@ -49,7 +49,7 @@ private proc generateXcodeProjectInternal(
   let @string projectName)
 {
   var xcodeProject = @XcodeProjectDescriptor ()
-#--- Default build configuration
+//-- Default build configuration
   let SDK = "macosx"
   let DEPLOYMENT = "10.10"
   !?xcodeProject.addSettingsToDefaultConfiguration (!settingList: [
@@ -92,7 +92,7 @@ private proc generateXcodeProjectInternal(
     "SWIFT_VERSION = 4.2" :
     "LD_RUNPATH_SEARCH_PATHS = \"$(inherited) @executable_path/../Frameworks\""
   ])
-#--- Add "Hand coded sources (App)" group
+//-- Add "Hand coded sources (App)" group
   var @stringlist swiftFileRefList = []
   var @stringlist resourceFileRefList = []
   var generatedFileSet = inGeneratedFileSet
@@ -123,7 +123,7 @@ private proc generateXcodeProjectInternal(
     ?groupRef:groupRef
   )
   !?xcodeProject.placeGroupAsMainGroup (!groupRef:groupRef)
-#--- Add Cocoa target
+//-- Add Cocoa target
   !?xcodeProject.addAppTarget (
     !targetName:projectName,
     !productFileName:projectName,
@@ -136,13 +136,13 @@ private proc generateXcodeProjectInternal(
     !infoPList:projectName + "/Info.plist",
     ?productFileRef:*
   )
-#--- Generate project
+//-- Generate project
   let sourceDir = inOutputDirectory + "/" + projectName + "/"
   xcodeProject.generateAtPath
     (!xcodeprojPath:inOutputDirectory + "/" + projectName + ".xcodeproj",
     !cacheFilePath:sourceDir + projectName + ".xcodeproj.txt"
   )
-#--- Generate additional files
+//-- Generate additional files
   var s = filewrapper [additionalXcodeFiles.info_plist:
     projectName,
     inXcodeProjectString,
@@ -169,7 +169,7 @@ private proc generateXcodeProjectInternal(
   )
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//---------------------------------------------------------------------------------------------------------------------*
 
 private filewrapper additionalXcodeFiles in "generation-templates/xcode-project" {
 }{
@@ -191,4 +191,4 @@ private filewrapper additionalXcodeFiles in "generation-templates/xcode-project"
   )
 }
 
-#------------------------------------------------------------
+//-----------------------------------------------------------

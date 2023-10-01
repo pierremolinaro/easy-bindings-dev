@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 enum @toManyRelationshipOptionAST {
   case none
@@ -42,9 +42,9 @@ override func @toManyRelationshipAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -129,9 +129,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
@@ -158,9 +158,9 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
       !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, [], false)
-    #--- Current class is preferences ?
+    //-- Current class is preferences ?
       let inPrefs = self.mClassName.string == preferencesName ()
-    #--- Option
+    //-- Option
       let @toManyRelationshipOptionGeneration optionForGeneration
       switch self.mOption
       case hasDependance (masterPropertyName) :
@@ -174,7 +174,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       case none :
         optionForGeneration = .none
       end
-    #--- Code Generation
+    //-- Code Generation
       mPropertyGenerationList += !@toManyPropertyGeneration (
         self.mToManyRelationshipName.string,
         self.mGenerateDirectAccess,
@@ -371,4 +371,4 @@ override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

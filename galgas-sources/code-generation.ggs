@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SEMANTIC TYPES
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @transientExternTypeList {
   public var @string mTypeName
@@ -50,9 +50,9 @@ struct @generationStruct {
   public var @stringset mGenerateClass_StoredArrayOf_ = []
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 proc generateCode(
   let @string inXcodeProjectString,
@@ -131,7 +131,7 @@ private proc generateStandardProperties (let @string inOutputDirectory,
                                          let @stringlist inPropertyClassList,
                                          let @transientExternTypeList inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
-#--- Add scalar property types
+//-- Add scalar property types
   generateScalarProperty (inOutputDirectory, "UInt32", false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "Int",    false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "Bool",   false, "", !?ioGeneratedFileSet)
@@ -140,7 +140,7 @@ private proc generateStandardProperties (let @string inOutputDirectory,
   generateScalarProperty (inOutputDirectory, "Data",   false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "Date",   false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "BezierPathArray", false, "", !?ioGeneratedFileSet)
-#--- Add class property types
+//-- Add class property types
   for (propertyClass) in inPropertyClassList do
     generateClassProperty (inOutputDirectory, propertyClass, false, false, !?ioGeneratedFileSet)
   end
@@ -164,7 +164,7 @@ private proc generateClassProperty (let @string inOutputDirectory,
                                      let @bool inTransient,
                                      ?!@stringset ioGeneratedFileSet) {
   let contents = filewrapper [standard_properties.classProperty: inClassPropertyTypeName, inComparable, inTransient]
-#--- Generate file
+//-- Generate file
   let fileName = "property-" + inClassPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
@@ -182,7 +182,7 @@ private proc generateScalarProperty (let @string inOutputDirectory,
                                     let @string inComparisonMethod,
                                     ?!@stringset ioGeneratedFileSet) {
   let contents = filewrapper [standard_properties.scalarProperty: inScalarPropertyTypeName, inTransient, inComparisonMethod]
-#--- Generate file
+//-- Generate file
   let fileName = "property-" + inScalarPropertyTypeName + ".swift"
   ioGeneratedFileSet += !fileName
   @string.generateFile (
@@ -192,4 +192,4 @@ private proc generateScalarProperty (let @string inOutputDirectory,
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   AST   
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @transientDeclarationAST : @abstractDeclarationAST {
   public var @lstring mRootEntityName
@@ -75,9 +75,9 @@ override func @transientDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mTransientName, self.mTransientName.location)
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SYNTAX
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -140,9 +140,9 @@ syntax extension easyBindings_syntax {
   }
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -170,16 +170,16 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   SECOND ANALYSIS PHASE
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 override proc @transientDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration) {
-#--- Property type
+//-- Property type
   ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
-#--- Check type
+//-- Check type
   let @typeKind typeKind
   switch classKind
   case prefs :
@@ -191,16 +191,16 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   case entity (4*) :
     error self.mTransientTypeName: "an atomic class is required here" spoil (typeKind)
   end
-#--- Root properties
+//-- Root properties
   let @propertyMap rootProperties
   if self.mRootEntityName.string == "" then
     rootProperties = []
   else
     ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?rootProperties, ?2*)
   end
-#--- Current class properties
+//-- Current class properties
   ioSemanticContext.mClassMap.searchKey (self.mClassName, ?let currentClassKind, ?let properties, ?2*)
-#--- Analyse master properties
+//-- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
     mObservableProperty.analyzeObservableProperty
@@ -262,9 +262,9 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   CODE GENERATION                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @transientPropertyGeneration : @propertyGeneration {
   public var @string mClassName
@@ -285,7 +285,7 @@ override func @transientPropertyGeneration.declarationInSelectionControllerCode(
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBTransientProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName () + "> ()\n\n"
 }
 
 #·······················································································································
@@ -350,12 +350,12 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
       result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
-      result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBTransientProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+      result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName () + "> ()\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
-      result += "  final let " + self.mPropertyName + "_property = EBTransientProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+      result += "  final let " + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName () + "> ()\n\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
       result += "    return self." + self.mPropertyName + "_property.optionalValue\n"
@@ -393,9 +393,9 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION TYPE                       
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 list @transientDependencyListForGeneration {
   public let @observablePropertyAST mDependency
@@ -476,9 +476,9 @@ func @transientDependencyListForGeneration.needs_unwSelf (let @bool inPreference
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   GENERATION                            
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 func @observablePropertyAST.generateAddObserverCall (let @bool inPreferences) -> @string outResult {
   let prefix = if inPreferences then "preferences_" else "self." end
@@ -577,9 +577,9 @@ func @observablePropertyAST.generateRemoveObserverCall() -> @string outResult {
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #    TRANSIENT ROUTINE GENERATION         
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 class @transientRoutineGeneration : @abstractFileGeneration {
   public var @string mOwnerName
@@ -638,4 +638,4 @@ private filewrapper transientManager in "generation-templates" {
   )
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

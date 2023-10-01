@@ -1,6 +1,6 @@
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   PROGRAM                               
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 struct @semanticContext {
   public var @classMap mClassMap = []
@@ -13,7 +13,7 @@ struct @semanticContext {
   public var @enumerationFunctionListAST mEnumerationFunctionListAST = []
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 case ."eb"
   message "a source text file with the .easyBindings extension"
@@ -21,20 +21,20 @@ case ."eb"
   ?sourceFilePath:@lstring inSourceFile
 {
   var declarationStruct = @astDeclarationStruct ()
-#----------------------------------------- Parse predefined outlets files
+//---------------------------------------- Parse predefined outlets files
   grammar easyBindings_grammar (!?declarationStruct, ?*) on filewrapper [predefinedOutletClasses.sourceFile:]:""
-#----------------------------------------- Parse source file
+//---------------------------------------- Parse source file
   grammar easyBindings_grammar (!?declarationStruct, ?let @location unused endOfSourceFile) in inSourceFile
-#------------------------ Add prefs declaration
+//----------------------- Add prefs declaration
   declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST (
     .new(preferencesName (), .nowhere),
     declarationStruct.mPreferences
   )
-#----------------------------------------- Add Atomic type declarations
+//---------------------------------------- Add Atomic type declarations
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)
-#----------------------------------------- Sort properties
+//---------------------------------------- Sort properties
   sortProperties (inSourceFile.string, declarationStruct.mUnifiedDeclarationList, ?let sortedDeclarationListAST)
-#----------------------------------------- Semantic Analysis, first phase
+//---------------------------------------- Semantic Analysis, first phase
   var semanticContext = @semanticContext ()
   semanticContext.mAutoLayoutVStackFunctionMap = declarationStruct.mAutoLayoutVStackFunctionMap
   semanticContext.mAutoLayoutHStackFunctionMap = declarationStruct.mAutoLayoutHStackFunctionMap
@@ -43,7 +43,7 @@ case ."eb"
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.firstAnalysisPhase (!?semanticContext, !?generation)
   end
-#----------------------------------------- Build binding specification map
+//---------------------------------------- Build binding specification map
   if @uint.errorCount == 0 then
     buildBindingSpecificationMap (
       !?semanticContext,
@@ -56,19 +56,19 @@ case ."eb"
       declarationStruct.mAutoLayoutBindingSpecificationList
     )
   end
-#----------------------------------------- Semantic Analysis, second phase
+//---------------------------------------- Semantic Analysis, second phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.secondAnalysisPhase (!?semanticContext, !?generation)
   end
-#----------------------------------------- Semantic Analysis, third phase
+//---------------------------------------- Semantic Analysis, third phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.thirdAnalysisPhase (!?semanticContext, !?generation)
   end
-#----------------------------------------- Semantic Analysis, fourth phase
+//---------------------------------------- Semantic Analysis, fourth phase
   for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.fourthAnalysisPhase (!?semanticContext, !?generation)
   end
-#----------------------------------------- Check enum type is declared for every enum function
+//---------------------------------------- Check enum type is declared for every enum function
   if @uint.errorCount == 0 then
     for (enumTypeName * *) in semanticContext.mEnumerationFunctionListAST do
       semanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
@@ -82,11 +82,11 @@ case ."eb"
       end
     end
   end
-#----------------------------------------- Semantic Analysis, graphviz
+//---------------------------------------- Semantic Analysis, graphviz
   if @uint.errorCount == 0 then
     graphvizAnalysis (inSourceFile.stringByDeletingLastPathComponent (), semanticContext, declarationStruct.mGraphvizList)
   end
-#----------------------------------------- Generate code
+//---------------------------------------- Generate code
   if @uint.errorCount == 0 then
     generateCode (
       declarationStruct.mXcodeProject.string,
@@ -96,9 +96,9 @@ case ."eb"
   end
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 #   FILEWRAPPER: predefined outlet classes
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
 
 filewrapper predefinedOutletClasses in "generation-templates" {
 }{
@@ -106,4 +106,4 @@ filewrapper predefinedOutletClasses in "generation-templates" {
   template sourceFile : "predefinedOutletClasses.eb" ()
 }
 
-#-----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------

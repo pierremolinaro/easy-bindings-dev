@@ -3,7 +3,7 @@ project (0:0:1) -> "eb" {
   %MacOS
   %applicationBundleBase : "fr.irccyn"
 
-#--- Source files
+//-- Source files
   "galgas-sources/lexique.ggs"
   "galgas-sources/options.ggs"
   "galgas-sources/grammar-syntax.ggs"
@@ -11,14 +11,14 @@ project (0:0:1) -> "eb" {
   "galgas-sources/program.ggs"
   "galgas-sources/declaration-graph.ggs"
 
-#--- Extern Swift functions
+//-- Extern Swift functions
   "galgas-sources/extern-delegate.ggs"
   "galgas-sources/extern-swift-func.ggs"
 
-#--- Property class
+//-- Property class
   "galgas-sources/transient-property-class.ggs"
 
-#--- Components  
+//-- Components  
   "galgas-sources/enumeration.ggs"
   "galgas-sources/atomic-class.ggs"
   "galgas-sources/entity.ggs"
@@ -26,17 +26,17 @@ project (0:0:1) -> "eb" {
   "galgas-sources/preferences.ggs"
   "galgas-sources/graphviz.ggs"
 
-#--- Auto Layout
+//-- Auto Layout
   "galgas-sources/auto-layout-view-class.ggs"
   "galgas-sources/auto-layout-view-binding-specification.ggs"
   "galgas-sources/auto-layout-view.ggs"
   
-#--- Outlet classes
+//-- Outlet classes
   "galgas-sources/outlet-class.ggs"
   "galgas-sources/outlet-binding-specification.ggs"
   "galgas-sources/outlet-declaration.ggs"
 
-#--- Properties
+//-- Properties
   "galgas-sources/observable-property.ggs"
   "galgas-sources/computed-property.ggs"
   "galgas-sources/transient-property.ggs"
@@ -47,22 +47,22 @@ project (0:0:1) -> "eb" {
   "galgas-sources/property-validation-stub-routine.ggs"
   "galgas-sources/run-action.ggs"
 
-#--- Bindings
+//-- Bindings
   "galgas-sources/multiple-binding.ggs"
   "galgas-sources/regular-binding.ggs"
 
-#--- Controllers
+//-- Controllers
   "galgas-sources/array-controller.ggs"
   "galgas-sources/auto-layout-table-view-controller.ggs"
   "galgas-sources/selection-controller.ggs"
 
-#--- Semantics, code generation
+//-- Semantics, code generation
   "galgas-sources/explicit-default-value.ggs"
   "galgas-sources/unified-type.ggs"
   "galgas-sources/semantic-analysis.ggs"
   "galgas-sources/code-generation.ggs"
   
-#--- Xcode project
+//-- Xcode project
   "galgas-sources/xcode-project.ggs"
   "galgas-sources/XcodeProjectNewGeneration.ggs"
   "galgas-sources/main-xib.ggs"
