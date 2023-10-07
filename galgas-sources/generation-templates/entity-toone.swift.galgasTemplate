@@ -280,7 +280,7 @@ final class StoredObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME%, EBSigna
 
   //····················································································································
 
-  override var propval : %!ENTITY_NAME%? { return self.mWeakInternalValue }
+  var propval : %!ENTITY_NAME%? { return self.mWeakInternalValue }
 
   //····················································································································
   //   setProp
