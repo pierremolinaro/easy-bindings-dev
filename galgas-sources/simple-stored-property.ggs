@@ -197,7 +197,7 @@ override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -
 override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsToBeObserved (by: self." + self.mPropertyName + "_property)\n"
+  result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"

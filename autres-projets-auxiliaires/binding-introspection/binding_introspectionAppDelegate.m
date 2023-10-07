@@ -223,8 +223,8 @@
   [self enumerateBindingsForClass:[NSDatePicker class]] ;
   [self enumerateBindingsForClass:[NSDatePickerCell class]] ;
 //  [self enumerateBindingsForClass:[NSDictionaryController class]] ;
-  [self enumerateBindingsForClass:[NSDrawer class]] ;
-  [self enumerateBindingsForClass:[NSForm class]] ;
+//  [self enumerateBindingsForClass:[NSDrawer class]] ;
+//  [self enumerateBindingsForClass:[NSForm class]] ;
   [self enumerateBindingsForClass:[NSFormCell class]] ;
   [self enumerateBindingsForClass:[NSImageCell class]] ;
   [self enumerateBindingsForClass:[NSImageView class]] ;

@@ -37,17 +37,17 @@ end
 %if ([SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION count] + [TRANSIENT_LIST_FOR_IMPLEMENTATION count] +[COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION count]) > 0 then
 %    if let newValue = self.mWeakInternalValue {\n%
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Stored property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Stored property\n%
 end
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
-  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Transient property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Transient property\n%
 end
 for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
-  %      newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
+  %      newValue.%!mProperty.mPropertyName%_property.startsBeingObserved (by: self.%!mProperty.mPropertyName%_property) // Computed property\n%
 end
 for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %      if let relay = self.mObserversOf_%!mProperty.mPropertyName% { // to Many\n%
-  %        newValue.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)\n%
+  %        newValue.%!mProperty.mPropertyName%_property.startsBeingObserved (by: relay)\n%
   %      }\n%
 end
 %    }\n%
@@ -89,16 +89,16 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  //····················································································································\n\n%
   %  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil\n\n%
   %  //····················································································································\n\n%
-  %  final func toMany_%!mProperty.mPropertyName%_StartsToBeObserved (by inObserver : EBObserverProtocol) {\n%
+  %  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n%
   %    let relay : EBObservedObserver\n%
   %    if let r = self.mObserversOf_%!mProperty.mPropertyName% {\n%
   %      relay = r\n%
   %    }else{\n%
   %      relay = EBObservedObserver ()\n%
-  %      self.mWeakInternalValue?.%!mProperty.mPropertyName%_property.startsToBeObserved (by: relay)\n%
+  %      self.mWeakInternalValue?.%!mProperty.mPropertyName%_property.startsBeingObserved (by: relay)\n%
   %      self.mObserversOf_%!mProperty.mPropertyName% = relay\n%
   %    }\n%
-  %    relay.startsToBeObserved (by: inObserver)\n%
+  %    relay.startsBeingObserved (by: inObserver)\n%
   %  }\n\n%
   %  //····················································································································\n\n%
   %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n%

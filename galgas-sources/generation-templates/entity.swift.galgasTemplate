@@ -79,7 +79,7 @@ for (mProperty) in TO_ONE_RELATIONSHIP_LIST do
 %        return .empty\n%
 %      }\n%
 %    }\n%
-%    self.%!mProperty.mPropertyName%_property.startsToBeObserved (by: self.%!mProperty.mPropertyName%_none)\n%
+%    self.%!mProperty.mPropertyName%_property.startsBeingObserved (by: self.%!mProperty.mPropertyName%_none)\n%
 end
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !false]

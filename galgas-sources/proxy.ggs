@@ -263,7 +263,7 @@ override func @toManyProxyGeneration.configurationCode (let @bool unused inPrefe
   result += "          }\n"
   result += "        }\n"
   result += "      )\n"
-  result += "      self." + self.mObservedRelationshipName + "_property.toMany_" + self.mObservedPropertyName + "_StartsToBeObserved (by: controller)\n"
+  result += "      self." + self.mObservedRelationshipName + "_property.toMany_" + self.mObservedPropertyName + "_StartsBeingObserved (by: controller)\n"
   result += "      self." + self.mPropertyName + "_modelDidChangeController = controller\n"
   result += "    }\n"
 }
@@ -305,7 +305,7 @@ override func @atomicProxyGeneration.initCode() -> @string {
 override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
-  result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsToBeObserved (by: self." + self.mPropertyName + "_property)\n"
+  result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
@@ -406,7 +406,7 @@ override func @atomicProxyGeneration.configurationCode (let @bool unused inPrefe
   result += "      self?." + self.mObservedRelationshipName + "?." + self.mObservedPropertyName + "_property.setProp (inValue)\n"
   result += "    }\n"
   result += "    self." + self.mObservedRelationshipName + "_property." + self.mObservedPropertyName
-  result += "_property.startsToBeObserved (by: self." + self.mPropertyName + "_property)\n"
+  result += "_property.startsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
