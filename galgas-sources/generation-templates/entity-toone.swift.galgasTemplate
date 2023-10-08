@@ -8,7 +8,7 @@ import AppKit
 //    ReadOnlyObject_%!ENTITY_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-class ReadOnlyObject_%!ENTITY_NAME% : ReadOnlyAbstractObjectProperty <%!ENTITY_NAME%> {
+class ReadOnlyObject_%!ENTITY_NAME% : EBReadOnlyAbstractObjectProperty <%!ENTITY_NAME%> {
 
   //····················································································································
 

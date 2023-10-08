@@ -8,7 +8,7 @@ import AppKit
 //    %!"Array controller " + OWNER_NAME + " " + ARRAY_CONTROLLER_NAME%
 //——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : ReadOnlyAbstractGenericRelationshipProperty%
+final class Controller_%!OWNER_NAME%_%!ARRAY_CONTROLLER_NAME% : EBReadOnlyAbstractGenericRelationshipProperty%
 if ELEMENT_TYPE_IS_GRAPHIC then
  %, EBGraphicViewControllerProtocol%
 end
