@@ -172,7 +172,7 @@ void GALGAS_astDeclarationStruct::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
-                                             NULL) ;
+                                             nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -183,7 +183,7 @@ const C_galgas_type_descriptor * GALGAS_astDeclarationStruct::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astDeclarationStruct::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astDeclarationStruct (*this)) ;
   }
@@ -197,8 +197,8 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_astDeclarationStruct result ;
   const GALGAS_astDeclarationStruct * p = (const GALGAS_astDeclarationStruct *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astDeclarationStruct *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astDeclarationStruct *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astDeclarationStruct", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -243,7 +243,7 @@ typeComparisonResult GALGAS_doubleAsDefaultValue::objectCompare (const GALGAS_do
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -283,7 +283,7 @@ GALGAS_doubleAsDefaultValue GALGAS_doubleAsDefaultValue::constructor_new (const 
 
 void GALGAS_doubleAsDefaultValue::setter_setMValue (GALGAS_ldouble inValue
                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_doubleAsDefaultValue * p = (cPtr_doubleAsDefaultValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_doubleAsDefaultValue) ;
     p->mProperty_mValue = inValue ;
@@ -293,7 +293,7 @@ void GALGAS_doubleAsDefaultValue::setter_setMValue (GALGAS_ldouble inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_ldouble GALGAS_doubleAsDefaultValue::readProperty_mValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_ldouble () ;
   }else{
     cPtr_doubleAsDefaultValue * p = (cPtr_doubleAsDefaultValue *) mObjectPtr ;
@@ -328,7 +328,7 @@ void cPtr_doubleAsDefaultValue::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_doubleAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_doubleAsDefaultValue (mProperty_mValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -353,7 +353,7 @@ const C_galgas_type_descriptor * GALGAS_doubleAsDefaultValue::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_doubleAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_doubleAsDefaultValue (*this)) ;
   }
@@ -367,8 +367,8 @@ GALGAS_doubleAsDefaultValue GALGAS_doubleAsDefaultValue::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_doubleAsDefaultValue result ;
   const GALGAS_doubleAsDefaultValue * p = (const GALGAS_doubleAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_doubleAsDefaultValue *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_doubleAsDefaultValue *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("doubleAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -477,13 +477,13 @@ C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDepende
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -499,14 +499,14 @@ const cDirectoryWrapper gWrapperDirectory_4_predefinedOutletClasses (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_3 [2] = {
   & gWrapperDirectory_4_predefinedOutletClasses,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -522,13 +522,13 @@ const cDirectoryWrapper gWrapperDirectory_3_predefinedOutletClasses (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -544,13 +544,13 @@ const cDirectoryWrapper gWrapperDirectory_5_predefinedOutletClasses (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -566,13 +566,13 @@ const cDirectoryWrapper gWrapperDirectory_1_predefinedOutletClasses (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -588,7 +588,7 @@ const cDirectoryWrapper gWrapperDirectory_2_predefinedOutletClasses (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_predefinedOutletClasses_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -598,7 +598,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_predefinedOutletClasses_
   & gWrapperDirectory_5_predefinedOutletClasses,
   & gWrapperDirectory_1_predefinedOutletClasses,
   & gWrapperDirectory_2_predefinedOutletClasses,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -860,13 +860,13 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticC
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -882,14 +882,14 @@ const cDirectoryWrapper gWrapperDirectory_4_enumGenerationTemplate (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_3 [2] = {
   & gWrapperDirectory_4_enumGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -905,13 +905,13 @@ const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -927,13 +927,13 @@ const cDirectoryWrapper gWrapperDirectory_5_enumGenerationTemplate (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -949,13 +949,13 @@ const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -971,7 +971,7 @@ const cDirectoryWrapper gWrapperDirectory_2_enumGenerationTemplate (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_enumGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -981,7 +981,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_enumGenerationTemplate_0
   & gWrapperDirectory_5_enumGenerationTemplate,
   & gWrapperDirectory_1_enumGenerationTemplate,
   & gWrapperDirectory_2_enumGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -1313,7 +1313,7 @@ void cPtr_entityDeclarationAST::method_secondAnalysisPhase (GALGAS_semanticConte
       }
       const GALGAS_entityDeclarationAST temp_5 = this ;
       cMapElement_classMap * objectArray_6922 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_5.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("entity.ggs", 207)) ;
-      if (NULL != objectArray_6922) {
+      if (nullptr != objectArray_6922) {
         macroValidSharedObject (objectArray_6922, cMapElement_classMap) ;
         objectArray_6922->mProperty_mPropertyMap = var_newPropertyMap_6472 ;
       }
@@ -1542,7 +1542,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
     enumGalgasBool test_1 = kBoolTrue ;
     if (kBoolTrue == test_1) {
       GALGAS_atomicPropertyGeneration var_atomicProperty_12966 (dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-      if (NULL == var_atomicProperty_12966.ptr ()) {
+      if (nullptr == var_atomicProperty_12966.ptr ()) {
         test_1 = kBoolFalse ;
       }
       if (kBoolTrue == test_1) {
@@ -1553,7 +1553,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
       enumGalgasBool test_2 = kBoolTrue ;
       if (kBoolTrue == test_2) {
         GALGAS_transientPropertyGeneration var_transientProperty_13094 (dynamic_cast <const cPtr_transientPropertyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-        if (NULL == var_transientProperty_13094.ptr ()) {
+        if (nullptr == var_transientProperty_13094.ptr ()) {
           test_2 = kBoolFalse ;
         }
         if (kBoolTrue == test_2) {
@@ -1564,7 +1564,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
         enumGalgasBool test_3 = kBoolTrue ;
         if (kBoolTrue == test_3) {
           GALGAS_computedPropertyGeneration var_computedProperty_13234 (dynamic_cast <const cPtr_computedPropertyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-          if (NULL == var_computedProperty_13234.ptr ()) {
+          if (nullptr == var_computedProperty_13234.ptr ()) {
             test_3 = kBoolFalse ;
           }
           if (kBoolTrue == test_3) {
@@ -1575,7 +1575,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
           enumGalgasBool test_4 = kBoolTrue ;
           if (kBoolTrue == test_4) {
             GALGAS_toManyProxyGeneration var_toManyProxy_13370 (dynamic_cast <const cPtr_toManyProxyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-            if (NULL == var_toManyProxy_13370.ptr ()) {
+            if (nullptr == var_toManyProxy_13370.ptr ()) {
               test_4 = kBoolFalse ;
             }
             if (kBoolTrue == test_4) {
@@ -1586,7 +1586,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
               GALGAS_atomicProxyGeneration var_proxyProperty_13486 (dynamic_cast <const cPtr_atomicProxyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-              if (NULL == var_proxyProperty_13486.ptr ()) {
+              if (nullptr == var_proxyProperty_13486.ptr ()) {
                 test_5 = kBoolFalse ;
               }
               if (kBoolTrue == test_5) {
@@ -1597,7 +1597,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
               enumGalgasBool test_6 = kBoolTrue ;
               if (kBoolTrue == test_6) {
                 GALGAS_toOnePropertyGeneration var_toOneProperty_13600 (dynamic_cast <const cPtr_toOnePropertyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-                if (NULL == var_toOneProperty_13600.ptr ()) {
+                if (nullptr == var_toOneProperty_13600.ptr ()) {
                   test_6 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_6) {
@@ -1608,7 +1608,7 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
                 enumGalgasBool test_7 = kBoolTrue ;
                 if (kBoolTrue == test_7) {
                   GALGAS_toManyPropertyGeneration var_toOneProperty_13724 (dynamic_cast <const cPtr_toManyPropertyGeneration *> (enumerator_12910.current_mProperty (HERE).ptr ())) ;
-                  if (NULL == var_toOneProperty_13724.ptr ()) {
+                  if (nullptr == var_toOneProperty_13724.ptr ()) {
                     test_7 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_7) {
@@ -1755,13 +1755,13 @@ void routine_generateEBManagedObjectContext (const GALGAS_entityListForGeneratin
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -1777,14 +1777,14 @@ const cDirectoryWrapper gWrapperDirectory_4_entityGenerationTemplate (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_3 [2] = {
   & gWrapperDirectory_4_entityGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -1800,13 +1800,13 @@ const cDirectoryWrapper gWrapperDirectory_3_entityGenerationTemplate (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -1822,13 +1822,13 @@ const cDirectoryWrapper gWrapperDirectory_5_entityGenerationTemplate (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -1844,13 +1844,13 @@ const cDirectoryWrapper gWrapperDirectory_1_entityGenerationTemplate (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -1866,7 +1866,7 @@ const cDirectoryWrapper gWrapperDirectory_2_entityGenerationTemplate (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_entityGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -1876,7 +1876,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_entityGenerationTemplate
   & gWrapperDirectory_5_entityGenerationTemplate,
   & gWrapperDirectory_1_entityGenerationTemplate,
   & gWrapperDirectory_2_entityGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -3318,13 +3318,13 @@ void cPtr_autoLayoutDocumentFileGeneration::method_generateCode (const GALGAS_st
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -3340,14 +3340,14 @@ const cDirectoryWrapper gWrapperDirectory_4_autoLayoutDocumentGenerationTemplate
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_3 [2] = {
   & gWrapperDirectory_4_autoLayoutDocumentGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -3363,13 +3363,13 @@ const cDirectoryWrapper gWrapperDirectory_3_autoLayoutDocumentGenerationTemplate
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -3385,13 +3385,13 @@ const cDirectoryWrapper gWrapperDirectory_5_autoLayoutDocumentGenerationTemplate
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -3407,13 +3407,13 @@ const cDirectoryWrapper gWrapperDirectory_1_autoLayoutDocumentGenerationTemplate
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -3429,7 +3429,7 @@ const cDirectoryWrapper gWrapperDirectory_2_autoLayoutDocumentGenerationTemplate
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutDocumentGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -3439,7 +3439,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutDocumentGenera
   & gWrapperDirectory_5_autoLayoutDocumentGenerationTemplate,
   & gWrapperDirectory_1_autoLayoutDocumentGenerationTemplate,
   & gWrapperDirectory_2_autoLayoutDocumentGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -3755,7 +3755,7 @@ static void releaseOnceFunctionResult_preferencesName (void) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-C_PrologueEpilogue gEpilogueForOnceFunction_preferencesName (NULL,
+C_PrologueEpilogue gEpilogueForOnceFunction_preferencesName (nullptr,
                                                              releaseOnceFunctionResult_preferencesName) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3763,7 +3763,7 @@ C_PrologueEpilogue gEpilogueForOnceFunction_preferencesName (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_preferencesName [1] = {
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -3899,13 +3899,13 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GALGAS_semanticContex
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -3921,14 +3921,14 @@ const cDirectoryWrapper gWrapperDirectory_4_prefsGenerationTemplate (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_3 [2] = {
   & gWrapperDirectory_4_prefsGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -3944,13 +3944,13 @@ const cDirectoryWrapper gWrapperDirectory_3_prefsGenerationTemplate (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -3966,13 +3966,13 @@ const cDirectoryWrapper gWrapperDirectory_5_prefsGenerationTemplate (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -3988,13 +3988,13 @@ const cDirectoryWrapper gWrapperDirectory_1_prefsGenerationTemplate (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -4010,7 +4010,7 @@ const cDirectoryWrapper gWrapperDirectory_2_prefsGenerationTemplate (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_prefsGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -4020,7 +4020,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_prefsGenerationTemplate_
   & gWrapperDirectory_5_prefsGenerationTemplate,
   & gWrapperDirectory_1_prefsGenerationTemplate,
   & gWrapperDirectory_2_prefsGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -7982,7 +7982,7 @@ void cPtr_computedPropertyDeclarationAST::method_firstAnalysisPhase (GALGAS_sema
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_computedPropertyDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_6551 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("computed-property.ggs", 129)) ;
-  if (NULL != objectArray_6551) {
+  if (nullptr != objectArray_6551) {
     macroValidSharedObject (objectArray_6551, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_6719 ;
     const GALGAS_computedPropertyDeclarationAST temp_1 = this ;
@@ -8148,7 +8148,7 @@ void cPtr_computedPropertyDeclarationAST::method_thirdAnalysisPhase (GALGAS_sema
   ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_computeRoutineGeneration::constructor_new (temp_16.readProperty_mClassName ().readProperty_string (), temp_17.readProperty_mComputedPropertyName ().readProperty_string (), var_typeKind_7833, var_dependencies_8695  COMMA_SOURCE_FILE ("computed-property.ggs", 215))  COMMA_SOURCE_FILE ("computed-property.ggs", 215)) ;
   const GALGAS_computedPropertyDeclarationAST temp_18 = this ;
   cMapElement_classMap * objectArray_9917 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_18.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("computed-property.ggs", 221)) ;
-  if (NULL != objectArray_9917) {
+  if (nullptr != objectArray_9917) {
     macroValidSharedObject (objectArray_9917, cMapElement_classMap) ;
     GALGAS_bool var_generate_10019 ;
     switch (var_currentClassKind_8580.enumValue ()) {
@@ -8482,13 +8482,13 @@ void cPtr_computeRoutineGeneration::method_generateCode (const GALGAS_string con
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -8504,14 +8504,14 @@ const cDirectoryWrapper gWrapperDirectory_4_computedPropertyManager (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_3 [2] = {
   & gWrapperDirectory_4_computedPropertyManager,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -8527,13 +8527,13 @@ const cDirectoryWrapper gWrapperDirectory_3_computedPropertyManager (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -8549,13 +8549,13 @@ const cDirectoryWrapper gWrapperDirectory_5_computedPropertyManager (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -8571,13 +8571,13 @@ const cDirectoryWrapper gWrapperDirectory_1_computedPropertyManager (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -8593,7 +8593,7 @@ const cDirectoryWrapper gWrapperDirectory_2_computedPropertyManager (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_computedPropertyManager_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -8603,7 +8603,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_computedPropertyManager_
   & gWrapperDirectory_5_computedPropertyManager,
   & gWrapperDirectory_1_computedPropertyManager,
   & gWrapperDirectory_2_computedPropertyManager,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -8922,7 +8922,7 @@ void cPtr_transientDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticCon
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_transientDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_7095 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("transient-property.ggs", 151)) ;
-  if (NULL != objectArray_7095) {
+  if (nullptr != objectArray_7095) {
     macroValidSharedObject (objectArray_7095, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_7256 ;
     const GALGAS_transientDeclarationAST temp_1 = this ;
@@ -9087,7 +9087,7 @@ void cPtr_transientDeclarationAST::method_thirdAnalysisPhase (GALGAS_semanticCon
   ioArgument_ioGeneration.mProperty_mFileGenerationList.addAssign_operation (GALGAS_transientRoutineGeneration::constructor_new (temp_14.readProperty_mClassName ().readProperty_string (), temp_15.readProperty_mTransientName ().readProperty_string (), var_typeKind_8392, GALGAS_string ("transient"), var_dependencies_9233  COMMA_SOURCE_FILE ("transient-property.ggs", 230))  COMMA_SOURCE_FILE ("transient-property.ggs", 230)) ;
   const GALGAS_transientDeclarationAST temp_16 = this ;
   cMapElement_classMap * objectArray_10354 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_16.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("transient-property.ggs", 237)) ;
-  if (NULL != objectArray_10354) {
+  if (nullptr != objectArray_10354) {
     macroValidSharedObject (objectArray_10354, cMapElement_classMap) ;
     GALGAS_bool var_generate_10456 ;
     switch (var_currentClassKind_9118.enumValue ()) {

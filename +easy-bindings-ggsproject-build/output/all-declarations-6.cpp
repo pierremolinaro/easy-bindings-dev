@@ -8,1543 +8,6 @@
 #include "all-declarations-6.h"
 
 //----------------------------------------------------------------------------------------------------------------------
-// @prefsDeclarationAST reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_prefsDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mDeclaration.printNonNullClassInstanceProperties ("mDeclaration") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_prefsDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_prefsDeclarationAST * p = (const cPtr_prefsDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_prefsDeclarationAST) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mDeclaration.objectCompare (p->mProperty_mDeclaration) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_prefsDeclarationAST::objectCompare (const GALGAS_prefsDeclarationAST & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST::GALGAS_prefsDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::constructor_default (LOCATION_ARGS) {
-  return GALGAS_prefsDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                      GALGAS_prefDeclaration::constructor_default (HERE)
-                                                      COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST::GALGAS_prefsDeclarationAST (const cPtr_prefsDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_prefsDeclarationAST) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                        const GALGAS_prefDeclaration & inAttribute_mDeclaration
-                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_prefsDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mDeclaration.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_prefsDeclarationAST (inAttribute_mClassName, inAttribute_mDeclaration COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefDeclaration GALGAS_prefsDeclarationAST::readProperty_mDeclaration (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_prefDeclaration () ;
-  }else{
-    cPtr_prefsDeclarationAST * p = (cPtr_prefsDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_prefsDeclarationAST) ;
-    return p->mProperty_mDeclaration ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @prefsDeclarationAST class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_prefsDeclarationAST::cPtr_prefsDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                    const GALGAS_prefDeclaration & in_mDeclaration
-                                                    COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mDeclaration (in_mDeclaration) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_prefsDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsDeclarationAST ;
-}
-
-void cPtr_prefsDeclarationAST::description (C_String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString << "[@prefsDeclarationAST:" ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mDeclaration.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_prefsDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_prefsDeclarationAST (mProperty_mClassName, mProperty_mDeclaration COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @prefsDeclarationAST generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_prefsDeclarationAST ("prefsDeclarationAST",
-                                            & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_prefsDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsDeclarationAST ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_prefsDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_prefsDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                      C_Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_prefsDeclarationAST result ;
-  const GALGAS_prefsDeclarationAST * p = (const GALGAS_prefsDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_prefsDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("prefsDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//'@entityStrongReferenceGraph' graph
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph::GALGAS_entityStrongReferenceGraph (void) :
-AC_GALGAS_graph () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::constructor_emptyGraph (LOCATION_ARGS) {
-  GALGAS_entityStrongReferenceGraph result ;
-  result.makeNewEmptyGraph (THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::setter_addNode (GALGAS_lstring inKey,
-                                                        GALGAS_string inArgument_0,
-                                                        C_Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  GALGAS_stringlist::makeAttributesFromObjects (attributes, inArgument_0 COMMA_THERE) ;
-  const char * kErrorMessage = "the '%K' entity is already declared at %L" ;
-  internalAddNode (inKey, kErrorMessage, attributes, inCompiler COMMA_THERE) ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_topologicalSort (GALGAS_stringlist & outSortedList,
-                                                                GALGAS_lstringlist & outSortedKeyList,
-                                                                GALGAS_stringlist & outUnsortedList,
-                                                                GALGAS_lstringlist & outUnsortedKeyList,
-                                                                C_Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray sortedList ;
-  capCollectionElementArray unsortedList ;
-  internalTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_stringlist (sortedList) ;
-  outUnsortedList = GALGAS_stringlist (unsortedList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_depthFirstTopologicalSort (GALGAS_stringlist & outSortedList,
-                                                                          GALGAS_lstringlist & outSortedKeyList,
-                                                                          GALGAS_stringlist & outUnsortedList,
-                                                                          GALGAS_lstringlist & outUnsortedKeyList,
-                                                                          C_Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray sortedList ;
-  capCollectionElementArray unsortedList ;
-  internalDepthFirstTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_stringlist (sortedList) ;
-  outUnsortedList = GALGAS_stringlist (unsortedList) ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::getter_reversedGraph (LOCATION_ARGS) const {
-  GALGAS_entityStrongReferenceGraph result ;
-  result.reversedGraphFromGraph (*this COMMA_THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_circularities (GALGAS_stringlist & outInfoList,
-                                                              GALGAS_lstringlist & outKeyList
-                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalFindCircularities (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_nodesWithNoSuccessor (GALGAS_stringlist & outInfoList,
-                                                                     GALGAS_lstringlist & outKeyList
-                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalNodesWithNoSuccessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_nodesWithNoPredecessor (GALGAS_stringlist & outInfoList,
-                                                                       GALGAS_lstringlist & outKeyList
-                                                                       COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalNodesWithNoPredecessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::getter_subgraphFromNodes (const GALGAS_lstringlist & inStartKeyList,
-                                                                                               const GALGAS_stringset & inKeysToExclude,
-                                                                                               C_Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_entityStrongReferenceGraph result ;
-  subGraph (result, inStartKeyList, inKeysToExclude, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_stringlist GALGAS_entityStrongReferenceGraph::getter_nodeList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_stringlist resultingList ;
-  if (isValid ()) {
-    resultingList = graph () ;
-  }
-  return resultingList ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstringlist GALGAS_entityStrongReferenceGraph::getter_accessibleNodesFrom (const GALGAS_lstringlist & inStartKeyList,
-                                                                                  const GALGAS_stringset & inNodesToExclude,
-                                                                                  C_Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_lstringlist result ;
-  GALGAS_entityStrongReferenceGraph resultingGraph ;
-  subGraph (resultingGraph,
-            inStartKeyList,
-            inNodesToExclude,
-            inCompiler
-            COMMA_THERE) ;
-  if (resultingGraph.isValid ()) {
-    result = resultingGraph.getter_lkeyList (THERE) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @entityStrongReferenceGraph generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_entityStrongReferenceGraph ("entityStrongReferenceGraph",
-                                                   NULL) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_entityStrongReferenceGraph::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_entityStrongReferenceGraph ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_entityStrongReferenceGraph::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_entityStrongReferenceGraph (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_entityStrongReferenceGraph result ;
-  const GALGAS_entityStrongReferenceGraph * p = (const GALGAS_entityStrongReferenceGraph *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_entityStrongReferenceGraph *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("entityStrongReferenceGraph", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @autoLayoutViewClassDeclarationAST reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_autoLayoutViewClassDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mUserDefined.printNonNullClassInstanceProperties ("mUserDefined") ;
-    mProperty_mSuperClassName.printNonNullClassInstanceProperties ("mSuperClassName") ;
-    mProperty_mHasRunAction.printNonNullClassInstanceProperties ("mHasRunAction") ;
-    mProperty_mHasEnabled.printNonNullClassInstanceProperties ("mHasEnabled") ;
-    mProperty_mHandlesTableValueBinding.printNonNullClassInstanceProperties ("mHandlesTableValueBinding") ;
-    mProperty_mHandlesGraphicControllerBinding.printNonNullClassInstanceProperties ("mHandlesGraphicControllerBinding") ;
-    mProperty_mHasHidden.printNonNullClassInstanceProperties ("mHasHidden") ;
-    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
-    mProperty_mAutoLayoutViewFunctionMap.printNonNullClassInstanceProperties ("mAutoLayoutViewFunctionMap") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_autoLayoutViewClassDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_autoLayoutViewClassDeclarationAST * p = (const cPtr_autoLayoutViewClassDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mUserDefined.objectCompare (p->mProperty_mUserDefined) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mSuperClassName.objectCompare (p->mProperty_mSuperClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHasRunAction.objectCompare (p->mProperty_mHasRunAction) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHasEnabled.objectCompare (p->mProperty_mHasEnabled) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHandlesTableValueBinding.objectCompare (p->mProperty_mHandlesTableValueBinding) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHandlesGraphicControllerBinding.objectCompare (p->mProperty_mHandlesGraphicControllerBinding) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHasHidden.objectCompare (p->mProperty_mHasHidden) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mParameterList.objectCompare (p->mProperty_mParameterList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mAutoLayoutViewFunctionMap.objectCompare (p->mProperty_mAutoLayoutViewFunctionMap) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_autoLayoutViewClassDeclarationAST::objectCompare (const GALGAS_autoLayoutViewClassDeclarationAST & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST::GALGAS_autoLayoutViewClassDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::constructor_default (LOCATION_ARGS) {
-  return GALGAS_autoLayoutViewClassDeclarationAST::constructor_new (GALGAS_lstring::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_lstring::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_bool::constructor_default (HERE),
-                                                                    GALGAS_autoLayoutClassParameterList::constructor_emptyList (HERE),
-                                                                    GALGAS_astAutoLayoutViewFunctionMap::constructor_emptyMap (HERE)
-                                                                    COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST::GALGAS_autoLayoutViewClassDeclarationAST (const cPtr_autoLayoutViewClassDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutViewClassDeclarationAST) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::constructor_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                                    const GALGAS_bool & inAttribute_mUserDefined,
-                                                                                                    const GALGAS_lstring & inAttribute_mSuperClassName,
-                                                                                                    const GALGAS_bool & inAttribute_mHasRunAction,
-                                                                                                    const GALGAS_bool & inAttribute_mHasEnabled,
-                                                                                                    const GALGAS_bool & inAttribute_mHandlesTableValueBinding,
-                                                                                                    const GALGAS_bool & inAttribute_mHandlesGraphicControllerBinding,
-                                                                                                    const GALGAS_bool & inAttribute_mHasHidden,
-                                                                                                    const GALGAS_autoLayoutClassParameterList & inAttribute_mParameterList,
-                                                                                                    const GALGAS_astAutoLayoutViewFunctionMap & inAttribute_mAutoLayoutViewFunctionMap
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutViewClassDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mUserDefined.isValid () && inAttribute_mSuperClassName.isValid () && inAttribute_mHasRunAction.isValid () && inAttribute_mHasEnabled.isValid () && inAttribute_mHandlesTableValueBinding.isValid () && inAttribute_mHandlesGraphicControllerBinding.isValid () && inAttribute_mHasHidden.isValid () && inAttribute_mParameterList.isValid () && inAttribute_mAutoLayoutViewFunctionMap.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutViewClassDeclarationAST (inAttribute_mClassName, inAttribute_mUserDefined, inAttribute_mSuperClassName, inAttribute_mHasRunAction, inAttribute_mHasEnabled, inAttribute_mHandlesTableValueBinding, inAttribute_mHandlesGraphicControllerBinding, inAttribute_mHasHidden, inAttribute_mParameterList, inAttribute_mAutoLayoutViewFunctionMap COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMUserDefined (GALGAS_bool inValue
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mUserDefined = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMSuperClassName (GALGAS_lstring inValue
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mSuperClassName = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasRunAction (GALGAS_bool inValue
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasRunAction = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasEnabled (GALGAS_bool inValue
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasEnabled = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHandlesTableValueBinding (GALGAS_bool inValue
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesTableValueBinding = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHandlesGraphicControllerBinding (GALGAS_bool inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesGraphicControllerBinding = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasHidden (GALGAS_bool inValue
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasHidden = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMParameterList (GALGAS_autoLayoutClassParameterList inValue
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mParameterList = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMAutoLayoutViewFunctionMap (GALGAS_astAutoLayoutViewFunctionMap inValue
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mAutoLayoutViewFunctionMap = inValue ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mUserDefined (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mUserDefined ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mSuperClassName (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mSuperClassName ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasRunAction (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasRunAction ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasEnabled (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasEnabled ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesTableValueBinding (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesTableValueBinding ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesGraphicControllerBinding (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesGraphicControllerBinding ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasHidden (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasHidden ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutClassParameterList GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mParameterList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_autoLayoutClassParameterList () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mParameterList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAutoLayoutViewFunctionMap GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mAutoLayoutViewFunctionMap (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astAutoLayoutViewFunctionMap () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mAutoLayoutViewFunctionMap ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @autoLayoutViewClassDeclarationAST class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutViewClassDeclarationAST::cPtr_autoLayoutViewClassDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                                                const GALGAS_bool & in_mUserDefined,
-                                                                                const GALGAS_lstring & in_mSuperClassName,
-                                                                                const GALGAS_bool & in_mHasRunAction,
-                                                                                const GALGAS_bool & in_mHasEnabled,
-                                                                                const GALGAS_bool & in_mHandlesTableValueBinding,
-                                                                                const GALGAS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                const GALGAS_bool & in_mHasHidden,
-                                                                                const GALGAS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                const GALGAS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap
-                                                                                COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mUserDefined (in_mUserDefined),
-mProperty_mSuperClassName (in_mSuperClassName),
-mProperty_mHasRunAction (in_mHasRunAction),
-mProperty_mHasEnabled (in_mHasEnabled),
-mProperty_mHandlesTableValueBinding (in_mHandlesTableValueBinding),
-mProperty_mHandlesGraphicControllerBinding (in_mHandlesGraphicControllerBinding),
-mProperty_mHasHidden (in_mHasHidden),
-mProperty_mParameterList (in_mParameterList),
-mProperty_mAutoLayoutViewFunctionMap (in_mAutoLayoutViewFunctionMap) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_autoLayoutViewClassDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-void cPtr_autoLayoutViewClassDeclarationAST::description (C_String & ioString,
-                                                          const int32_t inIndentation) const {
-  ioString << "[@autoLayoutViewClassDeclarationAST:" ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_autoLayoutViewClassDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_autoLayoutViewClassDeclarationAST (mProperty_mClassName, mProperty_mUserDefined, mProperty_mSuperClassName, mProperty_mHasRunAction, mProperty_mHasEnabled, mProperty_mHandlesTableValueBinding, mProperty_mHandlesGraphicControllerBinding, mProperty_mHasHidden, mProperty_mParameterList, mProperty_mAutoLayoutViewFunctionMap COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutViewClassDeclarationAST generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ("autoLayoutViewClassDeclarationAST",
-                                                          & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_autoLayoutViewClassDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_autoLayoutViewClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_autoLayoutViewClassDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                                                  C_Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutViewClassDeclarationAST result ;
-  const GALGAS_autoLayoutViewClassDeclarationAST * p = (const GALGAS_autoLayoutViewClassDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutViewClassDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutViewClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @astComputedHorizontalViewDeclaration reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astComputedHorizontalViewDeclaration::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_astComputedHorizontalViewDeclaration::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_astComputedHorizontalViewDeclaration * p = (const cPtr_astComputedHorizontalViewDeclaration *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mFunctionCallList.objectCompare (p->mProperty_mFunctionCallList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mInstructionList.objectCompare (p->mProperty_mInstructionList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mNewStackViewDeclarationList.objectCompare (p->mProperty_mNewStackViewDeclarationList) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_astComputedHorizontalViewDeclaration::objectCompare (const GALGAS_astComputedHorizontalViewDeclaration & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedHorizontalViewDeclaration::GALGAS_astComputedHorizontalViewDeclaration (void) :
-GALGAS_astAbstractViewDeclaration () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedHorizontalViewDeclaration GALGAS_astComputedHorizontalViewDeclaration::constructor_default (LOCATION_ARGS) {
-  return GALGAS_astComputedHorizontalViewDeclaration::constructor_new (GALGAS_astAutoLayoutViewFunctionCallList::constructor_emptyList (HERE),
-                                                                       GALGAS_astViewInstructionList::constructor_emptyList (HERE),
-                                                                       GALGAS_astNewStackViewDeclarationList::constructor_emptyList (HERE)
-                                                                       COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedHorizontalViewDeclaration::GALGAS_astComputedHorizontalViewDeclaration (const cPtr_astComputedHorizontalViewDeclaration * inSourcePtr) :
-GALGAS_astAbstractViewDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedHorizontalViewDeclaration) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedHorizontalViewDeclaration GALGAS_astComputedHorizontalViewDeclaration::constructor_new (const GALGAS_astAutoLayoutViewFunctionCallList & inAttribute_mFunctionCallList,
-                                                                                                          const GALGAS_astViewInstructionList & inAttribute_mInstructionList,
-                                                                                                          const GALGAS_astNewStackViewDeclarationList & inAttribute_mNewStackViewDeclarationList
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GALGAS_astComputedHorizontalViewDeclaration result ;
-  if (inAttribute_mFunctionCallList.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mNewStackViewDeclarationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_astComputedHorizontalViewDeclaration (inAttribute_mFunctionCallList, inAttribute_mInstructionList, inAttribute_mNewStackViewDeclarationList COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAutoLayoutViewFunctionCallList GALGAS_astComputedHorizontalViewDeclaration::readProperty_mFunctionCallList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astAutoLayoutViewFunctionCallList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astViewInstructionList GALGAS_astComputedHorizontalViewDeclaration::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astViewInstructionList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astNewStackViewDeclarationList GALGAS_astComputedHorizontalViewDeclaration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @astComputedHorizontalViewDeclaration class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_astComputedHorizontalViewDeclaration::cPtr_astComputedHorizontalViewDeclaration (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                      const GALGAS_astViewInstructionList & in_mInstructionList,
-                                                                                      const GALGAS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList
-                                                                                      COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewDeclaration (THERE),
-mProperty_mFunctionCallList (in_mFunctionCallList),
-mProperty_mInstructionList (in_mInstructionList),
-mProperty_mNewStackViewDeclarationList (in_mNewStackViewDeclarationList) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_astComputedHorizontalViewDeclaration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
-}
-
-void cPtr_astComputedHorizontalViewDeclaration::description (C_String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString << "[@astComputedHorizontalViewDeclaration:" ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_astComputedHorizontalViewDeclaration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_astComputedHorizontalViewDeclaration (mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @astComputedHorizontalViewDeclaration generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ("astComputedHorizontalViewDeclaration",
-                                                             & kTypeDescriptor_GALGAS_astAbstractViewDeclaration) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_astComputedHorizontalViewDeclaration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_astComputedHorizontalViewDeclaration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astComputedHorizontalViewDeclaration (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedHorizontalViewDeclaration GALGAS_astComputedHorizontalViewDeclaration::extractObject (const GALGAS_object & inObject,
-                                                                                                        C_Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_astComputedHorizontalViewDeclaration result ;
-  const GALGAS_astComputedHorizontalViewDeclaration * p = (const GALGAS_astComputedHorizontalViewDeclaration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astComputedHorizontalViewDeclaration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astComputedHorizontalViewDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @astLocalViewInstruction reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astLocalViewInstruction::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mLocalView.printNonNullClassInstanceProperties ("mLocalView") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_astLocalViewInstruction::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_astLocalViewInstruction * p = (const cPtr_astLocalViewInstruction *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_astLocalViewInstruction) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mLocalView.objectCompare (p->mProperty_mLocalView) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_astLocalViewInstruction::objectCompare (const GALGAS_astLocalViewInstruction & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astLocalViewInstruction::GALGAS_astLocalViewInstruction (void) :
-GALGAS_astAbstractViewInstructionDeclaration () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astLocalViewInstruction GALGAS_astLocalViewInstruction::constructor_default (LOCATION_ARGS) {
-  return GALGAS_astLocalViewInstruction::constructor_new (GALGAS_lstring::constructor_default (HERE)
-                                                          COMMA_THERE) ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astLocalViewInstruction::GALGAS_astLocalViewInstruction (const cPtr_astLocalViewInstruction * inSourcePtr) :
-GALGAS_astAbstractViewInstructionDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astLocalViewInstruction) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astLocalViewInstruction GALGAS_astLocalViewInstruction::constructor_new (const GALGAS_lstring & inAttribute_mLocalView
-                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_astLocalViewInstruction result ;
-  if (inAttribute_mLocalView.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_astLocalViewInstruction (inAttribute_mLocalView COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_astLocalViewInstruction::readProperty_mLocalView (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_astLocalViewInstruction * p = (cPtr_astLocalViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astLocalViewInstruction) ;
-    return p->mProperty_mLocalView ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @astLocalViewInstruction class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_astLocalViewInstruction::cPtr_astLocalViewInstruction (const GALGAS_lstring & in_mLocalView
-                                                            COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewInstructionDeclaration (THERE),
-mProperty_mLocalView (in_mLocalView) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_astLocalViewInstruction::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astLocalViewInstruction ;
-}
-
-void cPtr_astLocalViewInstruction::description (C_String & ioString,
-                                                const int32_t inIndentation) const {
-  ioString << "[@astLocalViewInstruction:" ;
-  mProperty_mLocalView.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_astLocalViewInstruction::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_astLocalViewInstruction (mProperty_mLocalView COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @astLocalViewInstruction generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astLocalViewInstruction ("astLocalViewInstruction",
-                                                & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_astLocalViewInstruction::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astLocalViewInstruction ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_astLocalViewInstruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astLocalViewInstruction (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astLocalViewInstruction GALGAS_astLocalViewInstruction::extractObject (const GALGAS_object & inObject,
-                                                                              C_Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_astLocalViewInstruction result ;
-  const GALGAS_astLocalViewInstruction * p = (const GALGAS_astLocalViewInstruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astLocalViewInstruction *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astLocalViewInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-// @astComputedViewInstruction reference class
-//----------------------------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astComputedViewInstruction::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mAutoLayoutViewClassName.printNonNullClassInstanceProperties ("mAutoLayoutViewClassName") ;
-    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mTableValueBinding.printNonNullClassInstanceProperties ("mTableValueBinding") ;
-    mProperty_mRunActionDescriptor.printNonNullClassInstanceProperties ("mRunActionDescriptor") ;
-    mProperty_mEnabledBindingDescriptor.printNonNullClassInstanceProperties ("mEnabledBindingDescriptor") ;
-    mProperty_mHiddenBindingDescriptor.printNonNullClassInstanceProperties ("mHiddenBindingDescriptor") ;
-    mProperty_mGraphicController.printNonNullClassInstanceProperties ("mGraphicController") ;
-    mProperty_mRegularBindingList.printNonNullClassInstanceProperties ("mRegularBindingList") ;
-    mProperty_mConfiguratorName.printNonNullClassInstanceProperties ("mConfiguratorName") ;
-    mProperty_mOutletName.printNonNullClassInstanceProperties ("mOutletName") ;
-    mProperty_mOutletIsArray.printNonNullClassInstanceProperties ("mOutletIsArray") ;
-  }
-#endif
-
-//----------------------------------------------------------------------------------------------------------------------
-
-typeComparisonResult cPtr_astComputedViewInstruction::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  typeComparisonResult result = kOperandEqual ;
-  const cPtr_astComputedViewInstruction * p = (const cPtr_astComputedViewInstruction *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-  if (kOperandEqual == result) {
-    result = mProperty_mAutoLayoutViewClassName.objectCompare (p->mProperty_mAutoLayoutViewClassName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mParameterList.objectCompare (p->mProperty_mParameterList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mFunctionCallList.objectCompare (p->mProperty_mFunctionCallList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mTableValueBinding.objectCompare (p->mProperty_mTableValueBinding) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mRunActionDescriptor.objectCompare (p->mProperty_mRunActionDescriptor) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mEnabledBindingDescriptor.objectCompare (p->mProperty_mEnabledBindingDescriptor) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mHiddenBindingDescriptor.objectCompare (p->mProperty_mHiddenBindingDescriptor) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mGraphicController.objectCompare (p->mProperty_mGraphicController) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mRegularBindingList.objectCompare (p->mProperty_mRegularBindingList) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mConfiguratorName.objectCompare (p->mProperty_mConfiguratorName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mOutletName.objectCompare (p->mProperty_mOutletName) ;
-  }
-  if (kOperandEqual == result) {
-    result = mProperty_mOutletIsArray.objectCompare (p->mProperty_mOutletIsArray) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-
-typeComparisonResult GALGAS_astComputedViewInstruction::objectCompare (const GALGAS_astComputedViewInstruction & inOperand) const {
-  typeComparisonResult result = kOperandNotValid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = kFirstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = kFirstOperandGreaterThanSecond ;
-    }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
-    }
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedViewInstruction::GALGAS_astComputedViewInstruction (void) :
-GALGAS_astAbstractViewInstructionDeclaration () {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedViewInstruction::GALGAS_astComputedViewInstruction (const cPtr_astComputedViewInstruction * inSourcePtr) :
-GALGAS_astAbstractViewInstructionDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedViewInstruction) ;
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedViewInstruction GALGAS_astComputedViewInstruction::constructor_new (const GALGAS_lstring & inAttribute_mAutoLayoutViewClassName,
-                                                                                      const GALGAS_astAutoLayoutViewInstructionParameterList & inAttribute_mParameterList,
-                                                                                      const GALGAS_astAutoLayoutViewFunctionCallList & inAttribute_mFunctionCallList,
-                                                                                      const GALGAS_tableValueBinding & inAttribute_mTableValueBinding,
-                                                                                      const GALGAS_runActionDescriptor & inAttribute_mRunActionDescriptor,
-                                                                                      const GALGAS_multipleBindingDescriptor & inAttribute_mEnabledBindingDescriptor,
-                                                                                      const GALGAS_multipleBindingDescriptor & inAttribute_mHiddenBindingDescriptor,
-                                                                                      const GALGAS_graphicController & inAttribute_mGraphicController,
-                                                                                      const GALGAS_regularBindingList & inAttribute_mRegularBindingList,
-                                                                                      const GALGAS_lstring & inAttribute_mConfiguratorName,
-                                                                                      const GALGAS_lstring & inAttribute_mOutletName,
-                                                                                      const GALGAS_bool & inAttribute_mOutletIsArray
-                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_astComputedViewInstruction result ;
-  if (inAttribute_mAutoLayoutViewClassName.isValid () && inAttribute_mParameterList.isValid () && inAttribute_mFunctionCallList.isValid () && inAttribute_mTableValueBinding.isValid () && inAttribute_mRunActionDescriptor.isValid () && inAttribute_mEnabledBindingDescriptor.isValid () && inAttribute_mHiddenBindingDescriptor.isValid () && inAttribute_mGraphicController.isValid () && inAttribute_mRegularBindingList.isValid () && inAttribute_mConfiguratorName.isValid () && inAttribute_mOutletName.isValid () && inAttribute_mOutletIsArray.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_astComputedViewInstruction (inAttribute_mAutoLayoutViewClassName, inAttribute_mParameterList, inAttribute_mFunctionCallList, inAttribute_mTableValueBinding, inAttribute_mRunActionDescriptor, inAttribute_mEnabledBindingDescriptor, inAttribute_mHiddenBindingDescriptor, inAttribute_mGraphicController, inAttribute_mRegularBindingList, inAttribute_mConfiguratorName, inAttribute_mOutletName, inAttribute_mOutletIsArray COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_astComputedViewInstruction::readProperty_mAutoLayoutViewClassName (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mAutoLayoutViewClassName ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAutoLayoutViewInstructionParameterList GALGAS_astComputedViewInstruction::readProperty_mParameterList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astAutoLayoutViewInstructionParameterList () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mParameterList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astAutoLayoutViewFunctionCallList GALGAS_astComputedViewInstruction::readProperty_mFunctionCallList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_astAutoLayoutViewFunctionCallList () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_tableValueBinding GALGAS_astComputedViewInstruction::readProperty_mTableValueBinding (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_tableValueBinding () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mTableValueBinding ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_runActionDescriptor GALGAS_astComputedViewInstruction::readProperty_mRunActionDescriptor (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_runActionDescriptor () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mRunActionDescriptor ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_multipleBindingDescriptor GALGAS_astComputedViewInstruction::readProperty_mEnabledBindingDescriptor (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_multipleBindingDescriptor () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mEnabledBindingDescriptor ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_multipleBindingDescriptor GALGAS_astComputedViewInstruction::readProperty_mHiddenBindingDescriptor (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_multipleBindingDescriptor () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mHiddenBindingDescriptor ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_graphicController GALGAS_astComputedViewInstruction::readProperty_mGraphicController (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_graphicController () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mGraphicController ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_regularBindingList GALGAS_astComputedViewInstruction::readProperty_mRegularBindingList (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_regularBindingList () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mRegularBindingList ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_astComputedViewInstruction::readProperty_mConfiguratorName (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mConfiguratorName ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_astComputedViewInstruction::readProperty_mOutletName (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mOutletName ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_astComputedViewInstruction::readProperty_mOutletIsArray (void) const {
-  if (NULL == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
-    return p->mProperty_mOutletIsArray ;
-  }
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-//Pointer class for @astComputedViewInstruction class
-//----------------------------------------------------------------------------------------------------------------------
-
-cPtr_astComputedViewInstruction::cPtr_astComputedViewInstruction (const GALGAS_lstring & in_mAutoLayoutViewClassName,
-                                                                  const GALGAS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
-                                                                  const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                  const GALGAS_tableValueBinding & in_mTableValueBinding,
-                                                                  const GALGAS_runActionDescriptor & in_mRunActionDescriptor,
-                                                                  const GALGAS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
-                                                                  const GALGAS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
-                                                                  const GALGAS_graphicController & in_mGraphicController,
-                                                                  const GALGAS_regularBindingList & in_mRegularBindingList,
-                                                                  const GALGAS_lstring & in_mConfiguratorName,
-                                                                  const GALGAS_lstring & in_mOutletName,
-                                                                  const GALGAS_bool & in_mOutletIsArray
-                                                                  COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewInstructionDeclaration (THERE),
-mProperty_mAutoLayoutViewClassName (in_mAutoLayoutViewClassName),
-mProperty_mParameterList (in_mParameterList),
-mProperty_mFunctionCallList (in_mFunctionCallList),
-mProperty_mTableValueBinding (in_mTableValueBinding),
-mProperty_mRunActionDescriptor (in_mRunActionDescriptor),
-mProperty_mEnabledBindingDescriptor (in_mEnabledBindingDescriptor),
-mProperty_mHiddenBindingDescriptor (in_mHiddenBindingDescriptor),
-mProperty_mGraphicController (in_mGraphicController),
-mProperty_mRegularBindingList (in_mRegularBindingList),
-mProperty_mConfiguratorName (in_mConfiguratorName),
-mProperty_mOutletName (in_mOutletName),
-mProperty_mOutletIsArray (in_mOutletIsArray) {
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_astComputedViewInstruction::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedViewInstruction ;
-}
-
-void cPtr_astComputedViewInstruction::description (C_String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString << "[@astComputedViewInstruction:" ;
-  mProperty_mAutoLayoutViewClassName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mRunActionDescriptor.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mHiddenBindingDescriptor.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mGraphicController.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mRegularBindingList.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mOutletName.description (ioString, inIndentation+1) ;
-  ioString << ", " ;
-  mProperty_mOutletIsArray.description (ioString, inIndentation+1) ;
-  ioString << "]" ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_astComputedViewInstruction::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
-  macroMyNew (ptr, cPtr_astComputedViewInstruction (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mTableValueBinding, mProperty_mRunActionDescriptor, mProperty_mEnabledBindingDescriptor, mProperty_mHiddenBindingDescriptor, mProperty_mGraphicController, mProperty_mRegularBindingList, mProperty_mConfiguratorName, mProperty_mOutletName, mProperty_mOutletIsArray COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//----------------------------------------------------------------------------------------------------------------------
-//
-//     @astComputedViewInstruction generic code implementation
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astComputedViewInstruction ("astComputedViewInstruction",
-                                                   & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
-
-//----------------------------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_astComputedViewInstruction::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedViewInstruction ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_astComputedViewInstruction::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_astComputedViewInstruction (*this)) ;
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
-
-GALGAS_astComputedViewInstruction GALGAS_astComputedViewInstruction::extractObject (const GALGAS_object & inObject,
-                                                                                    C_Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_astComputedViewInstruction result ;
-  const GALGAS_astComputedViewInstruction * p = (const GALGAS_astComputedViewInstruction *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astComputedViewInstruction *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astComputedViewInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//----------------------------------------------------------------------------------------------------------------------
 // @computedHorizontalViewGeneration reference class
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -1588,7 +51,7 @@ typeComparisonResult GALGAS_computedHorizontalViewGeneration::objectCompare (con
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1631,7 +94,7 @@ GALGAS_computedHorizontalViewGeneration GALGAS_computedHorizontalViewGeneration:
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_computedHorizontalViewGeneration::readProperty_mFuncCallList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationFuncCallList () ;
   }else{
     cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
@@ -1643,7 +106,7 @@ GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_computedHorizontal
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationList GALGAS_computedHorizontalViewGeneration::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationList () ;
   }else{
     cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
@@ -1655,7 +118,7 @@ GALGAS_autoLayoutViewInstructionGenerationList GALGAS_computedHorizontalViewGene
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_astNewStackViewDeclarationList GALGAS_computedHorizontalViewGeneration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_astNewStackViewDeclarationList () ;
   }else{
     cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
@@ -1698,7 +161,7 @@ void cPtr_computedHorizontalViewGeneration::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_computedHorizontalViewGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_computedHorizontalViewGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList COMMA_THERE)) ;
   return ptr ;
 }
@@ -1723,7 +186,7 @@ const C_galgas_type_descriptor * GALGAS_computedHorizontalViewGeneration::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_computedHorizontalViewGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_computedHorizontalViewGeneration (*this)) ;
   }
@@ -1737,8 +200,8 @@ GALGAS_computedHorizontalViewGeneration GALGAS_computedHorizontalViewGeneration:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_computedHorizontalViewGeneration result ;
   const GALGAS_computedHorizontalViewGeneration * p = (const GALGAS_computedHorizontalViewGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_computedHorizontalViewGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_computedHorizontalViewGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("computedHorizontalViewGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -1795,7 +258,7 @@ typeComparisonResult GALGAS_hStackViewInstructionGeneration::objectCompare (cons
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -1840,7 +303,7 @@ GALGAS_hStackViewInstructionGeneration GALGAS_hStackViewInstructionGeneration::c
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_hStackViewInstructionGeneration::readProperty_mFuncCallList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationFuncCallList () ;
   }else{
     cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
@@ -1852,7 +315,7 @@ GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_hStackViewInstruct
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationList GALGAS_hStackViewInstructionGeneration::readProperty_mInstructionList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationList () ;
   }else{
     cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
@@ -1864,7 +327,7 @@ GALGAS_autoLayoutViewInstructionGenerationList GALGAS_hStackViewInstructionGener
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_hStackViewInstructionGeneration::readProperty_mMultipleBindingGenerationList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutMultipleBindingGenerationList () ;
   }else{
     cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
@@ -1876,7 +339,7 @@ GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_hStackViewInstructionGener
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_astNewStackViewDeclarationList GALGAS_hStackViewInstructionGeneration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_astNewStackViewDeclarationList () ;
   }else{
     cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) mObjectPtr ;
@@ -1923,7 +386,7 @@ void cPtr_hStackViewInstructionGeneration::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_hStackViewInstructionGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_hStackViewInstructionGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mMultipleBindingGenerationList, mProperty_mNewStackViewDeclarationList COMMA_THERE)) ;
   return ptr ;
 }
@@ -1948,7 +411,7 @@ const C_galgas_type_descriptor * GALGAS_hStackViewInstructionGeneration::staticT
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_hStackViewInstructionGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_hStackViewInstructionGeneration (*this)) ;
   }
@@ -1962,8 +425,8 @@ GALGAS_hStackViewInstructionGeneration GALGAS_hStackViewInstructionGeneration::e
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_hStackViewInstructionGeneration result ;
   const GALGAS_hStackViewInstructionGeneration * p = (const GALGAS_hStackViewInstructionGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_hStackViewInstructionGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_hStackViewInstructionGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("hStackViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2048,7 +511,7 @@ typeComparisonResult GALGAS_autoLayoutComputedViewInstructionGeneration::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2090,7 +553,7 @@ GALGAS_autoLayoutComputedViewInstructionGeneration GALGAS_autoLayoutComputedView
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mAutoLayoutViewClassName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2102,7 +565,7 @@ GALGAS_lstring GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationParameterList GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mParameterList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationParameterList () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2114,7 +577,7 @@ GALGAS_autoLayoutViewInstructionGenerationParameterList GALGAS_autoLayoutCompute
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mFunctionCallList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewInstructionGenerationFuncCallList () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2126,7 +589,7 @@ GALGAS_autoLayoutViewInstructionGenerationFuncCallList GALGAS_autoLayoutComputed
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutRegularBindingsGenerationList GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mRegularBindingsGenerationList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutRegularBindingsGenerationList () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2138,7 +601,7 @@ GALGAS_autoLayoutRegularBindingsGenerationList GALGAS_autoLayoutComputedViewInst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mMultipleBindingGenerationList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutMultipleBindingGenerationList () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2150,7 +613,7 @@ GALGAS_autoLayoutMultipleBindingGenerationList GALGAS_autoLayoutComputedViewInst
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autolayoutRunBindingForGeneration GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mRunBindingGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autolayoutRunBindingForGeneration () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2162,7 +625,7 @@ GALGAS_autolayoutRunBindingForGeneration GALGAS_autoLayoutComputedViewInstructio
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mTableViewBindingGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2174,7 +637,7 @@ GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutViewGraphicControllerBindingGeneration GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mEBViewGraphicControllerBindingGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutViewGraphicControllerBindingGeneration () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2186,7 +649,7 @@ GALGAS_autoLayoutViewGraphicControllerBindingGeneration GALGAS_autoLayoutCompute
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mConfiguratorName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2198,7 +661,7 @@ GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mOutletName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2210,7 +673,7 @@ GALGAS_string GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_autoLayoutComputedViewInstructionGeneration::readProperty_mOutletIsArray (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) mObjectPtr ;
@@ -2285,7 +748,7 @@ void cPtr_autoLayoutComputedViewInstructionGeneration::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_autoLayoutComputedViewInstructionGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_autoLayoutComputedViewInstructionGeneration (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mRegularBindingsGenerationList, mProperty_mMultipleBindingGenerationList, mProperty_mRunBindingGeneration, mProperty_mTableViewBindingGeneration, mProperty_mEBViewGraphicControllerBindingGeneration, mProperty_mConfiguratorName, mProperty_mOutletName, mProperty_mOutletIsArray COMMA_THERE)) ;
   return ptr ;
 }
@@ -2310,7 +773,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutComputedViewInstructionGenerat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutComputedViewInstructionGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutComputedViewInstructionGeneration (*this)) ;
   }
@@ -2324,8 +787,8 @@ GALGAS_autoLayoutComputedViewInstructionGeneration GALGAS_autoLayoutComputedView
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutComputedViewInstructionGeneration result ;
   const GALGAS_autoLayoutComputedViewInstructionGeneration * p = (const GALGAS_autoLayoutComputedViewInstructionGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutComputedViewInstructionGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutComputedViewInstructionGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutComputedViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2397,7 +860,7 @@ typeComparisonResult GALGAS_outletClassDeclarationAST::objectCompare (const GALG
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2451,7 +914,7 @@ GALGAS_outletClassDeclarationAST GALGAS_outletClassDeclarationAST::constructor_n
 
 void GALGAS_outletClassDeclarationAST::setter_setMUserDefined (GALGAS_bool inValue
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mUserDefined = inValue ;
@@ -2462,7 +925,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMUserDefined (GALGAS_bool inVal
 
 void GALGAS_outletClassDeclarationAST::setter_setMSuperClassName (GALGAS_lstring inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mSuperClassName = inValue ;
@@ -2473,7 +936,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMSuperClassName (GALGAS_lstring
 
 void GALGAS_outletClassDeclarationAST::setter_setMHasRunAction (GALGAS_bool inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mHasRunAction = inValue ;
@@ -2484,7 +947,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMHasRunAction (GALGAS_bool inVa
 
 void GALGAS_outletClassDeclarationAST::setter_setMHasEnabled (GALGAS_bool inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mHasEnabled = inValue ;
@@ -2495,7 +958,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMHasEnabled (GALGAS_bool inValu
 
 void GALGAS_outletClassDeclarationAST::setter_setMHandlesTableValueBinding (GALGAS_bool inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mHandlesTableValueBinding = inValue ;
@@ -2506,7 +969,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMHandlesTableValueBinding (GALG
 
 void GALGAS_outletClassDeclarationAST::setter_setMHandlesGraphicControllerBinding (GALGAS_bool inValue
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mHandlesGraphicControllerBinding = inValue ;
@@ -2517,7 +980,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMHandlesGraphicControllerBindin
 
 void GALGAS_outletClassDeclarationAST::setter_setMHasHidden (GALGAS_bool inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
     p->mProperty_mHasHidden = inValue ;
@@ -2527,7 +990,7 @@ void GALGAS_outletClassDeclarationAST::setter_setMHasHidden (GALGAS_bool inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mUserDefined (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2539,7 +1002,7 @@ GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mUserDefined (void) c
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_outletClassDeclarationAST::readProperty_mSuperClassName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2551,7 +1014,7 @@ GALGAS_lstring GALGAS_outletClassDeclarationAST::readProperty_mSuperClassName (v
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHasRunAction (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2563,7 +1026,7 @@ GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHasRunAction (void) 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHasEnabled (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2575,7 +1038,7 @@ GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHasEnabled (void) co
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHandlesTableValueBinding (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2587,7 +1050,7 @@ GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHandlesTableValueBin
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHandlesGraphicControllerBinding (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2599,7 +1062,7 @@ GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHandlesGraphicContro
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_outletClassDeclarationAST::readProperty_mHasHidden (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
@@ -2661,7 +1124,7 @@ void cPtr_outletClassDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_outletClassDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_outletClassDeclarationAST (mProperty_mClassName, mProperty_mUserDefined, mProperty_mSuperClassName, mProperty_mHasRunAction, mProperty_mHasEnabled, mProperty_mHandlesTableValueBinding, mProperty_mHandlesGraphicControllerBinding, mProperty_mHasHidden COMMA_THERE)) ;
   return ptr ;
 }
@@ -2686,7 +1149,7 @@ const C_galgas_type_descriptor * GALGAS_outletClassDeclarationAST::staticTypeDes
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletClassDeclarationAST (*this)) ;
   }
@@ -2700,8 +1163,8 @@ GALGAS_outletClassDeclarationAST GALGAS_outletClassDeclarationAST::extractObject
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_outletClassDeclarationAST result ;
   const GALGAS_outletClassDeclarationAST * p = (const GALGAS_outletClassDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletClassDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -2761,7 +1224,7 @@ typeComparisonResult GALGAS_computedPropertyDeclarationAST::objectCompare (const
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -2809,7 +1272,7 @@ GALGAS_computedPropertyDeclarationAST GALGAS_computedPropertyDeclarationAST::con
 
 void GALGAS_computedPropertyDeclarationAST::setter_setMRootEntityName (GALGAS_lstring inValue
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyDeclarationAST) ;
     p->mProperty_mRootEntityName = inValue ;
@@ -2820,7 +1283,7 @@ void GALGAS_computedPropertyDeclarationAST::setter_setMRootEntityName (GALGAS_ls
 
 void GALGAS_computedPropertyDeclarationAST::setter_setMComputedPropertyTypeName (GALGAS_lstring inValue
                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyDeclarationAST) ;
     p->mProperty_mComputedPropertyTypeName = inValue ;
@@ -2831,7 +1294,7 @@ void GALGAS_computedPropertyDeclarationAST::setter_setMComputedPropertyTypeName 
 
 void GALGAS_computedPropertyDeclarationAST::setter_setMComputedPropertyName (GALGAS_lstring inValue
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyDeclarationAST) ;
     p->mProperty_mComputedPropertyName = inValue ;
@@ -2842,7 +1305,7 @@ void GALGAS_computedPropertyDeclarationAST::setter_setMComputedPropertyName (GAL
 
 void GALGAS_computedPropertyDeclarationAST::setter_setMDependencyList (GALGAS_observablePropertyList inValue
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyDeclarationAST) ;
     p->mProperty_mDependencyList = inValue ;
@@ -2852,7 +1315,7 @@ void GALGAS_computedPropertyDeclarationAST::setter_setMDependencyList (GALGAS_ob
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mRootEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
@@ -2864,7 +1327,7 @@ GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mRootEntityNa
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mComputedPropertyTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
@@ -2876,7 +1339,7 @@ GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mComputedProp
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mComputedPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
@@ -2888,7 +1351,7 @@ GALGAS_lstring GALGAS_computedPropertyDeclarationAST::readProperty_mComputedProp
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_observablePropertyList GALGAS_computedPropertyDeclarationAST::readProperty_mDependencyList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_observablePropertyList () ;
   }else{
     cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) mObjectPtr ;
@@ -2938,7 +1401,7 @@ void cPtr_computedPropertyDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_computedPropertyDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_computedPropertyDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mComputedPropertyTypeName, mProperty_mComputedPropertyName, mProperty_mDependencyList COMMA_THERE)) ;
   return ptr ;
 }
@@ -2963,7 +1426,7 @@ const C_galgas_type_descriptor * GALGAS_computedPropertyDeclarationAST::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_computedPropertyDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_computedPropertyDeclarationAST (*this)) ;
   }
@@ -2977,8 +1440,8 @@ GALGAS_computedPropertyDeclarationAST GALGAS_computedPropertyDeclarationAST::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_computedPropertyDeclarationAST result ;
   const GALGAS_computedPropertyDeclarationAST * p = (const GALGAS_computedPropertyDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_computedPropertyDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_computedPropertyDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("computedPropertyDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3038,7 +1501,7 @@ typeComparisonResult GALGAS_computedPropertyGeneration::objectCompare (const GAL
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3075,7 +1538,7 @@ GALGAS_computedPropertyGeneration GALGAS_computedPropertyGeneration::constructor
 
 void GALGAS_computedPropertyGeneration::setter_setMClassName (GALGAS_string inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyGeneration) ;
     p->mProperty_mClassName = inValue ;
@@ -3086,7 +1549,7 @@ void GALGAS_computedPropertyGeneration::setter_setMClassName (GALGAS_string inVa
 
 void GALGAS_computedPropertyGeneration::setter_setMType (GALGAS_typeKind inValue
                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyGeneration) ;
     p->mProperty_mType = inValue ;
@@ -3097,7 +1560,7 @@ void GALGAS_computedPropertyGeneration::setter_setMType (GALGAS_typeKind inValue
 
 void GALGAS_computedPropertyGeneration::setter_setMDependencyList (GALGAS_transientDependencyListForGeneration inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyGeneration) ;
     p->mProperty_mDependencyList = inValue ;
@@ -3108,7 +1571,7 @@ void GALGAS_computedPropertyGeneration::setter_setMDependencyList (GALGAS_transi
 
 void GALGAS_computedPropertyGeneration::setter_setMGenerate (GALGAS_bool inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_computedPropertyGeneration) ;
     p->mProperty_mGenerate = inValue ;
@@ -3118,7 +1581,7 @@ void GALGAS_computedPropertyGeneration::setter_setMGenerate (GALGAS_bool inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_computedPropertyGeneration::readProperty_mClassName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
@@ -3130,7 +1593,7 @@ GALGAS_string GALGAS_computedPropertyGeneration::readProperty_mClassName (void) 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_typeKind GALGAS_computedPropertyGeneration::readProperty_mType (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_typeKind () ;
   }else{
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
@@ -3142,7 +1605,7 @@ GALGAS_typeKind GALGAS_computedPropertyGeneration::readProperty_mType (void) con
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_transientDependencyListForGeneration GALGAS_computedPropertyGeneration::readProperty_mDependencyList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_transientDependencyListForGeneration () ;
   }else{
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
@@ -3154,7 +1617,7 @@ GALGAS_transientDependencyListForGeneration GALGAS_computedPropertyGeneration::r
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_computedPropertyGeneration::readProperty_mGenerate (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) mObjectPtr ;
@@ -3204,7 +1667,7 @@ void cPtr_computedPropertyGeneration::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_computedPropertyGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_computedPropertyGeneration (mProperty_mPropertyName, mProperty_mClassName, mProperty_mType, mProperty_mDependencyList, mProperty_mGenerate COMMA_THERE)) ;
   return ptr ;
 }
@@ -3229,7 +1692,7 @@ const C_galgas_type_descriptor * GALGAS_computedPropertyGeneration::staticTypeDe
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_computedPropertyGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_computedPropertyGeneration (*this)) ;
   }
@@ -3243,8 +1706,8 @@ GALGAS_computedPropertyGeneration GALGAS_computedPropertyGeneration::extractObje
                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_computedPropertyGeneration result ;
   const GALGAS_computedPropertyGeneration * p = (const GALGAS_computedPropertyGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_computedPropertyGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_computedPropertyGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("computedPropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3282,9 +1745,9 @@ GALGAS_propertyGeneration_2D_weak () {
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_computedPropertyGeneration_2D_weak & GALGAS_computedPropertyGeneration_2D_weak::operator = (const GALGAS_computedPropertyGeneration & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = NULL ;
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
   acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != NULL) {
+  if (p != nullptr) {
     proxyPtr = p->getProxy () ;
   }
   macroAssignSharedObject (mProxyPtr, proxyPtr) ;
@@ -3309,9 +1772,9 @@ GALGAS_computedPropertyGeneration_2D_weak GALGAS_computedPropertyGeneration_2D_w
 
 GALGAS_computedPropertyGeneration GALGAS_computedPropertyGeneration_2D_weak::bang_computedPropertyGeneration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   GALGAS_computedPropertyGeneration result ;
-  if (mProxyPtr != NULL) {
+  if (mProxyPtr != nullptr) {
     acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == NULL) {
+    if (strongPtr == nullptr) {
       inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
     }else{
       macroValidSharedObject (strongPtr, cPtr_computedPropertyGeneration) ;
@@ -3340,7 +1803,7 @@ const C_galgas_type_descriptor * GALGAS_computedPropertyGeneration_2D_weak::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_computedPropertyGeneration_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_computedPropertyGeneration_2D_weak (*this)) ;
   }
@@ -3354,8 +1817,8 @@ GALGAS_computedPropertyGeneration_2D_weak GALGAS_computedPropertyGeneration_2D_w
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_computedPropertyGeneration_2D_weak result ;
   const GALGAS_computedPropertyGeneration_2D_weak * p = (const GALGAS_computedPropertyGeneration_2D_weak *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_computedPropertyGeneration_2D_weak *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_computedPropertyGeneration_2D_weak *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("computedPropertyGeneration-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3419,7 +1882,7 @@ typeComparisonResult GALGAS_transientDeclarationAST::objectCompare (const GALGAS
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3469,7 +1932,7 @@ GALGAS_transientDeclarationAST GALGAS_transientDeclarationAST::constructor_new (
 
 void GALGAS_transientDeclarationAST::setter_setMRootEntityName (GALGAS_lstring inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
     p->mProperty_mRootEntityName = inValue ;
@@ -3480,7 +1943,7 @@ void GALGAS_transientDeclarationAST::setter_setMRootEntityName (GALGAS_lstring i
 
 void GALGAS_transientDeclarationAST::setter_setMTransientTypeName (GALGAS_lstring inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
     p->mProperty_mTransientTypeName = inValue ;
@@ -3491,7 +1954,7 @@ void GALGAS_transientDeclarationAST::setter_setMTransientTypeName (GALGAS_lstrin
 
 void GALGAS_transientDeclarationAST::setter_setMTransientName (GALGAS_lstring inValue
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
     p->mProperty_mTransientName = inValue ;
@@ -3502,7 +1965,7 @@ void GALGAS_transientDeclarationAST::setter_setMTransientName (GALGAS_lstring in
 
 void GALGAS_transientDeclarationAST::setter_setMDependencyList (GALGAS_observablePropertyList inValue
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
     p->mProperty_mDependencyList = inValue ;
@@ -3513,7 +1976,7 @@ void GALGAS_transientDeclarationAST::setter_setMDependencyList (GALGAS_observabl
 
 void GALGAS_transientDeclarationAST::setter_setMIsOverriding (GALGAS_bool inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_transientDeclarationAST) ;
     p->mProperty_mIsOverriding = inValue ;
@@ -3523,7 +1986,7 @@ void GALGAS_transientDeclarationAST::setter_setMIsOverriding (GALGAS_bool inValu
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mRootEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
@@ -3535,7 +1998,7 @@ GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mRootEntityName (voi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mTransientTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
@@ -3547,7 +2010,7 @@ GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mTransientTypeName (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mTransientName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
@@ -3559,7 +2022,7 @@ GALGAS_lstring GALGAS_transientDeclarationAST::readProperty_mTransientName (void
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_observablePropertyList GALGAS_transientDeclarationAST::readProperty_mDependencyList (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_observablePropertyList () ;
   }else{
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
@@ -3571,7 +2034,7 @@ GALGAS_observablePropertyList GALGAS_transientDeclarationAST::readProperty_mDepe
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_transientDeclarationAST::readProperty_mIsOverriding (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) mObjectPtr ;
@@ -3625,7 +2088,7 @@ void cPtr_transientDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_transientDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_transientDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mTransientTypeName, mProperty_mTransientName, mProperty_mDependencyList, mProperty_mIsOverriding COMMA_THERE)) ;
   return ptr ;
 }
@@ -3650,7 +2113,7 @@ const C_galgas_type_descriptor * GALGAS_transientDeclarationAST::staticTypeDescr
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_transientDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_transientDeclarationAST (*this)) ;
   }
@@ -3664,8 +2127,8 @@ GALGAS_transientDeclarationAST GALGAS_transientDeclarationAST::extractObject (co
                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_transientDeclarationAST result ;
   const GALGAS_transientDeclarationAST * p = (const GALGAS_transientDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_transientDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_transientDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("transientDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -3729,7 +2192,7 @@ typeComparisonResult GALGAS_proxyDeclarationAST::objectCompare (const GALGAS_pro
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -3767,7 +2230,7 @@ GALGAS_proxyDeclarationAST GALGAS_proxyDeclarationAST::constructor_new (const GA
 
 void GALGAS_proxyDeclarationAST::setter_setMProxyKind (GALGAS_proxyKind inValue
                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
     p->mProperty_mProxyKind = inValue ;
@@ -3778,7 +2241,7 @@ void GALGAS_proxyDeclarationAST::setter_setMProxyKind (GALGAS_proxyKind inValue
 
 void GALGAS_proxyDeclarationAST::setter_setMProxyTypeName (GALGAS_lstring inValue
                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
     p->mProperty_mProxyTypeName = inValue ;
@@ -3789,7 +2252,7 @@ void GALGAS_proxyDeclarationAST::setter_setMProxyTypeName (GALGAS_lstring inValu
 
 void GALGAS_proxyDeclarationAST::setter_setMProxyName (GALGAS_lstring inValue
                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
     p->mProperty_mProxyName = inValue ;
@@ -3800,7 +2263,7 @@ void GALGAS_proxyDeclarationAST::setter_setMProxyName (GALGAS_lstring inValue
 
 void GALGAS_proxyDeclarationAST::setter_setMToOneRelationshipName (GALGAS_lstring inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
     p->mProperty_mToOneRelationshipName = inValue ;
@@ -3811,7 +2274,7 @@ void GALGAS_proxyDeclarationAST::setter_setMToOneRelationshipName (GALGAS_lstrin
 
 void GALGAS_proxyDeclarationAST::setter_setMPropertyName (GALGAS_lstring inValue
                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_proxyDeclarationAST) ;
     p->mProperty_mPropertyName = inValue ;
@@ -3821,7 +2284,7 @@ void GALGAS_proxyDeclarationAST::setter_setMPropertyName (GALGAS_lstring inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_proxyKind GALGAS_proxyDeclarationAST::readProperty_mProxyKind (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_proxyKind () ;
   }else{
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
@@ -3833,7 +2296,7 @@ GALGAS_proxyKind GALGAS_proxyDeclarationAST::readProperty_mProxyKind (void) cons
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mProxyTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
@@ -3845,7 +2308,7 @@ GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mProxyTypeName (void) co
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mProxyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
@@ -3857,7 +2320,7 @@ GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mProxyName (void) const 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mToOneRelationshipName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
@@ -3869,7 +2332,7 @@ GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mToOneRelationshipName (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_proxyDeclarationAST::readProperty_mPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_proxyDeclarationAST * p = (cPtr_proxyDeclarationAST *) mObjectPtr ;
@@ -3923,7 +2386,7 @@ void cPtr_proxyDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_proxyDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_proxyDeclarationAST (mProperty_mClassName, mProperty_mProxyKind, mProperty_mProxyTypeName, mProperty_mProxyName, mProperty_mToOneRelationshipName, mProperty_mPropertyName COMMA_THERE)) ;
   return ptr ;
 }
@@ -3948,7 +2411,7 @@ const C_galgas_type_descriptor * GALGAS_proxyDeclarationAST::staticTypeDescripto
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_proxyDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_proxyDeclarationAST (*this)) ;
   }
@@ -3962,8 +2425,8 @@ GALGAS_proxyDeclarationAST GALGAS_proxyDeclarationAST::extractObject (const GALG
                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_proxyDeclarationAST result ;
   const GALGAS_proxyDeclarationAST * p = (const GALGAS_proxyDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_proxyDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_proxyDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("proxyDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4031,7 +2494,7 @@ typeComparisonResult GALGAS_atomicPropertyDeclarationAST::objectCompare (const G
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4070,7 +2533,7 @@ GALGAS_atomicPropertyDeclarationAST GALGAS_atomicPropertyDeclarationAST::constru
 
 void GALGAS_atomicPropertyDeclarationAST::setter_setMPropertyTypeName (GALGAS_lstring inValue
                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mPropertyTypeName = inValue ;
@@ -4081,7 +2544,7 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMPropertyTypeName (GALGAS_ls
 
 void GALGAS_atomicPropertyDeclarationAST::setter_setMPropertyName (GALGAS_lstring inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mPropertyName = inValue ;
@@ -4092,7 +2555,7 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMPropertyName (GALGAS_lstrin
 
 void GALGAS_atomicPropertyDeclarationAST::setter_setMDefaultValue (GALGAS_abstractDefaultValue inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mDefaultValue = inValue ;
@@ -4103,7 +2566,7 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMDefaultValue (GALGAS_abstra
 
 void GALGAS_atomicPropertyDeclarationAST::setter_setMGenerateResetMethod (GALGAS_bool inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
     p->mProperty_mGenerateResetMethod = inValue ;
@@ -4113,7 +2576,7 @@ void GALGAS_atomicPropertyDeclarationAST::setter_setMGenerateResetMethod (GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_atomicPropertyDeclarationAST::readProperty_mPropertyTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4125,7 +2588,7 @@ GALGAS_lstring GALGAS_atomicPropertyDeclarationAST::readProperty_mPropertyTypeNa
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_atomicPropertyDeclarationAST::readProperty_mPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4137,7 +2600,7 @@ GALGAS_lstring GALGAS_atomicPropertyDeclarationAST::readProperty_mPropertyName (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_abstractDefaultValue GALGAS_atomicPropertyDeclarationAST::readProperty_mDefaultValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_abstractDefaultValue () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4149,7 +2612,7 @@ GALGAS_abstractDefaultValue GALGAS_atomicPropertyDeclarationAST::readProperty_mD
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateResetMethod (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4161,7 +2624,7 @@ GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateResetMeth
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectRead (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4173,7 +2636,7 @@ GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectRea
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectAccess (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
@@ -4231,7 +2694,7 @@ void cPtr_atomicPropertyDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectRead, mProperty_mGenerateDirectAccess COMMA_THERE)) ;
   return ptr ;
 }
@@ -4256,7 +2719,7 @@ const C_galgas_type_descriptor * GALGAS_atomicPropertyDeclarationAST::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_atomicPropertyDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_atomicPropertyDeclarationAST (*this)) ;
   }
@@ -4270,8 +2733,8 @@ GALGAS_atomicPropertyDeclarationAST GALGAS_atomicPropertyDeclarationAST::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_atomicPropertyDeclarationAST result ;
   const GALGAS_atomicPropertyDeclarationAST * p = (const GALGAS_atomicPropertyDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_atomicPropertyDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_atomicPropertyDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("atomicPropertyDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4335,7 +2798,7 @@ typeComparisonResult GALGAS_toOneRelationshipAST::objectCompare (const GALGAS_to
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4373,7 +2836,7 @@ GALGAS_toOneRelationshipAST GALGAS_toOneRelationshipAST::constructor_new (const 
 
 void GALGAS_toOneRelationshipAST::setter_setMDestinationEntityName (GALGAS_lstring inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
     p->mProperty_mDestinationEntityName = inValue ;
@@ -4384,7 +2847,7 @@ void GALGAS_toOneRelationshipAST::setter_setMDestinationEntityName (GALGAS_lstri
 
 void GALGAS_toOneRelationshipAST::setter_setMToOneRelationshipName (GALGAS_lstring inValue
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
     p->mProperty_mToOneRelationshipName = inValue ;
@@ -4395,7 +2858,7 @@ void GALGAS_toOneRelationshipAST::setter_setMToOneRelationshipName (GALGAS_lstri
 
 void GALGAS_toOneRelationshipAST::setter_setMOpposite (GALGAS_toOneOppositeRelationship inValue
                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
     p->mProperty_mOpposite = inValue ;
@@ -4406,7 +2869,7 @@ void GALGAS_toOneRelationshipAST::setter_setMOpposite (GALGAS_toOneOppositeRelat
 
 void GALGAS_toOneRelationshipAST::setter_setMUsedForSignature (GALGAS_bool inValue
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
     p->mProperty_mUsedForSignature = inValue ;
@@ -4417,7 +2880,7 @@ void GALGAS_toOneRelationshipAST::setter_setMUsedForSignature (GALGAS_bool inVal
 
 void GALGAS_toOneRelationshipAST::setter_setMWeak (GALGAS_bool inValue
                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
     p->mProperty_mWeak = inValue ;
@@ -4427,7 +2890,7 @@ void GALGAS_toOneRelationshipAST::setter_setMWeak (GALGAS_bool inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_toOneRelationshipAST::readProperty_mDestinationEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
@@ -4439,7 +2902,7 @@ GALGAS_lstring GALGAS_toOneRelationshipAST::readProperty_mDestinationEntityName 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_toOneRelationshipAST::readProperty_mToOneRelationshipName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
@@ -4451,7 +2914,7 @@ GALGAS_lstring GALGAS_toOneRelationshipAST::readProperty_mToOneRelationshipName 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_toOneOppositeRelationship GALGAS_toOneRelationshipAST::readProperty_mOpposite (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_toOneOppositeRelationship () ;
   }else{
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
@@ -4463,7 +2926,7 @@ GALGAS_toOneOppositeRelationship GALGAS_toOneRelationshipAST::readProperty_mOppo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toOneRelationshipAST::readProperty_mUsedForSignature (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
@@ -4475,7 +2938,7 @@ GALGAS_bool GALGAS_toOneRelationshipAST::readProperty_mUsedForSignature (void) c
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toOneRelationshipAST::readProperty_mWeak (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
@@ -4529,7 +2992,7 @@ void cPtr_toOneRelationshipAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_toOneRelationshipAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_toOneRelationshipAST (mProperty_mClassName, mProperty_mDestinationEntityName, mProperty_mToOneRelationshipName, mProperty_mOpposite, mProperty_mUsedForSignature, mProperty_mWeak COMMA_THERE)) ;
   return ptr ;
 }
@@ -4554,7 +3017,7 @@ const C_galgas_type_descriptor * GALGAS_toOneRelationshipAST::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_toOneRelationshipAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_toOneRelationshipAST (*this)) ;
   }
@@ -4568,8 +3031,8 @@ GALGAS_toOneRelationshipAST GALGAS_toOneRelationshipAST::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_toOneRelationshipAST result ;
   const GALGAS_toOneRelationshipAST * p = (const GALGAS_toOneRelationshipAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOneRelationshipAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_toOneRelationshipAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("toOneRelationshipAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4637,7 +3100,7 @@ typeComparisonResult GALGAS_toOnePropertyGeneration::objectCompare (const GALGAS
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4675,7 +3138,7 @@ GALGAS_toOnePropertyGeneration GALGAS_toOnePropertyGeneration::constructor_new (
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_toOnePropertyGeneration::readProperty_mClassName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4687,7 +3150,7 @@ GALGAS_string GALGAS_toOnePropertyGeneration::readProperty_mClassName (void) con
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_propertyKind GALGAS_toOnePropertyGeneration::readProperty_mRelationshipType (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_propertyKind () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4699,7 +3162,7 @@ GALGAS_propertyKind GALGAS_toOnePropertyGeneration::readProperty_mRelationshipTy
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_toOneOppositeRelationship GALGAS_toOnePropertyGeneration::readProperty_mOpposite (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_toOneOppositeRelationship () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4711,7 +3174,7 @@ GALGAS_toOneOppositeRelationship GALGAS_toOnePropertyGeneration::readProperty_mO
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_propertyMap GALGAS_toOnePropertyGeneration::readProperty_mDestinationEntityObservablePropertyMap (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_propertyMap () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4723,7 +3186,7 @@ GALGAS_propertyMap GALGAS_toOnePropertyGeneration::readProperty_mDestinationEnti
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toOnePropertyGeneration::readProperty_mUsedForSignature (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4735,7 +3198,7 @@ GALGAS_bool GALGAS_toOnePropertyGeneration::readProperty_mUsedForSignature (void
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toOnePropertyGeneration::readProperty_mStrongRef (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toOnePropertyGeneration * p = (cPtr_toOnePropertyGeneration *) mObjectPtr ;
@@ -4793,7 +3256,7 @@ void cPtr_toOnePropertyGeneration::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_toOnePropertyGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_toOnePropertyGeneration (mProperty_mPropertyName, mProperty_mClassName, mProperty_mRelationshipType, mProperty_mOpposite, mProperty_mDestinationEntityObservablePropertyMap, mProperty_mUsedForSignature, mProperty_mStrongRef COMMA_THERE)) ;
   return ptr ;
 }
@@ -4818,7 +3281,7 @@ const C_galgas_type_descriptor * GALGAS_toOnePropertyGeneration::staticTypeDescr
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_toOnePropertyGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_toOnePropertyGeneration (*this)) ;
   }
@@ -4832,8 +3295,8 @@ GALGAS_toOnePropertyGeneration GALGAS_toOnePropertyGeneration::extractObject (co
                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_toOnePropertyGeneration result ;
   const GALGAS_toOnePropertyGeneration * p = (const GALGAS_toOnePropertyGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOnePropertyGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_toOnePropertyGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("toOnePropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -4905,7 +3368,7 @@ typeComparisonResult GALGAS_toManyRelationshipAST::objectCompare (const GALGAS_t
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -4944,7 +3407,7 @@ GALGAS_toManyRelationshipAST GALGAS_toManyRelationshipAST::constructor_new (cons
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_toManyRelationshipAST::readProperty_mDestinationEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -4956,7 +3419,7 @@ GALGAS_lstring GALGAS_toManyRelationshipAST::readProperty_mDestinationEntityName
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_toManyRelationshipAST::readProperty_mToManyRelationshipName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -4968,7 +3431,7 @@ GALGAS_lstring GALGAS_toManyRelationshipAST::readProperty_mToManyRelationshipNam
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_toManyRelationshipOptionAST GALGAS_toManyRelationshipAST::readProperty_mOption (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_toManyRelationshipOptionAST () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -4980,7 +3443,7 @@ GALGAS_toManyRelationshipOptionAST GALGAS_toManyRelationshipAST::readProperty_mO
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mCustomStore (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -4992,7 +3455,7 @@ GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mCustomStore (void) const
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mUsedForSignature (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -5004,7 +3467,7 @@ GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mUsedForSignature (void) 
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mGenerateDirectAccess (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -5016,7 +3479,7 @@ GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mGenerateDirectAccess (vo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_toManyRelationshipAST::readProperty_mGenerateDirectRead (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_toManyRelationshipAST * p = (cPtr_toManyRelationshipAST *) mObjectPtr ;
@@ -5078,7 +3541,7 @@ void cPtr_toManyRelationshipAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_toManyRelationshipAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_toManyRelationshipAST (mProperty_mClassName, mProperty_mDestinationEntityName, mProperty_mToManyRelationshipName, mProperty_mOption, mProperty_mCustomStore, mProperty_mUsedForSignature, mProperty_mGenerateDirectAccess, mProperty_mGenerateDirectRead COMMA_THERE)) ;
   return ptr ;
 }
@@ -5103,7 +3566,7 @@ const C_galgas_type_descriptor * GALGAS_toManyRelationshipAST::staticTypeDescrip
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_toManyRelationshipAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_toManyRelationshipAST (*this)) ;
   }
@@ -5117,8 +3580,8 @@ GALGAS_toManyRelationshipAST GALGAS_toManyRelationshipAST::extractObject (const 
                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_toManyRelationshipAST result ;
   const GALGAS_toManyRelationshipAST * p = (const GALGAS_toManyRelationshipAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toManyRelationshipAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_toManyRelationshipAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("toManyRelationshipAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5163,7 +3626,7 @@ typeComparisonResult GALGAS_literalIntMultipleBindingExpressionAST::objectCompar
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5203,7 +3666,7 @@ GALGAS_literalIntMultipleBindingExpressionAST GALGAS_literalIntMultipleBindingEx
 
 void GALGAS_literalIntMultipleBindingExpressionAST::setter_setMValue (GALGAS_luint inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_literalIntMultipleBindingExpressionAST * p = (cPtr_literalIntMultipleBindingExpressionAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_literalIntMultipleBindingExpressionAST) ;
     p->mProperty_mValue = inValue ;
@@ -5213,7 +3676,7 @@ void GALGAS_literalIntMultipleBindingExpressionAST::setter_setMValue (GALGAS_lui
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_luint GALGAS_literalIntMultipleBindingExpressionAST::readProperty_mValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_luint () ;
   }else{
     cPtr_literalIntMultipleBindingExpressionAST * p = (cPtr_literalIntMultipleBindingExpressionAST *) mObjectPtr ;
@@ -5248,7 +3711,7 @@ void cPtr_literalIntMultipleBindingExpressionAST::description (C_String & ioStri
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_literalIntMultipleBindingExpressionAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_literalIntMultipleBindingExpressionAST (mProperty_mValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -5273,7 +3736,7 @@ const C_galgas_type_descriptor * GALGAS_literalIntMultipleBindingExpressionAST::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_literalIntMultipleBindingExpressionAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_literalIntMultipleBindingExpressionAST (*this)) ;
   }
@@ -5287,8 +3750,8 @@ GALGAS_literalIntMultipleBindingExpressionAST GALGAS_literalIntMultipleBindingEx
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_literalIntMultipleBindingExpressionAST result ;
   const GALGAS_literalIntMultipleBindingExpressionAST * p = (const GALGAS_literalIntMultipleBindingExpressionAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_literalIntMultipleBindingExpressionAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_literalIntMultipleBindingExpressionAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("literalIntMultipleBindingExpressionAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5344,7 +3807,7 @@ typeComparisonResult GALGAS_arrayControllerDeclarationAST::objectCompare (const 
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5380,7 +3843,7 @@ GALGAS_arrayControllerDeclarationAST GALGAS_arrayControllerDeclarationAST::const
 
 void GALGAS_arrayControllerDeclarationAST::setter_setMControllerName (GALGAS_lstring inValue
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
     p->mProperty_mControllerName = inValue ;
@@ -5391,7 +3854,7 @@ void GALGAS_arrayControllerDeclarationAST::setter_setMControllerName (GALGAS_lst
 
 void GALGAS_arrayControllerDeclarationAST::setter_setMModel (GALGAS_arrayControllerBoundModelAST inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
     p->mProperty_mModel = inValue ;
@@ -5402,7 +3865,7 @@ void GALGAS_arrayControllerDeclarationAST::setter_setMModel (GALGAS_arrayControl
 
 void GALGAS_arrayControllerDeclarationAST::setter_setMToManyPropertyName (GALGAS_lstring inValue
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
     p->mProperty_mToManyPropertyName = inValue ;
@@ -5412,7 +3875,7 @@ void GALGAS_arrayControllerDeclarationAST::setter_setMToManyPropertyName (GALGAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_arrayControllerDeclarationAST::readProperty_mControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
@@ -5424,7 +3887,7 @@ GALGAS_lstring GALGAS_arrayControllerDeclarationAST::readProperty_mControllerNam
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_arrayControllerBoundModelAST GALGAS_arrayControllerDeclarationAST::readProperty_mModel (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_arrayControllerBoundModelAST () ;
   }else{
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
@@ -5436,7 +3899,7 @@ GALGAS_arrayControllerBoundModelAST GALGAS_arrayControllerDeclarationAST::readPr
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_arrayControllerDeclarationAST::readProperty_mToManyPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
@@ -5482,7 +3945,7 @@ void cPtr_arrayControllerDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_arrayControllerDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_arrayControllerDeclarationAST (mProperty_mClassName, mProperty_mControllerName, mProperty_mModel, mProperty_mToManyPropertyName COMMA_THERE)) ;
   return ptr ;
 }
@@ -5507,7 +3970,7 @@ const C_galgas_type_descriptor * GALGAS_arrayControllerDeclarationAST::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_arrayControllerDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_arrayControllerDeclarationAST (*this)) ;
   }
@@ -5521,8 +3984,8 @@ GALGAS_arrayControllerDeclarationAST GALGAS_arrayControllerDeclarationAST::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerDeclarationAST result ;
   const GALGAS_arrayControllerDeclarationAST * p = (const GALGAS_arrayControllerDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_arrayControllerDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("arrayControllerDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5587,7 +4050,7 @@ typeComparisonResult GALGAS_arrayControllerGeneration::objectCompare (const GALG
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5625,7 +4088,7 @@ GALGAS_arrayControllerGeneration GALGAS_arrayControllerGeneration::constructor_n
 
 void GALGAS_arrayControllerGeneration::setter_setMOwnerName (GALGAS_string inValue
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mOwnerName = inValue ;
@@ -5636,7 +4099,7 @@ void GALGAS_arrayControllerGeneration::setter_setMOwnerName (GALGAS_string inVal
 
 void GALGAS_arrayControllerGeneration::setter_setMControllerName (GALGAS_lstring inValue
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mControllerName = inValue ;
@@ -5647,7 +4110,7 @@ void GALGAS_arrayControllerGeneration::setter_setMControllerName (GALGAS_lstring
 
 void GALGAS_arrayControllerGeneration::setter_setMModelTypeName (GALGAS_string inValue
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mModelTypeName = inValue ;
@@ -5658,7 +4121,7 @@ void GALGAS_arrayControllerGeneration::setter_setMModelTypeName (GALGAS_string i
 
 void GALGAS_arrayControllerGeneration::setter_setMArrayControllerModelKind (GALGAS_arrayControllerModelKind inValue
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mArrayControllerModelKind = inValue ;
@@ -5669,7 +4132,7 @@ void GALGAS_arrayControllerGeneration::setter_setMArrayControllerModelKind (GALG
 
 void GALGAS_arrayControllerGeneration::setter_setMElementTypeName (GALGAS_string inValue
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mElementTypeName = inValue ;
@@ -5680,7 +4143,7 @@ void GALGAS_arrayControllerGeneration::setter_setMElementTypeName (GALGAS_string
 
 void GALGAS_arrayControllerGeneration::setter_setMElementTypeIsGraphic (GALGAS_bool inValue
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
     p->mProperty_mElementTypeIsGraphic = inValue ;
@@ -5690,7 +4153,7 @@ void GALGAS_arrayControllerGeneration::setter_setMElementTypeIsGraphic (GALGAS_b
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mOwnerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5702,7 +4165,7 @@ GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mOwnerName (void) c
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_arrayControllerGeneration::readProperty_mControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5714,7 +4177,7 @@ GALGAS_lstring GALGAS_arrayControllerGeneration::readProperty_mControllerName (v
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mModelTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5726,7 +4189,7 @@ GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mModelTypeName (voi
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_arrayControllerModelKind GALGAS_arrayControllerGeneration::readProperty_mArrayControllerModelKind (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_arrayControllerModelKind () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5738,7 +4201,7 @@ GALGAS_arrayControllerModelKind GALGAS_arrayControllerGeneration::readProperty_m
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mElementTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5750,7 +4213,7 @@ GALGAS_string GALGAS_arrayControllerGeneration::readProperty_mElementTypeName (v
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_arrayControllerGeneration::readProperty_mElementTypeIsGraphic (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
@@ -5805,7 +4268,7 @@ void cPtr_arrayControllerGeneration::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_arrayControllerGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_arrayControllerGeneration (mProperty_mOwnerName, mProperty_mControllerName, mProperty_mModelTypeName, mProperty_mArrayControllerModelKind, mProperty_mElementTypeName, mProperty_mElementTypeIsGraphic COMMA_THERE)) ;
   return ptr ;
 }
@@ -5830,7 +4293,7 @@ const C_galgas_type_descriptor * GALGAS_arrayControllerGeneration::staticTypeDes
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_arrayControllerGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_arrayControllerGeneration (*this)) ;
   }
@@ -5844,8 +4307,8 @@ GALGAS_arrayControllerGeneration GALGAS_arrayControllerGeneration::extractObject
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerGeneration result ;
   const GALGAS_arrayControllerGeneration * p = (const GALGAS_arrayControllerGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_arrayControllerGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("arrayControllerGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -5913,7 +4376,7 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerDeclarationAST::objectC
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -5964,7 +4427,7 @@ GALGAS_autoLayoutTableViewControllerDeclarationAST GALGAS_autoLayoutTableViewCon
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -5976,7 +4439,7 @@ GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mIsRoot (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -5988,7 +4451,7 @@ GALGAS_bool GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mIs
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mRootEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -6000,7 +4463,7 @@ GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mToManyPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -6012,7 +4475,7 @@ GALGAS_lstring GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mTableViewControllerBoundColumnListAST (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutTableViewControllerBoundColumnListAST () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -6024,7 +4487,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListAST GALGAS_autoLayoutTableVie
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutTableViewControllerAttributListAST GALGAS_autoLayoutTableViewControllerDeclarationAST::readProperty_mTableViewControllerAttributListAST (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutTableViewControllerAttributListAST () ;
   }else{
     cPtr_autoLayoutTableViewControllerDeclarationAST * p = (cPtr_autoLayoutTableViewControllerDeclarationAST *) mObjectPtr ;
@@ -6082,7 +4545,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::description (C_String & i
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_autoLayoutTableViewControllerDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_autoLayoutTableViewControllerDeclarationAST (mProperty_mClassName, mProperty_mControllerName, mProperty_mIsRoot, mProperty_mRootEntityName, mProperty_mToManyPropertyName, mProperty_mTableViewControllerBoundColumnListAST, mProperty_mTableViewControllerAttributListAST COMMA_THERE)) ;
   return ptr ;
 }
@@ -6107,7 +4570,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutTableViewControllerDeclaration
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutTableViewControllerDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutTableViewControllerDeclarationAST (*this)) ;
   }
@@ -6121,8 +4584,8 @@ GALGAS_autoLayoutTableViewControllerDeclarationAST GALGAS_autoLayoutTableViewCon
                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerDeclarationAST result ;
   const GALGAS_autoLayoutTableViewControllerDeclarationAST * p = (const GALGAS_autoLayoutTableViewControllerDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutTableViewControllerDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutTableViewControllerDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutTableViewControllerDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6203,7 +4666,7 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerGeneration::objectCompa
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6244,7 +4707,7 @@ GALGAS_autoLayoutTableViewControllerGeneration GALGAS_autoLayoutTableViewControl
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mOwnerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6256,7 +4719,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mOwne
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6268,7 +4731,7 @@ GALGAS_lstring GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mCon
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mModelString (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6280,7 +4743,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mMode
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mTableViewControllerBoundColumnListForGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6292,7 +4755,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayo
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mTableViewControllerSortedColumnListForGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6304,7 +4767,7 @@ GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLay
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mModelTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6316,7 +4779,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mMode
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mTableViewControllerModelKind (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_autoLayoutTableViewControllerModelKind () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6328,7 +4791,7 @@ GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControll
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mElementTypeName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_string () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6340,7 +4803,7 @@ GALGAS_string GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mElem
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_bool GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mElementTypeIsGraphic (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6352,7 +4815,7 @@ GALGAS_bool GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mElemen
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS__32_stringlist GALGAS_autoLayoutTableViewControllerGeneration::readProperty_mAttributeListForGeneration (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS__32_stringlist () ;
   }else{
     cPtr_autoLayoutTableViewControllerGeneration * p = (cPtr_autoLayoutTableViewControllerGeneration *) mObjectPtr ;
@@ -6423,7 +4886,7 @@ void cPtr_autoLayoutTableViewControllerGeneration::description (C_String & ioStr
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_autoLayoutTableViewControllerGeneration::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_autoLayoutTableViewControllerGeneration (mProperty_mOwnerName, mProperty_mControllerName, mProperty_mModelString, mProperty_mTableViewControllerBoundColumnListForGeneration, mProperty_mTableViewControllerSortedColumnListForGeneration, mProperty_mModelTypeName, mProperty_mTableViewControllerModelKind, mProperty_mElementTypeName, mProperty_mElementTypeIsGraphic, mProperty_mAttributeListForGeneration COMMA_THERE)) ;
   return ptr ;
 }
@@ -6448,7 +4911,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutTableViewControllerGeneration:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutTableViewControllerGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutTableViewControllerGeneration (*this)) ;
   }
@@ -6462,8 +4925,8 @@ GALGAS_autoLayoutTableViewControllerGeneration GALGAS_autoLayoutTableViewControl
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerGeneration result ;
   const GALGAS_autoLayoutTableViewControllerGeneration * p = (const GALGAS_autoLayoutTableViewControllerGeneration *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutTableViewControllerGeneration *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutTableViewControllerGeneration *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutTableViewControllerGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6523,7 +4986,7 @@ typeComparisonResult GALGAS_selectionControllerDeclarationAST::objectCompare (co
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6570,7 +5033,7 @@ GALGAS_selectionControllerDeclarationAST GALGAS_selectionControllerDeclarationAS
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mSelectionControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_selectionControllerDeclarationAST * p = (cPtr_selectionControllerDeclarationAST *) mObjectPtr ;
@@ -6582,7 +5045,7 @@ GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mSelection
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mModelControllerName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_selectionControllerDeclarationAST * p = (cPtr_selectionControllerDeclarationAST *) mObjectPtr ;
@@ -6594,7 +5057,7 @@ GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mModelCont
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mModelControllerPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_selectionControllerDeclarationAST * p = (cPtr_selectionControllerDeclarationAST *) mObjectPtr ;
@@ -6606,7 +5069,7 @@ GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mModelCont
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_selectionControllerDeclarationAST::readProperty_mSelectionEntityName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_selectionControllerDeclarationAST * p = (cPtr_selectionControllerDeclarationAST *) mObjectPtr ;
@@ -6656,7 +5119,7 @@ void cPtr_selectionControllerDeclarationAST::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_selectionControllerDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_selectionControllerDeclarationAST (mProperty_mClassName, mProperty_mSelectionControllerName, mProperty_mModelControllerName, mProperty_mModelControllerPropertyName, mProperty_mSelectionEntityName COMMA_THERE)) ;
   return ptr ;
 }
@@ -6681,7 +5144,7 @@ const C_galgas_type_descriptor * GALGAS_selectionControllerDeclarationAST::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_selectionControllerDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_selectionControllerDeclarationAST (*this)) ;
   }
@@ -6695,8 +5158,8 @@ GALGAS_selectionControllerDeclarationAST GALGAS_selectionControllerDeclarationAS
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_selectionControllerDeclarationAST result ;
   const GALGAS_selectionControllerDeclarationAST * p = (const GALGAS_selectionControllerDeclarationAST *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_selectionControllerDeclarationAST *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_selectionControllerDeclarationAST *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("selectionControllerDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6741,7 +5204,7 @@ typeComparisonResult GALGAS_boolAsDefaultValue::objectCompare (const GALGAS_bool
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6781,7 +5244,7 @@ GALGAS_boolAsDefaultValue GALGAS_boolAsDefaultValue::constructor_new (const GALG
 
 void GALGAS_boolAsDefaultValue::setter_setMValue (GALGAS_lbool inValue
                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_boolAsDefaultValue * p = (cPtr_boolAsDefaultValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_boolAsDefaultValue) ;
     p->mProperty_mValue = inValue ;
@@ -6791,7 +5254,7 @@ void GALGAS_boolAsDefaultValue::setter_setMValue (GALGAS_lbool inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lbool GALGAS_boolAsDefaultValue::readProperty_mValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lbool () ;
   }else{
     cPtr_boolAsDefaultValue * p = (cPtr_boolAsDefaultValue *) mObjectPtr ;
@@ -6826,7 +5289,7 @@ void cPtr_boolAsDefaultValue::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_boolAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_boolAsDefaultValue (mProperty_mValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -6851,7 +5314,7 @@ const C_galgas_type_descriptor * GALGAS_boolAsDefaultValue::staticTypeDescriptor
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_boolAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_boolAsDefaultValue (*this)) ;
   }
@@ -6865,8 +5328,8 @@ GALGAS_boolAsDefaultValue GALGAS_boolAsDefaultValue::extractObject (const GALGAS
                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_boolAsDefaultValue result ;
   const GALGAS_boolAsDefaultValue * p = (const GALGAS_boolAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_boolAsDefaultValue *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_boolAsDefaultValue *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("boolAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -6911,7 +5374,7 @@ typeComparisonResult GALGAS_stringAsDefaultValue::objectCompare (const GALGAS_st
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -6951,7 +5414,7 @@ GALGAS_stringAsDefaultValue GALGAS_stringAsDefaultValue::constructor_new (const 
 
 void GALGAS_stringAsDefaultValue::setter_setMValue (GALGAS_lstring inValue
                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_stringAsDefaultValue * p = (cPtr_stringAsDefaultValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_stringAsDefaultValue) ;
     p->mProperty_mValue = inValue ;
@@ -6961,7 +5424,7 @@ void GALGAS_stringAsDefaultValue::setter_setMValue (GALGAS_lstring inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_stringAsDefaultValue::readProperty_mValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_stringAsDefaultValue * p = (cPtr_stringAsDefaultValue *) mObjectPtr ;
@@ -6996,7 +5459,7 @@ void cPtr_stringAsDefaultValue::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_stringAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_stringAsDefaultValue (mProperty_mValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -7021,7 +5484,7 @@ const C_galgas_type_descriptor * GALGAS_stringAsDefaultValue::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_stringAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_stringAsDefaultValue (*this)) ;
   }
@@ -7035,8 +5498,8 @@ GALGAS_stringAsDefaultValue GALGAS_stringAsDefaultValue::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_stringAsDefaultValue result ;
   const GALGAS_stringAsDefaultValue * p = (const GALGAS_stringAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_stringAsDefaultValue *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_stringAsDefaultValue *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("stringAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7081,7 +5544,7 @@ typeComparisonResult GALGAS_identifierAsDefaultValue::objectCompare (const GALGA
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7121,7 +5584,7 @@ GALGAS_identifierAsDefaultValue GALGAS_identifierAsDefaultValue::constructor_new
 
 void GALGAS_identifierAsDefaultValue::setter_setMValue (GALGAS_lstring inValue
                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_identifierAsDefaultValue * p = (cPtr_identifierAsDefaultValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_identifierAsDefaultValue) ;
     p->mProperty_mValue = inValue ;
@@ -7131,7 +5594,7 @@ void GALGAS_identifierAsDefaultValue::setter_setMValue (GALGAS_lstring inValue
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_identifierAsDefaultValue::readProperty_mValue (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_identifierAsDefaultValue * p = (cPtr_identifierAsDefaultValue *) mObjectPtr ;
@@ -7166,7 +5629,7 @@ void cPtr_identifierAsDefaultValue::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_identifierAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_identifierAsDefaultValue (mProperty_mValue COMMA_THERE)) ;
   return ptr ;
 }
@@ -7191,7 +5654,7 @@ const C_galgas_type_descriptor * GALGAS_identifierAsDefaultValue::staticTypeDesc
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_identifierAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_identifierAsDefaultValue (*this)) ;
   }
@@ -7205,8 +5668,8 @@ GALGAS_identifierAsDefaultValue GALGAS_identifierAsDefaultValue::extractObject (
                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_identifierAsDefaultValue result ;
   const GALGAS_identifierAsDefaultValue * p = (const GALGAS_identifierAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_identifierAsDefaultValue *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_identifierAsDefaultValue *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("identifierAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7251,7 +5714,7 @@ typeComparisonResult GALGAS_prefsAsDefaultValue::objectCompare (const GALGAS_pre
     }else if (myObjectPtr > operandObjectPtr) {
       result = kFirstOperandGreaterThanSecond ;
     }else{
-      result = kOperandEqual ; // mObjectPtr->dynamicObjectCompare (inOperand.mObjectPtr) ;
+      result = kOperandEqual ;
     }
   }
   return result ;
@@ -7291,7 +5754,7 @@ GALGAS_prefsAsDefaultValue GALGAS_prefsAsDefaultValue::constructor_new (const GA
 
 void GALGAS_prefsAsDefaultValue::setter_setMPrefPropertyName (GALGAS_lstring inValue
                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (NULL != mObjectPtr) {
+  if (nullptr != mObjectPtr) {
     cPtr_prefsAsDefaultValue * p = (cPtr_prefsAsDefaultValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_prefsAsDefaultValue) ;
     p->mProperty_mPrefPropertyName = inValue ;
@@ -7301,7 +5764,7 @@ void GALGAS_prefsAsDefaultValue::setter_setMPrefPropertyName (GALGAS_lstring inV
 //----------------------------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_prefsAsDefaultValue::readProperty_mPrefPropertyName (void) const {
-  if (NULL == mObjectPtr) {
+  if (nullptr == mObjectPtr) {
     return GALGAS_lstring () ;
   }else{
     cPtr_prefsAsDefaultValue * p = (cPtr_prefsAsDefaultValue *) mObjectPtr ;
@@ -7336,7 +5799,7 @@ void cPtr_prefsAsDefaultValue::description (C_String & ioString,
 //----------------------------------------------------------------------------------------------------------------------
 
 acPtr_class * cPtr_prefsAsDefaultValue::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = NULL ;
+  acPtr_class * ptr = nullptr ;
   macroMyNew (ptr, cPtr_prefsAsDefaultValue (mProperty_mPrefPropertyName COMMA_THERE)) ;
   return ptr ;
 }
@@ -7361,7 +5824,7 @@ const C_galgas_type_descriptor * GALGAS_prefsAsDefaultValue::staticTypeDescripto
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_prefsAsDefaultValue::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_prefsAsDefaultValue (*this)) ;
   }
@@ -7375,8 +5838,8 @@ GALGAS_prefsAsDefaultValue GALGAS_prefsAsDefaultValue::extractObject (const GALG
                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_prefsAsDefaultValue result ;
   const GALGAS_prefsAsDefaultValue * p = (const GALGAS_prefsAsDefaultValue *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_prefsAsDefaultValue *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_prefsAsDefaultValue *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("prefsAsDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7486,7 +5949,7 @@ void GALGAS_propertyMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_propertyMap_2D_element ("propertyMap-element",
-                                               NULL) ;
+                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7497,7 +5960,7 @@ const C_galgas_type_descriptor * GALGAS_propertyMap_2D_element::staticTypeDescri
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_propertyMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_propertyMap_2D_element (*this)) ;
   }
@@ -7511,8 +5974,8 @@ GALGAS_propertyMap_2D_element GALGAS_propertyMap_2D_element::extractObject (cons
                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_propertyMap_2D_element result ;
   const GALGAS_propertyMap_2D_element * p = (const GALGAS_propertyMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_propertyMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_propertyMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("propertyMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -7818,7 +6281,7 @@ void GALGAS_XcodeProjectDescriptor::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_XcodeProjectDescriptor ("XcodeProjectDescriptor",
-                                               NULL) ;
+                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -7829,7 +6292,7 @@ const C_galgas_type_descriptor * GALGAS_XcodeProjectDescriptor::staticTypeDescri
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_XcodeProjectDescriptor::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_XcodeProjectDescriptor (*this)) ;
   }
@@ -7843,8 +6306,8 @@ GALGAS_XcodeProjectDescriptor GALGAS_XcodeProjectDescriptor::extractObject (cons
                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_XcodeProjectDescriptor result ;
   const GALGAS_XcodeProjectDescriptor * p = (const GALGAS_XcodeProjectDescriptor *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_XcodeProjectDescriptor *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_XcodeProjectDescriptor *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("XcodeProjectDescriptor", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8623,7 +7086,7 @@ void GALGAS_declarationListAST_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_declarationListAST_2D_element ("declarationListAST-element",
-                                                      NULL) ;
+                                                      nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8634,7 +7097,7 @@ const C_galgas_type_descriptor * GALGAS_declarationListAST_2D_element::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_declarationListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_declarationListAST_2D_element (*this)) ;
   }
@@ -8648,8 +7111,8 @@ GALGAS_declarationListAST_2D_element GALGAS_declarationListAST_2D_element::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_declarationListAST_2D_element result ;
   const GALGAS_declarationListAST_2D_element * p = (const GALGAS_declarationListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_declarationListAST_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_declarationListAST_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("declarationListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8735,7 +7198,7 @@ void GALGAS_externSwiftDelegateList_2D_element::description (C_String & ioString
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_externSwiftDelegateList_2D_element ("externSwiftDelegateList-element",
-                                                           NULL) ;
+                                                           nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8746,7 +7209,7 @@ const C_galgas_type_descriptor * GALGAS_externSwiftDelegateList_2D_element::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_externSwiftDelegateList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_externSwiftDelegateList_2D_element (*this)) ;
   }
@@ -8760,8 +7223,8 @@ GALGAS_externSwiftDelegateList_2D_element GALGAS_externSwiftDelegateList_2D_elem
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_externSwiftDelegateList_2D_element result ;
   const GALGAS_externSwiftDelegateList_2D_element * p = (const GALGAS_externSwiftDelegateList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_externSwiftDelegateList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_externSwiftDelegateList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("externSwiftDelegateList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8858,7 +7321,7 @@ void GALGAS_externSwiftFunctionList_2D_element::description (C_String & ioString
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_externSwiftFunctionList_2D_element ("externSwiftFunctionList-element",
-                                                           NULL) ;
+                                                           nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8869,7 +7332,7 @@ const C_galgas_type_descriptor * GALGAS_externSwiftFunctionList_2D_element::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_externSwiftFunctionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_externSwiftFunctionList_2D_element (*this)) ;
   }
@@ -8883,8 +7346,8 @@ GALGAS_externSwiftFunctionList_2D_element GALGAS_externSwiftFunctionList_2D_elem
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_externSwiftFunctionList_2D_element result ;
   const GALGAS_externSwiftFunctionList_2D_element * p = (const GALGAS_externSwiftFunctionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_externSwiftFunctionList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_externSwiftFunctionList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("externSwiftFunctionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -8970,7 +7433,7 @@ void GALGAS_externFunctionMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_externFunctionMap_2D_element ("externFunctionMap-element",
-                                                     NULL) ;
+                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -8981,7 +7444,7 @@ const C_galgas_type_descriptor * GALGAS_externFunctionMap_2D_element::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_externFunctionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_externFunctionMap_2D_element (*this)) ;
   }
@@ -8995,8 +7458,8 @@ GALGAS_externFunctionMap_2D_element GALGAS_externFunctionMap_2D_element::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_externFunctionMap_2D_element result ;
   const GALGAS_externFunctionMap_2D_element * p = (const GALGAS_externFunctionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_externFunctionMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_externFunctionMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("externFunctionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9104,7 +7567,7 @@ void GALGAS_enumerationFunctionListAST_2D_element::description (C_String & ioStr
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_enumerationFunctionListAST_2D_element ("enumerationFunctionListAST-element",
-                                                              NULL) ;
+                                                              nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9115,7 +7578,7 @@ const C_galgas_type_descriptor * GALGAS_enumerationFunctionListAST_2D_element::s
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_enumerationFunctionListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_enumerationFunctionListAST_2D_element (*this)) ;
   }
@@ -9129,8 +7592,8 @@ GALGAS_enumerationFunctionListAST_2D_element GALGAS_enumerationFunctionListAST_2
                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_enumerationFunctionListAST_2D_element result ;
   const GALGAS_enumerationFunctionListAST_2D_element * p = (const GALGAS_enumerationFunctionListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_enumerationFunctionListAST_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_enumerationFunctionListAST_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("enumerationFunctionListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9227,7 +7690,7 @@ void GALGAS_enumConstantMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_enumConstantMap_2D_element ("enumConstantMap-element",
-                                                   NULL) ;
+                                                   nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9238,7 +7701,7 @@ const C_galgas_type_descriptor * GALGAS_enumConstantMap_2D_element::staticTypeDe
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_enumConstantMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_enumConstantMap_2D_element (*this)) ;
   }
@@ -9252,8 +7715,8 @@ GALGAS_enumConstantMap_2D_element GALGAS_enumConstantMap_2D_element::extractObje
                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_enumConstantMap_2D_element result ;
   const GALGAS_enumConstantMap_2D_element * p = (const GALGAS_enumConstantMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_enumConstantMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_enumConstantMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("enumConstantMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9350,7 +7813,7 @@ void GALGAS_enumFuncMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_enumFuncMap_2D_element ("enumFuncMap-element",
-                                               NULL) ;
+                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9361,7 +7824,7 @@ const C_galgas_type_descriptor * GALGAS_enumFuncMap_2D_element::staticTypeDescri
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_enumFuncMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_enumFuncMap_2D_element (*this)) ;
   }
@@ -9375,8 +7838,8 @@ GALGAS_enumFuncMap_2D_element GALGAS_enumFuncMap_2D_element::extractObject (cons
                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_enumFuncMap_2D_element result ;
   const GALGAS_enumFuncMap_2D_element * p = (const GALGAS_enumFuncMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_enumFuncMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_enumFuncMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("enumFuncMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9473,7 +7936,7 @@ void GALGAS_astAutoLayoutOutletLinkerList_2D_element::description (C_String & io
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astAutoLayoutOutletLinkerList_2D_element ("astAutoLayoutOutletLinkerList-element",
-                                                                 NULL) ;
+                                                                 nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9484,7 +7947,7 @@ const C_galgas_type_descriptor * GALGAS_astAutoLayoutOutletLinkerList_2D_element
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astAutoLayoutOutletLinkerList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astAutoLayoutOutletLinkerList_2D_element (*this)) ;
   }
@@ -9498,8 +7961,8 @@ GALGAS_astAutoLayoutOutletLinkerList_2D_element GALGAS_astAutoLayoutOutletLinker
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_astAutoLayoutOutletLinkerList_2D_element result ;
   const GALGAS_astAutoLayoutOutletLinkerList_2D_element * p = (const GALGAS_astAutoLayoutOutletLinkerList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astAutoLayoutOutletLinkerList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astAutoLayoutOutletLinkerList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutOutletLinkerList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9589,7 +8052,7 @@ void GALGAS_autoLayoutClassParameterList_2D_element::description (C_String & ioS
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutClassParameterList_2D_element ("autoLayoutClassParameterList-element",
-                                                                NULL) ;
+                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9600,7 +8063,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutClassParameterList_2D_element:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutClassParameterList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutClassParameterList_2D_element (*this)) ;
   }
@@ -9614,8 +8077,8 @@ GALGAS_autoLayoutClassParameterList_2D_element GALGAS_autoLayoutClassParameterLi
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterList_2D_element result ;
   const GALGAS_autoLayoutClassParameterList_2D_element * p = (const GALGAS_autoLayoutClassParameterList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutClassParameterList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutClassParameterList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutClassParameterList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9712,7 +8175,7 @@ void GALGAS_astAutoLayoutViewFunctionMap_2D_element::description (C_String & ioS
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap_2D_element ("astAutoLayoutViewFunctionMap-element",
-                                                                NULL) ;
+                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9723,7 +8186,7 @@ const C_galgas_type_descriptor * GALGAS_astAutoLayoutViewFunctionMap_2D_element:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astAutoLayoutViewFunctionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astAutoLayoutViewFunctionMap_2D_element (*this)) ;
   }
@@ -9737,8 +8200,8 @@ GALGAS_astAutoLayoutViewFunctionMap_2D_element GALGAS_astAutoLayoutViewFunctionM
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewFunctionMap_2D_element result ;
   const GALGAS_astAutoLayoutViewFunctionMap_2D_element * p = (const GALGAS_astAutoLayoutViewFunctionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astAutoLayoutViewFunctionMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astAutoLayoutViewFunctionMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutViewFunctionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -9923,7 +8386,7 @@ void GALGAS_autolayoutViewClassMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autolayoutViewClassMap_2D_element ("autolayoutViewClassMap-element",
-                                                          NULL) ;
+                                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -9934,7 +8397,7 @@ const C_galgas_type_descriptor * GALGAS_autolayoutViewClassMap_2D_element::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autolayoutViewClassMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autolayoutViewClassMap_2D_element (*this)) ;
   }
@@ -9948,8 +8411,8 @@ GALGAS_autolayoutViewClassMap_2D_element GALGAS_autolayoutViewClassMap_2D_elemen
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_autolayoutViewClassMap_2D_element result ;
   const GALGAS_autolayoutViewClassMap_2D_element * p = (const GALGAS_autolayoutViewClassMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autolayoutViewClassMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autolayoutViewClassMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autolayoutViewClassMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10068,7 +8531,7 @@ void GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element::description 
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element ("autoLayoutViewClassBindingSpecificationList-element",
-                                                                               NULL) ;
+                                                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10079,7 +8542,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutViewClassBindingSpecificationL
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element (*this)) ;
   }
@@ -10093,8 +8556,8 @@ GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element GALGAS_autoLayoutV
                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element result ;
   const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element * p = (const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutViewClassBindingSpecificationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10202,7 +8665,7 @@ void GALGAS_autoLayoutBindingSpecificationMap_2D_element::description (C_String 
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutBindingSpecificationMap_2D_element ("autoLayoutBindingSpecificationMap-element",
-                                                                     NULL) ;
+                                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10213,7 +8676,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutBindingSpecificationMap_2D_ele
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutBindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutBindingSpecificationMap_2D_element (*this)) ;
   }
@@ -10227,8 +8690,8 @@ GALGAS_autoLayoutBindingSpecificationMap_2D_element GALGAS_autoLayoutBindingSpec
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutBindingSpecificationMap_2D_element result ;
   const GALGAS_autoLayoutBindingSpecificationMap_2D_element * p = (const GALGAS_autoLayoutBindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutBindingSpecificationMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutBindingSpecificationMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutBindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10336,7 +8799,7 @@ void GALGAS_autoLayoutViewBindingSpecificationMap_2D_element::description (C_Str
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutViewBindingSpecificationMap_2D_element ("autoLayoutViewBindingSpecificationMap-element",
-                                                                         NULL) ;
+                                                                         nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10347,7 +8810,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutViewBindingSpecificationMap_2D
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutViewBindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutViewBindingSpecificationMap_2D_element (*this)) ;
   }
@@ -10361,8 +8824,8 @@ GALGAS_autoLayoutViewBindingSpecificationMap_2D_element GALGAS_autoLayoutViewBin
                                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutViewBindingSpecificationMap_2D_element result ;
   const GALGAS_autoLayoutViewBindingSpecificationMap_2D_element * p = (const GALGAS_autoLayoutViewBindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutViewBindingSpecificationMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutViewBindingSpecificationMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutViewBindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10452,7 +8915,7 @@ void GALGAS_astViewDeclarationList_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astViewDeclarationList_2D_element ("astViewDeclarationList-element",
-                                                          NULL) ;
+                                                          nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10463,7 +8926,7 @@ const C_galgas_type_descriptor * GALGAS_astViewDeclarationList_2D_element::stati
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astViewDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astViewDeclarationList_2D_element (*this)) ;
   }
@@ -10477,8 +8940,8 @@ GALGAS_astViewDeclarationList_2D_element GALGAS_astViewDeclarationList_2D_elemen
                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_astViewDeclarationList_2D_element result ;
   const GALGAS_astViewDeclarationList_2D_element * p = (const GALGAS_astViewDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astViewDeclarationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astViewDeclarationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astViewDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10575,7 +9038,7 @@ void GALGAS_astNewStackViewDeclarationList_2D_element::description (C_String & i
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astNewStackViewDeclarationList_2D_element ("astNewStackViewDeclarationList-element",
-                                                                  NULL) ;
+                                                                  nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10586,7 +9049,7 @@ const C_galgas_type_descriptor * GALGAS_astNewStackViewDeclarationList_2D_elemen
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astNewStackViewDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astNewStackViewDeclarationList_2D_element (*this)) ;
   }
@@ -10600,8 +9063,8 @@ GALGAS_astNewStackViewDeclarationList_2D_element GALGAS_astNewStackViewDeclarati
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_astNewStackViewDeclarationList_2D_element result ;
   const GALGAS_astNewStackViewDeclarationList_2D_element * p = (const GALGAS_astNewStackViewDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astNewStackViewDeclarationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astNewStackViewDeclarationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astNewStackViewDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10698,7 +9161,7 @@ void GALGAS_astAutoLayoutViewFunctionCallList_2D_element::description (C_String 
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionCallList_2D_element ("astAutoLayoutViewFunctionCallList-element",
-                                                                     NULL) ;
+                                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10709,7 +9172,7 @@ const C_galgas_type_descriptor * GALGAS_astAutoLayoutViewFunctionCallList_2D_ele
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astAutoLayoutViewFunctionCallList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astAutoLayoutViewFunctionCallList_2D_element (*this)) ;
   }
@@ -10723,8 +9186,8 @@ GALGAS_astAutoLayoutViewFunctionCallList_2D_element GALGAS_astAutoLayoutViewFunc
                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewFunctionCallList_2D_element result ;
   const GALGAS_astAutoLayoutViewFunctionCallList_2D_element * p = (const GALGAS_astAutoLayoutViewFunctionCallList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astAutoLayoutViewFunctionCallList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astAutoLayoutViewFunctionCallList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutViewFunctionCallList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10824,7 +9287,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterList_2D_element::description (C
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterList_2D_element ("astAutoLayoutViewInstructionParameterList-element",
-                                                                             NULL) ;
+                                                                             nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10835,7 +9298,7 @@ const C_galgas_type_descriptor * GALGAS_astAutoLayoutViewInstructionParameterLis
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_astAutoLayoutViewInstructionParameterList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_astAutoLayoutViewInstructionParameterList_2D_element (*this)) ;
   }
@@ -10849,8 +9312,8 @@ GALGAS_astAutoLayoutViewInstructionParameterList_2D_element GALGAS_astAutoLayout
                                                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewInstructionParameterList_2D_element result ;
   const GALGAS_astAutoLayoutViewInstructionParameterList_2D_element * p = (const GALGAS_astAutoLayoutViewInstructionParameterList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_astAutoLayoutViewInstructionParameterList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_astAutoLayoutViewInstructionParameterList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutViewInstructionParameterList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -10936,7 +9399,7 @@ void GALGAS_autoLayoutViewDeclarationMap_2D_element::description (C_String & ioS
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutViewDeclarationMap_2D_element ("autoLayoutViewDeclarationMap-element",
-                                                                NULL) ;
+                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -10947,7 +9410,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutViewDeclarationMap_2D_element:
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutViewDeclarationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutViewDeclarationMap_2D_element (*this)) ;
   }
@@ -10961,8 +9424,8 @@ GALGAS_autoLayoutViewDeclarationMap_2D_element GALGAS_autoLayoutViewDeclarationM
                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutViewDeclarationMap_2D_element result ;
   const GALGAS_autoLayoutViewDeclarationMap_2D_element * p = (const GALGAS_autoLayoutViewDeclarationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutViewDeclarationMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutViewDeclarationMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutViewDeclarationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11059,7 +9522,7 @@ void GALGAS_autoLayoutConfiguratorMap_2D_element::description (C_String & ioStri
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutConfiguratorMap_2D_element ("autoLayoutConfiguratorMap-element",
-                                                             NULL) ;
+                                                             nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11070,7 +9533,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutConfiguratorMap_2D_element::st
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutConfiguratorMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutConfiguratorMap_2D_element (*this)) ;
   }
@@ -11084,8 +9547,8 @@ GALGAS_autoLayoutConfiguratorMap_2D_element GALGAS_autoLayoutConfiguratorMap_2D_
                                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutConfiguratorMap_2D_element result ;
   const GALGAS_autoLayoutConfiguratorMap_2D_element * p = (const GALGAS_autoLayoutConfiguratorMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutConfiguratorMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutConfiguratorMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutConfiguratorMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11193,7 +9656,7 @@ void GALGAS_autoLayoutOutletMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutOutletMap_2D_element ("autoLayoutOutletMap-element",
-                                                       NULL) ;
+                                                       nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11204,7 +9667,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutOutletMap_2D_element::staticTy
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutOutletMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutOutletMap_2D_element (*this)) ;
   }
@@ -11218,8 +9681,8 @@ GALGAS_autoLayoutOutletMap_2D_element GALGAS_autoLayoutOutletMap_2D_element::ext
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutOutletMap_2D_element result ;
   const GALGAS_autoLayoutOutletMap_2D_element * p = (const GALGAS_autoLayoutOutletMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutOutletMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutOutletMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutOutletMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11382,7 +9845,7 @@ void GALGAS_outletClassMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_outletClassMap_2D_element ("outletClassMap-element",
-                                                  NULL) ;
+                                                  nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11393,7 +9856,7 @@ const C_galgas_type_descriptor * GALGAS_outletClassMap_2D_element::staticTypeDes
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletClassMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletClassMap_2D_element (*this)) ;
   }
@@ -11407,8 +9870,8 @@ GALGAS_outletClassMap_2D_element GALGAS_outletClassMap_2D_element::extractObject
                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_outletClassMap_2D_element result ;
   const GALGAS_outletClassMap_2D_element * p = (const GALGAS_outletClassMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletClassMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletClassMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11505,7 +9968,7 @@ void GALGAS_controllerBindingOptionList_2D_element::description (C_String & ioSt
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_controllerBindingOptionList_2D_element ("controllerBindingOptionList-element",
-                                                               NULL) ;
+                                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11516,7 +9979,7 @@ const C_galgas_type_descriptor * GALGAS_controllerBindingOptionList_2D_element::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_controllerBindingOptionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_controllerBindingOptionList_2D_element (*this)) ;
   }
@@ -11530,8 +9993,8 @@ GALGAS_controllerBindingOptionList_2D_element GALGAS_controllerBindingOptionList
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_controllerBindingOptionList_2D_element result ;
   const GALGAS_controllerBindingOptionList_2D_element * p = (const GALGAS_controllerBindingOptionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_controllerBindingOptionList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_controllerBindingOptionList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("controllerBindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11628,7 +10091,7 @@ void GALGAS_outletClassBindingSpecificationModelList_2D_element::description (C_
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList_2D_element ("outletClassBindingSpecificationModelList-element",
-                                                                            NULL) ;
+                                                                            nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11639,7 +10102,7 @@ const C_galgas_type_descriptor * GALGAS_outletClassBindingSpecificationModelList
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletClassBindingSpecificationModelList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletClassBindingSpecificationModelList_2D_element (*this)) ;
   }
@@ -11653,8 +10116,8 @@ GALGAS_outletClassBindingSpecificationModelList_2D_element GALGAS_outletClassBin
                                                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_outletClassBindingSpecificationModelList_2D_element result ;
   const GALGAS_outletClassBindingSpecificationModelList_2D_element * p = (const GALGAS_outletClassBindingSpecificationModelList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassBindingSpecificationModelList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletClassBindingSpecificationModelList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletClassBindingSpecificationModelList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11773,7 +10236,7 @@ void GALGAS_outletClassBindingSpecificationList_2D_element::description (C_Strin
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_outletClassBindingSpecificationList_2D_element ("outletClassBindingSpecificationList-element",
-                                                                       NULL) ;
+                                                                       nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11784,7 +10247,7 @@ const C_galgas_type_descriptor * GALGAS_outletClassBindingSpecificationList_2D_e
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletClassBindingSpecificationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletClassBindingSpecificationList_2D_element (*this)) ;
   }
@@ -11798,8 +10261,8 @@ GALGAS_outletClassBindingSpecificationList_2D_element GALGAS_outletClassBindingS
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_outletClassBindingSpecificationList_2D_element result ;
   const GALGAS_outletClassBindingSpecificationList_2D_element * p = (const GALGAS_outletClassBindingSpecificationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletClassBindingSpecificationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletClassBindingSpecificationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletClassBindingSpecificationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -11907,7 +10370,7 @@ void GALGAS_bindingSpecificationMap_2D_element::description (C_String & ioString
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_bindingSpecificationMap_2D_element ("bindingSpecificationMap-element",
-                                                           NULL) ;
+                                                           nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -11918,7 +10381,7 @@ const C_galgas_type_descriptor * GALGAS_bindingSpecificationMap_2D_element::stat
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_bindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_bindingSpecificationMap_2D_element (*this)) ;
   }
@@ -11932,8 +10395,8 @@ GALGAS_bindingSpecificationMap_2D_element GALGAS_bindingSpecificationMap_2D_elem
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_bindingSpecificationMap_2D_element result ;
   const GALGAS_bindingSpecificationMap_2D_element * p = (const GALGAS_bindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingSpecificationMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_bindingSpecificationMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("bindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12023,7 +10486,7 @@ void GALGAS_controllerBindingOptionDecoratedList_2D_element::description (C_Stri
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2D_element ("controllerBindingOptionDecoratedList-element",
-                                                                        NULL) ;
+                                                                        nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12034,7 +10497,7 @@ const C_galgas_type_descriptor * GALGAS_controllerBindingOptionDecoratedList_2D_
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_controllerBindingOptionDecoratedList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_controllerBindingOptionDecoratedList_2D_element (*this)) ;
   }
@@ -12048,8 +10511,8 @@ GALGAS_controllerBindingOptionDecoratedList_2D_element GALGAS_controllerBindingO
                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_controllerBindingOptionDecoratedList_2D_element result ;
   const GALGAS_controllerBindingOptionDecoratedList_2D_element * p = (const GALGAS_controllerBindingOptionDecoratedList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_controllerBindingOptionDecoratedList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_controllerBindingOptionDecoratedList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("controllerBindingOptionDecoratedList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12157,7 +10620,7 @@ void GALGAS_outletBindingSpecificationMap_2D_element::description (C_String & io
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_outletBindingSpecificationMap_2D_element ("outletBindingSpecificationMap-element",
-                                                                 NULL) ;
+                                                                 nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12168,7 +10631,7 @@ const C_galgas_type_descriptor * GALGAS_outletBindingSpecificationMap_2D_element
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletBindingSpecificationMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletBindingSpecificationMap_2D_element (*this)) ;
   }
@@ -12182,8 +10645,8 @@ GALGAS_outletBindingSpecificationMap_2D_element GALGAS_outletBindingSpecificatio
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_outletBindingSpecificationMap_2D_element result ;
   const GALGAS_outletBindingSpecificationMap_2D_element * p = (const GALGAS_outletBindingSpecificationMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletBindingSpecificationMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletBindingSpecificationMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletBindingSpecificationMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12273,7 +10736,7 @@ void GALGAS_bindingOptionList_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_bindingOptionList_2D_element ("bindingOptionList-element",
-                                                     NULL) ;
+                                                     nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12284,7 +10747,7 @@ const C_galgas_type_descriptor * GALGAS_bindingOptionList_2D_element::staticType
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_bindingOptionList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_bindingOptionList_2D_element (*this)) ;
   }
@@ -12298,8 +10761,8 @@ GALGAS_bindingOptionList_2D_element GALGAS_bindingOptionList_2D_element::extract
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_bindingOptionList_2D_element result ;
   const GALGAS_bindingOptionList_2D_element * p = (const GALGAS_bindingOptionList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_bindingOptionList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_bindingOptionList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("bindingOptionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12449,7 +10912,7 @@ void GALGAS_outletDeclarationList_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_outletDeclarationList_2D_element ("outletDeclarationList-element",
-                                                         NULL) ;
+                                                         nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12460,7 +10923,7 @@ const C_galgas_type_descriptor * GALGAS_outletDeclarationList_2D_element::static
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_outletDeclarationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_outletDeclarationList_2D_element (*this)) ;
   }
@@ -12474,8 +10937,8 @@ GALGAS_outletDeclarationList_2D_element GALGAS_outletDeclarationList_2D_element:
                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_outletDeclarationList_2D_element result ;
   const GALGAS_outletDeclarationList_2D_element * p = (const GALGAS_outletDeclarationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_outletDeclarationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_outletDeclarationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("outletDeclarationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12572,7 +11035,7 @@ void GALGAS_decoratedOutletMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_decoratedOutletMap_2D_element ("decoratedOutletMap-element",
-                                                      NULL) ;
+                                                      nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12583,7 +11046,7 @@ const C_galgas_type_descriptor * GALGAS_decoratedOutletMap_2D_element::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_decoratedOutletMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_decoratedOutletMap_2D_element (*this)) ;
   }
@@ -12597,8 +11060,8 @@ GALGAS_decoratedOutletMap_2D_element GALGAS_decoratedOutletMap_2D_element::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_decoratedOutletMap_2D_element result ;
   const GALGAS_decoratedOutletMap_2D_element * p = (const GALGAS_decoratedOutletMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_decoratedOutletMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_decoratedOutletMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("decoratedOutletMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12678,7 +11141,7 @@ void GALGAS_computedPropertyGenerationList_2D_element::description (C_String & i
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_computedPropertyGenerationList_2D_element ("computedPropertyGenerationList-element",
-                                                                  NULL) ;
+                                                                  nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12689,7 +11152,7 @@ const C_galgas_type_descriptor * GALGAS_computedPropertyGenerationList_2D_elemen
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_computedPropertyGenerationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_computedPropertyGenerationList_2D_element (*this)) ;
   }
@@ -12703,8 +11166,8 @@ GALGAS_computedPropertyGenerationList_2D_element GALGAS_computedPropertyGenerati
                                                                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_computedPropertyGenerationList_2D_element result ;
   const GALGAS_computedPropertyGenerationList_2D_element * p = (const GALGAS_computedPropertyGenerationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_computedPropertyGenerationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_computedPropertyGenerationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("computedPropertyGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12804,7 +11267,7 @@ void GALGAS_simpleStoredPropertyList_2D_element::description (C_String & ioStrin
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_simpleStoredPropertyList_2D_element ("simpleStoredPropertyList-element",
-                                                            NULL) ;
+                                                            nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12815,7 +11278,7 @@ const C_galgas_type_descriptor * GALGAS_simpleStoredPropertyList_2D_element::sta
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_simpleStoredPropertyList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_simpleStoredPropertyList_2D_element (*this)) ;
   }
@@ -12829,8 +11292,8 @@ GALGAS_simpleStoredPropertyList_2D_element GALGAS_simpleStoredPropertyList_2D_el
                                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_simpleStoredPropertyList_2D_element result ;
   const GALGAS_simpleStoredPropertyList_2D_element * p = (const GALGAS_simpleStoredPropertyList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_simpleStoredPropertyList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_simpleStoredPropertyList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("simpleStoredPropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -12910,7 +11373,7 @@ void GALGAS_toOnePropertyGenerationList_2D_element::description (C_String & ioSt
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_toOnePropertyGenerationList_2D_element ("toOnePropertyGenerationList-element",
-                                                               NULL) ;
+                                                               nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -12921,7 +11384,7 @@ const C_galgas_type_descriptor * GALGAS_toOnePropertyGenerationList_2D_element::
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_toOnePropertyGenerationList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_toOnePropertyGenerationList_2D_element (*this)) ;
   }
@@ -12935,8 +11398,8 @@ GALGAS_toOnePropertyGenerationList_2D_element GALGAS_toOnePropertyGenerationList
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_toOnePropertyGenerationList_2D_element result ;
   const GALGAS_toOnePropertyGenerationList_2D_element * p = (const GALGAS_toOnePropertyGenerationList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_toOnePropertyGenerationList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_toOnePropertyGenerationList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("toOnePropertyGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13022,7 +11485,7 @@ void GALGAS_actionMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_actionMap_2D_element ("actionMap-element",
-                                             NULL) ;
+                                             nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13033,7 +11496,7 @@ const C_galgas_type_descriptor * GALGAS_actionMap_2D_element::staticTypeDescript
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_actionMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_actionMap_2D_element (*this)) ;
   }
@@ -13047,8 +11510,8 @@ GALGAS_actionMap_2D_element GALGAS_actionMap_2D_element::extractObject (const GA
                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_actionMap_2D_element result ;
   const GALGAS_actionMap_2D_element * p = (const GALGAS_actionMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_actionMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_actionMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("actionMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13156,7 +11619,7 @@ void GALGAS_regularBindingList_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_regularBindingList_2D_element ("regularBindingList-element",
-                                                      NULL) ;
+                                                      nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13167,7 +11630,7 @@ const C_galgas_type_descriptor * GALGAS_regularBindingList_2D_element::staticTyp
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_regularBindingList_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_regularBindingList_2D_element (*this)) ;
   }
@@ -13181,8 +11644,8 @@ GALGAS_regularBindingList_2D_element GALGAS_regularBindingList_2D_element::extra
                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_regularBindingList_2D_element result ;
   const GALGAS_regularBindingList_2D_element * p = (const GALGAS_regularBindingList_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_regularBindingList_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_regularBindingList_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("regularBindingList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13272,7 +11735,7 @@ void GALGAS_arrayControllerBindingListAST_2D_element::description (C_String & io
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_arrayControllerBindingListAST_2D_element ("arrayControllerBindingListAST-element",
-                                                                 NULL) ;
+                                                                 nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13283,7 +11746,7 @@ const C_galgas_type_descriptor * GALGAS_arrayControllerBindingListAST_2D_element
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_arrayControllerBindingListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_arrayControllerBindingListAST_2D_element (*this)) ;
   }
@@ -13297,8 +11760,8 @@ GALGAS_arrayControllerBindingListAST_2D_element GALGAS_arrayControllerBindingLis
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_arrayControllerBindingListAST_2D_element result ;
   const GALGAS_arrayControllerBindingListAST_2D_element * p = (const GALGAS_arrayControllerBindingListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_arrayControllerBindingListAST_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_arrayControllerBindingListAST_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("arrayControllerBindingListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13417,7 +11880,7 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element::descript
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element ("autoLayoutTableViewControllerBoundColumnListAST-element",
-                                                                                   NULL) ;
+                                                                                   nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13428,7 +11891,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutTableViewControllerBoundColumn
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (*this)) ;
   }
@@ -13442,8 +11905,8 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element GALGAS_autoLay
                                                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element result ;
   const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element * p = (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutTableViewControllerBoundColumnListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13533,7 +11996,7 @@ void GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element::description
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element ("autoLayoutTableViewControllerAttributListAST-element",
-                                                                                NULL) ;
+                                                                                nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13544,7 +12007,7 @@ const C_galgas_type_descriptor * GALGAS_autoLayoutTableViewControllerAttributLis
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element (*this)) ;
   }
@@ -13558,8 +12021,8 @@ GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element GALGAS_autoLayout
                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element result ;
   const GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element * p = (const GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutTableViewControllerAttributListAST-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13679,7 +12142,7 @@ void GALGAS_classMap_2D_element::description (C_String & ioString,
 
 const C_galgas_type_descriptor
 kTypeDescriptor_GALGAS_classMap_2D_element ("classMap-element",
-                                            NULL) ;
+                                            nullptr) ;
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -13690,7 +12153,7 @@ const C_galgas_type_descriptor * GALGAS_classMap_2D_element::staticTypeDescripto
 //----------------------------------------------------------------------------------------------------------------------
 
 AC_GALGAS_root * GALGAS_classMap_2D_element::clonedObject (void) const {
-  AC_GALGAS_root * result = NULL ;
+  AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
     macroMyNew (result, GALGAS_classMap_2D_element (*this)) ;
   }
@@ -13704,8 +12167,8 @@ GALGAS_classMap_2D_element GALGAS_classMap_2D_element::extractObject (const GALG
                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_classMap_2D_element result ;
   const GALGAS_classMap_2D_element * p = (const GALGAS_classMap_2D_element *) inObject.embeddedObject () ;
-  if (NULL != p) {
-    if (NULL != dynamic_cast <const GALGAS_classMap_2D_element *> (p)) {
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_classMap_2D_element *> (p)) {
       result = *p ;
     }else{
       inCompiler->castError ("classMap-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
@@ -13883,7 +12346,7 @@ static const char * gNonTerminalNames_easyBindings_grammar [134] = {
 #define ACCEPT (1)
 #define END (-1)
 
-static const int16_t gActionTable_easyBindings_grammar [] = {
+static const int32_t gActionTable_easyBindings_grammar [] = {
 // State S0 (index = 0)
   C_Lexique_easyBindings_5F_lexique::kToken_include, SHIFT (1)
 , C_Lexique_easyBindings_5F_lexique::kToken_transient, SHIFT (2)
@@ -19962,7 +18425,7 @@ static const uint32_t gActionTableIndex_easyBindings_grammar [708] = {
 // Successor tables handle non terminal successors ;
 // an entry is (non_terminal_symbol, n) ; successor is state n.
 
-static const int16_t gSuccessorTable_easyBindings_grammar_0 [35] = {0, 15,
+static const int32_t gSuccessorTable_easyBindings_grammar_0 [35] = {0, 15,
   3, 16,
   4, 17,
   5, 18,
@@ -19980,7 +18443,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_0 [35] = {0, 15,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_16 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_16 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -19997,7 +18460,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_16 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_17 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_17 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20014,7 +18477,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_17 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_18 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_18 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20031,7 +18494,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_18 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_19 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_19 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20048,7 +18511,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_19 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_20 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_20 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20065,7 +18528,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_20 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_21 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_21 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20082,7 +18545,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_21 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_22 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_22 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20099,7 +18562,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_22 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_23 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_23 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20116,7 +18579,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_23 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_24 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_24 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20133,7 +18596,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_24 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_25 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_25 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20150,7 +18613,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_25 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_26 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_26 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20167,7 +18630,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_26 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_27 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_27 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20184,15 +18647,15 @@ static const int16_t gSuccessorTable_easyBindings_grammar_27 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_29 [3] = {45, 57, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_29 [3] = {45, 57, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_33 [3] = {40, 63, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_33 [3] = {40, 63, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_34 [3] = {41, 65, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_34 [3] = {41, 65, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_36 [3] = {51, 68, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_36 [3] = {51, 68, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_37 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_37 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20204,11 +18667,11 @@ static const int16_t gSuccessorTable_easyBindings_grammar_37 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_43 [3] = {130, 100, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_43 [3] = {130, 100, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_57 [3] = {46, 102, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_57 [3] = {46, 102, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_60 [33] = {3, 16,
+static const int32_t gSuccessorTable_easyBindings_grammar_60 [33] = {3, 16,
   4, 17,
   5, 18,
   6, 19,
@@ -20225,11 +18688,11 @@ static const int16_t gSuccessorTable_easyBindings_grammar_60 [33] = {3, 16,
   55, 30,
   83, 31, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_70 [3] = {109, 113, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_70 [3] = {109, 113, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_76 [3] = {113, 119, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_76 [3] = {113, 119, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_81 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_81 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20241,7 +18704,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_81 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_82 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_82 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20253,7 +18716,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_82 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_83 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_83 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20265,7 +18728,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_83 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_84 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_84 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20277,7 +18740,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_84 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_85 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_85 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20289,7 +18752,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_85 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_86 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_86 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20301,7 +18764,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_86 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_87 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_87 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20313,7 +18776,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_87 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_88 [23] = {2, 81,
+static const int32_t gSuccessorTable_easyBindings_grammar_88 [23] = {2, 81,
   13, 82,
   21, 83,
   24, 84,
@@ -20325,180 +18788,180 @@ static const int16_t gSuccessorTable_easyBindings_grammar_88 [23] = {2, 81,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_93 [3] = {11, 136, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_93 [3] = {11, 136, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_94 [3] = {11, 137, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_94 [3] = {11, 137, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_99 [5] = {38, 142,
+static const int32_t gSuccessorTable_easyBindings_grammar_99 [5] = {38, 142,
   132, 143, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_100 [3] = {129, 145, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_100 [3] = {129, 145, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_112 [3] = {109, 154, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_112 [3] = {109, 154, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_118 [3] = {113, 161, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_118 [3] = {113, 161, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_135 [3] = {60, 170, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_135 [3] = {60, 170, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_138 [3] = {87, 175, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_138 [3] = {87, 175, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_143 [3] = {131, 179, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_143 [3] = {131, 179, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_144 [3] = {130, 180, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_144 [3] = {130, 180, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_147 [5] = {11, 183,
+static const int32_t gSuccessorTable_easyBindings_grammar_147 [5] = {11, 183,
   56, 184, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_148 [3] = {84, 186, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_148 [3] = {84, 186, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_150 [3] = {42, 188, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_150 [3] = {42, 188, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_157 [5] = {14, 195,
+static const int32_t gSuccessorTable_easyBindings_grammar_157 [5] = {14, 195,
   68, 196, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_158 [5] = {14, 197,
+static const int32_t gSuccessorTable_easyBindings_grammar_158 [5] = {14, 197,
   68, 196, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_159 [5] = {22, 204,
+static const int32_t gSuccessorTable_easyBindings_grammar_159 [5] = {22, 204,
   91, 205, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_164 [3] = {120, 210, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_164 [3] = {120, 210, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_175 [3] = {88, 219, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_175 [3] = {88, 219, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_178 [3] = {132, 220, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_178 [3] = {132, 220, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_180 [3] = {129, 221, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_180 [3] = {129, 221, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_182 [3] = {47, 223, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_182 [3] = {47, 223, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_184 [3] = {57, 225, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_184 [3] = {57, 225, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_186 [3] = {85, 232, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_186 [3] = {85, 232, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_189 [3] = {43, 236, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_189 [3] = {43, 236, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_194 [3] = {18, 242, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_194 [3] = {18, 242, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_199 [3] = {92, 247, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_199 [3] = {92, 247, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_200 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_200 [13] = {23, 259,
   30, 260,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_201 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_201 [13] = {23, 259,
   30, 265,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_203 [5] = {23, 267,
+static const int32_t gSuccessorTable_easyBindings_grammar_203 [5] = {23, 267,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_206 [5] = {23, 269,
+static const int32_t gSuccessorTable_easyBindings_grammar_206 [5] = {23, 269,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_207 [3] = {114, 272, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_207 [3] = {114, 272, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_215 [3] = {62, 282, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_215 [3] = {62, 282, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_219 [3] = {86, 284, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_219 [3] = {86, 284, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_220 [3] = {131, 285, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_220 [3] = {131, 285, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_223 [3] = {49, 288, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_223 [3] = {49, 288, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_225 [3] = {58, 295, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_225 [3] = {58, 295, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_227 [3] = {85, 296, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_227 [3] = {85, 296, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_228 [3] = {85, 297, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_228 [3] = {85, 297, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_229 [3] = {85, 298, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_229 [3] = {85, 298, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_230 [3] = {85, 299, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_230 [3] = {85, 299, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_231 [3] = {85, 300, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_231 [3] = {85, 300, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_233 [3] = {42, 302, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_233 [3] = {42, 302, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_239 [5] = {35, 314,
+static const int32_t gSuccessorTable_easyBindings_grammar_239 [5] = {35, 314,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_241 [3] = {75, 317, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_241 [3] = {75, 317, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_242 [3] = {68, 318, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_242 [3] = {68, 318, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_243 [9] = {15, 327,
+static const int32_t gSuccessorTable_easyBindings_grammar_243 [9] = {15, 327,
   16, 328,
   17, 329,
   69, 330, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_244 [9] = {15, 331,
+static const int32_t gSuccessorTable_easyBindings_grammar_244 [9] = {15, 331,
   16, 328,
   17, 329,
   69, 330, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_245 [3] = {91, 332, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_245 [3] = {91, 332, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_248 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_248 [13] = {23, 259,
   30, 335,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_253 [3] = {98, 340, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_253 [3] = {98, 340, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_258 [7] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_258 [7] = {23, 259,
   33, 342,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_260 [3] = {91, 343, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_260 [3] = {91, 343, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_261 [3] = {115, 345, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_261 [3] = {115, 345, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_262 [3] = {116, 352, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_262 [3] = {116, 352, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_263 [3] = {117, 355, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_263 [3] = {117, 355, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_265 [3] = {91, 356, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_265 [3] = {91, 356, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_266 [3] = {94, 358, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_266 [3] = {94, 358, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_267 [3] = {93, 360, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_267 [3] = {93, 360, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_269 [3] = {105, 362, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_269 [3] = {105, 362, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_274 [5] = {35, 367,
+static const int32_t gSuccessorTable_easyBindings_grammar_274 [5] = {35, 367,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_276 [5] = {23, 369,
+static const int32_t gSuccessorTable_easyBindings_grammar_276 [5] = {23, 369,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_282 [3] = {61, 372, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_282 [3] = {61, 372, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_283 [3] = {87, 373, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_283 [3] = {87, 373, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_284 [3] = {89, 375, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_284 [3] = {89, 375, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_286 [3] = {48, 377, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_286 [3] = {48, 377, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_290 [3] = {58, 380, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_290 [3] = {58, 380, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_291 [3] = {58, 381, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_291 [3] = {58, 381, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_292 [3] = {58, 382, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_292 [3] = {58, 382, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_293 [3] = {58, 383, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_293 [3] = {58, 383, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_294 [3] = {58, 384, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_294 [3] = {58, 384, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_305 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_305 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20507,95 +18970,95 @@ static const int16_t gSuccessorTable_easyBindings_grammar_305 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_319 [5] = {18, 401,
+static const int32_t gSuccessorTable_easyBindings_grammar_319 [5] = {18, 401,
   70, 402, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_320 [5] = {14, 403,
+static const int32_t gSuccessorTable_easyBindings_grammar_320 [5] = {14, 403,
   68, 196, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_321 [5] = {14, 404,
+static const int32_t gSuccessorTable_easyBindings_grammar_321 [5] = {14, 404,
   68, 196, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_324 [7] = {16, 328,
+static const int32_t gSuccessorTable_easyBindings_grammar_324 [7] = {16, 328,
   17, 329,
   69, 407, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_325 [7] = {16, 328,
+static const int32_t gSuccessorTable_easyBindings_grammar_325 [7] = {16, 328,
   17, 329,
   69, 408, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_328 [7] = {16, 328,
+static const int32_t gSuccessorTable_easyBindings_grammar_328 [7] = {16, 328,
   17, 329,
   69, 410, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_334 [3] = {91, 412, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_334 [3] = {91, 412, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_338 [3] = {102, 418, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_338 [3] = {102, 418, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_344 [11] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_344 [11] = {23, 259,
   31, 421,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_346 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_346 [9] = {23, 259,
   32, 422,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_347 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_347 [9] = {23, 259,
   32, 423,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_348 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_348 [9] = {23, 259,
   32, 424,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_349 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_349 [9] = {23, 259,
   32, 425,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_350 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_350 [9] = {23, 259,
   32, 426,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_351 [9] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_351 [9] = {23, 259,
   32, 427,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_353 [7] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_353 [7] = {23, 259,
   33, 428,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_354 [7] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_354 [7] = {23, 259,
   33, 429,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_358 [3] = {91, 431, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_358 [3] = {91, 431, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_359 [5] = {23, 432,
+static const int32_t gSuccessorTable_easyBindings_grammar_359 [5] = {23, 432,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_360 [5] = {34, 434,
+static const int32_t gSuccessorTable_easyBindings_grammar_360 [5] = {34, 434,
   118, 435, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_361 [5] = {23, 436,
+static const int32_t gSuccessorTable_easyBindings_grammar_361 [5] = {23, 436,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_366 [3] = {121, 441, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_366 [3] = {121, 441, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_367 [3] = {122, 443, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_367 [3] = {122, 443, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_369 [3] = {107, 446, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_369 [3] = {107, 446, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_373 [3] = {88, 449, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_373 [3] = {88, 449, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_379 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_379 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20606,10 +19069,10 @@ static const int16_t gSuccessorTable_easyBindings_grammar_379 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_385 [5] = {12, 467,
+static const int32_t gSuccessorTable_easyBindings_grammar_385 [5] = {12, 467,
   59, 468, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_390 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_390 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20618,7 +19081,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_390 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_391 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_391 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20627,7 +19090,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_391 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_392 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_392 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20636,7 +19099,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_392 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_393 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_393 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20645,7 +19108,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_393 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_394 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_394 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20654,57 +19117,57 @@ static const int16_t gSuccessorTable_easyBindings_grammar_394 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_399 [7] = {16, 488,
+static const int32_t gSuccessorTable_easyBindings_grammar_399 [7] = {16, 488,
   17, 329,
   77, 489, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_402 [3] = {71, 491, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_402 [3] = {71, 491, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_403 [3] = {81, 493, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_403 [3] = {81, 493, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_404 [3] = {82, 495, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_404 [3] = {82, 495, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_405 [7] = {16, 328,
+static const int32_t gSuccessorTable_easyBindings_grammar_405 [7] = {16, 328,
   17, 329,
   69, 496, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_414 [3] = {96, 499, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_414 [3] = {96, 499, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_415 [3] = {101, 501, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_415 [3] = {101, 501, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_416 [3] = {103, 503, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_416 [3] = {103, 503, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_419 [3] = {99, 506, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_419 [3] = {99, 506, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_421 [3] = {115, 508, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_421 [3] = {115, 508, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_428 [3] = {117, 509, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_428 [3] = {117, 509, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_429 [3] = {117, 510, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_429 [3] = {117, 510, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_432 [3] = {93, 511, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_432 [3] = {93, 511, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_434 [3] = {91, 513, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_434 [3] = {91, 513, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_436 [3] = {105, 514, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_436 [3] = {105, 514, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_440 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_440 [13] = {23, 259,
   30, 516,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_445 [5] = {23, 521,
+static const int32_t gSuccessorTable_easyBindings_grammar_445 [5] = {23, 521,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_449 [3] = {86, 525, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_449 [3] = {86, 525, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_452 [3] = {48, 527, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_452 [3] = {48, 527, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_456 [3] = {110, 531, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_456 [3] = {110, 531, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_457 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_457 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20715,7 +19178,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_457 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_458 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_458 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20726,7 +19189,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_458 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_459 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_459 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20737,7 +19200,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_459 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_460 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_460 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20748,7 +19211,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_460 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_461 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_461 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20759,7 +19222,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_461 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_462 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_462 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20770,7 +19233,7 @@ static const int16_t gSuccessorTable_easyBindings_grammar_462 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_463 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_463 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20781,79 +19244,79 @@ static const int16_t gSuccessorTable_easyBindings_grammar_463 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_466 [3] = {64, 543, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_466 [3] = {64, 543, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_467 [5] = {12, 467,
+static const int32_t gSuccessorTable_easyBindings_grammar_467 [5] = {12, 467,
   59, 544, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_469 [3] = {43, 546, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_469 [3] = {43, 546, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_489 [3] = {76, 555, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_489 [3] = {76, 555, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_490 [3] = {72, 558, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_490 [3] = {72, 558, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_491 [3] = {74, 560, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_491 [3] = {74, 560, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_492 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_492 [13] = {23, 259,
   30, 561,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_494 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_494 [13] = {23, 259,
   30, 563,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_498 [3] = {97, 569, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_498 [3] = {97, 569, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_505 [3] = {100, 578, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_505 [3] = {100, 578, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_519 [3] = {123, 584, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_519 [3] = {123, 584, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_521 [3] = {107, 585, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_521 [3] = {107, 585, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_524 [3] = {62, 587, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_524 [3] = {62, 587, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_530 [3] = {110, 591, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_530 [3] = {110, 591, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_540 [3] = {11, 593, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_540 [3] = {11, 593, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_543 [3] = {65, 596, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_543 [3] = {65, 596, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_552 [3] = {78, 600, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_552 [3] = {78, 600, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_558 [3] = {73, 605, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_558 [3] = {73, 605, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_559 [5] = {14, 606,
+static const int32_t gSuccessorTable_easyBindings_grammar_559 [5] = {14, 606,
   68, 196, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_562 [9] = {15, 607,
+static const int32_t gSuccessorTable_easyBindings_grammar_562 [9] = {15, 607,
   16, 328,
   17, 329,
   69, 330, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_564 [9] = {15, 608,
+static const int32_t gSuccessorTable_easyBindings_grammar_564 [9] = {15, 608,
   16, 328,
   17, 329,
   69, 330, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_579 [3] = {104, 615, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_579 [3] = {104, 615, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_580 [5] = {35, 616,
+static const int32_t gSuccessorTable_easyBindings_grammar_580 [5] = {35, 616,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_581 [5] = {35, 617,
+static const int32_t gSuccessorTable_easyBindings_grammar_581 [5] = {35, 617,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_587 [3] = {61, 619, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_587 [3] = {61, 619, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_588 [3] = {90, 621, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_588 [3] = {90, 621, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_590 [21] = {1, 457,
+static const int32_t gSuccessorTable_easyBindings_grammar_590 [21] = {1, 457,
   24, 458,
   25, 459,
   26, 460,
@@ -20864,57 +19327,57 @@ static const int16_t gSuccessorTable_easyBindings_grammar_590 [21] = {1, 457,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_593 [5] = {12, 467,
+static const int32_t gSuccessorTable_easyBindings_grammar_593 [5] = {12, 467,
   59, 624, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_596 [3] = {63, 626, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_596 [3] = {63, 626, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_597 [3] = {53, 628, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_597 [3] = {53, 628, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_599 [3] = {79, 631, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_599 [3] = {79, 631, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_600 [3] = {80, 633, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_600 [3] = {80, 633, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_606 [5] = {22, 637,
+static const int32_t gSuccessorTable_easyBindings_grammar_606 [5] = {22, 637,
   91, 205, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_614 [5] = {35, 645,
+static const int32_t gSuccessorTable_easyBindings_grammar_614 [5] = {35, 645,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_616 [3] = {119, 647, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_616 [3] = {119, 647, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_617 [3] = {122, 648, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_617 [3] = {122, 648, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_623 [3] = {111, 653, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_623 [3] = {111, 653, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_625 [3] = {64, 654, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_625 [3] = {64, 654, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_626 [3] = {66, 656, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_626 [3] = {66, 656, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_632 [13] = {23, 259,
+static const int32_t gSuccessorTable_easyBindings_grammar_632 [13] = {23, 259,
   30, 661,
   31, 261,
   32, 262,
   33, 263,
   95, 264, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_634 [7] = {16, 488,
+static const int32_t gSuccessorTable_easyBindings_grammar_634 [7] = {16, 488,
   17, 329,
   77, 662, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_640 [7] = {16, 328,
+static const int32_t gSuccessorTable_easyBindings_grammar_640 [7] = {16, 328,
   17, 329,
   69, 664, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_649 [3] = {124, 669, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_649 [3] = {124, 669, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_652 [3] = {112, 673, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_652 [3] = {112, 673, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_654 [3] = {65, 675, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_654 [3] = {65, 675, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_657 [3] = {53, 677, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_657 [3] = {53, 677, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_658 [17] = {13, 390,
+static const int32_t gSuccessorTable_easyBindings_grammar_658 [17] = {13, 390,
   21, 391,
   24, 392,
   25, 393,
@@ -20923,209 +19386,209 @@ static const int16_t gSuccessorTable_easyBindings_grammar_658 [17] = {13, 390,
   106, 90,
   108, 91, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_662 [3] = {76, 679, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_662 [3] = {76, 679, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_668 [5] = {125, 683,
+static const int32_t gSuccessorTable_easyBindings_grammar_668 [5] = {125, 683,
   126, 684, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_675 [3] = {63, 688, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_675 [3] = {63, 688, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_680 [5] = {35, 690,
+static const int32_t gSuccessorTable_easyBindings_grammar_680 [5] = {35, 690,
   128, 315, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_685 [3] = {90, 693, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_685 [3] = {90, 693, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_690 [3] = {119, 695, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_690 [3] = {119, 695, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_692 [3] = {18, 696, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_692 [3] = {18, 696, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_694 [3] = {67, 698, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_694 [3] = {67, 698, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_696 [3] = {127, 700, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_696 [3] = {127, 700, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_700 [5] = {125, 704,
+static const int32_t gSuccessorTable_easyBindings_grammar_700 [5] = {125, 704,
   126, 684, -1} ;
 
-static const int16_t gSuccessorTable_easyBindings_grammar_706 [3] = {67, 707, -1} ;
+static const int32_t gSuccessorTable_easyBindings_grammar_706 [3] = {67, 707, -1} ;
 
-static const int16_t * gSuccessorTable_easyBindings_grammar [708] = {
-gSuccessorTable_easyBindings_grammar_0, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
+static const int32_t * gSuccessorTable_easyBindings_grammar [708] = {
+gSuccessorTable_easyBindings_grammar_0, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
   gSuccessorTable_easyBindings_grammar_16, gSuccessorTable_easyBindings_grammar_17, gSuccessorTable_easyBindings_grammar_18, gSuccessorTable_easyBindings_grammar_19, 
   gSuccessorTable_easyBindings_grammar_20, gSuccessorTable_easyBindings_grammar_21, gSuccessorTable_easyBindings_grammar_22, gSuccessorTable_easyBindings_grammar_23, 
   gSuccessorTable_easyBindings_grammar_24, gSuccessorTable_easyBindings_grammar_25, gSuccessorTable_easyBindings_grammar_26, gSuccessorTable_easyBindings_grammar_27, 
-  NULL, gSuccessorTable_easyBindings_grammar_29, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_33, gSuccessorTable_easyBindings_grammar_34, NULL, 
-  gSuccessorTable_easyBindings_grammar_36, gSuccessorTable_easyBindings_grammar_37, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_43, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_57, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_60, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_70, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_76, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_81, gSuccessorTable_easyBindings_grammar_82, gSuccessorTable_easyBindings_grammar_83, 
+  nullptr, gSuccessorTable_easyBindings_grammar_29, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_33, gSuccessorTable_easyBindings_grammar_34, nullptr, 
+  gSuccessorTable_easyBindings_grammar_36, gSuccessorTable_easyBindings_grammar_37, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_43, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_57, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_60, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_70, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_76, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_81, gSuccessorTable_easyBindings_grammar_82, gSuccessorTable_easyBindings_grammar_83, 
   gSuccessorTable_easyBindings_grammar_84, gSuccessorTable_easyBindings_grammar_85, gSuccessorTable_easyBindings_grammar_86, gSuccessorTable_easyBindings_grammar_87, 
-  gSuccessorTable_easyBindings_grammar_88, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_93, gSuccessorTable_easyBindings_grammar_94, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_99, 
-  gSuccessorTable_easyBindings_grammar_100, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_112, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_118, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_135, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_138, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_143, 
-  gSuccessorTable_easyBindings_grammar_144, NULL, NULL, gSuccessorTable_easyBindings_grammar_147, 
-  gSuccessorTable_easyBindings_grammar_148, NULL, gSuccessorTable_easyBindings_grammar_150, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_157, gSuccessorTable_easyBindings_grammar_158, gSuccessorTable_easyBindings_grammar_159, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_164, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_175, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_178, NULL, 
-  gSuccessorTable_easyBindings_grammar_180, NULL, gSuccessorTable_easyBindings_grammar_182, NULL, 
-  gSuccessorTable_easyBindings_grammar_184, NULL, gSuccessorTable_easyBindings_grammar_186, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_189, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_194, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_199, 
-  gSuccessorTable_easyBindings_grammar_200, gSuccessorTable_easyBindings_grammar_201, NULL, gSuccessorTable_easyBindings_grammar_203, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_206, gSuccessorTable_easyBindings_grammar_207, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_215, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_219, 
-  gSuccessorTable_easyBindings_grammar_220, NULL, NULL, gSuccessorTable_easyBindings_grammar_223, 
-  NULL, gSuccessorTable_easyBindings_grammar_225, NULL, gSuccessorTable_easyBindings_grammar_227, 
+  gSuccessorTable_easyBindings_grammar_88, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_93, gSuccessorTable_easyBindings_grammar_94, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_99, 
+  gSuccessorTable_easyBindings_grammar_100, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_112, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_118, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_135, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_138, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_143, 
+  gSuccessorTable_easyBindings_grammar_144, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_147, 
+  gSuccessorTable_easyBindings_grammar_148, nullptr, gSuccessorTable_easyBindings_grammar_150, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_157, gSuccessorTable_easyBindings_grammar_158, gSuccessorTable_easyBindings_grammar_159, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_164, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_175, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_178, nullptr, 
+  gSuccessorTable_easyBindings_grammar_180, nullptr, gSuccessorTable_easyBindings_grammar_182, nullptr, 
+  gSuccessorTable_easyBindings_grammar_184, nullptr, gSuccessorTable_easyBindings_grammar_186, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_189, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_194, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_199, 
+  gSuccessorTable_easyBindings_grammar_200, gSuccessorTable_easyBindings_grammar_201, nullptr, gSuccessorTable_easyBindings_grammar_203, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_206, gSuccessorTable_easyBindings_grammar_207, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_215, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_219, 
+  gSuccessorTable_easyBindings_grammar_220, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_223, 
+  nullptr, gSuccessorTable_easyBindings_grammar_225, nullptr, gSuccessorTable_easyBindings_grammar_227, 
   gSuccessorTable_easyBindings_grammar_228, gSuccessorTable_easyBindings_grammar_229, gSuccessorTable_easyBindings_grammar_230, gSuccessorTable_easyBindings_grammar_231, 
-  NULL, gSuccessorTable_easyBindings_grammar_233, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_239, 
-  NULL, gSuccessorTable_easyBindings_grammar_241, gSuccessorTable_easyBindings_grammar_242, gSuccessorTable_easyBindings_grammar_243, 
-  gSuccessorTable_easyBindings_grammar_244, gSuccessorTable_easyBindings_grammar_245, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_248, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_253, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_258, NULL, 
+  nullptr, gSuccessorTable_easyBindings_grammar_233, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_239, 
+  nullptr, gSuccessorTable_easyBindings_grammar_241, gSuccessorTable_easyBindings_grammar_242, gSuccessorTable_easyBindings_grammar_243, 
+  gSuccessorTable_easyBindings_grammar_244, gSuccessorTable_easyBindings_grammar_245, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_248, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_253, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_258, nullptr, 
   gSuccessorTable_easyBindings_grammar_260, gSuccessorTable_easyBindings_grammar_261, gSuccessorTable_easyBindings_grammar_262, gSuccessorTable_easyBindings_grammar_263, 
-  NULL, gSuccessorTable_easyBindings_grammar_265, gSuccessorTable_easyBindings_grammar_266, gSuccessorTable_easyBindings_grammar_267, 
-  NULL, gSuccessorTable_easyBindings_grammar_269, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_274, NULL, 
-  gSuccessorTable_easyBindings_grammar_276, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_282, gSuccessorTable_easyBindings_grammar_283, 
-  gSuccessorTable_easyBindings_grammar_284, NULL, gSuccessorTable_easyBindings_grammar_286, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_290, gSuccessorTable_easyBindings_grammar_291, 
-  gSuccessorTable_easyBindings_grammar_292, gSuccessorTable_easyBindings_grammar_293, gSuccessorTable_easyBindings_grammar_294, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_305, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_319, 
-  gSuccessorTable_easyBindings_grammar_320, gSuccessorTable_easyBindings_grammar_321, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_324, gSuccessorTable_easyBindings_grammar_325, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_328, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_334, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_338, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_344, NULL, gSuccessorTable_easyBindings_grammar_346, gSuccessorTable_easyBindings_grammar_347, 
+  nullptr, gSuccessorTable_easyBindings_grammar_265, gSuccessorTable_easyBindings_grammar_266, gSuccessorTable_easyBindings_grammar_267, 
+  nullptr, gSuccessorTable_easyBindings_grammar_269, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_274, nullptr, 
+  gSuccessorTable_easyBindings_grammar_276, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_282, gSuccessorTable_easyBindings_grammar_283, 
+  gSuccessorTable_easyBindings_grammar_284, nullptr, gSuccessorTable_easyBindings_grammar_286, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_290, gSuccessorTable_easyBindings_grammar_291, 
+  gSuccessorTable_easyBindings_grammar_292, gSuccessorTable_easyBindings_grammar_293, gSuccessorTable_easyBindings_grammar_294, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_305, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_319, 
+  gSuccessorTable_easyBindings_grammar_320, gSuccessorTable_easyBindings_grammar_321, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_324, gSuccessorTable_easyBindings_grammar_325, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_328, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_334, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_338, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_344, nullptr, gSuccessorTable_easyBindings_grammar_346, gSuccessorTable_easyBindings_grammar_347, 
   gSuccessorTable_easyBindings_grammar_348, gSuccessorTable_easyBindings_grammar_349, gSuccessorTable_easyBindings_grammar_350, gSuccessorTable_easyBindings_grammar_351, 
-  NULL, gSuccessorTable_easyBindings_grammar_353, gSuccessorTable_easyBindings_grammar_354, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_358, gSuccessorTable_easyBindings_grammar_359, 
-  gSuccessorTable_easyBindings_grammar_360, gSuccessorTable_easyBindings_grammar_361, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_366, gSuccessorTable_easyBindings_grammar_367, 
-  NULL, gSuccessorTable_easyBindings_grammar_369, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_373, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_379, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_385, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_390, gSuccessorTable_easyBindings_grammar_391, 
-  gSuccessorTable_easyBindings_grammar_392, gSuccessorTable_easyBindings_grammar_393, gSuccessorTable_easyBindings_grammar_394, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_399, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_402, gSuccessorTable_easyBindings_grammar_403, 
-  gSuccessorTable_easyBindings_grammar_404, gSuccessorTable_easyBindings_grammar_405, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_414, gSuccessorTable_easyBindings_grammar_415, 
-  gSuccessorTable_easyBindings_grammar_416, NULL, NULL, gSuccessorTable_easyBindings_grammar_419, 
-  NULL, gSuccessorTable_easyBindings_grammar_421, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_428, gSuccessorTable_easyBindings_grammar_429, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_432, NULL, gSuccessorTable_easyBindings_grammar_434, NULL, 
-  gSuccessorTable_easyBindings_grammar_436, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_440, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_445, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_449, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_452, NULL, NULL, NULL, 
+  nullptr, gSuccessorTable_easyBindings_grammar_353, gSuccessorTable_easyBindings_grammar_354, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_358, gSuccessorTable_easyBindings_grammar_359, 
+  gSuccessorTable_easyBindings_grammar_360, gSuccessorTable_easyBindings_grammar_361, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_366, gSuccessorTable_easyBindings_grammar_367, 
+  nullptr, gSuccessorTable_easyBindings_grammar_369, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_373, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_379, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_385, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_390, gSuccessorTable_easyBindings_grammar_391, 
+  gSuccessorTable_easyBindings_grammar_392, gSuccessorTable_easyBindings_grammar_393, gSuccessorTable_easyBindings_grammar_394, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_399, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_402, gSuccessorTable_easyBindings_grammar_403, 
+  gSuccessorTable_easyBindings_grammar_404, gSuccessorTable_easyBindings_grammar_405, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_414, gSuccessorTable_easyBindings_grammar_415, 
+  gSuccessorTable_easyBindings_grammar_416, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_419, 
+  nullptr, gSuccessorTable_easyBindings_grammar_421, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_428, gSuccessorTable_easyBindings_grammar_429, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_432, nullptr, gSuccessorTable_easyBindings_grammar_434, nullptr, 
+  gSuccessorTable_easyBindings_grammar_436, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_440, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_445, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_449, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_452, nullptr, nullptr, nullptr, 
   gSuccessorTable_easyBindings_grammar_456, gSuccessorTable_easyBindings_grammar_457, gSuccessorTable_easyBindings_grammar_458, gSuccessorTable_easyBindings_grammar_459, 
   gSuccessorTable_easyBindings_grammar_460, gSuccessorTable_easyBindings_grammar_461, gSuccessorTable_easyBindings_grammar_462, gSuccessorTable_easyBindings_grammar_463, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_466, gSuccessorTable_easyBindings_grammar_467, 
-  NULL, gSuccessorTable_easyBindings_grammar_469, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_489, gSuccessorTable_easyBindings_grammar_490, gSuccessorTable_easyBindings_grammar_491, 
-  gSuccessorTable_easyBindings_grammar_492, NULL, gSuccessorTable_easyBindings_grammar_494, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_498, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_505, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_519, 
-  NULL, gSuccessorTable_easyBindings_grammar_521, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_524, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_530, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_540, NULL, NULL, gSuccessorTable_easyBindings_grammar_543, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_552, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_558, gSuccessorTable_easyBindings_grammar_559, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_562, NULL, 
-  gSuccessorTable_easyBindings_grammar_564, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_579, 
-  gSuccessorTable_easyBindings_grammar_580, gSuccessorTable_easyBindings_grammar_581, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_587, 
-  gSuccessorTable_easyBindings_grammar_588, NULL, gSuccessorTable_easyBindings_grammar_590, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_593, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_596, gSuccessorTable_easyBindings_grammar_597, NULL, gSuccessorTable_easyBindings_grammar_599, 
-  gSuccessorTable_easyBindings_grammar_600, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_606, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_614, NULL, 
-  gSuccessorTable_easyBindings_grammar_616, gSuccessorTable_easyBindings_grammar_617, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_623, 
-  NULL, gSuccessorTable_easyBindings_grammar_625, gSuccessorTable_easyBindings_grammar_626, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_632, NULL, gSuccessorTable_easyBindings_grammar_634, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_640, NULL, NULL, NULL, 
-  NULL, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_649, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_652, NULL, gSuccessorTable_easyBindings_grammar_654, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_657, gSuccessorTable_easyBindings_grammar_658, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_662, NULL, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_668, NULL, NULL, NULL, 
-  NULL, NULL, NULL, gSuccessorTable_easyBindings_grammar_675, 
-  NULL, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_680, NULL, NULL, NULL, 
-  NULL, gSuccessorTable_easyBindings_grammar_685, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_690, NULL, 
-  gSuccessorTable_easyBindings_grammar_692, NULL, gSuccessorTable_easyBindings_grammar_694, NULL, 
-  gSuccessorTable_easyBindings_grammar_696, NULL, NULL, NULL, 
-  gSuccessorTable_easyBindings_grammar_700, NULL, NULL, NULL, 
-  NULL, NULL, gSuccessorTable_easyBindings_grammar_706, NULL} ;
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_466, gSuccessorTable_easyBindings_grammar_467, 
+  nullptr, gSuccessorTable_easyBindings_grammar_469, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_489, gSuccessorTable_easyBindings_grammar_490, gSuccessorTable_easyBindings_grammar_491, 
+  gSuccessorTable_easyBindings_grammar_492, nullptr, gSuccessorTable_easyBindings_grammar_494, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_498, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_505, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_519, 
+  nullptr, gSuccessorTable_easyBindings_grammar_521, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_524, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_530, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_540, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_543, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_552, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_558, gSuccessorTable_easyBindings_grammar_559, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_562, nullptr, 
+  gSuccessorTable_easyBindings_grammar_564, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_579, 
+  gSuccessorTable_easyBindings_grammar_580, gSuccessorTable_easyBindings_grammar_581, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_587, 
+  gSuccessorTable_easyBindings_grammar_588, nullptr, gSuccessorTable_easyBindings_grammar_590, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_593, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_596, gSuccessorTable_easyBindings_grammar_597, nullptr, gSuccessorTable_easyBindings_grammar_599, 
+  gSuccessorTable_easyBindings_grammar_600, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_606, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_614, nullptr, 
+  gSuccessorTable_easyBindings_grammar_616, gSuccessorTable_easyBindings_grammar_617, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_623, 
+  nullptr, gSuccessorTable_easyBindings_grammar_625, gSuccessorTable_easyBindings_grammar_626, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_632, nullptr, gSuccessorTable_easyBindings_grammar_634, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_640, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_649, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_652, nullptr, gSuccessorTable_easyBindings_grammar_654, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_657, gSuccessorTable_easyBindings_grammar_658, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_662, nullptr, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_668, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, nullptr, gSuccessorTable_easyBindings_grammar_675, 
+  nullptr, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_680, nullptr, nullptr, nullptr, 
+  nullptr, gSuccessorTable_easyBindings_grammar_685, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_690, nullptr, 
+  gSuccessorTable_easyBindings_grammar_692, nullptr, gSuccessorTable_easyBindings_grammar_694, nullptr, 
+  gSuccessorTable_easyBindings_grammar_696, nullptr, nullptr, nullptr, 
+  gSuccessorTable_easyBindings_grammar_700, nullptr, nullptr, nullptr, 
+  nullptr, nullptr, gSuccessorTable_easyBindings_grammar_706, nullptr} ;
 
 //---------------------------------------------------------------------------------------------------------------------*
 //                                                                                                                      
@@ -21133,7 +19596,7 @@ gSuccessorTable_easyBindings_grammar_0, NULL, NULL, NULL,
 //                                                                                                                      
 //---------------------------------------------------------------------------------------------------------------------*
 
-static const int16_t gProductionsTable_easyBindings_grammar [327 * 2] = {
+static const int32_t gProductionsTable_easyBindings_grammar [327 * 2] = {
   0, 1,
   1, 3,
   2, 5,
@@ -21470,35 +19933,27 @@ static const int16_t gProductionsTable_easyBindings_grammar [327 * 2] = {
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_start_5F_symbol_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_start_5F_symbol_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_easyBindings_5F_syntax_start_5F_symbol_i0_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_easyBindings_5F_syntax_start_5F_symbol_i0_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_start_5F_symbol_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 GALGAS_location &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 0 :
-      rule_easyBindings_5F_syntax_start_5F_symbol_i0_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 0) {
+  rule_easyBindings_5F_syntax_start_5F_symbol_i0_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21620,34 +20075,26 @@ void cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (C_Compiler 
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_delegate_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_delegate_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_delegate_ (GALGAS_externSwiftDelegateList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 1 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 1) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21659,34 +20106,26 @@ void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_delegate_ (GALGAS_e
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_func_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 2 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 2) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_func_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 2 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 2) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_func_ (GALGAS_externSwiftFunctionList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 2 :
-      rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 2) {
+  rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21698,34 +20137,26 @@ void cGrammar_easyBindings_5F_grammar::nt_extern_5F_swift_5F_func_ (GALGAS_exter
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_class_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 3 :
-      rule_easyBindings_5F_syntax_class_5F_declaration_i3_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 3) {
+  rule_easyBindings_5F_syntax_class_5F_declaration_i3_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_class_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 3 :
-      rule_easyBindings_5F_syntax_class_5F_declaration_i3_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 3) {
+  rule_easyBindings_5F_syntax_class_5F_declaration_i3_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_class_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 3 :
-      rule_easyBindings_5F_syntax_class_5F_declaration_i3_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 3) {
+  rule_easyBindings_5F_syntax_class_5F_declaration_i3_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21737,34 +20168,26 @@ void cGrammar_easyBindings_5F_grammar::nt_class_5F_declaration_ (GALGAS_astDecla
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_easyBindings_5F_syntax_enum_5F_declaration_i4_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_easyBindings_5F_syntax_enum_5F_declaration_i4_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_easyBindings_5F_syntax_enum_5F_declaration_i4_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_easyBindings_5F_syntax_enum_5F_declaration_i4_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 4 :
-      rule_easyBindings_5F_syntax_enum_5F_declaration_i4_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 4) {
+  rule_easyBindings_5F_syntax_enum_5F_declaration_i4_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21776,34 +20199,26 @@ void cGrammar_easyBindings_5F_grammar::nt_enum_5F_declaration_ (GALGAS_astDeclar
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_function_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_function_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_enum_5F_function_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 5 :
-      rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 5) {
+  rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21815,34 +20230,26 @@ void cGrammar_easyBindings_5F_grammar::nt_enum_5F_function_5F_declaration_ (GALG
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_entity_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_easyBindings_5F_syntax_entity_5F_declaration_i6_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_easyBindings_5F_syntax_entity_5F_declaration_i6_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_entity_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_easyBindings_5F_syntax_entity_5F_declaration_i6_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_easyBindings_5F_syntax_entity_5F_declaration_i6_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_entity_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_easyBindings_5F_syntax_entity_5F_declaration_i6_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 6) {
+  rule_easyBindings_5F_syntax_entity_5F_declaration_i6_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21854,34 +20261,26 @@ void cGrammar_easyBindings_5F_grammar::nt_entity_5F_declaration_ (GALGAS_astDecl
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_document_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 7 :
-      rule_easyBindings_5F_syntax_document_5F_declaration_i7_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 7) {
+  rule_easyBindings_5F_syntax_document_5F_declaration_i7_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_document_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 7 :
-      rule_easyBindings_5F_syntax_document_5F_declaration_i7_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 7) {
+  rule_easyBindings_5F_syntax_document_5F_declaration_i7_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_document_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 7 :
-      rule_easyBindings_5F_syntax_document_5F_declaration_i7_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 7) {
+  rule_easyBindings_5F_syntax_document_5F_declaration_i7_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21893,34 +20292,26 @@ void cGrammar_easyBindings_5F_grammar::nt_document_5F_declaration_ (GALGAS_astDe
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_preferences_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 8 :
-      rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 8) {
+  rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_preferences_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 8 :
-      rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 8) {
+  rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_preferences_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 8 :
-      rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 8) {
+  rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -21932,34 +20323,26 @@ void cGrammar_easyBindings_5F_grammar::nt_preferences_5F_declaration_ (GALGAS_as
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_graphviz_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 9 :
-      rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 9) {
+  rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_graphviz_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 9 :
-      rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 9) {
+  rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_graphviz_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 9 :
-      rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 9) {
+  rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22018,6 +20401,7 @@ void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_class_5F_declaration_ (G
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -22028,24 +20412,18 @@ void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_class_5F_declaration_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_formal_5F_parameter_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 13 :
-      rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 13) {
+  rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_formal_5F_parameter_5F_list_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 13 :
-      rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 13) {
+  rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -22053,11 +20431,9 @@ void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_formal_5F_parameter_5F_l
                                 GALGAS_autoLayoutClassParameterList &  parameter_2,
                                 GALGAS_lstring &  parameter_3,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 13 :
-      rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 13) {
+  rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22069,35 +20445,27 @@ void cGrammar_easyBindings_5F_grammar::nt_autolayout_5F_formal_5F_parameter_5F_l
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_view_5F_binding_5F_specification_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 14 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 14) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_view_5F_binding_5F_specification_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 14 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 14) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_view_5F_binding_5F_specification_ (const GALGAS_lstring  parameter_1,
                                 GALGAS_autoLayoutViewClassBindingSpecificationList &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 14 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 14) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22147,6 +20515,7 @@ void cGrammar_easyBindings_5F_grammar::nt_stack_5F_view_5F_declaration_ (GALGAS_
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -22157,35 +20526,27 @@ void cGrammar_easyBindings_5F_grammar::nt_stack_5F_view_5F_declaration_ (GALGAS_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list_ (GALGAS_stringset &  parameter_1,
                                 GALGAS_astAutoLayoutViewFunctionCallList &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 17 :
-      rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 17) {
+  rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22197,24 +20558,18 @@ void cGrammar_easyBindings_5F_grammar::nt_auto_5F_layout_5F_func_5F_call_5F_list
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_5F_list_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -22223,11 +20578,9 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_5F_list_ (GALGAS_b
                                 GALGAS_astNewStackViewDeclarationList &  parameter_3,
                                 GALGAS_astViewInstructionList &  parameter_4,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 18 :
-      rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 18) {
+  rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22296,6 +20649,7 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_ (GALGAS_stringset
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -22306,35 +20660,27 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_instruction_ (GALGAS_stringset
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_computed_5F_view_5F_instruction_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_computed_5F_view_5F_instruction_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_computed_5F_view_5F_instruction_ (GALGAS_stringset &  parameter_1,
                                 GALGAS_astComputedViewInstruction &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 21 :
-      rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 21) {
+  rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22346,35 +20692,27 @@ void cGrammar_easyBindings_5F_grammar::nt_computed_5F_view_5F_instruction_ (GALG
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_ (GALGAS_stringset &  parameter_1,
                                 GALGAS_astAutoLayoutViewInstructionParameterList &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 22) {
+  rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22386,34 +20724,26 @@ void cGrammar_easyBindings_5F_grammar::nt_view_5F_actual_5F_parameter_5F_list_ (
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_class_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_class_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_class_5F_declaration_ (GALGAS_astDeclarationStruct &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 25 :
-      rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 25) {
+  rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22425,34 +20755,26 @@ void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_class_5F_declaration_ (GALGA
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_5F_specification_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_5F_specification_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_5F_specification_ (GALGAS_outletClassBindingSpecificationList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 26 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 26) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22464,34 +20786,26 @@ void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_5F_specification_ (G
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_declaration_ (GALGAS_outletDeclarationList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 27 :
-      rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 27) {
+  rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22503,24 +20817,18 @@ void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_declaration_ (GALGAS_outletD
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_i28_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_i28_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_i28_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_i28_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -22531,11 +20839,9 @@ void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_ (GALGAS_tableValueB
                                 GALGAS_graphicController &  parameter_5,
                                 GALGAS_regularBindingList &  parameter_6,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 28 :
-      rule_easyBindings_5F_syntax_outlet_5F_binding_i28_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 28) {
+  rule_easyBindings_5F_syntax_outlet_5F_binding_i28_(parameter_1, parameter_2, parameter_3, parameter_4, parameter_5, parameter_6, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22547,34 +20853,26 @@ void cGrammar_easyBindings_5F_grammar::nt_outlet_5F_binding_ (GALGAS_tableValueB
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_observable_5F_property_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_easyBindings_5F_syntax_observable_5F_property_i29_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_easyBindings_5F_syntax_observable_5F_property_i29_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_observable_5F_property_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_easyBindings_5F_syntax_observable_5F_property_i29_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_easyBindings_5F_syntax_observable_5F_property_i29_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_observable_5F_property_ (GALGAS_observablePropertyAST &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 29 :
-      rule_easyBindings_5F_syntax_observable_5F_property_i29_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 29) {
+  rule_easyBindings_5F_syntax_observable_5F_property_i29_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22635,6 +20933,7 @@ void cGrammar_easyBindings_5F_grammar::nt_transient_5F_declaration_ (const GALGA
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -22704,6 +21003,7 @@ void cGrammar_easyBindings_5F_grammar::nt_controller_5F_declaration_ (const GALG
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -22714,24 +21014,18 @@ void cGrammar_easyBindings_5F_grammar::nt_controller_5F_declaration_ (const GALG
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_simple_5F_stored_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_simple_5F_stored_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -22740,11 +21034,9 @@ void cGrammar_easyBindings_5F_grammar::nt_simple_5F_stored_5F_declaration_ (cons
                                 GALGAS_stringset &  parameter_3,
                                 GALGAS_astDeclarationStruct &  parameter_4,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 34 :
-      rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 34) {
+  rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_(parameter_1, parameter_2, parameter_3, parameter_4, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22756,35 +21048,27 @@ void cGrammar_easyBindings_5F_grammar::nt_simple_5F_stored_5F_declaration_ (cons
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_toOne_5F_relationship_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_toOne_5F_relationship_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_toOne_5F_relationship_ (const GALGAS_lstring  parameter_1,
                                 GALGAS_astDeclarationStruct &  parameter_2,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 35 :
-      rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_(parameter_1, parameter_2, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 35) {
+  rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_(parameter_1, parameter_2, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22796,24 +21080,18 @@ void cGrammar_easyBindings_5F_grammar::nt_toOne_5F_relationship_ (const GALGAS_l
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_toMany_5F_relationship_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_toMany_5F_relationship_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
@@ -22821,11 +21099,9 @@ void cGrammar_easyBindings_5F_grammar::nt_toMany_5F_relationship_ (const GALGAS_
                                 GALGAS_stringset &  parameter_2,
                                 GALGAS_astDeclarationStruct &  parameter_3,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 36 :
-      rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_(parameter_1, parameter_2, parameter_3, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 36) {
+  rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_(parameter_1, parameter_2, parameter_3, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22837,34 +21113,26 @@ void cGrammar_easyBindings_5F_grammar::nt_toMany_5F_relationship_ (const GALGAS_
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_action_5F_declaration_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 37 :
-      rule_easyBindings_5F_syntax_action_5F_declaration_i37_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 37) {
+  rule_easyBindings_5F_syntax_action_5F_declaration_i37_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_action_5F_declaration_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 37 :
-      rule_easyBindings_5F_syntax_action_5F_declaration_i37_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 37) {
+  rule_easyBindings_5F_syntax_action_5F_declaration_i37_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_action_5F_declaration_ (GALGAS_lstringlist &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 37 :
-      rule_easyBindings_5F_syntax_action_5F_declaration_i37_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 37) {
+  rule_easyBindings_5F_syntax_action_5F_declaration_i37_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22876,34 +21144,26 @@ void cGrammar_easyBindings_5F_grammar::nt_action_5F_declaration_ (GALGAS_lstring
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingExpression_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 38 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 38) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingExpression_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 38 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 38) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingExpression_ (GALGAS_abstractBooleanMultipleBindingExpressionAST &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 38 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 38) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22915,34 +21175,26 @@ void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingExpression_ (GAL
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingComparison_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 39 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 39) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingComparison_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 39 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 39) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingComparison_ (GALGAS_abstractBooleanMultipleBindingExpressionAST &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 39 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 39) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -22954,34 +21206,26 @@ void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingComparison_ (GAL
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingTerm_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingTerm_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingTerm_ (GALGAS_abstractBooleanMultipleBindingExpressionAST &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 40 :
-      rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 40) {
+  rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -23049,6 +21293,7 @@ void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingOperand_ (GALGAS
     break ;
   default :
     inLexique->internalBottomUpParserError (HERE) ;
+    break ;
   }
 }
 
@@ -23059,34 +21304,26 @@ void cGrammar_easyBindings_5F_grammar::nt_booleanMultipleBindingOperand_ (GALGAS
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_binding_5F_option_5F_list_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_binding_5F_option_5F_list_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_binding_5F_option_5F_list_ (GALGAS_bindingOptionList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 45 :
-      rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 45) {
+  rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -23098,34 +21335,26 @@ void cGrammar_easyBindings_5F_grammar::nt_binding_5F_option_5F_list_ (GALGAS_bin
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_explicit_5F_value_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_easyBindings_5F_syntax_explicit_5F_value_i49_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_easyBindings_5F_syntax_explicit_5F_value_i49_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_explicit_5F_value_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_easyBindings_5F_syntax_explicit_5F_value_i49_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_easyBindings_5F_syntax_explicit_5F_value_i49_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_explicit_5F_value_ (GALGAS_abstractDefaultValue &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 49 :
-      rule_easyBindings_5F_syntax_explicit_5F_value_i49_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 49) {
+  rule_easyBindings_5F_syntax_explicit_5F_value_i49_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -23137,34 +21366,26 @@ void cGrammar_easyBindings_5F_grammar::nt_explicit_5F_value_ (GALGAS_abstractDef
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_xcode_5F_project_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_easyBindings_5F_syntax_xcode_5F_project_i50_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_easyBindings_5F_syntax_xcode_5F_project_i50_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_xcode_5F_project_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_easyBindings_5F_syntax_xcode_5F_project_i50_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_easyBindings_5F_syntax_xcode_5F_project_i50_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_xcode_5F_project_ (GALGAS_lstring &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 50 :
-      rule_easyBindings_5F_syntax_xcode_5F_project_i50_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 50) {
+  rule_easyBindings_5F_syntax_xcode_5F_project_i50_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -23176,34 +21397,26 @@ void cGrammar_easyBindings_5F_grammar::nt_xcode_5F_project_ (GALGAS_lstring &  p
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_easyBindings_5F_syntax_main_5F_xib_i51_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_easyBindings_5F_syntax_main_5F_xib_i51_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_easyBindings_5F_syntax_main_5F_xib_i51_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_easyBindings_5F_syntax_main_5F_xib_i51_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_ (GALGAS_mainXibDescriptorList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 51 :
-      rule_easyBindings_5F_syntax_main_5F_xib_i51_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 51) {
+  rule_easyBindings_5F_syntax_main_5F_xib_i51_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }
@@ -23215,34 +21428,26 @@ void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_ (GALGAS_mainXibDescriptor
 //---------------------------------------------------------------------------------------------------------------------*
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_5F_line_parse (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_parse(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_parse(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_5F_line_indexing (C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_indexing(inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_indexing(inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
-    break ;
   }
 }
 
 void cGrammar_easyBindings_5F_grammar::nt_main_5F_xib_5F_line_ (GALGAS_mainXibLineDescriptorList &  parameter_1,
                                 C_Lexique_easyBindings_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 52 :
-      rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_(parameter_1, inLexique) ;
-    break ;
-  default :
+  if (inLexique->nextProductionIndex () == 52) {
+  rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_(parameter_1, inLexique) ;
+  }else{
     inLexique->internalBottomUpParserError (HERE) ;
   }
 }

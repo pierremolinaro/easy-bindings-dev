@@ -16,13 +16,13 @@
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -38,14 +38,14 @@ const cDirectoryWrapper gWrapperDirectory_4_transientManager (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [2] = {
   & gWrapperDirectory_4_transientManager,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -61,13 +61,13 @@ const cDirectoryWrapper gWrapperDirectory_3_transientManager (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -83,13 +83,13 @@ const cDirectoryWrapper gWrapperDirectory_5_transientManager (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -105,13 +105,13 @@ const cDirectoryWrapper gWrapperDirectory_1_transientManager (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -127,7 +127,7 @@ const cDirectoryWrapper gWrapperDirectory_2_transientManager (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -137,7 +137,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [5] =
   & gWrapperDirectory_5_transientManager,
   & gWrapperDirectory_1_transientManager,
   & gWrapperDirectory_2_transientManager,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -252,7 +252,7 @@ void cPtr_proxyDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticContext
                                                           COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_proxyDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_3249 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.ggs", 87)) ;
-  if (NULL != objectArray_3249) {
+  if (nullptr != objectArray_3249) {
     macroValidSharedObject (objectArray_3249, cMapElement_classMap) ;
     GALGAS_classKind var_proxyKind_3406 ;
     const GALGAS_proxyDeclarationAST temp_1 = this ;
@@ -330,7 +330,7 @@ void cPtr_proxyDeclarationAST::method_secondAnalysisPhase (GALGAS_semanticContex
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_proxyDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_4520 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("proxy.ggs", 119)) ;
-  if (NULL != objectArray_4520) {
+  if (nullptr != objectArray_4520) {
     macroValidSharedObject (objectArray_4520, cMapElement_classMap) ;
     GALGAS_propertyKind var_relationshipKind_4670 ;
     const GALGAS_proxyDeclarationAST temp_1 = this ;
@@ -897,7 +897,7 @@ void cPtr_atomicPropertyDeclarationAST::method_firstAnalysisPhase (GALGAS_semant
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_atomicPropertyDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_4940 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 124)) ;
-  if (NULL != objectArray_4940) {
+  if (nullptr != objectArray_4940) {
     macroValidSharedObject (objectArray_4940, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_5100 ;
     const GALGAS_atomicPropertyDeclarationAST temp_1 = this ;
@@ -1252,7 +1252,7 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GALGAS_semanticContex
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipAST temp_0 = this ;
   cMapElement_classMap * objectArray_4117 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 103)) ;
-  if (NULL != objectArray_4117) {
+  if (nullptr != objectArray_4117) {
     macroValidSharedObject (objectArray_4117, cMapElement_classMap) ;
     const GALGAS_toOneRelationshipAST temp_1 = this ;
     ioArgument_ioGeneration.mProperty_mToOneClassImplementations.addAssign_operation (temp_1.readProperty_mDestinationEntityName ().readProperty_string ()  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 106)) ;
@@ -1330,7 +1330,7 @@ void cPtr_toOneRelationshipAST::method_thirdAnalysisPhase (GALGAS_semanticContex
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toOneRelationshipAST temp_0 = this ;
   cMapElement_classMap * objectArray_5547 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 135)) ;
-  if (NULL != objectArray_5547) {
+  if (nullptr != objectArray_5547) {
     macroValidSharedObject (objectArray_5547, cMapElement_classMap) ;
     GALGAS_classKind var_classKind_5712 ;
     GALGAS_propertyMap var_destinationEntityPropertyMap_5728 ;
@@ -1629,7 +1629,7 @@ void cPtr_toManyRelationshipAST::method_firstAnalysisPhase (GALGAS_semanticConte
                                                             COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_toManyRelationshipAST temp_0 = this ;
   cMapElement_classMap * objectArray_5489 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 138)) ;
-  if (NULL != objectArray_5489) {
+  if (nullptr != objectArray_5489) {
     macroValidSharedObject (objectArray_5489, cMapElement_classMap) ;
     const GALGAS_toManyRelationshipAST temp_1 = this ;
     ioArgument_ioGeneration.mProperty_mToManyClassImplementations.addAssign_operation (temp_1.readProperty_mDestinationEntityName ().readProperty_string ()  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 141)) ;
@@ -2102,13 +2102,13 @@ GALGAS_string cPtr_toManyPropertyGeneration::getter_resetToManyRelationships (C_
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -2124,14 +2124,14 @@ const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [2] = {
   & gWrapperDirectory_4_validationStubExtension,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -2147,13 +2147,13 @@ const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -2169,13 +2169,13 @@ const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -2191,13 +2191,13 @@ const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -2213,7 +2213,7 @@ const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -2223,7 +2223,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_
   & gWrapperDirectory_5_validationStubExtension,
   & gWrapperDirectory_1_validationStubExtension,
   & gWrapperDirectory_2_validationStubExtension,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -2346,13 +2346,13 @@ void cPtr_actionFileGeneration::method_generateCode (const GALGAS_string constin
 //--- All files of 'indexes' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'indexes' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_4 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'indexes'
@@ -2368,14 +2368,14 @@ const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate (
 //--- All files of 'build' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_3 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'build' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [2] = {
   & gWrapperDirectory_4_actionGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'build'
@@ -2391,13 +2391,13 @@ const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
 //--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'controllers' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_5 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'controllers'
@@ -2413,13 +2413,13 @@ const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate (
 //--- All files of 'standard-properties' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'standard-properties' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_1 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'standard-properties'
@@ -2435,13 +2435,13 @@ const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate (
 //--- All files of 'xcode-project' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of 'xcode-project' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_2 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory 'xcode-project'
@@ -2457,7 +2457,7 @@ const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate (
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
@@ -2467,7 +2467,7 @@ static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate
   & gWrapperDirectory_5_actionGenerationTemplate,
   & gWrapperDirectory_1_actionGenerationTemplate,
   & gWrapperDirectory_2_actionGenerationTemplate,
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -3059,7 +3059,7 @@ void cPtr_arrayControllerDeclarationAST::method_firstAnalysisPhase (GALGAS_seman
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_arrayControllerDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_4326 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("array-controller.ggs", 106)) ;
-  if (NULL != objectArray_4326) {
+  if (nullptr != objectArray_4326) {
     macroValidSharedObject (objectArray_4326, cMapElement_classMap) ;
     GALGAS_actionMap temp_1 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("array-controller.ggs", 109)) ;
     temp_1.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("array-controller.ggs", 109)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 109)) ;
@@ -3408,13 +3408,13 @@ GALGAS_string cPtr_arrayControllerPropertyGeneration::getter_populateExplorerWin
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_arrayControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_arrayControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -3654,7 +3654,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutTableViewControllerDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_5394 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 142)) ;
-  if (NULL != objectArray_5394) {
+  if (nullptr != objectArray_5394) {
     macroValidSharedObject (objectArray_5394, cMapElement_classMap) ;
     GALGAS_actionMap temp_1 = GALGAS_actionMap::constructor_emptyMap (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)) ;
     temp_1.addAssign_operation (GALGAS_string ("add").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 145)) ;
@@ -4211,13 +4211,13 @@ GALGAS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_popul
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_autoLayoutTableViewControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_autoLayoutTableViewControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -4566,7 +4566,7 @@ void cPtr_selectionControllerDeclarationAST::method_firstAnalysisPhase (GALGAS_s
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_selectionControllerDeclarationAST temp_0 = this ;
   cMapElement_classMap * objectArray_3216 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("selection-controller.ggs", 68)) ;
-  if (NULL != objectArray_3216) {
+  if (nullptr != objectArray_3216) {
     macroValidSharedObject (objectArray_3216, cMapElement_classMap) ;
     GALGAS_propertyKind var_propertyKind_3364 ;
     const GALGAS_selectionControllerDeclarationAST temp_1 = this ;
@@ -4854,13 +4854,13 @@ GALGAS_string cPtr_selectionControllerPropertyGeneration::getter_populateExplore
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_selectionControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_selectionControllerGenerationTemplate_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -5543,7 +5543,7 @@ static void releaseOnceFunctionResult_predefinedDates (void) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-C_PrologueEpilogue gEpilogueForOnceFunction_predefinedDates (NULL,
+C_PrologueEpilogue gEpilogueForOnceFunction_predefinedDates (nullptr,
                                                              releaseOnceFunctionResult_predefinedDates) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5551,7 +5551,7 @@ C_PrologueEpilogue gEpilogueForOnceFunction_predefinedDates (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_predefinedDates [1] = {
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5654,7 +5654,7 @@ static void releaseOnceFunctionResult_predefinedColors (void) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-C_PrologueEpilogue gEpilogueForOnceFunction_predefinedColors (NULL,
+C_PrologueEpilogue gEpilogueForOnceFunction_predefinedColors (nullptr,
                                                               releaseOnceFunctionResult_predefinedColors) ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -5662,7 +5662,7 @@ C_PrologueEpilogue gEpilogueForOnceFunction_predefinedColors (NULL,
 //----------------------------------------------------------------------------------------------------------------------
 
 static const C_galgas_type_descriptor * functionArgs_predefinedColors [1] = {
-  NULL
+  nullptr
 } ;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -6064,13 +6064,13 @@ void routine_generateCode (const GALGAS_string constinArgument_inXcodeProjectStr
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_standard_5F_properties_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_standard_5F_properties_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -6422,13 +6422,13 @@ void routine_generateXcodeProjectInternal (const GALGAS_string constinArgument_i
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_additionalXcodeFiles_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_additionalXcodeFiles_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -6536,13 +6536,13 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (C_Compi
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_xcodeProjectGenerationFilewrapper_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_xcodeProjectGenerationFilewrapper_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -7245,13 +7245,13 @@ void routine_generateTestFile (const GALGAS_string constinArgument_inBundleIdent
 //--- All files of '' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_testFiles_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- All sub-directories of '' directory
 
 static const cDirectoryWrapper * gWrapperAllDirectories_testFiles_0 [1] = {
-  NULL
+  nullptr
 } ;
 
 //--- Directory ''
@@ -7332,14 +7332,14 @@ static void print_tool_help_message (void) {
 
 static const char * kSourceFileExtensions [] = {
   "eb",
-  NULL
+  nullptr
 } ;    
 
 //----------------------------------------------------------------------------------------------------------------------
 
 static const char * kSourceFileHelpMessages [] = {
   "a source text file with the .easyBindings extension",
-  NULL
+  nullptr
 } ;    
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -7540,8 +7540,8 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     returnCode = 1 ;
   }else{
   //--- Common lexique object
-    C_Compiler * commonCompiler = NULL ;
-    macroMyNew (commonCompiler, C_Compiler (NULL COMMA_HERE)) ;
+    C_Compiler * commonCompiler = nullptr ;
+    macroMyNew (commonCompiler, C_Compiler (nullptr COMMA_HERE)) ;
     try{
       routine_before (commonCompiler COMMA_HERE) ;
       cLexiqueIntrospection::handleGetKeywordListOption (commonCompiler) ;
