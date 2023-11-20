@@ -215,7 +215,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   let allowedTypes = @typeKindList [.boolType]
   var @stringset definedAttributes = []
   var @2stringlist attributeListForGeneration = []
-  for (name value) in self.mTableViewControllerAttributListAST do
+  for (name, value) in self.mTableViewControllerAttributListAST do
     if not attributes.hasKey (name.string) then
       error name : "unknown attribute"
     elsif definedAttributes.hasKey (name.string) then
@@ -286,7 +286,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   end
   var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
   var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
-  for (editable propertyName columnParameterList sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
+  for (editable, propertyName, columnParameterList, sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
   //------- Run action ? Check action is declared
 #    if columnBindings.mRunActionName.string != "" then
 #      actionMap.searchKey !columnBindings.mRunActionName]
@@ -321,7 +321,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     if formalArgumentList.count () != columnParameterList.count () then
       error propertyName : columnParameterList.count ().string () + " parameter(s), " + formalArgumentList.count () + " required"
     else
-      for (formalName formalType) in formalArgumentList, (actualName actualType actualParameter) in columnParameterList do
+      for (formalName, formalType) in formalArgumentList, (actualName, actualType, actualParameter) in columnParameterList do
         if formalName.string != actualName.string then
           error actualName : "required argument name: " + formalName
         end
@@ -521,7 +521,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
     ?!@stringset unused ioGeneratedFileSet) {
 //-- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = []
-  for (* * mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
+  for (2*, mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
     observedProperties += !mObservablePropertyForSorting
   end
   let s = filewrapper [autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation:

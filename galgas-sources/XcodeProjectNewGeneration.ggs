@@ -155,7 +155,7 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
     dependentTargets += !dependencyBuildRef !ref
   end
   var @stringlist resourceFileBuildRefs = inResourceFileBuildRefs
-  for (ref name) in inProductCopyList do
+  for (ref, name) in inProductCopyList do
     !?self.addBuildFile (!fileRef:ref, !fileName:name, ?buildRef:let @string buildRef)
     resourceFileBuildRefs += !buildRef
   end

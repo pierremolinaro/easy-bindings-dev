@@ -124,11 +124,11 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
     !?enumConstantMap.insertKey (s, enumConstantMap.count ())
   end
   var @enumFuncMap enumFuncMap = []
-  for (enumTypeName funcName associationList) in ioSemanticContext.mEnumerationFunctionListAST do
+  for (enumTypeName, funcName, associationList) in ioSemanticContext.mEnumerationFunctionListAST do
     if enumTypeName.string == self.mClassName.string then
       var @stringset definedConstantNameSet = []
       var @enumFunAssociationSortedList associationSortedList = []
-      for (constantName associatedString) in associationList do
+      for (constantName, associatedString) in associationList do
         enumConstantMap.searchKey (constantName, ?let idx)
         associationSortedList += !idx !associatedString.string
         if definedConstantNameSet.hasKey (constantName) then

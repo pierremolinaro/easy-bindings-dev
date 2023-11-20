@@ -125,9 +125,9 @@ proc buildBindingSpecificationMap(
   ?!@semanticContext ioSemanticContext,
   let @outletClassBindingSpecificationList inBindingSpecificationListMap)
 {
-  for (mOutletClassName mBindingName mOutletClassBindingSpecificationModelList mBindingOptionList) in inBindingSpecificationListMap do
+  for (mOutletClassName, mBindingName, mOutletClassBindingSpecificationModelList, mBindingOptionList) in inBindingSpecificationListMap do
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
-    for (mModelTypeName mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
+    for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         outletBindingSpecificationModelList +=
           !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []) # Any enum type
@@ -149,7 +149,7 @@ proc buildBindingSpecificationMap(
       end
     end
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
-    for (mOptionName mOptionTypeName) in mBindingOptionList do
+    for (mOptionName, mOptionTypeName) in mBindingOptionList do
       ioSemanticContext.mClassMap.searchKey (mOptionTypeName, ?let @classKind classKind, ?3*)
       let @typeKind typeKind
       switch classKind

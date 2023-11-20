@@ -384,7 +384,7 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
       result += self.mDependencyList.transientComputeFunctionCall (inPreferences, self.mClassName, self.mPropertyName, "transient")
     end
     result += "    }\n"
-    for (mDependency 3*) in self.mDependencyList do
+    for (mDependency, 3*) in self.mDependencyList do
       let s = mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
@@ -414,7 +414,7 @@ func @transientDependencyListForGeneration.transientComputeFunctionCall(
   let uwself = if inPreferences then "preferences_" else "unwSelf." end
   outResult = ""
   let ident = "        "
-  for (dependency 2* defaultValue) in self do (idx)
+  for (dependency, 2*, defaultValue) in self do (idx)
     if defaultValue != "" then
       outResult += ident + "var s" + idx + " = " + dependency.modelStringForSelf (uwself) + ".selection" + "\n"
       outResult += ident + "switch s" + idx + " {\n"
@@ -471,7 +471,7 @@ func @transientDependencyListForGeneration.transientComputeFunctionCall(
 
 func @transientDependencyListForGeneration.needs_unwSelf (let @bool inPreferences) -> @bool outResult {
   outResult = false
-  for (dep 3*) in self while not outResult do
+  for (dep, 3*) in self while not outResult do
     outResult = dep.needs_unwSelf (inPreferences)
   end
 }

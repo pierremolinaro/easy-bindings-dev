@@ -120,7 +120,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 //-- Analyze extern functions
   let @stringset availableCallers = ["awakeFromNib" : "init"]
   var @externFunctionMap externFunctionMap = []
-  for (mExternSwiftFunctionName mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
+  for (mExternSwiftFunctionName, mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     !?externFunctionMap.insertKey (mExternSwiftFunctionName)
     if not availableCallers.hasKey (mCallerName.string) then
       var s = "invalid caller; available callers:"
@@ -163,7 +163,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = []
   var @autoLayoutOutletMap autoLayoutOutletMap = []
-  for (viewName viewDeclaration) in self.mDeclaration.mViewDeclarationList do
+  for (viewName, viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     viewDeclaration.checkView
       (viewName,
@@ -273,7 +273,7 @@ override proc @preferencesForGeneration.generateCode(
     s
   )
 //-- Configurators
-  for (outletName outletTypeName) in self.mConfiguratorMap do
+  for (outletName, outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       "Preferences",
       outletName.string,

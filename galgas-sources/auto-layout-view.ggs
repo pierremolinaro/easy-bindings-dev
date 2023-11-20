@@ -531,9 +531,9 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
                                 ?!@autoLayoutOutletMap ioOutletMap,
                                 !@autoLayoutViewInstructionGenerationFuncCallList outFuncCallList) {
   outFuncCallList = []
-  for (functionName actualParameterList) in self do
+  for (functionName, actualParameterList) in self do
     var mangleName = functionName.string + "("
-    for (parameterName 2*) in actualParameterList do
+    for (parameterName, 2*) in actualParameterList do
       mangleName += parameterName.string + ":"
     end
     mangleName += ")"
@@ -543,7 +543,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
       error functionName 
       : formalParameterList.count ().string () + " parameter(s) required, " + actualParameterList.count () + " provided"
     else
-      for (name type value) in actualParameterList, (formalName formalType) in formalParameterList do
+      for (name, type, value) in actualParameterList, (formalName, formalType) in formalParameterList do
         if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
           inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
           if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
@@ -871,7 +871,7 @@ override proc @astComputedViewInstruction.generateViewCode(
     error self.mAutoLayoutViewClassName 
     : formalParameterList.count ().string () + " parameter(s) required, " + self.mParameterList.count () + " provided"
   else
-    for (name type value) in self.mParameterList, (formalName formalType) in formalParameterList do
+    for (name, type, value) in self.mParameterList, (formalName, formalType) in formalParameterList do
       if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
         inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
         if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
@@ -1307,7 +1307,7 @@ proc analyzeAutoLayoutRegularBinding(
   let @string inSelfSwiftName,
   ?!@autoLayoutRegularBindingsGenerationList ioRegularBindingsGenerationList)
 {
-  for (mBindingName mObservablePropertyList mBindingOptionList) in inRegularBindingList do
+  for (mBindingName, mObservablePropertyList, mBindingOptionList) in inRegularBindingList do
   //-- Analyze model
     var @outletBindingModelList boundModelTypeList = []
     var @boundObjectList boundModelListForGeneration = []
@@ -1365,7 +1365,7 @@ proc analyzeAutoLayoutRegularBinding(
         + " model(s) required for this binding (found: "
         + boundModelTypeList.count () + ")"
     else
-      for (required_mModelType required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind found_mErrorLocation) in boundModelTypeList do
+      for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient () then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
@@ -1383,13 +1383,13 @@ proc analyzeAutoLayoutRegularBinding(
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"
-        for (mOptionType mOptionName) in controllerBindingOptionDecoratedList do
+        for (mOptionType, mOptionName) in controllerBindingOptionDecoratedList do
           s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName ()
         end
       end
       error mBindingName : s
     else
-      for (controller_mOptionType controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName binding_mOptionValue) in mBindingOptionList do
+      for (controller_mOptionType, controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName, binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
@@ -1714,9 +1714,9 @@ list @autoLayoutViewInstructionGenerationFuncCallList {
 //----------------------------------------------------------------------------------------------------------------------
 
 proc @autoLayoutViewInstructionGenerationFuncCallList.generate (let @string inIndentation, ?!@string ioStr) {
-  for (funcName parameterList) in self do
+  for (funcName, parameterList) in self do
     ioStr += inIndentation + "  ." + funcName + " ("
-    for (parameterName parameterStringValue) in parameterList
+    for (parameterName, parameterStringValue) in parameterList
       do ioStr += parameterName + ": " + parameterStringValue
       between ioStr += ", "
     end
@@ -1742,7 +1742,7 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
   result = "  final func " + inViewName + " () -> AutoLayoutHorizontalStackView {\n"
   result += "    let hStackView = AutoLayoutHorizontalStackView ()\n"
   self.mFuncCallList.generate ("    ", !?result)
-  for (instance type) in self.mNewStackViewDeclarationList do
+  for (instance, type) in self.mNewStackViewDeclarationList do
     result += "    let " + instance + " = self." + type + " ()\n"
   end
   for (instruction) in self.mInstructionList do (index)
@@ -1761,7 +1761,7 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
   result = "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
   result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
   self.mFuncCallList.generate ("    ", !?result)
-  for (instance type) in self.mNewStackViewDeclarationList do
+  for (instance, type) in self.mNewStackViewDeclarationList do
     result += "    let " + instance + " = self." + type + " ()\n"
   end
   for (instruction) in self.mInstructionList do (index)
@@ -1839,15 +1839,15 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
   end
   result += ")\n"
   self.mFunctionCallList.generate (inIndentation, !?result)
-  for (bindingName boundObjectList optionListString) in self.mRegularBindingsGenerationList do
+  for (bindingName, boundObjectList, optionListString) in self.mRegularBindingsGenerationList do
     result += inIndentation + "  .bind_" + bindingName + " ("
-    for (boundObjectString *) in boundObjectList
+    for (boundObjectString, *) in boundObjectList
       do result += boundObjectString
       between result += ", "
     end
     result += optionListString + ")\n"
   end
-  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+  for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
   switch self.mRunBindingGeneration
@@ -1887,10 +1887,10 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
                          let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView ()\n"
   self.mFuncCallList.generate (inIndentation, !?result)
-  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+  for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
-  for (instance type) in self.mNewStackViewDeclarationList do
+  for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
   result += inIndentation + "do{\n"
@@ -1911,10 +1911,10 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
                          let @string inIndentation) -> @string {
   result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
   self.mFuncCallList.generate (inIndentation, !?result)
-  for (bindingName binding) in self.mMultipleBindingGenerationList do 
+  for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString () + ")\n"
   end
-  for (instance type) in self.mNewStackViewDeclarationList do
+  for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
   result += inIndentation + "do{\n"

@@ -55,7 +55,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
       end
       arrowList += !"  " + entityName + " -> " + superEntityName +  " [dir=both arrowtail=dot arrowhead=normal]"
     end
-    for (propertyName propertyKind 2*) in propertyMap do
+    for (propertyName, propertyKind, 2*) in propertyMap do
       switch propertyKind
       case property (type, accessibility) :
         switch accessibility 
@@ -167,7 +167,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       arrowList += !superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]"
       !?entityStrongReferenceGraph.addEdge (.new (superEntityName, .nowhere), .new (entityName, .nowhere))
     end
-    for (* propertyKind 2*) in propertyMap do
+    for (*, propertyKind, 2*) in propertyMap do
       switch propertyKind
       case property (2 *) :
       case arrayController (2*) :

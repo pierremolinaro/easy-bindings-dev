@@ -195,7 +195,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
 #    for (lkey 3*) in inheritedPropertyMap do
 #        message "  inherit '" + lkey + "'\n"
 #    end
-    for (lkey kind actionMap isOverriding) in propertyMap do
+    for (lkey, kind, actionMap, isOverriding) in propertyMap do
       if isOverriding then
         inheritedPropertyMap.searchKey (lkey, ?3*)
       else

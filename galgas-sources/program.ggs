@@ -70,7 +70,7 @@ case ."eb"
   end
 //---------------------------------------- Check enum type is declared for every enum function
   if @uint.errorCount == 0 then
-    for (enumTypeName * *) in semanticContext.mEnumerationFunctionListAST do
+    for (enumTypeName, 2*) in semanticContext.mEnumerationFunctionListAST do
       semanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
       if not type.isAtomic () then
         error enumTypeName : "this type should be an enum type"

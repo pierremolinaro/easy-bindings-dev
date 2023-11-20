@@ -207,7 +207,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 //-- Analyze controller bindings
-  for (controllerName hiddenBinding) in self.mArrayControllerBindingListAST do
+  for (controllerName, hiddenBinding) in self.mArrayControllerBindingListAST do
   //-- Hidden
     switch hiddenBinding
     case noBinding :
@@ -237,7 +237,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
   var @autoLayoutConfiguratorMap configuratorMap = []
   var @autoLayoutOutletMap autoLayoutOutletMap = []
-  for (viewName viewDeclaration) in self.mViewDeclarationList do
+  for (viewName, viewDeclaration) in self.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     viewDeclaration.checkView
       (viewName,
@@ -288,7 +288,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
 //-- Check outlet linker
   var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = []
   var @stringset linkerNameSet = []
-  for (linkerName ouletNameList) in self.mOutletLinkerList do
+  for (linkerName, ouletNameList) in self.mOutletLinkerList do
     if linkerNameSet.hasKey (linkerName.string) then
       error linkerName : "duplicated linker name"
     end
@@ -388,7 +388,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     fileName,
     s
   )
-  for (outletName outletTypeName) in self.mConfiguratorMap do
+  for (outletName, outletTypeName) in self.mConfiguratorMap do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentOutletConfiguratorImplementation:
       self.mDocumentName,
       outletName.string,
@@ -413,7 +413,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       !makeExecutable:false
     )
   end
-  for (linkerName outletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
+  for (linkerName, outletNameAndTypeNameList) in self.mOutletLinkerGenerationList do
     let s = filewrapper [autoLayoutDocumentGenerationTemplate.outletLinkerImplementation:
       self.mDocumentName,
       linkerName,

@@ -142,7 +142,7 @@ private proc generateStandardProperties (let @string inOutputDirectory,
   for (propertyClass) in inPropertyClassList do
     generateClassProperty (inOutputDirectory, propertyClass, !transient: false, !?ioGeneratedFileSet)
   end
-  for (propertyType isClass) in inTransientPropertyExternTypeList do
+  for (propertyType, isClass) in inTransientPropertyExternTypeList do
     if isClass then
       generateClassProperty (inOutputDirectory, propertyType, !transient: true, !?ioGeneratedFileSet)
     else

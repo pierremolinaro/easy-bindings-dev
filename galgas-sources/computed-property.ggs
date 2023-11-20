@@ -380,7 +380,7 @@ override func @computedPropertyGeneration.configurationCode (let @bool inPrefere
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
-    for (mDependency 3*) in self.mDependencyList do
+    for (mDependency, 3*) in self.mDependencyList do
       let s = mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
