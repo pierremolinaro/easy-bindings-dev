@@ -91,7 +91,7 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
     switch proxyKind
     case prefs :
       error self.mProxyTypeName : "an atomic type is required here"
-    case entity (* @bool isGraphic 2*) :
+    case entity (*, @bool isGraphic, 2*) :
       switch self.mProxyKind 
       case toManyProxy :
       let k = @propertyKind.toMany (
@@ -129,11 +129,11 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
       error self.mToOneRelationshipName : "a toOne relationship is required here"
     case toMany (4*) :
       error self.mToOneRelationshipName : "a toOne relationship is required here"
-    case toOne (toOneTypeName 4*) :
+    case toOne (toOneTypeName, 4*) :
       ioSemanticContext.mClassMap.searchKey (toOneTypeName, ?*, ?let propertyMap, ?2*)
       propertyMap.searchKey (self.mPropertyName, ?let propertyKind, ?2*)
       switch propertyKind
-      case property (propertyType 1*) :
+      case property (propertyType, 1*) :
         mPropertyGenerationList += !@atomicProxyGeneration (
           self.mProxyName.string,
           self.mProxyKind,
@@ -144,7 +144,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
         if self.mProxyKind != .propertyProxy then
           error self.mPropertyName : "this property is not atomic"
         end
-      case toMany (toManyTypeName 3*) :
+      case toMany (toManyTypeName, 3*) :
         ioSemanticContext.mClassMap.searchKey (toManyTypeName, ?4*)
         mPropertyGenerationList += !@toManyProxyGeneration (
           self.mProxyName.string,

@@ -239,7 +239,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       error self.mSuperEntityName : "an atomic class cannot be a super entity"
     case document (*) :
       error self.mSuperEntityName : "a document cannot be a super entity"
-    case entity (* @bool isGraphic @bool isAbstract *) :
+    case entity (*, @bool isGraphic, @bool isAbstract, *) :
       if isGraphic & not self.mIsGraphicEntity then
         error self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end

@@ -313,8 +313,7 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
       else
         error self.mValue : "only 'empty' is accepted as default BezierPathArray"  
       end
-    case enumType (@string enumTypeName @enumConstantMap constantMap *
-    ) :
+    case enumType (@string enumTypeName, @enumConstantMap constantMap, *) :
       found = true
       if constantMap.hasKey (self.mValue.string) then
         outSwiftDefaultValueAsString = enumTypeName + "." + self.mValue.string
@@ -372,7 +371,7 @@ override proc @prefsAsDefaultValue.analyzeDefaultValueType (
 {
   inPreferencesPropertyMap.searchKey (self.mPrefPropertyName, ?let @propertyKind kind, ?2*)
   switch kind
-  case property (@typeKind type *) :
+  case property (@typeKind type, *) :
     var found = false
     for (t) in inAttributeActualTypeList while not found do
       found = type == t

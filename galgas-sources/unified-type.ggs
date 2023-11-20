@@ -26,9 +26,9 @@ func @typeKind.typeName() -> @string {
     result = "NSBezierPath"
   case bezierPathArrayType :
     result = "BezierPathArray"
-  case enumType (typeName 2*) :
+  case enumType (typeName, 2*) :
     result = typeName
-  case entityType (typeName *) :
+  case entityType (typeName, *) :
     result = typeName
   case classType (typeName) :
     result = typeName
@@ -67,7 +67,7 @@ func @typeKind.isGraphic() -> @bool outResult {
     outResult = false
   case enumType (3*) :
     outResult = false
-  case entityType (* isGraphic) :
+  case entityType (*, isGraphic) :
     outResult = isGraphic
   case classType (*) :
     outResult = false
@@ -86,13 +86,13 @@ list @typeKindList {
 
 func @propertyKind.typeName() -> @string {
   switch self
-  case property (type *) :
+  case property (type, *) :
     result = type.typeName ()
-  case toMany (typeName 3*) :
+  case toMany (typeName, 3*) :
     result = typeName
-  case toOne (typeName 4*) :
+  case toOne (typeName, 4*) :
     result = typeName
-  case arrayController (typeName *) :
+  case arrayController (typeName, *) :
     result = typeName
   case selectionController (typeName) :
     result = typeName
@@ -103,13 +103,13 @@ func @propertyKind.typeName() -> @string {
 
 func @propertyKind.swiftTypeName() -> @string {
   switch self
-  case property (type *) :
+  case property (type, *) :
     result = type.swiftTypeName ()
-  case toMany (typeName 3*) :
+  case toMany (typeName, 3*) :
     result = typeName
-  case toOne (typeName 4*) :
+  case toOne (typeName, 4*) :
     result = typeName
-  case arrayController (typeName *) :
+  case arrayController (typeName, *) :
     result = typeName
   case selectionController (typeName) :
     result = typeName
@@ -131,8 +131,8 @@ func @typeKind.swiftTypeName() -> @string outResult {
   case colorType : outResult = "NSColor"
   case bezierPathType : outResult = "NSBezierPath"
   case bezierPathArrayType : outResult = "BezierPathArray"
-  case entityType (@string entityName *) : outResult = entityName
-  case enumType (@string enumTypeName 2*) : outResult = enumTypeName
+  case entityType (@string entityName, *) : outResult = entityName
+  case enumType (@string enumTypeName, 2*) : outResult = enumTypeName
   case classType (@string classTypeName) : outResult = classTypeName
   case transientPropertyExternType (@string classTypeName) : outResult = classTypeName
   end
@@ -142,9 +142,9 @@ func @typeKind.swiftTypeName() -> @string outResult {
 
 func @propertyKind.isTransient() -> @bool {
   switch self
-  case property (* accessibility) : result = accessibility.isTransient ()
-  case toMany (* accessibility 2*) : result = accessibility.isTransient ()
-  case toOne (* accessibility 3*) : result = accessibility.isTransient ()
+  case property (*, accessibility) : result = accessibility.isTransient ()
+  case toMany (*, accessibility, 2*) : result = accessibility.isTransient ()
+  case toOne (*, accessibility, 3*) : result = accessibility.isTransient ()
   case arrayController (2*) : result = false
   case selectionController (*) : result = false
   end
@@ -154,7 +154,7 @@ func @propertyKind.isTransient() -> @bool {
 
 func @propertyKind.isComparable() -> @bool {
   switch self
-  case property (type *) : result = type.isComparable ()
+  case property (type, *) : result = type.isComparable ()
   case toMany (4*) : result = false
   case toOne (5*) : result = false
   case arrayController (2*) : result = false
@@ -178,7 +178,7 @@ func @propertyKind.isEntityType() -> @bool {
 
 func @propertyKind.isEnumType() -> @bool {
   switch self
-  case property (type *) : result = type.isEnumType ()
+  case property (type, *) : result = type.isEnumType ()
   case toMany (4*) : result = false
   case toOne (5*) : result = false
   case arrayController (2*) : result = false

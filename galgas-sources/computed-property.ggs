@@ -23,11 +23,11 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
-    case rootPropertyWithOption (propertyName *) :
+    case rootPropertyWithOption (propertyName, *) :
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
-    case rootPropertyRelationship (relationshipName *) :
+    case rootPropertyRelationship (relationshipName, *) :
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
@@ -38,32 +38,32 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyWithOption (@lstring propertyName *) :
+    case selfPropertyWithOption (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyArray (@lstring propertyName *) :
+    case selfPropertyArray (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyObject (@lstring propertyName *) :
+    case selfPropertyObject (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyNone (@lstring propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case prefsProperty (@lstring propertyName) :
       !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
-    case prefsPropertyWithOption (@lstring propertyName *) :
+    case prefsPropertyWithOption (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
-    case selfControllerProperty (@lstring controllerName unused propertyName) :
+    case selfControllerProperty (@lstring controllerName, unused propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+    case selfControllerSecondaryProperty (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+    case selfControllerAllProperties (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerOneProperty (@lstring controllerName unused propertyName) :
+    case selfControllerOneProperty (@lstring controllerName, unused propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
-    case superProperty (@lstring superEntityName @lstring propertyName) :
+    case superProperty (@lstring superEntityName, @lstring propertyName) :
       !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
-    case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
+    case superPropertyWithDefaultValue (@lstring superEntityName, @lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
     end
   end
@@ -191,7 +191,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       ?let @string defaultValueAsString
     )
     switch dependencyKind
-    case property (* *) :
+    case property (2*) :
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
@@ -229,7 +229,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       generate = true
     case atomic (*) :
       generate = true
-    case entity (* graphic 2*):
+    case entity (*, graphic, 2*):
       if graphic then
         generate = (self.mComputedPropertyName.string != "selectionDisplay") & (self.mComputedPropertyName.string != "objectDisplay")
       else

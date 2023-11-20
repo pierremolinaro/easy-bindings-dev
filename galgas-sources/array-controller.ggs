@@ -114,7 +114,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
       switch classKind
       case property (2*) :
         error rootEntityName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
+      case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
           !graphic: graphic
@@ -138,7 +138,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
+      case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
           !graphic: graphic
@@ -200,7 +200,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
     error self.mToManyPropertyName
       : "a toMany property is required here"
       spoil (graphic, arrayControllerModelKind, elementTypeName)
-  case toMany (typeName accessibility isGraphic *) :
+  case toMany (typeName, accessibility, isGraphic, *) :
     elementTypeName = typeName
     graphic = isGraphic
     arrayControllerModelKind = if accessibility.isTransient ()

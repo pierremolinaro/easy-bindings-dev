@@ -4823,30 +4823,30 @@ GALGAS_string extensionGetter_typeName (const GALGAS_typeKind & inObject,
     break ;
   case GALGAS_typeKind::kEnum_enumType:
     {
-      const cEnumAssociatedValues_typeKind_enumType * extractPtr_826 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_798_typeName = extractPtr_826->mAssociatedValue0 ;
+      const cEnumAssociatedValues_typeKind_enumType * extractPtr_827 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_798_typeName = extractPtr_827->mAssociatedValue0 ;
       result_result = extractedValue_798_typeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_881 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_854_typeName = extractPtr_881->mAssociatedValue0 ;
-      result_result = extractedValue_854_typeName ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_883 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_855_typeName = extractPtr_883->mAssociatedValue0 ;
+      result_result = extractedValue_855_typeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_classType:
     {
-      const cEnumAssociatedValues_typeKind_classType * extractPtr_933 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_908_typeName = extractPtr_933->mAssociatedValue0 ;
-      result_result = extractedValue_908_typeName ;
+      const cEnumAssociatedValues_typeKind_classType * extractPtr_935 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_910_typeName = extractPtr_935->mAssociatedValue0 ;
+      result_result = extractedValue_910_typeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_transientPropertyExternType:
     {
-      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_1003 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_978_typeName = extractPtr_1003->mAssociatedValue0 ;
-      result_result = extractedValue_978_typeName ;
+      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_1005 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_980_typeName = extractPtr_1005->mAssociatedValue0 ;
+      result_result = extractedValue_980_typeName ;
     }
     break ;
   }
@@ -4958,9 +4958,9 @@ GALGAS_bool extensionGetter_isGraphic (const GALGAS_typeKind & inObject,
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_2096 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_bool extractedValue_2067_isGraphic = extractPtr_2096->mAssociatedValue1 ;
-      result_outResult = extractedValue_2067_isGraphic ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_2099 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_bool extractedValue_2070_isGraphic = extractPtr_2099->mAssociatedValue1 ;
+      result_outResult = extractedValue_2070_isGraphic ;
     }
     break ;
   case GALGAS_typeKind::kEnum_classType:
@@ -5414,37 +5414,37 @@ GALGAS_string extensionGetter_typeName (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_2632 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_2594_type = extractPtr_2632->mAssociatedValue0 ;
-      result_result = extensionGetter_typeName (extractedValue_2594_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 90)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_2636 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_2597_type = extractPtr_2636->mAssociatedValue0 ;
+      result_result = extensionGetter_typeName (extractedValue_2597_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 90)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_2677 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_2649_typeName = extractPtr_2677->mAssociatedValue0 ;
-      result_result = extractedValue_2649_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_2682 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_2653_typeName = extractPtr_2682->mAssociatedValue0 ;
+      result_result = extractedValue_2653_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
-      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_2728 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_2700_typeName = extractPtr_2728->mAssociatedValue0 ;
-      result_result = extractedValue_2700_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_2734 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_2705_typeName = extractPtr_2734->mAssociatedValue0 ;
+      result_result = extractedValue_2705_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
     {
-      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_2788 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_2761_typeName = extractPtr_2788->mAssociatedValue0 ;
-      result_result = extractedValue_2761_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_2795 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_2767_typeName = extractPtr_2795->mAssociatedValue0 ;
+      result_result = extractedValue_2767_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_selectionController:
     {
-      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_2850 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_2825_typeName = extractPtr_2850->mAssociatedValue0 ;
-      result_result = extractedValue_2825_typeName ;
+      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_2857 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_2832_typeName = extractPtr_2857->mAssociatedValue0 ;
+      result_result = extractedValue_2832_typeName ;
     }
     break ;
   }
@@ -5471,37 +5471,37 @@ GALGAS_string extensionGetter_swiftTypeName (const GALGAS_propertyKind & inObjec
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_3112 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_3069_type = extractPtr_3112->mAssociatedValue0 ;
-      result_result = extensionGetter_swiftTypeName (extractedValue_3069_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 107)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_3120 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_3076_type = extractPtr_3120->mAssociatedValue0 ;
+      result_result = extensionGetter_swiftTypeName (extractedValue_3076_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 107)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_3157 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_3129_typeName = extractPtr_3157->mAssociatedValue0 ;
-      result_result = extractedValue_3129_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_3166 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_3137_typeName = extractPtr_3166->mAssociatedValue0 ;
+      result_result = extractedValue_3137_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
-      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3208 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_3180_typeName = extractPtr_3208->mAssociatedValue0 ;
-      result_result = extractedValue_3180_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_3218 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_3189_typeName = extractPtr_3218->mAssociatedValue0 ;
+      result_result = extractedValue_3189_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
     {
-      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_3268 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_3241_typeName = extractPtr_3268->mAssociatedValue0 ;
-      result_result = extractedValue_3241_typeName.readProperty_string () ;
+      const cEnumAssociatedValues_propertyKind_arrayController * extractPtr_3279 = (const cEnumAssociatedValues_propertyKind_arrayController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_lstring extractedValue_3251_typeName = extractPtr_3279->mAssociatedValue0 ;
+      result_result = extractedValue_3251_typeName.readProperty_string () ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_selectionController:
     {
-      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_3330 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_3305_typeName = extractPtr_3330->mAssociatedValue0 ;
-      result_result = extractedValue_3305_typeName ;
+      const cEnumAssociatedValues_propertyKind_selectionController * extractPtr_3341 = (const cEnumAssociatedValues_propertyKind_selectionController *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_3316_typeName = extractPtr_3341->mAssociatedValue0 ;
+      result_result = extractedValue_3316_typeName ;
     }
     break ;
   }
@@ -5583,30 +5583,30 @@ GALGAS_string extensionGetter_swiftTypeName (const GALGAS_typeKind & inObject,
     break ;
   case GALGAS_typeKind::kEnum_entityType:
     {
-      const cEnumAssociatedValues_typeKind_entityType * extractPtr_4056 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_4028_entityName = extractPtr_4056->mAssociatedValue0 ;
-      result_outResult = extractedValue_4028_entityName ;
+      const cEnumAssociatedValues_typeKind_entityType * extractPtr_4068 = (const cEnumAssociatedValues_typeKind_entityType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_4039_entityName = extractPtr_4068->mAssociatedValue0 ;
+      result_outResult = extractedValue_4039_entityName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_enumType:
     {
-      const cEnumAssociatedValues_typeKind_enumType * extractPtr_4123 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_4092_enumTypeName = extractPtr_4123->mAssociatedValue0 ;
-      result_outResult = extractedValue_4092_enumTypeName ;
+      const cEnumAssociatedValues_typeKind_enumType * extractPtr_4136 = (const cEnumAssociatedValues_typeKind_enumType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_4104_enumTypeName = extractPtr_4136->mAssociatedValue0 ;
+      result_outResult = extractedValue_4104_enumTypeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_classType:
     {
-      const cEnumAssociatedValues_typeKind_classType * extractPtr_4191 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_4162_classTypeName = extractPtr_4191->mAssociatedValue0 ;
-      result_outResult = extractedValue_4162_classTypeName ;
+      const cEnumAssociatedValues_typeKind_classType * extractPtr_4204 = (const cEnumAssociatedValues_typeKind_classType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_4175_classTypeName = extractPtr_4204->mAssociatedValue0 ;
+      result_outResult = extractedValue_4175_classTypeName ;
     }
     break ;
   case GALGAS_typeKind::kEnum_transientPropertyExternType:
     {
-      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_4278 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
-      const GALGAS_string extractedValue_4249_classTypeName = extractPtr_4278->mAssociatedValue0 ;
-      result_outResult = extractedValue_4249_classTypeName ;
+      const cEnumAssociatedValues_typeKind_transientPropertyExternType * extractPtr_4291 = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) (temp_0.unsafePointer ()) ;
+      const GALGAS_string extractedValue_4262_classTypeName = extractPtr_4291->mAssociatedValue0 ;
+      result_outResult = extractedValue_4262_classTypeName ;
     }
     break ;
   }
@@ -5633,23 +5633,23 @@ GALGAS_bool extensionGetter_isTransient (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_4553 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_4500_accessibility = extractPtr_4553->mAssociatedValue1 ;
-      result_result = extractedValue_4500_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_4567 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_4514_accessibility = extractPtr_4567->mAssociatedValue1 ;
+      result_result = extractedValue_4514_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
     {
-      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_4628 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_4572_accessibility = extractPtr_4628->mAssociatedValue1 ;
-      result_result = extractedValue_4572_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
+      const cEnumAssociatedValues_propertyKind_toMany * extractPtr_4644 = (const cEnumAssociatedValues_propertyKind_toMany *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_4587_accessibility = extractPtr_4644->mAssociatedValue1 ;
+      result_result = extractedValue_4587_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toOne:
     {
-      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_4702 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
-      const GALGAS_propertyAccessibility extractedValue_4646_accessibility = extractPtr_4702->mAssociatedValue1 ;
-      result_result = extractedValue_4646_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
+      const cEnumAssociatedValues_propertyKind_toOne * extractPtr_4720 = (const cEnumAssociatedValues_propertyKind_toOne *) (temp_0.unsafePointer ()) ;
+      const GALGAS_propertyAccessibility extractedValue_4663_accessibility = extractPtr_4720->mAssociatedValue1 ;
+      result_result = extractedValue_4663_accessibility.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_arrayController:
@@ -5686,9 +5686,9 @@ GALGAS_bool extensionGetter_isComparable (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_5042 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_5004_type = extractPtr_5042->mAssociatedValue0 ;
-      result_result = extensionGetter_isComparable (extractedValue_5004_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_5061 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_5022_type = extractPtr_5061->mAssociatedValue0 ;
+      result_result = extensionGetter_isComparable (extractedValue_5022_type, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
@@ -5782,9 +5782,9 @@ GALGAS_bool extensionGetter_isEnumType (const GALGAS_propertyKind & inObject,
     break ;
   case GALGAS_propertyKind::kEnum_property:
     {
-      const cEnumAssociatedValues_propertyKind_property * extractPtr_5839 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
-      const GALGAS_typeKind extractedValue_5803_type = extractPtr_5839->mAssociatedValue0 ;
-      result_result = extractedValue_5803_type.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
+      const cEnumAssociatedValues_propertyKind_property * extractPtr_5859 = (const cEnumAssociatedValues_propertyKind_property *) (temp_0.unsafePointer ()) ;
+      const GALGAS_typeKind extractedValue_5822_type = extractPtr_5859->mAssociatedValue0 ;
+      result_result = extractedValue_5822_type.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
     }
     break ;
   case GALGAS_propertyKind::kEnum_toMany:
@@ -12112,13 +12112,13 @@ GALGAS_string extensionGetter_generateCode (const GALGAS_mainXibDescriptorList &
             break ;
           case GALGAS_mainXibElement::kEnum_outlet:
             {
-              const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_4441 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_3204.current_mElement (HERE).unsafePointer ()) ;
-              const GALGAS_lstring extractedValue_3997_outletType = extractPtr_4441->mAssociatedValue0 ;
-              const GALGAS_lstring extractedValue_4008_outletName = extractPtr_4441->mAssociatedValue1 ;
-              result_outResult.plusAssign_operation(GALGAS_string ("  //--- Outlet ").add_operation (extractedValue_4008_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 107)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 107)) ;
-              result_outResult.plusAssign_operation(GALGAS_string ("    ").add_operation (extractedValue_4008_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (extractedValue_3997_outletType.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (var_column_3136.getter_string (SOURCE_FILE ("main-xib.ggs", 108)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 108)) ;
-              result_outResult.plusAssign_operation(GALGAS_string ("    ").add_operation (extractedValue_4008_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GALGAS_string ("\?.setAccessibilityIdentifier ("), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (extractedValue_4008_outletName.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 109)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 109)) ;
-              result_outResult.plusAssign_operation(GALGAS_string ("    view.addSubview (").add_operation (extractedValue_4008_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GALGAS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 110)) ;
+              const cEnumAssociatedValues_mainXibElement_outlet * extractPtr_4442 = (const cEnumAssociatedValues_mainXibElement_outlet *) (enumerator_3204.current_mElement (HERE).unsafePointer ()) ;
+              const GALGAS_lstring extractedValue_3997_outletType = extractPtr_4442->mAssociatedValue0 ;
+              const GALGAS_lstring extractedValue_4009_outletName = extractPtr_4442->mAssociatedValue1 ;
+              result_outResult.plusAssign_operation(GALGAS_string ("  //--- Outlet ").add_operation (extractedValue_4009_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 107)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 107)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 107)) ;
+              result_outResult.plusAssign_operation(GALGAS_string ("    ").add_operation (extractedValue_4009_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (extractedValue_3997_outletType.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (var_column_3136.getter_string (SOURCE_FILE ("main-xib.ggs", 108)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GALGAS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 108)) ;
+              result_outResult.plusAssign_operation(GALGAS_string ("    ").add_operation (extractedValue_4009_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GALGAS_string ("\?.setAccessibilityIdentifier ("), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (extractedValue_4009_outletName.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 109)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GALGAS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 109)) ;
+              result_outResult.plusAssign_operation(GALGAS_string ("    view.addSubview (").add_operation (extractedValue_4009_outletName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GALGAS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 110)) ;
             }
             break ;
           }

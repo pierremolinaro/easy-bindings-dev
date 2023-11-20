@@ -57,7 +57,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
     end
     for (propertyName propertyKind 2*) in propertyMap do
       switch propertyKind
-      case property (type accessibility) :
+      case property (type, accessibility) :
         switch accessibility 
         case stored :
           node += "|" + type.swiftTypeName () + " " + propertyName
@@ -66,7 +66,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
         end
       case arrayController (2*) :
       case selectionController (*) :
-      case toMany (@lstring typeName @propertyAccessibility accessibility * optionKind) :
+      case toMany (@lstring typeName, @propertyAccessibility accessibility, *, optionKind) :
        if accessibility.isStored () then
          node += "|<" + propertyName + ">[" + typeName + "] " + propertyName
          switch optionKind
@@ -93,7 +93,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
               + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
          end
         end
-      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite *) :
+      case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, *) :
         if accessibility.isStored () then
           node += "|<" + propertyName + ">" + typeName + "? " + propertyName
           switch opposite
@@ -172,7 +172,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case property (2 *) :
       case arrayController (2*) :
       case selectionController (*) :
-      case toMany (@lstring typeName @propertyAccessibility accessibility * *) :
+      case toMany (@lstring typeName, @propertyAccessibility accessibility, 2*) :
         arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
         !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
         if accessibility.isStored () then
@@ -181,7 +181,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
              exploreArray += !typeName
            end
         end
-      case toOne (@lstring typeName @propertyAccessibility accessibility * opposite weak) :
+      case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, weak) :
         if not weak then
           arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
           !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))

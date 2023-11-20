@@ -584,7 +584,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             error entityName: "an entity is required here"
           end
           parameterList += !name !entityName.string + ".self"
-        case menuItem (title run enabledBinding) :
+        case menuItem (title, run, enabledBinding) :
           analyzeAutoLayoutRunBinding (
             run,
             !handlesRunAction: true,
@@ -609,7 +609,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           switch runBindingGeneration 
           case none :
             s += ", target: nil, selector: nil"
-          case run (targetName actionName runTargetName) :
+          case run (targetName, actionName, runTargetName) :
             s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
           end
           switch enabledBindingGeneration 
@@ -620,7 +620,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           end
           s += ")"
           parameterList += !name !s
-        case enumFunc (enumTypeName funcName) :
+        case enumFunc (enumTypeName, funcName) :
           inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
           if not type.isAtomic () then
             error enumTypeName : "this type should be an enum type"
@@ -912,7 +912,7 @@ override proc @astComputedViewInstruction.generateViewCode(
         parameterList += !name !entityName.string + ".self"
       case string (stringValue) :
         parameterList += !name !stringValue
-      case menuItem (title run enabledBinding) :
+      case menuItem (title, run, enabledBinding) :
         analyzeAutoLayoutRunBinding (
           run,
           !handlesRunAction: true,
@@ -937,7 +937,7 @@ override proc @astComputedViewInstruction.generateViewCode(
         switch runBindingGeneration 
         case none :
           s += ", target: nil, selector: nil"
-        case run (targetName actionName runTargetName) :
+        case run (targetName, actionName, runTargetName) :
           s += ", target: " + targetName + ", selector: #selector (" + runTargetName + "." + actionName + " (_:))"
         end
         switch enabledBindingGeneration 
@@ -948,7 +948,7 @@ override proc @astComputedViewInstruction.generateViewCode(
         end
         s += ")"
         parameterList += !name !s
-      case enumFunc (enumTypeName funcName) :
+      case enumFunc (enumTypeName, funcName) :
         inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
         if not type.isAtomic () then
           error enumTypeName : "this type should be an enum type"
@@ -1072,7 +1072,7 @@ proc analyzeAutoLayoutBinding(
   outEBViewGraphicControllerBindingGeneration = .none
   switch inGraphicController
   case none :
-  case defined (@lstring controllerName @lstring propertyName) :
+  case defined (@lstring controllerName, @lstring propertyName) :
     if not handleGraphicControllerBinding then
       error inTypeName : "the '" + inTypeName + "' type does not handle the $graphicController binding"
     else
@@ -1088,7 +1088,7 @@ proc analyzeAutoLayoutBinding(
         error controllerName : "the bound model should be an array controller"
       case toOne (5*) :
         error controllerName : "the bound model should be an array controller"
-      case arrayController (entityName graphic) :
+      case arrayController (entityName, graphic) :
         if propertyName.string == "" then
           if not graphic then
             error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
@@ -1104,7 +1104,7 @@ proc analyzeAutoLayoutBinding(
           switch propertyKind 
           case property (2*) :
             error controllerName : "the bound model should be a toMany property"
-          case toMany (kEntityName * isGraphic *) :
+          case toMany (kEntityName, *, isGraphic, *) :
             if not isGraphic then
               error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
             end
@@ -1266,7 +1266,7 @@ proc analyzeAutoLayoutRunBinding(
   switch inRunActionDescriptor
   case noAction :
     outRunBindingGeneration = .none
-  case action (@lstring target @lstring action) :
+  case action (@lstring target, @lstring action) :
     if not inHandlesRunAction then
       error inTypeName : "the '" + inTypeName + "' type does not handle run action"
       spoil (outRunBindingGeneration)
@@ -1852,7 +1852,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
   end
   switch self.mRunBindingGeneration
   case none :
-  case run (targetName actionName targetTypeName) :
+  case run (targetName, actionName, targetTypeName) :
     result += inIndentation + "  .bind_run (\n"
     result += inIndentation + "    target: " + targetName + ",\n"
     result += inIndentation + "    selector: #selector (" + targetTypeName + "." + actionName + " (_:))\n"

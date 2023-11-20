@@ -189,33 +189,33 @@ func @observablePropertyAST.modelStringForSelf (let @string inSelf) -> @string o
     outResult = inSelf + "rootObject." + propertyName + "_property"
   case rootPropertyNone (@lstring propertyName) :
     outResult = inSelf + "rootObject." + propertyName + "_none"
-  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case rootPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = inSelf + "rootObject." + propertyName + "_property" + "." + optionName + "_property"
-  case rootPropertyRelationship (@lstring relationshipName *) :
+  case rootPropertyRelationship (@lstring relationshipName, *) :
     outResult = inSelf + "rootObject." + relationshipName + "_property"
   case selfWithoutProperty (*) :
     outResult = inSelf + "objectIndex"
   case selfProperty (@lstring propertyName) :
     outResult = inSelf + propertyName + "_property"
-  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case selfPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = inSelf + propertyName + "_property" + "." + optionName + "_property"
-  case selfPropertyArray (@lstring propertyName @lstring unused elementPropertyName) :
+  case selfPropertyArray (@lstring propertyName, @lstring unused elementPropertyName) :
     outResult = inSelf + propertyName + "_property"
-  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+  case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) :
     outResult = inSelf + propertyName + "_property." + elementPropertyName + "_property"
   case selfPropertyNone (@lstring propertyName) :
     outResult = inSelf + propertyName + "_none"
   case prefsProperty (@lstring propertyName) :
     outResult = "preferences_" + propertyName + "_property"
-  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case prefsPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = "preferences_" + propertyName + "_property" + "." + optionName + "_property"
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) :
     outResult = inSelf + controllerName + "." + propertyName + "_property"
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     outResult = inSelf + controllerName + "." + propertyName + "_property" + "." + secondaryPropertyName + "_property"
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName *) :
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, *) :
     outResult = inSelf + controllerName + "." + propertyName + "_property"
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
     outResult = inSelf + controllerName + "." + propertyName + "_property"
   case signatureProperty (*) :
     outResult = "self.signatureObserver_property"
@@ -223,9 +223,9 @@ func @observablePropertyAST.modelStringForSelf (let @string inSelf) -> @string o
     outResult = "self.versionObserver_property"
   case versionShouldChangeProperty (*) :
     outResult = "self.versionShouldChangeObserver_property"
-  case superProperty (* @lstring propertyName) :
+  case superProperty (*, @lstring propertyName) :
     outResult = inSelf + propertyName + "_property"
-  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+  case superPropertyWithDefaultValue (*, @lstring propertyName, *) :
     outResult = inSelf + propertyName + "_property"
   end  
 }
@@ -238,33 +238,33 @@ func @observablePropertyAST.modelStringFunctionArgument() -> @string outResult {
     outResult = "root_" + propertyName 
   case rootPropertyNone (@lstring propertyName) :
     outResult = "root_" + propertyName + "_none"
-  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case rootPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = "root_" + propertyName + "_" + optionName
-  case rootPropertyRelationship (@lstring relationshipName @lstring elementPropertyName) :
+  case rootPropertyRelationship (@lstring relationshipName, @lstring elementPropertyName) :
     outResult = "root_" + relationshipName + "_" + elementPropertyName
   case selfWithoutProperty (*) :
     outResult = "self_address"
   case selfProperty (@lstring propertyName) :
     outResult = "self_" + propertyName
-  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case selfPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = "self_" + propertyName + "_" + optionName
-  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) :
+  case selfPropertyArray (@lstring propertyName, @lstring elementPropertyName) :
     outResult = "self_" + propertyName + "_" + elementPropertyName
-  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) :
+  case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) :
     outResult = "self_" + propertyName + "_" + elementPropertyName
   case selfPropertyNone (@lstring propertyName) :
     outResult = "self_" + propertyName + "_none"
   case prefsProperty (@lstring propertyName) :
     outResult = "prefs_" + propertyName
-  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case prefsPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = "prefs_" + propertyName + "_" + optionName
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) :
     outResult = "self_" + controllerName + "_" + propertyName
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     outResult = "self_" + controllerName + "_" + propertyName + "_" + secondaryPropertyName
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     outResult = "self_" + controllerName + "_" + propertyName + "_all_" + secondaryPropertyName
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
     outResult = "self_" + controllerName + "_" + propertyName + "_all_<<2>>"
   case signatureProperty (*) :
     outResult = "self_signatureObserver"
@@ -272,9 +272,9 @@ func @observablePropertyAST.modelStringFunctionArgument() -> @string outResult {
     outResult = "self_versionObserver"
   case versionShouldChangeProperty (*) :
     outResult = "self_versionShouldChangeObserver"
-  case superProperty (@lstring superEntityName @lstring propertyName) :
+  case superProperty (@lstring superEntityName, @lstring propertyName) :
     outResult = "self_" + superEntityName + "_" + propertyName
-  case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
+  case superPropertyWithDefaultValue (@lstring superEntityName, @lstring propertyName, *) :
     outResult = "self_" + superEntityName + "_" + propertyName
   end  
 }
@@ -287,31 +287,31 @@ func @observablePropertyAST.needs_unwSelf (let @bool inPreferences) -> @bool out
     outResult = true
   case rootPropertyNone (*) :
     outResult = true
-  case rootPropertyWithOption (* *) :
+  case rootPropertyWithOption (2*) :
     outResult = true
-  case rootPropertyRelationship (* *) :
+  case rootPropertyRelationship (2*) :
     outResult = true
   case selfWithoutProperty (*) :
     outResult = true
   case selfProperty (*) :
     outResult = not inPreferences
-  case selfPropertyWithOption (* *) :
+  case selfPropertyWithOption (2*) :
     outResult = not inPreferences
-  case selfPropertyArray (* *) :
+  case selfPropertyArray (2*) :
     outResult = not inPreferences
-  case selfPropertyObject (* *) :
+  case selfPropertyObject (2*) :
     outResult = not inPreferences
   case selfPropertyNone (*) :
     outResult = not inPreferences
   case prefsProperty (*) :
     outResult = false
-  case prefsPropertyWithOption (* *) :
+  case prefsPropertyWithOption (2*) :
     outResult = false
-  case selfControllerProperty (* *) :
+  case selfControllerProperty (2*) :
     outResult = true
-  case selfControllerSecondaryProperty (* * *) :
+  case selfControllerSecondaryProperty (3*) :
     outResult = true
-  case selfControllerAllProperties (* * *) :
+  case selfControllerAllProperties (3*) :
     outResult = true
   case selfControllerOneProperty (2*) :
     outResult = true
@@ -336,33 +336,33 @@ func @observablePropertyAST.location() -> @location outResult {
     outResult = propertyName.location
   case rootPropertyNone (@lstring propertyName) :
     outResult = propertyName.location
-  case rootPropertyWithOption (* @lstring optionName) :
+  case rootPropertyWithOption (*, @lstring optionName) :
     outResult = optionName.location
-  case rootPropertyRelationship (* @lstring propertyName) :
+  case rootPropertyRelationship (*, @lstring propertyName) :
     outResult = propertyName.location
   case selfWithoutProperty (issueLocation) :
     outResult = issueLocation
   case selfProperty (@lstring propertyName) :
     outResult = propertyName.location
-  case selfPropertyWithOption (@lstring propertyName *) :
+  case selfPropertyWithOption (@lstring propertyName, *) :
     outResult = propertyName.location
-  case selfPropertyArray (@lstring propertyName *) :
+  case selfPropertyArray (@lstring propertyName, *) :
     outResult = propertyName.location
-  case selfPropertyObject (@lstring propertyName *) :
+  case selfPropertyObject (@lstring propertyName, *) :
     outResult = propertyName.location
   case selfPropertyNone (@lstring propertyName) :
     outResult = propertyName.location
   case prefsProperty (@lstring propertyName) :
     outResult = propertyName.location
-  case prefsPropertyWithOption (@lstring propertyName *) :
+  case prefsPropertyWithOption (@lstring propertyName, *) :
     outResult = propertyName.location
-  case selfControllerProperty (* @lstring propertyName) :
+  case selfControllerProperty (*, @lstring propertyName) :
     outResult = propertyName.location
-  case selfControllerSecondaryProperty (* * @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (2*, @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
-  case selfControllerAllProperties (* * @lstring secondaryPropertyName) :
+  case selfControllerAllProperties (2*, @lstring secondaryPropertyName) :
     outResult = secondaryPropertyName.location
-  case selfControllerOneProperty (* @lstring propertyName) :
+  case selfControllerOneProperty (*, @lstring propertyName) :
     outResult = propertyName.location
   case signatureProperty (@location location) :
     outResult = location
@@ -370,9 +370,9 @@ func @observablePropertyAST.location() -> @location outResult {
     outResult = location
   case versionShouldChangeProperty (@location location) :
     outResult = location
-  case superProperty (* @lstring propertyName) :
+  case superProperty (*, @lstring propertyName) :
     outResult = propertyName.location
-  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+  case superPropertyWithDefaultValue (*, @lstring propertyName, *) :
     outResult = propertyName.location
   end  
 }
@@ -427,7 +427,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error relationshipName : "a selection controller does not accept 'none'" spoil (outKind)
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case rootPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case rootPropertyWithOption (@lstring propertyName, @lstring optionName) :
     inRootPropertyMap.searchKey
       (propertyName,
       ?let kind,
@@ -456,7 +456,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a selection controller does not accept any option" spoil (outKind)
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) : # root.xxx.all.xxx
+  case rootPropertyRelationship (@lstring relationshipName, @lstring propertyName) : # root.xxx.all.xxx
     inRootPropertyMap.searchKey
       (relationshipName,
       ?let kind,
@@ -465,7 +465,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     switch kind
     case property (2*) :
       error relationshipName : "a property does not accept 'all'" spoil (outKind)
-    case toMany (typeName 3*) : # Ok
+    case toMany (typeName, 3*) : # Ok
       inSemanticContext.mClassMap.searchKey (.new (typeName, relationshipName.location), ?*, ?let observablePropertyMap, ?2*)
       observablePropertyMap.searchKey
         (propertyName,
@@ -501,7 +501,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
   case selfWithoutProperty (*) :
     outSwiftTypeStringForTransientFunctionArgument = "Int"
     outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
-  case selfPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case selfPropertyWithOption (@lstring propertyName, @lstring optionName) :
     inBoundModelPropertyMap.searchKey
       (propertyName,
       ?let kind,
@@ -530,7 +530,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a selection controller accepts no option" spoil (outKind)
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case selfPropertyArray (@lstring propertyName @lstring elementPropertyName) : # self.xxx.all.xxx
+  case selfPropertyArray (@lstring propertyName, @lstring elementPropertyName) : # self.xxx.all.xxx
     inBoundModelPropertyMap.searchKey
       (propertyName,
       ?let kind,
@@ -539,7 +539,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     switch kind
     case property (2*) :
       error propertyName : "an atomic property accepts no option" spoil (outKind)
-    case toMany (typeName 3*) :
+    case toMany (typeName, 3*) :
       inSemanticContext.mClassMap.searchKey (typeName, ?*, ?let observablePropertyMap, ?2*)
       observablePropertyMap.searchKey
         (elementPropertyName,
@@ -555,7 +555,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
     outSwiftTypeStringForTransientFunctionArgument = "[" + kind.swiftTypeName ()
        + "_" + elementPropertyName + "]"
-  case selfPropertyObject (@lstring propertyName @lstring elementPropertyName) : # self.xxx.one.xxx
+  case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) : # self.xxx.one.xxx
     inBoundModelPropertyMap.searchKey
       (propertyName,
       ?let kind,
@@ -566,7 +566,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "an atomic property does not accept 'one'" spoil (outKind)
     case toMany (4*) :
       error propertyName : "a toOne property does not accept 'one'" spoil (outKind)
-    case toOne (typeName 4*) :
+    case toOne (typeName, 4*) :
       inSemanticContext.mClassMap.searchKey (typeName, ?*, ?let observablePropertyMap, ?2*)
       observablePropertyMap.searchKey
         (elementPropertyName,
@@ -606,7 +606,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       ?2*
     )
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case prefsPropertyWithOption (@lstring propertyName @lstring optionName) :
+  case prefsPropertyWithOption (@lstring propertyName, @lstring optionName) :
     inSemanticContext.mClassMap.searchKey (.new (preferencesName (), .nowhere), ?*, ?let observablePropertyMap, ?2*)
     observablePropertyMap.searchKey
       (propertyName,
@@ -632,7 +632,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a selection controller does not accept any option" spoil (outKind)
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) :
     inBoundModelPropertyMap.searchKey
       (controllerName,
       ?let @propertyKind propertyKind,
@@ -645,7 +645,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "a toMany property does not accept any option" spoil (outKind)
     case toOne (5*) :
       error propertyName : "a toOne property does not accept any option" spoil (outKind)
-    case arrayController (typeName graphic) :
+    case arrayController (typeName, graphic) :
       if (propertyName.string == "sortedArray") || (propertyName.string == "selectedArray") then
         outKind = .toMany (
           !typeName: typeName,
@@ -669,7 +669,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       observablePropertyMap.searchKey (propertyName, ?outKind, ?2*)
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     inBoundModelPropertyMap.searchKey (controllerName, ?3*)
     if (propertyName.string == "sortedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
@@ -679,7 +679,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error propertyName : "unknown option" spoil (outKind) fixit ( replace "sortedArray", replace "selectedArray" )
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) :
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
     inBoundModelPropertyMap.searchKey (controllerName, ?let @propertyKind propertyKind, ?2*)
     let @string controllerTypeName = ""
     switch propertyKind
@@ -702,7 +702,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     )
    observablePropertyMap.searchKey (propertyName, ?outKind, ?2*)
     outSwiftTypeStringForTransientFunctionArgument = controllerTypeName + "?<<8>>"
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) :
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     inBoundModelPropertyMap.searchKey (controllerName, ?let @propertyKind propertyKind, ?2*)
     if propertyName.string != "selectedArray" then
       error propertyName : "unknown property"
@@ -723,7 +723,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         error propertyName
           : "a toOne property does not accept any option"
           spoil (outKind, outSwiftTypeStringForTransientFunctionArgument)
-      case arrayController (typeName *) :
+      case arrayController (typeName, *) :
          inSemanticContext.mClassMap.searchKey (
           .new (typeName, controllerName.location),
           ?*,
@@ -743,7 +743,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
          outSwiftTypeStringForTransientFunctionArgument = "[" + entityName + "_" + secondaryPropertyName + "]"
      end
     end
-  case superProperty (* @lstring propertyName) :
+  case superProperty (*, @lstring propertyName) :
     inBoundModelPropertyMap.searchKey
       (propertyName,
       ?outKind,
@@ -761,14 +761,14 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case selectionController (*) :
       error propertyName : "a selection controller cannot be observed" spoil (outSwiftTypeStringForTransientFunctionArgument)
     end
-  case superPropertyWithDefaultValue (* @lstring propertyName defaultValue) :
+  case superPropertyWithDefaultValue (*, @lstring propertyName, defaultValue) :
     inBoundModelPropertyMap.searchKey
       (propertyName,
       ?outKind,
       ?2*
     )
     switch outKind
-    case property (propertyType *) :
+    case property (propertyType, *) :
       outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
       inSemanticContext.mClassMap.searchKey (.new (preferencesName (), .nowhere), ?*, ?let preferencesPropertyMap, ?2*)
       defaultValue.analyzeDefaultValueType (

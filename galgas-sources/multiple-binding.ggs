@@ -296,7 +296,7 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
     ?let @string unused defaultValueAsString
   )
   switch kind
-  case property (type *) :
+  case property (type, *) :
     outType = type
   case toMany (4*) :
     error self.mProperty.location () : "only an atomic property can be observed" spoil (outType)

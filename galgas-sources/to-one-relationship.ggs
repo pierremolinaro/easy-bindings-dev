@@ -112,7 +112,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
       error self.mDestinationEntityName : "an entity is required here"
     case document (*) :
       error self.mDestinationEntityName : "an entity is required here"
-    case entity (* graphic * handleOpposite) :
+    case entity (*, graphic, *, handleOpposite) :
       let kind = @propertyKind.toOne (
         !typeName: self.mDestinationEntityName,
         !accessibility: .stored,
@@ -140,7 +140,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
     case prefs :
     case atomic (*) :
     case document (*) :
-    case entity (* graphic 2*) :
+    case entity (*, graphic, 2*) :
       let kind = @propertyKind.toOne (
         !typeName: self.mDestinationEntityName,
         !accessibility: .stored,

@@ -147,7 +147,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       error self.mDestinationEntityName : "an entity is required here"
     case document (*) :
       error self.mDestinationEntityName : "an entity is required here"
-    case entity (* graphic * handleOpposite) :
+    case entity (*, graphic, *, handleOpposite) :
       let kind = @propertyKind.toMany (
         !typeName: self.mDestinationEntityName,
         !accessibility: .stored,

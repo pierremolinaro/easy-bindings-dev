@@ -222,7 +222,7 @@ proc analyzeOutlets(
   //-- $graphicController
     switch outlet_mGraphicController
     case none :
-    case defined (@lstring controllerName @lstring propertyName) :
+    case defined (@lstring controllerName, @lstring propertyName) :
       if not handleGraphicControllerBinding then
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
       else
@@ -238,7 +238,7 @@ proc analyzeOutlets(
           error controllerName : "the bound model should be an array controller"
         case toOne (5*) :
           error controllerName : "the bound model should be an array controller"
-        case arrayController (entityName graphic) :
+        case arrayController (entityName, graphic) :
           if propertyName.string == "" then
             if not graphic then
               error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
@@ -254,7 +254,7 @@ proc analyzeOutlets(
             switch propertyKind 
             case property (2*) :
               error controllerName : "the bound model should be a toMany property"
-            case toMany (kEntityName * isGraphic *) :
+            case toMany (kEntityName, *, isGraphic, *) :
               if not isGraphic then
                 error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
               end
@@ -293,7 +293,7 @@ proc analyzeOutlets(
   //-- $run
     switch outlet_mRunDescriptor
     case noAction :
-    case action (@lstring target @lstring action) :
+    case action (@lstring target, @lstring action) :
       if not handlesRunAction then
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
       elsif target.string == "self" then

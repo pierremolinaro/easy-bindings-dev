@@ -106,7 +106,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
    case toMany (4*) :
    case toOne (5*) :
    case selectionController (*) :
-   case arrayController (typeName *) :
+   case arrayController (typeName, *) :
      ioSemanticContext.mClassMap.searchKey
        (self.mSelectionEntityName,
        ?*,
@@ -138,7 +138,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
            testedTypeName = ""
          case document (*) :
            testedTypeName = ""
-         case entity (@string superOfSuperEntity 3*) :
+         case entity (@string superOfSuperEntity, 3*) :
             testedTypeName = superOfSuperEntity
             if testedTypeName == "" then
               error self.mSelectionEntityName : "This entity is not descendant of " + typeName

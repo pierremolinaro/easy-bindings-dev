@@ -103,7 +103,7 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
           outResult += "    tf" + idx + ".drawsBackground = false\n"
           outResult += "    tf" + idx + ".isBordered = false\n"
           outResult += "    view.addSubview (tf" + idx + ")\n"
-        case outlet (outletType outletName) :
+        case outlet (outletType, outletName) :
           outResult += "  //--- Outlet " + outletName + "\n"
           outResult += "    " + outletName + " = " + outletType + "(frame:NSRect (x:10.0 + OUTLET_WIDTH * " + column + ".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"
           outResult += "    " + outletName + "?.setAccessibilityIdentifier (" + outletName.utf8Representation () + ")\n"
@@ -136,7 +136,7 @@ proc generateTestFile(
       for (mElement) in mLine do
         switch mElement
         case text (*) :
-        case outlet (* outletName) :
+        case outlet (*, outletName) :
           outlet_identifier_list += !outletName.string
         end
       end

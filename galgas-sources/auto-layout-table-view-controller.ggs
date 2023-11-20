@@ -149,7 +149,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
       switch classKind
       case property (2*) :
         error self.mRootEntityName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
+      case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
           !graphic: graphic
@@ -173,7 +173,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
       switch classKind
       case property (2*) :
         error self.mRootEntityName : "a toMany relationship is required here"
-      case toMany (typeName * graphic *) :
+      case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
           !graphic: graphic
@@ -263,7 +263,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     error self.mToManyPropertyName
       : "a toMany property is required here"
       spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
-  case toMany (typeName accessibility isGraphic *) :
+  case toMany (typeName, accessibility, isGraphic, *) :
     elementTypeName = typeName
     graphic = isGraphic
     arrayControllerModelKind = if accessibility.isTransient ()

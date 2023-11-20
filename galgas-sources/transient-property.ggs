@@ -23,11 +23,11 @@ override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPre
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
-    case rootPropertyWithOption (propertyName *) :
+    case rootPropertyWithOption (propertyName, *) :
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
-    case rootPropertyRelationship (relationshipName *) :
+    case rootPropertyRelationship (relationshipName, *) :
       if self.mRootEntityName.string != "" then
         !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
@@ -38,32 +38,32 @@ override proc @transientDeclarationAST.enterInPrecedenceGraph (?!@declarationPre
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyWithOption (@lstring propertyName *) :
+    case selfPropertyWithOption (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyArray (@lstring propertyName *) :
+    case selfPropertyArray (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
-    case selfPropertyObject (@lstring propertyName *) :
+    case selfPropertyObject (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyNone (@lstring propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
     case prefsProperty (@lstring propertyName) :
       !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
-    case prefsPropertyWithOption (@lstring propertyName *) :
+    case prefsPropertyWithOption (@lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
-    case selfControllerProperty (@lstring controllerName unused propertyName) :
+    case selfControllerProperty (@lstring controllerName, unused propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerSecondaryProperty (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+    case selfControllerSecondaryProperty (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerAllProperties (@lstring controllerName unused propertyName unused secondaryPropertyName) :
+    case selfControllerAllProperties (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
-    case selfControllerOneProperty (@lstring controllerName unused propertyName) :
+    case selfControllerOneProperty (@lstring controllerName, unused propertyName) :
       !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
-    case superProperty (@lstring superEntityName @lstring propertyName) :
+    case superProperty (@lstring superEntityName, @lstring propertyName) :
       !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
-    case superPropertyWithDefaultValue (@lstring superEntityName @lstring propertyName *) :
+    case superPropertyWithDefaultValue (@lstring superEntityName, @lstring propertyName, *) :
       !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
     end
   end
@@ -213,7 +213,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     )
 #    message "defaultValueAsString " + defaultValueAsString + "\n"
     switch dependencyKind
-    case property (* *) :
+    case property (2*) :
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
@@ -245,7 +245,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
       generate = true
     case atomic (*) :
       generate = true
-    case entity (* graphic 2*):
+    case entity (*, graphic, 2*):
       if graphic then
         generate = (self.mTransientName.string != "selectionDisplay") & (self.mTransientName.string != "objectDisplay")
       else
@@ -483,37 +483,37 @@ func @transientDependencyListForGeneration.needs_unwSelf (let @bool inPreference
 func @observablePropertyAST.generateAddObserverCall (let @bool inPreferences) -> @string outResult {
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property.startsBeingObserved"
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.startsBeingObserved"
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property.toMany_" + secondaryPropertyName + "_StartsBeingObserved"
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) : 
     outResult = prefix + controllerName.string + "." + propertyName + "_property.<<4>>" 
   case selfWithoutProperty (*) :
     outResult = "" # Do not generate add observer
   case selfProperty (@lstring masterName) :
     outResult = prefix + masterName.string + "_property.startsBeingObserved"
-  case selfPropertyWithOption (@lstring masterName *) :
+  case selfPropertyWithOption (@lstring masterName, *) :
     outResult = prefix + masterName.string + "_property.startsBeingObserved"
-  case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
+  case selfPropertyArray (@lstring masterName, @lstring elementPropertyName) :
     outResult = prefix + masterName.string + "_property.toMany_" + elementPropertyName + "_StartsBeingObserved"
-  case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
+  case selfPropertyObject (@lstring masterName, @lstring elementPropertyName) :
     outResult = prefix + masterName.string + "_property." + elementPropertyName + "_property.startsBeingObserved"
   case selfPropertyNone (@lstring masterName) :
     outResult = prefix + masterName.string + "_property.startsBeingObserved"
   case prefsProperty (@lstring propertyName) :
     outResult = "preferences_"  + propertyName + "_property.startsBeingObserved"
-  case prefsPropertyWithOption (@lstring propertyName *) :
+  case prefsPropertyWithOption (@lstring propertyName, *) :
     outResult = "preferences_"  + propertyName + "_property.startsBeingObserved"
   case rootProperty (@lstring masterName) :
     outResult = "self.rootObject." + masterName + "_property.startsBeingObserved"
   case rootPropertyNone (@lstring masterName) :
     outResult = "self.rootObject." + masterName + "_property.startsBeingObserved"
-  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
+  case rootPropertyWithOption (@lstring masterName, @lstring optionName) :
     outResult = "self.rootObject." + masterName + "_property." + optionName + "_property.startsBeingObserved"
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+  case rootPropertyRelationship (@lstring relationshipName, @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + "_property.toMany_" + propertyName + "_StartsBeingObserved"
   case signatureProperty (*) :
     outResult = "<< ligne 243 >>"
@@ -521,9 +521,9 @@ func @observablePropertyAST.generateAddObserverCall (let @bool inPreferences) ->
     outResult = "<< ligne 245 >>"
   case versionShouldChangeProperty (*) :
     outResult = "<< ligne 247 >>"
-  case superProperty (* @lstring propertyName) :
+  case superProperty (*, @lstring propertyName) :
     outResult = prefix + propertyName.string + "_property.startsBeingObserved"
-  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+  case superPropertyWithDefaultValue (*, @lstring propertyName, *) :
     outResult = prefix + propertyName.string + "_property.startsBeingObserved"
   end
 }
@@ -532,37 +532,37 @@ func @observablePropertyAST.generateAddObserverCall (let @bool inPreferences) ->
 
 func @observablePropertyAST.generateRemoveObserverCall() -> @string outResult {
   switch self
-  case selfControllerProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.stopsBeingObserved"
-  case selfControllerSecondaryProperty (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.stopsBeingObserved"
-  case selfControllerAllProperties (@lstring controllerName @lstring propertyName @lstring secondaryPropertyName) : 
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.toMany_" + secondaryPropertyName + "_StopsBeingObserved"
-  case selfControllerOneProperty (@lstring controllerName @lstring propertyName) : 
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) : 
     outResult = "self." + controllerName.string + "." + propertyName + "_property.toMany_<<5>>_StopsBeingObserved"
   case selfWithoutProperty (*) :
     outResult = "" # Do not generate add observer
   case selfProperty (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.stopsBeingObserved"
-  case selfPropertyWithOption (@lstring masterName *) :
+  case selfPropertyWithOption (@lstring masterName, *) :
     outResult = "self." + masterName.string + "_property.stopsBeingObserved"
-  case selfPropertyArray (@lstring masterName @lstring elementPropertyName) :
+  case selfPropertyArray (@lstring masterName, @lstring elementPropertyName) :
     outResult = "self." + masterName.string + "_property.toMany_" + elementPropertyName + "_StopsBeingObserved"
-  case selfPropertyObject (@lstring masterName @lstring elementPropertyName) :
+  case selfPropertyObject (@lstring masterName, @lstring elementPropertyName) :
     outResult = "self." + masterName.string + "_property." + elementPropertyName + "_property.removeEBObserver"
   case selfPropertyNone (@lstring masterName) :
     outResult = "self." + masterName.string + "_property.stopsBeingObserved"
   case prefsProperty (@lstring propertyName) :
     outResult = "preferences_"  + propertyName + "_property.stopsBeingObserved"
-  case prefsPropertyWithOption (@lstring propertyName *) :
+  case prefsPropertyWithOption (@lstring propertyName, *) :
     outResult = "preferences_"  + propertyName + "_property.stopsBeingObserved"
   case rootProperty (@lstring masterName) :
     outResult = "self.rootObject." + masterName + "_property.stopsBeingObserved"
-  case rootPropertyWithOption (@lstring masterName @lstring optionName) :
+  case rootPropertyWithOption (@lstring masterName, @lstring optionName) :
     outResult = "self.rootObject." + masterName + "_property." + optionName + "_property.stopsBeingObserved"
   case rootPropertyNone (@lstring masterName) :
     outResult = "self.rootObject." + masterName + "_property.stopsBeingObserved"
-  case rootPropertyRelationship (@lstring relationshipName @lstring propertyName) :
+  case rootPropertyRelationship (@lstring relationshipName, @lstring propertyName) :
     outResult = "self.rootObject." + relationshipName + "_property.toMany_" + propertyName + "_StopsBeingObserved"
   case signatureProperty (*) :
     outResult = "<< ligne 270 >>"
@@ -570,9 +570,9 @@ func @observablePropertyAST.generateRemoveObserverCall() -> @string outResult {
     outResult = "<< ligne 272 >>"
   case versionShouldChangeProperty (*) :
     outResult = "<< ligne 274 >>"
-  case superProperty (* @lstring propertyName) :
+  case superProperty (*, @lstring propertyName) :
     outResult = "self." + propertyName.string + "_property.removeEBObserver"
-  case superPropertyWithDefaultValue (* @lstring propertyName *) :
+  case superPropertyWithDefaultValue (*, @lstring propertyName, *) :
     outResult = "self." + propertyName.string + "_property.removeEBObserver"
   end
 }
