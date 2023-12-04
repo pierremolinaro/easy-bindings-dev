@@ -60,7 +60,8 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_lis
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_lstring constinArgument0,
+                                               class GALGAS_abstractDefaultValue constinArgument1,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -732,7 +733,12 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration : public 
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_bool constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
+                                               class GALGAS_string constinArgument3,
+                                               class GALGAS_string constinArgument4,
+                                               class GALGAS__32_stringlist constinArgument5,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -1080,7 +1086,9 @@ class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration : public
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_propertyKind constinArgument1,
+                                               class GALGAS_string constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -1898,7 +1906,14 @@ class GALGAS_selectionControllerForGeneration : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_selectionControllerForGeneration_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
+                                               class GALGAS_string constinArgument3,
+                                               class GALGAS_string constinArgument4,
+                                               class GALGAS_string constinArgument5,
+                                               class GALGAS_propertyMap constinArgument6,
+                                               class GALGAS_propertyGenerationList constinArgument7,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -3544,7 +3559,8 @@ class GALGAS_transientExternTypeList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_transientExternTypeList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_bool constinArgument1,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -3791,7 +3807,7 @@ class GALGAS_fileGenerationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_fileGenerationList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_abstractFileGeneration constinArgument0,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -4236,7 +4252,10 @@ class GALGAS_XCodeGroupList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_XCodeGroupList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
+                                               class GALGAS_stringlist constinArgument3,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -4554,7 +4573,17 @@ class GALGAS_XCodeToolTargetList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_XCodeToolTargetList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
+                                               class GALGAS_string constinArgument3,
+                                               class GALGAS_stringlist constinArgument4,
+                                               class GALGAS_string constinArgument5,
+                                               class GALGAS_string constinArgument6,
+                                               class GALGAS_stringlist constinArgument7,
+                                               class GALGAS_string constinArgument8,
+                                               class GALGAS_stringlist constinArgument9,
+                                               class GALGAS_string constinArgument10,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -5073,7 +5102,21 @@ class GALGAS_XCodeAppTargetList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_XCodeAppTargetList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
+                                               class GALGAS_string constinArgument3,
+                                               class GALGAS_stringlist constinArgument4,
+                                               class GALGAS_string constinArgument5,
+                                               class GALGAS_string constinArgument6,
+                                               class GALGAS_stringlist constinArgument7,
+                                               class GALGAS_string constinArgument8,
+                                               class GALGAS_stringlist constinArgument9,
+                                               class GALGAS_string constinArgument10,
+                                               class GALGAS__32_stringlist constinArgument11,
+                                               class GALGAS_string constinArgument12,
+                                               class GALGAS_stringlist constinArgument13,
+                                               class GALGAS_string constinArgument14,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -5664,7 +5707,9 @@ class GALGAS_BuildFileList : public AC_GALGAS_list {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_BuildFileList_2D_element inArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_string constinArgument0,
+                                               class GALGAS_string constinArgument1,
+                                               class GALGAS_string constinArgument2,
                                                C_Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 

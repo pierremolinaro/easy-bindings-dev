@@ -4,9 +4,7 @@
 
 grammar easyBindings_grammar "SLR" {
   syntax easyBindings_syntax
-  <start_symbol>(
-    ?!@astDeclarationStruct ioDeclarationAST
-    !@location outEndOfFile)
+  <start_symbol> (?!@astDeclarationStruct ioDeclarationAST, !@location outEndOfFile)
 }
 
 //----------------------------------------------------------------------------------------------------------------------
