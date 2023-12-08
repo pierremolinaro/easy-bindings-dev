@@ -18,6 +18,26 @@ class GALGAS_bool extensionGetter_isAbstract (const class GALGAS_propertyMap_2D_
                                               class C_Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'println'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_println (const class GALGAS_string constinArgument0,
+                      class C_Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) ;
+
+//----------------------------------------------------------------------------------------------------------------------
+//
+//Routine 'print'
+//
+//----------------------------------------------------------------------------------------------------------------------
+
+void routine_print (const class GALGAS_string constinArgument0,
+                    class C_Compiler * inCompiler
+                    COMMA_LOCATION_ARGS) ;
+
 
 //----------------------------------------------------------------------------------------------------------------------
 //

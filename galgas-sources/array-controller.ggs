@@ -78,16 +78,18 @@ syntax extension easyBindings_syntax {
       $hidden$
        <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       let hiddenSelectionViewBindingDescriptor = @multipleBindingDescriptor.binding (!expression:bindingExpression)
-      ioArrayControllerBindingListAST += 
-        !controllerName
+      !?ioArrayControllerBindingListAST.append (
+        !controllerName,
         !hiddenSelectionViewBindingDescriptor
+      )
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@arrayControllerDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@arrayControllerDeclarationAST (
       inCurrentEntity,
       controllerName,
       model,
       relationshipName
+    )
     )
   }
   
@@ -104,7 +106,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@generationStruct unused ioGeneration)
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
     switch self.mModel
@@ -121,10 +123,11 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration (
+      !?mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         "rootObject." + self.mToManyPropertyName,
         self.mClassName
+      )
       )
       case toOne (5*) :
         error rootEntityName : "a toMany relationship is required here"
@@ -145,10 +148,11 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      mPropertyGenerationList += !@arrayControllerPropertyGeneration (
+      !?mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
         self.mClassName
+      )
       )
       case toOne (5*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -222,7 +226,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
       spoil (graphic, arrayControllerModelKind, elementTypeName)
   end
 //--
-  ioGeneration.mFileGenerationList += !@arrayControllerGeneration (
+  !?ioGeneration.mFileGenerationList.append (@arrayControllerGeneration (
     self.mClassName,
     self.mControllerName,
     "ReadWriteArrayOf_" + elementTypeName,
@@ -230,7 +234,8 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
     elementTypeName,
     graphic
   )
-  ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
+  )
+  !?ioGeneration.mGenerateClass_StoredArrayOf_.insert (elementTypeName)
 }
 
 

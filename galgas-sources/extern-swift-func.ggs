@@ -20,13 +20,10 @@ syntax extension easyBindings_syntax {
   {
     $externFunc$
     $identifier$ (?let @lstring externFunctionName)
-#      warning externFunctionName : "Extern function" 
     $calledBy$
     $identifier$ (?let @lstring callerName)
     $;$
-    ioExternSwiftFunctionList +=
-      !externFunctionName
-      !callerName
+    !?ioExternSwiftFunctionList.append (externFunctionName, callerName)
   }
 
   #·····················································································································
@@ -38,7 +35,7 @@ syntax extension easyBindings_syntax {
 //----------------------------------------------------------------------------------------------------------------------
 
 map @externFunctionMap {
-  insert insertKey error message "the '%K' extern function is already declared in %L"
+  %insertSetter insertKey %errorMessage "the '%K' extern function is already declared in %L"
 }
 
 //----------------------------------------------------------------------------------------------------------------------

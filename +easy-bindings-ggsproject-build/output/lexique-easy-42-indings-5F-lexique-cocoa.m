@@ -187,38 +187,38 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       mTokenCode = easyBindings_lexique_1_identifier ;
     }
   }else if (scanningOk && ([self testForInputFromChar:65 toChar:90])) {
-    BOOL loop1814 = YES ;
+    BOOL loop1816 = YES ;
     do {
       scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputFromChar:48 toChar:57])) {
       }else{
-        loop1814 = NO ;
+        loop1816 = NO ;
       }
-    }while (loop1814 && scanningOk) ;
+    }while (loop1816 && scanningOk) ;
     mTokenCode = easyBindings_lexique_1_Identifier ;
   }else if (scanningOk && ([self testForInputChar:64])) {
     if (scanningOk && ([self testForCharWithFunction: isUnicodeLetter] || [self testForInputFromChar:48 toChar:57])) {
-      BOOL loop2397 = YES ;
+      BOOL loop2405 = YES ;
       do {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
         if (scanningOk && ([self testForCharWithFunction: isUnicodeLetter] || [self testForInputFromChar:48 toChar:57] || [self testForInputChar:46])) {
         }else{
-          loop2397 = NO ;
+          loop2405 = NO ;
         }
-      }while (loop2397 && scanningOk) ;
+      }while (loop2405 && scanningOk) ;
     }else{
       scanningOk = NO ;
     }
     mTokenCode = easyBindings_lexique_1__40_attribute ;
   }else if (scanningOk && ([self testForInputChar:36])) {
-    BOOL loop3233 = YES ;
+    BOOL loop3241 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputChar:95] || [self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop3233 = NO ;
+        loop3241 = NO ;
       }
-    }while (loop3233 && scanningOk) ;
+    }while (loop3241 && scanningOk) ;
     if (mTokenCode == 0) {
       mTokenCode = search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordList (mLexicalAttribute_tokenString) ;
     }
@@ -226,47 +226,47 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       mTokenCode = easyBindings_lexique_1_bindingName ;
     }
   }else if (scanningOk && ([self testForInputChar:35])) {
-    BOOL loop3851 = YES ;
+    BOOL loop3861 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop3851 = NO ;
+        loop3861 = NO ;
       }
-    }while (loop3851 && scanningOk) ;
+    }while (loop3861 && scanningOk) ;
     mTokenCode = easyBindings_lexique_1_controllerName ;
   }else if (scanningOk && ([self testForInputChar:92])) {
-    BOOL loop4377 = YES ;
+    BOOL loop4387 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:97 toChar:122] || [self testForInputFromChar:65 toChar:90] || [self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop4377 = NO ;
+        loop4387 = NO ;
       }
-    }while (loop4377 && scanningOk) ;
+    }while (loop4387 && scanningOk) ;
     mTokenCode = easyBindings_lexique_1_viewName ;
   }else if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
     scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
-    BOOL loop5286 = YES ;
+    BOOL loop5314 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else if (scanningOk && ([self testForInputChar:95])) {
       }else{
-        loop5286 = NO ;
+        loop5314 = NO ;
       }
-    }while (loop5286 && scanningOk) ;
+    }while (loop5314 && scanningOk) ;
     if (scanningOk && ([self testForInputChar:46])) {
       scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 46) ;
-      BOOL loop5460 = YES ;
+      BOOL loop5488 = YES ;
       do {
         if (scanningOk && ([self testForInputFromChar:48 toChar:57])) {
           scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
         }else if (scanningOk && ([self testForInputChar:95])) {
         }else{
-          loop5460 = NO ;
+          loop5488 = NO ;
         }
-      }while (loop5460 && scanningOk) ;
+      }while (loop5488 && scanningOk) ;
       scanner_cocoa_routine_convertStringToDouble (& scanningOk, mLexicalAttribute_tokenString, & mLexicalAttribute_floatValue) ;
       mTokenCode = easyBindings_lexique_1_literal_5F_double ;
     }else{
@@ -274,7 +274,7 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       mTokenCode = easyBindings_lexique_1_literal_5F_integer ;
     }
   }else if (scanningOk && ([self testForInputChar:34])) {
-    BOOL loop6309 = YES ;
+    BOOL loop6343 = YES ;
     do {
       if (scanningOk && ([self testForInputString:@"\\n" advance:YES])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, 10) ;
@@ -286,9 +286,9 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
       }else if (scanningOk && ([self testForInputFromChar:65536 toChar:1114111])) {
         scanner_cocoa_routine_enterCharacterIntoString (& scanningOk, mLexicalAttribute_tokenString, mPreviousChar) ;
       }else{
-        loop6309 = NO ;
+        loop6343 = NO ;
       }
-    }while (loop6309 && scanningOk) ;
+    }while (loop6343 && scanningOk) ;
     if (scanningOk && ([self testForInputChar:34])) {
       mTokenCode = easyBindings_lexique_1_literal_5F_string ;
     }else{
@@ -339,13 +339,13 @@ static NSInteger search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
   }else if (scanningOk && [self testForInputString:@"!" advance:YES]) {
     mTokenCode = easyBindings_lexique_1__21_ ;
   }else if (scanningOk && ([self testForInputString:@"//" advance:YES])) {
-    BOOL loop7783 = YES ;
+    BOOL loop7817 = YES ;
     do {
       if (scanningOk && ([self testForInputFromChar:1 toChar:9] || [self testForInputChar:11] || [self testForInputChar:12] || [self testForInputFromChar:14 toChar:65533])) {
       }else{
-        loop7783 = NO ;
+        loop7817 = NO ;
       }
-    }while (loop7783 && scanningOk) ;
+    }while (loop7817 && scanningOk) ;
     mTokenCode = easyBindings_lexique_1_comment ;
   }else if (scanningOk && ([self testForInputFromChar:1 toChar:32])) {
   }else   if ([self testForInputChar:'\0']) { // End of source text ?

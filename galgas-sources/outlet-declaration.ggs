@@ -53,15 +53,16 @@ syntax extension easyBindings_syntax {
                      ?let @graphicController graphicController,
                      ?let @regularBindingList regularBindingList)
     $;$
-    ioOutletDeclarationList +=
-      !outletTypeName
-      !outletName
-      !tableValueBinding
-      !runActionDescriptor
-      !enabledBindingDescriptor
-      !hiddenBindingDescriptor
-      !regularBindingList
+    !?ioOutletDeclarationList.append (
+      !outletTypeName,
+      !outletName,
+      !tableValueBinding,
+      !runActionDescriptor,
+      !enabledBindingDescriptor,
+      !hiddenBindingDescriptor,
+      !regularBindingList,
       !graphicController
+    )
   }
  
  #·······················································································································
@@ -123,15 +124,16 @@ syntax extension easyBindings_syntax {
       var @observablePropertyList observablePropertyList = []
       repeat
         <observable_property> (?let @observablePropertyAST observableProperty)
-        observablePropertyList += !observableProperty
+        !?observablePropertyList.append (observableProperty)
       while
         $,$
       end
       <binding_option_list> (?let bindingOptions)
-      regularBindingList +=
-        !bindingName
-        !observablePropertyList
+      !?regularBindingList.append (
+        !bindingName,
+        !observablePropertyList,
         !bindingOptions
+      )
   //-- Graphic controller binding
     while
       $graphicController$
@@ -217,7 +219,7 @@ proc analyzeOutlets(
       ?let @bool outletClassIsUserDefined
     )
     if not outletClassIsUserDefined then
-      ioGeneration.mNeededOutletClasses += !outlet_mOutletTypeName.string
+      !?ioGeneration.mNeededOutletClasses.insert (outlet_mOutletTypeName.string)
     end
   //-- $graphicController
     switch outlet_mGraphicController
@@ -269,7 +271,10 @@ proc analyzeOutlets(
         case selectionController (*) :
           error controllerName : "the bound model should be an array controller"
         end
-        outEBViewGraphicControllerBindingGenerationList += !outlet_mOutletName.string !controllerName.string
+        !?outEBViewGraphicControllerBindingGenerationList.append (
+          outlet_mOutletName.string,
+          controllerName.string
+        )
       end
     end
   //-- $tableView
@@ -287,7 +292,10 @@ proc analyzeOutlets(
         if not kind.isArrayController () then
           error controllerName : "the bound model should be an array controller"
         end
-        outTableViewBindingGenerationList += !outlet_mOutletName.string !controllerName.string
+        !?outTableViewBindingGenerationList.append (
+          outlet_mOutletName.string,
+          controllerName.string
+        )
       end
     end
   //-- $run
@@ -298,11 +306,12 @@ proc analyzeOutlets(
         error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
       elsif target.string == "self" then
         inActionMap.searchKey (action)
-        outTargetActionList +=
-          !outlet_mOutletName.string
-          !"self"
-          !action.string
+        !?outTargetActionList.append (
+          !outlet_mOutletName.string,
+          !"self",
+          !action.string,
           !inReceiverSwiftTypeName
+        )
       else # It is a controller
         inObservablePropertyMap.searchKey
           (target,
@@ -311,11 +320,12 @@ proc analyzeOutlets(
           ?*
         )
         controllerActionMap.searchKey (action)
-        outTargetActionList +=
-          !outlet_mOutletName.string
-          !if inPreferences then "preferences_" else "" end + target.string
-          !action.string
+        !?outTargetActionList.append (
+          !outlet_mOutletName.string,
+          !if inPreferences then "preferences_" else "" end + target.string,
+          !action.string,
           !"Controller_" + inReceiverSwiftTypeName + "_" + target
+        )
       end
     end
   //-- Enabled
@@ -338,10 +348,11 @@ proc analyzeOutlets(
       if not type.isBoolType () then
         error errorLocation : "expression is not boolean"
       end
-      outMultipleBindingGenerationList +=
-        !outlet_mOutletName.string
-        !"enabled"
+      !?outMultipleBindingGenerationList.append (
+        !outlet_mOutletName.string,
+        !"enabled",
         !enableExpression
+      )
     end
   //-- Hidden
     switch outlet_mHiddenBindingDescriptor
@@ -363,10 +374,11 @@ proc analyzeOutlets(
       if not handlesHiddenBinding then
         error errorLocation : "cet outlet n'accepte pas le binding $hidden"
       end
-      outMultipleBindingGenerationList +=
-        !outlet_mOutletName.string
-        !"hidden"
+      !?outMultipleBindingGenerationList.append (
+        !outlet_mOutletName.string,
+        !"hidden",
         !hiddenExpression
+      )
     end
   //--------------------------------- Regular bindings
     analyzeRegularBinding (
@@ -420,8 +432,11 @@ proc analyzeRegularBinding(
       case selectionController (*) :
         error mObservableProperty.location ():"a selection controller cannot be bound"
       end
-      boundModelListForGeneration += !mObservableProperty.modelStringForSelf (inSelfSwiftName) !kind
-      boundModelTypeList += !kind !mObservableProperty.location ()
+      !?boundModelListForGeneration.append (
+        mObservableProperty.modelStringForSelf (inSelfSwiftName),
+        kind
+      )
+      !?boundModelTypeList.append (kind, mObservableProperty.location ())
     end
   //-- Analyze outlet binding
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
@@ -492,11 +507,12 @@ proc analyzeRegularBinding(
       end
     end
   //-- Generate binding
-    ioRegularBindingsGenerationList +=
-      !inOutletName
-      !mBindingName.string
-      !boundModelListForGeneration
+    !?ioRegularBindingsGenerationList.append (
+      !inOutletName,
+      !mBindingName.string,
+      !boundModelListForGeneration,
       !bindingOptionString
+    )
   end
 }
 
@@ -531,8 +547,8 @@ list @actionBindingListForGeneration {
 
 map @decoratedOutletMap {
   public var @string mOutletTypeName
-  insert insertKey error message "the '%K' outlet is already declared"
-  search searchKey error message "the '%K' outlet is not declared"
+  %insertSetter insertKey %errorMessage "the '%K' outlet is already declared"
+  %searchMethod searchKey %errorMessage "the '%K' outlet is not declared"
 }
 
 //----------------------------------------------------------------------------------------------------------------------

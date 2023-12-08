@@ -19,7 +19,7 @@ syntax extension easyBindings_syntax {
     $action$
     $identifier$ (?let @lstring actionName)
     $;$
-    ioActionDeclarationList += !actionName
+    !?ioActionDeclarationList.append (actionName)
   }
 
   #·····················································································································
@@ -31,8 +31,8 @@ syntax extension easyBindings_syntax {
 //----------------------------------------------------------------------------------------------------------------------
 
 map @actionMap {
-  insert insertKey error message "there is already a '%K' action"
-  search searchKey error message "the '%K' action is not defined"
+  %insertSetter insertKey %errorMessage "there is already a '%K' action"
+  %searchMethod searchKey %errorMessage "the '%K' action is not defined"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ override proc @actionFileGeneration.generateCode(
     self.mActionName
   ]
   let fileName = "action-" + self.mClassName + "-" + self.mActionName + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFileWithPattern (
     !startPath:inOutputDirectory,
     !fileName:fileName,

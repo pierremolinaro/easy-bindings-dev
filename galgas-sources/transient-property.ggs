@@ -93,13 +93,14 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let transientTypeName)
     $identifier$ (?let @lstring transientName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
       inCurrentEntity,
       inRootEntity,
       transientTypeName,
       transientName,
       [],
       false
+    )
     )
   }
 
@@ -124,18 +125,19 @@ syntax extension easyBindings_syntax {
     var @observablePropertyList dependanceList = []
     repeat
       <observable_property> (?let @observablePropertyAST observablePropertyAST)
-      dependanceList += !observablePropertyAST
+      !?dependanceList.append (observablePropertyAST)
     while
       $,$
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
       inCurrentEntity,
       inRootEntity,
       transientTypeName,
       transientName,
       dependanceList,
       isOverriding
+    )
     )
   }
 }
@@ -149,7 +151,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@generationStruct unused ioGeneration)
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
     switch classKind
@@ -221,21 +223,23 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     case selectionController (*) :
       error mObservableProperty.location () : "only an atomic property can be observed"
     end
-    dependencies +=
-      !mObservableProperty
-      !mObservableProperty.modelStringFunctionArgument ()
-      !swiftTypeStringForTransientFunctionArgument
+    !?dependencies.append (
+      !mObservableProperty,
+      !mObservableProperty.modelStringFunctionArgument (),
+      !swiftTypeStringForTransientFunctionArgument,
       !defaultValueAsString
+    )
   end
-  ioGeneration.mFileGenerationList += !@transientRoutineGeneration (
+  !?ioGeneration.mFileGenerationList.append (@transientRoutineGeneration (
     self.mClassName,
     self.mTransientName.string,
     typeKind,
     "transient",
     dependencies
   )
+  )
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     let @bool generate
     switch currentClassKind
@@ -252,12 +256,13 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
         generate = true
       end
     end
-    mPropertyGenerationList += !@transientPropertyGeneration (
+    !?mPropertyGenerationList.append (@transientPropertyGeneration (
       self.mTransientName.string,
       self.mClassName.string,
       typeKind,
       dependencies,
       generate
+    )
     )
   end
 }
@@ -609,7 +614,7 @@ override proc @transientRoutineGeneration.generateCode(
       + "import AppKit\n\n"
       + "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
    let fileName = self.mGeneratedFunctionNamePrefix + "-" + self.mOwnerName + "-" + self.mTransientName + ".swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     @string.generateFileWithPattern (
       !startPath:inOutputDirectory,
       !fileName:fileName,

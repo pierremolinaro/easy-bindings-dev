@@ -39,9 +39,10 @@ syntax extension easyBindings_syntax {
     end
     $Identifier$ (?let @lstring propertyTypeName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientClassDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientClassDeclarationAST (
       propertyTypeName,
       isClass
+    )
     )
   }
 
@@ -64,7 +65,7 @@ override proc @transientClassDeclarationAST.firstAnalysisPhase(
     [],
     []
   )
-  ioGeneration.mTransientPropertyTypeList += !self.mClassName.string !self.mIsClass
+  !?ioGeneration.mTransientPropertyTypeList.append (self.mClassName.string, self.mIsClass)
 }
 
 //----------------------------------------------------------------------------------------------------------------------

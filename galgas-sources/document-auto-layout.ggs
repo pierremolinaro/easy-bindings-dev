@@ -102,15 +102,15 @@ syntax extension easyBindings_syntax {
       var @lstringlist outletNameList = []
       repeat
         $identifier$ (?let outletName)
-        outletNameList += !outletName
+        !?outletNameList.append (outletName)
       while
         $,$
       end
       $)$
-      autoLayoutOutletLinkerList += !linkerName !outletNameList
+      !?autoLayoutOutletLinkerList.append (linkerName, outletNameList)
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutDocumentDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@autoLayoutDocumentDeclarationAST (
       documentName,
       rootEntityName,
       mainViewName,
@@ -121,13 +121,15 @@ syntax extension easyBindings_syntax {
       customSuperClassName,
       autoLayoutOutletLinkerList
     )
-    ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
+    )
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
       documentName,
       rootEntityName,
       "String".here (),
       "documentFileName".here (),
       [],
       false
+    )
     )
   }
 
@@ -152,9 +154,10 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
     []
   )
   for (lkey) in actionMap do
-    ioGeneration.mFileGenerationList += !@actionFileGeneration (
+    !?ioGeneration.mFileGenerationList.append (@actionFileGeneration (
       self.mClassName.string,
       lkey.string
+    )
     )
   end
 }
@@ -225,10 +228,11 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       if not type.isBoolType () then
         error errorLocation : "expression is not boolean"
       end
-      multipleBindingGenerationList +=
-        !controllerName.string
-        !"hidden"
+      !?multipleBindingGenerationList.append (
+        !controllerName.string,
+        !"hidden",
         !hiddenExpression
+      )
     end
   end
 //-- Check auto layout view declarations
@@ -255,34 +259,9 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
       !?autoLayoutOutletMap,
       ?let viewGeneration
     )
-    viewGenerationList += !viewName !viewGeneration
+    !?viewGenerationList.append (viewName, viewGeneration)
   end
   viewDeclarationMap.searchKey (self.mMainViewName)
-//-- Analyze toolbar item declarations
-#  var @autoLayoutToolbarItemGenerationList autoLayoutToolbarItemGenerationList = []
-#  for (item) in self.mAutoLayoutToolbarItemList do
-#    switch item
-#    case space :
-#      autoLayoutToolbarItemGenerationList += !.space
-#    case view (title instruction) :
-#      [instruction generateViewCode
-#        !viewDeclarationMap
-#        !prefs: false
-#        !rootPropertyMap
-#        !preferencesPropertyMap
-#        !ioSemanticContext
-#        !documentPropertyMap
-#        !documentActionMap
-#        !self.mClassName
-#        !ioSemanticContext.mClassMap
-#        !?implicitViewFunctionGenerationList
-#        !?configuratorMap
-#        !?autoLayoutOutletMap
-#        ?let @abstractViewInstructionGeneration generatedInstruction
-#      ]
-#      autoLayoutToolbarItemGenerationList += !.view (!title: title.string !instruction: generatedInstruction)
-#    end
-#  end
 //-- Code generation
   ioGeneration.mGenerateEBManagedAutoLayoutDocumentSwift = true
 //-- Check outlet linker
@@ -292,16 +271,16 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     if linkerNameSet.hasKey (linkerName.string) then
       error linkerName : "duplicated linker name"
     end
-    linkerNameSet += !linkerName.string
+    !?linkerNameSet.insert (linkerName.string)
     var @2stringlist outletNameAndTypeNameList = []
     for (outletName) in ouletNameList do
       autoLayoutOutletMap.searchKey (outletName, ?let outletTypeName, ?let unused outletIsArray)
-      outletNameAndTypeNameList += !outletName.string !outletTypeName
+      !?outletNameAndTypeNameList.append (outletName.string, outletTypeName)
     end
-    outletLinkerGenerationList += !linkerName.string !outletNameAndTypeNameList
+    !?outletLinkerGenerationList.append (linkerName.string, outletNameAndTypeNameList)
   end
 //--
-  ioGeneration.mFileGenerationList += !@autoLayoutDocumentFileGeneration (
+  !?ioGeneration.mFileGenerationList.append (@autoLayoutDocumentFileGeneration (
     self.mClassName.string,
     self.mRootEntityName.string,
     self.mMainViewName.string,
@@ -318,6 +297,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     configuratorMap,
     self.mCustomSuperClassName, # Empty String if no custom superclass
     outletLinkerGenerationList
+  )
   )
 }
 
@@ -382,7 +362,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
     self.mOutletLinkerGenerationList
   ]
   let fileName = "document-" + self.mDocumentName + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFile (
     inOutputDirectory,
     fileName,
@@ -400,7 +380,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       + "import AppKit\n\n"
       + "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     let fileName = "configurator-" + self.mDocumentName + "-" + outletName + ".swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,
@@ -425,7 +405,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       + "import AppKit\n\n"
       + "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     let fileName = "linker-" + self.mDocumentName + "-" + linkerName + ".swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,

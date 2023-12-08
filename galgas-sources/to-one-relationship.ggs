@@ -50,16 +50,16 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "weak" then
         if weak then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         weak = true
       else
-        error attributeName : "unknow attribute" fixit ( replace "@signature", replace "@weak" )
+        error attributeName : "unknow attribute" fixit ( %replaceBy "@signature", %replaceBy "@weak" )
       end
     end
     $Identifier$ (?let @lstring destinationEntityName)
@@ -80,13 +80,14 @@ syntax extension easyBindings_syntax {
       end
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@toOneRelationshipAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@toOneRelationshipAST (
       inCurrentEntity,
       destinationEntityName,
       relationshipName,
       opposite,
       usedForSignature,
       weak
+    )
     )
   }
   
@@ -101,9 +102,9 @@ syntax extension easyBindings_syntax {
 override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
-    ioGeneration.mToOneClassImplementations += !self.mDestinationEntityName
+    !?ioGeneration.mToOneClassImplementations.insert (self.mDestinationEntityName)
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
     case prefs :
@@ -133,7 +134,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
 override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
     switch classKind
@@ -149,7 +150,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
         !weak: self.mWeak
       )
     //-- Code Generation
-      mPropertyGenerationList += !@toOnePropertyGeneration (
+      !?mPropertyGenerationList.append (@toOnePropertyGeneration (
         self.mToOneRelationshipName.string,
         self.mClassName,
         kind,
@@ -157,6 +158,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
         destinationEntityPropertyMap,
         self.mUsedForSignature,
         not self.mWeak
+      )
       )
     end
   end

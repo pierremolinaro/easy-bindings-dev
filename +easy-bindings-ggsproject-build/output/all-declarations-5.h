@@ -1663,9 +1663,6 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_astDeclarationStruct constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_astDeclarationStruct (void) ;
 
@@ -1731,7 +1728,8 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_astDeclarationStruct constructor_new (LOCATION_ARGS) ;
+  public: static class GALGAS_astDeclarationStruct constructor_new (C_Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
@@ -1837,9 +1835,6 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Default constructor
   public: GALGAS_enumForGeneration (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_enumForGeneration constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor from pointer
   public: GALGAS_enumForGeneration (const class cPtr_enumForGeneration * inSourcePtr) ;
 
@@ -1944,9 +1939,6 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D_weak {
 //--------------------------------- Default constructor
   public: GALGAS_enumForGeneration_2D_weak (void) ;
-
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_enumForGeneration_2D_weak constructor_default (LOCATION_ARGS) ;
 
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_enumForGeneration_2D_weak (const class GALGAS_enumForGeneration & inSource) ;

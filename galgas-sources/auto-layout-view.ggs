@@ -155,9 +155,10 @@ syntax extension easyBindings_syntax {
     var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: false, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
-    ioViewDeclarationList +=
-      !viewName
+    !?ioViewDeclarationList.append (
+      !viewName,
       !@astComputedVerticalViewDeclaration (functionCallList, instructionList, astNewStackViewDeclarationList)
+    )
   }
  
   #·····················································································································
@@ -173,9 +174,10 @@ syntax extension easyBindings_syntax {
     var instructionList = @astViewInstructionList []
     <view_instruction_list> (!horizontal: true, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
     $}$
-    ioViewDeclarationList +=
-      !viewName
+    !?ioViewDeclarationList.append (
+      !viewName,
       !@astComputedHorizontalViewDeclaration (functionCallList, instructionList, astNewStackViewDeclarationList)
+    )
   }
  
   #·····················································································································
@@ -187,7 +189,7 @@ syntax extension easyBindings_syntax {
     while
        $identifier$ (?let functionName)
        <view_actual_parameter_list> (!?ioStackViewInstances, ?let actualParameterList)
-       outFunctionCallList += !functionName !actualParameterList
+       !?outFunctionCallList.append (functionName, actualParameterList)
     end
   }
    
@@ -201,28 +203,28 @@ syntax extension easyBindings_syntax {
     while
       $newView$
       $identifier$ (?let instancedStackViewName)
-      ioStackViewInstances += !instancedStackViewName
+      !?ioStackViewInstances.insert (instancedStackViewName)
       $=$
       $viewName$ (?let typeStackViewName)
       $($
       $)$
-      ioNewStackViewDeclarationList += !instancedStackViewName !typeStackViewName
+      !?ioNewStackViewDeclarationList.append (instancedStackViewName, typeStackViewName)
     while
       $separator$
-      ioInstructionList += !@astSeparatorInstructionDeclaration (!horizontal: inHorizontal)
+      !?ioInstructionList.append (@astSeparatorInstructionDeclaration (!horizontal: inHorizontal))
     while
       $divider$
-      ioInstructionList += !@astDividerInstructionDeclaration (!horizontal: inHorizontal)
+      !?ioInstructionList.append (@astDividerInstructionDeclaration (!horizontal: inHorizontal))
     while
       $view$
       $identifier$ (?let localViewName)
       if not ioStackViewInstances.hasKey (localViewName.string) then
         error localViewName : "the view is not instancied"
       end
-      ioInstructionList += !@astLocalViewInstruction (localViewName)
+      !?ioInstructionList.append (@astLocalViewInstruction (localViewName))
     while
       <view_instruction> (!?ioStackViewInstances, ?let instruction)
-      ioInstructionList += !instruction
+      !?ioInstructionList.append (instruction)
     end
   }
   
@@ -337,11 +339,11 @@ syntax extension easyBindings_syntax {
         $:$
         select
           <view_instruction> (!?ioStackViewInstances, ?let @astAbstractViewInstructionDeclaration instruction)
-          outParameterList += !parameterName !.typeView !.viewFunc (!instruction: instruction)
+          !?outParameterList.append (parameterName, .typeView, .viewFunc (!instruction: instruction))
         or
           $entity$
           $Identifier$ (?let entityName)
-          outParameterList += !parameterName !.entity !.entity(!entityName: entityName)
+          !?outParameterList.append (parameterName, .entity, .entity(!entityName: entityName))
         or
           $menuItem$
           $literal_string$ (?let menuItemTitle)
@@ -368,45 +370,48 @@ syntax extension easyBindings_syntax {
             <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
             enabledBindingDescriptor = .binding (!expression:bindingExpression)
           end
-          outParameterList +=
-           !parameterName
-           !.menuItem
+          !?outParameterList.append (
+           !parameterName,
+           !.menuItem,
            !.menuItem (!title: menuItemTitle, !run: runActionDescriptor, !enabled: enabledBindingDescriptor)
+         )
         or
           $view$
           $identifier$ (?let viewName)
           if not ioStackViewInstances.hasKey (viewName.string) then
             error viewName : "view is not instancied"
           end
-          outParameterList += !parameterName !.typeView !.string (!value: viewName.string)
+          !?outParameterList.append (parameterName, .typeView, .string (!value: viewName.string))
         or
           $yes$
-          outParameterList += !parameterName !.typeBool !.string (!value: "true")
+          !?outParameterList.append (parameterName, .typeBool, .string (!value: "true"))
         or
           $no$
-          outParameterList += !parameterName !.typeBool !.string (!value: "false")
+          !?outParameterList.append (parameterName, .typeBool, .string (!value: "false"))
         or
           $literal_integer$ (?let uint32)
-          outParameterList += !parameterName !.typeInt !.string (!value: uint32.uint.string ())
+          !?outParameterList.append (parameterName, .typeInt, .string (!value: uint32.uint.string ()))
         or
           $-$
           $literal_integer$ (?let uint32)
-          outParameterList += !parameterName !.typeInt !.string (!value: "-" + uint32.uint.string ())
+          !?outParameterList.append (parameterName, .typeInt, .string (!value: "-" + uint32.uint.string))
         or
           $literal_string$ (?let literalString)
-          outParameterList += !parameterName !.typeString !.string (!value: literalString.string.utf8Representation ())
+          !?outParameterList.append (parameterName, .typeString, .string (!value: literalString.string.utf8Representation))
         or
           $.$
           $identifier$ (?let enumConstantName)
-          outParameterList += !parameterName !.typeEnum (!name: enumConstantName) !.string (!value: "." + enumConstantName)
+          !?outParameterList.append (parameterName, .typeEnum (!name: enumConstantName), .string (!value: "." + enumConstantName))
         or
           $enum$
           $Identifier$ (?let enumTypeName)
           $.$
           $identifier$ (?let enumFuncName)
-          outParameterList +=
-            !parameterName 
-            !.typeStringArray !.enumFunc (!enumTypeName: enumTypeName, !enumFuncName: enumFuncName)
+          !?outParameterList.append (
+            !parameterName,
+            !.typeStringArray,
+            .enumFunc (!enumTypeName: enumTypeName, !enumFuncName: enumFuncName)
+          )
         end
       while
         $,$
@@ -468,16 +473,16 @@ syntax extension easyBindings_syntax {
 //----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutViewDeclarationMap {
-  insert insertKey error message "the '%K' view is already declared in %L"
-  search searchKey error message "there is no '%K' view"
+  %insertSetter insertKey %errorMessage "the '%K' view is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' view"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 map @autoLayoutConfiguratorMap {
   public let @string mAutoLayoutOutletTypeName
-  insert insertKey error message "the '%K' configurator is already declared in %L"
-  search searchKey error message "there is no '%K' configurator"
+  %insertSetter insertKey %errorMessage "the '%K' configurator is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' configurator"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -485,8 +490,8 @@ map @autoLayoutConfiguratorMap {
 map @autoLayoutOutletMap {
   public let @string mAutoLayoutOutletTypeName
   public let @bool mOutletIsArray
-  insert insertKey error message "the '%K' outlet is already declared in %L"
-  search searchKey error message "there is no '%K' outlet"
+  %insertSetter insertKey %errorMessage "the '%K' outlet is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' outlet"
 }
 
 #·······················································································································
@@ -574,16 +579,16 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           )
-          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()"
-          ioImplicitViewFunctionGenerationList += !viewInstruction
+          !?parameterList.append (name, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()")
+          !?ioImplicitViewFunctionGenerationList.append (viewInstruction)
         case string (stringValue) :
-          parameterList += !name !stringValue
+          !?parameterList.append (name, stringValue)
         case entity (entityName) :
           inClassMap.searchKey (entityName, ?let classKind, ?3*)
           if not classKind.isEntity () then
             error entityName: "an entity is required here"
           end
-          parameterList += !name !entityName.string + ".self"
+          !?parameterList.append (name, entityName.string + ".self")
         case menuItem (title, run, enabledBinding) :
           analyzeAutoLayoutRunBinding (
             run,
@@ -619,7 +624,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             s += ", enableBinding: " + binding.expressionString ()
           end
           s += ")"
-          parameterList += !name !s
+          !?parameterList.append (name, s)
         case enumFunc (enumTypeName, funcName) :
           inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
           if not type.isAtomic () then
@@ -633,11 +638,11 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
               error enumTypeName : "this type should be an enum type"
             end
           end
-          parameterList += !name !enumTypeName.string + "." + funcName + " ()"
+          !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
         end
       end
     end
-    outFuncCallList += !functionName.string !parameterList
+    !?outFuncCallList.append (functionName.string, parameterList)
   end
 }
 
@@ -691,7 +696,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList += !generatedInstruction
+    !?instructionList.append (generatedInstruction)
   end
   outGeneration = @computedHorizontalViewGeneration (funcCallList, instructionList, self.mNewStackViewDeclarationList)
 }
@@ -746,7 +751,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList += !generatedInstruction
+    !?instructionList.append (generatedInstruction)
   end
   outGeneration = @computedVerticalViewGeneration (funcCallList, instructionList, self.mNewStackViewDeclarationList)
 }
@@ -902,16 +907,16 @@ override proc @astComputedViewInstruction.generateViewCode(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           )
-          parameterList += !name !"self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()"
-          ioImplicitViewFunctionGenerationList += !viewInstruction
+          !?parameterList.append (name, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count () + " ()")
+          !?ioImplicitViewFunctionGenerationList.append (viewInstruction)
       case entity (entityName) :
         inClassMap.searchKey (entityName, ?let classKind, ?3*)
         if not classKind.isEntity () then
           error entityName: "an entity is required here"
         end
-        parameterList += !name !entityName.string + ".self"
+        !?parameterList.append (name, entityName.string + ".self")
       case string (stringValue) :
-        parameterList += !name !stringValue
+        !?parameterList.append (name, stringValue)
       case menuItem (title, run, enabledBinding) :
         analyzeAutoLayoutRunBinding (
           run,
@@ -947,7 +952,7 @@ override proc @astComputedViewInstruction.generateViewCode(
           s += ", enableBinding: " + binding.expressionString ()
         end
         s += ")"
-        parameterList += !name !s
+        !?parameterList.append (name, s)
       case enumFunc (enumTypeName, funcName) :
         inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
         if not type.isAtomic () then
@@ -961,7 +966,7 @@ override proc @astComputedViewInstruction.generateViewCode(
             error enumTypeName : "this type should be an enum type"
           end
         end
-        parameterList += !name !enumTypeName.string + "." + funcName + " ()"
+        !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
       end
     end
   end
@@ -1175,7 +1180,7 @@ proc analyzeAutoLayoutBinding(
   switch enabledBindingGeneration
   case none :
   case enabled (binding) :
-    outMultipleBindingGenerationList += !"enabled" !binding
+    !?outMultipleBindingGenerationList.append ("enabled", binding)
   end
 //-- Hidden
   switch inHiddenBindingDescriptor
@@ -1197,9 +1202,10 @@ proc analyzeAutoLayoutBinding(
     if not handlesHiddenBinding then
       error errorLocation : "cet outlet n'accepte pas le binding $hidden"
     end
-    outMultipleBindingGenerationList +=
-      !"hidden"
+    !?outMultipleBindingGenerationList.append (
+      !"hidden",
       !hiddenExpression
+    )
   end
 //--------------------------------- Regular bindings
   analyzeAutoLayoutRegularBinding (
@@ -1331,8 +1337,8 @@ proc analyzeAutoLayoutRegularBinding(
       case selectionController (*) :
         error mObservableProperty.location () :"a selection controller cannot be bound"
       end
-      boundModelListForGeneration += !mObservableProperty.modelStringForSelf (inSelfSwiftName) !kind
-      boundModelTypeList += !kind !mObservableProperty.location () 
+      !?boundModelListForGeneration.append (mObservableProperty.modelStringForSelf (inSelfSwiftName), kind)
+      !?boundModelTypeList.append (kind, mObservableProperty.location ())
     end
   //-- Analyze outlet binding
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
@@ -1402,10 +1408,11 @@ proc analyzeAutoLayoutRegularBinding(
       end
     end
   //-- Generate binding
-    ioRegularBindingsGenerationList +=
-      !mBindingName.string
-      !boundModelListForGeneration
+    !?ioRegularBindingsGenerationList.append (
+      !mBindingName.string,
+      !boundModelListForGeneration,
       !bindingOptionString
+    )
   end
 }
 
@@ -1459,9 +1466,10 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
     if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
-    multipleBindingGenerationList +=
-      !"hidden"
+    !?multipleBindingGenerationList.append (
+      !"hidden",
       !hiddenExpression
+    )
   end
   for (instruction) in self.mInstructionList do
    instruction.generateViewCode
@@ -1479,7 +1487,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList += !generatedInstruction
+    !?instructionList.append (generatedInstruction)
   end
   outInstruction = @hStackViewInstructionGeneration (
     funcCallList,
@@ -1539,9 +1547,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
     if not type.isBoolType () then
       error errorLocation : "expression is not boolean"
     end
-    multipleBindingGenerationList +=
-      !"hidden"
-      !hiddenExpression
+    !?multipleBindingGenerationList.append ("hidden", hiddenExpression)
   end
   for (instruction) in self.mInstructionList do
    instruction.generateViewCode
@@ -1559,7 +1565,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
       !?ioOutletMap,
       ?let generatedInstruction
     )
-    instructionList += !generatedInstruction
+    !?instructionList.append (generatedInstruction)
   end
   outInstruction = @vStackViewInstructionGeneration (
     funcCallList,

@@ -25,7 +25,7 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let @lstring optionName)
         $:$
         <explicit_value> (?let @abstractDefaultValue optionValue)
-        outBindingOptions += !optionName !optionValue
+        !?outBindingOptions.append (optionName, optionValue)
       while
         $,$
       end

@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
     or
       $@attribute$ (?let attribute)
       if attribute.string != "CaseIterable" then
-        error attribute : "only @CaseIterable attribute is allowed here" fixit ( replace "@CaseIterable" )
+        error attribute : "only @CaseIterable attribute is allowed here" fixit ( %replaceBy "@CaseIterable" )
       end
       caseIterable = true
     end
@@ -52,12 +52,12 @@ syntax extension easyBindings_syntax {
     var @lstringlist enumConstants = []
     repeat
       $identifier$ (?let @lstring constantName)
-      enumConstants += !constantName
+      !?enumConstants.append (constantName)
     while
       $,$
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@enumerationDeclarationAST (enumName, enumConstants, caseIterable)
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@enumerationDeclarationAST (enumName, enumConstants, caseIterable))
   }
 
   #·····················································································································
@@ -76,10 +76,10 @@ syntax extension easyBindings_syntax {
       $:$
       $literal_string$ (?let @lstring associatedString)
       $;$
-      associationList += !constantName !associatedString
+      !?associationList.append (constantName, associatedString)
     end 
     $}$
-    ioDeclarationAST.mEnumerationFunctionListAST += !enumName !funcName !associationList
+    !?ioDeclarationAST.mEnumerationFunctionListAST.append (enumName, funcName, associationList)
   }
   
   #·····················································································································
@@ -92,8 +92,8 @@ syntax extension easyBindings_syntax {
 
 map @enumConstantMap {
   public var @uint mIndex
-  insert insertKey error message "there is already a '%K' constant"
-  search searchKey error message "the '%K' constant is not defined"
+  %insertSetter insertKey %errorMessage "there is already a '%K' constant"
+  %searchMethod searchKey %errorMessage "the '%K' constant is not defined"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -109,8 +109,8 @@ sortedlist @enumFunAssociationSortedList {
 
 map @enumFuncMap {
   public var @enumFunAssociationSortedList mAssociationSortedList
-  insert insertKey error message "there is already a '%K' enum function"
-  search searchKey error message "the '%K' enum function is not defined"
+  %insertSetter insertKey %errorMessage "there is already a '%K' enum function"
+  %searchMethod searchKey %errorMessage "the '%K' enum function is not defined"
 }
 
 #·······················································································································
@@ -130,11 +130,11 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
       var @enumFunAssociationSortedList associationSortedList = []
       for (constantName, associatedString) in associationList do
         enumConstantMap.searchKey (constantName, ?let idx)
-        associationSortedList += !idx !associatedString.string
+        !?associationSortedList.insert (idx, associatedString.string)
         if definedConstantNameSet.hasKey (constantName) then
           error constantName : "Duplicated constant"
         end
-        definedConstantNameSet += !constantName
+        !?definedConstantNameSet.insert (constantName)
       end
       for (s) in self.mEnumConstantNameList do
         if not definedConstantNameSet.hasKey (s) then
@@ -152,11 +152,12 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
     []
   )
 //-- Generation
-  ioGeneration.mFileGenerationList += !@enumForGeneration (
+  !?ioGeneration.mFileGenerationList.append (@enumForGeneration (
     self.mClassName,
     self.mEnumConstantNameList,
     enumFuncMap,
     self.mCaseIterable
+  )
   )
 }
 
@@ -198,7 +199,7 @@ override proc @enumForGeneration.generateCode(
       self.mCaseIterable
     ]
     let fileName = "enum-" + self.mEnumName + ".swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     @string.generateFile (
       inOutputDirectory,
       fileName,

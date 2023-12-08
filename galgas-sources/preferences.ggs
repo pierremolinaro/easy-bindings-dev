@@ -101,9 +101,10 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
     []
   )
   for (lkey) in actionMap do
-    ioGeneration.mFileGenerationList += !@actionFileGeneration (
+    !?ioGeneration.mFileGenerationList.append (@actionFileGeneration (
       self.mClassName.string,
       lkey.string
+    )
     )
   end
   ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
@@ -181,13 +182,13 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
       !?autoLayoutOutletMap,
       ?let viewGeneration
     )
-    viewGenerationList += !viewName !viewGeneration
+    !?viewGenerationList.append (viewName, viewGeneration)
   end
   if not viewDeclarationMap.hasKey ("mPrefsMainView") then
     error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
   end
 //-- Code generation
-  ioGeneration.mFileGenerationList += !@preferencesForGeneration (
+  !?ioGeneration.mFileGenerationList.append (@preferencesForGeneration (
     propertyGenerationList,
     ioGeneration.mMainXibDescriptorList,
     regularBindingsGenerationList,
@@ -201,6 +202,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     implicitViewFunctionGenerationList,
     configuratorMap,
     autoLayoutOutletMap
+  )
   )
 }
 
@@ -266,7 +268,7 @@ override proc @preferencesForGeneration.generateCode(
     self.mAutoLayoutOutletMap
   ]
   let fileName = preferencesName () + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFile (
     inOutputDirectory,
     fileName,
@@ -285,7 +287,7 @@ override proc @preferencesForGeneration.generateCode(
       + "import AppKit\n\n"
       + "//" + @string.stringWithSequenceOfCharacters ('—', 118) + "\n\n"
     let fileName = "configurator-Preferences-" + outletName + ".swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     @string.generateFileWithPattern (
       !startPath: inOutputDirectory,
       !fileName: fileName,

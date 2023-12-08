@@ -657,7 +657,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         error propertyName
           : "unknown option (accepted : 'sortedArray' or 'selectedArray')"
           spoil (outKind)
-          fixit ( replace "sortedArray", replace "selectedArray" )
+          fixit ( %replaceBy "sortedArray", %replaceBy "selectedArray" )
       end
     case selectionController (entityName) :
       inSemanticContext.mClassMap.searchKey (
@@ -676,7 +676,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
     else
-      error propertyName : "unknown option" spoil (outKind) fixit ( replace "sortedArray", replace "selectedArray" )
+      error propertyName : "unknown option" spoil (outKind) fixit ( %replaceBy "sortedArray", %replaceBy "selectedArray" )
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName ()
   case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
@@ -707,7 +707,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     if propertyName.string != "selectedArray" then
       error propertyName : "unknown property"
         spoil (outKind, outSwiftTypeStringForTransientFunctionArgument)
-        fixit ( replace "selectedArray" )
+        fixit ( %replaceBy "selectedArray" )
     else
       outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
       switch propertyKind

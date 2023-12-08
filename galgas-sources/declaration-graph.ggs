@@ -53,7 +53,7 @@ list @declarationListAST {
 #·······················································································································
 
 graph @declarationPrecedenceGraph (@declarationListAST) {
-  insert addNode error message "the '%K' symbol is already declared at %L"
+  %insertSetter addNode %errorMessage "the '%K' symbol is already declared at %L"
 }
 
 //----------------------------------------------------------------------------------------------------------------------

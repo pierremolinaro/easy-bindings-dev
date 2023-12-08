@@ -46,12 +46,13 @@ syntax extension easyBindings_syntax {
     $.$
     $identifier$ (?let @lstring propertyName)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@selectionControllerDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@selectionControllerDeclarationAST (
       inCurrentEntity,
       selectionControllerName,
       modelControllerName,
       propertyName,
       selectionEntityName
+    )
     )
   }
 
@@ -66,7 +67,7 @@ syntax extension easyBindings_syntax {
 override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                                      ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
     switch propertyKind
@@ -84,11 +85,12 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
       !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, [], false)
-      mPropertyGenerationList += !@selectionControllerPropertyGeneration (
+      !?mPropertyGenerationList.append (@selectionControllerPropertyGeneration (
         self.mSelectionControllerName.string,
         self.mClassName,
         self.mModelControllerName.string,
         self.mModelControllerPropertyName.string
+      )
       )
     end
   end
@@ -114,19 +116,20 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?*,
        ?let selectionGenerationList
      )
-     ioGeneration.mSelectionControllerListForGeneration +=
-       !self.mClassName
-       !self.mSelectionControllerName.string
-       !self.mModelControllerName.string
-       !self.mModelControllerPropertyName.string
-       !typeName.string
-       !self.mSelectionEntityName.string
-       !selectionObservablePropertyMap
+     !?ioGeneration.mSelectionControllerListForGeneration.append (
+       !self.mClassName,
+       !self.mSelectionControllerName.string,
+       !self.mModelControllerName.string,
+       !self.mModelControllerPropertyName.string,
+       !typeName.string,
+       !self.mSelectionEntityName.string,
+       !selectionObservablePropertyMap,
        !selectionGenerationList
-     ioGeneration.mToManyClassImplementations += !typeName.string
+     )
+     !?ioGeneration.mToManyClassImplementations.insert (typeName.string)
      if typeName.string != self.mSelectionEntityName.string then
-       ioGeneration.mToManyClassImplementations += !self.mSelectionEntityName.string
-       ioGeneration.mGenerateClass_TransientArrayOfSuperOf_ += !self.mSelectionEntityName.string
+       !?ioGeneration.mToManyClassImplementations.insert (self.mSelectionEntityName.string)
+       !?ioGeneration.mGenerateClass_TransientArrayOfSuperOf_.insert (self.mSelectionEntityName.string)
      end
      var testedTypeName = self.mSelectionEntityName.string
      loop (@uint.max) while (typeName.string != testedTypeName) & (testedTypeName != "") do
@@ -246,7 +249,7 @@ proc generateSelectionControllers(
         selectionObservablePropertyMap
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
-      ioGeneratedFileSet += !fileName
+      !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,
         fileName,
@@ -266,7 +269,7 @@ proc generateSelectionControllers(
         hasAtomicStoredProperties
       ]
       let fileName = "selectionController-" + ownerName + "-" +  selectionControllerName + ".swift"
-      ioGeneratedFileSet += !fileName
+      !?ioGeneratedFileSet.insert (fileName)
       @string.generateFile (
         inOutputDirectory,
         fileName,

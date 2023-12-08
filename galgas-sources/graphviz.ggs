@@ -9,7 +9,7 @@ syntax extension easyBindings_syntax {
   rule <graphviz_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $graphviz$
     $Identifier$ (?let @lstring entityName)
-    ioDeclarationAST.mGraphvizList += !entityName
+    !?ioDeclarationAST.mGraphvizList.append (entityName)
     $;$
  }
  
@@ -50,10 +50,10 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
     entityKind.entity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
-        reachableEntityNameSet += !superEntityName
-        exploreArray += !superEntityName
+        !?reachableEntityNameSet.insert (superEntityName)
+        !?exploreArray.append (superEntityName)
       end
-      arrowList += !"  " + entityName + " -> " + superEntityName +  " [dir=both arrowtail=dot arrowhead=normal]"
+      !?arrowList.append ("  " + entityName + " -> " + superEntityName +  " [dir=both arrowtail=dot arrowhead=normal]")
     end
     for (propertyName, propertyKind, 2*) in propertyMap do
       switch propertyKind
@@ -72,25 +72,25 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
          switch optionKind
          case none :
            if not reachableEntityNameSet.hasKey (typeName) then
-              reachableEntityNameSet += !typeName
-              exploreArray += !typeName
-            end
-           arrowList += !"  " + entityName + ":" + propertyName
-             + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
+              !?reachableEntityNameSet.insert (typeName)
+              !?exploreArray.append (typeName)
+           end
+           !?arrowList.append ("  " + entityName + ":" + propertyName
+             + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
          case hasOpposite (oppositeName) :
            if not reachableEntityNameSet.hasKey (typeName) then
-             reachableEntityNameSet += !typeName
-             exploreArray += !typeName
+             !?reachableEntityNameSet.insert (typeName)
+             !?exploreArray.append (typeName)
            end
-           arrowList += !"  " + entityName + ":" + propertyName
-              + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=veevee]"
+           !?arrowList.append ("  " + entityName + ":" + propertyName
+              + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=veevee]")
          case hasDependance (*) :
            if not reachableEntityNameSet.hasKey (typeName) then
-             reachableEntityNameSet += !typeName
-             exploreArray += !typeName
+             !?reachableEntityNameSet.insert (typeName)
+             !?exploreArray.append (typeName)
            end
-           arrowList += !"  " + entityName + ":" + propertyName
-              + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
+           !?arrowList.append ("  " + entityName + ":" + propertyName
+              + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
          end
         end
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, *) :
@@ -99,27 +99,27 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
           switch opposite
           case none :
             if not reachableEntityNameSet.hasKey (typeName) then
-              reachableEntityNameSet += !typeName
-              exploreArray += !typeName
+              !?reachableEntityNameSet.insert (typeName)
+              !?exploreArray.append (typeName)
             end
-            arrowList += !"  " + entityName + ":" + propertyName 
-               + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
+            !?arrowList.append ("  " + entityName + ":" + propertyName 
+               + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           case oppositeIsToMany (*) : # No generation
           case oppositeIsToOne (oppositeName) :
             if not reachableEntityNameSet.hasKey (typeName) then
-              reachableEntityNameSet += !typeName
-              exploreArray += !typeName
+              !?reachableEntityNameSet.insert (typeName)
+              !?exploreArray.append (typeName)
             end
             if propertyName.string > oppositeName.string then
-              arrowList += !"  " + entityName + ":" + propertyName 
-                   + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=onormal]"
+              !?arrowList.append ("  " + entityName + ":" + propertyName 
+                   + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=onormal]")
             end
           end
         end
       end
     end
     node += "\"]"
-    nodeList += !node
+    !?nodeList.append (node)
   end
 //-- Generation
   var s = "digraph G {\n"
@@ -140,7 +140,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
 #·······················································································································
 
 graph @entityStrongReferenceGraph (@stringlist) {
-  insert addNode error message "the '%K' entity is already declared at %L"
+  %insertSetter addNode %errorMessage "the '%K' entity is already declared at %L"
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -155,16 +155,16 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   var @entityStrongReferenceGraph entityStrongReferenceGraph = .emptyGraph
   loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.count () > 0 do
     !?exploreArray.popLast (?let @string entityName)
-    nodeList += !entityName
+    !?nodeList.append (entityName)
     !?entityStrongReferenceGraph.addNode (.new (entityName, .nowhere), entityName)
     inSemanticContext.mClassMap.searchKey (entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*)
     entityKind.entity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
-        reachableEntityNameSet += !superEntityName
-        exploreArray += !superEntityName
+        !?reachableEntityNameSet.insert (superEntityName)
+        !?exploreArray.append (superEntityName)
       end
-      arrowList += !superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]"
+      !?arrowList.append (superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]")
       !?entityStrongReferenceGraph.addEdge (.new (superEntityName, .nowhere), .new (entityName, .nowhere))
     end
     for (*, propertyKind, 2*) in propertyMap do
@@ -173,31 +173,31 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case arrayController (2*) :
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, 2*) :
-        arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]"
+        !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
         !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
         if accessibility.isStored () then
           if not reachableEntityNameSet.hasKey (typeName) then
-             reachableEntityNameSet += !typeName
-             exploreArray += !typeName
+             !?reachableEntityNameSet.insert (typeName)
+             !?exploreArray.append (typeName)
            end
         end
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, weak) :
         if not weak then
-          arrowList += !entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]"
+          !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
         end
         if accessibility.isStored () then
           switch opposite
           case none :
             if not reachableEntityNameSet.hasKey (typeName) then
-              reachableEntityNameSet += !typeName
-              exploreArray += !typeName
+              !?reachableEntityNameSet.insert (typeName)
+              !?exploreArray.append (typeName)
             end
           case oppositeIsToMany (*) : # No generation
           case oppositeIsToOne (*) :
             if not reachableEntityNameSet.hasKey (typeName) then
-              reachableEntityNameSet += !typeName
-              exploreArray += !typeName
+              !?reachableEntityNameSet.insert (typeName)
+              !?exploreArray.append (typeName)
             end
           end
         end

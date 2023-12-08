@@ -54,7 +54,7 @@ syntax extension easyBindings_syntax {
         $enum$
         modelTypeName = .new ("enum", .here)
       end
-      outletClassBindingSpecificationModelList += !modelTypeName !modelShouldBeWritableProperty
+      !?outletClassBindingSpecificationModelList.append (modelTypeName, modelShouldBeWritableProperty)
     while
       $,$
     end
@@ -66,18 +66,19 @@ syntax extension easyBindings_syntax {
         $identifier$ (?let @lstring optionName)
         $:$
         $Identifier$ (?let @lstring optionType)
-        bindingOptionList += !optionName !optionType
+        !?bindingOptionList.append (optionName, optionType)
       while
         $,$
       end
       $}$
     end
     $;$
-    ioControllerTemplateList +=
-      !outletClassName
-      !bindingName
-      !outletClassBindingSpecificationModelList
+    !?ioControllerTemplateList.append (
+      !outletClassName,
+      !bindingName,
+      !outletClassBindingSpecificationModelList,
       !bindingOptionList
+    )
   }
 
   #·····················································································································
@@ -91,9 +92,9 @@ syntax extension easyBindings_syntax {
 map @bindingSpecificationMap {
   public var @lstring mOutletSuperClassName
   public var @outletBindingSpecificationMap mBindingMap
-  insert insertKey error message "the '%K' binding is already declared in %L"
-  search searchKey error message "there is no '%K' binding"
-  remove removeKey error message "there is no '%K' binding"
+  %insertSetter insertKey %errorMessage "the '%K' binding is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' binding"
+  %removeSetter removeKey %errorMessage "there is no '%K' binding"
 }
 
 #·······················································································································
@@ -115,8 +116,8 @@ list @controllerBindingOptionDecoratedList {
 map @outletBindingSpecificationMap {
   public var @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
   public var @controllerBindingOptionDecoratedList mControllerBindingOptionList
-  insert insertKey error message "the '%K' binding is already declared in %L"
-  search searchKey error message "there is no '%K' binding"
+  %insertSetter insertKey %errorMessage "the '%K' binding is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' binding"
 }
 
 #·······················································································································
@@ -129,9 +130,10 @@ proc buildBindingSpecificationMap(
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
     for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
-        outletBindingSpecificationModelList +=
-          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []) # Any enum type
+        !?outletBindingSpecificationModelList.append (
+          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []), # Any enum type
           !mModelShouldBeWritableProperty
+        )
       else
         ioSemanticContext.mClassMap.searchKey (mModelTypeName, ?let @classKind classKind, ?3*)
         let @typeKind typeKind
@@ -145,7 +147,7 @@ proc buildBindingSpecificationMap(
         case entity (4*) :
           error mModelTypeName : "an atomic class is required here" spoil (typeKind)
         end
-        outletBindingSpecificationModelList += !typeKind !mModelShouldBeWritableProperty
+        !?outletBindingSpecificationModelList.append (typeKind, mModelShouldBeWritableProperty)
       end
     end
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
@@ -162,7 +164,7 @@ proc buildBindingSpecificationMap(
       case entity (4*) :
         error mOptionTypeName : "an atomic class is required here" spoil (typeKind)
       end
-      controllerBindingOptionDecoratedList += !typeKind !mOptionName
+      !?controllerBindingOptionDecoratedList.append (typeKind, mOptionName)
     end
   //-- Insert in binding map
     var @outletBindingSpecificationMap bindingMap

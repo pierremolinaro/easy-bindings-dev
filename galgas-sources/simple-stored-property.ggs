@@ -59,28 +59,28 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "generateResetMethod" then
         if generateResetMethod then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         generateResetMethod = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         generateDirectAccess = true
       else
         error attributeName : "unknow attribute" fixit (
-          replace "@signature", replace "@generateResetMethod",
-          replace "@generateDirectRead", replace "@generateDirectAccess"
+          %replaceBy "@signature", %replaceBy "@generateResetMethod",
+          %replaceBy "@generateDirectRead", %replaceBy "@generateDirectAccess"
         )
       end
     end
@@ -90,12 +90,12 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let @lstring attributeTypeName)
     $identifier$ (?let @lstring attributeName)
     if usedForSignature then
-      ioSignatureList += !attributeName.string
+      !?ioSignatureList.insert (attributeName.string)
     end
     $default$
     <explicit_value> (?let @abstractDefaultValue defaultValue)
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@atomicPropertyDeclarationAST.new(
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@atomicPropertyDeclarationAST.new(
       inClassName,
       attributeTypeName,
       attributeName,
@@ -104,10 +104,12 @@ syntax extension easyBindings_syntax {
       generateDirectRead,
       generateDirectAccess
     )
-    ioAttributeList +=
-      !attributeTypeName
-      !attributeName
+    )
+    !?ioAttributeList.append (
+      !attributeTypeName,
+      !attributeName,
       !defaultValue
+    )
   }
 
   #·····················································································································
@@ -122,7 +124,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     ioSemanticContext.mClassMap.searchKey (self.mPropertyTypeName, ?let classKind, ?3*)
     ioSemanticContext.mClassMap.searchKey (
@@ -139,7 +141,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     //-- Analyze default value
       self.mDefaultValue.analyzeDefaultValueType ([kind], preferencesPropertyMap, ?let @string swiftDefaultValueAsString)
     //-- Code Generation
-      mPropertyGenerationList += !@atomicPropertyGeneration (
+      !?mPropertyGenerationList.append (@atomicPropertyGeneration (
         self.mPropertyName.string,
         self.mGenerateResetMethod,
         self.mGenerateDirectRead,
@@ -148,6 +150,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
         false,
         swiftDefaultValueAsString,
         self.mClassName.string == preferencesName ()
+      )
       )
     case document (*) :
       error self.mPropertyTypeName : "an atomic class is required here"

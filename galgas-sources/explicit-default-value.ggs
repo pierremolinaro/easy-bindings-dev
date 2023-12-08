@@ -225,55 +225,55 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
 
 func %once predefinedDates() -> @stringset {
   result = []
-  result += !"now"
-  result += !"distantPast"
+  !?result.insert ("now")
+  !?result.insert ("distantPast")
 }
 
 #·······················································································································
 
 func %once predefinedColors() -> @stringset {
   result = []
-  result += !"black"
-  result += !"blue"
-  result += !"brown"
-  result += !"clear"
-  result += !"control"
-  result += !"controlDarkShadow"
-  result += !"controlHighlight"
-  result += !"controlLightHighlight"
-  result += !"controlShadow"
-  result += !"controlText"
-  result += !"cyan"
-  result += !"darkGray"
-  result += !"disabledControlText"
-  result += !"gray"
-  result += !"green"
-  result += !"grid"
-  result += !"header"
-  result += !"headerText"
-  result += !"highlight"
-  result += !"keyboardFocusIndicator"
-  result += !"knob"
-  result += !"lightGray"
-  result += !"magenta"
-  result += !"orange"
-  result += !"purple"
-  result += !"red"
-  result += !"scrollBar"
-  result += !"selectedControl"
-  result += !"selectedControlText"
-  result += !"selectedKnob"
-  result += !"selectedMenuItem"
-  result += !"selectedMenuItemText"
-  result += !"selectedTextBackground"
-  result += !"selectedText"
-  result += !"shadow"
-  result += !"textBackground"
-  result += !"white"
-  result += !"windowBackground"
-  result += !"windowFrame"
-  result += !"windowFrameText"
-  result += !"yellow"
+  !?result.insert ("black")
+  !?result.insert ("blue")
+  !?result.insert ("brown")
+  !?result.insert ("clear")
+  !?result.insert ("control")
+  !?result.insert ("controlDarkShadow")
+  !?result.insert ("controlHighlight")
+  !?result.insert ("controlLightHighlight")
+  !?result.insert ("controlShadow")
+  !?result.insert ("controlText")
+  !?result.insert ("cyan")
+  !?result.insert ("darkGray")
+  !?result.insert ("disabledControlText")
+  !?result.insert ("gray")
+  !?result.insert ("green")
+  !?result.insert ("grid")
+  !?result.insert ("header")
+  !?result.insert ("headerText")
+  !?result.insert ("highlight")
+  !?result.insert ("keyboardFocusIndicator")
+  !?result.insert ("knob")
+  !?result.insert ("lightGray")
+  !?result.insert ("magenta")
+  !?result.insert ("orange")
+  !?result.insert ("purple")
+  !?result.insert ("red")
+  !?result.insert ("scrollBar")
+  !?result.insert ("selectedControl")
+  !?result.insert ("selectedControlText")
+  !?result.insert ("selectedKnob")
+  !?result.insert ("selectedMenuItem")
+  !?result.insert ("selectedMenuItemText")
+  !?result.insert ("selectedTextBackground")
+  !?result.insert ("selectedText")
+  !?result.insert ("shadow")
+  !?result.insert ("textBackground")
+  !?result.insert ("white")
+  !?result.insert ("windowBackground")
+  !?result.insert ("windowFrame")
+  !?result.insert ("windowFrameText")
+  !?result.insert ("yellow")
 }
 #·······················································································································
   

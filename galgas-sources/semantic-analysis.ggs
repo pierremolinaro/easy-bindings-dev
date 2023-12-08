@@ -82,8 +82,8 @@ map @classMap {
   public let @propertyMap mPropertyMap
   public let @actionMap mActionMap
   public let @propertyGenerationList mPropertyGenerationList
-  insert insertKey error message "the '%K' class is already declared in %L"
-  search searchKey error message "there is no '%K' class"
+  %insertSetter insertKey %errorMessage "the '%K' class is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' class"
 }
 
 #·······················································································································
@@ -134,8 +134,8 @@ map @propertyMap {
   public var @propertyKind mKind
   public var @actionMap mActionMap
   public var @bool mIsOverriding
-  insert insertKey error message "the '%K' property is already declared in %L"
-  search searchKey error message "there is no '%K' property"
+  %insertSetter insertKey %errorMessage "the '%K' property is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' property"
 }
 
 #·······················································································································

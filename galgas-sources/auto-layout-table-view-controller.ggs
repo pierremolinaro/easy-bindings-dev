@@ -68,7 +68,7 @@ syntax extension easyBindings_syntax {
       $identifier$ (?let @lstring attributeName)
       $:$
       <explicit_value> (?let @abstractDefaultValue attributeValue)
-      arrayControllerAttributListAST += !attributeName !attributeValue
+      !?arrayControllerAttributListAST.append (attributeName, attributeValue)
     while
       $,$
     end
@@ -108,15 +108,16 @@ syntax extension easyBindings_syntax {
           $sortkey$
           $identifier$ (?sortPropertyName)
         end
-        arrayControllerBoundColumnListAST +=
-          !editableColumn
-          !propertyName
-          !columnParameterListAST
+        !?arrayControllerBoundColumnListAST.append (
+          !editableColumn,
+          !propertyName,
+          !columnParameterListAST,
           !sortPropertyName
+        )
       end
       $}$
     end
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutTableViewControllerDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@autoLayoutTableViewControllerDeclarationAST (
       inCurrentEntity,
       controllerName,
       isRoot,
@@ -124,6 +125,7 @@ syntax extension easyBindings_syntax {
       relationshipName,
       arrayControllerBoundColumnListAST,
       arrayControllerAttributListAST
+    )
     )
   }
 
@@ -140,7 +142,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
        ?!@generationStruct unused ioGeneration)
 {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
     let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
     if self.mIsRoot then
@@ -156,10 +158,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
+      !?mPropertyGenerationList.append (@autoLayoutTableViewControllerPropertyGeneration (
         self.mControllerName.string,
         "rootObject." + self.mToManyPropertyName,
         self.mClassName
+      )
       )
       case toOne (5*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -180,10 +183,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         )
         !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      mPropertyGenerationList += !@autoLayoutTableViewControllerPropertyGeneration (
+      !?mPropertyGenerationList.append (@autoLayoutTableViewControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
         self.mClassName
+      )
       )
       case toOne (5*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -221,10 +225,10 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     elsif definedAttributes.hasKey (name.string) then
       error name : "attribute multiply defined"
     else
-      definedAttributes += !name.string
+      !?definedAttributes.insert (name.string)
     end
     value.analyzeDefaultValueType (allowedTypes, preferencesPropertyMap, ?let valueAsString)
-    attributeListForGeneration += !name.string !valueAsString
+    !?attributeListForGeneration.append (name.string, valueAsString)
   end
   for s in attributes do
     if not definedAttributes.hasKey (s) then
@@ -312,11 +316,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #    )
   //------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = []
-    formalArgumentList += !"title".nowhere () !.typeString
-    formalArgumentList += !"minWidth".nowhere () !.typeInt
-    formalArgumentList += !"maxWidth".nowhere () !.typeInt
-    formalArgumentList += !"headerAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
-    formalArgumentList += !"contentAlignment".nowhere () !.typeEnum (!name: "TextAlignment".nowhere ())
+    !?formalArgumentList.append ("title".nowhere (), .typeString)
+    !?formalArgumentList.append ("minWidth".nowhere (), .typeInt)
+    !?formalArgumentList.append ("maxWidth".nowhere (), .typeInt)
+    !?formalArgumentList.append ("headerAlignment".nowhere (), .typeEnum (!name: "TextAlignment".nowhere ()))
+    !?formalArgumentList.append ("contentAlignment".nowhere (), .typeEnum (!name: "TextAlignment".nowhere ()))
     var @2stringlist actualParameterList = []
     if formalArgumentList.count () != columnParameterList.count () then
       error propertyName : columnParameterList.count ().string () + " parameter(s), " + formalArgumentList.count () + " required"
@@ -336,7 +340,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
           error actualName : "the formal parameter requires " + formalType + ", actual parameter is " + actualType
         end
         if let [actualParameter string ?value:let stringValue] then
-          actualParameterList += !formalName.string !stringValue
+          !?actualParameterList.append (formalName.string, stringValue)
         else
           error actualName :"parameter value is not string convertible"
         end
@@ -352,10 +356,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       if not sortPropertyKind.isComparable () then
         error sortPropertyName : "this property is not comparable"
       end 
-      arrayControllerSortedColumnListForGeneration +=    
-        !propertyName.string
-        !sortPropertyKind
+      !?arrayControllerSortedColumnListForGeneration.append (  
+        !propertyName.string,
+        !sortPropertyKind,
         !sortPropertyName.string
+      )
     end
   //------- Column generation
     propertyMap.searchKey
@@ -363,17 +368,18 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       ?let propertyKind,
       ?2*
     )
-    arrayControllerBoundColumnListForGeneration +=
-      !editable
-      !sortPropertyName.string
-      !propertyName.string
-      !propertyKind.swiftTypeName () # columnOutletTypeName.string
-      !"" # columnBindings.mRunActionName.string
+    !?arrayControllerBoundColumnListForGeneration.append (
+      !editable,
+      !sortPropertyName.string,
+      !propertyName.string,
+      !propertyKind.swiftTypeName (), # columnOutletTypeName.string
+      !"", # columnBindings.mRunActionName.string
       !actualParameterList
+    )
   //-- Outlet class is needed ?
 #    ioSemanticContext.mOutletClassMap.searchKey !columnOutletTypeName ?6* ?let outletClassIsUserDefined]
 #    if not outletClassIsUserDefined then
-#      ioGeneration.mNeededOutletClasses += !columnOutletTypeName.string
+#      ioGeneration.mNeededOutletClasses.append (columnOutletTypeName.string
 #    end
   end
   let modelString = if self.mIsRoot
@@ -381,7 +387,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     else "self." + self.mToManyPropertyName + "_property"
   end
 //--
-  ioGeneration.mFileGenerationList += !@autoLayoutTableViewControllerGeneration (
+  !?ioGeneration.mFileGenerationList.append (@autoLayoutTableViewControllerGeneration (
     self.mClassName,
     self.mControllerName,
     modelString,
@@ -393,8 +399,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     graphic,
     attributeListForGeneration
   )
-  ioGeneration.mGenerateClass_StoredArrayOf_ += !elementTypeName
-  ioGeneration.mGenerateClass_TransientArrayOf_ += !elementTypeName
+  )
+  !?ioGeneration.mGenerateClass_StoredArrayOf_.insert (elementTypeName)
+  !?ioGeneration.mGenerateClass_TransientArrayOf_.insert (elementTypeName)
 }
 
 
@@ -522,7 +529,7 @@ override proc @autoLayoutTableViewControllerGeneration.generateCode(
 //-- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = []
   for (2*, mObservablePropertyForSorting) in self.mTableViewControllerSortedColumnListForGeneration do
-    observedProperties += !mObservablePropertyForSorting
+    !?observedProperties.insert (mObservablePropertyForSorting)
   end
   let s = filewrapper [autoLayoutTableViewControllerGenerationTemplate.autoLayoutTableViewControllerImplementation:
     self.mOwnerName,

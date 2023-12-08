@@ -53,8 +53,8 @@ list @autoLayoutClassParameterList {
 
 map @astAutoLayoutViewFunctionMap {
   public var @autoLayoutClassParameterList mFomalParameterList
-  insert insertKey error message "the '%K' function is already declared in %L"
-  search searchKey error message "there is no '%K' function"
+  %insertSetter insertKey %errorMessage "the '%K' function is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' function"
 }
 
 #·······················································································································
@@ -160,7 +160,7 @@ syntax extension easyBindings_syntax {
       <auto_layout_view_binding_specification> (outletClassName, !?ioDeclarationAST.mAutoLayoutBindingSpecificationList)
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@autoLayoutViewClassDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@autoLayoutViewClassDeclarationAST (
       outletClassName,
       userDefined,
       superClassName,
@@ -171,6 +171,7 @@ syntax extension easyBindings_syntax {
       hasHidden,
       parameterList,
       astAutoLayoutViewFunctionMap
+    )
     )
  }
 
@@ -190,25 +191,25 @@ syntax extension easyBindings_syntax {
         $:$
         select
           $view$
-          ioParameterList += !parameterName !.typeView
+          !?ioParameterList.append (parameterName, .typeView)
         or
           $menuItem$
-          ioParameterList += !parameterName !.menuItem
+          !?ioParameterList.append (parameterName, .menuItem)
         or
           $entity$
-          ioParameterList += !parameterName !.entity
+          !?ioParameterList.append (parameterName, .entity)
         or
           $Identifier$ (?let parameterTypeName)
           if parameterTypeName.string == "String" then
-            ioParameterList += !parameterName !.typeString
+            !?ioParameterList.append (parameterName, .typeString)
           elsif parameterTypeName.string == "StringArray" then
-            ioParameterList += !parameterName !.typeStringArray
+            !?ioParameterList.append (parameterName, .typeStringArray)
           elsif parameterTypeName.string == "Int" then
-            ioParameterList += !parameterName !.typeInt
+            !?ioParameterList.append (parameterName, .typeInt)
           elsif parameterTypeName.string == "Bool" then
-            ioParameterList += !parameterName !.typeBool
+            !?ioParameterList.append (parameterName, .typeBool)
           else
-            ioParameterList += !parameterName !.typeEnum (!name: parameterTypeName)
+            !?ioParameterList.append (parameterName, .typeEnum (!name: parameterTypeName))
           end
         end
       while
@@ -301,8 +302,8 @@ map @autolayoutViewClassMap {
   public var @bool mUserDefined
   public var @autoLayoutClassParameterList mParameterList
   public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
-  insert insertKey error message "the '%K' outlet class is already declared in %L"
-  search searchKey error message "there is no '%K' outlet class"
+  %insertSetter insertKey %errorMessage "the '%K' outlet class is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' outlet class"
 }
 
 //----------------------------------------------------------------------------------------------------------------------

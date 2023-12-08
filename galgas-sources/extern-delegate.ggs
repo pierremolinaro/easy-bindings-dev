@@ -20,7 +20,7 @@ syntax extension easyBindings_syntax {
     $externDelegate$
     $Identifier$ (?let @lstring externDelegateName)
     $;$
-    ioExternSwiftDelegateList += !externDelegateName
+    !?ioExternSwiftDelegateList.append (externDelegateName)
   }
 
   #·····················································································································

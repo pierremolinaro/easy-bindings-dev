@@ -440,13 +440,3 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (class C_Compiler * inCom
                                                         const class GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
                                                         COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//
-//Routine 'print'
-//
-//----------------------------------------------------------------------------------------------------------------------
-
-void routine_print (const class GALGAS_string constinArgument0,
-                    class C_Compiler * inCompiler
-                    COMMA_LOCATION_ARGS) ;
-

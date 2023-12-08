@@ -64,28 +64,28 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "customStore" then
         if customStore then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         customStore = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error attributeName : "duplicated attribute" fixit ( remove )
+          error attributeName : "duplicated attribute" fixit ( %remove )
         end
         generateDirectAccess = true
       else
         error attributeName : "unknow attribute" fixit (
-          replace "@signature", replace "@customStore",
-          replace "@generateDirectAccess", replace "@generateDirectRead"
+          %replaceBy "@signature", %replaceBy "@customStore",
+          %replaceBy "@generateDirectAccess", %replaceBy "@generateDirectRead"
         )
       end
     end
@@ -95,7 +95,7 @@ syntax extension easyBindings_syntax {
     $Identifier$ (?let destinationEntityName)
     $identifier$ (?let relationshipName)
     if usedForSignature then
-      ioSignatureList += !relationshipName.string
+      !?ioSignatureList.insert (relationshipName.string)
     end
     let @toManyRelationshipOptionAST toManyRelationshipOption
     select
@@ -113,7 +113,7 @@ syntax extension easyBindings_syntax {
       toManyRelationshipOption = .none
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@toManyRelationshipAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@toManyRelationshipAST (
       inCurrentEntity,
       destinationEntityName,
       relationshipName,
@@ -122,6 +122,7 @@ syntax extension easyBindings_syntax {
       usedForSignature,
       generateDirectAccess,
       generateDirectRead
+    )
     )
   }
   
@@ -136,9 +137,9 @@ syntax extension easyBindings_syntax {
 override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
   with self.mClassName in !?ioSemanticContext.mClassMap 
-    error message searchKey
+    %errorMessage searchKey
   do
-    ioGeneration.mToManyClassImplementations += !self.mDestinationEntityName
+    !?ioGeneration.mToManyClassImplementations.insert (self.mDestinationEntityName)
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
     case prefs :
@@ -175,7 +176,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         optionForGeneration = .none
       end
     //-- Code Generation
-      mPropertyGenerationList += !@toManyPropertyGeneration (
+      !?mPropertyGenerationList.append (@toManyPropertyGeneration (
         self.mToManyRelationshipName.string,
         self.mGenerateDirectAccess,
         self.mGenerateDirectRead,
@@ -185,9 +186,10 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         self.mCustomStore,
         self.mUsedForSignature
       )
-      ioGeneration.mGenerateClass_StoredArrayOf_ += !self.mDestinationEntityName.string
+      )
+      !?ioGeneration.mGenerateClass_StoredArrayOf_.insert (self.mDestinationEntityName.string)
       if inPrefs then
-        ioGeneration.mGenerateClass_PreferencesArrayOf_ += !self.mDestinationEntityName.string
+        !?ioGeneration.mGenerateClass_PreferencesArrayOf_.insert (self.mDestinationEntityName.string)
       end
     end
   end

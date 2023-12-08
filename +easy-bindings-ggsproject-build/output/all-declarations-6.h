@@ -18,9 +18,6 @@ class GALGAS_computedPropertyGeneration_2D_weak : public GALGAS_propertyGenerati
 //--------------------------------- Default constructor
   public: GALGAS_computedPropertyGeneration_2D_weak (void) ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_computedPropertyGeneration_2D_weak constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Constructor and assignment from strong reference
   public: GALGAS_computedPropertyGeneration_2D_weak (const class GALGAS_computedPropertyGeneration & inSource) ;
 
@@ -181,9 +178,6 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
-//--------------------------------- Default GALGAS constructor
-  public: static GALGAS_XcodeProjectDescriptor constructor_default (LOCATION_ARGS) ;
-
 //--------------------------------- Default constructor
   public: GALGAS_XcodeProjectDescriptor (void) ;
 
@@ -309,7 +303,8 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_XcodeProjectDescriptor constructor_new (LOCATION_ARGS) ;
+  public: static class GALGAS_XcodeProjectDescriptor constructor_new (C_Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (C_String & ioString,

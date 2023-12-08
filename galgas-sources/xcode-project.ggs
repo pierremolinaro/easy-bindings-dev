@@ -96,7 +96,7 @@ private proc generateXcodeProjectInternal(
   var @stringlist swiftFileRefList = []
   var @stringlist resourceFileRefList = []
   var generatedFileSet = inGeneratedFileSet
-  generatedFileSet += !"MainMenu.xib"
+  !?generatedFileSet.insert ("MainMenu.xib")
   !?xcodeProject.addGroupWithFiles (
     !groupName:"Sources",
     !groupPath:projectName,

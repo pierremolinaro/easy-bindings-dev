@@ -76,7 +76,7 @@ syntax extension easyBindings_syntax {
       handlesGraphicControllerBinding = true
     end
     $;$
-    ioDeclarationAST.mUnifiedDeclarationList += !@outletClassDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@outletClassDeclarationAST (
       outletClassName,
       userDefined,
       superClassName,
@@ -85,6 +85,7 @@ syntax extension easyBindings_syntax {
       handlesTableViewBinding,
       handlesGraphicControllerBinding,
       hasHidden
+    )
     )
   }
 
@@ -162,8 +163,8 @@ map @outletClassMap {
   public var @bool mHandleHiddenBinding
   public var @bool mHandleGraphicControllerBinding
   public var @bool mUserDefined
-  insert insertKey error message "the '%K' outlet class is already declared in %L"
-  search searchKey error message "there is no '%K' outlet class"
+  %insertSetter insertKey %errorMessage "the '%K' outlet class is already declared in %L"
+  %searchMethod searchKey %errorMessage "there is no '%K' outlet class"
 }
 
 //----------------------------------------------------------------------------------------------------------------------

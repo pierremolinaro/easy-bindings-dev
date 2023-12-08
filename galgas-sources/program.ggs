@@ -16,8 +16,8 @@ struct @semanticContext {
 //----------------------------------------------------------------------------------------------------------------------
 
 case ."eb"
-  message "a source text file with the .easyBindings extension"
-  grammar easyBindings_grammar
+  %errorMessage "a source text file with the .easyBindings extension"
+  %useGrammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile
 {
   var declarationStruct = @astDeclarationStruct ()
@@ -26,9 +26,10 @@ case ."eb"
 //---------------------------------------- Parse source file
   grammar easyBindings_grammar (!?declarationStruct, ?let @location unused endOfSourceFile) in inSourceFile
 //----------------------- Add prefs declaration
-  declarationStruct.mUnifiedDeclarationList += !@prefsDeclarationAST (
+  !?declarationStruct.mUnifiedDeclarationList.append (@prefsDeclarationAST (
     .new(preferencesName (), .nowhere),
     declarationStruct.mPreferences
+  )
   )
 //---------------------------------------- Add Atomic type declarations
   enterAtomicClassesIn (!?declarationList: declarationStruct.mUnifiedDeclarationList)

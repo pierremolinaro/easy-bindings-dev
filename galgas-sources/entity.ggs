@@ -68,7 +68,7 @@ syntax extension easyBindings_syntax {
       $($
       repeat
         $Identifier$ (?let @lstring obsoleteName)
-        obsoleteEntityNames += !obsoleteName
+        !?obsoleteEntityNames.append (obsoleteName)
       while
         $,$
       end
@@ -106,14 +106,14 @@ syntax extension easyBindings_syntax {
     while
       $graphic$
       $identifier$ (?let graphicOption)
-      graphicOptionArray += !graphicOption
+      !?graphicOptionArray.append (graphicOption)
       $;$
       if not graphicEntity then
         error graphicOption : "only a graphic entity accepts a graphic option"
       end
     end
     $}$
-    ioDeclarationAST.mUnifiedDeclarationList += !@entityDeclarationAST (
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (@entityDeclarationAST (
       entityName,
       isAbstract,
       superEntityName,
@@ -126,8 +126,9 @@ syntax extension easyBindings_syntax {
       externSwiftDelegateList,
       graphicOptionArray
     )
+    )
     if isAbstract && graphicEntity then
-      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
+      !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
         entityName,
         "".here (),
         "EBShape".here (),
@@ -135,13 +136,15 @@ syntax extension easyBindings_syntax {
         [],
         false
       )
-      ioDeclarationAST.mUnifiedDeclarationList += !@transientDeclarationAST (
+      )
+      !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
         entityName,
         "".here (),
         "EBShape".here (),
         "objectDisplay".here (),
         [],
         false
+      )
       )
     end
  }
@@ -205,7 +208,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
     end
   //-- Replace property map
     with self.mClassName in !?ioSemanticContext.mClassMap 
-      error message searchKey
+      %errorMessage searchKey
     do
       mPropertyMap = newPropertyMap
     end
@@ -247,7 +250,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
         for superProperty in superPropertyMap do
           if superProperty.isAbstract () then
             if propertyMap.hasKey (superProperty.lkey.string) then
-              overridenTransients += !superProperty.lkey.string
+              !?overridenTransients.insert (superProperty.lkey.string)
               propertyMap.searchKey (superProperty.lkey, ?let @propertyKind propertyKind, ?2*)
               let typeName = propertyKind.typeName ()
               let superTypeName = superProperty.mKind.typeName ()
@@ -281,9 +284,9 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
      cannotBeDeleted_option = true
     else
       error graphicOption : "unkown graphic option" fixit (
-         replace "acceptedTranslation",
-         replace "canCopyAndPaste",
-         replace "cannotBeDeleted"
+         %replaceBy "acceptedTranslation",
+         %replaceBy "canCopyAndPaste",
+         %replaceBy "cannotBeDeleted"
       )
     end
   end
@@ -296,10 +299,11 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     end 
   end
 //-- Generation    
-  ioGeneration.mEntityListForGeneration +=
-    !self.mClassName.string
+  !?ioGeneration.mEntityListForGeneration.append (
+    !self.mClassName.string,
     !self.mObsoleteEntityNames
-  ioGeneration.mFileGenerationList += !@entityForGeneration (
+  )
+  !?ioGeneration.mFileGenerationList.append (@entityForGeneration (
     self.mClassName.string,
     self.mSuperEntityName.string,
     self.mHandlingOpposite,
@@ -312,6 +316,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     hasSubClass,
     canCopyAndPaste_option,
     cannotBeDeleted_option
+  )
   )
 }
 
@@ -355,19 +360,19 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
   var @toManyProxyGenerationList toManyProxyGenerationList = []
   for (property) in self.mPropertyGenerationList do
     if let atomicProperty = property as @atomicPropertyGeneration then
-      atomicPropertyGenerationList += !atomicProperty
+      !?atomicPropertyGenerationList.append (atomicProperty)
     elsif let transientProperty = property as @transientPropertyGeneration then
-      transientPropertyGenerationList += !transientProperty
+      !?transientPropertyGenerationList.append (transientProperty)
     elsif let computedProperty = property as @computedPropertyGeneration then
-      computedPropertyGenerationList += !computedProperty
+      !?computedPropertyGenerationList.append (computedProperty)
     elsif let toManyProxy = property as @toManyProxyGeneration then
-      toManyProxyGenerationList += !toManyProxy
+      !?toManyProxyGenerationList.append (toManyProxy)
     elsif let proxyProperty = property as @atomicProxyGeneration then
-      proxyGenerationList += !proxyProperty
+      !?proxyGenerationList.append (proxyProperty)
     elsif let toOneProperty = property as @toOnePropertyGeneration then
-      toOnePropertyGenerationList += !toOneProperty
+      !?toOnePropertyGenerationList.append (toOneProperty)
     elsif let toOneProperty = property as @toManyPropertyGeneration then
-      toManyPropertyGenerationList += !toOneProperty
+      !?toManyPropertyGenerationList.append (toOneProperty)
     end
   end
   var superEntityName = ""
@@ -400,7 +405,7 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
     inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName)
   ]
   var fileName = "entity-" + self.mEntityName + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFile (
     inOutputDirectory,
     fileName,
@@ -429,7 +434,7 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
     s = "// Unused code, not generated by EasyBinding compiler\n"
   end
   fileName = "toone-" + self.mEntityName + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFile (
     inOutputDirectory,
     fileName,
@@ -463,7 +468,7 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
     s = "// Unused code, not generated by EasyBinding compiler\n"
   end
   fileName = "tomany-" + self.mEntityName + ".swift"
-  ioGeneratedFileSet += !fileName
+  !?ioGeneratedFileSet.insert (fileName)
   @string.generateFile (
     inOutputDirectory,
     fileName,
@@ -480,7 +485,7 @@ proc generateEBManagedObjectContext(
 {
   if inEntityListForGeneration.count () > 0 then
     let fileName = "EBManagedObjectFactory.swift"
-    ioGeneratedFileSet += !fileName
+    !?ioGeneratedFileSet.insert (fileName)
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]
     @string.generateFile (
       inOutputDirectory,
