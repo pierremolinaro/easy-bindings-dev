@@ -1,18 +1,18 @@
 #pragma once
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-predefined-types.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 #include "all-declarations-4.h"
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Parser class 'easyBindings_syntax' declaration
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cParser_easyBindings_5F_syntax {
 //--- Virtual destructor
@@ -929,9 +929,9 @@ class cParser_easyBindings_5F_syntax {
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //  GRAMMAR easyBindings_grammar
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 //------------------------------------- 'action_declaration' non terminal
@@ -1304,13 +1304,13 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
                                             C_Lexique_easyBindings_5F_lexique * inCompiler) ;
 
 //--- Start symbol
-  public: static void _performSourceFileParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceFileParsing_ (Compiler * inCompiler,
                                                   GALGAS_lstring inFileName,
                                                   GALGAS_astDeclarationStruct & ioArgument0,
                                                   GALGAS_location & outArgument1
                                                   COMMA_LOCATION_ARGS) ;
 
-  public: static void _performSourceStringParsing_ (C_Compiler * inCompiler,
+  public: static void _performSourceStringParsing_ (Compiler * inCompiler,
                                                     GALGAS_string inSourceString,
                                                     GALGAS_string inNameString,
                                                     GALGAS_astDeclarationStruct & ioArgument0,
@@ -1318,16 +1318,16 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
-  public: static void performIndexing (C_Compiler * inCompiler,
-                                       const C_String & inSourceFilePath) ;
+  public: static void performIndexing (Compiler * inCompiler,
+                                       const String & inSourceFilePath) ;
 
 //--- Only lexical analysis
-  public: static void performOnlyLexicalAnalysis (C_Compiler * inCompiler,
-                                                  const C_String & inSourceFilePath) ;
+  public: static void performOnlyLexicalAnalysis (Compiler * inCompiler,
+                                                  const String & inSourceFilePath) ;
 
 //--- Only syntax analysis
-  public: static void performOnlySyntaxAnalysis (C_Compiler * inCompiler,
-                                                 const C_String & inSourceFilePath) ;
+  public: static void performOnlySyntaxAnalysis (Compiler * inCompiler,
+                                                 const String & inSourceFilePath) ;
 
 //------------------------------------- 'toMany_relationship' non terminal
 //--- 'parse' label
@@ -1605,12 +1605,12 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual int32_t select_easyBindings_5F_syntax_93 (C_Lexique_easyBindings_5F_lexique *) ;
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @astDeclarationStruct struct
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
 //--------------------------------- Properties
@@ -1724,16 +1724,16 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
 
 //--------------------------------- Object extraction
   public: static GALGAS_astDeclarationStruct extractObject (const GALGAS_object & inObject,
-                                                            C_Compiler * inCompiler
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
-  public: static class GALGAS_astDeclarationStruct constructor_new (C_Compiler * inCompiler
+  public: static class GALGAS_astDeclarationStruct constructor_new (Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (C_String & ioString,
-                                              const int32_t inIndentation) const override ;
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_astDeclarationStruct & inOperand) const ;
 
@@ -1752,84 +1752,84 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
 } ; // End of GALGAS_astDeclarationStruct class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruct ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_enterInPrecedenceGraph (class cPtr_abstractDeclarationAST * inObject,
                                                  class GALGAS_declarationPrecedenceGraph & io_ioGraph,
-                                                 class C_Compiler * inCompiler
+                                                 class Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Abstract extension getter '@abstractDeclarationAST nodeKey'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDeclarationAST * inObject,
-                                                  class C_Compiler * inCompiler
+                                                  class Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@abstractDeclarationAST firstAnalysisPhase'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_firstAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
                                              class GALGAS_semanticContext & io_ioSemanticContext,
                                              class GALGAS_generationStruct & io_ioGeneration,
-                                             class C_Compiler * inCompiler
+                                             class Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension method '@abstractDeclarationAST secondAnalysisPhase'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_secondAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
                                               class GALGAS_semanticContext & io_ioSemanticContext,
                                               class GALGAS_generationStruct & io_ioGeneration,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension method '@abstractDeclarationAST thirdAnalysisPhase'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_thirdAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
                                              class GALGAS_semanticContext & io_ioSemanticContext,
                                              class GALGAS_generationStruct & io_ioGeneration,
-                                             C_Compiler * inCompiler
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //Extension method '@abstractDeclarationAST fourthAnalysisPhase'
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_fourthAnalysisPhase (class cPtr_abstractDeclarationAST * inObject,
                                               class GALGAS_semanticContext & io_ioSemanticContext,
                                               class GALGAS_generationStruct & io_ioGeneration,
-                                              C_Compiler * inCompiler
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @enumForGeneration reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Default constructor
@@ -1854,7 +1854,7 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Object extraction
   public: static GALGAS_enumForGeneration extractObject (const GALGAS_object & inObject,
-                                                         C_Compiler * inCompiler
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1882,15 +1882,15 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 } ; // End of GALGAS_enumForGeneration class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 2: pointer class for @enumForGeneration class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
@@ -1901,7 +1901,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
   public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
            const class GALGAS_generationStruct inGenerationStruct,
            class GALGAS_stringset & ioGeneratedFileSet,
-           C_Compiler * COMMA_LOCATION_ARGS) override ;
+           Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
   public: GALGAS_string mProperty_mEnumName ;
@@ -1921,7 +1921,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Attribute accessors
 //--- Description
-  public: virtual void description (C_String & ioString,
+  public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
   public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
@@ -1930,11 +1930,11 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 } ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @enumForGeneration_2D_weak weak reference class
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D_weak {
 //--------------------------------- Default constructor
@@ -1946,7 +1946,7 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
   public: GALGAS_enumForGeneration_2D_weak & operator = (const class GALGAS_enumForGeneration & inSource) ;
 
 //--------------------------------- Bang operator
-  public: GALGAS_enumForGeneration bang_enumForGeneration_2D_weak (C_Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GALGAS_enumForGeneration bang_enumForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of generic part --*
 
@@ -1955,7 +1955,7 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
 
 //--------------------------------- Object extraction
   public: static GALGAS_enumForGeneration_2D_weak extractObject (const GALGAS_object & inObject,
-                                                                 C_Compiler * inCompiler
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -1979,15 +1979,15 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
 } ; // End of GALGAS_enumForGeneration_2D_weak class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration_2D_weak ;
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 // Phase 1: @entityStrongReferenceGraph graph
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 //--------------------------------- Default constructor
@@ -2000,7 +2000,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 
 //--------------------------------- Object extraction
   public: static GALGAS_entityStrongReferenceGraph extractObject (const GALGAS_object & inObject,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS constructors
@@ -2010,7 +2010,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_addNode (class GALGAS_lstring inArgument0,
                                                 class GALGAS_string inArgument1,
-                                                C_Compiler * inCompiler
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 
@@ -2023,7 +2023,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
                                                                   class GALGAS_lstringlist & outArgument1,
                                                                   class GALGAS_stringlist & outArgument2,
                                                                   class GALGAS_lstringlist & outArgument3,
-                                                                  C_Compiler * inCompiler
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG void method_nodesWithNoPredecessor (class GALGAS_stringlist & outArgument0,
@@ -2038,7 +2038,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
                                                         class GALGAS_lstringlist & outArgument1,
                                                         class GALGAS_stringlist & outArgument2,
                                                         class GALGAS_lstringlist & outArgument3,
-                                                        C_Compiler * inCompiler
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
@@ -2046,7 +2046,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GALGAS_lstringlist getter_accessibleNodesFrom (const class GALGAS_lstringlist & constinOperand0,
                                                                                 const class GALGAS_stringset & constinOperand1,
-                                                                                C_Compiler * inCompiler
+                                                                                Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_stringlist getter_nodeList (LOCATION_ARGS) const ;
@@ -2055,7 +2055,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 
   public: VIRTUAL_IN_DEBUG class GALGAS_entityStrongReferenceGraph getter_subgraphFromNodes (const class GALGAS_lstringlist & constinOperand0,
                                                                                              const class GALGAS_stringset & constinOperand1,
-                                                                                             C_Compiler * inCompiler
+                                                                                             Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
 
 
@@ -2067,7 +2067,7 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 } ; // End of GALGAS_entityStrongReferenceGraph class
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityStrongReferenceGraph ;
 

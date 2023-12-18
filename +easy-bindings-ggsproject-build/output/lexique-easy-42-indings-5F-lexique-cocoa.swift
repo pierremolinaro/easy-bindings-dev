@@ -5,23 +5,23 @@
 
 import AppKit
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   LEXIQUE easyBindings_lexique
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate let gFont_easyBindings_lexique = EBGenericPreferenceProperty <NSFont> (
   defaultValue: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular),
   prefKey: "FontFor_" + easyBindings_lexique_lexiqueIdentifier ()
 )
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate let gLineHeight_easyBindings_lexique = EBGenericPreferenceProperty <Int> (
   defaultValue: 12,
   prefKey: "LineHeightFor_" + easyBindings_lexique_lexiqueIdentifier ()
 )
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate let gColors_easyBindings_lexique : [EBGenericPreferenceProperty <NSColor>] = [
   EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique"),
@@ -42,7 +42,7 @@ fileprivate let gColors_easyBindings_lexique : [EBGenericPreferenceProperty <NSC
   EBGenericPreferenceProperty <NSColor> (defaultValue: .gray, prefKey: "ColorFor_easyBindings_lexique_template")
 ]
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate let gBoldStyle_easyBindings_lexique : [EBGenericPreferenceProperty <Bool>] = [
   EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique"),
@@ -63,7 +63,7 @@ fileprivate let gBoldStyle_easyBindings_lexique : [EBGenericPreferenceProperty <
   EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique_template")
 ]
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate let gItalicStyle_easyBindings_lexique : [EBGenericPreferenceProperty <Bool>] = [
   EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique"),
@@ -84,21 +84,21 @@ fileprivate let gItalicStyle_easyBindings_lexique : [EBGenericPreferenceProperty
   EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique_template")
 ]
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //                           Template Replacements
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //                           Template Delimiters
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //         T E R M I N A L    S Y M B O L    E N U M E R A T I O N
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 let easyBindings_lexique_1_ : UInt16 = 0
 let easyBindings_lexique_1_identifier : UInt16 = 1
@@ -205,13 +205,13 @@ let easyBindings_lexique_1__3D_ : UInt16 = 101
 let easyBindings_lexique_2_ERROR : UInt16 = 102
 let easyBindings_lexique_2_TEMPLATE : UInt16 = 103
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 func easyBindings_lexique_lexiqueIdentifier () -> String {
   return "easyBindings_lexique"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 func easyBindings_lexique_styleNameFor (styleIndex inIndex : UInt8) -> String {
   let kStyleArray : [String] = [
@@ -235,7 +235,7 @@ func easyBindings_lexique_styleNameFor (styleIndex inIndex : UInt8) -> String {
   return kStyleArray [Int (inIndex)]
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 func easyBindings_lexique_styleIdentifierFor (styleIndex inIndex : UInt8) -> String {
   let kStyleArray : [String] = [
@@ -259,9 +259,9 @@ func easyBindings_lexique_styleIdentifierFor (styleIndex inIndex : UInt8) -> Str
   return kStyleArray [Int (inIndex)]
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //                     S C A N N E R    C L A S S
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
 
@@ -772,7 +772,7 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 /* - (instancetype) init {
   self = [super init] ;
@@ -785,22 +785,22 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
   return self ;
 } */
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //            Terminal Symbols as end of script in template mark
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 /*
 
 */
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //             Key words table 'lowerCaseKeyWordList'      
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate func search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (_ inSearchedString : String) -> UInt16 {
   let dictionary : [String : UInt16] = [
@@ -872,11 +872,11 @@ fileprivate func search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (_ inS
   return dictionary [inSearchedString, default: easyBindings_lexique_1_]
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //             Key words table 'reservedBindingNameKeyWordList'      
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 fileprivate func search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordList (_ inSearchedString : String) -> UInt16 {
   let dictionary : [String : UInt16] = [
@@ -893,11 +893,11 @@ fileprivate func search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 
 
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //
 //               P A R S E    L E X I C A L    T O K E N
 //
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 /* - (void) parseLexicalTokenForLexicalColoring {
   BOOL scanningOk = YES ;
@@ -913,7 +913,7 @@ fileprivate func search_into_easyBindings_5F_lexique_reservedBindingNameKeyWordL
 
 */
 
-//----------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 //--- START OF USER ZONE 2
 
