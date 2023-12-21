@@ -85,7 +85,7 @@ rule 'a'->'z' {
     enterCharacterIntoString  (!?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '0'->'9' | '_' :
   end
-  send %codeFor tokenString in lowerCaseKeyWordList default $identifier$
+  send %searchString tokenString in lowerCaseKeyWordList default $identifier$
 }
 
 rule 'A'->'Z' {
@@ -142,7 +142,7 @@ rule '$' {
    'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
     enterCharacterIntoString (!?tokenString !*)
   end
-  send %codeFor tokenString in reservedBindingNameKeyWordList default $bindingName$
+  send %searchString tokenString in reservedBindingNameKeyWordList default $bindingName$
 }
 
 //---------------------------------------------------------------------------*
