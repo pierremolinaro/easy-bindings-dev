@@ -20,23 +20,23 @@ class GALGAS_bool extensionGetter_isAbstract (const class GALGAS_propertyMap_2D_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'println'
+//Routine 'println?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_println (const class GALGAS_string constinArgument0,
-                      class Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) ;
+void routine_println_3F_ (const class GALGAS_string constinArgument0,
+                          class Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'print'
+//Routine 'print?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_print (const class GALGAS_string constinArgument0,
-                    class Compiler * inCompiler
-                    COMMA_LOCATION_ARGS) ;
+void routine_print_3F_ (const class GALGAS_string constinArgument0,
+                        class Compiler * inCompiler
+                        COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------------------------------------------------------------------------
@@ -100,15 +100,15 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (class Comp
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'sortProperties'
+//Routine 'sortProperties??!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_sortProperties (const class GALGAS_string constinArgument0,
-                             const class GALGAS_declarationListAST constinArgument1,
-                             class GALGAS_declarationListAST & outArgument2,
-                             class Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
+void routine_sortProperties_3F__3F__21_ (const class GALGAS_string constinArgument0,
+                                         const class GALGAS_declarationListAST constinArgument1,
+                                         class GALGAS_declarationListAST & outArgument2,
+                                         class Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -147,24 +147,24 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'enterAtomicClassesIn'
+//Routine 'enterAtomicClassesIn&declarationList'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_enterAtomicClassesIn (class GALGAS_declarationListAST & ioArgument0,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void routine_enterAtomicClassesIn_26_declarationList (class GALGAS_declarationListAST & ioArgument0,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'buildActionMap'
+//Routine 'buildActionMap?!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_buildActionMap (const class GALGAS_lstringlist constinArgument0,
-                             class GALGAS_actionMap & outArgument1,
-                             class Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
+void routine_buildActionMap_3F__21_ (const class GALGAS_lstringlist constinArgument0,
+                                     class GALGAS_actionMap & outArgument1,
+                                     class Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -283,40 +283,40 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_managedObjectFactory 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateEBManagedObjectContext'
+//Routine 'generateEBManagedObjectContext??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateEBManagedObjectContext (const class GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument0,
-                                             const class GALGAS_string constinArgument1,
-                                             class GALGAS_stringset & ioArgument2,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument0,
+                                                         const class GALGAS_string constinArgument1,
+                                                         class GALGAS_stringset & ioArgument2,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeOutlets'
+//Routine 'analyzeOutlets?????????&!!!!!!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeOutlets (const class GALGAS_bool constinArgument0,
-                             const class GALGAS_propertyMap constinArgument1,
-                             const class GALGAS_propertyMap constinArgument2,
-                             const class GALGAS_string constinArgument3,
-                             const class GALGAS_semanticContext constinArgument4,
-                             const class GALGAS_outletDeclarationList constinArgument5,
-                             const class GALGAS_propertyMap constinArgument6,
-                             const class GALGAS_actionMap constinArgument7,
-                             const class GALGAS_string constinArgument8,
-                             class GALGAS_generationStruct & ioArgument9,
-                             class GALGAS_regularBindingsGenerationList & outArgument10,
-                             class GALGAS_multipleBindingGenerationList & outArgument11,
-                             class GALGAS_actionBindingListForGeneration & outArgument12,
-                             class GALGAS_decoratedOutletMap & outArgument13,
-                             class GALGAS_tableViewBindingGenerationList & outArgument14,
-                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument15,
-                             class Compiler * inCompiler
-                             COMMA_LOCATION_ARGS) ;
+void routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__21__21__21_ (const class GALGAS_bool constinArgument0,
+                                                                                             const class GALGAS_propertyMap constinArgument1,
+                                                                                             const class GALGAS_propertyMap constinArgument2,
+                                                                                             const class GALGAS_string constinArgument3,
+                                                                                             const class GALGAS_semanticContext constinArgument4,
+                                                                                             const class GALGAS_outletDeclarationList constinArgument5,
+                                                                                             const class GALGAS_propertyMap constinArgument6,
+                                                                                             const class GALGAS_actionMap constinArgument7,
+                                                                                             const class GALGAS_string constinArgument8,
+                                                                                             class GALGAS_generationStruct & ioArgument9,
+                                                                                             class GALGAS_regularBindingsGenerationList & outArgument10,
+                                                                                             class GALGAS_multipleBindingGenerationList & outArgument11,
+                                                                                             class GALGAS_actionBindingListForGeneration & outArgument12,
+                                                                                             class GALGAS_decoratedOutletMap & outArgument13,
+                                                                                             class GALGAS_tableViewBindingGenerationList & outArgument14,
+                                                                                             class GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument15,
+                                                                                             class Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -433,125 +433,125 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (class Com
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'graphvizAnalysis'
+//Routine 'graphvizAnalysis???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_graphvizAnalysis (const class GALGAS_string constinArgument0,
-                               const class GALGAS_semanticContext constinArgument1,
-                               const class GALGAS_lstringlist constinArgument2,
-                               class Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'graphvizRootEntityAnalysis'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_graphvizRootEntityAnalysis (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_semanticContext constinArgument1,
-                                         const class GALGAS_string constinArgument2,
-                                         class Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'graphvizRootEntityStrongAnalysis'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_graphvizRootEntityStrongAnalysis (const class GALGAS_string constinArgument0,
-                                               const class GALGAS_semanticContext constinArgument1,
-                                               const class GALGAS_string constinArgument2,
-                                               class Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'buildAutoLayoutBindingSpecificationMap'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_buildAutoLayoutBindingSpecificationMap (class GALGAS_semanticContext & ioArgument0,
-                                                     const class GALGAS_autoLayoutViewClassBindingSpecificationList constinArgument1,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'analyzeAutoLayoutBinding'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_analyzeAutoLayoutBinding (const class GALGAS_bool constinArgument0,
-                                       const class GALGAS_propertyMap constinArgument1,
-                                       const class GALGAS_propertyMap constinArgument2,
-                                       const class GALGAS_semanticContext constinArgument3,
-                                       const class GALGAS_propertyMap constinArgument4,
-                                       const class GALGAS_actionMap constinArgument5,
-                                       const class GALGAS_string constinArgument6,
-                                       const class GALGAS_lstring constinArgument7,
-                                       const class GALGAS_tableValueBinding constinArgument8,
-                                       const class GALGAS_runActionDescriptor constinArgument9,
-                                       const class GALGAS_multipleBindingDescriptor constinArgument10,
-                                       const class GALGAS_multipleBindingDescriptor constinArgument11,
-                                       const class GALGAS_graphicController constinArgument12,
-                                       const class GALGAS_regularBindingList constinArgument13,
-                                       class GALGAS_autoLayoutRegularBindingsGenerationList & outArgument14,
-                                       class GALGAS_autoLayoutMultipleBindingGenerationList & outArgument15,
-                                       class GALGAS_autolayoutRunBindingForGeneration & outArgument16,
-                                       class GALGAS_string & outArgument17,
-                                       class GALGAS_autoLayoutViewGraphicControllerBindingGeneration & outArgument18,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'analyzeAutoLayoutRegularBinding'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_analyzeAutoLayoutRegularBinding (const class GALGAS_bool constinArgument0,
-                                              const class GALGAS_propertyMap constinArgument1,
-                                              const class GALGAS_propertyMap constinArgument2,
-                                              const class GALGAS_semanticContext constinArgument3,
-                                              const class GALGAS_propertyMap constinArgument4,
-                                              const class GALGAS_lstring constinArgument5,
-                                              const class GALGAS_regularBindingList constinArgument6,
-                                              const class GALGAS_string constinArgument7,
-                                              class GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument8,
-                                              class Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'buildBindingSpecificationMap'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_buildBindingSpecificationMap (class GALGAS_semanticContext & ioArgument0,
-                                           const class GALGAS_outletClassBindingSpecificationList constinArgument1,
+void routine_graphvizAnalysis_3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                           const class GALGAS_semanticContext constinArgument1,
+                                           const class GALGAS_lstringlist constinArgument2,
                                            class Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeRegularBinding'
+//Routine 'graphvizRootEntityAnalysis???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeRegularBinding (const class GALGAS_propertyMap constinArgument0,
-                                    const class GALGAS_propertyMap constinArgument1,
-                                    const class GALGAS_semanticContext constinArgument2,
-                                    const class GALGAS_propertyMap constinArgument3,
-                                    const class GALGAS_lstring constinArgument4,
-                                    const class GALGAS_string constinArgument5,
-                                    const class GALGAS_regularBindingList constinArgument6,
-                                    const class GALGAS_string constinArgument7,
-                                    class GALGAS_regularBindingsGenerationList & ioArgument8,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
+void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                                     const class GALGAS_semanticContext constinArgument1,
+                                                     const class GALGAS_string constinArgument2,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'graphvizRootEntityStrongAnalysis???'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                                           const class GALGAS_semanticContext constinArgument1,
+                                                           const class GALGAS_string constinArgument2,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'buildAutoLayoutBindingSpecificationMap&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (class GALGAS_semanticContext & ioArgument0,
+                                                             const class GALGAS_autoLayoutViewClassBindingSpecificationList constinArgument1,
+                                                             class Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutBinding??????????????!!!!!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const class GALGAS_bool constinArgument0,
+                                                                                                                   const class GALGAS_propertyMap constinArgument1,
+                                                                                                                   const class GALGAS_propertyMap constinArgument2,
+                                                                                                                   const class GALGAS_semanticContext constinArgument3,
+                                                                                                                   const class GALGAS_propertyMap constinArgument4,
+                                                                                                                   const class GALGAS_actionMap constinArgument5,
+                                                                                                                   const class GALGAS_string constinArgument6,
+                                                                                                                   const class GALGAS_lstring constinArgument7,
+                                                                                                                   const class GALGAS_tableValueBinding constinArgument8,
+                                                                                                                   const class GALGAS_runActionDescriptor constinArgument9,
+                                                                                                                   const class GALGAS_multipleBindingDescriptor constinArgument10,
+                                                                                                                   const class GALGAS_multipleBindingDescriptor constinArgument11,
+                                                                                                                   const class GALGAS_graphicController constinArgument12,
+                                                                                                                   const class GALGAS_regularBindingList constinArgument13,
+                                                                                                                   class GALGAS_autoLayoutRegularBindingsGenerationList & outArgument14,
+                                                                                                                   class GALGAS_autoLayoutMultipleBindingGenerationList & outArgument15,
+                                                                                                                   class GALGAS_autolayoutRunBindingForGeneration & outArgument16,
+                                                                                                                   class GALGAS_string & outArgument17,
+                                                                                                                   class GALGAS_autoLayoutViewGraphicControllerBindingGeneration & outArgument18,
+                                                                                                                   class Compiler * inCompiler
+                                                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutRegularBinding?prefs???????&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F__26_ (const class GALGAS_bool constinArgument0,
+                                                                                       const class GALGAS_propertyMap constinArgument1,
+                                                                                       const class GALGAS_propertyMap constinArgument2,
+                                                                                       const class GALGAS_semanticContext constinArgument3,
+                                                                                       const class GALGAS_propertyMap constinArgument4,
+                                                                                       const class GALGAS_lstring constinArgument5,
+                                                                                       const class GALGAS_regularBindingList constinArgument6,
+                                                                                       const class GALGAS_string constinArgument7,
+                                                                                       class GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument8,
+                                                                                       class Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'buildBindingSpecificationMap&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_buildBindingSpecificationMap_26__3F_ (class GALGAS_semanticContext & ioArgument0,
+                                                   const class GALGAS_outletClassBindingSpecificationList constinArgument1,
+                                                   class Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeRegularBinding????????&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const class GALGAS_propertyMap constinArgument0,
+                                                                        const class GALGAS_propertyMap constinArgument1,
+                                                                        const class GALGAS_semanticContext constinArgument2,
+                                                                        const class GALGAS_propertyMap constinArgument3,
+                                                                        const class GALGAS_lstring constinArgument4,
+                                                                        const class GALGAS_string constinArgument5,
+                                                                        const class GALGAS_regularBindingList constinArgument6,
+                                                                        const class GALGAS_string constinArgument7,
+                                                                        class GALGAS_regularBindingsGenerationList & ioArgument8,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

@@ -6,7 +6,7 @@
 #import "OC_Token.h"
 #import "F_CocoaWrapperForGalgas.h"
 #import "OC_GGS_CommandLineOption.h"
-#import "lexique-easy-42-indings-5F-lexique-cocoa.h"
+#import "lexique-easy+bindings-5Flexique-cocoa.h"
 
 #ifdef USER_DEFAULT_COLORS_DEFINED
   #import "user_default_colors.h"
@@ -40,7 +40,7 @@ NSDictionary * indexingDescriptorDictionary (void) {
 //                       Command Line Options                                                    
 //--------------------------------------------------------------------------------------------------
 
-#import "option-easy-42-indings-5F-options-cocoa.h"
+#import "option-easy+bindings-5Foptions-cocoa.h"
 
 //--------------------------------------------------------------------------------------------------
 

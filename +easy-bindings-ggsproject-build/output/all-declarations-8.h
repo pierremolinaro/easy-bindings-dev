@@ -80,15 +80,15 @@ GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (clas
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateValidationRoutineStubs'
+//Routine 'generateValidationRoutineStubs??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateValidationRoutineStubs (const class GALGAS_string constinArgument0,
-                                             const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
-                                             class GALGAS_stringset & ioArgument2,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void routine_generateValidationRoutineStubs_3F__3F__26_ (const class GALGAS_string constinArgument0,
+                                                         const class GALGAS_validationStubRoutineListForGeneration constinArgument1,
+                                                         class GALGAS_stringset & ioArgument2,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -238,15 +238,15 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateSelectionControllers'
+//Routine 'generateSelectionControllers??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateSelectionControllers (const class GALGAS_selectionControllerForGeneration constinArgument0,
-                                           const class GALGAS_string constinArgument1,
-                                           class GALGAS_stringset & ioArgument2,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void routine_generateSelectionControllers_3F__3F__26_ (const class GALGAS_selectionControllerForGeneration constinArgument0,
+                                                       const class GALGAS_string constinArgument1,
+                                                       class GALGAS_stringset & ioArgument2,
+                                                       class Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -268,54 +268,54 @@ class GALGAS_stringset function_predefinedColors (class Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateCode'
+//Routine 'generateCode???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateCode (const class GALGAS_string constinArgument0,
-                           const class GALGAS_generationStruct constinArgument1,
-                           const class GALGAS_string constinArgument2,
-                           class Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
+void routine_generateCode_3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                       const class GALGAS_generationStruct constinArgument1,
+                                       const class GALGAS_string constinArgument2,
+                                       class Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateStandardProperties'
+//Routine 'generateStandardProperties???&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateStandardProperties (const class GALGAS_string constinArgument0,
-                                         const class GALGAS_stringlist constinArgument1,
-                                         const class GALGAS_transientExternTypeList constinArgument2,
-                                         class GALGAS_stringset & ioArgument3,
-                                         class Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) ;
+void routine_generateStandardProperties_3F__3F__3F__26_ (const class GALGAS_string constinArgument0,
+                                                         const class GALGAS_stringlist constinArgument1,
+                                                         const class GALGAS_transientExternTypeList constinArgument2,
+                                                         class GALGAS_stringset & ioArgument3,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateTestFile'
+//Routine 'generateTestFile????'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateTestFile (const class GALGAS_string constinArgument0,
-                               const class GALGAS_string constinArgument1,
-                               const class GALGAS_mainXibDescriptorList constinArgument2,
-                               const class GALGAS_string constinArgument3,
-                               class Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
+void routine_generateTestFile_3F__3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                               const class GALGAS_string constinArgument1,
+                                               const class GALGAS_mainXibDescriptorList constinArgument2,
+                                               const class GALGAS_string constinArgument3,
+                                               class Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateXcodeProject'
+//Routine 'generateXcodeProject????'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateXcodeProject (const class GALGAS_string constinArgument0,
-                                   const class GALGAS_string constinArgument1,
-                                   const class GALGAS_stringset constinArgument2,
-                                   const class GALGAS_string constinArgument3,
-                                   class Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
+void routine_generateXcodeProject_3F__3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                                   const class GALGAS_string constinArgument1,
+                                                   const class GALGAS_stringset constinArgument2,
+                                                   const class GALGAS_string constinArgument3,
+                                                   class Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -359,43 +359,43 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (class Co
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateClassProperty'
+//Routine 'generateClassProperty???transient&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateClassProperty (const class GALGAS_string constinArgument0,
-                                    const class GALGAS_string constinArgument1,
-                                    const class GALGAS_bool constinArgument2,
-                                    class GALGAS_stringset & ioArgument3,
-                                    class Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
+void routine_generateClassProperty_3F__3F__3F_transient_26_ (const class GALGAS_string constinArgument0,
+                                                             const class GALGAS_string constinArgument1,
+                                                             const class GALGAS_bool constinArgument2,
+                                                             class GALGAS_stringset & ioArgument3,
+                                                             class Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateScalarProperty'
+//Routine 'generateScalarProperty???transient?&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateScalarProperty (const class GALGAS_string constinArgument0,
-                                     const class GALGAS_string constinArgument1,
-                                     const class GALGAS_bool constinArgument2,
-                                     const class GALGAS_string constinArgument3,
-                                     class GALGAS_stringset & ioArgument4,
-                                     class Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
+void routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (const class GALGAS_string constinArgument0,
+                                                                  const class GALGAS_string constinArgument1,
+                                                                  const class GALGAS_bool constinArgument2,
+                                                                  const class GALGAS_string constinArgument3,
+                                                                  class GALGAS_stringset & ioArgument4,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateXcodeProjectInternal'
+//Routine 'generateXcodeProjectInternal????'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateXcodeProjectInternal (const class GALGAS_string constinArgument0,
-                                           const class GALGAS_string constinArgument1,
-                                           const class GALGAS_stringset constinArgument2,
-                                           const class GALGAS_string constinArgument3,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
+void routine_generateXcodeProjectInternal_3F__3F__3F__3F_ (const class GALGAS_string constinArgument0,
+                                                           const class GALGAS_string constinArgument1,
+                                                           const class GALGAS_stringset constinArgument2,
+                                                           const class GALGAS_string constinArgument3,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

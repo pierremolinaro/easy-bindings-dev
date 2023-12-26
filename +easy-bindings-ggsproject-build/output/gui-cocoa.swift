@@ -30,7 +30,7 @@ NSDictionary * indexingDescriptorDictionary (void) {
 //
 //--------------------------------------------------------------------------------------------------
 
-// #import "option-easy-42-indings-5F-options-cocoa.h"
+// #import "option-easy+bindings-5Foptions-cocoa.h"
 
 //--------------------------------------------------------------------------------------------------
 

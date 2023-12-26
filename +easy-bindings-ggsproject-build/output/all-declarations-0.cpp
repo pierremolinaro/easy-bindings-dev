@@ -2406,7 +2406,7 @@ String C_Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken * 
 void C_Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_easyBindings_5F_lexique & token) {
   bool loop = true ;
   token.mLexicalAttribute_floatValue = 0.0 ;
-  token.mLexicalAttribute_tokenString.setLengthToZero () ;
+  token.mLexicalAttribute_tokenString.removeAllKeepingCapacity () ;
   token.mLexicalAttribute_uint_33__32_value = 0 ;
   mTokenStartLocation = mCurrentLocation ;
   try{
@@ -2656,7 +2656,6 @@ void C_Lexique_easyBindings_5F_lexique::enterToken (cTokenFor_easyBindings_5F_le
   cTokenFor_easyBindings_5F_lexique * ptr = nullptr ;
   macroMyNew (ptr, cTokenFor_easyBindings_5F_lexique ()) ;
   ptr->mTokenCode = ioToken.mTokenCode ;
-  // ptr->mIsOptional = ioToken.mIsOptional ;
   ptr->mStartLocation = mTokenStartLocation ;
   ptr->mEndLocation = mTokenEndLocation ;
   ptr->mTemplateStringBeforeToken = ioToken.mTemplateStringBeforeToken ;

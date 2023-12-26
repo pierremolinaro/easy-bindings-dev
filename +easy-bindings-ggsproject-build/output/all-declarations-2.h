@@ -1219,37 +1219,37 @@ void callExtensionMethod_generateViewCode (class cPtr_astAbstractViewInstruction
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutEnableBinding'
+//Routine 'analyzeAutoLayoutEnableBinding??handlesEnabledBinding?prefs????prefsMap!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutEnableBinding (const class GALGAS_multipleBindingDescriptor constinArgument0,
-                                             const class GALGAS_bool constinArgument1,
-                                             const class GALGAS_bool constinArgument2,
-                                             const class GALGAS_propertyMap constinArgument3,
-                                             const class GALGAS_semanticContext constinArgument4,
-                                             const class GALGAS_propertyMap constinArgument5,
-                                             const class GALGAS_propertyMap constinArgument6,
-                                             class GALGAS_autolayoutEnabledBindingForGeneration & outArgument7,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (const class GALGAS_multipleBindingDescriptor constinArgument0,
+                                                                                                               const class GALGAS_bool constinArgument1,
+                                                                                                               const class GALGAS_bool constinArgument2,
+                                                                                                               const class GALGAS_propertyMap constinArgument3,
+                                                                                                               const class GALGAS_semanticContext constinArgument4,
+                                                                                                               const class GALGAS_propertyMap constinArgument5,
+                                                                                                               const class GALGAS_propertyMap constinArgument6,
+                                                                                                               class GALGAS_autolayoutEnabledBindingForGeneration & outArgument7,
+                                                                                                               class Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutRunBinding'
+//Routine 'analyzeAutoLayoutRunBinding??handlesRunAction?????!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutRunBinding (const class GALGAS_runActionDescriptor constinArgument0,
-                                          const class GALGAS_bool constinArgument1,
-                                          const class GALGAS_bool constinArgument2,
-                                          const class GALGAS_lstring constinArgument3,
-                                          const class GALGAS_actionMap constinArgument4,
-                                          const class GALGAS_propertyMap constinArgument5,
-                                          const class GALGAS_string constinArgument6,
-                                          class GALGAS_autolayoutRunBindingForGeneration & outArgument7,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+void routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (const class GALGAS_runActionDescriptor constinArgument0,
+                                                                                          const class GALGAS_bool constinArgument1,
+                                                                                          const class GALGAS_bool constinArgument2,
+                                                                                          const class GALGAS_lstring constinArgument3,
+                                                                                          const class GALGAS_actionMap constinArgument4,
+                                                                                          const class GALGAS_propertyMap constinArgument5,
+                                                                                          const class GALGAS_string constinArgument6,
+                                                                                          class GALGAS_autolayoutRunBindingForGeneration & outArgument7,
+                                                                                          class Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

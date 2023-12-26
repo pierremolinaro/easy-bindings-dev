@@ -609,15 +609,15 @@ GALGAS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (Compiler *
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'sortProperties'
+//Routine 'sortProperties??!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_sortProperties (const GALGAS_string constinArgument_inSourceFile,
-                             const GALGAS_declarationListAST constinArgument_inDeclarationListAST,
-                             GALGAS_declarationListAST & outArgument_outSortedDeclarationListAST,
-                             Compiler * inCompiler
-                             COMMA_UNUSED_LOCATION_ARGS) {
+void routine_sortProperties_3F__3F__21_ (const GALGAS_string constinArgument_inSourceFile,
+                                         const GALGAS_declarationListAST constinArgument_inDeclarationListAST,
+                                         GALGAS_declarationListAST & outArgument_outSortedDeclarationListAST,
+                                         Compiler * inCompiler
+                                         COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSortedDeclarationListAST.drop () ; // Release 'out' argument
   GALGAS_declarationPrecedenceGraph var_declarationPrecedenceGraph_2656 = GALGAS_declarationPrecedenceGraph::constructor_emptyGraph (SOURCE_FILE ("declaration-graph.ggs", 67)) ;
   cEnumerator_declarationListAST enumerator_2704 (constinArgument_inDeclarationListAST, kENUMERATION_UP) ;
@@ -1002,9 +1002,14 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   result.addString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.addString (" : Int, EBEnumPropertyProtocol, Hashable") ;
   const enumGalgasBool test_0 = in_CASE_5F_ITERABLE.boolEnum () ;
-  if (kBoolTrue == test_0) {
+  switch (test_0) {
+  case kBoolTrue : {
     result.addString (", CaseIterable") ;
-  }else if (kBoolFalse == test_0) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString (" {\n") ;
   GALGAS_uint index_593_idx (0) ;
@@ -1152,13 +1157,13 @@ GALGAS_lstring cPtr_atomicClassDeclarationAST::getter_nodeKey (Compiler */* inCo
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'enterAtomicClassesIn'
+//Routine 'enterAtomicClassesIn&declarationList'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_enterAtomicClassesIn (GALGAS_declarationListAST & ioArgument_ioDeclarationListAST,
-                                   Compiler * inCompiler
-                                   COMMA_UNUSED_LOCATION_ARGS) {
+void routine_enterAtomicClassesIn_26_declarationList (GALGAS_declarationListAST & ioArgument_ioDeclarationListAST,
+                                                      Compiler * inCompiler
+                                                      COMMA_UNUSED_LOCATION_ARGS) {
   {
   ioArgument_ioDeclarationListAST.setter_append (GALGAS_atomicClassDeclarationAST::constructor_new (GALGAS_string ("Double").getter_nowhere (SOURCE_FILE ("atomic-class.ggs", 26)), GALGAS_typeKind::constructor_doubleType (SOURCE_FILE ("atomic-class.ggs", 26))  COMMA_SOURCE_FILE ("atomic-class.ggs", 26)), inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 26)) ;
   }
@@ -1267,7 +1272,7 @@ void cPtr_entityDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticContex
   GALGAS_actionMap var_actionMap_5452 ;
   {
   const GALGAS_entityDeclarationAST temp_0 = this ;
-  routine_buildActionMap (temp_0.readProperty_mActionDeclarationList (), var_actionMap_5452, inCompiler  COMMA_SOURCE_FILE ("entity.ggs", 162)) ;
+  routine_buildActionMap_3F__21_ (temp_0.readProperty_mActionDeclarationList (), var_actionMap_5452, inCompiler  COMMA_SOURCE_FILE ("entity.ggs", 162)) ;
   }
   {
   const GALGAS_entityDeclarationAST temp_1 = this ;
@@ -1762,15 +1767,15 @@ void cPtr_entityForGeneration::method_generateCode (const GALGAS_string constinA
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'generateEBManagedObjectContext'
+//Routine 'generateEBManagedObjectContext??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateEBManagedObjectContext (const GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument_inEntityListForGeneration,
-                                             const GALGAS_string constinArgument_inOutputDirectory,
-                                             GALGAS_stringset & ioArgument_ioGeneratedFileSet,
-                                             Compiler * inCompiler
-                                             COMMA_UNUSED_LOCATION_ARGS) {
+void routine_generateEBManagedObjectContext_3F__3F__26_ (const GALGAS_entityListForGeneratingEBManagedObjectContext constinArgument_inEntityListForGeneration,
+                                                         const GALGAS_string constinArgument_inOutputDirectory,
+                                                         GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                                         Compiler * inCompiler
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsStrictSup, constinArgument_inEntityListForGeneration.getter_count (SOURCE_FILE ("entity.ggs", 486)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
@@ -1962,7 +1967,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
   String result ;
   result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n") ;
   const enumGalgasBool test_0 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
-  if (kBoolTrue == test_0) {
+  switch (test_0) {
+  case kBoolTrue : {
     GALGAS_uint index_427_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_atomicPropertyGenerationList enumerator_427 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
@@ -1980,10 +1986,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
         enumerator_427.gotoNextObject () ;
       }
     }
-  }else if (kBoolFalse == test_0) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   const enumGalgasBool test_1 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
-  if (kBoolTrue == test_1) {
+  switch (test_1) {
+  case kBoolTrue : {
     GALGAS_uint index_808_ (0) ;
     if (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_atomicProxyGenerationList enumerator_808 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
@@ -2001,10 +2012,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
         enumerator_808.gotoNextObject () ;
       }
     }
-  }else if (kBoolFalse == test_1) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   const enumGalgasBool test_2 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
-  if (kBoolTrue == test_2) {
+  switch (test_2) {
+  case kBoolTrue : {
     GALGAS_uint index_1198_ (0) ;
     if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
       cEnumerator_transientPropertyGenerationList enumerator_1198 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
@@ -2022,39 +2038,58 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
         enumerator_1198.gotoNextObject () ;
       }
     }
-  }else if (kBoolFalse == test_2) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
   result.addString (GALGAS_string ("Entity: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 42)).stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_3 = in_HAS_5F_SUB_5F_ENTITY.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 46)).boolEnum () ;
-  if (kBoolTrue == test_3) {
+  switch (test_3) {
+  case kBoolTrue : {
     result.addString ("final ") ;
-  }else if (kBoolFalse == test_3) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("class ") ;
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString (" : ") ;
   result.addString (in_SUPER_5F_CLASS_5F_NAME.stringValue ()) ;
   const enumGalgasBool test_4 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
-  if (kBoolTrue == test_4) {
+  switch (test_4) {
+  case kBoolTrue : {
     GALGAS_uint index_1950_ (0) ;
     if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_propertyGenerationList enumerator_1950 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
       while (enumerator_1950.hasCurrentObject ()) {
         const enumGalgasBool test_5 = GALGAS_bool (enumerator_1950.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_1950.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).operator_or (GALGAS_bool (enumerator_1950.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).boolEnum () ;
-        if (kBoolTrue == test_5) {
+        switch (test_5) {
+        case kBoolTrue : {
           result.addString (",\n         ") ;
           result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
           result.addString ("_") ;
           result.addString (enumerator_1950.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        }else if (kBoolFalse == test_5) {
+          } break ;
+        case kBoolFalse : {
+          } break ;
+        default :
+          break ;
         }
         index_1950_.increment () ;
         enumerator_1950.gotoNextObject () ;
       }
     }
-  }else if (kBoolFalse == test_4) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString (" {\n\n") ;
   GALGAS_uint index_2235_ (0) ;
@@ -2186,7 +2221,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
   }
   result.addString ("\n") ;
   const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 124)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-  if (kBoolTrue == test_6) {
+  switch (test_6) {
+  case kBoolTrue : {
     result.addString ("  //····················································································································\n  //   computeSignature\n  //····················································································································\n\n  override func computeSignature () -> UInt32 {\n    var crc = super.computeSignature ()\n") ;
     GALGAS_uint index_5238_ (0) ;
     if (in_SIGNATURE_5F_SET.isValid ()) {
@@ -2200,10 +2236,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       }
     }
     result.addString ("    return crc\n  }\n\n") ;
-  }else if (kBoolFalse == test_6) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   const enumGalgasBool test_7 = in_IS_5F_GRAPHIC_5F_ENTITY.operator_and (in_IS_5F_ABSTRACT.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 140)) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 140)).boolEnum () ;
-  if (kBoolTrue == test_7) {
+  switch (test_7) {
+  case kBoolTrue : {
     result.addString ("  //····················································································································\n\n  override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor\? {\n    return self.cursorForKnob_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" (knob: inKnobIndex)\n  }\n\n  //····················································································································\n  //  Translate\n  //····················································································································\n\n  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {\n    return self.acceptedTranslation_") ;
@@ -2244,16 +2285,30 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" ()\n  }\n\n") ;
     const enumGalgasBool test_8 = in_OPTION_5F_CanCopyAndPaste.boolEnum () ;
-    if (kBoolTrue == test_8) {
+    switch (test_8) {
+    case kBoolTrue : {
       result.addString ("  //····················································································································\n  //  COPY AND PASTE\n  //····················································································································\n\n  override func canCopyAndPaste () -> Bool {\n    return true\n  }\n\n") ;
-    }else if (kBoolFalse == test_8) {
+      } break ;
+    case kBoolFalse : {
+      } break ;
+    default :
+      break ;
     }
     const enumGalgasBool test_9 = in_OPTION_5F_CannotBeDeleted.boolEnum () ;
-    if (kBoolTrue == test_9) {
+    switch (test_9) {
+    case kBoolTrue : {
       result.addString ("  //····················································································································\n  //  Can be deleted\n  //····················································································································\n\n  override func canBeDeleted () -> Bool {\n    return false\n  }\n\n") ;
-    }else if (kBoolFalse == test_9) {
+      } break ;
+    case kBoolFalse : {
+      } break ;
+    default :
+      break ;
     }
-  }else if (kBoolFalse == test_7) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
@@ -2535,11 +2590,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_0 = in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 235)).boolEnum () ;
-  if (kBoolTrue == test_0) {
+  switch (test_0) {
+  case kBoolTrue : {
     result.addString ("// TransientArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_0) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("final class TransientArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" : ReadOnlyArrayOf_") ;
@@ -2563,16 +2620,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.propval.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    TransientArrayOfSuperOf ") ;
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_1 = in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 372)).boolEnum () ;
-  if (kBoolTrue == test_1) {
+  switch (test_1) {
+  case kBoolTrue : {
     result.addString ("// TransientArrayOfSuperOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_1) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("final class TransientArrayOfSuperOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" <SUPER : EBManagedObject> : ReadOnlyArrayOf_") ;
@@ -2586,16 +2648,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.mInternalArrayValue.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
   result.addString (GALGAS_string ("To many relationship read write: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 475)).stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_2 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).boolEnum () ;
-  if (kBoolTrue == test_2) {
+  switch (test_2) {
+  case kBoolTrue : {
     result.addString ("// ReadWriteArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_2) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("class ReadWriteArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" : ReadOnlyArrayOf_") ;
@@ -2603,16 +2670,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString (" {\n\n  //····················································································································\n\n  func setProp (_ value :  EBReferenceArray <") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (">) { } // Abstract method\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Proxy: ProxyArrayOf_") ;
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_3 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 495)).boolEnum () ;
-  if (kBoolTrue == test_3) {
+  switch (test_3) {
+  case kBoolTrue : {
     result.addString ("// ProxyArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_3) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("final class ProxyArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" : ReadWriteArrayOf_") ;
@@ -2632,16 +2704,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString ("] > {\n    if let model = self.mModel {\n      return model.selection\n    }else{\n      return .empty\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString ("> {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        return EBReferenceArray ()\n      case .single (let v) :\n        return EBReferenceArray (v)\n      }\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
   result.addString (GALGAS_string ("Stored Array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 570)).stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_4 = in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 573)).boolEnum () ;
-  if (kBoolTrue == test_4) {
+  switch (test_4) {
+  case kBoolTrue : {
     result.addString ("// StoredArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_4) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("class StoredArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" : ReadWriteArrayOf_") ;
@@ -2656,7 +2733,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (")\n    }\n    self.setProp (objectArray)\n  }\n\n  //····················································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, self.mInternalArrayValue.count > 0 {\n      var array = [Int] ()\n      for object in self.mInternalArrayValue.values {\n        array.append (object.savingIndex)\n      }\n      ioDictionary [key] = array\n    }\n  }\n\n  //····················································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, self.mInternalArrayValue.count > 0 {\n      for object in self.mInternalArrayValue.values {\n        ioArray.append (object)\n      }\n    }\n  }\n\n  //····················································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    enterToManyRelationshipObjectIndexes (from: self.propval.values, into: &ioData)\n  }\n\n  //····················································································································\n  //   Signature \?\n  //····················································································································\n\n  final private let mUsedForSignature : Bool\n\n  //····················································································································\n  //   Undo manager\n  //····················································································································\n\n  weak final var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
     const enumGalgasBool test_5 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-    if (kBoolTrue == test_5) {
+    switch (test_5) {
+    case kBoolTrue : {
       result.addString ("  //····················································································································\n  //   Opposite relationship management\n  //····················································································································\n\n  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
       result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.addString (") -> Void > = nil\n  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
@@ -2666,7 +2744,11 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
       result.addString (") -> Void,\n                                               resetter inResetter : @escaping (_ inManagedObject : ") ;
       result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.addString (") -> Void) {\n    self.mSetOppositeRelationship = inSetter\n    self.mResetOppositeRelationship = inResetter\n  }\n\n") ;
-    }else if (kBoolFalse == test_5) {
+      } break ;
+    case kBoolFalse : {
+      } break ;
+    default :
+      break ;
     }
     result.addString ("  //····················································································································\n  // Model will change\n  //····················································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -2676,15 +2758,25 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (">) {\n    for managedObject in inRemovedSet.values {\n      if self.mUsedForSignature {\n        managedObject.setSignatureObserver (observer: nil)\n      }\n") ;
     const enumGalgasBool test_6 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-    if (kBoolTrue == test_6) {
+    switch (test_6) {
+    case kBoolTrue : {
       result.addString ("      self.mResetOppositeRelationship\? (managedObject)\n") ;
-    }else if (kBoolFalse == test_6) {
+      } break ;
+    case kBoolFalse : {
+      } break ;
+    default :
+      break ;
     }
     result.addString ("   }\n  //---\n    for managedObject in inAddedSet.values {\n      if self.mUsedForSignature {\n        managedObject.setSignatureObserver (observer: self)\n      }\n") ;
     const enumGalgasBool test_7 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-    if (kBoolTrue == test_7) {
+    switch (test_7) {
+    case kBoolTrue : {
       result.addString ("      self.mSetOppositeRelationship\? (managedObject)\n") ;
-    }else if (kBoolFalse == test_7) {
+      } break ;
+    case kBoolFalse : {
+      } break ;
+    default :
+      break ;
     }
     result.addString ("    }\n  //---\n    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)\n }\n\n  //····················································································································\n\n  override final var selection : EBSelection < [") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -2697,16 +2789,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.addString (") {\n    if let idx = self.mInternalArrayValue.firstIndex (of: object) {\n      self.mInternalArrayValue.remove (at: idx)\n    }\n  }\n\n  //····················································································································\n\n  final func add (_ object : ") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (") {\n    if !self.internalSetValue.contains (object) {\n      self.mInternalArrayValue.append (object)\n    }\n  }\n\n  //····················································································································\n  //   signature\n  //····················································································································\n\n  private weak final var mSignatureObserver : EBSignatureObserverProtocol\? = nil // SOULD BE WEAK\n\n  //····················································································································\n\n  private final var mSignatureCache : UInt32\? = nil\n\n  //····················································································································\n\n  final func setSignatureObserver (observer : EBSignatureObserverProtocol\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = observer\n    observer\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n }\n\n  //····················································································································\n\n  final func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  //····················································································································\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    for object in self.mInternalArrayValue.values {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  //····················································································································\n\n  final func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
   result.addString (GALGAS_string ("Preferences array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 805)).stringValue ()) ;
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_8 = in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 808)).boolEnum () ;
-  if (kBoolTrue == test_8) {
+  switch (test_8) {
+  case kBoolTrue : {
     result.addString ("// PreferencesArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" is useless.\n") ;
-  }else if (kBoolFalse == test_8) {
+    } break ;
+  case kBoolFalse : {
     result.addString ("final class PreferencesArrayOf_") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (" : StoredArrayOf_") ;
@@ -2730,6 +2827,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
       }
     }
     result.addString ("    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  //····················································································································\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  //····················································································································\n\n}\n") ;
+    } break ;
+  default :
+    break ;
   }
   result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
@@ -2770,7 +2870,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\?) {\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  //--- Remove observers from removed objects\n") ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-  if (kBoolTrue == test_0) {
+  switch (test_0) {
+  case kBoolTrue : {
     result.addString ("    if let oldValue = inOldValue {\n") ;
     GALGAS_uint index_1261_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
@@ -2825,11 +2926,16 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
       }
     }
     result.addString ("    }\n") ;
-  }else if (kBoolFalse == test_0) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("  //--- Add observers to added objects\n") ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-  if (kBoolTrue == test_1) {
+  switch (test_1) {
+  case kBoolTrue : {
     result.addString ("    if let newValue = self.mWeakInternalValue {\n") ;
     GALGAS_uint index_2397_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
@@ -2884,7 +2990,11 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
       }
     }
     result.addString ("    }\n") ;
-  }else if (kBoolFalse == test_1) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("  }\n\n") ;
   GALGAS_uint index_3292_ (0) ;
@@ -3015,7 +3125,8 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\n      self.setProp (object)\n    }\n  }\n\n  //····················································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, let idx = self.mWeakInternalValue\?.savingIndex {\n      ioDictionary [key] = idx\n    }\n  }\n\n  //····················································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, let object = self.mWeakInternalValue {\n      ioArray.append (object)\n    }\n  }\n\n  //····················································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    if let object = self.propval {\n      ioData.append (base62Encoded: object.savingIndex)\n    }\n  }\n\n  //····················································································································\n  //   Signature \?\n  //····················································································································\n\n  private let mUsedForSignature : Bool\n\n  //····················································································································\n  //   Undo manager\n  //····················································································································\n\n  weak var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
   const enumGalgasBool test_2 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-  if (kBoolTrue == test_2) {
+  switch (test_2) {
+  case kBoolTrue : {
     result.addString ("  //····················································································································\n  //   Opposite relationship management\n  //····················································································································\n\n  private var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (") -> Void > = nil\n  private var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
@@ -3025,21 +3136,35 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
     result.addString (") -> Void,\n                                         resetter inResetter : @escaping (_ inManagedObject : ") ;
     result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.addString (") -> Void) {\n    self.mSetOppositeRelationship = inSetter\n    self.mResetOppositeRelationship = inResetter\n  }\n\n") ;
-  }else if (kBoolFalse == test_2) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("  //····················································································································\n  // Model will change\n  //····················································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.addString ("\?) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { $0.mWeakInternalValue = inOldValue }\n  //---\n    if let object = inOldValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: nil)\n      }\n") ;
   const enumGalgasBool test_3 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-  if (kBoolTrue == test_3) {
+  switch (test_3) {
+  case kBoolTrue : {
     result.addString ("      self.mResetOppositeRelationship\? (object)\n") ;
-  }else if (kBoolFalse == test_3) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("    }\n  //---\n    if let object = self.mWeakInternalValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: self)\n      }\n") ;
   const enumGalgasBool test_4 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
-  if (kBoolTrue == test_4) {
+  switch (test_4) {
+  case kBoolTrue : {
     result.addString ("      self.mSetOppositeRelationship\? (object)\n") ;
-  }else if (kBoolFalse == test_4) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  //····················································································································\n  // Model did change\n  //····················································································································\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n    self.clearSignatureCache ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n  override var selection : EBSelection < ") ;
   result.addString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -3144,7 +3269,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_firstAnalysisPhase (GALGAS_se
   GALGAS_actionMap var_actionMap_5594 ;
   {
   const GALGAS_autoLayoutDocumentDeclarationAST temp_0 = this ;
-  routine_buildActionMap (temp_0.readProperty_mActionDeclarationList (), var_actionMap_5594, inCompiler  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 148)) ;
+  routine_buildActionMap_3F__21_ (temp_0.readProperty_mActionDeclarationList (), var_actionMap_5594, inCompiler  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 148)) ;
   }
   {
   const GALGAS_autoLayoutDocumentDeclarationAST temp_1 = this ;
@@ -3197,7 +3322,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_fourthAnalysisPhase (GALGAS_s
   const GALGAS_autoLayoutDocumentDeclarationAST temp_2 = this ;
   const GALGAS_autoLayoutDocumentDeclarationAST temp_3 = this ;
   const GALGAS_autoLayoutDocumentDeclarationAST temp_4 = this ;
-  routine_analyzeOutlets (GALGAS_bool (false), var_rootPropertyMap_6682, var_preferencesPropertyMap_6307, temp_2.readProperty_mRootEntityName ().readProperty_string (), ioArgument_ioSemanticContext, temp_3.readProperty_mOutletDeclarationList (), var_documentPropertyMap_6471, var_documentActionMap_6501, temp_4.readProperty_mClassName ().readProperty_string (), ioArgument_ioGeneration, var_regularBindingsGenerationList_7108, var_multipleBindingGenerationList_7175, var_actionBindingListForGeneration_7247, var_outletMap_7308, var_tableViewBindingGenerationList_7360, var_ebViewGraphicControllerBindingGenerationList_7447, inCompiler  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 194)) ;
+  routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__21__21__21_ (GALGAS_bool (false), var_rootPropertyMap_6682, var_preferencesPropertyMap_6307, temp_2.readProperty_mRootEntityName ().readProperty_string (), ioArgument_ioSemanticContext, temp_3.readProperty_mOutletDeclarationList (), var_documentPropertyMap_6471, var_documentActionMap_6501, temp_4.readProperty_mClassName ().readProperty_string (), ioArgument_ioGeneration, var_regularBindingsGenerationList_7108, var_multipleBindingGenerationList_7175, var_actionBindingListForGeneration_7247, var_outletMap_7308, var_tableViewBindingGenerationList_7360, var_ebViewGraphicControllerBindingGenerationList_7447, inCompiler  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 194)) ;
   }
   const GALGAS_autoLayoutDocumentDeclarationAST temp_5 = this ;
   cEnumerator_arrayControllerBindingListAST enumerator_7552 (temp_5.readProperty_mArrayControllerBindingListAST (), kENUMERATION_UP) ;
@@ -3561,18 +3686,23 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
     cEnumerator_autoLayoutOutletMap enumerator_1001 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
     while (enumerator_1001.hasCurrentObject ()) {
       const enumGalgasBool test_0 = enumerator_1001.current_mOutletIsArray (HERE).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      switch (test_0) {
+      case kBoolTrue : {
         result.addString ("  final var ") ;
         result.addString (enumerator_1001.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" = EBWeakReferenceArray <AutoLayout") ;
         result.addString (enumerator_1001.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.addString ("> ()\n") ;
-      }else if (kBoolFalse == test_0) {
+        } break ;
+      case kBoolFalse : {
         result.addString ("  weak final var ") ;
         result.addString (enumerator_1001.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" : AutoLayout") ;
         result.addString (enumerator_1001.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.addString ("\? = nil\n") ;
+        } break ;
+      default :
+        break ;
       }
       index_1001_.increment () ;
       enumerator_1001.gotoNextObject () ;
@@ -3858,7 +3988,7 @@ void cPtr_prefsDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticContext
   GALGAS_actionMap var_actionMap_4113 ;
   {
   const GALGAS_prefsDeclarationAST temp_0 = this ;
-  routine_buildActionMap (temp_0.readProperty_mDeclaration ().readProperty_mActionDeclarationList (), var_actionMap_4113, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 95)) ;
+  routine_buildActionMap_3F__21_ (temp_0.readProperty_mDeclaration ().readProperty_mActionDeclarationList (), var_actionMap_4113, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 95)) ;
   }
   {
   ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (GALGAS_lstring::constructor_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 97)), GALGAS_location::constructor_here (inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 97)), inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 97)), GALGAS_classKind::constructor_prefs (SOURCE_FILE ("preferences.ggs", 98)), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.ggs", 98)), var_actionMap_4113, GALGAS_propertyGenerationList::constructor_emptyList (SOURCE_FILE ("preferences.ggs", 100)), inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 96)) ;
@@ -3924,7 +4054,7 @@ void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GALGAS_semanticContex
   GALGAS_ebViewGraphicControllerBindingGenerationList var_ebViewGraphicControllerBindingGenerationList_6334 ;
   {
   const GALGAS_prefsDeclarationAST temp_4 = this ;
-  routine_analyzeOutlets (GALGAS_bool (true), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.ggs", 144)), var_preferencesPropertyMap_5574, GALGAS_string::makeEmptyString (), ioArgument_ioSemanticContext, temp_4.readProperty_mDeclaration ().readProperty_mOutletDeclarationList (), var_preferencesPropertyMap_5574, var_actionMap_5607, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 152)), ioArgument_ioGeneration, var_regularBindingsGenerationList_5991, var_multipleBindingGenerationList_6062, var_actionBindingListForGeneration_6134, var_outletMap_6195, var_tableViewBindingGenerationList_6247, var_ebViewGraphicControllerBindingGenerationList_6334, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 143)) ;
+  routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__21__21__21_ (GALGAS_bool (true), GALGAS_propertyMap::constructor_emptyMap (SOURCE_FILE ("preferences.ggs", 144)), var_preferencesPropertyMap_5574, GALGAS_string::makeEmptyString (), ioArgument_ioSemanticContext, temp_4.readProperty_mDeclaration ().readProperty_mOutletDeclarationList (), var_preferencesPropertyMap_5574, var_actionMap_5607, function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 152)), ioArgument_ioGeneration, var_regularBindingsGenerationList_5991, var_multipleBindingGenerationList_6062, var_actionBindingListForGeneration_6134, var_outletMap_6195, var_tableViewBindingGenerationList_6247, var_ebViewGraphicControllerBindingGenerationList_6334, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 143)) ;
   }
   GALGAS_autoLayoutViewDeclarationMap var_viewDeclarationMap_6460 = GALGAS_autoLayoutViewDeclarationMap::constructor_emptyMap (SOURCE_FILE ("preferences.ggs", 162)) ;
   GALGAS_viewGenerationList var_viewGenerationList_6510 = GALGAS_viewGenerationList::constructor_emptyList (SOURCE_FILE ("preferences.ggs", 163)) ;
@@ -4167,18 +4297,23 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
     cEnumerator_autoLayoutOutletMap enumerator_3338 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
     while (enumerator_3338.hasCurrentObject ()) {
       const enumGalgasBool test_0 = enumerator_3338.current_mOutletIsArray (HERE).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      switch (test_0) {
+      case kBoolTrue : {
         result.addString ("  final var ") ;
         result.addString (enumerator_3338.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" = EBWeakReferenceArray <AutoLayout") ;
         result.addString (enumerator_3338.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.addString ("> ()\n") ;
-      }else if (kBoolFalse == test_0) {
+        } break ;
+      case kBoolFalse : {
         result.addString ("  weak final var ") ;
         result.addString (enumerator_3338.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" : AutoLayout") ;
         result.addString (enumerator_3338.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.addString ("\? = nil\n") ;
+        } break ;
+      default :
+        break ;
       }
       index_3338_.increment () ;
       enumerator_3338.gotoNextObject () ;
@@ -4232,11 +4367,16 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
     cEnumerator_externSwiftFunctionList enumerator_6196 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_6196.hasCurrentObject ()) {
       const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, enumerator_6196.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("init"))).boolEnum () ;
-      if (kBoolTrue == test_1) {
+      switch (test_1) {
+      case kBoolTrue : {
         result.addString ("    self.") ;
         result.addString (enumerator_6196.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" ()\n") ;
-      }else if (kBoolFalse == test_1) {
+        } break ;
+      case kBoolFalse : {
+        } break ;
+      default :
+        break ;
       }
       index_6196_.increment () ;
       enumerator_6196.gotoNextObject () ;
@@ -4244,9 +4384,14 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
   }
   result.addString ("  }\n\n") ;
   const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST.getter_count (SOURCE_FILE ("preferences.swift.galgasTemplate", 139)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-  if (kBoolTrue == test_2) {
+  switch (test_2) {
+  case kBoolTrue : {
     result.addString ("  //····················································································································\n\n  @IBOutlet private final var window : NSWindow\?\n  let OUTLET_WIDTH = 200.0\n  let OUTLET_HEIGHT = 22.0\n\n") ;
-  }else if (kBoolFalse == test_2) {
+    } break ;
+  case kBoolFalse : {
+    } break ;
+  default :
+    break ;
   }
   result.addString ("  //····················································································································\n  //    awakeFromNib\n  //····················································································································\n\n  override func awakeFromNib () {\n") ;
   result.addString (extensionGetter_generateCode (in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST, inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 154)).stringValue ()) ;
@@ -4366,11 +4511,16 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
     cEnumerator_externSwiftFunctionList enumerator_8806 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_8806.hasCurrentObject ()) {
       const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, enumerator_8806.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
-      if (kBoolTrue == test_3) {
+      switch (test_3) {
+      case kBoolTrue : {
         result.addString ("    self.") ;
         result.addString (enumerator_8806.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.addString (" ()\n") ;
-      }else if (kBoolFalse == test_3) {
+        } break ;
+      case kBoolFalse : {
+        } break ;
+      default :
+        break ;
       }
       index_8806_.increment () ;
       enumerator_8806.gotoNextObject () ;
@@ -4448,15 +4598,15 @@ void cPtr_preferencesForGeneration::method_generateCode (const GALGAS_string con
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'graphvizAnalysis'
+//Routine 'graphvizAnalysis???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_graphvizAnalysis (const GALGAS_string constinArgument_inSourceFileDirectory,
-                               const GALGAS_semanticContext constinArgument_inSemanticContext,
-                               const GALGAS_lstringlist constinArgument_inGraphvizList,
-                               Compiler * inCompiler
-                               COMMA_UNUSED_LOCATION_ARGS) {
+void routine_graphvizAnalysis_3F__3F__3F_ (const GALGAS_string constinArgument_inSourceFileDirectory,
+                                           const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                           const GALGAS_lstringlist constinArgument_inGraphvizList,
+                                           Compiler * inCompiler
+                                           COMMA_UNUSED_LOCATION_ARGS) {
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (kIsEqual, GALGAS_uint::constructor_errorCount (SOURCE_FILE ("graphviz.ggs", 29)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
@@ -4464,10 +4614,10 @@ void routine_graphvizAnalysis (const GALGAS_string constinArgument_inSourceFileD
       cEnumerator_lstringlist enumerator_1214 (constinArgument_inGraphvizList, kENUMERATION_UP) ;
       while (enumerator_1214.hasCurrentObject ()) {
         {
-        routine_graphvizRootEntityAnalysis (constinArgument_inSourceFileDirectory, constinArgument_inSemanticContext, enumerator_1214.current_mValue (HERE).readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("graphviz.ggs", 31)) ;
+        routine_graphvizRootEntityAnalysis_3F__3F__3F_ (constinArgument_inSourceFileDirectory, constinArgument_inSemanticContext, enumerator_1214.current_mValue (HERE).readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("graphviz.ggs", 31)) ;
         }
         {
-        routine_graphvizRootEntityStrongAnalysis (constinArgument_inSourceFileDirectory, constinArgument_inSemanticContext, enumerator_1214.current_mValue (HERE).readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("graphviz.ggs", 32)) ;
+        routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (constinArgument_inSourceFileDirectory, constinArgument_inSemanticContext, enumerator_1214.current_mValue (HERE).readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("graphviz.ggs", 32)) ;
         }
         enumerator_1214.gotoNextObject () ;
       }
@@ -4478,15 +4628,15 @@ void routine_graphvizAnalysis (const GALGAS_string constinArgument_inSourceFileD
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'graphvizRootEntityAnalysis'
+//Routine 'graphvizRootEntityAnalysis???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_graphvizRootEntityAnalysis (const GALGAS_string constinArgument_inSourceFileDirectory,
-                                         const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                         const GALGAS_string constinArgument_inRootEntityName,
-                                         Compiler * inCompiler
-                                         COMMA_UNUSED_LOCATION_ARGS) {
+void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const GALGAS_string constinArgument_inSourceFileDirectory,
+                                                     const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                     const GALGAS_string constinArgument_inRootEntityName,
+                                                     Compiler * inCompiler
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("graphviz.ggs", 42)) ;
   temp_0.addAssign_operation (constinArgument_inRootEntityName  COMMA_SOURCE_FILE ("graphviz.ggs", 42)) ;
   GALGAS_stringset var_reachableEntityNameSet_1841 = temp_0 ;
@@ -4761,15 +4911,15 @@ void routine_graphvizRootEntityAnalysis (const GALGAS_string constinArgument_inS
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'graphvizRootEntityStrongAnalysis'
+//Routine 'graphvizRootEntityStrongAnalysis???'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_graphvizRootEntityStrongAnalysis (const GALGAS_string constinArgument_inSourceFileDirectory,
-                                               const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                               const GALGAS_string constinArgument_inRootEntityName,
-                                               Compiler * inCompiler
-                                               COMMA_UNUSED_LOCATION_ARGS) {
+void routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (const GALGAS_string constinArgument_inSourceFileDirectory,
+                                                           const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                           const GALGAS_string constinArgument_inRootEntityName,
+                                                           Compiler * inCompiler
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_stringset temp_0 = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("graphviz.ggs", 151)) ;
   temp_0.addAssign_operation (constinArgument_inRootEntityName  COMMA_SOURCE_FILE ("graphviz.ggs", 151)) ;
   GALGAS_stringset var_reachableEntityNameSet_6938 = temp_0 ;
@@ -5196,14 +5346,14 @@ void cPtr_autoLayoutViewClassDeclarationAST::method_firstAnalysisPhase (GALGAS_s
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'buildAutoLayoutBindingSpecificationMap'
+//Routine 'buildAutoLayoutBindingSpecificationMap&?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_buildAutoLayoutBindingSpecificationMap (GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                                     const GALGAS_autoLayoutViewClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
-                                                     Compiler * inCompiler
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
+void routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                             const GALGAS_autoLayoutViewClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
+                                                             Compiler * inCompiler
+                                                             COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_autoLayoutViewClassBindingSpecificationList enumerator_3887 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
   while (enumerator_3887.hasCurrentObject ()) {
     GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_3988 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 98)) ;
@@ -5686,11 +5836,11 @@ void cPtr_astComputedViewInstruction::method_generateViewCode (const GALGAS_auto
           const GALGAS_multipleBindingDescriptor extractedValue_42710_enabledBinding = extractPtr_44033->mAssociatedValue2 ;
           GALGAS_autolayoutRunBindingForGeneration var_runBindingGeneration_43014 ;
           {
-          routine_analyzeAutoLayoutRunBinding (extractedValue_42705_run, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 925)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_43014, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 921)) ;
+          routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_42705_run, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 925)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_43014, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 921)) ;
           }
           GALGAS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_43350 ;
           {
-          routine_analyzeAutoLayoutEnableBinding (extractedValue_42710_enabledBinding, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_43350, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 931)) ;
+          routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_42710_enabledBinding, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_43350, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 931)) ;
           }
           GALGAS_string var_s_43397 = GALGAS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_42698_title.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 941)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 941)) ;
           switch (var_runBindingGeneration_43014.enumValue ()) {
@@ -5794,7 +5944,7 @@ void cPtr_astComputedViewInstruction::method_generateViewCode (const GALGAS_auto
   const GALGAS_astComputedViewInstruction temp_24 = this ;
   const GALGAS_astComputedViewInstruction temp_25 = this ;
   const GALGAS_astComputedViewInstruction temp_26 = this ;
-  routine_analyzeAutoLayoutBinding (constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, temp_20.readProperty_mAutoLayoutViewClassName (), temp_21.readProperty_mTableValueBinding (), temp_22.readProperty_mRunActionDescriptor (), temp_23.readProperty_mEnabledBindingDescriptor (), temp_24.readProperty_mHiddenBindingDescriptor (), temp_25.readProperty_mGraphicController (), temp_26.readProperty_mRegularBindingList (), var_regularBindingsGenerationList_45186, var_multipleBindingGenerationList_45267, var_runBindingGeneration_45342, var_inTableViewBindingGeneration_45381, var_ebViewGraphicControllerBindingGeneration_45470, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 974)) ;
+  routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, temp_20.readProperty_mAutoLayoutViewClassName (), temp_21.readProperty_mTableValueBinding (), temp_22.readProperty_mRunActionDescriptor (), temp_23.readProperty_mEnabledBindingDescriptor (), temp_24.readProperty_mHiddenBindingDescriptor (), temp_25.readProperty_mGraphicController (), temp_26.readProperty_mRegularBindingList (), var_regularBindingsGenerationList_45186, var_multipleBindingGenerationList_45267, var_runBindingGeneration_45342, var_inTableViewBindingGeneration_45381, var_ebViewGraphicControllerBindingGeneration_45470, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 974)) ;
   }
   GALGAS_autoLayoutViewInstructionGenerationFuncCallList var_funcCallList_45966 ;
   const GALGAS_astComputedViewInstruction temp_27 = this ;
@@ -5832,31 +5982,31 @@ void cPtr_astComputedViewInstruction::method_generateViewCode (const GALGAS_auto
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutBinding'
+//Routine 'analyzeAutoLayoutBinding??????????????!!!!!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutBinding (const GALGAS_bool constinArgument_inPreferences,
-                                       const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
-                                       const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
-                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                       const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
-                                       const GALGAS_actionMap constinArgument_inActionMap,
-                                       const GALGAS_string constinArgument_inReceiverSwiftTypeName,
-                                       const GALGAS_lstring constinArgument_inTypeName,
-                                       const GALGAS_tableValueBinding constinArgument_inTableValueBinding,
-                                       const GALGAS_runActionDescriptor constinArgument_inRunActionDescriptor,
-                                       const GALGAS_multipleBindingDescriptor constinArgument_inEnabledBindingDescriptor,
-                                       const GALGAS_multipleBindingDescriptor constinArgument_inHiddenBindingDescriptor,
-                                       const GALGAS_graphicController constinArgument_inGraphicController,
-                                       const GALGAS_regularBindingList constinArgument_inRegularBindingList,
-                                       GALGAS_autoLayoutRegularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
-                                       GALGAS_autoLayoutMultipleBindingGenerationList & outArgument_outMultipleBindingGenerationList,
-                                       GALGAS_autolayoutRunBindingForGeneration & outArgument_outRunBindingGeneration,
-                                       GALGAS_string & outArgument_outTableViewBindingGeneration,
-                                       GALGAS_autoLayoutViewGraphicControllerBindingGeneration & outArgument_outEBViewGraphicControllerBindingGeneration,
-                                       Compiler * inCompiler
-                                       COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const GALGAS_bool constinArgument_inPreferences,
+                                                                                                                   const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                                   const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
+                                                                                                                   const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                                                                   const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
+                                                                                                                   const GALGAS_actionMap constinArgument_inActionMap,
+                                                                                                                   const GALGAS_string constinArgument_inReceiverSwiftTypeName,
+                                                                                                                   const GALGAS_lstring constinArgument_inTypeName,
+                                                                                                                   const GALGAS_tableValueBinding constinArgument_inTableValueBinding,
+                                                                                                                   const GALGAS_runActionDescriptor constinArgument_inRunActionDescriptor,
+                                                                                                                   const GALGAS_multipleBindingDescriptor constinArgument_inEnabledBindingDescriptor,
+                                                                                                                   const GALGAS_multipleBindingDescriptor constinArgument_inHiddenBindingDescriptor,
+                                                                                                                   const GALGAS_graphicController constinArgument_inGraphicController,
+                                                                                                                   const GALGAS_regularBindingList constinArgument_inRegularBindingList,
+                                                                                                                   GALGAS_autoLayoutRegularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
+                                                                                                                   GALGAS_autoLayoutMultipleBindingGenerationList & outArgument_outMultipleBindingGenerationList,
+                                                                                                                   GALGAS_autolayoutRunBindingForGeneration & outArgument_outRunBindingGeneration,
+                                                                                                                   GALGAS_string & outArgument_outTableViewBindingGeneration,
+                                                                                                                   GALGAS_autoLayoutViewGraphicControllerBindingGeneration & outArgument_outEBViewGraphicControllerBindingGeneration,
+                                                                                                                   Compiler * inCompiler
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outRegularBindingsGenerationList.drop () ; // Release 'out' argument
   outArgument_outMultipleBindingGenerationList.drop () ; // Release 'out' argument
   outArgument_outRunBindingGeneration.drop () ; // Release 'out' argument
@@ -6068,11 +6218,11 @@ void routine_analyzeAutoLayoutBinding (const GALGAS_bool constinArgument_inPrefe
     break ;
   }
   {
-  routine_analyzeAutoLayoutRunBinding (constinArgument_inRunActionDescriptor, var_handlesRunAction_48101, constinArgument_inPreferences, constinArgument_inTypeName, constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, outArgument_outRunBindingGeneration, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1159)) ;
+  routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (constinArgument_inRunActionDescriptor, var_handlesRunAction_48101, constinArgument_inPreferences, constinArgument_inTypeName, constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, outArgument_outRunBindingGeneration, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1159)) ;
   }
   GALGAS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_52059 ;
   {
-  routine_analyzeAutoLayoutEnableBinding (constinArgument_inEnabledBindingDescriptor, var_handlesEnabledBinding_48174, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_52059, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1170)) ;
+  routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (constinArgument_inEnabledBindingDescriptor, var_handlesEnabledBinding_48174, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_52059, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1170)) ;
   }
   switch (var_enabledBindingGeneration_52059.enumValue ()) {
   case GALGAS_autolayoutEnabledBindingForGeneration::kNotBuilt:
@@ -6136,27 +6286,27 @@ void routine_analyzeAutoLayoutBinding (const GALGAS_bool constinArgument_inPrefe
   }else if (kBoolFalse == test_27) {
     temp_26 = GALGAS_string ("self.") ;
   }
-  routine_analyzeAutoLayoutRegularBinding (constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inTypeName, constinArgument_inRegularBindingList, temp_26, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1211)) ;
+  routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F__26_ (constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inTypeName, constinArgument_inRegularBindingList, temp_26, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1211)) ;
   }
 }
 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutEnableBinding'
+//Routine 'analyzeAutoLayoutEnableBinding??handlesEnabledBinding?prefs????prefsMap!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutEnableBinding (const GALGAS_multipleBindingDescriptor constinArgument_inEnabledBindingDescriptor,
-                                             const GALGAS_bool constinArgument_inHandlesEnabledBinding,
-                                             const GALGAS_bool constinArgument_inPreferences,
-                                             const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
-                                             const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                             const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
-                                             const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
-                                             GALGAS_autolayoutEnabledBindingForGeneration & outArgument_outEnabledBindingGeneration,
-                                             Compiler * inCompiler
-                                             COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (const GALGAS_multipleBindingDescriptor constinArgument_inEnabledBindingDescriptor,
+                                                                                                               const GALGAS_bool constinArgument_inHandlesEnabledBinding,
+                                                                                                               const GALGAS_bool constinArgument_inPreferences,
+                                                                                                               const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                               const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                                                               const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
+                                                                                                               const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
+                                                                                                               GALGAS_autolayoutEnabledBindingForGeneration & outArgument_outEnabledBindingGeneration,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outEnabledBindingGeneration.drop () ; // Release 'out' argument
   switch (constinArgument_inEnabledBindingDescriptor.enumValue ()) {
   case GALGAS_multipleBindingDescriptor::kNotBuilt:
@@ -6199,20 +6349,20 @@ void routine_analyzeAutoLayoutEnableBinding (const GALGAS_multipleBindingDescrip
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutRunBinding'
+//Routine 'analyzeAutoLayoutRunBinding??handlesRunAction?????!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutRunBinding (const GALGAS_runActionDescriptor constinArgument_inRunActionDescriptor,
-                                          const GALGAS_bool constinArgument_inHandlesRunAction,
-                                          const GALGAS_bool constinArgument_inPreferences,
-                                          const GALGAS_lstring constinArgument_inTypeName,
-                                          const GALGAS_actionMap constinArgument_inActionMap,
-                                          const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
-                                          const GALGAS_string constinArgument_inReceiverSwiftTypeName,
-                                          GALGAS_autolayoutRunBindingForGeneration & outArgument_outRunBindingGeneration,
-                                          Compiler * inCompiler
-                                          COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (const GALGAS_runActionDescriptor constinArgument_inRunActionDescriptor,
+                                                                                          const GALGAS_bool constinArgument_inHandlesRunAction,
+                                                                                          const GALGAS_bool constinArgument_inPreferences,
+                                                                                          const GALGAS_lstring constinArgument_inTypeName,
+                                                                                          const GALGAS_actionMap constinArgument_inActionMap,
+                                                                                          const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
+                                                                                          const GALGAS_string constinArgument_inReceiverSwiftTypeName,
+                                                                                          GALGAS_autolayoutRunBindingForGeneration & outArgument_outRunBindingGeneration,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outRunBindingGeneration.drop () ; // Release 'out' argument
   switch (constinArgument_inRunActionDescriptor.enumValue ()) {
   case GALGAS_runActionDescriptor::kNotBuilt:
@@ -6269,21 +6419,21 @@ void routine_analyzeAutoLayoutRunBinding (const GALGAS_runActionDescriptor const
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutRegularBinding'
+//Routine 'analyzeAutoLayoutRegularBinding?prefs???????&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutRegularBinding (const GALGAS_bool constinArgument_inPreferences,
-                                              const GALGAS_propertyMap constinArgument_inRootPropertyMap,
-                                              const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
-                                              const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                              const GALGAS_propertyMap constinArgument_inBoundModelPropertyMap,
-                                              const GALGAS_lstring constinArgument_inOutletTypeName,
-                                              const GALGAS_regularBindingList constinArgument_inRegularBindingList,
-                                              const GALGAS_string constinArgument_inSelfSwiftName,
-                                              GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
-                                              Compiler * inCompiler
-                                              COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F__26_ (const GALGAS_bool constinArgument_inPreferences,
+                                                                                       const GALGAS_propertyMap constinArgument_inRootPropertyMap,
+                                                                                       const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
+                                                                                       const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                                       const GALGAS_propertyMap constinArgument_inBoundModelPropertyMap,
+                                                                                       const GALGAS_lstring constinArgument_inOutletTypeName,
+                                                                                       const GALGAS_regularBindingList constinArgument_inRegularBindingList,
+                                                                                       const GALGAS_string constinArgument_inSelfSwiftName,
+                                                                                       GALGAS_autoLayoutRegularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_regularBindingList enumerator_56934 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
   while (enumerator_56934.hasCurrentObject ()) {
     GALGAS_outletBindingModelList var_boundModelTypeList_57034 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 1318)) ;
@@ -7166,14 +7316,14 @@ void cPtr_outletClassDeclarationAST::method_firstAnalysisPhase (GALGAS_semanticC
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'buildBindingSpecificationMap'
+//Routine 'buildBindingSpecificationMap&?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_buildBindingSpecificationMap (GALGAS_semanticContext & ioArgument_ioSemanticContext,
-                                           const GALGAS_outletClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
-                                           Compiler * inCompiler
-                                           COMMA_UNUSED_LOCATION_ARGS) {
+void routine_buildBindingSpecificationMap_26__3F_ (GALGAS_semanticContext & ioArgument_ioSemanticContext,
+                                                   const GALGAS_outletClassBindingSpecificationList constinArgument_inBindingSpecificationListMap,
+                                                   Compiler * inCompiler
+                                                   COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_outletClassBindingSpecificationList enumerator_4835 (constinArgument_inBindingSpecificationListMap, kENUMERATION_UP) ;
   while (enumerator_4835.hasCurrentObject ()) {
     GALGAS_outletBindingSpecificationModelList var_outletBindingSpecificationModelList_4936 = GALGAS_outletBindingSpecificationModelList::constructor_emptyList (SOURCE_FILE ("outlet-binding-specification.ggs", 130)) ;
@@ -7313,28 +7463,28 @@ void routine_buildBindingSpecificationMap (GALGAS_semanticContext & ioArgument_i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeOutlets'
+//Routine 'analyzeOutlets?????????&!!!!!!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
-                             const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
-                             const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
-                             const GALGAS_string /* constinArgument_inRootEntityName */,
-                             const GALGAS_semanticContext constinArgument_inSemanticContext,
-                             const GALGAS_outletDeclarationList constinArgument_inOutletDeclarationList,
-                             const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
-                             const GALGAS_actionMap constinArgument_inActionMap,
-                             const GALGAS_string constinArgument_inReceiverSwiftTypeName,
-                             GALGAS_generationStruct & ioArgument_ioGeneration,
-                             GALGAS_regularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
-                             GALGAS_multipleBindingGenerationList & outArgument_outMultipleBindingGenerationList,
-                             GALGAS_actionBindingListForGeneration & outArgument_outTargetActionList,
-                             GALGAS_decoratedOutletMap & outArgument_outletMap,
-                             GALGAS_tableViewBindingGenerationList & outArgument_outTableViewBindingGenerationList,
-                             GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument_outEBViewGraphicControllerBindingGenerationList,
-                             Compiler * inCompiler
-                             COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeOutlets_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__21__21__21__21__21__21_ (const GALGAS_bool constinArgument_inPreferences,
+                                                                                             const GALGAS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                             const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
+                                                                                             const GALGAS_string /* constinArgument_inRootEntityName */,
+                                                                                             const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                                             const GALGAS_outletDeclarationList constinArgument_inOutletDeclarationList,
+                                                                                             const GALGAS_propertyMap constinArgument_inObservablePropertyMap,
+                                                                                             const GALGAS_actionMap constinArgument_inActionMap,
+                                                                                             const GALGAS_string constinArgument_inReceiverSwiftTypeName,
+                                                                                             GALGAS_generationStruct & ioArgument_ioGeneration,
+                                                                                             GALGAS_regularBindingsGenerationList & outArgument_outRegularBindingsGenerationList,
+                                                                                             GALGAS_multipleBindingGenerationList & outArgument_outMultipleBindingGenerationList,
+                                                                                             GALGAS_actionBindingListForGeneration & outArgument_outTargetActionList,
+                                                                                             GALGAS_decoratedOutletMap & outArgument_outletMap,
+                                                                                             GALGAS_tableViewBindingGenerationList & outArgument_outTableViewBindingGenerationList,
+                                                                                             GALGAS_ebViewGraphicControllerBindingGenerationList & outArgument_outEBViewGraphicControllerBindingGenerationList,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outRegularBindingsGenerationList.drop () ; // Release 'out' argument
   outArgument_outMultipleBindingGenerationList.drop () ; // Release 'out' argument
   outArgument_outTargetActionList.drop () ; // Release 'out' argument
@@ -7677,7 +7827,7 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
     }else if (kBoolFalse == test_34) {
       temp_33 = GALGAS_string ("self.") ;
     }
-    routine_analyzeRegularBinding (constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, enumerator_8385.current_mOutletTypeName (HERE), enumerator_8385.current_mOutletName (HERE).readProperty_string (), enumerator_8385.current_mRegularBindingList (HERE), temp_33, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 384)) ;
+    routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, enumerator_8385.current_mOutletTypeName (HERE), enumerator_8385.current_mOutletName (HERE).readProperty_string (), enumerator_8385.current_mRegularBindingList (HERE), temp_33, outArgument_outRegularBindingsGenerationList, inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 384)) ;
     }
     enumerator_8385.gotoNextObject () ;
   }
@@ -7686,21 +7836,21 @@ void routine_analyzeOutlets (const GALGAS_bool constinArgument_inPreferences,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeRegularBinding'
+//Routine 'analyzeRegularBinding????????&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeRegularBinding (const GALGAS_propertyMap constinArgument_inRootPropertyMap,
-                                    const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
-                                    const GALGAS_semanticContext constinArgument_inSemanticContext,
-                                    const GALGAS_propertyMap constinArgument_inBoundModelPropertyMap,
-                                    const GALGAS_lstring constinArgument_inOutletTypeName,
-                                    const GALGAS_string constinArgument_inOutletName,
-                                    const GALGAS_regularBindingList constinArgument_inRegularBindingList,
-                                    const GALGAS_string constinArgument_inSelfSwiftName,
-                                    GALGAS_regularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
-                                    Compiler * inCompiler
-                                    COMMA_UNUSED_LOCATION_ARGS) {
+void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const GALGAS_propertyMap constinArgument_inRootPropertyMap,
+                                                                        const GALGAS_propertyMap constinArgument_inPreferencesPropertyMap,
+                                                                        const GALGAS_semanticContext constinArgument_inSemanticContext,
+                                                                        const GALGAS_propertyMap constinArgument_inBoundModelPropertyMap,
+                                                                        const GALGAS_lstring constinArgument_inOutletTypeName,
+                                                                        const GALGAS_string constinArgument_inOutletName,
+                                                                        const GALGAS_regularBindingList constinArgument_inRegularBindingList,
+                                                                        const GALGAS_string constinArgument_inSelfSwiftName,
+                                                                        GALGAS_regularBindingsGenerationList & ioArgument_ioRegularBindingsGenerationList,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_regularBindingList enumerator_15957 (constinArgument_inRegularBindingList, kENUMERATION_UP) ;
   while (enumerator_15957.hasCurrentObject ()) {
     GALGAS_outletBindingModelList var_boundModelTypeList_16057 = GALGAS_outletBindingModelList::constructor_emptyList (SOURCE_FILE ("outlet-declaration.ggs", 413)) ;
@@ -9489,80 +9639,6 @@ GALGAS_string cPtr_transientPropertyGeneration::getter_propertyDeclarationCode (
         const GALGAS_transientPropertyGeneration temp_12 = this ;
         result_result.plusAssign_operation(GALGAS_string ("    return self.").add_operation (temp_12.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 366)).add_operation (GALGAS_string ("_property.optionalValue\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 366)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 366)) ;
         result_result.plusAssign_operation(GALGAS_string ("  }\n\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 367)) ;
-      }
-    }
-  }
-//---
-  return result_result ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//Overriding extension getter '@transientPropertyGeneration configurationCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientPropertyGeneration::getter_configurationCode (const GALGAS_bool constinArgument_inPreferences,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  GALGAS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
-    temp_0 = GALGAS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
-    temp_0 = GALGAS_string ("self.") ;
-  }
-  GALGAS_string var_prefix_16530 = temp_0 ;
-  result_result = GALGAS_string::makeEmptyString () ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    const GALGAS_transientPropertyGeneration temp_3 = this ;
-    test_2 = GALGAS_bool (kIsStrictSup, temp_3.readProperty_mDependencyList ().getter_count (SOURCE_FILE ("transient-property.ggs", 377)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      const GALGAS_transientPropertyGeneration temp_4 = this ;
-      GALGAS_bool var_needs_5F_unwSelf_16660 = extensionGetter_needs_5F_unwSelf (temp_4.readProperty_mDependencyList (), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 378)) ;
-      const GALGAS_transientPropertyGeneration temp_5 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  //--- Atomic property: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 379)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
-        test_6 = var_needs_5F_unwSelf_16660.boolEnum () ;
-        if (kBoolTrue == test_6) {
-          const GALGAS_transientPropertyGeneration temp_7 = this ;
-          result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)).add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 381)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      if let unwSelf = self {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 382)) ;
-          const GALGAS_transientPropertyGeneration temp_8 = this ;
-          const GALGAS_transientPropertyGeneration temp_9 = this ;
-          const GALGAS_transientPropertyGeneration temp_10 = this ;
-          result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_8.readProperty_mDependencyList (), constinArgument_inPreferences, temp_9.readProperty_mClassName (), temp_10.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 383)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 383)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 384)) ;
-          result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 385)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 386)) ;
-        }
-      }
-      if (kBoolFalse == test_6) {
-        const GALGAS_transientPropertyGeneration temp_11 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)).add_operation (temp_11.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)).add_operation (GALGAS_string ("_property.mReadModelFunction = {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 388)) ;
-        const GALGAS_transientPropertyGeneration temp_12 = this ;
-        const GALGAS_transientPropertyGeneration temp_13 = this ;
-        const GALGAS_transientPropertyGeneration temp_14 = this ;
-        result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_12.readProperty_mDependencyList (), constinArgument_inPreferences, temp_13.readProperty_mClassName (), temp_14.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 389)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 389)) ;
-      }
-      result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 391)) ;
-      const GALGAS_transientPropertyGeneration temp_15 = this ;
-      cEnumerator_transientDependencyListForGeneration enumerator_17503 (temp_15.readProperty_mDependencyList (), kENUMERATION_UP) ;
-      while (enumerator_17503.hasCurrentObject ()) {
-        GALGAS_string var_s_17543 = extensionGetter_generateAddObserverCall (enumerator_17503.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)) ;
-        enumGalgasBool test_16 = kBoolTrue ;
-        if (kBoolTrue == test_16) {
-          test_16 = GALGAS_bool (kIsNotEqual, var_s_17543.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-          if (kBoolTrue == test_16) {
-            const GALGAS_transientPropertyGeneration temp_17 = this ;
-            result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_s_17543, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (GALGAS_string (" (by: "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (temp_17.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 395)) ;
-          }
-        }
-        enumerator_17503.gotoNextObject () ;
       }
     }
   }

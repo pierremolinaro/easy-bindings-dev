@@ -10659,7 +10659,7 @@ GALGAS_classMap_2D_element GALGAS_classMap_2D_element::extractObject (const GALG
 #include "utilities/MF_MemoryControl.h"
 #include "galgas2/C_galgas_CLI_Options.h"
 
-#include "files/C_FileManager.h"
+#include "files/FileManager.h"
 
 //---------------------------------------------------------------------------------------------------------------------*
 
@@ -18455,7 +18455,7 @@ void cGrammar_easyBindings_5F_grammar::performIndexing (Compiler * inCompiler,
 
 void cGrammar_easyBindings_5F_grammar::performOnlyLexicalAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+  C_Lexique_easyBindings_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performLexicalAnalysis () ;
@@ -18465,7 +18465,7 @@ void cGrammar_easyBindings_5F_grammar::performOnlyLexicalAnalysis (Compiler * in
 
 void cGrammar_easyBindings_5F_grammar::performOnlySyntaxAnalysis (Compiler * inCompiler,
              const String & inSourceFilePath) {
-  C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+  C_Lexique_easyBindings_5F_lexique * scanner = nullptr ;
   macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, inSourceFilePath COMMA_HERE)) ;
   if (scanner->sourceText ().isValid ()) {
     scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,
@@ -18489,11 +18489,11 @@ void cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (Compiler * in
   if (inFilePath.isValid ()) {
     const GALGAS_string filePathAsString = inFilePath.readProperty_string () ;
     String filePath = filePathAsString.stringValue () ;
-    if (! C_FileManager::isAbsolutePath (filePath)) {
+    if (! FileManager::isAbsolutePath (filePath)) {
       filePath = inCompiler->sourceFilePath ().stringByDeletingLastPathComponent ().stringByAppendingPathComponent (filePath) ;
     }
-    if (C_FileManager::fileExistsAtPath (filePath)) {
-      C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+    if (FileManager::fileExistsAtPath (filePath)) {
+      C_Lexique_easyBindings_5F_lexique * scanner = nullptr ;
       macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, filePath COMMA_HERE)) ;
       if (scanner->sourceText ().isValid ()) {
         const bool ok = scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,
@@ -18534,7 +18534,7 @@ void cGrammar_easyBindings_5F_grammar::_performSourceStringParsing_ (Compiler * 
   if (inSourceString.isValid () && inNameString.isValid ()) {
     const String sourceString = inSourceString.stringValue () ;
     const String nameString = inNameString.stringValue () ;
-    C_Lexique_easyBindings_5F_lexique * scanner = NULL ;
+    C_Lexique_easyBindings_5F_lexique * scanner = nullptr ;
     macroMyNew (scanner, C_Lexique_easyBindings_5F_lexique (inCompiler, sourceString, nameString COMMA_HERE)) ;
     if (scanner->sourceText ().isValid ()) {
       const bool ok = scanner->performBottomUpParsing (gActionTable_easyBindings_grammar, gNonTerminalNames_easyBindings_grammar,

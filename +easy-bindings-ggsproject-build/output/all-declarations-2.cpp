@@ -534,11 +534,11 @@ void extensionMethod_checkViewFunctionCallList (const GALGAS_astAutoLayoutViewFu
             const GALGAS_multipleBindingDescriptor extractedValue_25506_enabledBinding = extractPtr_26899->mAssociatedValue2 ;
             GALGAS_autolayoutRunBindingForGeneration var_runBindingGeneration_25828 ;
             {
-            routine_analyzeAutoLayoutRunBinding (extractedValue_25501_run, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 597)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_25828, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)) ;
+            routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_25501_run, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 597)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_25828, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)) ;
             }
             GALGAS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_26184 ;
             {
-            routine_analyzeAutoLayoutEnableBinding (extractedValue_25506_enabledBinding, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_26184, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 603)) ;
+            routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_25506_enabledBinding, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_26184, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 603)) ;
             }
             GALGAS_string var_s_26235 = GALGAS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_25494_title.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 613)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 613)) ;
             switch (var_runBindingGeneration_25828.enumValue ()) {
