@@ -1,7 +1,7 @@
-#include "galgas2/Compiler.h"
-#include "galgas2/C_galgas_io.h"
-#include "galgas2/C_galgas_CLI_Options.h"
-#include "utilities/C_PrologueEpilogue.h"
+#include "Compiler.h"
+#include "C_galgas_io.h"
+#include "C_galgas_CLI_Options.h"
+#include "PrologueEpilogue.h"
 
 //--------------------------------------------------------------------------------------------------
 
@@ -70,10 +70,10 @@ GALGAS_propertyGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerPropertyGeneration GALGAS_autoLayoutTableViewControllerPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
-                                                                                                                                const GALGAS_string & inAttribute_mModelString,
-                                                                                                                                const GALGAS_string & inAttribute_mOwnerName
-                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerPropertyGeneration GALGAS_autoLayoutTableViewControllerPropertyGeneration::class_func_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                                                               const GALGAS_string & inAttribute_mModelString,
+                                                                                                                               const GALGAS_string & inAttribute_mOwnerName
+                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerPropertyGeneration result ;
   if (inAttribute_mPropertyName.isValid () && inAttribute_mModelString.isValid () && inAttribute_mOwnerName.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_autoLayoutTableViewControllerPropertyGeneration (inAttribute_mPropertyName, inAttribute_mModelString, inAttribute_mOwnerName COMMA_THERE)) ;
@@ -150,9 +150,8 @@ acPtr_class * cPtr_autoLayoutTableViewControllerPropertyGeneration::duplicate (L
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration ("autoLayoutTableViewControllerPropertyGeneration",
-                                                                        & kTypeDescriptor_GALGAS_propertyGeneration) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration ("autoLayoutTableViewControllerPropertyGeneration",
+                                                                                                       & kTypeDescriptor_GALGAS_propertyGeneration) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -233,7 +232,7 @@ GALGAS_propertyGeneration_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -261,9 +260,8 @@ GALGAS_autoLayoutTableViewControllerPropertyGeneration GALGAS_autoLayoutTableVie
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak ("autoLayoutTableViewControllerPropertyGeneration-weak",
-                                                                                & kTypeDescriptor_GALGAS_propertyGeneration_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2D_weak ("autoLayoutTableViewControllerPropertyGeneration-weak",
+                                                                                                               & kTypeDescriptor_GALGAS_propertyGeneration_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -306,7 +304,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControllerModelKind::constructor_entityArray (UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControllerModelKind::class_func_entityArray (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerModelKind result ;
   result.mEnum = kEnum_entityArray ;
   return result ;
@@ -314,7 +312,7 @@ GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControll
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControllerModelKind::constructor_transientArray (UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControllerModelKind::class_func_transientArray (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerModelKind result ;
   result.mEnum = kEnum_transientArray ;
   return result ;
@@ -385,9 +383,8 @@ typeComparisonResult GALGAS_autoLayoutTableViewControllerModelKind::objectCompar
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerModelKind ("autoLayoutTableViewControllerModelKind",
-                                                               nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerModelKind ("autoLayoutTableViewControllerModelKind",
+                                                                                              nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -431,7 +428,7 @@ GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControll
 class cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration : public cCollectionElement {
   public: GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (const GALGAS_bool & in_mEditable,
                                                                                         const GALGAS_string & in_mSortPropertyName,
                                                                                         const GALGAS_string & in_mDisplayedPropertyName,
@@ -539,19 +536,19 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_listWithValue (const GALGAS_bool & inOperand0,
-                                                                                                                                                              const GALGAS_string & inOperand1,
-                                                                                                                                                              const GALGAS_string & inOperand2,
-                                                                                                                                                              const GALGAS_string & inOperand3,
-                                                                                                                                                              const GALGAS_string & inOperand4,
-                                                                                                                                                              const GALGAS__32_stringlist & inOperand5
-                                                                                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::class_func_listWithValue (const GALGAS_bool & inOperand0,
+                                                                                                                                                             const GALGAS_string & inOperand1,
+                                                                                                                                                             const GALGAS_string & inOperand2,
+                                                                                                                                                             const GALGAS_string & inOperand3,
+                                                                                                                                                             const GALGAS_string & inOperand4,
+                                                                                                                                                             const GALGAS__32_stringlist & inOperand5
+                                                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid ()) {
     result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration (capCollectionElementArray ()) ;
@@ -841,7 +838,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayo
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                                                             Compiler * inCompiler
                                                                                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -851,7 +848,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayo
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                                                             Compiler * inCompiler
                                                                                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -861,7 +858,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayo
 GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                                                                           Compiler * inCompiler
                                                                                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1124,9 +1121,8 @@ GALGAS__32_stringlist cEnumerator_autoLayoutTableViewControllerBoundColumnListFo
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration ("autoLayoutTableViewControllerBoundColumnListForGeneration",
-                                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration ("autoLayoutTableViewControllerBoundColumnListForGeneration",
+                                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1170,7 +1166,7 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration GALGAS_autoLayo
 class cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration : public cCollectionElement {
   public: GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration (const GALGAS_string & in_mColumnName,
                                                                                          const GALGAS_propertyKind & in_mSortPropertyKind,
                                                                                          const GALGAS_string & in_mObservablePropertyForSorting
@@ -1260,16 +1256,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                                                                const GALGAS_propertyKind & inOperand1,
-                                                                                                                                                                const GALGAS_string & inOperand2
-                                                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                                                                                                               const GALGAS_propertyKind & inOperand1,
+                                                                                                                                                               const GALGAS_string & inOperand2
+                                                                                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration (capCollectionElementArray ()) ;
@@ -1493,7 +1489,7 @@ GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLay
 GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                                                                               Compiler * inCompiler
                                                                                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1503,7 +1499,7 @@ GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLay
 GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                                                                               Compiler * inCompiler
                                                                                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1513,7 +1509,7 @@ GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLay
 GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                                                                             Compiler * inCompiler
                                                                                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -1665,9 +1661,8 @@ GALGAS_string cEnumerator_autoLayoutTableViewControllerSortedColumnListForGenera
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration ("autoLayoutTableViewControllerSortedColumnListForGeneration",
-                                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration ("autoLayoutTableViewControllerSortedColumnListForGeneration",
+                                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1748,7 +1743,7 @@ GALGAS_abstractFileGeneration_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerGeneration_2D_weak GALGAS_autoLayoutTableViewControllerGeneration_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerGeneration_2D_weak GALGAS_autoLayoutTableViewControllerGeneration_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerGeneration_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1776,9 +1771,8 @@ GALGAS_autoLayoutTableViewControllerGeneration GALGAS_autoLayoutTableViewControl
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerGeneration_2D_weak ("autoLayoutTableViewControllerGeneration-weak",
-                                                                        & kTypeDescriptor_GALGAS_abstractFileGeneration_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerGeneration_2D_weak ("autoLayoutTableViewControllerGeneration-weak",
+                                                                                                       & kTypeDescriptor_GALGAS_abstractFileGeneration_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1859,7 +1853,7 @@ GALGAS_abstractDeclarationAST_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_selectionControllerDeclarationAST_2D_weak GALGAS_selectionControllerDeclarationAST_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_selectionControllerDeclarationAST_2D_weak GALGAS_selectionControllerDeclarationAST_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_selectionControllerDeclarationAST_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -1887,9 +1881,8 @@ GALGAS_selectionControllerDeclarationAST GALGAS_selectionControllerDeclarationAS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_selectionControllerDeclarationAST_2D_weak ("selectionControllerDeclarationAST-weak",
-                                                                  & kTypeDescriptor_GALGAS_abstractDeclarationAST_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionControllerDeclarationAST_2D_weak ("selectionControllerDeclarationAST-weak",
+                                                                                                 & kTypeDescriptor_GALGAS_abstractDeclarationAST_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1991,11 +1984,11 @@ GALGAS_propertyGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_selectionControllerPropertyGeneration GALGAS_selectionControllerPropertyGeneration::constructor_new (const GALGAS_string & inAttribute_mPropertyName,
-                                                                                                            const GALGAS_string & inAttribute_mOwnerName,
-                                                                                                            const GALGAS_string & inAttribute_mModelControllerName,
-                                                                                                            const GALGAS_string & inAttribute_mModelControllerPropertyName
-                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_selectionControllerPropertyGeneration GALGAS_selectionControllerPropertyGeneration::class_func_new (const GALGAS_string & inAttribute_mPropertyName,
+                                                                                                           const GALGAS_string & inAttribute_mOwnerName,
+                                                                                                           const GALGAS_string & inAttribute_mModelControllerName,
+                                                                                                           const GALGAS_string & inAttribute_mModelControllerPropertyName
+                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_selectionControllerPropertyGeneration result ;
   if (inAttribute_mPropertyName.isValid () && inAttribute_mOwnerName.isValid () && inAttribute_mModelControllerName.isValid () && inAttribute_mModelControllerPropertyName.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_selectionControllerPropertyGeneration (inAttribute_mPropertyName, inAttribute_mOwnerName, inAttribute_mModelControllerName, inAttribute_mModelControllerPropertyName COMMA_THERE)) ;
@@ -2088,9 +2081,8 @@ acPtr_class * cPtr_selectionControllerPropertyGeneration::duplicate (LOCATION_AR
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration ("selectionControllerPropertyGeneration",
-                                                              & kTypeDescriptor_GALGAS_propertyGeneration) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration ("selectionControllerPropertyGeneration",
+                                                                                             & kTypeDescriptor_GALGAS_propertyGeneration) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2171,7 +2163,7 @@ GALGAS_propertyGeneration_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_selectionControllerPropertyGeneration_2D_weak GALGAS_selectionControllerPropertyGeneration_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_selectionControllerPropertyGeneration_2D_weak GALGAS_selectionControllerPropertyGeneration_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_selectionControllerPropertyGeneration_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -2199,9 +2191,8 @@ GALGAS_selectionControllerPropertyGeneration GALGAS_selectionControllerPropertyG
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration_2D_weak ("selectionControllerPropertyGeneration-weak",
-                                                                      & kTypeDescriptor_GALGAS_propertyGeneration_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionControllerPropertyGeneration_2D_weak ("selectionControllerPropertyGeneration-weak",
+                                                                                                     & kTypeDescriptor_GALGAS_propertyGeneration_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2245,7 +2236,7 @@ GALGAS_selectionControllerPropertyGeneration_2D_weak GALGAS_selectionControllerP
 class cCollectionElement_selectionControllerForGeneration : public cCollectionElement {
   public: GALGAS_selectionControllerForGeneration_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_selectionControllerForGeneration (const GALGAS_string & in_mOwnerName,
                                                                const GALGAS_string & in_mSelectionControllerName,
                                                                const GALGAS_string & in_mBoundControllerName,
@@ -2365,21 +2356,21 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_selectionControllerForGeneration (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                            const GALGAS_string & inOperand1,
-                                                                                                            const GALGAS_string & inOperand2,
-                                                                                                            const GALGAS_string & inOperand3,
-                                                                                                            const GALGAS_string & inOperand4,
-                                                                                                            const GALGAS_string & inOperand5,
-                                                                                                            const GALGAS_propertyMap & inOperand6,
-                                                                                                            const GALGAS_propertyGenerationList & inOperand7
-                                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                                                           const GALGAS_string & inOperand1,
+                                                                                                           const GALGAS_string & inOperand2,
+                                                                                                           const GALGAS_string & inOperand3,
+                                                                                                           const GALGAS_string & inOperand4,
+                                                                                                           const GALGAS_string & inOperand5,
+                                                                                                           const GALGAS_propertyMap & inOperand6,
+                                                                                                           const GALGAS_propertyGenerationList & inOperand7
+                                                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_selectionControllerForGeneration result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid ()) {
     result = GALGAS_selectionControllerForGeneration (capCollectionElementArray ()) ;
@@ -2713,7 +2704,7 @@ GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration:
 GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                                           Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -2723,7 +2714,7 @@ GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration:
 GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                                           Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -2733,7 +2724,7 @@ GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration:
 GALGAS_selectionControllerForGeneration GALGAS_selectionControllerForGeneration::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                                         Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::constructor_emptyList (THERE) ;
+  GALGAS_selectionControllerForGeneration result = GALGAS_selectionControllerForGeneration::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -3070,9 +3061,8 @@ GALGAS_propertyGenerationList cEnumerator_selectionControllerForGeneration::curr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_selectionControllerForGeneration ("selectionControllerForGeneration",
-                                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionControllerForGeneration ("selectionControllerForGeneration",
+                                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3153,7 +3143,7 @@ AC_GALGAS_weak_reference (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_abstractDefaultValue_2D_weak GALGAS_abstractDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_abstractDefaultValue_2D_weak GALGAS_abstractDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_abstractDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3181,9 +3171,8 @@ GALGAS_abstractDefaultValue GALGAS_abstractDefaultValue_2D_weak::bang_abstractDe
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak ("abstractDefaultValue-weak",
-                                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak ("abstractDefaultValue-weak",
+                                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3264,7 +3253,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_boolAsDefaultValue_2D_weak GALGAS_boolAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_boolAsDefaultValue_2D_weak GALGAS_boolAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_boolAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3292,9 +3281,8 @@ GALGAS_boolAsDefaultValue GALGAS_boolAsDefaultValue_2D_weak::bang_boolAsDefaultV
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_boolAsDefaultValue_2D_weak ("boolAsDefaultValue-weak",
-                                                   & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boolAsDefaultValue_2D_weak ("boolAsDefaultValue-weak",
+                                                                                  & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3375,7 +3363,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_doubleAsDefaultValue_2D_weak GALGAS_doubleAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_doubleAsDefaultValue_2D_weak GALGAS_doubleAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_doubleAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3403,9 +3391,8 @@ GALGAS_doubleAsDefaultValue GALGAS_doubleAsDefaultValue_2D_weak::bang_doubleAsDe
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_doubleAsDefaultValue_2D_weak ("doubleAsDefaultValue-weak",
-                                                     & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_doubleAsDefaultValue_2D_weak ("doubleAsDefaultValue-weak",
+                                                                                    & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3500,9 +3487,9 @@ GALGAS_abstractDefaultValue (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_integerAsDefaultValue GALGAS_integerAsDefaultValue::constructor_new (const GALGAS_luint & inAttribute_mValue,
-                                                                            const GALGAS_bool & inAttribute_mNegative
-                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_integerAsDefaultValue GALGAS_integerAsDefaultValue::class_func_new (const GALGAS_luint & inAttribute_mValue,
+                                                                           const GALGAS_bool & inAttribute_mNegative
+                                                                           COMMA_LOCATION_ARGS) {
   GALGAS_integerAsDefaultValue result ;
   if (inAttribute_mValue.isValid () && inAttribute_mNegative.isValid ()) {
     macroMyNew (result.mObjectPtr, cPtr_integerAsDefaultValue (inAttribute_mValue, inAttribute_mNegative COMMA_THERE)) ;
@@ -3598,9 +3585,8 @@ acPtr_class * cPtr_integerAsDefaultValue::duplicate (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_integerAsDefaultValue ("integerAsDefaultValue",
-                                              & kTypeDescriptor_GALGAS_abstractDefaultValue) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultValue ("integerAsDefaultValue",
+                                                                             & kTypeDescriptor_GALGAS_abstractDefaultValue) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3681,7 +3667,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_integerAsDefaultValue_2D_weak GALGAS_integerAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_integerAsDefaultValue_2D_weak GALGAS_integerAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_integerAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3709,9 +3695,8 @@ GALGAS_integerAsDefaultValue GALGAS_integerAsDefaultValue_2D_weak::bang_integerA
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_integerAsDefaultValue_2D_weak ("integerAsDefaultValue-weak",
-                                                      & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultValue_2D_weak ("integerAsDefaultValue-weak",
+                                                                                     & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3792,7 +3777,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_stringAsDefaultValue_2D_weak GALGAS_stringAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_stringAsDefaultValue_2D_weak GALGAS_stringAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_stringAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3820,9 +3805,8 @@ GALGAS_stringAsDefaultValue GALGAS_stringAsDefaultValue_2D_weak::bang_stringAsDe
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_stringAsDefaultValue_2D_weak ("stringAsDefaultValue-weak",
-                                                     & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringAsDefaultValue_2D_weak ("stringAsDefaultValue-weak",
+                                                                                    & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3903,7 +3887,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_identifierAsDefaultValue_2D_weak GALGAS_identifierAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_identifierAsDefaultValue_2D_weak GALGAS_identifierAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_identifierAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -3931,9 +3915,8 @@ GALGAS_identifierAsDefaultValue GALGAS_identifierAsDefaultValue_2D_weak::bang_id
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_identifierAsDefaultValue_2D_weak ("identifierAsDefaultValue-weak",
-                                                         & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_identifierAsDefaultValue_2D_weak ("identifierAsDefaultValue-weak",
+                                                                                        & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4014,7 +3997,7 @@ GALGAS_abstractDefaultValue_2D_weak (inSource) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_prefsAsDefaultValue_2D_weak GALGAS_prefsAsDefaultValue_2D_weak::constructor_nil (LOCATION_ARGS) {
+GALGAS_prefsAsDefaultValue_2D_weak GALGAS_prefsAsDefaultValue_2D_weak::class_func_nil (LOCATION_ARGS) {
   GALGAS_prefsAsDefaultValue_2D_weak result ;
   macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
   return result ;
@@ -4042,9 +4025,8 @@ GALGAS_prefsAsDefaultValue GALGAS_prefsAsDefaultValue_2D_weak::bang_prefsAsDefau
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_prefsAsDefaultValue_2D_weak ("prefsAsDefaultValue-weak",
-                                                    & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue_2D_weak ("prefsAsDefaultValue-weak",
+                                                                                   & kTypeDescriptor_GALGAS_abstractDefaultValue_2D_weak) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4361,7 +4343,7 @@ GALGAS_bool extensionGetter_isGraphic (const GALGAS_typeKind & inObject,
 class cCollectionElement_typeKindList : public cCollectionElement {
   public: GALGAS_typeKindList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_typeKindList (const GALGAS_typeKind & in_mType
                                            COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_typeKindList (const GALGAS_typeKindList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -4439,14 +4421,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_typeKindList GALGAS_typeKindList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_typeKindList GALGAS_typeKindList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_typeKindList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_typeKindList GALGAS_typeKindList::constructor_listWithValue (const GALGAS_typeKind & inOperand0
-                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_typeKindList GALGAS_typeKindList::class_func_listWithValue (const GALGAS_typeKind & inOperand0
+                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_typeKindList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_typeKindList (capCollectionElementArray ()) ;
@@ -4626,7 +4608,7 @@ GALGAS_typeKindList GALGAS_typeKindList::add_operation (const GALGAS_typeKindLis
 GALGAS_typeKindList GALGAS_typeKindList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_typeKindList result = GALGAS_typeKindList::constructor_emptyList (THERE) ;
+  GALGAS_typeKindList result = GALGAS_typeKindList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4636,7 +4618,7 @@ GALGAS_typeKindList GALGAS_typeKindList::getter_subListWithRange (const GALGAS_r
 GALGAS_typeKindList GALGAS_typeKindList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_typeKindList result = GALGAS_typeKindList::constructor_emptyList (THERE) ;
+  GALGAS_typeKindList result = GALGAS_typeKindList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4646,7 +4628,7 @@ GALGAS_typeKindList GALGAS_typeKindList::getter_subListFromIndex (const GALGAS_u
 GALGAS_typeKindList GALGAS_typeKindList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_typeKindList result = GALGAS_typeKindList::constructor_emptyList (THERE) ;
+  GALGAS_typeKindList result = GALGAS_typeKindList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -4724,9 +4706,8 @@ GALGAS_typeKind cEnumerator_typeKindList::current_mType (LOCATION_ARGS) const {
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_typeKindList ("typeKindList",
-                                     nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKindList ("typeKindList",
+                                                                    nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5292,7 +5273,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind GALGAS_classKind::constructor_prefs (UNUSED_LOCATION_ARGS) {
+GALGAS_classKind GALGAS_classKind::class_func_prefs (UNUSED_LOCATION_ARGS) {
   GALGAS_classKind result ;
   result.mEnum = kEnum_prefs ;
   return result ;
@@ -5300,8 +5281,8 @@ GALGAS_classKind GALGAS_classKind::constructor_prefs (UNUSED_LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind GALGAS_classKind::constructor_atomic (const GALGAS_typeKind & inAssociatedValue0
-                                                       COMMA_LOCATION_ARGS) {
+GALGAS_classKind GALGAS_classKind::class_func_atomic (const GALGAS_typeKind & inAssociatedValue0
+                                                      COMMA_LOCATION_ARGS) {
   GALGAS_classKind result ;
   if (inAssociatedValue0.isValid ()) {
     result.mEnum = kEnum_atomic ;
@@ -5315,8 +5296,8 @@ GALGAS_classKind GALGAS_classKind::constructor_atomic (const GALGAS_typeKind & i
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind GALGAS_classKind::constructor_document (const GALGAS_lstring & inAssociatedValue0
-                                                         COMMA_LOCATION_ARGS) {
+GALGAS_classKind GALGAS_classKind::class_func_document (const GALGAS_lstring & inAssociatedValue0
+                                                        COMMA_LOCATION_ARGS) {
   GALGAS_classKind result ;
   if (inAssociatedValue0.isValid ()) {
     result.mEnum = kEnum_document ;
@@ -5330,11 +5311,11 @@ GALGAS_classKind GALGAS_classKind::constructor_document (const GALGAS_lstring & 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind GALGAS_classKind::constructor_entity (const GALGAS_string & inAssociatedValue0,
-                                                       const GALGAS_bool & inAssociatedValue1,
-                                                       const GALGAS_bool & inAssociatedValue2,
-                                                       const GALGAS_bool & inAssociatedValue3
-                                                       COMMA_LOCATION_ARGS) {
+GALGAS_classKind GALGAS_classKind::class_func_entity (const GALGAS_string & inAssociatedValue0,
+                                                      const GALGAS_bool & inAssociatedValue1,
+                                                      const GALGAS_bool & inAssociatedValue2,
+                                                      const GALGAS_bool & inAssociatedValue3
+                                                      COMMA_LOCATION_ARGS) {
   GALGAS_classKind result ;
   if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid () && inAssociatedValue2.isValid () && inAssociatedValue3.isValid ()) {
     result.mEnum = kEnum_entity ;
@@ -5515,9 +5496,8 @@ typeComparisonResult GALGAS_classKind::objectCompare (const GALGAS_classKind & i
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_classKind ("classKind",
-                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind ("classKind",
+                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5838,7 +5818,7 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_stored (UNUSED_LOCATION_ARGS) {
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::class_func_stored (UNUSED_LOCATION_ARGS) {
   GALGAS_propertyAccessibility result ;
   result.mEnum = kEnum_stored ;
   return result ;
@@ -5846,7 +5826,7 @@ GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_stored (U
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_computed (UNUSED_LOCATION_ARGS) {
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::class_func_computed (UNUSED_LOCATION_ARGS) {
   GALGAS_propertyAccessibility result ;
   result.mEnum = kEnum_computed ;
   return result ;
@@ -5854,8 +5834,8 @@ GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_computed 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyAccessibility GALGAS_propertyAccessibility::constructor_transient (const GALGAS_bool & inAssociatedValue0
-                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_propertyAccessibility GALGAS_propertyAccessibility::class_func_transient (const GALGAS_bool & inAssociatedValue0
+                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_propertyAccessibility result ;
   if (inAssociatedValue0.isValid ()) {
     result.mEnum = kEnum_transient ;
@@ -5967,9 +5947,8 @@ typeComparisonResult GALGAS_propertyAccessibility::objectCompare (const GALGAS_p
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_propertyAccessibility ("propertyAccessibility",
-                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyAccessibility ("propertyAccessibility",
+                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6013,7 +5992,7 @@ GALGAS_propertyAccessibility GALGAS_propertyAccessibility::extractObject (const 
 class cCollectionElement_transientExternTypeList : public cCollectionElement {
   public: GALGAS_transientExternTypeList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_transientExternTypeList (const GALGAS_string & in_mTypeName,
                                                       const GALGAS_bool & in_mIsClass
                                                       COMMA_LOCATION_ARGS) ;
@@ -6097,15 +6076,15 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_transientExternTypeList GALGAS_transientExternTypeList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_transientExternTypeList GALGAS_transientExternTypeList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_transientExternTypeList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_transientExternTypeList GALGAS_transientExternTypeList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                          const GALGAS_bool & inOperand1
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_transientExternTypeList GALGAS_transientExternTypeList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                                         const GALGAS_bool & inOperand1
+                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_transientExternTypeList result ;
   if (inOperand0.isValid () && inOperand1.isValid ()) {
     result = GALGAS_transientExternTypeList (capCollectionElementArray ()) ;
@@ -6307,7 +6286,7 @@ GALGAS_transientExternTypeList GALGAS_transientExternTypeList::add_operation (co
 GALGAS_transientExternTypeList GALGAS_transientExternTypeList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::constructor_emptyList (THERE) ;
+  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6317,7 +6296,7 @@ GALGAS_transientExternTypeList GALGAS_transientExternTypeList::getter_subListWit
 GALGAS_transientExternTypeList GALGAS_transientExternTypeList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
-  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::constructor_emptyList (THERE) ;
+  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6327,7 +6306,7 @@ GALGAS_transientExternTypeList GALGAS_transientExternTypeList::getter_subListFro
 GALGAS_transientExternTypeList GALGAS_transientExternTypeList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
-  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::constructor_emptyList (THERE) ;
+  GALGAS_transientExternTypeList result = GALGAS_transientExternTypeList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6442,9 +6421,8 @@ GALGAS_bool cEnumerator_transientExternTypeList::current_mIsClass (LOCATION_ARGS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientExternTypeList ("transientExternTypeList",
-                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientExternTypeList ("transientExternTypeList",
+                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6507,7 +6485,7 @@ void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
 class cCollectionElement_fileGenerationList : public cCollectionElement {
   public: GALGAS_fileGenerationList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_fileGenerationList (const GALGAS_abstractFileGeneration & in_mFileGeneration
                                                  COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_fileGenerationList (const GALGAS_fileGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -6585,14 +6563,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_fileGenerationList GALGAS_fileGenerationList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_fileGenerationList GALGAS_fileGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_fileGenerationList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_fileGenerationList GALGAS_fileGenerationList::constructor_listWithValue (const GALGAS_abstractFileGeneration & inOperand0
-                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_fileGenerationList GALGAS_fileGenerationList::class_func_listWithValue (const GALGAS_abstractFileGeneration & inOperand0
+                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_fileGenerationList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_fileGenerationList (capCollectionElementArray ()) ;
@@ -6772,7 +6750,7 @@ GALGAS_fileGenerationList GALGAS_fileGenerationList::add_operation (const GALGAS
 GALGAS_fileGenerationList GALGAS_fileGenerationList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::constructor_emptyList (THERE) ;
+  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6782,7 +6760,7 @@ GALGAS_fileGenerationList GALGAS_fileGenerationList::getter_subListWithRange (co
 GALGAS_fileGenerationList GALGAS_fileGenerationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::constructor_emptyList (THERE) ;
+  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6792,7 +6770,7 @@ GALGAS_fileGenerationList GALGAS_fileGenerationList::getter_subListFromIndex (co
 GALGAS_fileGenerationList GALGAS_fileGenerationList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::constructor_emptyList (THERE) ;
+  GALGAS_fileGenerationList result = GALGAS_fileGenerationList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -6870,9 +6848,8 @@ GALGAS_abstractFileGeneration cEnumerator_fileGenerationList::current_mFileGener
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_fileGenerationList ("fileGenerationList",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fileGenerationList ("fileGenerationList",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6974,25 +6951,25 @@ mProperty_mGenerateClass_5F_StoredArrayOf_5F_ (inOperand16) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_generationStruct GALGAS_generationStruct::constructor_new (Compiler * /* inCompiler */
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_validationStubRoutineListForGeneration in_mValidationStubRoutineListForGeneration = GALGAS_validationStubRoutineListForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 31)) ;
-  const GALGAS_fileGenerationList in_mFileGenerationList = GALGAS_fileGenerationList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 32)) ;
-  const GALGAS_entityListForGeneratingEBManagedObjectContext in_mEntityListForGeneration = GALGAS_entityListForGeneratingEBManagedObjectContext::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 33)) ;
+GALGAS_generationStruct GALGAS_generationStruct::class_func_new (Compiler * /* inCompiler */
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  const GALGAS_validationStubRoutineListForGeneration in_mValidationStubRoutineListForGeneration = GALGAS_validationStubRoutineListForGeneration::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 31)) ;
+  const GALGAS_fileGenerationList in_mFileGenerationList = GALGAS_fileGenerationList::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 32)) ;
+  const GALGAS_entityListForGeneratingEBManagedObjectContext in_mEntityListForGeneration = GALGAS_entityListForGeneratingEBManagedObjectContext::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 33)) ;
   const GALGAS_bool in_mGenerateEBManagedXibDocumentSwift = GALGAS_bool (false) ;
   const GALGAS_bool in_mGenerateEBManagedAutoLayoutDocumentSwift = GALGAS_bool (false) ;
-  const GALGAS_stringset in_mNeededOutletClasses = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 36)) ;
-  const GALGAS_mainXibDescriptorList in_mMainXibDescriptorList = GALGAS_mainXibDescriptorList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 37)) ;
-  const GALGAS_stringset in_mToOneClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 39)) ;
-  const GALGAS_stringset in_mToManyClassImplementations = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 40)) ;
-  const GALGAS_selectionControllerForGeneration in_mSelectionControllerListForGeneration = GALGAS_selectionControllerForGeneration::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 42)) ;
-  const GALGAS_stringlist in_mPropertyClassList = GALGAS_stringlist::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 43)) ;
-  const GALGAS_transientExternTypeList in_mTransientPropertyTypeList = GALGAS_transientExternTypeList::constructor_emptyList (SOURCE_FILE ("code-generation.ggs", 44)) ;
-  const GALGAS_stringset in_mGenerateClass_PreferencesArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 46)) ;
-  const GALGAS_stringset in_mGenerateClass_ProxyArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 47)) ;
-  const GALGAS_stringset in_mGenerateClass_TransientArrayOfSuperOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 48)) ;
-  const GALGAS_stringset in_mGenerateClass_TransientArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 49)) ;
-  const GALGAS_stringset in_mGenerateClass_StoredArrayOf_ = GALGAS_stringset::constructor_emptySet (SOURCE_FILE ("code-generation.ggs", 50)) ;
+  const GALGAS_stringset in_mNeededOutletClasses = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 36)) ;
+  const GALGAS_mainXibDescriptorList in_mMainXibDescriptorList = GALGAS_mainXibDescriptorList::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 37)) ;
+  const GALGAS_stringset in_mToOneClassImplementations = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 39)) ;
+  const GALGAS_stringset in_mToManyClassImplementations = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 40)) ;
+  const GALGAS_selectionControllerForGeneration in_mSelectionControllerListForGeneration = GALGAS_selectionControllerForGeneration::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 42)) ;
+  const GALGAS_stringlist in_mPropertyClassList = GALGAS_stringlist::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 43)) ;
+  const GALGAS_transientExternTypeList in_mTransientPropertyTypeList = GALGAS_transientExternTypeList::class_func_emptyList (SOURCE_FILE ("code-generation.ggs", 44)) ;
+  const GALGAS_stringset in_mGenerateClass_PreferencesArrayOf_ = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 46)) ;
+  const GALGAS_stringset in_mGenerateClass_ProxyArrayOf_ = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 47)) ;
+  const GALGAS_stringset in_mGenerateClass_TransientArrayOfSuperOf_ = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 48)) ;
+  const GALGAS_stringset in_mGenerateClass_TransientArrayOf_ = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 49)) ;
+  const GALGAS_stringset in_mGenerateClass_StoredArrayOf_ = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("code-generation.ggs", 50)) ;
   GALGAS_generationStruct result ;
   if (in_mValidationStubRoutineListForGeneration.isValid () && in_mFileGenerationList.isValid () && in_mEntityListForGeneration.isValid () && in_mGenerateEBManagedXibDocumentSwift.isValid () && in_mGenerateEBManagedAutoLayoutDocumentSwift.isValid () && in_mNeededOutletClasses.isValid () && in_mMainXibDescriptorList.isValid () && in_mToOneClassImplementations.isValid () && in_mToManyClassImplementations.isValid () && in_mSelectionControllerListForGeneration.isValid () && in_mPropertyClassList.isValid () && in_mTransientPropertyTypeList.isValid () && in_mGenerateClass_PreferencesArrayOf_.isValid () && in_mGenerateClass_ProxyArrayOf_.isValid () && in_mGenerateClass_TransientArrayOfSuperOf_.isValid () && in_mGenerateClass_TransientArrayOf_.isValid () && in_mGenerateClass_StoredArrayOf_.isValid ()) {
     result = GALGAS_generationStruct (in_mValidationStubRoutineListForGeneration, in_mFileGenerationList, in_mEntityListForGeneration, in_mGenerateEBManagedXibDocumentSwift, in_mGenerateEBManagedAutoLayoutDocumentSwift, in_mNeededOutletClasses, in_mMainXibDescriptorList, in_mToOneClassImplementations, in_mToManyClassImplementations, in_mSelectionControllerListForGeneration, in_mPropertyClassList, in_mTransientPropertyTypeList, in_mGenerateClass_PreferencesArrayOf_, in_mGenerateClass_ProxyArrayOf_, in_mGenerateClass_TransientArrayOfSuperOf_, in_mGenerateClass_TransientArrayOf_, in_mGenerateClass_StoredArrayOf_) ;
@@ -7137,9 +7114,8 @@ void GALGAS_generationStruct::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_generationStruct ("generationStruct",
-                                         nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_generationStruct ("generationStruct",
+                                                                        nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7183,7 +7159,7 @@ GALGAS_generationStruct GALGAS_generationStruct::extractObject (const GALGAS_obj
 class cCollectionElement_XCodeGroupList : public cCollectionElement {
   public: GALGAS_XCodeGroupList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_XCodeGroupList (const GALGAS_string & in_mGroupReference,
                                              const GALGAS_string & in_mGroupName,
                                              const GALGAS_string & in_mGroupPath,
@@ -7279,17 +7255,17 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeGroupList GALGAS_XCodeGroupList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeGroupList GALGAS_XCodeGroupList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_XCodeGroupList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeGroupList GALGAS_XCodeGroupList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                        const GALGAS_string & inOperand1,
-                                                                        const GALGAS_string & inOperand2,
-                                                                        const GALGAS_stringlist & inOperand3
-                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_XCodeGroupList GALGAS_XCodeGroupList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                       const GALGAS_string & inOperand1,
+                                                                       const GALGAS_string & inOperand2,
+                                                                       const GALGAS_stringlist & inOperand3
+                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_XCodeGroupList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid ()) {
     result = GALGAS_XCodeGroupList (capCollectionElementArray ()) ;
@@ -7535,7 +7511,7 @@ GALGAS_XCodeGroupList GALGAS_XCodeGroupList::add_operation (const GALGAS_XCodeGr
 GALGAS_XCodeGroupList GALGAS_XCodeGroupList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -7545,7 +7521,7 @@ GALGAS_XCodeGroupList GALGAS_XCodeGroupList::getter_subListWithRange (const GALG
 GALGAS_XCodeGroupList GALGAS_XCodeGroupList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -7555,7 +7531,7 @@ GALGAS_XCodeGroupList GALGAS_XCodeGroupList::getter_subListFromIndex (const GALG
 GALGAS_XCodeGroupList GALGAS_XCodeGroupList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeGroupList result = GALGAS_XCodeGroupList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -7744,9 +7720,8 @@ GALGAS_stringlist cEnumerator_XCodeGroupList::current_mChildrenRefs (LOCATION_AR
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_XCodeGroupList ("XCodeGroupList",
-                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeGroupList ("XCodeGroupList",
+                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7790,7 +7765,7 @@ GALGAS_XCodeGroupList GALGAS_XCodeGroupList::extractObject (const GALGAS_object 
 class cCollectionElement_XCodeToolTargetList : public cCollectionElement {
   public: GALGAS_XCodeToolTargetList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_XCodeToolTargetList (const GALGAS_string & in_mTargetRef,
                                                   const GALGAS_string & in_mTargetName,
                                                   const GALGAS_string & in_mProductFileReference,
@@ -7928,24 +7903,24 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_XCodeToolTargetList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                  const GALGAS_string & inOperand1,
-                                                                                  const GALGAS_string & inOperand2,
-                                                                                  const GALGAS_string & inOperand3,
-                                                                                  const GALGAS_stringlist & inOperand4,
-                                                                                  const GALGAS_string & inOperand5,
-                                                                                  const GALGAS_string & inOperand6,
-                                                                                  const GALGAS_stringlist & inOperand7,
-                                                                                  const GALGAS_string & inOperand8,
-                                                                                  const GALGAS_stringlist & inOperand9,
-                                                                                  const GALGAS_string & inOperand10
-                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                                 const GALGAS_string & inOperand1,
+                                                                                 const GALGAS_string & inOperand2,
+                                                                                 const GALGAS_string & inOperand3,
+                                                                                 const GALGAS_stringlist & inOperand4,
+                                                                                 const GALGAS_string & inOperand5,
+                                                                                 const GALGAS_string & inOperand6,
+                                                                                 const GALGAS_stringlist & inOperand7,
+                                                                                 const GALGAS_string & inOperand8,
+                                                                                 const GALGAS_stringlist & inOperand9,
+                                                                                 const GALGAS_string & inOperand10
+                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_XCodeToolTargetList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid ()) {
     result = GALGAS_XCodeToolTargetList (capCollectionElementArray ()) ;
@@ -8345,7 +8320,7 @@ GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::add_operation (const GALG
 GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -8355,7 +8330,7 @@ GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListWithRange (
 GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -8365,7 +8340,7 @@ GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListFromIndex (
 GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeToolTargetList result = GALGAS_XCodeToolTargetList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -8813,9 +8788,8 @@ GALGAS_string cEnumerator_XCodeToolTargetList::current_mFrameworkBuildPhaseRef (
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_XCodeToolTargetList ("XCodeToolTargetList",
-                                            nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeToolTargetList ("XCodeToolTargetList",
+                                                                           nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8859,7 +8833,7 @@ GALGAS_XCodeToolTargetList GALGAS_XCodeToolTargetList::extractObject (const GALG
 class cCollectionElement_XCodeAppTargetList : public cCollectionElement {
   public: GALGAS_XCodeAppTargetList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_XCodeAppTargetList (const GALGAS_string & in_mTargetRef,
                                                  const GALGAS_string & in_mTargetName,
                                                  const GALGAS_string & in_mProductFileReference,
@@ -9021,28 +8995,28 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_XCodeAppTargetList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                                const GALGAS_string & inOperand1,
-                                                                                const GALGAS_string & inOperand2,
-                                                                                const GALGAS_string & inOperand3,
-                                                                                const GALGAS_stringlist & inOperand4,
-                                                                                const GALGAS_string & inOperand5,
-                                                                                const GALGAS_string & inOperand6,
-                                                                                const GALGAS_stringlist & inOperand7,
-                                                                                const GALGAS_string & inOperand8,
-                                                                                const GALGAS_stringlist & inOperand9,
-                                                                                const GALGAS_string & inOperand10,
-                                                                                const GALGAS__32_stringlist & inOperand11,
-                                                                                const GALGAS_string & inOperand12,
-                                                                                const GALGAS_stringlist & inOperand13,
-                                                                                const GALGAS_string & inOperand14
-                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                               const GALGAS_string & inOperand1,
+                                                                               const GALGAS_string & inOperand2,
+                                                                               const GALGAS_string & inOperand3,
+                                                                               const GALGAS_stringlist & inOperand4,
+                                                                               const GALGAS_string & inOperand5,
+                                                                               const GALGAS_string & inOperand6,
+                                                                               const GALGAS_stringlist & inOperand7,
+                                                                               const GALGAS_string & inOperand8,
+                                                                               const GALGAS_stringlist & inOperand9,
+                                                                               const GALGAS_string & inOperand10,
+                                                                               const GALGAS__32_stringlist & inOperand11,
+                                                                               const GALGAS_string & inOperand12,
+                                                                               const GALGAS_stringlist & inOperand13,
+                                                                               const GALGAS_string & inOperand14
+                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_XCodeAppTargetList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid () && inOperand3.isValid () && inOperand4.isValid () && inOperand5.isValid () && inOperand6.isValid () && inOperand7.isValid () && inOperand8.isValid () && inOperand9.isValid () && inOperand10.isValid () && inOperand11.isValid () && inOperand12.isValid () && inOperand13.isValid () && inOperand14.isValid ()) {
     result = GALGAS_XCodeAppTargetList (capCollectionElementArray ()) ;
@@ -9530,7 +9504,7 @@ GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::add_operation (const GALGAS
 GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -9540,7 +9514,7 @@ GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::getter_subListWithRange (co
 GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -9550,7 +9524,7 @@ GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::getter_subListFromIndex (co
 GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::constructor_emptyList (THERE) ;
+  GALGAS_XCodeAppTargetList result = GALGAS_XCodeAppTargetList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -10146,9 +10120,8 @@ GALGAS_string cEnumerator_XCodeAppTargetList::current_mInfoPListFile (LOCATION_A
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_XCodeAppTargetList ("XCodeAppTargetList",
-                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_XCodeAppTargetList ("XCodeAppTargetList",
+                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10192,7 +10165,7 @@ GALGAS_XCodeAppTargetList GALGAS_XCodeAppTargetList::extractObject (const GALGAS
 class cCollectionElement_BuildFileList : public cCollectionElement {
   public: GALGAS_BuildFileList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_BuildFileList (const GALGAS_string & in_mFileReference,
                                             const GALGAS_string & in_mFileName,
                                             const GALGAS_string & in_mBuildReference
@@ -10282,16 +10255,16 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_BuildFileList GALGAS_BuildFileList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_BuildFileList GALGAS_BuildFileList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_BuildFileList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_BuildFileList GALGAS_BuildFileList::constructor_listWithValue (const GALGAS_string & inOperand0,
-                                                                      const GALGAS_string & inOperand1,
-                                                                      const GALGAS_string & inOperand2
-                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_BuildFileList GALGAS_BuildFileList::class_func_listWithValue (const GALGAS_string & inOperand0,
+                                                                     const GALGAS_string & inOperand1,
+                                                                     const GALGAS_string & inOperand2
+                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_BuildFileList result ;
   if (inOperand0.isValid () && inOperand1.isValid () && inOperand2.isValid ()) {
     result = GALGAS_BuildFileList (capCollectionElementArray ()) ;
@@ -10515,7 +10488,7 @@ GALGAS_BuildFileList GALGAS_BuildFileList::add_operation (const GALGAS_BuildFile
 GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -10525,7 +10498,7 @@ GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListWithRange (const GALGAS
 GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) const {
-  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -10535,7 +10508,7 @@ GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListFromIndex (const GALGAS
 GALGAS_BuildFileList GALGAS_BuildFileList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
-  GALGAS_BuildFileList result = GALGAS_BuildFileList::constructor_emptyList (THERE) ;
+  GALGAS_BuildFileList result = GALGAS_BuildFileList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -10687,9 +10660,8 @@ GALGAS_string cEnumerator_BuildFileList::current_mBuildReference (LOCATION_ARGS)
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_BuildFileList ("BuildFileList",
-                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_BuildFileList ("BuildFileList",
+                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10733,7 +10705,7 @@ GALGAS_BuildFileList GALGAS_BuildFileList::extractObject (const GALGAS_object & 
 class cCollectionElement_mainXibLineDescriptorList : public cCollectionElement {
   public: GALGAS_mainXibLineDescriptorList_2D_element mObject ;
 
-//--- Constructors
+//--- Class functions
   public: cCollectionElement_mainXibLineDescriptorList (const GALGAS_mainXibElement & in_mElement
                                                         COMMA_LOCATION_ARGS) ;
   public: cCollectionElement_mainXibLineDescriptorList (const GALGAS_mainXibLineDescriptorList_2D_element & inElement COMMA_LOCATION_ARGS) ;
@@ -10811,14 +10783,14 @@ AC_GALGAS_list (inSharedArray) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::constructor_emptyList (UNUSED_LOCATION_ARGS) {
+GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_mainXibLineDescriptorList (capCollectionElementArray ()) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::constructor_listWithValue (const GALGAS_mainXibElement & inOperand0
-                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::class_func_listWithValue (const GALGAS_mainXibElement & inOperand0
+                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_mainXibLineDescriptorList result ;
   if (inOperand0.isValid ()) {
     result = GALGAS_mainXibLineDescriptorList (capCollectionElementArray ()) ;
@@ -10998,7 +10970,7 @@ GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::add_operation
 GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::getter_subListWithRange (const GALGAS_range & inRange,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::constructor_emptyList (THERE) ;
+  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::class_func_emptyList (THERE) ;
   subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11008,7 +10980,7 @@ GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::getter_subLis
 GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::getter_subListFromIndex (const GALGAS_uint & inIndex,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const {
-  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::constructor_emptyList (THERE) ;
+  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::class_func_emptyList (THERE) ;
   subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11018,7 +10990,7 @@ GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::getter_subLis
 GALGAS_mainXibLineDescriptorList GALGAS_mainXibLineDescriptorList::getter_subListToIndex (const GALGAS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
-  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::constructor_emptyList (THERE) ;
+  GALGAS_mainXibLineDescriptorList result = GALGAS_mainXibLineDescriptorList::class_func_emptyList (THERE) ;
   subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
   return result ;
 }
@@ -11096,9 +11068,8 @@ GALGAS_mainXibElement cEnumerator_mainXibLineDescriptorList::current_mElement (L
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_mainXibLineDescriptorList ("mainXibLineDescriptorList",
-                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibLineDescriptorList ("mainXibLineDescriptorList",
+                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11206,8 +11177,8 @@ mEnum (kNotBuilt) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibElement GALGAS_mainXibElement::constructor_text (const GALGAS_lstring & inAssociatedValue0
-                                                               COMMA_LOCATION_ARGS) {
+GALGAS_mainXibElement GALGAS_mainXibElement::class_func_text (const GALGAS_lstring & inAssociatedValue0
+                                                              COMMA_LOCATION_ARGS) {
   GALGAS_mainXibElement result ;
   if (inAssociatedValue0.isValid ()) {
     result.mEnum = kEnum_text ;
@@ -11221,9 +11192,9 @@ GALGAS_mainXibElement GALGAS_mainXibElement::constructor_text (const GALGAS_lstr
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibElement GALGAS_mainXibElement::constructor_outlet (const GALGAS_lstring & inAssociatedValue0,
-                                                                 const GALGAS_lstring & inAssociatedValue1
-                                                                 COMMA_LOCATION_ARGS) {
+GALGAS_mainXibElement GALGAS_mainXibElement::class_func_outlet (const GALGAS_lstring & inAssociatedValue0,
+                                                                const GALGAS_lstring & inAssociatedValue1
+                                                                COMMA_LOCATION_ARGS) {
   GALGAS_mainXibElement result ;
   if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
     result.mEnum = kEnum_outlet ;
@@ -11346,9 +11317,8 @@ typeComparisonResult GALGAS_mainXibElement::objectCompare (const GALGAS_mainXibE
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_mainXibElement ("mainXibElement",
-                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibElement ("mainXibElement",
+                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11489,10 +11459,10 @@ mProperty_mAssociatedString (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_enumFunAssociationSortedList_2D_element GALGAS_enumFunAssociationSortedList_2D_element::constructor_new (const GALGAS_uint & in_mIndex,
-                                                                                                                const GALGAS_string & in_mAssociatedString,
-                                                                                                                Compiler * /* inCompiler */
-                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_enumFunAssociationSortedList_2D_element GALGAS_enumFunAssociationSortedList_2D_element::class_func_new (const GALGAS_uint & in_mIndex,
+                                                                                                               const GALGAS_string & in_mAssociatedString,
+                                                                                                               Compiler * /* inCompiler */
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_enumFunAssociationSortedList_2D_element result ;
   if (in_mIndex.isValid () && in_mAssociatedString.isValid ()) {
     result = GALGAS_enumFunAssociationSortedList_2D_element (in_mIndex, in_mAssociatedString) ;
@@ -11547,9 +11517,8 @@ void GALGAS_enumFunAssociationSortedList_2D_element::description (String & ioStr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_enumFunAssociationSortedList_2D_element ("enumFunAssociationSortedList-element",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFunAssociationSortedList_2D_element ("enumFunAssociationSortedList-element",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11606,10 +11575,10 @@ mProperty_mObsoleteEntityNames (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element::constructor_new (const GALGAS_string & in_mEntityName,
-                                                                                                                                                  const GALGAS_lstringlist & in_mObsoleteEntityNames,
-                                                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element::class_func_new (const GALGAS_string & in_mEntityName,
+                                                                                                                                                 const GALGAS_lstringlist & in_mObsoleteEntityNames,
+                                                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element result ;
   if (in_mEntityName.isValid () && in_mObsoleteEntityNames.isValid ()) {
     result = GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element (in_mEntityName, in_mObsoleteEntityNames) ;
@@ -11664,9 +11633,8 @@ void GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element::descriptio
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element ("entityListForGeneratingEBManagedObjectContext-element",
-                                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element ("entityListForGeneratingEBManagedObjectContext-element",
+                                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11723,10 +11691,10 @@ mProperty_mOutletNameAndTypeNameList (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutOutletLinkerGenerationList_2D_element GALGAS_autoLayoutOutletLinkerGenerationList_2D_element::constructor_new (const GALGAS_string & in_mLinkerName,
-                                                                                                                                const GALGAS__32_stringlist & in_mOutletNameAndTypeNameList,
-                                                                                                                                Compiler * /* inCompiler */
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutOutletLinkerGenerationList_2D_element GALGAS_autoLayoutOutletLinkerGenerationList_2D_element::class_func_new (const GALGAS_string & in_mLinkerName,
+                                                                                                                               const GALGAS__32_stringlist & in_mOutletNameAndTypeNameList,
+                                                                                                                               Compiler * /* inCompiler */
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutOutletLinkerGenerationList_2D_element result ;
   if (in_mLinkerName.isValid () && in_mOutletNameAndTypeNameList.isValid ()) {
     result = GALGAS_autoLayoutOutletLinkerGenerationList_2D_element (in_mLinkerName, in_mOutletNameAndTypeNameList) ;
@@ -11781,9 +11749,8 @@ void GALGAS_autoLayoutOutletLinkerGenerationList_2D_element::description (String
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutOutletLinkerGenerationList_2D_element ("autoLayoutOutletLinkerGenerationList-element",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutOutletLinkerGenerationList_2D_element ("autoLayoutOutletLinkerGenerationList-element",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11837,9 +11804,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astViewInstructionList_2D_element GALGAS_astViewInstructionList_2D_element::constructor_new (const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_astViewInstructionList_2D_element GALGAS_astViewInstructionList_2D_element::class_func_new (const GALGAS_astAbstractViewInstructionDeclaration & in_mInstruction,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_astViewInstructionList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_astViewInstructionList_2D_element (in_mInstruction) ;
@@ -11888,9 +11855,8 @@ void GALGAS_astViewInstructionList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_astViewInstructionList_2D_element ("astViewInstructionList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astViewInstructionList_2D_element ("astViewInstructionList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11944,9 +11910,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_implicitViewFunctionGenerationList_2D_element GALGAS_implicitViewFunctionGenerationList_2D_element::constructor_new (const GALGAS_abstractViewInstructionGeneration & in_mInstruction,
-                                                                                                                            Compiler * /* inCompiler */
-                                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_implicitViewFunctionGenerationList_2D_element GALGAS_implicitViewFunctionGenerationList_2D_element::class_func_new (const GALGAS_abstractViewInstructionGeneration & in_mInstruction,
+                                                                                                                           Compiler * /* inCompiler */
+                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_implicitViewFunctionGenerationList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_implicitViewFunctionGenerationList_2D_element (in_mInstruction) ;
@@ -11995,9 +11961,8 @@ void GALGAS_implicitViewFunctionGenerationList_2D_element::description (String &
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_implicitViewFunctionGenerationList_2D_element ("implicitViewFunctionGenerationList-element",
-                                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_implicitViewFunctionGenerationList_2D_element ("implicitViewFunctionGenerationList-element",
+                                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12054,10 +12019,10 @@ mProperty_mView (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_viewGenerationList_2D_element GALGAS_viewGenerationList_2D_element::constructor_new (const GALGAS_string & in_mViewName,
-                                                                                            const GALGAS_abstractViewGeneration & in_mView,
-                                                                                            Compiler * /* inCompiler */
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_viewGenerationList_2D_element GALGAS_viewGenerationList_2D_element::class_func_new (const GALGAS_string & in_mViewName,
+                                                                                           const GALGAS_abstractViewGeneration & in_mView,
+                                                                                           Compiler * /* inCompiler */
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_viewGenerationList_2D_element result ;
   if (in_mViewName.isValid () && in_mView.isValid ()) {
     result = GALGAS_viewGenerationList_2D_element (in_mViewName, in_mView) ;
@@ -12112,9 +12077,8 @@ void GALGAS_viewGenerationList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_viewGenerationList_2D_element ("viewGenerationList-element",
-                                                      nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_viewGenerationList_2D_element ("viewGenerationList-element",
+                                                                                     nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12174,11 +12138,11 @@ mProperty_mBindingOptionsString (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutRegularBindingsGenerationList_2D_element GALGAS_autoLayoutRegularBindingsGenerationList_2D_element::constructor_new (const GALGAS_string & in_mBindingName,
-                                                                                                                                      const GALGAS_boundObjectList & in_mBoundObjectList,
-                                                                                                                                      const GALGAS_string & in_mBindingOptionsString,
-                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutRegularBindingsGenerationList_2D_element GALGAS_autoLayoutRegularBindingsGenerationList_2D_element::class_func_new (const GALGAS_string & in_mBindingName,
+                                                                                                                                     const GALGAS_boundObjectList & in_mBoundObjectList,
+                                                                                                                                     const GALGAS_string & in_mBindingOptionsString,
+                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutRegularBindingsGenerationList_2D_element result ;
   if (in_mBindingName.isValid () && in_mBoundObjectList.isValid () && in_mBindingOptionsString.isValid ()) {
     result = GALGAS_autoLayoutRegularBindingsGenerationList_2D_element (in_mBindingName, in_mBoundObjectList, in_mBindingOptionsString) ;
@@ -12239,9 +12203,8 @@ void GALGAS_autoLayoutRegularBindingsGenerationList_2D_element::description (Str
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutRegularBindingsGenerationList_2D_element ("autoLayoutRegularBindingsGenerationList-element",
-                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutRegularBindingsGenerationList_2D_element ("autoLayoutRegularBindingsGenerationList-element",
+                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12298,10 +12261,10 @@ mProperty_mBoundObjectExpression (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutMultipleBindingGenerationList_2D_element GALGAS_autoLayoutMultipleBindingGenerationList_2D_element::constructor_new (const GALGAS_string & in_mBindingName,
-                                                                                                                                      const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
-                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutMultipleBindingGenerationList_2D_element GALGAS_autoLayoutMultipleBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mBindingName,
+                                                                                                                                     const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
+                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutMultipleBindingGenerationList_2D_element result ;
   if (in_mBindingName.isValid () && in_mBoundObjectExpression.isValid ()) {
     result = GALGAS_autoLayoutMultipleBindingGenerationList_2D_element (in_mBindingName, in_mBoundObjectExpression) ;
@@ -12356,9 +12319,8 @@ void GALGAS_autoLayoutMultipleBindingGenerationList_2D_element::description (Str
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutMultipleBindingGenerationList_2D_element ("autoLayoutMultipleBindingGenerationList-element",
-                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutMultipleBindingGenerationList_2D_element ("autoLayoutMultipleBindingGenerationList-element",
+                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12415,10 +12377,10 @@ mProperty_mParameterValue (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element::constructor_new (const GALGAS_string & in_mParameterName,
-                                                                                                                                                        const GALGAS_string & in_mParameterValue,
-                                                                                                                                                        Compiler * /* inCompiler */
-                                                                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element::class_func_new (const GALGAS_string & in_mParameterName,
+                                                                                                                                                       const GALGAS_string & in_mParameterValue,
+                                                                                                                                                       Compiler * /* inCompiler */
+                                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element result ;
   if (in_mParameterName.isValid () && in_mParameterValue.isValid ()) {
     result = GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element (in_mParameterName, in_mParameterValue) ;
@@ -12473,9 +12435,8 @@ void GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element::descrip
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element ("autoLayoutViewInstructionGenerationParameterList-element",
-                                                                                    nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element ("autoLayoutViewInstructionGenerationParameterList-element",
+                                                                                                                   nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12532,10 +12493,10 @@ mProperty_mParameters (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element::constructor_new (const GALGAS_string & in_mFunctionName,
-                                                                                                                                                      const GALGAS_autoLayoutViewInstructionGenerationParameterList & in_mParameters,
-                                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element::class_func_new (const GALGAS_string & in_mFunctionName,
+                                                                                                                                                     const GALGAS_autoLayoutViewInstructionGenerationParameterList & in_mParameters,
+                                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element result ;
   if (in_mFunctionName.isValid () && in_mParameters.isValid ()) {
     result = GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element (in_mFunctionName, in_mParameters) ;
@@ -12590,9 +12551,8 @@ void GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element::descript
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element ("autoLayoutViewInstructionGenerationFuncCallList-element",
-                                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element ("autoLayoutViewInstructionGenerationFuncCallList-element",
+                                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12646,9 +12606,9 @@ mProperty_mInstruction (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewInstructionGenerationList_2D_element GALGAS_autoLayoutViewInstructionGenerationList_2D_element::constructor_new (const GALGAS_abstractViewInstructionGeneration & in_mInstruction,
-                                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutViewInstructionGenerationList_2D_element GALGAS_autoLayoutViewInstructionGenerationList_2D_element::class_func_new (const GALGAS_abstractViewInstructionGeneration & in_mInstruction,
+                                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutViewInstructionGenerationList_2D_element result ;
   if (in_mInstruction.isValid ()) {
     result = GALGAS_autoLayoutViewInstructionGenerationList_2D_element (in_mInstruction) ;
@@ -12697,9 +12657,8 @@ void GALGAS_autoLayoutViewInstructionGenerationList_2D_element::description (Str
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationList_2D_element ("autoLayoutViewInstructionGenerationList-element",
-                                                                           nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationList_2D_element ("autoLayoutViewInstructionGenerationList-element",
+                                                                                                          nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12756,10 +12715,10 @@ mProperty_mModelShouldBeWritableProperty (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_outletBindingSpecificationModelList_2D_element GALGAS_outletBindingSpecificationModelList_2D_element::constructor_new (const GALGAS_typeKind & in_mModelType,
-                                                                                                                              const GALGAS_bool & in_mModelShouldBeWritableProperty,
-                                                                                                                              Compiler * /* inCompiler */
-                                                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_outletBindingSpecificationModelList_2D_element GALGAS_outletBindingSpecificationModelList_2D_element::class_func_new (const GALGAS_typeKind & in_mModelType,
+                                                                                                                             const GALGAS_bool & in_mModelShouldBeWritableProperty,
+                                                                                                                             Compiler * /* inCompiler */
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletBindingSpecificationModelList_2D_element result ;
   if (in_mModelType.isValid () && in_mModelShouldBeWritableProperty.isValid ()) {
     result = GALGAS_outletBindingSpecificationModelList_2D_element (in_mModelType, in_mModelShouldBeWritableProperty) ;
@@ -12814,9 +12773,8 @@ void GALGAS_outletBindingSpecificationModelList_2D_element::description (String 
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletBindingSpecificationModelList_2D_element ("outletBindingSpecificationModelList-element",
-                                                                       nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList_2D_element ("outletBindingSpecificationModelList-element",
+                                                                                                      nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12873,10 +12831,10 @@ mProperty_mErrorLocation (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::constructor_new (const GALGAS_propertyKind & in_mKind,
-                                                                                                    const GALGAS_location & in_mErrorLocation,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_outletBindingModelList_2D_element GALGAS_outletBindingModelList_2D_element::class_func_new (const GALGAS_propertyKind & in_mKind,
+                                                                                                   const GALGAS_location & in_mErrorLocation,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_outletBindingModelList_2D_element result ;
   if (in_mKind.isValid () && in_mErrorLocation.isValid ()) {
     result = GALGAS_outletBindingModelList_2D_element (in_mKind, in_mErrorLocation) ;
@@ -12931,9 +12889,8 @@ void GALGAS_outletBindingModelList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ("outletBindingModelList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList_2D_element ("outletBindingModelList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12990,10 +12947,10 @@ mProperty_mTableValueBindingControllerName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_tableViewBindingGenerationList_2D_element GALGAS_tableViewBindingGenerationList_2D_element::constructor_new (const GALGAS_string & in_mTableValueBindingOutletName,
-                                                                                                                    const GALGAS_string & in_mTableValueBindingControllerName,
-                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_tableViewBindingGenerationList_2D_element GALGAS_tableViewBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mTableValueBindingOutletName,
+                                                                                                                   const GALGAS_string & in_mTableValueBindingControllerName,
+                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_tableViewBindingGenerationList_2D_element result ;
   if (in_mTableValueBindingOutletName.isValid () && in_mTableValueBindingControllerName.isValid ()) {
     result = GALGAS_tableViewBindingGenerationList_2D_element (in_mTableValueBindingOutletName, in_mTableValueBindingControllerName) ;
@@ -13048,9 +13005,8 @@ void GALGAS_tableViewBindingGenerationList_2D_element::description (String & ioS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ("tableViewBindingGenerationList-element",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ("tableViewBindingGenerationList-element",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13107,10 +13063,10 @@ mProperty_mArrayControllerControllerName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::constructor_new (const GALGAS_string & in_mEBViewOutletName,
-                                                                                                                                                const GALGAS_string & in_mArrayControllerControllerName,
-                                                                                                                                                Compiler * /* inCompiler */
-                                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mEBViewOutletName,
+                                                                                                                                               const GALGAS_string & in_mArrayControllerControllerName,
+                                                                                                                                               Compiler * /* inCompiler */
+                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element result ;
   if (in_mEBViewOutletName.isValid () && in_mArrayControllerControllerName.isValid ()) {
     result = GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (in_mEBViewOutletName, in_mArrayControllerControllerName) ;
@@ -13165,9 +13121,8 @@ void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::description
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ("ebViewGraphicControllerBindingGenerationList-element",
-                                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ("ebViewGraphicControllerBindingGenerationList-element",
+                                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13224,10 +13179,10 @@ mProperty_mKind (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_boundObjectList_2D_element GALGAS_boundObjectList_2D_element::constructor_new (const GALGAS_string & in_mBoundObjectString,
-                                                                                      const GALGAS_propertyKind & in_mKind,
-                                                                                      Compiler * /* inCompiler */
-                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_boundObjectList_2D_element GALGAS_boundObjectList_2D_element::class_func_new (const GALGAS_string & in_mBoundObjectString,
+                                                                                     const GALGAS_propertyKind & in_mKind,
+                                                                                     Compiler * /* inCompiler */
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_boundObjectList_2D_element result ;
   if (in_mBoundObjectString.isValid () && in_mKind.isValid ()) {
     result = GALGAS_boundObjectList_2D_element (in_mBoundObjectString, in_mKind) ;
@@ -13282,9 +13237,8 @@ void GALGAS_boundObjectList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_boundObjectList_2D_element ("boundObjectList-element",
-                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList_2D_element ("boundObjectList-element",
+                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13347,12 +13301,12 @@ mProperty_mBindingOptionsString (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::constructor_new (const GALGAS_string & in_mOutletName,
-                                                                                                                  const GALGAS_string & in_mBindingName,
-                                                                                                                  const GALGAS_boundObjectList & in_mBoundObjectList,
-                                                                                                                  const GALGAS_string & in_mBindingOptionsString,
-                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::class_func_new (const GALGAS_string & in_mOutletName,
+                                                                                                                 const GALGAS_string & in_mBindingName,
+                                                                                                                 const GALGAS_boundObjectList & in_mBoundObjectList,
+                                                                                                                 const GALGAS_string & in_mBindingOptionsString,
+                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_regularBindingsGenerationList_2D_element result ;
   if (in_mOutletName.isValid () && in_mBindingName.isValid () && in_mBoundObjectList.isValid () && in_mBindingOptionsString.isValid ()) {
     result = GALGAS_regularBindingsGenerationList_2D_element (in_mOutletName, in_mBindingName, in_mBoundObjectList, in_mBindingOptionsString) ;
@@ -13419,9 +13373,8 @@ void GALGAS_regularBindingsGenerationList_2D_element::description (String & ioSt
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ("regularBindingsGenerationList-element",
-                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ("regularBindingsGenerationList-element",
+                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13484,12 +13437,12 @@ mProperty_mTargetTypeName (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::constructor_new (const GALGAS_string & in_mOutletName,
-                                                                                                                    const GALGAS_string & in_mTargetName,
-                                                                                                                    const GALGAS_string & in_mActionName,
-                                                                                                                    const GALGAS_string & in_mTargetTypeName,
-                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::class_func_new (const GALGAS_string & in_mOutletName,
+                                                                                                                   const GALGAS_string & in_mTargetName,
+                                                                                                                   const GALGAS_string & in_mActionName,
+                                                                                                                   const GALGAS_string & in_mTargetTypeName,
+                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_actionBindingListForGeneration_2D_element result ;
   if (in_mOutletName.isValid () && in_mTargetName.isValid () && in_mActionName.isValid () && in_mTargetTypeName.isValid ()) {
     result = GALGAS_actionBindingListForGeneration_2D_element (in_mOutletName, in_mTargetName, in_mActionName, in_mTargetTypeName) ;
@@ -13556,9 +13509,8 @@ void GALGAS_actionBindingListForGeneration_2D_element::description (String & ioS
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_actionBindingListForGeneration_2D_element ("actionBindingListForGeneration-element",
-                                                                  nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListForGeneration_2D_element ("actionBindingListForGeneration-element",
+                                                                                                 nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13612,9 +13564,9 @@ mProperty_mObservableProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::constructor_new (const GALGAS_observablePropertyAST & in_mObservableProperty,
-                                                                                                    Compiler * /* inCompiler */
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::class_func_new (const GALGAS_observablePropertyAST & in_mObservableProperty,
+                                                                                                   Compiler * /* inCompiler */
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_observablePropertyList_2D_element result ;
   if (in_mObservableProperty.isValid ()) {
     result = GALGAS_observablePropertyList_2D_element (in_mObservableProperty) ;
@@ -13663,9 +13615,8 @@ void GALGAS_observablePropertyList_2D_element::description (String & ioString,
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
-                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
+                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13719,9 +13670,9 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_transientPropertyGenerationList_2D_element GALGAS_transientPropertyGenerationList_2D_element::constructor_new (const GALGAS_transientPropertyGeneration & in_mProperty,
-                                                                                                                      Compiler * /* inCompiler */
-                                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_transientPropertyGenerationList_2D_element GALGAS_transientPropertyGenerationList_2D_element::class_func_new (const GALGAS_transientPropertyGeneration & in_mProperty,
+                                                                                                                     Compiler * /* inCompiler */
+                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_transientPropertyGenerationList_2D_element result ;
   if (in_mProperty.isValid ()) {
     result = GALGAS_transientPropertyGenerationList_2D_element (in_mProperty) ;
@@ -13770,9 +13721,8 @@ void GALGAS_transientPropertyGenerationList_2D_element::description (String & io
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientPropertyGenerationList_2D_element ("transientPropertyGenerationList-element",
-                                                                   nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientPropertyGenerationList_2D_element ("transientPropertyGenerationList-element",
+                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13835,12 +13785,12 @@ mProperty_mDefaultValueAsString (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::constructor_new (const GALGAS_observablePropertyAST & in_mDependency,
-                                                                                                                                const GALGAS_string & in_mFunctionArgumentName,
-                                                                                                                                const GALGAS_string & in_mFunctionArgumentTypeString,
-                                                                                                                                const GALGAS_string & in_mDefaultValueAsString,
-                                                                                                                                Compiler * /* inCompiler */
-                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::class_func_new (const GALGAS_observablePropertyAST & in_mDependency,
+                                                                                                                               const GALGAS_string & in_mFunctionArgumentName,
+                                                                                                                               const GALGAS_string & in_mFunctionArgumentTypeString,
+                                                                                                                               const GALGAS_string & in_mDefaultValueAsString,
+                                                                                                                               Compiler * /* inCompiler */
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_transientDependencyListForGeneration_2D_element result ;
   if (in_mDependency.isValid () && in_mFunctionArgumentName.isValid () && in_mFunctionArgumentTypeString.isValid () && in_mDefaultValueAsString.isValid ()) {
     result = GALGAS_transientDependencyListForGeneration_2D_element (in_mDependency, in_mFunctionArgumentName, in_mFunctionArgumentTypeString, in_mDefaultValueAsString) ;
@@ -13907,9 +13857,8 @@ void GALGAS_transientDependencyListForGeneration_2D_element::description (String
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ("transientDependencyListForGeneration-element",
-                                                                        nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDependencyListForGeneration_2D_element ("transientDependencyListForGeneration-element",
+                                                                                                       nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13963,9 +13912,9 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyProxyGenerationList_2D_element GALGAS_toManyProxyGenerationList_2D_element::constructor_new (const GALGAS_toManyProxyGeneration & in_mProperty,
-                                                                                                          Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_toManyProxyGenerationList_2D_element GALGAS_toManyProxyGenerationList_2D_element::class_func_new (const GALGAS_toManyProxyGeneration & in_mProperty,
+                                                                                                         Compiler * /* inCompiler */
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toManyProxyGenerationList_2D_element result ;
   if (in_mProperty.isValid ()) {
     result = GALGAS_toManyProxyGenerationList_2D_element (in_mProperty) ;
@@ -14014,9 +13963,8 @@ void GALGAS_toManyProxyGenerationList_2D_element::description (String & ioString
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toManyProxyGenerationList_2D_element ("toManyProxyGenerationList-element",
-                                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyProxyGenerationList_2D_element ("toManyProxyGenerationList-element",
+                                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14070,9 +14018,9 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_atomicProxyGenerationList_2D_element GALGAS_atomicProxyGenerationList_2D_element::constructor_new (const GALGAS_atomicProxyGeneration & in_mProperty,
-                                                                                                          Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_atomicProxyGenerationList_2D_element GALGAS_atomicProxyGenerationList_2D_element::class_func_new (const GALGAS_atomicProxyGeneration & in_mProperty,
+                                                                                                         Compiler * /* inCompiler */
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_atomicProxyGenerationList_2D_element result ;
   if (in_mProperty.isValid ()) {
     result = GALGAS_atomicProxyGenerationList_2D_element (in_mProperty) ;
@@ -14121,9 +14069,8 @@ void GALGAS_atomicProxyGenerationList_2D_element::description (String & ioString
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_atomicProxyGenerationList_2D_element ("atomicProxyGenerationList-element",
-                                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicProxyGenerationList_2D_element ("atomicProxyGenerationList-element",
+                                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14177,9 +14124,9 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_atomicPropertyGenerationList_2D_element GALGAS_atomicPropertyGenerationList_2D_element::constructor_new (const GALGAS_atomicPropertyGeneration & in_mProperty,
-                                                                                                                Compiler * /* inCompiler */
-                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_atomicPropertyGenerationList_2D_element GALGAS_atomicPropertyGenerationList_2D_element::class_func_new (const GALGAS_atomicPropertyGeneration & in_mProperty,
+                                                                                                               Compiler * /* inCompiler */
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_atomicPropertyGenerationList_2D_element result ;
   if (in_mProperty.isValid ()) {
     result = GALGAS_atomicPropertyGenerationList_2D_element (in_mProperty) ;
@@ -14228,9 +14175,8 @@ void GALGAS_atomicPropertyGenerationList_2D_element::description (String & ioStr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_atomicPropertyGenerationList_2D_element ("atomicPropertyGenerationList-element",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyGenerationList_2D_element ("atomicPropertyGenerationList-element",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14284,9 +14230,9 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyPropertyGenerationList_2D_element GALGAS_toManyPropertyGenerationList_2D_element::constructor_new (const GALGAS_toManyPropertyGeneration & in_mProperty,
-                                                                                                                Compiler * /* inCompiler */
-                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_toManyPropertyGenerationList_2D_element GALGAS_toManyPropertyGenerationList_2D_element::class_func_new (const GALGAS_toManyPropertyGeneration & in_mProperty,
+                                                                                                               Compiler * /* inCompiler */
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toManyPropertyGenerationList_2D_element result ;
   if (in_mProperty.isValid ()) {
     result = GALGAS_toManyPropertyGenerationList_2D_element (in_mProperty) ;
@@ -14335,9 +14281,8 @@ void GALGAS_toManyPropertyGenerationList_2D_element::description (String & ioStr
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_toManyPropertyGenerationList_2D_element ("toManyPropertyGenerationList-element",
-                                                                nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyPropertyGenerationList_2D_element ("toManyPropertyGenerationList-element",
+                                                                                               nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14397,11 +14342,11 @@ mProperty_mModelTypeName (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::constructor_new (const GALGAS_string & in_mObjectTypeName,
-                                                                                                                                    const GALGAS_string & in_mModelName,
-                                                                                                                                    const GALGAS_string & in_mModelTypeName,
-                                                                                                                                    Compiler * /* inCompiler */
-                                                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::class_func_new (const GALGAS_string & in_mObjectTypeName,
+                                                                                                                                   const GALGAS_string & in_mModelName,
+                                                                                                                                   const GALGAS_string & in_mModelTypeName,
+                                                                                                                                   Compiler * /* inCompiler */
+                                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_validationStubRoutineListForGeneration_2D_element result ;
   if (in_mObjectTypeName.isValid () && in_mModelName.isValid () && in_mModelTypeName.isValid ()) {
     result = GALGAS_validationStubRoutineListForGeneration_2D_element (in_mObjectTypeName, in_mModelName, in_mModelTypeName) ;
@@ -14462,9 +14407,8 @@ void GALGAS_validationStubRoutineListForGeneration_2D_element::description (Stri
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration_2D_element ("validationStubRoutineListForGeneration-element",
-                                                                          nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_validationStubRoutineListForGeneration_2D_element ("validationStubRoutineListForGeneration-element",
+                                                                                                         nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14524,11 +14468,11 @@ mProperty_mBoundObjectExpression (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_multipleBindingGenerationList_2D_element GALGAS_multipleBindingGenerationList_2D_element::constructor_new (const GALGAS_string & in_mOutletName,
-                                                                                                                  const GALGAS_string & in_mBindingName,
-                                                                                                                  const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
-                                                                                                                  Compiler * /* inCompiler */
-                                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_multipleBindingGenerationList_2D_element GALGAS_multipleBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mOutletName,
+                                                                                                                 const GALGAS_string & in_mBindingName,
+                                                                                                                 const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
+                                                                                                                 Compiler * /* inCompiler */
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_multipleBindingGenerationList_2D_element result ;
   if (in_mOutletName.isValid () && in_mBindingName.isValid () && in_mBoundObjectExpression.isValid ()) {
     result = GALGAS_multipleBindingGenerationList_2D_element (in_mOutletName, in_mBindingName, in_mBoundObjectExpression) ;
@@ -14589,9 +14533,8 @@ void GALGAS_multipleBindingGenerationList_2D_element::description (String & ioSt
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_multipleBindingGenerationList_2D_element ("multipleBindingGenerationList-element",
-                                                                 nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingGenerationList_2D_element ("multipleBindingGenerationList-element",
+                                                                                                nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14660,14 +14603,14 @@ mProperty_mActualParameterList (inOperand5) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::constructor_new (const GALGAS_bool & in_mEditable,
-                                                                                                                                                                          const GALGAS_string & in_mSortPropertyName,
-                                                                                                                                                                          const GALGAS_string & in_mDisplayedPropertyName,
-                                                                                                                                                                          const GALGAS_string & in_mColumnObjectTypeName,
-                                                                                                                                                                          const GALGAS_string & in_mRunAction,
-                                                                                                                                                                          const GALGAS__32_stringlist & in_mActualParameterList,
-                                                                                                                                                                          Compiler * /* inCompiler */
-                                                                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::class_func_new (const GALGAS_bool & in_mEditable,
+                                                                                                                                                                         const GALGAS_string & in_mSortPropertyName,
+                                                                                                                                                                         const GALGAS_string & in_mDisplayedPropertyName,
+                                                                                                                                                                         const GALGAS_string & in_mColumnObjectTypeName,
+                                                                                                                                                                         const GALGAS_string & in_mRunAction,
+                                                                                                                                                                         const GALGAS__32_stringlist & in_mActualParameterList,
+                                                                                                                                                                         Compiler * /* inCompiler */
+                                                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element result ;
   if (in_mEditable.isValid () && in_mSortPropertyName.isValid () && in_mDisplayedPropertyName.isValid () && in_mColumnObjectTypeName.isValid () && in_mRunAction.isValid () && in_mActualParameterList.isValid ()) {
     result = GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element (in_mEditable, in_mSortPropertyName, in_mDisplayedPropertyName, in_mColumnObjectTypeName, in_mRunAction, in_mActualParameterList) ;
@@ -14746,9 +14689,8 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element ("autoLayoutTableViewControllerBoundColumnListForGeneration-element",
-                                                                                             nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element ("autoLayoutTableViewControllerBoundColumnListForGeneration-element",
+                                                                                                                            nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14808,11 +14750,11 @@ mProperty_mObservablePropertyForSorting (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::constructor_new (const GALGAS_string & in_mColumnName,
-                                                                                                                                                                            const GALGAS_propertyKind & in_mSortPropertyKind,
-                                                                                                                                                                            const GALGAS_string & in_mObservablePropertyForSorting,
-                                                                                                                                                                            Compiler * /* inCompiler */
-                                                                                                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::class_func_new (const GALGAS_string & in_mColumnName,
+                                                                                                                                                                           const GALGAS_propertyKind & in_mSortPropertyKind,
+                                                                                                                                                                           const GALGAS_string & in_mObservablePropertyForSorting,
+                                                                                                                                                                           Compiler * /* inCompiler */
+                                                                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element result ;
   if (in_mColumnName.isValid () && in_mSortPropertyKind.isValid () && in_mObservablePropertyForSorting.isValid ()) {
     result = GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element (in_mColumnName, in_mSortPropertyKind, in_mObservablePropertyForSorting) ;
@@ -14873,9 +14815,8 @@ void GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_elemen
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor
-kTypeDescriptor_GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element ("autoLayoutTableViewControllerSortedColumnListForGeneration-element",
-                                                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element ("autoLayoutTableViewControllerSortedColumnListForGeneration-element",
+                                                                                                                             nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 

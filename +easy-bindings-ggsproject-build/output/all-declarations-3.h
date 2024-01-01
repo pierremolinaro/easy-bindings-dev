@@ -26,7 +26,7 @@ class GALGAS_computeRoutineGeneration_2D_weak : public GALGAS_abstractFileGenera
 //--------------------------------- Bang operator
   public: GALGAS_computeRoutineGeneration bang_computeRoutineGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -36,8 +36,8 @@ class GALGAS_computeRoutineGeneration_2D_weak : public GALGAS_abstractFileGenera
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_computeRoutineGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_computeRoutineGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_computeRoutineGeneration_2D_weak & inOperand) const ;
@@ -85,7 +85,7 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_bool readProperty_mIsOverriding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -95,14 +95,14 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_lstring & inOperand1,
-                                                                       const class GALGAS_lstring & inOperand2,
-                                                                       const class GALGAS_lstring & inOperand3,
-                                                                       const class GALGAS_observablePropertyList & inOperand4,
-                                                                       const class GALGAS_bool & inOperand5
-                                                                       COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientDeclarationAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                      const class GALGAS_lstring & inOperand1,
+                                                                      const class GALGAS_lstring & inOperand2,
+                                                                      const class GALGAS_lstring & inOperand3,
+                                                                      const class GALGAS_observablePropertyList & inOperand4,
+                                                                      const class GALGAS_bool & inOperand5
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientDeclarationAST & inOperand) const ;
@@ -217,7 +217,7 @@ class GALGAS_transientDeclarationAST_2D_weak : public GALGAS_abstractDeclaration
 //--------------------------------- Bang operator
   public: GALGAS_transientDeclarationAST bang_transientDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -227,8 +227,8 @@ class GALGAS_transientDeclarationAST_2D_weak : public GALGAS_abstractDeclaration
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientDeclarationAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientDeclarationAST_2D_weak & inOperand) const ;
@@ -274,7 +274,7 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_bool readProperty_mGenerate (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -284,13 +284,13 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                           const class GALGAS_string & inOperand1,
-                                                                           const class GALGAS_typeKind & inOperand2,
-                                                                           const class GALGAS_transientDependencyListForGeneration & inOperand3,
-                                                                           const class GALGAS_bool & inOperand4
-                                                                           COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientPropertyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                          const class GALGAS_string & inOperand1,
+                                                                          const class GALGAS_typeKind & inOperand2,
+                                                                          const class GALGAS_transientDependencyListForGeneration & inOperand3,
+                                                                          const class GALGAS_bool & inOperand4
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientPropertyGeneration & inOperand) const ;
@@ -402,7 +402,7 @@ class GALGAS_transientPropertyGeneration_2D_weak : public GALGAS_propertyGenerat
 //--------------------------------- Bang operator
   public: GALGAS_transientPropertyGeneration bang_transientPropertyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -412,8 +412,8 @@ class GALGAS_transientPropertyGeneration_2D_weak : public GALGAS_propertyGenerat
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientPropertyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientPropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientPropertyGeneration_2D_weak & inOperand) const ;
@@ -455,7 +455,7 @@ class GALGAS_transientPropertyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_transientPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -465,11 +465,11 @@ class GALGAS_transientPropertyGenerationList : public AC_GALGAS_list {
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientPropertyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientPropertyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_transientPropertyGenerationList constructor_listWithValue (const class GALGAS_transientPropertyGeneration & inOperand0
-                                                                                         COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_transientPropertyGenerationList class_func_listWithValue (const class GALGAS_transientPropertyGeneration & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_transientPropertyGenerationList inOperand,
@@ -602,7 +602,7 @@ class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root 
 //--------------------------------- Native constructor
   public: GALGAS_transientPropertyGenerationList_2D_element (const GALGAS_transientPropertyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -612,10 +612,10 @@ class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root 
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientPropertyGenerationList_2D_element constructor_new (const class GALGAS_transientPropertyGeneration & inOperand0,
-                                                                                          class Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientPropertyGenerationList_2D_element class_func_new (const class GALGAS_transientPropertyGeneration & inOperand0,
+                                                                                         class Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -712,7 +712,7 @@ class GALGAS_transientRoutineGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_transientDependencyListForGeneration readProperty_mDependencyList (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -722,13 +722,13 @@ class GALGAS_transientRoutineGeneration : public GALGAS_abstractFileGeneration {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientRoutineGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                          const class GALGAS_string & inOperand1,
-                                                                          const class GALGAS_typeKind & inOperand2,
-                                                                          const class GALGAS_string & inOperand3,
-                                                                          const class GALGAS_transientDependencyListForGeneration & inOperand4
-                                                                          COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientRoutineGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                         const class GALGAS_string & inOperand1,
+                                                                         const class GALGAS_typeKind & inOperand2,
+                                                                         const class GALGAS_string & inOperand3,
+                                                                         const class GALGAS_transientDependencyListForGeneration & inOperand4
+                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientRoutineGeneration & inOperand) const ;
@@ -831,7 +831,7 @@ class GALGAS_transientRoutineGeneration_2D_weak : public GALGAS_abstractFileGene
 //--------------------------------- Bang operator
   public: GALGAS_transientRoutineGeneration bang_transientRoutineGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -841,8 +841,8 @@ class GALGAS_transientRoutineGeneration_2D_weak : public GALGAS_abstractFileGene
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_transientRoutineGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_transientRoutineGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_transientRoutineGeneration_2D_weak & inOperand) const ;
@@ -891,7 +891,7 @@ class GALGAS_proxyKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -901,10 +901,10 @@ class GALGAS_proxyKind : public AC_GALGAS_root {
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_proxyKind constructor_propertyProxy (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_proxyKind class_func_propertyProxy (LOCATION_ARGS) ;
 
-  public: static class GALGAS_proxyKind constructor_toManyProxy (LOCATION_ARGS) ;
+  public: static class GALGAS_proxyKind class_func_toManyProxy (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -963,7 +963,7 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_lstring readProperty_mPropertyName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -973,14 +973,14 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_proxyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                   const class GALGAS_proxyKind & inOperand1,
-                                                                   const class GALGAS_lstring & inOperand2,
-                                                                   const class GALGAS_lstring & inOperand3,
-                                                                   const class GALGAS_lstring & inOperand4,
-                                                                   const class GALGAS_lstring & inOperand5
-                                                                   COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_proxyDeclarationAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                  const class GALGAS_proxyKind & inOperand1,
+                                                                  const class GALGAS_lstring & inOperand2,
+                                                                  const class GALGAS_lstring & inOperand3,
+                                                                  const class GALGAS_lstring & inOperand4,
+                                                                  const class GALGAS_lstring & inOperand5
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_proxyDeclarationAST & inOperand) const ;
@@ -1095,7 +1095,7 @@ class GALGAS_proxyDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_
 //--------------------------------- Bang operator
   public: GALGAS_proxyDeclarationAST bang_proxyDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1105,8 +1105,8 @@ class GALGAS_proxyDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_proxyDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_proxyDeclarationAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_proxyDeclarationAST_2D_weak & inOperand) const ;
@@ -1152,7 +1152,7 @@ class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_string readProperty_mObservedPropertyName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1162,13 +1162,13 @@ class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                     const class GALGAS_proxyKind & inOperand1,
-                                                                     const class GALGAS_string & inOperand2,
-                                                                     const class GALGAS_string & inOperand3,
-                                                                     const class GALGAS_string & inOperand4
-                                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyProxyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_proxyKind & inOperand1,
+                                                                    const class GALGAS_string & inOperand2,
+                                                                    const class GALGAS_string & inOperand3,
+                                                                    const class GALGAS_string & inOperand4
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyProxyGeneration & inOperand) const ;
@@ -1280,7 +1280,7 @@ class GALGAS_toManyProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
 //--------------------------------- Bang operator
   public: GALGAS_toManyProxyGeneration bang_toManyProxyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1290,8 +1290,8 @@ class GALGAS_toManyProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyProxyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyProxyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyProxyGeneration_2D_weak & inOperand) const ;
@@ -1333,7 +1333,7 @@ class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_toManyProxyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1343,11 +1343,11 @@ class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyProxyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyProxyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_toManyProxyGenerationList constructor_listWithValue (const class GALGAS_toManyProxyGeneration & inOperand0
-                                                                                   COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_toManyProxyGenerationList class_func_listWithValue (const class GALGAS_toManyProxyGeneration & inOperand0
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_toManyProxyGenerationList inOperand,
@@ -1480,7 +1480,7 @@ class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_toManyProxyGenerationList_2D_element (const GALGAS_toManyProxyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1490,10 +1490,10 @@ class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyProxyGenerationList_2D_element constructor_new (const class GALGAS_toManyProxyGeneration & inOperand0,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyProxyGenerationList_2D_element class_func_new (const class GALGAS_toManyProxyGeneration & inOperand0,
+                                                                                   class Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1542,7 +1542,7 @@ class GALGAS_atomicProxyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_string readProperty_mObservedPropertyName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1552,13 +1552,13 @@ class GALGAS_atomicProxyGeneration : public GALGAS_propertyGeneration {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicProxyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                     const class GALGAS_proxyKind & inOperand1,
-                                                                     const class GALGAS_typeKind & inOperand2,
-                                                                     const class GALGAS_string & inOperand3,
-                                                                     const class GALGAS_string & inOperand4
-                                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicProxyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_proxyKind & inOperand1,
+                                                                    const class GALGAS_typeKind & inOperand2,
+                                                                    const class GALGAS_string & inOperand3,
+                                                                    const class GALGAS_string & inOperand4
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicProxyGeneration & inOperand) const ;
@@ -1670,7 +1670,7 @@ class GALGAS_atomicProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
 //--------------------------------- Bang operator
   public: GALGAS_atomicProxyGeneration bang_atomicProxyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1680,8 +1680,8 @@ class GALGAS_atomicProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicProxyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicProxyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicProxyGeneration_2D_weak & inOperand) const ;
@@ -1723,7 +1723,7 @@ class GALGAS_atomicProxyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_atomicProxyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1733,11 +1733,11 @@ class GALGAS_atomicProxyGenerationList : public AC_GALGAS_list {
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicProxyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicProxyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_atomicProxyGenerationList constructor_listWithValue (const class GALGAS_atomicProxyGeneration & inOperand0
-                                                                                   COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_atomicProxyGenerationList class_func_listWithValue (const class GALGAS_atomicProxyGeneration & inOperand0
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_atomicProxyGenerationList inOperand,
@@ -1870,7 +1870,7 @@ class GALGAS_atomicProxyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_atomicProxyGenerationList_2D_element (const GALGAS_atomicProxyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1880,10 +1880,10 @@ class GALGAS_atomicProxyGenerationList_2D_element : public AC_GALGAS_root {
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicProxyGenerationList_2D_element constructor_new (const class GALGAS_atomicProxyGeneration & inOperand0,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicProxyGenerationList_2D_element class_func_new (const class GALGAS_atomicProxyGeneration & inOperand0,
+                                                                                   class Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1936,7 +1936,7 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 
   public: class GALGAS_bool readProperty_mGenerateDirectAccess (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1946,15 +1946,15 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                            const class GALGAS_lstring & inOperand1,
-                                                                            const class GALGAS_lstring & inOperand2,
-                                                                            const class GALGAS_abstractDefaultValue & inOperand3,
-                                                                            const class GALGAS_bool & inOperand4,
-                                                                            const class GALGAS_bool & inOperand5,
-                                                                            const class GALGAS_bool & inOperand6
-                                                                            COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyDeclarationAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                           const class GALGAS_lstring & inOperand1,
+                                                                           const class GALGAS_lstring & inOperand2,
+                                                                           const class GALGAS_abstractDefaultValue & inOperand3,
+                                                                           const class GALGAS_bool & inOperand4,
+                                                                           const class GALGAS_bool & inOperand5,
+                                                                           const class GALGAS_bool & inOperand6
+                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicPropertyDeclarationAST & inOperand) const ;
@@ -2063,7 +2063,7 @@ class GALGAS_atomicPropertyDeclarationAST_2D_weak : public GALGAS_abstractDeclar
 //--------------------------------- Bang operator
   public: GALGAS_atomicPropertyDeclarationAST bang_atomicPropertyDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2073,8 +2073,8 @@ class GALGAS_atomicPropertyDeclarationAST_2D_weak : public GALGAS_abstractDeclar
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyDeclarationAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicPropertyDeclarationAST_2D_weak & inOperand) const ;
@@ -2126,7 +2126,7 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_bool readProperty_mInPreferences (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2136,16 +2136,16 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                        const class GALGAS_bool & inOperand1,
-                                                                        const class GALGAS_bool & inOperand2,
-                                                                        const class GALGAS_bool & inOperand3,
-                                                                        const class GALGAS_typeKind & inOperand4,
-                                                                        const class GALGAS_bool & inOperand5,
-                                                                        const class GALGAS_string & inOperand6,
-                                                                        const class GALGAS_bool & inOperand7
-                                                                        COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                       const class GALGAS_bool & inOperand1,
+                                                                       const class GALGAS_bool & inOperand2,
+                                                                       const class GALGAS_bool & inOperand3,
+                                                                       const class GALGAS_typeKind & inOperand4,
+                                                                       const class GALGAS_bool & inOperand5,
+                                                                       const class GALGAS_string & inOperand6,
+                                                                       const class GALGAS_bool & inOperand7
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicPropertyGeneration & inOperand) const ;
@@ -2254,7 +2254,7 @@ class GALGAS_atomicPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
 //--------------------------------- Bang operator
   public: GALGAS_atomicPropertyGeneration bang_atomicPropertyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2264,8 +2264,8 @@ class GALGAS_atomicPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_atomicPropertyGeneration_2D_weak & inOperand) const ;
@@ -2307,7 +2307,7 @@ class GALGAS_atomicPropertyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_atomicPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2317,11 +2317,11 @@ class GALGAS_atomicPropertyGenerationList : public AC_GALGAS_list {
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_atomicPropertyGenerationList constructor_listWithValue (const class GALGAS_atomicPropertyGeneration & inOperand0
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_atomicPropertyGenerationList class_func_listWithValue (const class GALGAS_atomicPropertyGeneration & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_atomicPropertyGenerationList inOperand,
@@ -2454,7 +2454,7 @@ class GALGAS_atomicPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_atomicPropertyGenerationList_2D_element (const GALGAS_atomicPropertyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2464,10 +2464,10 @@ class GALGAS_atomicPropertyGenerationList_2D_element : public AC_GALGAS_root {
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_atomicPropertyGenerationList_2D_element constructor_new (const class GALGAS_atomicPropertyGeneration & inOperand0,
-                                                                                       class Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_atomicPropertyGenerationList_2D_element class_func_new (const class GALGAS_atomicPropertyGeneration & inOperand0,
+                                                                                      class Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -2554,7 +2554,7 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_bool readProperty_mWeak (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2564,14 +2564,14 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOneRelationshipAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    const class GALGAS_lstring & inOperand1,
-                                                                    const class GALGAS_lstring & inOperand2,
-                                                                    const class GALGAS_toOneOppositeRelationship & inOperand3,
-                                                                    const class GALGAS_bool & inOperand4,
-                                                                    const class GALGAS_bool & inOperand5
-                                                                    COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOneRelationshipAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                   const class GALGAS_lstring & inOperand1,
+                                                                   const class GALGAS_lstring & inOperand2,
+                                                                   const class GALGAS_toOneOppositeRelationship & inOperand3,
+                                                                   const class GALGAS_bool & inOperand4,
+                                                                   const class GALGAS_bool & inOperand5
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toOneRelationshipAST & inOperand) const ;
@@ -2686,7 +2686,7 @@ class GALGAS_toOneRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAST
 //--------------------------------- Bang operator
   public: GALGAS_toOneRelationshipAST bang_toOneRelationshipAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2696,8 +2696,8 @@ class GALGAS_toOneRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAST
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOneRelationshipAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOneRelationshipAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toOneRelationshipAST_2D_weak & inOperand) const ;
@@ -2782,7 +2782,7 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
                                          const GALGAS_actionMap & in_mActionMap,
                                          const GALGAS_bool & in_mIsOverriding) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2792,13 +2792,13 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_propertyMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                      const class GALGAS_propertyKind & inOperand1,
-                                                                      const class GALGAS_actionMap & inOperand2,
-                                                                      const class GALGAS_bool & inOperand3,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_propertyMap_2D_element class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                     const class GALGAS_propertyKind & inOperand1,
+                                                                     const class GALGAS_actionMap & inOperand2,
+                                                                     const class GALGAS_bool & inOperand3,
+                                                                     class Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -2851,7 +2851,7 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_bool readProperty_mStrongRef (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2861,15 +2861,15 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOnePropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                       const class GALGAS_string & inOperand1,
-                                                                       const class GALGAS_propertyKind & inOperand2,
-                                                                       const class GALGAS_toOneOppositeRelationship & inOperand3,
-                                                                       const class GALGAS_propertyMap & inOperand4,
-                                                                       const class GALGAS_bool & inOperand5,
-                                                                       const class GALGAS_bool & inOperand6
-                                                                       COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOnePropertyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                      const class GALGAS_string & inOperand1,
+                                                                      const class GALGAS_propertyKind & inOperand2,
+                                                                      const class GALGAS_toOneOppositeRelationship & inOperand3,
+                                                                      const class GALGAS_propertyMap & inOperand4,
+                                                                      const class GALGAS_bool & inOperand5,
+                                                                      const class GALGAS_bool & inOperand6
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toOnePropertyGeneration & inOperand) const ;
@@ -2973,7 +2973,7 @@ class GALGAS_toOnePropertyGeneration_2D_weak : public GALGAS_propertyGeneration_
 //--------------------------------- Bang operator
   public: GALGAS_toOnePropertyGeneration bang_toOnePropertyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2983,8 +2983,8 @@ class GALGAS_toOnePropertyGeneration_2D_weak : public GALGAS_propertyGeneration_
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOnePropertyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOnePropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toOnePropertyGeneration_2D_weak & inOperand) const ;
@@ -3026,7 +3026,7 @@ class GALGAS_toOnePropertyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_toOnePropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3036,11 +3036,11 @@ class GALGAS_toOnePropertyGenerationList : public AC_GALGAS_list {
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOnePropertyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOnePropertyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_toOnePropertyGenerationList constructor_listWithValue (const class GALGAS_toOnePropertyGeneration & inOperand0
-                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_toOnePropertyGenerationList class_func_listWithValue (const class GALGAS_toOnePropertyGeneration & inOperand0
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_toOnePropertyGenerationList inOperand,
@@ -3173,7 +3173,7 @@ class GALGAS_toOnePropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_toOnePropertyGenerationList_2D_element (const GALGAS_toOnePropertyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3183,10 +3183,10 @@ class GALGAS_toOnePropertyGenerationList_2D_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toOnePropertyGenerationList_2D_element constructor_new (const class GALGAS_toOnePropertyGeneration & inOperand0,
-                                                                                      class Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toOnePropertyGenerationList_2D_element class_func_new (const class GALGAS_toOnePropertyGeneration & inOperand0,
+                                                                                     class Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -3241,7 +3241,7 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
 
   public: class GALGAS_bool readProperty_mGenerateDirectRead (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3251,16 +3251,16 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyRelationshipAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                     const class GALGAS_lstring & inOperand1,
-                                                                     const class GALGAS_lstring & inOperand2,
-                                                                     const class GALGAS_toManyRelationshipOptionAST & inOperand3,
-                                                                     const class GALGAS_bool & inOperand4,
-                                                                     const class GALGAS_bool & inOperand5,
-                                                                     const class GALGAS_bool & inOperand6,
-                                                                     const class GALGAS_bool & inOperand7
-                                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyRelationshipAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                    const class GALGAS_lstring & inOperand1,
+                                                                    const class GALGAS_lstring & inOperand2,
+                                                                    const class GALGAS_toManyRelationshipOptionAST & inOperand3,
+                                                                    const class GALGAS_bool & inOperand4,
+                                                                    const class GALGAS_bool & inOperand5,
+                                                                    const class GALGAS_bool & inOperand6,
+                                                                    const class GALGAS_bool & inOperand7
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyRelationshipAST & inOperand) const ;
@@ -3359,7 +3359,7 @@ class GALGAS_toManyRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAS
 //--------------------------------- Bang operator
   public: GALGAS_toManyRelationshipAST bang_toManyRelationshipAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3369,8 +3369,8 @@ class GALGAS_toManyRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAS
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyRelationshipAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyRelationshipAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyRelationshipAST_2D_weak & inOperand) const ;
@@ -3425,7 +3425,7 @@ class GALGAS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3435,15 +3435,15 @@ class GALGAS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyRelationshipOptionGeneration constructor_hasDependance (const class GALGAS_string & inOperand0,
-                                                                                            const class GALGAS_string & inOperand1
-                                                                                            COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyRelationshipOptionGeneration class_func_hasDependance (const class GALGAS_string & inOperand0,
+                                                                                           const class GALGAS_string & inOperand1
+                                                                                           COMMA_LOCATION_ARGS) ;
 
-  public: static class GALGAS_toManyRelationshipOptionGeneration constructor_hasOpposite (const class GALGAS_string & inOperand0
-                                                                                          COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_toManyRelationshipOptionGeneration class_func_hasOpposite (const class GALGAS_string & inOperand0
+                                                                                         COMMA_LOCATION_ARGS) ;
 
-  public: static class GALGAS_toManyRelationshipOptionGeneration constructor_none (LOCATION_ARGS) ;
+  public: static class GALGAS_toManyRelationshipOptionGeneration class_func_none (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -3558,7 +3558,7 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 
   public: class GALGAS_bool readProperty_mUsedForSignature (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3568,16 +3568,16 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                        const class GALGAS_bool & inOperand1,
-                                                                        const class GALGAS_bool & inOperand2,
-                                                                        const class GALGAS_propertyKind & inOperand3,
-                                                                        const class GALGAS_toManyRelationshipOptionGeneration & inOperand4,
-                                                                        const class GALGAS_bool & inOperand5,
-                                                                        const class GALGAS_bool & inOperand6,
-                                                                        const class GALGAS_bool & inOperand7
-                                                                        COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyPropertyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                       const class GALGAS_bool & inOperand1,
+                                                                       const class GALGAS_bool & inOperand2,
+                                                                       const class GALGAS_propertyKind & inOperand3,
+                                                                       const class GALGAS_toManyRelationshipOptionGeneration & inOperand4,
+                                                                       const class GALGAS_bool & inOperand5,
+                                                                       const class GALGAS_bool & inOperand6,
+                                                                       const class GALGAS_bool & inOperand7
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyPropertyGeneration & inOperand) const ;
@@ -3689,7 +3689,7 @@ class GALGAS_toManyPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
 //--------------------------------- Bang operator
   public: GALGAS_toManyPropertyGeneration bang_toManyPropertyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3699,8 +3699,8 @@ class GALGAS_toManyPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyPropertyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyPropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_toManyPropertyGeneration_2D_weak & inOperand) const ;
@@ -3742,7 +3742,7 @@ class GALGAS_toManyPropertyGenerationList : public AC_GALGAS_list {
                                                  const class GALGAS_toManyPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3752,11 +3752,11 @@ class GALGAS_toManyPropertyGenerationList : public AC_GALGAS_list {
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyPropertyGenerationList constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyPropertyGenerationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_toManyPropertyGenerationList constructor_listWithValue (const class GALGAS_toManyPropertyGeneration & inOperand0
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_toManyPropertyGenerationList class_func_listWithValue (const class GALGAS_toManyPropertyGeneration & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_toManyPropertyGenerationList inOperand,
@@ -3889,7 +3889,7 @@ class GALGAS_toManyPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_toManyPropertyGenerationList_2D_element (const GALGAS_toManyPropertyGeneration & in_mProperty) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3899,10 +3899,10 @@ class GALGAS_toManyPropertyGenerationList_2D_element : public AC_GALGAS_root {
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_toManyPropertyGenerationList_2D_element constructor_new (const class GALGAS_toManyPropertyGeneration & inOperand0,
-                                                                                       class Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_toManyPropertyGenerationList_2D_element class_func_new (const class GALGAS_toManyPropertyGeneration & inOperand0,
+                                                                                      class Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -3949,7 +3949,7 @@ class GALGAS_validationStubRoutineListForGeneration : public AC_GALGAS_list {
                                                  const class GALGAS_string & in_mModelTypeName
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3959,13 +3959,13 @@ class GALGAS_validationStubRoutineListForGeneration : public AC_GALGAS_list {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_validationStubRoutineListForGeneration constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_validationStubRoutineListForGeneration class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_validationStubRoutineListForGeneration constructor_listWithValue (const class GALGAS_string & inOperand0,
-                                                                                                const class GALGAS_string & inOperand1,
-                                                                                                const class GALGAS_string & inOperand2
-                                                                                                COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_validationStubRoutineListForGeneration class_func_listWithValue (const class GALGAS_string & inOperand0,
+                                                                                               const class GALGAS_string & inOperand1,
+                                                                                               const class GALGAS_string & inOperand2
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_validationStubRoutineListForGeneration inOperand,
@@ -4154,7 +4154,7 @@ class GALGAS_validationStubRoutineListForGeneration_2D_element : public AC_GALGA
                                                                     const GALGAS_string & in_mModelName,
                                                                     const GALGAS_string & in_mModelTypeName) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4164,12 +4164,12 @@ class GALGAS_validationStubRoutineListForGeneration_2D_element : public AC_GALGA
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_validationStubRoutineListForGeneration_2D_element constructor_new (const class GALGAS_string & inOperand0,
-                                                                                                 const class GALGAS_string & inOperand1,
-                                                                                                 const class GALGAS_string & inOperand2,
-                                                                                                 class Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_validationStubRoutineListForGeneration_2D_element class_func_new (const class GALGAS_string & inOperand0,
+                                                                                                const class GALGAS_string & inOperand1,
+                                                                                                const class GALGAS_string & inOperand2,
+                                                                                                class Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -4227,7 +4227,7 @@ class GALGAS_actionMap_2D_element : public AC_GALGAS_root {
 //--------------------------------- Native constructor
   public: GALGAS_actionMap_2D_element (const GALGAS_lstring & in_lkey) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4237,10 +4237,10 @@ class GALGAS_actionMap_2D_element : public AC_GALGAS_root {
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_actionMap_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                    class Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_actionMap_2D_element class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                   class Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -4285,7 +4285,7 @@ class GALGAS_actionFileGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_string readProperty_mActionName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4295,10 +4295,10 @@ class GALGAS_actionFileGeneration : public GALGAS_abstractFileGeneration {
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_actionFileGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                    const class GALGAS_string & inOperand1
-                                                                    COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_actionFileGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                   const class GALGAS_string & inOperand1
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_actionFileGeneration & inOperand) const ;
@@ -4386,7 +4386,7 @@ class GALGAS_actionFileGeneration_2D_weak : public GALGAS_abstractFileGeneration
 //--------------------------------- Bang operator
   public: GALGAS_actionFileGeneration bang_actionFileGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4396,8 +4396,8 @@ class GALGAS_actionFileGeneration_2D_weak : public GALGAS_abstractFileGeneration
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_actionFileGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_actionFileGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_actionFileGeneration_2D_weak & inOperand) const ;
@@ -4450,7 +4450,7 @@ class GALGAS_multipleBindingComparisonAST : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4460,18 +4460,18 @@ class GALGAS_multipleBindingComparisonAST : public AC_GALGAS_root {
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_multipleBindingComparisonAST constructor_equal (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_multipleBindingComparisonAST class_func_equal (LOCATION_ARGS) ;
 
-  public: static class GALGAS_multipleBindingComparisonAST constructor_greater (LOCATION_ARGS) ;
+  public: static class GALGAS_multipleBindingComparisonAST class_func_greater (LOCATION_ARGS) ;
 
-  public: static class GALGAS_multipleBindingComparisonAST constructor_greaterOrEqual (LOCATION_ARGS) ;
+  public: static class GALGAS_multipleBindingComparisonAST class_func_greaterOrEqual (LOCATION_ARGS) ;
 
-  public: static class GALGAS_multipleBindingComparisonAST constructor_lower (LOCATION_ARGS) ;
+  public: static class GALGAS_multipleBindingComparisonAST class_func_lower (LOCATION_ARGS) ;
 
-  public: static class GALGAS_multipleBindingComparisonAST constructor_lowerOrEqual (LOCATION_ARGS) ;
+  public: static class GALGAS_multipleBindingComparisonAST class_func_lowerOrEqual (LOCATION_ARGS) ;
 
-  public: static class GALGAS_multipleBindingComparisonAST constructor_notEqual (LOCATION_ARGS) ;
+  public: static class GALGAS_multipleBindingComparisonAST class_func_notEqual (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -4578,7 +4578,7 @@ class GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak : public AC_GAL
 //--------------------------------- Bang operator
   public: GALGAS_abstractBooleanMultipleBindingExpressionAST bang_abstractBooleanMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4588,8 +4588,8 @@ class GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak : public AC_GAL
                                                                                            Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -4629,7 +4629,7 @@ class GALGAS_literalIntMultipleBindingExpressionAST : public GALGAS_abstractBool
 //--------------------------------- Property read access
   public: class GALGAS_luint readProperty_mValue (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4639,9 +4639,9 @@ class GALGAS_literalIntMultipleBindingExpressionAST : public GALGAS_abstractBool
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_literalIntMultipleBindingExpressionAST constructor_new (const class GALGAS_luint & inOperand0
-                                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_literalIntMultipleBindingExpressionAST class_func_new (const class GALGAS_luint & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_literalIntMultipleBindingExpressionAST & inOperand) const ;
@@ -4729,7 +4729,7 @@ class GALGAS_literalIntMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 //--------------------------------- Bang operator
   public: GALGAS_literalIntMultipleBindingExpressionAST bang_literalIntMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4739,8 +4739,8 @@ class GALGAS_literalIntMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_literalIntMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_literalIntMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_literalIntMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -4780,7 +4780,7 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST : public GALGAS_abstractB
 //--------------------------------- Property read access
   public: class GALGAS_abstractBooleanMultipleBindingExpressionAST readProperty_mBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4790,9 +4790,9 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST : public GALGAS_abstractB
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_negateBooleanMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0
-                                                                                         COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_negateBooleanMultipleBindingExpressionAST class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_negateBooleanMultipleBindingExpressionAST & inOperand) const ;
@@ -4880,7 +4880,7 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_a
 //--------------------------------- Bang operator
   public: GALGAS_negateBooleanMultipleBindingExpressionAST bang_negateBooleanMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4890,8 +4890,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_a
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -4935,7 +4935,7 @@ class GALGAS_comparisonMultipleBindingExpressionAST : public GALGAS_abstractBool
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionAST readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4945,11 +4945,11 @@ class GALGAS_comparisonMultipleBindingExpressionAST : public GALGAS_abstractBool
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_comparisonMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
-                                                                                      const class GALGAS_multipleBindingComparisonAST & inOperand1,
-                                                                                      const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand2
-                                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_comparisonMultipleBindingExpressionAST class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
+                                                                                     const class GALGAS_multipleBindingComparisonAST & inOperand1,
+                                                                                     const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand2
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_comparisonMultipleBindingExpressionAST & inOperand) const ;
@@ -5047,7 +5047,7 @@ class GALGAS_comparisonMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 //--------------------------------- Bang operator
   public: GALGAS_comparisonMultipleBindingExpressionAST bang_comparisonMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5057,8 +5057,8 @@ class GALGAS_comparisonMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_comparisonMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_comparisonMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_comparisonMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -5100,7 +5100,7 @@ class GALGAS_andBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionAST readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5110,10 +5110,10 @@ class GALGAS_andBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_andBooleanMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
-                                                                                      const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
-                                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_andBooleanMultipleBindingExpressionAST class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
+                                                                                     const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_andBooleanMultipleBindingExpressionAST & inOperand) const ;
@@ -5206,7 +5206,7 @@ class GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 //--------------------------------- Bang operator
   public: GALGAS_andBooleanMultipleBindingExpressionAST bang_andBooleanMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5216,8 +5216,8 @@ class GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -5259,7 +5259,7 @@ class GALGAS_orBooleanMultipleBindingExpressionAST : public GALGAS_abstractBoole
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionAST readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5269,10 +5269,10 @@ class GALGAS_orBooleanMultipleBindingExpressionAST : public GALGAS_abstractBoole
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_orBooleanMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
-                                                                                     const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
-                                                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_orBooleanMultipleBindingExpressionAST class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
+                                                                                    const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_orBooleanMultipleBindingExpressionAST & inOperand) const ;
@@ -5365,7 +5365,7 @@ class GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abstr
 //--------------------------------- Bang operator
   public: GALGAS_orBooleanMultipleBindingExpressionAST bang_orBooleanMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5375,8 +5375,8 @@ class GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abstr
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -5418,7 +5418,7 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionAST readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5428,10 +5428,10 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_xorBooleanMultipleBindingExpressionAST constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
-                                                                                      const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
-                                                                                      COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_xorBooleanMultipleBindingExpressionAST class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand0,
+                                                                                     const class GALGAS_abstractBooleanMultipleBindingExpressionAST & inOperand1
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionAST & inOperand) const ;
@@ -5524,7 +5524,7 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 //--------------------------------- Bang operator
   public: GALGAS_xorBooleanMultipleBindingExpressionAST bang_xorBooleanMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5534,8 +5534,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -5575,7 +5575,7 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST : public GALGAS_ab
 //--------------------------------- Property read access
   public: class GALGAS_observablePropertyAST readProperty_mProperty (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5585,9 +5585,9 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST : public GALGAS_ab
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_observablePropertyInMultipleBindingExpressionAST constructor_new (const class GALGAS_observablePropertyAST & inOperand0
-                                                                                                COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_observablePropertyInMultipleBindingExpressionAST class_func_new (const class GALGAS_observablePropertyAST & inOperand0
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_observablePropertyInMultipleBindingExpressionAST & inOperand) const ;
@@ -5675,7 +5675,7 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak : public G
 //--------------------------------- Bang operator
   public: GALGAS_observablePropertyInMultipleBindingExpressionAST bang_observablePropertyInMultipleBindingExpressionAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5685,8 +5685,8 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak : public G
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak & inOperand) const ;
@@ -5728,7 +5728,7 @@ class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak : pub
 //--------------------------------- Bang operator
   public: GALGAS_abstractBooleanMultipleBindingExpressionForGeneration bang_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5738,8 +5738,8 @@ class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak : pub
                                                                                                      Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -5779,7 +5779,7 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
 //--------------------------------- Property read access
   public: class GALGAS_string readProperty_mObservedModelString (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5789,9 +5789,9 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
                                                                                                          Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_string & inOperand0
-                                                                                                                 COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_string & inOperand0
+                                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -5871,7 +5871,7 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2
 //--------------------------------- Bang operator
   public: GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration bang_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5881,8 +5881,8 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2
                                                                                                                  Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -5922,7 +5922,7 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstr
 //--------------------------------- Property read access
   public: class GALGAS_uint readProperty_mValue (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5932,9 +5932,9 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstr
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_booleanMultipleBindingLiteralIntForGeneration constructor_new (const class GALGAS_uint & inOperand0
-                                                                                             COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_booleanMultipleBindingLiteralIntForGeneration class_func_new (const class GALGAS_uint & inOperand0
+                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_booleanMultipleBindingLiteralIntForGeneration & inOperand) const ;
@@ -6014,7 +6014,7 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak : public GALG
 //--------------------------------- Bang operator
   public: GALGAS_booleanMultipleBindingLiteralIntForGeneration bang_booleanMultipleBindingLiteralIntForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6024,8 +6024,8 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak : public GALG
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak & inOperand) const ;
@@ -6065,7 +6065,7 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration : public GALGAS
 //--------------------------------- Property read access
   public: class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6075,9 +6075,9 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration : public GALGAS
                                                                                            Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_negateBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0
-                                                                                                   COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_negateBooleanMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0
+                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_negateBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -6157,7 +6157,7 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak : publi
 //--------------------------------- Bang operator
   public: GALGAS_negateBooleanMultipleBindingExpressionForGeneration bang_negateBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6167,8 +6167,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak : publi
                                                                                                    Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -6210,7 +6210,7 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration : public GALGAS_abs
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6220,10 +6220,10 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration : public GALGAS_abs
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_orBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                               const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                               COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_orBooleanMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                              const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_orBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -6308,7 +6308,7 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak : public GA
 //--------------------------------- Bang operator
   public: GALGAS_orBooleanMultipleBindingExpressionForGeneration bang_orBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6318,8 +6318,8 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak : public GA
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -6361,7 +6361,7 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6371,10 +6371,10 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_xorBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                                COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_xorBooleanMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                               const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -6459,7 +6459,7 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
 //--------------------------------- Bang operator
   public: GALGAS_xorBooleanMultipleBindingExpressionForGeneration bang_xorBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6469,8 +6469,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -6512,7 +6512,7 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6522,10 +6522,10 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_andBooleanMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                                                                COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_andBooleanMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                               const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_andBooleanMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -6610,7 +6610,7 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
 //--------------------------------- Bang operator
   public: GALGAS_andBooleanMultipleBindingExpressionForGeneration bang_andBooleanMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6620,8 +6620,8 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -6665,7 +6665,7 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration : public GALGAS_ab
 
   public: class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_mRightBinding (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6675,11 +6675,11 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration : public GALGAS_ab
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_comparisonMultipleBindingExpressionForGeneration constructor_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                                const class GALGAS_multipleBindingComparisonAST & inOperand1,
-                                                                                                const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2
-                                                                                                COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_comparisonMultipleBindingExpressionForGeneration class_func_new (const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                               const class GALGAS_multipleBindingComparisonAST & inOperand1,
+                                                                                               const class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_comparisonMultipleBindingExpressionForGeneration & inOperand) const ;
@@ -6769,7 +6769,7 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
 //--------------------------------- Bang operator
   public: GALGAS_comparisonMultipleBindingExpressionForGeneration bang_comparisonMultipleBindingExpressionForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6779,8 +6779,8 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak & inOperand) const ;
@@ -6852,7 +6852,7 @@ class GALGAS_arrayControllerBoundModelAST : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6862,11 +6862,11 @@ class GALGAS_arrayControllerBoundModelAST : public AC_GALGAS_root {
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerBoundModelAST constructor_rootToManyRelationship (const class GALGAS_lstring & inOperand0
-                                                                                               COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerBoundModelAST class_func_rootToManyRelationship (const class GALGAS_lstring & inOperand0
+                                                                                              COMMA_LOCATION_ARGS) ;
 
-  public: static class GALGAS_arrayControllerBoundModelAST constructor_selfToManyRelationship (LOCATION_ARGS) ;
+  public: static class GALGAS_arrayControllerBoundModelAST class_func_selfToManyRelationship (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -6945,7 +6945,7 @@ class GALGAS_arrayControllerDeclarationAST : public GALGAS_abstractDeclarationAS
 
   public: class GALGAS_lstring readProperty_mToManyPropertyName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6955,12 +6955,12 @@ class GALGAS_arrayControllerDeclarationAST : public GALGAS_abstractDeclarationAS
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                             const class GALGAS_lstring & inOperand1,
-                                                                             const class GALGAS_arrayControllerBoundModelAST & inOperand2,
-                                                                             const class GALGAS_lstring & inOperand3
-                                                                             COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerDeclarationAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                            const class GALGAS_lstring & inOperand1,
+                                                                            const class GALGAS_arrayControllerBoundModelAST & inOperand2,
+                                                                            const class GALGAS_lstring & inOperand3
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerDeclarationAST & inOperand) const ;
@@ -7065,7 +7065,7 @@ class GALGAS_arrayControllerDeclarationAST_2D_weak : public GALGAS_abstractDecla
 //--------------------------------- Bang operator
   public: GALGAS_arrayControllerDeclarationAST bang_arrayControllerDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7075,8 +7075,8 @@ class GALGAS_arrayControllerDeclarationAST_2D_weak : public GALGAS_abstractDecla
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerDeclarationAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerDeclarationAST_2D_weak & inOperand) const ;
@@ -7118,7 +7118,7 @@ class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneratio
 
   public: class GALGAS_string readProperty_mOwnerName (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7128,11 +7128,11 @@ class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneratio
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerPropertyGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                                 const class GALGAS_string & inOperand1,
-                                                                                 const class GALGAS_string & inOperand2
-                                                                                 COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerPropertyGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                                const class GALGAS_string & inOperand1,
+                                                                                const class GALGAS_string & inOperand2
+                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerPropertyGeneration & inOperand) const ;
@@ -7231,7 +7231,7 @@ class GALGAS_arrayControllerPropertyGeneration_2D_weak : public GALGAS_propertyG
 //--------------------------------- Bang operator
   public: GALGAS_arrayControllerPropertyGeneration bang_arrayControllerPropertyGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7241,8 +7241,8 @@ class GALGAS_arrayControllerPropertyGeneration_2D_weak : public GALGAS_propertyG
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerPropertyGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerPropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerPropertyGeneration_2D_weak & inOperand) const ;
@@ -7291,7 +7291,7 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
   public: inline enumeration enumValue (void) const { return mEnum ; }
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7301,10 +7301,10 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerModelKind constructor_entityArray (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerModelKind class_func_entityArray (LOCATION_ARGS) ;
 
-  public: static class GALGAS_arrayControllerModelKind constructor_transientArray (LOCATION_ARGS) ;
+  public: static class GALGAS_arrayControllerModelKind class_func_transientArray (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -7365,7 +7365,7 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
 
   public: class GALGAS_bool readProperty_mElementTypeIsGraphic (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7375,14 +7375,14 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerGeneration constructor_new (const class GALGAS_string & inOperand0,
-                                                                         const class GALGAS_lstring & inOperand1,
-                                                                         const class GALGAS_string & inOperand2,
-                                                                         const class GALGAS_arrayControllerModelKind & inOperand3,
-                                                                         const class GALGAS_string & inOperand4,
-                                                                         const class GALGAS_bool & inOperand5
-                                                                         COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                        const class GALGAS_lstring & inOperand1,
+                                                                        const class GALGAS_string & inOperand2,
+                                                                        const class GALGAS_arrayControllerModelKind & inOperand3,
+                                                                        const class GALGAS_string & inOperand4,
+                                                                        const class GALGAS_bool & inOperand5
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerGeneration & inOperand) const ;
@@ -7490,7 +7490,7 @@ class GALGAS_arrayControllerGeneration_2D_weak : public GALGAS_abstractFileGener
 //--------------------------------- Bang operator
   public: GALGAS_arrayControllerGeneration bang_arrayControllerGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7500,8 +7500,8 @@ class GALGAS_arrayControllerGeneration_2D_weak : public GALGAS_abstractFileGener
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_arrayControllerGeneration_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_arrayControllerGeneration_2D_weak & inOperand) const ;
@@ -7546,7 +7546,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
                                                  const class GALGAS_lstring & in_mSortPropertyName
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7556,14 +7556,14 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST constructor_listWithValue (const class GALGAS_bool & inOperand0,
-                                                                                                         const class GALGAS_lstring & inOperand1,
-                                                                                                         const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                                                                         const class GALGAS_lstring & inOperand3
-                                                                                                         COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST class_func_listWithValue (const class GALGAS_bool & inOperand0,
+                                                                                                        const class GALGAS_lstring & inOperand1,
+                                                                                                        const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                        const class GALGAS_lstring & inOperand3
+                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
@@ -7780,7 +7780,7 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
                                                                              const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
                                                                              const GALGAS_lstring & in_mSortPropertyName) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7790,13 +7790,13 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
                                                                                                   Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element constructor_new (const class GALGAS_bool & inOperand0,
-                                                                                                          const class GALGAS_lstring & inOperand1,
-                                                                                                          const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                                                                          const class GALGAS_lstring & inOperand3,
-                                                                                                          class Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element class_func_new (const class GALGAS_bool & inOperand0,
+                                                                                                         const class GALGAS_lstring & inOperand1,
+                                                                                                         const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                         const class GALGAS_lstring & inOperand3,
+                                                                                                         class Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -7842,7 +7842,7 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_lis
                                                  const class GALGAS_abstractDefaultValue & in_mAttributeValue
                                                  COMMA_LOCATION_ARGS) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7852,12 +7852,12 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_lis
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST constructor_emptyList (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST constructor_listWithValue (const class GALGAS_lstring & inOperand0,
-                                                                                                      const class GALGAS_abstractDefaultValue & inOperand1
-                                                                                                      COMMA_LOCATION_ARGS) ;
+  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST class_func_listWithValue (const class GALGAS_lstring & inOperand0,
+                                                                                                     const class GALGAS_abstractDefaultValue & inOperand1
+                                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
   public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_autoLayoutTableViewControllerAttributListAST inOperand,
@@ -8018,7 +8018,7 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element : public AC
   public: GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element (const GALGAS_lstring & in_mAttributeName,
                                                                           const GALGAS_abstractDefaultValue & in_mAttributeValue) ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8028,11 +8028,11 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element : public AC
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                                       const class GALGAS_abstractDefaultValue & inOperand1,
-                                                                                                       class Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                                                      const class GALGAS_abstractDefaultValue & inOperand1,
+                                                                                                      class Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -8085,7 +8085,7 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST : public GALGAS_abstrac
 
   public: class GALGAS_autoLayoutTableViewControllerAttributListAST readProperty_mTableViewControllerAttributListAST (void) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8095,15 +8095,15 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST : public GALGAS_abstrac
                                                                                    Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerDeclarationAST constructor_new (const class GALGAS_lstring & inOperand0,
-                                                                                           const class GALGAS_lstring & inOperand1,
-                                                                                           const class GALGAS_bool & inOperand2,
-                                                                                           const class GALGAS_lstring & inOperand3,
-                                                                                           const class GALGAS_lstring & inOperand4,
-                                                                                           const class GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand5,
-                                                                                           const class GALGAS_autoLayoutTableViewControllerAttributListAST & inOperand6
-                                                                                           COMMA_LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerDeclarationAST class_func_new (const class GALGAS_lstring & inOperand0,
+                                                                                          const class GALGAS_lstring & inOperand1,
+                                                                                          const class GALGAS_bool & inOperand2,
+                                                                                          const class GALGAS_lstring & inOperand3,
+                                                                                          const class GALGAS_lstring & inOperand4,
+                                                                                          const class GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand5,
+                                                                                          const class GALGAS_autoLayoutTableViewControllerAttributListAST & inOperand6
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_autoLayoutTableViewControllerDeclarationAST & inOperand) const ;
@@ -8205,7 +8205,7 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST_2D_weak : public GALGAS
 //--------------------------------- Bang operator
   public: GALGAS_autoLayoutTableViewControllerDeclarationAST bang_autoLayoutTableViewControllerDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
-//-- Start of generic part --*
+//-- Start of type generic part
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8215,8 +8215,8 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST_2D_weak : public GALGAS
                                                                                            Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS constructors
-  public: static class GALGAS_autoLayoutTableViewControllerDeclarationAST_2D_weak constructor_nil (LOCATION_ARGS) ;
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerDeclarationAST_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: typeComparisonResult objectCompare (const GALGAS_autoLayoutTableViewControllerDeclarationAST_2D_weak & inOperand) const ;
