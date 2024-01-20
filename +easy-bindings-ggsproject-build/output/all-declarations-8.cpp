@@ -9,80 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration configurationCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_string cPtr_transientPropertyGeneration::getter_configurationCode (const GALGAS_bool constinArgument_inPreferences,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_string result_result ; // Returned variable
-  GALGAS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
-    temp_0 = GALGAS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
-    temp_0 = GALGAS_string ("self.") ;
-  }
-  GALGAS_string var_prefix_16530 = temp_0 ;
-  result_result = GALGAS_string::makeEmptyString () ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
-    const GALGAS_transientPropertyGeneration temp_3 = this ;
-    test_2 = GALGAS_bool (kIsStrictSup, temp_3.readProperty_mDependencyList ().getter_count (SOURCE_FILE ("transient-property.ggs", 377)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_2) {
-      const GALGAS_transientPropertyGeneration temp_4 = this ;
-      GALGAS_bool var_needs_5F_unwSelf_16660 = extensionGetter_needs_5F_unwSelf (temp_4.readProperty_mDependencyList (), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 378)) ;
-      const GALGAS_transientPropertyGeneration temp_5 = this ;
-      result_result.plusAssign_operation(GALGAS_string ("  //--- Atomic property: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 379)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 379)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
-        test_6 = var_needs_5F_unwSelf_16660.boolEnum () ;
-        if (kBoolTrue == test_6) {
-          const GALGAS_transientPropertyGeneration temp_7 = this ;
-          result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)).add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)).add_operation (GALGAS_string ("_property.mReadModelFunction = { [weak self] in\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 381)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 381)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      if let unwSelf = self {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 382)) ;
-          const GALGAS_transientPropertyGeneration temp_8 = this ;
-          const GALGAS_transientPropertyGeneration temp_9 = this ;
-          const GALGAS_transientPropertyGeneration temp_10 = this ;
-          result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_8.readProperty_mDependencyList (), constinArgument_inPreferences, temp_9.readProperty_mClassName (), temp_10.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 383)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 383)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }else{\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 384)) ;
-          result_result.plusAssign_operation(GALGAS_string ("        return .empty\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 385)) ;
-          result_result.plusAssign_operation(GALGAS_string ("      }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 386)) ;
-        }
-      }
-      if (kBoolFalse == test_6) {
-        const GALGAS_transientPropertyGeneration temp_11 = this ;
-        result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)).add_operation (temp_11.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)).add_operation (GALGAS_string ("_property.mReadModelFunction = {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 388)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 388)) ;
-        const GALGAS_transientPropertyGeneration temp_12 = this ;
-        const GALGAS_transientPropertyGeneration temp_13 = this ;
-        const GALGAS_transientPropertyGeneration temp_14 = this ;
-        result_result.plusAssign_operation(extensionGetter_transientComputeFunctionCall (temp_12.readProperty_mDependencyList (), constinArgument_inPreferences, temp_13.readProperty_mClassName (), temp_14.readProperty_mPropertyName (), GALGAS_string ("transient"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 389)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 389)) ;
-      }
-      result_result.plusAssign_operation(GALGAS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 391)) ;
-      const GALGAS_transientPropertyGeneration temp_15 = this ;
-      cEnumerator_transientDependencyListForGeneration enumerator_17503 (temp_15.readProperty_mDependencyList (), kENUMERATION_UP) ;
-      while (enumerator_17503.hasCurrentObject ()) {
-        GALGAS_string var_s_17543 = extensionGetter_generateAddObserverCall (enumerator_17503.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 393)) ;
-        enumGalgasBool test_16 = kBoolTrue ;
-        if (kBoolTrue == test_16) {
-          test_16 = GALGAS_bool (kIsNotEqual, var_s_17543.objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
-          if (kBoolTrue == test_16) {
-            const GALGAS_transientPropertyGeneration temp_17 = this ;
-            result_result.plusAssign_operation(GALGAS_string ("    ").add_operation (var_s_17543, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (GALGAS_string (" (by: "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (var_prefix_16530, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (temp_17.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)).add_operation (GALGAS_string ("_property)\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 395)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 395)) ;
-          }
-        }
-        enumerator_17503.gotoNextObject () ;
-      }
-    }
-  }
-//---
-  return result_result ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@transientRoutineGeneration generateCode'
 //
 //--------------------------------------------------------------------------------------------------
@@ -123,71 +49,26 @@ void cPtr_transientRoutineGeneration::method_generateCode (const GALGAS_string c
 //
 //--------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_transientManager_4 [1] = {
-  nullptr
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_4 [1] = {
-  nullptr
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_transientManager (
-  "indexes",
-  0,
-  gWrapperAllFiles_transientManager_4,
-  0,
-  gWrapperAllDirectories_transientManager_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_transientManager_3 [1] = {
   nullptr
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [2] = {
-  & gWrapperDirectory_4_transientManager,
-  nullptr
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_transientManager (
-  "build",
-  0,
-  gWrapperAllFiles_transientManager_3,
-  1,
-  gWrapperAllDirectories_transientManager_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_transientManager_5 [1] = {
-  nullptr
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_3 [1] = {
   nullptr
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_transientManager (
+const cDirectoryWrapper gWrapperDirectory_3_transientManager (
   "controllers",
   0,
-  gWrapperAllFiles_transientManager_5,
+  gWrapperAllFiles_transientManager_3,
   0,
-  gWrapperAllDirectories_transientManager_5
+  gWrapperAllDirectories_transientManager_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -242,9 +123,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_transientManager_0 [1] = {
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_transientManager_0 [4] = {
   & gWrapperDirectory_3_transientManager,
-  & gWrapperDirectory_5_transientManager,
   & gWrapperDirectory_1_transientManager,
   & gWrapperDirectory_2_transientManager,
   nullptr
@@ -256,7 +136,7 @@ const cDirectoryWrapper gWrapperDirectory_0_transientManager (
   "",
   0,
   gWrapperAllFiles_transientManager_0,
-  4,
+  3,
   gWrapperAllDirectories_transientManager_0
 ) ;
 
@@ -276,33 +156,33 @@ GALGAS_string filewrapperTemplate_transientManager_transientComputationFunctionF
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
   uint32_t columnMarker = 0 ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor func ") ;
-  result.addString (in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_TRANSIENT_5F_NAME.stringValue ()) ;
-  result.addString (" (") ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor func ") ;
+  result.appendString (in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_TRANSIENT_5F_NAME.stringValue ()) ;
+  result.appendString (" (") ;
   columnMarker = result.currentColumn () ;
   GALGAS_uint index_299_ (0) ;
   if (in_DEPENDENCY_5F_LIST.isValid ()) {
     cEnumerator_transientDependencyListForGeneration enumerator_299 (in_DEPENDENCY_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_299.hasCurrentObject ()) {
-      result.addString ("\n       _ ") ;
-      result.addString (enumerator_299.current_mFunctionArgumentName (HERE).stringValue ()) ;
-      result.addString (" : ") ;
-      result.addString (enumerator_299.current_mFunctionArgumentTypeString (HERE).stringValue ()) ;
+      result.appendString ("\n       _ ") ;
+      result.appendString (enumerator_299.current_mFunctionArgumentName (HERE).stringValue ()) ;
+      result.appendString (" : ") ;
+      result.appendString (enumerator_299.current_mFunctionArgumentTypeString (HERE).stringValue ()) ;
       if (enumerator_299.hasNextObject ()) {
-        result.addString (",") ;
+        result.appendString (",") ;
         result.appendSpacesUntilColumn (columnMarker) ;
       }
       index_299_.increment () ;
       enumerator_299.gotoNextObject () ;
     }
   }
-  result.addString ("\n) -> ") ;
-  result.addString (extensionGetter_swiftTypeName (in_TRANSIENT_5F_TYPE, inCompiler COMMA_SOURCE_FILE ("transient-computation-function.swift.galgasTemplate", 10)).stringValue ()) ;
-  result.addString (" {\n") ;
+  result.appendString ("\n) -> ") ;
+  result.appendString (extensionGetter_swiftTypeName (in_TRANSIENT_5F_TYPE, inCompiler COMMA_SOURCE_FILE ("transient-computation-function.swift.galgasTemplate", 10)).stringValue ()) ;
+  result.appendString (" {\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -2229,71 +2109,26 @@ GALGAS_string cPtr_toManyPropertyGeneration::getter_resetToManyRelationships (Co
 //
 //--------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_4 [1] = {
-  nullptr
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_4 [1] = {
-  nullptr
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_validationStubExtension (
-  "indexes",
-  0,
-  gWrapperAllFiles_validationStubExtension_4,
-  0,
-  gWrapperAllDirectories_validationStubExtension_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_3 [1] = {
   nullptr
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [2] = {
-  & gWrapperDirectory_4_validationStubExtension,
-  nullptr
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
-  "build",
-  0,
-  gWrapperAllFiles_validationStubExtension_3,
-  1,
-  gWrapperAllDirectories_validationStubExtension_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_5 [1] = {
-  nullptr
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_3 [1] = {
   nullptr
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_validationStubExtension (
+const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension (
   "controllers",
   0,
-  gWrapperAllFiles_validationStubExtension_5,
+  gWrapperAllFiles_validationStubExtension_3,
   0,
-  gWrapperAllDirectories_validationStubExtension_5
+  gWrapperAllDirectories_validationStubExtension_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -2348,9 +2183,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_validationStubExtension_0 [1
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_validationStubExtension_0 [4] = {
   & gWrapperDirectory_3_validationStubExtension,
-  & gWrapperDirectory_5_validationStubExtension,
   & gWrapperDirectory_1_validationStubExtension,
   & gWrapperDirectory_2_validationStubExtension,
   nullptr
@@ -2362,7 +2196,7 @@ const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension (
   "",
   0,
   gWrapperAllFiles_validationStubExtension_0,
-  4,
+  3,
   gWrapperAllDirectories_validationStubExtension_0
 ) ;
 
@@ -2380,21 +2214,21 @@ GALGAS_string filewrapperTemplate_validationStubExtension_actionGeneration (Comp
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
   uint32_t columnMarker = 0 ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
-  result.addString (in_OBJECT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" {\n  func validate_") ;
-  result.addString (in_MODEL_5F_NAME.stringValue ()) ;
-  result.addString (" (") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
+  result.appendString (in_OBJECT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" {\n  func validate_") ;
+  result.appendString (in_MODEL_5F_NAME.stringValue ()) ;
+  result.appendString (" (") ;
   columnMarker = result.currentColumn () ;
-  result.addString ("currentValue : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (",\n                 ") ;
+  result.appendString ("currentValue : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (",\n                 ") ;
   result.appendSpacesUntilColumn (columnMarker) ;
-  result.addString ("proposedValue : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (") -> EBValidationResult <") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> {\n") ;
+  result.appendString ("proposedValue : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (") -> EBValidationResult <") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> {\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -2477,71 +2311,26 @@ void cPtr_actionFileGeneration::method_generateCode (const GALGAS_string constin
 //
 //--------------------------------------------------------------------------------------------------
 
-//--- All files of 'indexes' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_4 [1] = {
-  nullptr
-} ;
-
-//--- All sub-directories of 'indexes' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_4 [1] = {
-  nullptr
-} ;
-
-//--- Directory 'indexes'
-
-const cDirectoryWrapper gWrapperDirectory_4_actionGenerationTemplate (
-  "indexes",
-  0,
-  gWrapperAllFiles_actionGenerationTemplate_4,
-  0,
-  gWrapperAllDirectories_actionGenerationTemplate_4
-) ;
-
-//--- All files of 'build' directory
+//--- All files of 'controllers' directory
 
 static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_3 [1] = {
   nullptr
 } ;
 
-//--- All sub-directories of 'build' directory
-
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [2] = {
-  & gWrapperDirectory_4_actionGenerationTemplate,
-  nullptr
-} ;
-
-//--- Directory 'build'
-
-const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
-  "build",
-  0,
-  gWrapperAllFiles_actionGenerationTemplate_3,
-  1,
-  gWrapperAllDirectories_actionGenerationTemplate_3
-) ;
-
-//--- All files of 'controllers' directory
-
-static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_5 [1] = {
-  nullptr
-} ;
-
 //--- All sub-directories of 'controllers' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_5 [1] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [1] = {
   nullptr
 } ;
 
 //--- Directory 'controllers'
 
-const cDirectoryWrapper gWrapperDirectory_5_actionGenerationTemplate (
+const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
   "controllers",
   0,
-  gWrapperAllFiles_actionGenerationTemplate_5,
+  gWrapperAllFiles_actionGenerationTemplate_3,
   0,
-  gWrapperAllDirectories_actionGenerationTemplate_5
+  gWrapperAllDirectories_actionGenerationTemplate_3
 ) ;
 
 //--- All files of 'standard-properties' directory
@@ -2596,9 +2385,8 @@ static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_0 [
 
 //--- All sub-directories of '' directory
 
-static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_0 [5] = {
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_0 [4] = {
   & gWrapperDirectory_3_actionGenerationTemplate,
-  & gWrapperDirectory_5_actionGenerationTemplate,
   & gWrapperDirectory_1_actionGenerationTemplate,
   & gWrapperDirectory_2_actionGenerationTemplate,
   nullptr
@@ -2610,7 +2398,7 @@ const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate (
   "",
   0,
   gWrapperAllFiles_actionGenerationTemplate_0,
-  4,
+  3,
   gWrapperAllDirectories_actionGenerationTemplate_0
 ) ;
 
@@ -2626,11 +2414,11 @@ GALGAS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (Com
                                                                              const GALGAS_string & in_ACTION_5F_NAME
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
-  result.addString (in_EXTENDED_5F_CLASS_5F_NAME.stringValue ()) ;
-  result.addString (" {\n  @objc func ") ;
-  result.addString (in_ACTION_5F_NAME.stringValue ()) ;
-  result.addString (" (_ inSender : NSObject\?) {\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
+  result.appendString (in_EXTENDED_5F_CLASS_5F_NAME.stringValue ()) ;
+  result.appendString (" {\n  @objc func ") ;
+  result.appendString (in_ACTION_5F_NAME.stringValue ()) ;
+  result.appendString (" (_ inSender : NSObject\?) {\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -3585,99 +3373,99 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
                                                                                                           const GALGAS_bool & in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC
                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
-  result.addString (GALGAS_string ("Array controller ").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).stringValue ()) ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfinal class Controller_") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString (" : EBReadOnlyAbstractGenericRelationshipProperty") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    ") ;
+  result.appendString (GALGAS_string ("Array controller ").add_operation (in_OWNER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).add_operation (GALGAS_string (" "), inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).add_operation (in_ARRAY_5F_CONTROLLER_5F_NAME, inCompiler COMMA_SOURCE_FILE ("array-controller.swift.galgasTemplate", 8)).stringValue ()) ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfinal class Controller_") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString (" : EBReadOnlyAbstractGenericRelationshipProperty") ;
   const enumGalgasBool test_0 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_0) {
   case kBoolTrue : {
-    result.addString (", EBGraphicViewControllerProtocol") ;
+    result.appendString (", EBGraphicViewControllerProtocol") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString (", HiddenEBProtocol {\n\n  //····················································································································\n  //    Undo manager\n  //····················································································································\n\n  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n  var undoManager : UndoManager\? { return self.mUndoManager }\n\n  //····················································································································\n  // Model\n  //····················································································································\n\n  private weak var mModel : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  var objects : EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n  var selectedSet : EBReferenceSet <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> {\n    set {\n") ;
+  result.appendString (", HiddenEBProtocol {\n\n  //····················································································································\n  //    Undo manager\n  //····················································································································\n\n  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n  var undoManager : UndoManager\? { return self.mUndoManager }\n\n  //····················································································································\n  // Model\n  //····················································································································\n\n  private weak var mModel : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  var objects : EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n  var selectedSet : EBReferenceSet <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> {\n    set {\n") ;
   const enumGalgasBool test_1 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_1) {
   case kBoolTrue : {
-    result.addString ("    //--- Add observers to newly selected set\n      for object in newValue.subtracting (self.mPrivateSelectedSet).values {\n        object.selectionDisplay_property.startsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n    //--- Remove observers to deselected set\n      let deselectedSet = self.mPrivateSelectedSet.subtracting (newValue)\n      for object in deselectedSet.values {\n        object.selectionDisplay_property.stopsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n      if deselectedSet.count > 0 {\n        self.mObjectSelectionObserver.observedObjectDidChange () // Required, as removing observer does not post event\n      }\n    //---\n") ;
+    result.appendString ("    //--- Add observers to newly selected set\n      for object in newValue.subtracting (self.mPrivateSelectedSet).values {\n        object.selectionDisplay_property.startsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n    //--- Remove observers to deselected set\n      let deselectedSet = self.mPrivateSelectedSet.subtracting (newValue)\n      for object in deselectedSet.values {\n        object.selectionDisplay_property.stopsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n      if deselectedSet.count > 0 {\n        self.mObjectSelectionObserver.observedObjectDidChange () // Required, as removing observer does not post event\n      }\n    //---\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("      self.mPrivateSelectedSet = newValue\n    }\n    get {\n      return self.selectedArray_property.propset\n    }\n  }\n\n  //····················································································································\n\n  private var mPrivateSelectedSet = EBReferenceSet <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> () {\n    didSet {\n      self.selectedArray_property.observedObjectDidChange ()\n      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))\n    }\n  }\n\n  //····················································································································\n  // Selected Array\n  //····················································································································\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" (usedForSignature: false, key: nil)\n\n  //····················································································································\n\n  var selectedArrayDidChange_property : EBObservedObserver { return self.mInternalSelectedArrayProperty } // EBGraphicViewControllerProtocol\n  var selectedArray_property : ReadOnlyArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" { return self.mInternalSelectedArrayProperty }\n\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> { return self.selectedArray_property.propval }\n\n") ;
+  result.appendString ("      self.mPrivateSelectedSet = newValue\n    }\n    get {\n      return self.selectedArray_property.propset\n    }\n  }\n\n  //····················································································································\n\n  private var mPrivateSelectedSet = EBReferenceSet <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> () {\n    didSet {\n      self.selectedArray_property.observedObjectDidChange ()\n      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))\n    }\n  }\n\n  //····················································································································\n  // Selected Array\n  //····················································································································\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" (usedForSignature: false, key: nil)\n\n  //····················································································································\n\n  var selectedArrayDidChange_property : EBObservedObserver { return self.mInternalSelectedArrayProperty } // EBGraphicViewControllerProtocol\n  var selectedArray_property : ReadOnlyArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" { return self.mInternalSelectedArrayProperty }\n\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> { return self.selectedArray_property.propval }\n\n") ;
   const enumGalgasBool test_2 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_2) {
   case kBoolTrue : {
-    result.addString ("  //····················································································································\n  //   Init\n  //····················································································································\n\n  override init () {\n    super.init ()\n   //--- Selection observers\n    self.canBringForward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringForward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canBringToFront_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringToFront)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canSendBackward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendBackward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendBackward_property)\n  //---\n    self.canSendToBack_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendToBack)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendToBack_property)\n  //---\n    self.canFlipHorizontally_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipHorizontally)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipHorizontally_property)\n  //---\n    self.canFlipVertically_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipVertically)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipVertically_property)\n  //---\n    self.canRotate90_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canRotate90)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canRotate90_property)\n  }\n") ;
+    result.appendString ("  //····················································································································\n  //   Init\n  //····················································································································\n\n  override init () {\n    super.init ()\n   //--- Selection observers\n    self.canBringForward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringForward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canBringToFront_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringToFront)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canSendBackward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendBackward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendBackward_property)\n  //---\n    self.canSendToBack_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendToBack)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendToBack_property)\n  //---\n    self.canFlipHorizontally_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipHorizontally)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipHorizontally_property)\n  //---\n    self.canFlipVertically_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipVertically)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipVertically_property)\n  //---\n    self.canRotate90_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canRotate90)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canRotate90_property)\n  }\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n  //····················································································································\n\n  var objectCount : Int {\n    if let n = self.mModel\?.propval.count {\n      return n\n    }else{\n      return 0\n    }\n  }\n\n  //····················································································································\n\n  final func bind_model (_ inModel : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    inModel.attachClient (self)\n") ;
+  result.appendString ("\n  //····················································································································\n\n  var objectCount : Int {\n    if let n = self.mModel\?.propval.count {\n      return n\n    }else{\n      return 0\n    }\n  }\n\n  //····················································································································\n\n  final func bind_model (_ inModel : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    inModel.attachClient (self)\n") ;
   const enumGalgasBool test_3 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_3) {
   case kBoolTrue : {
-    result.addString ("    self.startObservingObjectShape ()\n    self.startObservingSelectionShape ()\n    self.inspectorViewManagerStartsObservingSelection ()\n") ;
+    result.appendString ("    self.startObservingObjectShape ()\n    self.startObservingSelectionShape ()\n    self.inspectorViewManagerStartsObservingSelection ()\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("  }\n\n  //····················································································································\n\n  final func unbind_model () {\n") ;
+  result.appendString ("  }\n\n  //····················································································································\n\n  final func unbind_model () {\n") ;
   const enumGalgasBool test_4 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_4) {
   case kBoolTrue : {
-    result.addString ("    self.stopObservingObjectShape ()\n    self.stopObservingSelectionShape ()\n    self.inspectorViewManagerStopsObservingSelection ()\n") ;
+    result.appendString ("    self.stopObservingObjectShape ()\n    self.stopObservingSelectionShape ()\n    self.inspectorViewManagerStopsObservingSelection ()\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("    self.mModel\?.detachClient (self)\n    self.selectedSet = EBReferenceSet ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  }\n\n  //····················································································································\n\n  override func notifyModelDidChange () {\n    super.notifyModelDidChange ()\n    let currentSelectedSet = self.selectedSet\n    let objectArray = self.objectArray\n    let newSelectedSet = currentSelectedSet.intersection (objectArray.values)\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (newSelectedSet.values)))\n  }\n\n   //····················································································································\n\n   var objectArray : EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> {\n     if let values = self.mModel\?.propval {\n       return values\n     }else{\n       return EBReferenceArray ()\n     }\n   }\n\n  //····················································································································\n  //   SELECTION\n  // MARK: -\n  //····················································································································\n\n  var selectedIndexesSet : Set <Int> {\n    var result = Set <Int> ()\n    var idx = 0\n    for object in self.objectArray.values {\n      if self.selectedArray_property.propset.contains (object) {\n        result.insert (idx)\n      }\n      idx += 1\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func setSelection (_ inObjects : [") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("]) {\n    self.selectedSet = EBReferenceSet (inObjects)\n  }\n") ;
+  result.appendString ("    self.mModel\?.detachClient (self)\n    self.selectedSet = EBReferenceSet ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  }\n\n  //····················································································································\n\n  override func notifyModelDidChange () {\n    super.notifyModelDidChange ()\n    let currentSelectedSet = self.selectedSet\n    let objectArray = self.objectArray\n    let newSelectedSet = currentSelectedSet.intersection (objectArray.values)\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (newSelectedSet.values)))\n  }\n\n   //····················································································································\n\n   var objectArray : EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> {\n     if let values = self.mModel\?.propval {\n       return values\n     }else{\n       return EBReferenceArray ()\n     }\n   }\n\n  //····················································································································\n  //   SELECTION\n  // MARK: -\n  //····················································································································\n\n  var selectedIndexesSet : Set <Int> {\n    var result = Set <Int> ()\n    var idx = 0\n    for object in self.objectArray.values {\n      if self.selectedArray_property.propset.contains (object) {\n        result.insert (idx)\n      }\n      idx += 1\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func setSelection (_ inObjects : [") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("]) {\n    self.selectedSet = EBReferenceSet (inObjects)\n  }\n") ;
   const enumGalgasBool test_5 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_5) {
   case kBoolTrue : {
-    result.addString ("\n  //····················································································································\n  //  Graphic view interface\n  //····················································································································\n\n  var selectedGraphicObjectSet : EBReferenceSet <EBGraphicManagedObject> {\n    var result = EBReferenceSet <EBGraphicManagedObject> (minimumCapacity: self.selectedArray_property.propval.count)\n    for object in self.selectedArray_property.propval.values {\n      result.insert (object)\n    }\n    return result\n  }\n\n   //····················································································································\n\n   var graphicObjectArray : [EBGraphicManagedObject] {\n     if let v = self.mModel\?.propval {\n       return v.values\n     }else{\n       return []\n     }\n   }\n\n  //····················································································································\n  // MARK: -\n  // Compute selection shape\n  //····················································································································\n\n  private var mObjectSelectionObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  private func startObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StartsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = { [weak self] in self\?.computeSelectionShape () }\n  }\n\n  //····················································································································\n\n  func computeSelectionShape () {\n    var selectionDisplayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if !self.selectedArray_property.propset.contains (object) {\n        selectionDisplayArray.append (EBShape ())\n      }else if let shape = object.selectionDisplay {\n        selectionDisplayArray.append (shape)\n      }else{\n        selectionDisplayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateSelectionShape (selectionDisplayArray)\n    }\n  }\n\n  //····················································································································\n\n  private func stopObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StopsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = nil\n  }\n\n  //····················································································································\n  // MARK: -\n  // Compute object shape\n  //····················································································································\n\n  private var mObjectDisplayObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  private func startObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StartsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = { [weak self] in self\?.updateObjectDisplay () }\n  }\n\n  //····················································································································\n\n  private func stopObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StopsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = nil\n  }\n\n  //····················································································································\n\n  func updateObjectDisplay () {\n    var displayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if let shape = object.objectDisplay {\n        displayArray.append (shape)\n      }else{\n        displayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateObjectDisplay (displayArray)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func alignmentPointSetArray () -> [Set<CanariPoint>] {\n    var result = [Set<CanariPoint>] ()\n    for object in self.objectArray.values {\n      result.append (object.alignmentPoints ())\n    }\n    return result\n  }\n\n  //····················································································································\n  // MARK: -\n  // EBGraphicViews\n  //····················································································································\n\n  private var mEBGraphicViews = Set <EBGraphicView> ()\n  private var mPasteboardTypes = Set <NSPasteboard.PasteboardType> ()\n\n  //····················································································································\n\n  func addPasteBoardType (_ inType : NSPasteboard.PasteboardType) {\n    if !self.mPasteboardTypes.contains (inType) {\n      self.mPasteboardTypes.insert (inType)\n      for ebView in self.mEBGraphicViews {\n        ebView.register (draggedTypes: [inType])\n      }\n    }\n  }\n\n  //····················································································································\n\n  func boundViews () -> [EBGraphicView] {\n    return Array (self.mEBGraphicViews)\n  }\n\n  //····················································································································\n\n  final func setBackgroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mBackgroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  //····················································································································\n\n  final func setForegroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mForegroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  //····················································································································\n\n  final func bind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.register (draggedTypes: Array (self.mPasteboardTypes))\n      self.mEBGraphicViews.insert (ebView)\n      ebView.set (controller: self)\n    }\n  }\n\n  //····················································································································\n\n  /* final func unbind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.updateObjectDisplay ([])\n      ebView.updateSelectionShape ([])\n      self.mEBGraphicViews.remove (ebView)\n    }\n  } */\n") ;
+    result.appendString ("\n  //····················································································································\n  //  Graphic view interface\n  //····················································································································\n\n  var selectedGraphicObjectSet : EBReferenceSet <EBGraphicManagedObject> {\n    var result = EBReferenceSet <EBGraphicManagedObject> (minimumCapacity: self.selectedArray_property.propval.count)\n    for object in self.selectedArray_property.propval.values {\n      result.insert (object)\n    }\n    return result\n  }\n\n   //····················································································································\n\n   var graphicObjectArray : [EBGraphicManagedObject] {\n     if let v = self.mModel\?.propval {\n       return v.values\n     }else{\n       return []\n     }\n   }\n\n  //····················································································································\n  // MARK: -\n  // Compute selection shape\n  //····················································································································\n\n  private var mObjectSelectionObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  private func startObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StartsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = { [weak self] in self\?.computeSelectionShape () }\n  }\n\n  //····················································································································\n\n  func computeSelectionShape () {\n    var selectionDisplayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if !self.selectedArray_property.propset.contains (object) {\n        selectionDisplayArray.append (EBShape ())\n      }else if let shape = object.selectionDisplay {\n        selectionDisplayArray.append (shape)\n      }else{\n        selectionDisplayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateSelectionShape (selectionDisplayArray)\n    }\n  }\n\n  //····················································································································\n\n  private func stopObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StopsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = nil\n  }\n\n  //····················································································································\n  // MARK: -\n  // Compute object shape\n  //····················································································································\n\n  private var mObjectDisplayObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  private func startObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StartsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = { [weak self] in self\?.updateObjectDisplay () }\n  }\n\n  //····················································································································\n\n  private func stopObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StopsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = nil\n  }\n\n  //····················································································································\n\n  func updateObjectDisplay () {\n    var displayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if let shape = object.objectDisplay {\n        displayArray.append (shape)\n      }else{\n        displayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateObjectDisplay (displayArray)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func alignmentPointSetArray () -> [Set<CanariPoint>] {\n    var result = [Set<CanariPoint>] ()\n    for object in self.objectArray.values {\n      result.append (object.alignmentPoints ())\n    }\n    return result\n  }\n\n  //····················································································································\n  // MARK: -\n  // EBGraphicViews\n  //····················································································································\n\n  private var mEBGraphicViews = Set <EBGraphicView> ()\n  private var mPasteboardTypes = Set <NSPasteboard.PasteboardType> ()\n\n  //····················································································································\n\n  func addPasteBoardType (_ inType : NSPasteboard.PasteboardType) {\n    if !self.mPasteboardTypes.contains (inType) {\n      self.mPasteboardTypes.insert (inType)\n      for ebView in self.mEBGraphicViews {\n        ebView.register (draggedTypes: [inType])\n      }\n    }\n  }\n\n  //····················································································································\n\n  func boundViews () -> [EBGraphicView] {\n    return Array (self.mEBGraphicViews)\n  }\n\n  //····················································································································\n\n  final func setBackgroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mBackgroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  //····················································································································\n\n  final func setForegroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mForegroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  //····················································································································\n\n  final func bind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.register (draggedTypes: Array (self.mPasteboardTypes))\n      self.mEBGraphicViews.insert (ebView)\n      ebView.set (controller: self)\n    }\n  }\n\n  //····················································································································\n\n  /* final func unbind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.updateObjectDisplay ([])\n      ebView.updateSelectionShape ([])\n      self.mEBGraphicViews.remove (ebView)\n    }\n  } */\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n  //····················································································································\n\n  func selectedObjectIndexSet () -> NSIndexSet {\n    let modelObjects = self.objectArray\n    let selectedObjects = self.selectedArray_property.propset\n    let indexSet = NSMutableIndexSet ()\n    for object in selectedObjects.values {\n      if let index = modelObjects.firstIndex (of: object) {\n        indexSet.add (index)\n      }\n    }\n    return indexSet\n  }\n\n") ;
+  result.appendString ("\n  //····················································································································\n\n  func selectedObjectIndexSet () -> NSIndexSet {\n    let modelObjects = self.objectArray\n    let selectedObjects = self.selectedArray_property.propset\n    let indexSet = NSMutableIndexSet ()\n    for object in selectedObjects.values {\n      if let index = modelObjects.firstIndex (of: object) {\n        indexSet.add (index)\n      }\n    }\n    return indexSet\n  }\n\n") ;
   switch (in_MODEL_5F_KIND.enumValue ()) {
   case GALGAS_arrayControllerModelKind::kNotBuilt :
     break ;
@@ -3687,43 +3475,43 @@ GALGAS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayControl
     break ;
   case GALGAS_arrayControllerModelKind::kEnum_entityArray :
     {
-      result.addString ("  //····················································································································\n  //    select\n  //····················································································································\n\n  func select (object inObject : ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (") {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let objectArray) :\n       let array = EBReferenceArray (objectArray)\n       if array.contains (inObject) {\n           self.selectedSet = EBReferenceSet (inObject)\n        }\n      }\n    }\n  }\n\n  //····················································································································\n  //    add\n  //····················································································································\n\n   @objc func add (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let v) :\n        let newObject = ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (" (self.undoManager)\n        var array = EBReferenceArray (v)\n        array.append (newObject)\n      //--- New object is the selection\n        self.selectedSet = EBReferenceSet ([newObject])\n        model.setProp (array)\n      }\n    }\n  }\n\n  //····················································································································\n  //    remove\n  //····················································································································\n\n  @objc func remove (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let model_prop) :\n      //------------- Find the object to be selected after selected object removing\n      //--- Dictionary of object sorted indexes\n        var sortedObjectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          sortedObjectDictionary [object] = index\n        }\n        var indexArrayOfSelectedObjects = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = sortedObjectDictionary [object]\n          if let idx = index {\n            indexArrayOfSelectedObjects.append (idx)\n          }\n        }\n      //--- Sort\n        indexArrayOfSelectedObjects.sort { $0 < $1 }\n      //--- Find the first index of a non selected object\n        var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n        for index in indexArrayOfSelectedObjects {\n          if newSelectionIndex < index {\n            break\n          }else{\n            newSelectionIndex = index + 1\n          }\n        }\n        var newSelectedObject : ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString ("\? = nil\n        if (newSelectionIndex >= 0) && (newSelectionIndex < model_prop.count) {\n          newSelectedObject = model_prop [newSelectionIndex]\n        }\n      //----------------------------------------- Remove selected object\n      //--- Dictionary of object absolute indexes\n        var objectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          objectDictionary [object] = index\n        }\n      //--- Build selected objects index array\n        var selectedObjectIndexArray = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = objectDictionary [object]\n          if let idx = index {\n            selectedObjectIndexArray.append (idx)\n          }\n        }\n      //--- Sort in reverse order\n        selectedObjectIndexArray.sort { $1 < $0 }\n      //--- Remove objects, in reverse of order of their index\n        var newObjectArray = EBReferenceArray (model_prop)\n        for index in selectedObjectIndexArray {\n          newObjectArray.remove (at: index)\n        }\n      //----------------------------------------- Set new selection\n        var newSelectionSet = EBReferenceSet <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString ("> ()\n        if let object = newSelectedObject {\n          newSelectionSet.insert (object)\n        }\n        self.selectedSet = newSelectionSet\n      //----------------------------------------- Set new object array\n        model.setProp (newObjectArray)\n      }\n    }\n  }\n") ;
+      result.appendString ("  //····················································································································\n  //    select\n  //····················································································································\n\n  func select (object inObject : ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (") {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let objectArray) :\n       let array = EBReferenceArray (objectArray)\n       if array.contains (inObject) {\n           self.selectedSet = EBReferenceSet (inObject)\n        }\n      }\n    }\n  }\n\n  //····················································································································\n  //    add\n  //····················································································································\n\n   @objc func add (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let v) :\n        let newObject = ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (" (self.undoManager)\n        var array = EBReferenceArray (v)\n        array.append (newObject)\n      //--- New object is the selection\n        self.selectedSet = EBReferenceSet ([newObject])\n        model.setProp (array)\n      }\n    }\n  }\n\n  //····················································································································\n  //    remove\n  //····················································································································\n\n  @objc func remove (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let model_prop) :\n      //------------- Find the object to be selected after selected object removing\n      //--- Dictionary of object sorted indexes\n        var sortedObjectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          sortedObjectDictionary [object] = index\n        }\n        var indexArrayOfSelectedObjects = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = sortedObjectDictionary [object]\n          if let idx = index {\n            indexArrayOfSelectedObjects.append (idx)\n          }\n        }\n      //--- Sort\n        indexArrayOfSelectedObjects.sort { $0 < $1 }\n      //--- Find the first index of a non selected object\n        var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n        for index in indexArrayOfSelectedObjects {\n          if newSelectionIndex < index {\n            break\n          }else{\n            newSelectionIndex = index + 1\n          }\n        }\n        var newSelectedObject : ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString ("\? = nil\n        if (newSelectionIndex >= 0) && (newSelectionIndex < model_prop.count) {\n          newSelectedObject = model_prop [newSelectionIndex]\n        }\n      //----------------------------------------- Remove selected object\n      //--- Dictionary of object absolute indexes\n        var objectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          objectDictionary [object] = index\n        }\n      //--- Build selected objects index array\n        var selectedObjectIndexArray = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = objectDictionary [object]\n          if let idx = index {\n            selectedObjectIndexArray.append (idx)\n          }\n        }\n      //--- Sort in reverse order\n        selectedObjectIndexArray.sort { $1 < $0 }\n      //--- Remove objects, in reverse of order of their index\n        var newObjectArray = EBReferenceArray (model_prop)\n        for index in selectedObjectIndexArray {\n          newObjectArray.remove (at: index)\n        }\n      //----------------------------------------- Set new selection\n        var newSelectionSet = EBReferenceSet <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString ("> ()\n        if let object = newSelectedObject {\n          newSelectionSet.insert (object)\n        }\n        self.selectedSet = newSelectionSet\n      //----------------------------------------- Set new object array\n        model.setProp (newObjectArray)\n      }\n    }\n  }\n") ;
     }
     break ;
   }
   const enumGalgasBool test_6 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_6) {
   case kBoolTrue : {
-    result.addString ("\n  //····················································································································\n  //  DOCUMENT  \n  //····················································································································\n\n  private final weak var mDocument : EBAutoLayoutManagedDocument\? = nil\n\n  //····················································································································\n\n  final func set (document inDocument : EBAutoLayoutManagedDocument) {\n    self.mDocument = inDocument\n  }\n\n  //····················································································································\n  //  SELECTION OPERATIONS\n  //····················································································································\n\n  private func sortedIndexArrayOfSelectedObjects () -> [Int] {\n    var result = [Int] ()\n    let objects = self.objectArray\n    for object in self.selectedArray_property.propset.values {\n      let idx = objects.firstIndex (of: object)!\n      result.append (idx)\n    }\n    return result.sorted ()\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canCut (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if (inPasteboardType == nil) || (self.selectedArray_property.propset.count == 0) {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canCopyAndPaste () || !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, pasteOffset : CanariPoint) {\n    self.copySelectedObjectsIntoPasteboard (inPasteboardType, pasteOffset: pasteOffset)\n    self.deleteSelectedObjects ()\n  }\n\n  //····················································································································\n\n  func canCopy (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    return self.canCut (inPasteboardType)\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?,\n                                          pasteOffset : CanariPoint) {\n    if let pasteboardType = inPasteboardType {\n    //--- Declare pasteboard types\n      let pb = NSPasteboard.general\n      pb.declareTypes ([pasteboardType, .pdf], owner: self)\n    //--- Build PDF representation\n      let indexArray = self.sortedIndexArrayOfSelectedObjects ()\n      let objects = self.objectArray\n      var shape = EBShape ()\n      for idx in indexArray {\n        let object = objects [idx]\n        if let s = object.objectDisplay {\n          shape.add (s)\n        }\n      }\n      let pdfData = buildPDFimageData (frame: shape.boundingBox, shape: shape)\n      pb.setData (pdfData, forType: .pdf)\n   //--- Build private representation\n      var objectDictionaryArray = [[String : Any]] ()\n      var objectAdditionalDictionaryArray = [[String : Any]] ()\n      for idx in indexArray {\n        let object = objects [idx]\n        var dict = [String : Any] ()\n        object.savePropertiesIntoDictionary (&dict)\n        objectDictionaryArray.append (dict)\n        var additionalDict = [String : Any] ()\n        object.saveIntoAdditionalDictionary (&additionalDict)\n        objectAdditionalDictionaryArray.append (additionalDict)\n      }\n    //--- Copy private representation\n      let dataDictionary : [String : Any] = [\n        OBJECT_DICTIONARY_KEY : objectDictionaryArray,\n        OBJECT_ADDITIONAL_DICTIONARY_KEY : objectAdditionalDictionaryArray,\n        X_KEY : pasteOffset.x,\n        Y_KEY : pasteOffset.y\n      ]\n      pb.setPropertyList (dataDictionary, forType: pasteboardType)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canPaste (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if let pasteboardType = inPasteboardType {\n      let pb = NSPasteboard.general\n      return pb.availableType (from: [pasteboardType]) != nil\n    }else{\n      return false\n    }\n  }\n\n  //····················································································································\n\n   func pasteFromPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, _ inWindow : NSWindow) {\n    let pb = NSPasteboard.general\n    if let pasteboardType = inPasteboardType,\n           pb.availableType (from: [pasteboardType]) != nil,\n           let dataDictionary = pb.propertyList (forType: pasteboardType) as\? [String : Any],\n           let dictionaryArray = dataDictionary [OBJECT_DICTIONARY_KEY] as\? [[String : Any]],\n           let additionalDictionaryArray = dataDictionary [OBJECT_ADDITIONAL_DICTIONARY_KEY] as\? [[String : Any]],\n           let X = dataDictionary [X_KEY] as\? Int,\n           let Y = dataDictionary [Y_KEY] as\? Int {\n      var newObjects = [") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString ("] ()\n      var userSet = EBReferenceSet <EBManagedObject> ()\n      var idx = -1\n      var errorMessage = \"\"\n      for dictionary in dictionaryArray {\n        idx += 1\n        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as\? ") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString (" {\n          if errorMessage.isEmpty {\n            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],\n                                                         optionalDocument: self.mDocument,\n                                                         objectArray: self.objectArray.values)\n          }\n          if errorMessage.isEmpty {\n            object.translate (xBy: X, yBy: Y, userSet: &userSet)\n            newObjects.append (object)\n          }\n        }\n      }\n      if errorMessage.isEmpty {\n        var objects = self.objectArray\n        objects.append (objects: newObjects)\n        self.mModel\?.setProp (objects)\n        self.selectedSet = EBReferenceSet (newObjects)\n      }else{\n         let alert = NSAlert ()\n         alert.messageText = errorMessage\n         _ = alert.addButton (withTitle: \"Ok\")\n         alert.beginSheetModal (for: inWindow) { (inReturnCode : NSApplication.ModalResponse) in }\n      }\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canDelete () -> Bool {\n    if self.selectedArray_property.propset.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n\n  final var mAfterObjectRemovingCallback : Optional < () -> Void > = nil\n\n  //····················································································································\n\n  func deleteSelectedObjects () {\n    if self.canDelete (), let model = self.mModel {\n    //--- Remove selected objects\n      let objectsToRemove = self.selectedArray_property.propset\n      for object in objectsToRemove.values {\n        object.operationBeforeRemoving ()\n        var objects = model.propval\n        if let idx = objects.firstIndex (of: object) {\n          objects.remove (at: idx)\n          model.setProp (objects)\n        }\n      }\n    //---\n      self.mAfterObjectRemovingCallback\? ()\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func selectAllObjects () {\n    self.selectedSet = EBReferenceSet (self.objectArray.values)\n  }\n\n  //····················································································································\n  // BRING FORWARD\n  // MARK: -\n  //····················································································································\n\n  var canBringForward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringForward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray.last! < (objects.count - 1)\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func bringForward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n       let object = objects [idx]\n       objects.remove (at: idx)\n       objects.insert (object, at: idx+1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // BRING TO FRONT\n  // MARK: -\n  //····················································································································\n\n  var canBringToFront_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringToFront : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var top = objects.count - 1\n      for idx in sortedIndexArray.reversed () {\n        if idx < top {\n          return true\n        }\n        top -= 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n\n  func bringToFront () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.append (object)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND BACKWARD\n   // MARK: -\n //····················································································································\n\n  var canSendBackward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canSendBackward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray [0] > 0\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func sendBackward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.insert (object, at: idx-1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND TO BACK\n  // MARK: -\n  //····················································································································\n\n  var canSendToBack_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func sendToBack () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    var newObjectArray = EBReferenceArray <") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString ("> ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      newObjectArray.append (object)\n    }\n    newObjectArray.reverse ()\n    newObjectArray.append (objects: objects)\n    self.mModel\?.setProp (newObjectArray)\n  }\n\n  //····················································································································\n\n  var canSendToBack : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var bottom = 0\n      for idx in sortedIndexArray {\n        if idx > bottom {\n          return true\n        }\n        bottom += 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n  // SNAP TO GRID\n  // MARK: -\n  //····················································································································\n\n  func snapToGrid (_ inGrid : Int) {\n    for object in self.selectedArray_property.propset.values {\n      object.snapToGrid (inGrid)\n    }\n  }\n\n  //····················································································································\n\n  func canSnapToGrid (_ inGrid : Int) -> Bool {\n    for object in self.selectedArray_property.propset.values {\n      if object.canSnapToGrid (inGrid) {\n        return true\n      }\n    }\n    return false\n  }\n\n\n //····················································································································\n  // HORIZONTAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipHorizontally_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipHorizontally () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipHorizontally ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipHorizontally : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipHorizontally () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // VERTICAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipVertically_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipVertically () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipVertically ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipVertically : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipVertically () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // ROTATE 90\n  // MARK: -\n  //····················································································································\n\n  var canRotate90_property = EBTransientProperty <Bool> ()\n  private var mRotate90PointSet = Set <CanariPoint> ()\n\n //····················································································································\n\n  var canRotate90 : Bool {\n    self.mRotate90PointSet.removeAll ()\n    if self.selectedArray.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray.values {\n        if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {\n          return false\n        }\n      }\n      return !self.mRotate90PointSet.isEmpty\n    }\n  }\n\n  //····················································································································\n\n  func rotate90Clockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90Clockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n\n  func rotate90CounterClockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func addToSelection (objects inObjects : [") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString ("]) {\n    if let objectSet = self.mModel\?.propset {\n      var newSelectedSet = self.selectedArray_property.propset\n      for object in inObjects {\n        if objectSet.contains (object) {\n          newSelectedSet.insert (object)\n        }\n      }\n      self.selectedSet = newSelectedSet\n    }\n  }\n\n  //····················································································································\n\n /* func addToSelection (objectsWithIndex inIndexes : [Int]) {\n    let objects = self.objectArray\n    var newSelectedSet = self.selectedArray_property.propset\n    for idx in inIndexes {\n      let newSelectedObject = objects [idx]\n      newSelectedSet.insert (newSelectedObject)\n    }\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n/*  func removeFromSelection (objectWithIndex inIndex : Int) {\n    let objects = self.objectArray\n    let object = objects [inIndex]\n    var newSelectedSet = self.selectedArray_property.propset\n    newSelectedSet.remove (object)\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n  func clearSelection () {\n    self.selectedSet = EBReferenceSet ()\n  }\n\n  //····················································································································\n\n  func setSelection (objectsWithIndexes inIndexes : [Int]) {\n    let objects = self.objectArray\n    var selectedObjects = [") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString ("] ()\n    for index in inIndexes {\n      let newSelectedObject = objects [index]\n      selectedObjects.append (newSelectedObject)\n    }\n    self.selectedSet = EBReferenceSet (selectedObjects)\n  }\n") ;
+    result.appendString ("\n  //····················································································································\n  //  DOCUMENT  \n  //····················································································································\n\n  private final weak var mDocument : EBAutoLayoutManagedDocument\? = nil\n\n  //····················································································································\n\n  final func set (document inDocument : EBAutoLayoutManagedDocument) {\n    self.mDocument = inDocument\n  }\n\n  //····················································································································\n  //  SELECTION OPERATIONS\n  //····················································································································\n\n  private func sortedIndexArrayOfSelectedObjects () -> [Int] {\n    var result = [Int] ()\n    let objects = self.objectArray\n    for object in self.selectedArray_property.propset.values {\n      let idx = objects.firstIndex (of: object)!\n      result.append (idx)\n    }\n    return result.sorted ()\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canCut (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if (inPasteboardType == nil) || (self.selectedArray_property.propset.count == 0) {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canCopyAndPaste () || !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, pasteOffset : CanariPoint) {\n    self.copySelectedObjectsIntoPasteboard (inPasteboardType, pasteOffset: pasteOffset)\n    self.deleteSelectedObjects ()\n  }\n\n  //····················································································································\n\n  func canCopy (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    return self.canCut (inPasteboardType)\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?,\n                                          pasteOffset : CanariPoint) {\n    if let pasteboardType = inPasteboardType {\n    //--- Declare pasteboard types\n      let pb = NSPasteboard.general\n      pb.declareTypes ([pasteboardType, .pdf], owner: self)\n    //--- Build PDF representation\n      let indexArray = self.sortedIndexArrayOfSelectedObjects ()\n      let objects = self.objectArray\n      var shape = EBShape ()\n      for idx in indexArray {\n        let object = objects [idx]\n        if let s = object.objectDisplay {\n          shape.add (s)\n        }\n      }\n      let pdfData = buildPDFimageData (frame: shape.boundingBox, shape: shape)\n      pb.setData (pdfData, forType: .pdf)\n   //--- Build private representation\n      var objectDictionaryArray = [[String : Any]] ()\n      var objectAdditionalDictionaryArray = [[String : Any]] ()\n      for idx in indexArray {\n        let object = objects [idx]\n        var dict = [String : Any] ()\n        object.savePropertiesIntoDictionary (&dict)\n        objectDictionaryArray.append (dict)\n        var additionalDict = [String : Any] ()\n        object.saveIntoAdditionalDictionary (&additionalDict)\n        objectAdditionalDictionaryArray.append (additionalDict)\n      }\n    //--- Copy private representation\n      let dataDictionary : [String : Any] = [\n        OBJECT_DICTIONARY_KEY : objectDictionaryArray,\n        OBJECT_ADDITIONAL_DICTIONARY_KEY : objectAdditionalDictionaryArray,\n        X_KEY : pasteOffset.x,\n        Y_KEY : pasteOffset.y\n      ]\n      pb.setPropertyList (dataDictionary, forType: pasteboardType)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canPaste (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if let pasteboardType = inPasteboardType {\n      let pb = NSPasteboard.general\n      return pb.availableType (from: [pasteboardType]) != nil\n    }else{\n      return false\n    }\n  }\n\n  //····················································································································\n\n   func pasteFromPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, _ inWindow : NSWindow) {\n    let pb = NSPasteboard.general\n    if let pasteboardType = inPasteboardType,\n           pb.availableType (from: [pasteboardType]) != nil,\n           let dataDictionary = pb.propertyList (forType: pasteboardType) as\? [String : Any],\n           let dictionaryArray = dataDictionary [OBJECT_DICTIONARY_KEY] as\? [[String : Any]],\n           let additionalDictionaryArray = dataDictionary [OBJECT_ADDITIONAL_DICTIONARY_KEY] as\? [[String : Any]],\n           let X = dataDictionary [X_KEY] as\? Int,\n           let Y = dataDictionary [Y_KEY] as\? Int {\n      var newObjects = [") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString ("] ()\n      var userSet = EBReferenceSet <EBManagedObject> ()\n      var idx = -1\n      var errorMessage = \"\"\n      for dictionary in dictionaryArray {\n        idx += 1\n        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as\? ") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString (" {\n          if errorMessage.isEmpty {\n            errorMessage = object.operationAfterPasting (additionalDictionary: additionalDictionaryArray [idx],\n                                                         optionalDocument: self.mDocument,\n                                                         objectArray: self.objectArray.values)\n          }\n          if errorMessage.isEmpty {\n            object.translate (xBy: X, yBy: Y, userSet: &userSet)\n            newObjects.append (object)\n          }\n        }\n      }\n      if errorMessage.isEmpty {\n        var objects = self.objectArray\n        objects.append (objects: newObjects)\n        self.mModel\?.setProp (objects)\n        self.selectedSet = EBReferenceSet (newObjects)\n      }else{\n         let alert = NSAlert ()\n         alert.messageText = errorMessage\n         _ = alert.addButton (withTitle: \"Ok\")\n         alert.beginSheetModal (for: inWindow) { (inReturnCode : NSApplication.ModalResponse) in }\n      }\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func canDelete () -> Bool {\n    if self.selectedArray_property.propset.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  //····················································································································\n\n  final var mAfterObjectRemovingCallback : Optional < () -> Void > = nil\n\n  //····················································································································\n\n  func deleteSelectedObjects () {\n    if self.canDelete (), let model = self.mModel {\n    //--- Remove selected objects\n      let objectsToRemove = self.selectedArray_property.propset\n      for object in objectsToRemove.values {\n        object.operationBeforeRemoving ()\n        var objects = model.propval\n        if let idx = objects.firstIndex (of: object) {\n          objects.remove (at: idx)\n          model.setProp (objects)\n        }\n      }\n    //---\n      self.mAfterObjectRemovingCallback\? ()\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func selectAllObjects () {\n    self.selectedSet = EBReferenceSet (self.objectArray.values)\n  }\n\n  //····················································································································\n  // BRING FORWARD\n  // MARK: -\n  //····················································································································\n\n  var canBringForward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringForward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray.last! < (objects.count - 1)\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func bringForward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n       let object = objects [idx]\n       objects.remove (at: idx)\n       objects.insert (object, at: idx+1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // BRING TO FRONT\n  // MARK: -\n  //····················································································································\n\n  var canBringToFront_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canBringToFront : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var top = objects.count - 1\n      for idx in sortedIndexArray.reversed () {\n        if idx < top {\n          return true\n        }\n        top -= 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n\n  func bringToFront () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.append (object)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND BACKWARD\n   // MARK: -\n //····················································································································\n\n  var canSendBackward_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  var canSendBackward : Bool {\n    let objects = self.objectArray\n    var result = (objects.count > 1) && (self.selectedArray_property.propset.count > 0)\n    if result {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      result = sortedIndexArray [0] > 0\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func sendBackward () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      objects.insert (object, at: idx-1)\n    }\n    self.mModel\?.setProp (objects)\n  }\n\n  //····················································································································\n  // SEND TO BACK\n  // MARK: -\n  //····················································································································\n\n  var canSendToBack_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func sendToBack () {\n    var objects = self.objectArray\n    let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n    var newObjectArray = EBReferenceArray <") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString ("> ()\n    for idx in sortedIndexArray.reversed () {\n      let object = objects [idx]\n      objects.remove (at: idx)\n      newObjectArray.append (object)\n    }\n    newObjectArray.reverse ()\n    newObjectArray.append (objects: objects)\n    self.mModel\?.setProp (newObjectArray)\n  }\n\n  //····················································································································\n\n  var canSendToBack : Bool {\n    let objects = self.objectArray\n    if (objects.count > 1) && (self.selectedArray_property.propset.count > 0) {\n      let sortedIndexArray = self.sortedIndexArrayOfSelectedObjects ()\n      var bottom = 0\n      for idx in sortedIndexArray {\n        if idx > bottom {\n          return true\n        }\n        bottom += 1\n      }\n    }\n    return false\n  }\n\n  //····················································································································\n  // SNAP TO GRID\n  // MARK: -\n  //····················································································································\n\n  func snapToGrid (_ inGrid : Int) {\n    for object in self.selectedArray_property.propset.values {\n      object.snapToGrid (inGrid)\n    }\n  }\n\n  //····················································································································\n\n  func canSnapToGrid (_ inGrid : Int) -> Bool {\n    for object in self.selectedArray_property.propset.values {\n      if object.canSnapToGrid (inGrid) {\n        return true\n      }\n    }\n    return false\n  }\n\n\n //····················································································································\n  // HORIZONTAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipHorizontally_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipHorizontally () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipHorizontally ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipHorizontally : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipHorizontally () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // VERTICAL FLIP\n  // MARK: -\n  //····················································································································\n\n  var canFlipVertically_property = EBTransientProperty <Bool> ()\n\n  //····················································································································\n\n  func flipVertically () {\n    for object in self.selectedArray_property.propset.values {\n      object.flipVertically ()\n    }\n  }\n\n  //····················································································································\n\n  var canFlipVertically : Bool {\n    for object in self.selectedArray_property.propset.values {\n      if !object.canFlipVertically () {\n        return false\n      }\n    }\n    return self.selectedArray_property.propset.count > 0\n  }\n\n  //····················································································································\n  // ROTATE 90\n  // MARK: -\n  //····················································································································\n\n  var canRotate90_property = EBTransientProperty <Bool> ()\n  private var mRotate90PointSet = Set <CanariPoint> ()\n\n //····················································································································\n\n  var canRotate90 : Bool {\n    self.mRotate90PointSet.removeAll ()\n    if self.selectedArray.count == 0 {\n      return false\n    }else{\n      for object in self.selectedArray.values {\n        if !object.canRotate90 (accumulatedPoints: &self.mRotate90PointSet) {\n          return false\n        }\n      }\n      return !self.mRotate90PointSet.isEmpty\n    }\n  }\n\n  //····················································································································\n\n  func rotate90Clockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90Clockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n\n  func rotate90CounterClockwise () {\n    let r = CanariRect (points: Array (self.mRotate90PointSet))\n    var userSet = EBReferenceSet <EBManagedObject> ()\n    for object in self.selectedArray.values {\n      object.rotate90CounterClockwise (from: r.center, userSet: &userSet)\n    }\n  }\n\n  //····················································································································\n  // MARK: -\n  //····················································································································\n\n  func addToSelection (objects inObjects : [") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString ("]) {\n    if let objectSet = self.mModel\?.propset {\n      var newSelectedSet = self.selectedArray_property.propset\n      for object in inObjects {\n        if objectSet.contains (object) {\n          newSelectedSet.insert (object)\n        }\n      }\n      self.selectedSet = newSelectedSet\n    }\n  }\n\n  //····················································································································\n\n /* func addToSelection (objectsWithIndex inIndexes : [Int]) {\n    let objects = self.objectArray\n    var newSelectedSet = self.selectedArray_property.propset\n    for idx in inIndexes {\n      let newSelectedObject = objects [idx]\n      newSelectedSet.insert (newSelectedObject)\n    }\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n/*  func removeFromSelection (objectWithIndex inIndex : Int) {\n    let objects = self.objectArray\n    let object = objects [inIndex]\n    var newSelectedSet = self.selectedArray_property.propset\n    newSelectedSet.remove (object)\n    self.selectedSet = newSelectedSet\n  } */\n\n  //····················································································································\n\n  func clearSelection () {\n    self.selectedSet = EBReferenceSet ()\n  }\n\n  //····················································································································\n\n  func setSelection (objectsWithIndexes inIndexes : [Int]) {\n    let objects = self.objectArray\n    var selectedObjects = [") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString ("] ()\n    for index in inIndexes {\n      let newSelectedObject = objects [index]\n      selectedObjects.append (newSelectedObject)\n    }\n    self.selectedSet = EBReferenceSet (selectedObjects)\n  }\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n  //····················································································································\n  // MARK: -\n  //  INSPECTOR\n  //····················································································································\n\n  private var mInspectorReceivingView : NSView\? = nil\n  private var mCurrentAttachedView : NSView\? = nil\n  private var mInspectorDictionary = [ObjectIdentifier : NSView] ()\n  private var mInspectorObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  func register (inspectorReceivingView : NSView\?) {\n    self.mInspectorReceivingView = inspectorReceivingView\n    self.updateInspectorViews ()\n  }\n\n  //····················································································································\n\n  func register (inspectorView : NSView\?, for inEntity : EBGraphicManagedObject.Type) {\n    self.mInspectorDictionary [ObjectIdentifier (inEntity)] = inspectorView\n    self.updateInspectorViews ()\n  }\n\n  //····················································································································\n\n  private func inspectorViewManagerStartsObservingSelection () {\n    self.selectedArray_property.startsBeingObserved (by: self.mInspectorObserver)\n    self.mInspectorObserver.mEventCallBack = { [weak self] in self\?.updateInspectorViews () }\n  }\n\n  //····················································································································\n\n  private func inspectorViewManagerStopsObservingSelection () {\n    self.mInspectorObserver.mEventCallBack = nil\n    self.selectedArray_property.stopsBeingObserved (by: self.mInspectorObserver)\n  }\n\n  //····················································································································\n\n  private func updateInspectorViews () {\n    if let inspectorView = self.mInspectorReceivingView {\n    //--- Remove current attached view\n      self.mCurrentAttachedView\?.removeFromSuperview ()\n    //--- Add the new attached view\n      if self.mViewIsHidden {\n        self.mCurrentAttachedView = nil\n      }else if self.selectedArray.count == 0 {\n        let tf = self.textField (\"Empty Selection\", inspectorView.frame)\n        inspectorView.addSubview (tf)\n        self.mCurrentAttachedView = tf\n      }else{\n        var selectionTypes = Set <ObjectIdentifier> ()\n        for object in self.selectedArray.values {\n          let T = ObjectIdentifier (type (of: object))\n          selectionTypes.insert (T)\n        }\n        if selectionTypes.count > 1 {\n          let tf = self.textField (\"Multiple Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }else if let selectionInspectorView = self.mInspectorDictionary [selectionTypes.first!] {\n          selectionInspectorView.autoresizingMask = [.width, .minYMargin]\n          selectionInspectorView.frame = inspectorView.frame\n          inspectorView.addSubview (selectionInspectorView)\n          self.mCurrentAttachedView = selectionInspectorView\n        }else{\n          let tf = self.textField (\"No Inspector for this Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }\n      }\n    }\n  }\n\n  //····················································································································\n\n  private func textField (_ inString : String, _ inspectorFrame : NSRect) -> NSTextField {\n    let textHeight : CGFloat = 30.0\n    let r = NSRect (\n      x: 0.0,\n      y: inspectorFrame.origin.y + (inspectorFrame.size.height - textHeight) / 2.0,\n      width: inspectorFrame.size.width,\n      height: textHeight\n    )\n    let tf = NSTextField (frame: r)\n    tf.alignment = .center\n    tf.isBezeled = false\n    tf.isBordered = false\n    tf.drawsBackground = false\n    tf.isEnabled = true\n    tf.isEditable = false\n    tf.autoresizingMask = [.width, .minYMargin, .maxYMargin]\n    tf.stringValue = inString\n    tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)\n    tf.textColor = NSColor.lightGray\n    return tf\n  }\n\n  //····················································································································\n\n  private var mViewIsHidden = false {\n    didSet { self.updateInspectorViews () }\n  }\n\n  //····················································································································\n\n  var isHidden : Bool {\n    get { return self.mViewIsHidden }\n    set { self.mViewIsHidden = newValue }\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("\n  //····················································································································\n  // MARK: -\n  //  INSPECTOR\n  //····················································································································\n\n  private var mInspectorReceivingView : NSView\? = nil\n  private var mCurrentAttachedView : NSView\? = nil\n  private var mInspectorDictionary = [ObjectIdentifier : NSView] ()\n  private var mInspectorObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  func register (inspectorReceivingView : NSView\?) {\n    self.mInspectorReceivingView = inspectorReceivingView\n    self.updateInspectorViews ()\n  }\n\n  //····················································································································\n\n  func register (inspectorView : NSView\?, for inEntity : EBGraphicManagedObject.Type) {\n    self.mInspectorDictionary [ObjectIdentifier (inEntity)] = inspectorView\n    self.updateInspectorViews ()\n  }\n\n  //····················································································································\n\n  private func inspectorViewManagerStartsObservingSelection () {\n    self.selectedArray_property.startsBeingObserved (by: self.mInspectorObserver)\n    self.mInspectorObserver.mEventCallBack = { [weak self] in self\?.updateInspectorViews () }\n  }\n\n  //····················································································································\n\n  private func inspectorViewManagerStopsObservingSelection () {\n    self.mInspectorObserver.mEventCallBack = nil\n    self.selectedArray_property.stopsBeingObserved (by: self.mInspectorObserver)\n  }\n\n  //····················································································································\n\n  private func updateInspectorViews () {\n    if let inspectorView = self.mInspectorReceivingView {\n    //--- Remove current attached view\n      self.mCurrentAttachedView\?.removeFromSuperview ()\n    //--- Add the new attached view\n      if self.mViewIsHidden {\n        self.mCurrentAttachedView = nil\n      }else if self.selectedArray.count == 0 {\n        let tf = self.textField (\"Empty Selection\", inspectorView.frame)\n        inspectorView.addSubview (tf)\n        self.mCurrentAttachedView = tf\n      }else{\n        var selectionTypes = Set <ObjectIdentifier> ()\n        for object in self.selectedArray.values {\n          let T = ObjectIdentifier (type (of: object))\n          selectionTypes.insert (T)\n        }\n        if selectionTypes.count > 1 {\n          let tf = self.textField (\"Multiple Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }else if let selectionInspectorView = self.mInspectorDictionary [selectionTypes.first!] {\n          selectionInspectorView.autoresizingMask = [.width, .minYMargin]\n          selectionInspectorView.frame = inspectorView.frame\n          inspectorView.addSubview (selectionInspectorView)\n          self.mCurrentAttachedView = selectionInspectorView\n        }else{\n          let tf = self.textField (\"No Inspector for this Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }\n      }\n    }\n  }\n\n  //····················································································································\n\n  private func textField (_ inString : String, _ inspectorFrame : NSRect) -> NSTextField {\n    let textHeight : CGFloat = 30.0\n    let r = NSRect (\n      x: 0.0,\n      y: inspectorFrame.origin.y + (inspectorFrame.size.height - textHeight) / 2.0,\n      width: inspectorFrame.size.width,\n      height: textHeight\n    )\n    let tf = NSTextField (frame: r)\n    tf.alignment = .center\n    tf.isBezeled = false\n    tf.isBordered = false\n    tf.drawsBackground = false\n    tf.isEnabled = true\n    tf.isEditable = false\n    tf.autoresizingMask = [.width, .minYMargin, .maxYMargin]\n    tf.stringValue = inString\n    tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)\n    tf.textColor = NSColor.lightGray\n    return tf\n  }\n\n  //····················································································································\n\n  private var mViewIsHidden = false {\n    didSet { self.updateInspectorViews () }\n  }\n\n  //····················································································································\n\n  var isHidden : Bool {\n    get { return self.mViewIsHidden }\n    set { self.mViewIsHidden = newValue }\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -4457,117 +4245,117 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
                                                                                                                                const GALGAS__32_stringlist & in_ATTRIBUTE_5F_VALUES
                                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Auto Layout Table View Controller ") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString (" ") ;
-  result.addString (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfinal class Controller_") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString (" : NSObject, AutoLayoutTableViewDelegate {\n\n  //····················································································································\n  //    Constant properties\n  //····················································································································\n\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Auto Layout Table View Controller ") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString (" ") ;
+  result.appendString (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nfinal class Controller_") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString (" : NSObject, AutoLayoutTableViewDelegate {\n\n  //····················································································································\n  //    Constant properties\n  //····················································································································\n\n") ;
   GALGAS_uint index_1072_ (0) ;
   if (in_ATTRIBUTE_5F_VALUES.isValid ()) {
     cEnumerator__32_stringlist enumerator_1072 (in_ATTRIBUTE_5F_VALUES, kENUMERATION_UP) ;
     while (enumerator_1072.hasCurrentObject ()) {
-      result.addString ("  private let ") ;
-      result.addString (enumerator_1072.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" = ") ;
-      result.addString (enumerator_1072.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString ("\n") ;
+      result.appendString ("  private let ") ;
+      result.appendString (enumerator_1072.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" = ") ;
+      result.appendString (enumerator_1072.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString ("\n") ;
       index_1072_.increment () ;
       enumerator_1072.gotoNextObject () ;
     }
   }
-  result.addString ("\n  //····················································································································\n  //    Undo manager\n  //····················································································································\n\n  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n  var undoManager : UndoManager\? { return self.mUndoManager }\n\n  //····················································································································\n  //   Sorted Array\n  //····················································································································\n\n  let sortedArray_property = TransientArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" ()\n\n  //····················································································································\n\n  private var mSortDescriptorArray = [(") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (", ") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (") -> ComparisonResult] ()\n\n  //····················································································································\n  //    Model\n  //····················································································································\n\n  private weak var mModel : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  var objects : EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n  final func bind_model (_ inModel : ") ;
-  result.addString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    self.sortedArray_property.setDataProvider (\n      inModel,\n") ;
+  result.appendString ("\n  //····················································································································\n  //    Undo manager\n  //····················································································································\n\n  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n  var undoManager : UndoManager\? { return self.mUndoManager }\n\n  //····················································································································\n  //   Sorted Array\n  //····················································································································\n\n  let sortedArray_property = TransientArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" ()\n\n  //····················································································································\n\n  private var mSortDescriptorArray = [(") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (", ") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (") -> ComparisonResult] ()\n\n  //····················································································································\n  //    Model\n  //····················································································································\n\n  private weak var mModel : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  var objects : EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n  final func bind_model (_ inModel : ") ;
+  result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    self.sortedArray_property.setDataProvider (\n      inModel,\n") ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 62)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_0) {
   case kBoolTrue : {
-    result.addString ("      sortCallback: { [weak self] (left, right) in self\?.isOrderedBefore (left, right) \?\? true },\n") ;
+    result.appendString ("      sortCallback: { [weak self] (left, right) in self\?.isOrderedBefore (left, right) \?\? true },\n") ;
     } break ;
   case kBoolFalse : {
-    result.addString ("      sortCallback: nil,\n") ;
+    result.appendString ("      sortCallback: nil,\n") ;
     } break ;
   default :
     break ;
   }
-  result.addString ("      addSortObserversCallback: { (observer) in\n") ;
+  result.appendString ("      addSortObserversCallback: { (observer) in\n") ;
   GALGAS_uint index_3330_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING.isValid ()) {
     cEnumerator_stringset enumerator_3330 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
     while (enumerator_3330.hasCurrentObject ()) {
-      result.addString ("        inModel.toMany_") ;
-      result.addString (enumerator_3330.current_key (HERE).stringValue ()) ;
-      result.addString ("_StartsBeingObserved (by: observer)\n") ;
+      result.appendString ("        inModel.toMany_") ;
+      result.appendString (enumerator_3330.current_key (HERE).stringValue ()) ;
+      result.appendString ("_StartsBeingObserved (by: observer)\n") ;
       index_3330_.increment () ;
       enumerator_3330.gotoNextObject () ;
     }
   }
-  result.addString ("      },\n      removeSortObserversCallback: {(observer) in\n") ;
+  result.appendString ("      },\n      removeSortObserversCallback: {(observer) in\n") ;
   GALGAS_uint index_3514_ (0) ;
   if (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING.isValid ()) {
     cEnumerator_stringset enumerator_3514 (in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING, kENUMERATION_UP) ;
     while (enumerator_3514.hasCurrentObject ()) {
-      result.addString ("        inModel.toMany_") ;
-      result.addString (enumerator_3514.current_key (HERE).stringValue ()) ;
-      result.addString ("_StopsBeingObserved (by: observer)\n") ;
+      result.appendString ("        inModel.toMany_") ;
+      result.appendString (enumerator_3514.current_key (HERE).stringValue ()) ;
+      result.appendString ("_StopsBeingObserved (by: observer)\n") ;
       index_3514_.increment () ;
       enumerator_3514.gotoNextObject () ;
     }
   }
-  result.addString ("      }\n    )\n  }\n\n") ;
+  result.appendString ("      }\n    )\n  }\n\n") ;
   const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 81)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_1) {
   case kBoolTrue : {
-    result.addString ("  //····················································································································\n\n  final func isOrderedBefore (_ left : ") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString (", _ right : ") ;
-    result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-    result.addString (") -> Bool {\n    var order = ComparisonResult.orderedSame\n    for sortDescriptor in self.mSortDescriptorArray.reversed () {\n      order = sortDescriptor (left, right)\n      if order != .orderedSame {\n        break // Exit from for loop\n      }\n    }\n    return order == .orderedAscending\n  }\n") ;
+    result.appendString ("  //····················································································································\n\n  final func isOrderedBefore (_ left : ") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString (", _ right : ") ;
+    result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+    result.appendString (") -> Bool {\n    var order = ComparisonResult.orderedSame\n    for sortDescriptor in self.mSortDescriptorArray.reversed () {\n      order = sortDescriptor (left, right)\n      if order != .orderedSame {\n        break // Exit from for loop\n      }\n    }\n    return order == .orderedAscending\n  }\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n  //····················································································································\n\n  /* final func unbind_model () {\n    self.sortedArray_property.resetDataProvider ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  } */\n\n  //····················································································································\n  //   Selected Array\n  //····················································································································\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" (usedForSignature: false, key: nil)\n\n  //····················································································································\n\n  var selectedArray_property : ReadOnlyArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" { return self.mInternalSelectedArrayProperty }\n\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> { return self.selectedArray_property.propval }\n\n  //····················································································································\n\n  var selectedSet : EBReferenceSet <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> { return EBReferenceSet (self.selectedArray_property.propval.values) }\n\n  //····················································································································\n\n  var selectedIndexesSet : Set <Int> {\n    let selectedObjectSet = self.selectedSet\n    var result = Set <Int> ()\n    var idx = 0\n    if let model = self.mModel {\n      for object in model.propval.values {\n        if selectedObjectSet.contains (object) {\n          result.insert (idx)\n        }\n        idx += 1\n      }\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func setSelection (_ inObjects : [") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("]) {\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))\n  }\n\n  //····················································································································\n  //    sorted array observer\n  //····················································································································\n\n  private var mSortedArrayValuesObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  override init () {\n    super.init ()\n    self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
+  result.appendString ("\n  //····················································································································\n\n  /* final func unbind_model () {\n    self.sortedArray_property.resetDataProvider ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  } */\n\n  //····················································································································\n  //   Selected Array\n  //····················································································································\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" (usedForSignature: false, key: nil)\n\n  //····················································································································\n\n  var selectedArray_property : ReadOnlyArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" { return self.mInternalSelectedArrayProperty }\n\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> { return self.selectedArray_property.propval }\n\n  //····················································································································\n\n  var selectedSet : EBReferenceSet <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> { return EBReferenceSet (self.selectedArray_property.propval.values) }\n\n  //····················································································································\n\n  var selectedIndexesSet : Set <Int> {\n    let selectedObjectSet = self.selectedSet\n    var result = Set <Int> ()\n    var idx = 0\n    if let model = self.mModel {\n      for object in model.propval.values {\n        if selectedObjectSet.contains (object) {\n          result.insert (idx)\n        }\n        idx += 1\n      }\n    }\n    return result\n  }\n\n  //····················································································································\n\n  func setSelection (_ inObjects : [") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("]) {\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))\n  }\n\n  //····················································································································\n  //    sorted array observer\n  //····················································································································\n\n  private var mSortedArrayValuesObserver = EBOutletEvent ()\n\n  //····················································································································\n\n  override init () {\n    super.init ()\n    self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
   GALGAS_uint index_6982_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
     cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6982 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
     while (enumerator_6982.hasCurrentObject ()) {
-      result.addString ("  //--- Observe '") ;
-      result.addString (enumerator_6982.current_mDisplayedPropertyName (HERE).stringValue ()) ;
-      result.addString ("' column\n    self.sortedArray_property.toMany_") ;
-      result.addString (enumerator_6982.current_mDisplayedPropertyName (HERE).stringValue ()) ;
-      result.addString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
+      result.appendString ("  //--- Observe '") ;
+      result.appendString (enumerator_6982.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString ("' column\n    self.sortedArray_property.toMany_") ;
+      result.appendString (enumerator_6982.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
       const enumGalgasBool test_2 = GALGAS_bool (kIsNotEqual, enumerator_6982.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).operator_and (GALGAS_bool (kIsNotEqual, enumerator_6982.current_mSortPropertyName (HERE).objectCompare (enumerator_6982.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
       switch (test_2) {
       case kBoolTrue : {
-        result.addString ("     self.sortedArray_property.toMany_") ;
-        result.addString (enumerator_6982.current_mSortPropertyName (HERE).stringValue ()) ;
-        result.addString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
+        result.appendString ("     self.sortedArray_property.toMany_") ;
+        result.appendString (enumerator_6982.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -4578,75 +4366,75 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
       enumerator_6982.gotoNextObject () ;
     }
   }
-  result.addString ("  //---\n    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in\n       for tableView in self\?.mTableViewArray \?\? [] {\n        tableView.sortAndReloadData ()\n      }\n    }\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n  //····················································································································\n  //    bind_tableView\n  //····················································································································\n\n  private var mTableViewArray = [AutoLayoutTableView] ()\n\n  //····················································································································\n\n  final func bind_tableView (_ inTableView : AutoLayoutTableView) {\n    inTableView.configure (\n      allowsEmptySelection: allowsEmptySelection,\n      allowsMultipleSelection: allowsMultipleSelection,\n      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n      delegate: self\n    )\n") ;
+  result.appendString ("  //---\n    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in\n       for tableView in self\?.mTableViewArray \?\? [] {\n        tableView.sortAndReloadData ()\n      }\n    }\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n  //····················································································································\n  //    bind_tableView\n  //····················································································································\n\n  private var mTableViewArray = [AutoLayoutTableView] ()\n\n  //····················································································································\n\n  final func bind_tableView (_ inTableView : AutoLayoutTableView) {\n    inTableView.configure (\n      allowsEmptySelection: allowsEmptySelection,\n      allowsMultipleSelection: allowsMultipleSelection,\n      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n      delegate: self\n    )\n") ;
   GALGAS_uint index_8662_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
     cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8662 (in_BOUND_5F_COLUMNS, kENUMERATION_UP) ;
     while (enumerator_8662.hasCurrentObject ()) {
-      result.addString ("  //--- Configure '") ;
-      result.addString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
-      result.addString ("' column\n    inTableView.addColumn_") ;
-      result.addString (enumerator_8662.current_mColumnObjectTypeName (HERE).stringValue ()) ;
-      result.addString (" (\n      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0].") ;
-      result.addString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
-      result.addString (" },\n      valueSetterDelegate: ") ;
+      result.appendString ("  //--- Configure '") ;
+      result.appendString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString ("' column\n    inTableView.addColumn_") ;
+      result.appendString (enumerator_8662.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+      result.appendString (" (\n      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0].") ;
+      result.appendString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (" },\n      valueSetterDelegate: ") ;
       const enumGalgasBool test_3 = enumerator_8662.current_mEditable (HERE).boolEnum () ;
       switch (test_3) {
       case kBoolTrue : {
-        result.addString ("{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].") ;
-        result.addString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
-        result.addString (" = inNewValue }") ;
+        result.appendString ("{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].") ;
+        result.appendString (enumerator_8662.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+        result.appendString (" = inNewValue }") ;
         } break ;
       case kBoolFalse : {
-        result.addString ("nil") ;
+        result.appendString ("nil") ;
         } break ;
       default :
         break ;
       }
-      result.addString (",\n      sortDelegate: ") ;
+      result.appendString (",\n      sortDelegate: ") ;
       const enumGalgasBool test_4 = GALGAS_bool (kIsNotEqual, enumerator_8662.current_mSortPropertyName (HERE).objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
       switch (test_4) {
       case kBoolTrue : {
-        result.addString ("{ [weak self] (ascending) in\n        self\?.mSortDescriptorArray.append ({ (_ left : ") ;
-        result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-        result.addString (", _ right : ") ;
-        result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-        result.addString (") in return compare_") ;
-        result.addString (enumerator_8662.current_mColumnObjectTypeName (HERE).stringValue ()) ;
-        result.addString ("_properties (left.") ;
-        result.addString (enumerator_8662.current_mSortPropertyName (HERE).stringValue ()) ;
-        result.addString ("_property, ascending, right.") ;
-        result.addString (enumerator_8662.current_mSortPropertyName (HERE).stringValue ()) ;
-        result.addString ("_property) })\n      }") ;
+        result.appendString ("{ [weak self] (ascending) in\n        self\?.mSortDescriptorArray.append ({ (_ left : ") ;
+        result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+        result.appendString (", _ right : ") ;
+        result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+        result.appendString (") in return compare_") ;
+        result.appendString (enumerator_8662.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+        result.appendString ("_properties (left.") ;
+        result.appendString (enumerator_8662.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString ("_property, ascending, right.") ;
+        result.appendString (enumerator_8662.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString ("_property) })\n      }") ;
         } break ;
       case kBoolFalse : {
-        result.addString ("nil") ;
+        result.appendString ("nil") ;
         } break ;
       default :
         break ;
       }
-      result.addString (",\n") ;
+      result.appendString (",\n") ;
       GALGAS_uint index_9517_ (0) ;
       if (enumerator_8662.current_mActualParameterList (HERE).isValid ()) {
         cEnumerator__32_stringlist enumerator_9517 (enumerator_8662.current_mActualParameterList (HERE), kENUMERATION_UP) ;
         while (enumerator_9517.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_9517.current_mValue_30_ (HERE).stringValue ()) ;
-          result.addString (": ") ;
-          result.addString (enumerator_9517.current_mValue_31_ (HERE).stringValue ()) ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_9517.current_mValue_30_ (HERE).stringValue ()) ;
+          result.appendString (": ") ;
+          result.appendString (enumerator_9517.current_mValue_31_ (HERE).stringValue ()) ;
           if (enumerator_9517.hasNextObject ()) {
-            result.addString (",\n") ;
+            result.appendString (",\n") ;
           }
           index_9517_.increment () ;
           enumerator_9517.gotoNextObject () ;
         }
       }
-      result.addString ("\n    )\n") ;
+      result.appendString ("\n    )\n") ;
       index_8662_.increment () ;
       enumerator_8662.gotoNextObject () ;
     }
   }
-  result.addString ("  //---\n    self.mTableViewArray.append (inTableView)\n    inTableView.sortAndReloadData ()\n  }\n\n") ;
+  result.appendString ("  //---\n    self.mTableViewArray.append (inTableView)\n    inTableView.sortAndReloadData ()\n  }\n\n") ;
   switch (in_MODEL_5F_KIND.enumValue ()) {
   case GALGAS_autoLayoutTableViewControllerModelKind::kNotBuilt :
     break ;
@@ -4656,57 +4444,57 @@ GALGAS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplat
     break ;
   case GALGAS_autoLayoutTableViewControllerModelKind::kEnum_entityArray :
     {
-      result.addString ("  //····················································································································\n  //   Select a single object\n  //····················································································································\n\n  final func select (object inObject: ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (") {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let objectArray) :\n        let array = EBReferenceArray (objectArray)\n        if array.contains (inObject) {\n          self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObject))\n        }\n      }\n    }\n  }\n\n  //····················································································································\n  //    remove\n  //····················································································································\n\n  @objc func remove (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let model_prop) :\n      //------------- Find the object to be selected after selected object removing\n      //--- Dictionary of object sorted indexes\n        var sortedObjectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          sortedObjectDictionary [object] = index\n        }\n        var indexArrayOfSelectedObjects = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = sortedObjectDictionary [object]\n          if let idx = index {\n            indexArrayOfSelectedObjects.append (idx)\n          }\n        }\n      //--- Sort\n        indexArrayOfSelectedObjects.sort { $0 < $1 }\n      //--- Find the first index of a non selected object\n        var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n        for index in indexArrayOfSelectedObjects {\n          if newSelectionIndex < index {\n            break\n          }else{\n            newSelectionIndex = index + 1\n          }\n        }\n      //----------------------------------------- Remove selected object\n      //--- Dictionary of object absolute indexes\n        var objectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          objectDictionary [object] = index\n        }\n      //--- Build selected objects index array\n        var selectedObjectIndexArray = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = objectDictionary [object]\n          if let idx = index {\n            selectedObjectIndexArray.append (idx)\n          }\n        }\n      //--- Sort in reverse order\n        selectedObjectIndexArray.sort { $1 < $0 }\n      //--- Remove objects, in reverse of order of their index\n        var newObjectArray = EBReferenceArray (model_prop)\n        for index in selectedObjectIndexArray {\n          newObjectArray.remove (at: index)\n        }\n      //----------------------------------------- Set new object array\n        model.setProp (newObjectArray)\n      }\n    }\n  }\n") ;
+      result.appendString ("  //····················································································································\n  //   Select a single object\n  //····················································································································\n\n  final func select (object inObject: ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (") {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let objectArray) :\n        let array = EBReferenceArray (objectArray)\n        if array.contains (inObject) {\n          self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObject))\n        }\n      }\n    }\n  }\n\n  //····················································································································\n  //    remove\n  //····················································································································\n\n  @objc func remove (_ _ : Any) {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        break\n      case .single (let model_prop) :\n      //------------- Find the object to be selected after selected object removing\n      //--- Dictionary of object sorted indexes\n        var sortedObjectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          sortedObjectDictionary [object] = index\n        }\n        var indexArrayOfSelectedObjects = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = sortedObjectDictionary [object]\n          if let idx = index {\n            indexArrayOfSelectedObjects.append (idx)\n          }\n        }\n      //--- Sort\n        indexArrayOfSelectedObjects.sort { $0 < $1 }\n      //--- Find the first index of a non selected object\n        var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n        for index in indexArrayOfSelectedObjects {\n          if newSelectionIndex < index {\n            break\n          }else{\n            newSelectionIndex = index + 1\n          }\n        }\n      //----------------------------------------- Remove selected object\n      //--- Dictionary of object absolute indexes\n        var objectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n        for (index, object) in model_prop.enumerated () {\n          objectDictionary [object] = index\n        }\n      //--- Build selected objects index array\n        var selectedObjectIndexArray = [Int] ()\n        for object in self.selectedArray_property.propset.values {\n          let index = objectDictionary [object]\n          if let idx = index {\n            selectedObjectIndexArray.append (idx)\n          }\n        }\n      //--- Sort in reverse order\n        selectedObjectIndexArray.sort { $1 < $0 }\n      //--- Remove objects, in reverse of order of their index\n        var newObjectArray = EBReferenceArray (model_prop)\n        for index in selectedObjectIndexArray {\n          newObjectArray.remove (at: index)\n        }\n      //----------------------------------------- Set new object array\n        model.setProp (newObjectArray)\n      }\n    }\n  }\n") ;
     }
     break ;
   }
-  result.addString ("\n  //····················································································································\n  // IMPLEMENTATION OF AutoLayoutTableViewDelegate\n  //····················································································································\n  \n  final func tableViewDelegate_selectionDidChange (selectedRows inSelectedRows : IndexSet) {\n    switch self.sortedArray_property.selection {\n    case .empty, .multiple :\n      ()\n    case .single (let v) :\n      var newSelectedObjects = EBReferenceArray <") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> ()\n      for index in inSelectedRows {\n        newSelectedObjects.append (v [index])\n      }\n      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)\n    }\n  }\n\n  //····················································································································\n\n  final func tableViewDelegate_indexesOfSelectedObjects () -> IndexSet {\n    var indexSet = IndexSet ()\n    var idx = 0\n    let selectedObjectSet = EBReferenceSet (self.selectedArray_property.propval.values)\n    for object in self.sortedArray_property.propval.values {\n      if selectedObjectSet.contains (object) {\n        indexSet.insert (idx)\n      }\n      idx += 1\n    }\n    return indexSet\n  }\n\n  //····················································································································\n\n") ;
+  result.appendString ("\n  //····················································································································\n  // IMPLEMENTATION OF AutoLayoutTableViewDelegate\n  //····················································································································\n  \n  final func tableViewDelegate_selectionDidChange (selectedRows inSelectedRows : IndexSet) {\n    switch self.sortedArray_property.selection {\n    case .empty, .multiple :\n      ()\n    case .single (let v) :\n      var newSelectedObjects = EBReferenceArray <") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> ()\n      for index in inSelectedRows {\n        newSelectedObjects.append (v [index])\n      }\n      self.mInternalSelectedArrayProperty.setProp (newSelectedObjects)\n    }\n  }\n\n  //····················································································································\n\n  final func tableViewDelegate_indexesOfSelectedObjects () -> IndexSet {\n    var indexSet = IndexSet ()\n    var idx = 0\n    let selectedObjectSet = EBReferenceSet (self.selectedArray_property.propval.values)\n    for object in self.sortedArray_property.propval.values {\n      if selectedObjectSet.contains (object) {\n        indexSet.insert (idx)\n      }\n      idx += 1\n    }\n    return indexSet\n  }\n\n  //····················································································································\n\n") ;
   switch (in_MODEL_5F_KIND.enumValue ()) {
   case GALGAS_autoLayoutTableViewControllerModelKind::kNotBuilt :
     break ;
   case GALGAS_autoLayoutTableViewControllerModelKind::kEnum_transientArray :
     {
-      result.addString ("  final func tableViewDelegate_addEntry () { // Transient array cannot add entry\n  }\n") ;
+      result.appendString ("  final func tableViewDelegate_addEntry () { // Transient array cannot add entry\n  }\n") ;
     }
     break ;
   case GALGAS_autoLayoutTableViewControllerModelKind::kEnum_entityArray :
     {
-      result.addString ("  final func tableViewDelegate_addEntry () {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let v) :\n        let newObject = ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (" (self.undoManager)\n        var array = EBReferenceArray (v)\n        array.append (newObject)\n        model.setProp (array)\n      //--- New object is the selection\n        self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (newObject))\n      }\n    }\n  }\n") ;
+      result.appendString ("  final func tableViewDelegate_addEntry () {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let v) :\n        let newObject = ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (" (self.undoManager)\n        var array = EBReferenceArray (v)\n        array.append (newObject)\n        model.setProp (array)\n      //--- New object is the selection\n        self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (newObject))\n      }\n    }\n  }\n") ;
     }
     break ;
   }
-  result.addString ("\n  //····················································································································\n\n") ;
+  result.appendString ("\n  //····················································································································\n\n") ;
   switch (in_MODEL_5F_KIND.enumValue ()) {
   case GALGAS_autoLayoutTableViewControllerModelKind::kNotBuilt :
     break ;
   case GALGAS_autoLayoutTableViewControllerModelKind::kEnum_transientArray :
     {
-      result.addString ("  final func tableViewDelegate_removeSelectedEntries () { // Transient array cannot remove entries\n  }\n") ;
+      result.appendString ("  final func tableViewDelegate_removeSelectedEntries () { // Transient array cannot remove entries\n  }\n") ;
     }
     break ;
   case GALGAS_autoLayoutTableViewControllerModelKind::kEnum_entityArray :
     {
-      result.addString ("  final func tableViewDelegate_removeSelectedEntries () {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let model_prop) :\n        switch self.sortedArray_property.selection {\n        case .empty, .multiple :\n          ()\n        case .single (let sortedArray_prop) :\n        //------------- Find the object to be selected after selected object removing\n        //--- Dictionary of object sorted indexes\n          var sortedObjectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n          for (index, object) in sortedArray_prop.enumerated () {\n            sortedObjectDictionary [object] = index\n          }\n          var indexArrayOfSelectedObjects = [Int] ()\n          for object in self.selectedSet.values {\n            let index = sortedObjectDictionary [object]\n            if let idx = index {\n              indexArrayOfSelectedObjects.append (idx)\n            }\n          }\n        //--- Sort\n          indexArrayOfSelectedObjects.sort { $0 < $1 }\n        //--- Find the first index of a non selected object\n          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n          for index in indexArrayOfSelectedObjects {\n            if newSelectionIndex < index {\n              ()\n            }else{\n              newSelectionIndex = index + 1\n            }\n          }\n          var newSelectedObject : ") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString ("\? = nil\n          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {\n            newSelectedObject = sortedArray_prop [newSelectionIndex]\n          }\n        //----------------------------------------- Remove selected object\n        //--- Dictionary of object absolute indexes\n          var objectDictionary = EBReferenceDictionary <") ;
-      result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-      result.addString (", Int> ()\n          for (index, object) in model_prop.enumerated () {\n            objectDictionary [object] = index\n          }\n        //--- Build selected objects index array\n          var selectedObjectIndexArray = [Int] ()\n          for object in self.selectedSet.values {\n            let index = objectDictionary [object]\n            if let idx = index {\n              selectedObjectIndexArray.append (idx)\n            }\n          }\n        //--- Sort in reverse order\n          selectedObjectIndexArray.sort { $1 < $0 }\n        //--- Remove objects, in reverse of order of their index\n          var newObjectArray = EBReferenceArray (model_prop)\n          for index in selectedObjectIndexArray {\n            newObjectArray.remove (at: index)\n          }\n        //----------------------------------------- Set new object array\n          model.setProp (newObjectArray)\n        //----------------------------------------- Set new selection\n          if let object = newSelectedObject {\n            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (object))\n          }else{\n            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray ())\n          }\n        }\n      }\n    }\n  }\n") ;
+      result.appendString ("  final func tableViewDelegate_removeSelectedEntries () {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        ()\n      case .single (let model_prop) :\n        switch self.sortedArray_property.selection {\n        case .empty, .multiple :\n          ()\n        case .single (let sortedArray_prop) :\n        //------------- Find the object to be selected after selected object removing\n        //--- Dictionary of object sorted indexes\n          var sortedObjectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n          for (index, object) in sortedArray_prop.enumerated () {\n            sortedObjectDictionary [object] = index\n          }\n          var indexArrayOfSelectedObjects = [Int] ()\n          for object in self.selectedSet.values {\n            let index = sortedObjectDictionary [object]\n            if let idx = index {\n              indexArrayOfSelectedObjects.append (idx)\n            }\n          }\n        //--- Sort\n          indexArrayOfSelectedObjects.sort { $0 < $1 }\n        //--- Find the first index of a non selected object\n          var newSelectionIndex = indexArrayOfSelectedObjects [0] + 1\n          for index in indexArrayOfSelectedObjects {\n            if newSelectionIndex < index {\n              ()\n            }else{\n              newSelectionIndex = index + 1\n            }\n          }\n          var newSelectedObject : ") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString ("\? = nil\n          if (newSelectionIndex >= 0) && (newSelectionIndex < sortedArray_prop.count) {\n            newSelectedObject = sortedArray_prop [newSelectionIndex]\n          }\n        //----------------------------------------- Remove selected object\n        //--- Dictionary of object absolute indexes\n          var objectDictionary = EBReferenceDictionary <") ;
+      result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+      result.appendString (", Int> ()\n          for (index, object) in model_prop.enumerated () {\n            objectDictionary [object] = index\n          }\n        //--- Build selected objects index array\n          var selectedObjectIndexArray = [Int] ()\n          for object in self.selectedSet.values {\n            let index = objectDictionary [object]\n            if let idx = index {\n              selectedObjectIndexArray.append (idx)\n            }\n          }\n        //--- Sort in reverse order\n          selectedObjectIndexArray.sort { $1 < $0 }\n        //--- Remove objects, in reverse of order of their index\n          var newObjectArray = EBReferenceArray (model_prop)\n          for index in selectedObjectIndexArray {\n            newObjectArray.remove (at: index)\n          }\n        //----------------------------------------- Set new object array\n          model.setProp (newObjectArray)\n        //----------------------------------------- Set new selection\n          if let object = newSelectedObject {\n            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (object))\n          }else{\n            self.mInternalSelectedArrayProperty.setProp (EBReferenceArray ())\n          }\n        }\n      }\n    }\n  }\n") ;
     }
     break ;
   }
-  result.addString ("\n  //····················································································································\n\n  final func tableViewDelegate_beginSorting () {\n    self.mSortDescriptorArray.removeAll ()\n  }\n\n  //····················································································································\n\n  final func tableViewDelegate_endSorting () {\n    self.sortedArray_property.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
+  result.appendString ("\n  //····················································································································\n\n  final func tableViewDelegate_beginSorting () {\n    self.mSortDescriptorArray.removeAll ()\n  }\n\n  //····················································································································\n\n  final func tableViewDelegate_endSorting () {\n    self.sortedArray_property.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -5131,40 +4919,40 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
                                                                                                                const GALGAS_propertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
                                                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Base Selection Controller ") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString (" ") ;
-  result.addString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor final class SelectionController_") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString (" {\n\n  //····················································································································\n\n  init () {\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Base Selection Controller ") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString (" ") ;
+  result.appendString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor final class SelectionController_") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString (" {\n\n  //····················································································································\n\n  init () {\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n") ;
   GALGAS_uint index_1150_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_1150 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
     while (enumerator_1150.hasCurrentObject ()) {
-      result.addString ("  //····················································································································\n  //   Selection observable property: ") ;
-      result.addString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-      result.addString ("\n  //····················································································································\n\n") ;
+      result.appendString ("  //····················································································································\n  //   Selection observable property: ") ;
+      result.appendString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString ("\n  //····················································································································\n\n") ;
       const enumGalgasBool test_0 = extensionGetter_isEntityType (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).boolEnum () ;
       switch (test_0) {
       case kBoolTrue : {
         const enumGalgasBool test_1 = extensionGetter_isTransient (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 30)).boolEnum () ;
         switch (test_1) {
         case kBoolTrue : {
-          result.addString ("  var ") ;
-          result.addString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-          result.addString ("_property = EBTransientProperty <") ;
-          result.addString (extensionGetter_swiftTypeName (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 31)).stringValue ()) ;
-          result.addString ("> ()\n\n") ;
+          result.appendString ("  var ") ;
+          result.appendString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+          result.appendString ("_property = EBTransientProperty <") ;
+          result.appendString (extensionGetter_swiftTypeName (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 31)).stringValue ()) ;
+          result.appendString ("> ()\n\n") ;
           } break ;
         case kBoolFalse : {
-          result.addString ("  var ") ;
-          result.addString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-          result.addString ("_property = EBComputedProperty_") ;
-          result.addString (extensionGetter_swiftTypeName (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 33)).stringValue ()) ;
-          result.addString (" ()\n\n") ;
+          result.appendString ("  var ") ;
+          result.appendString (enumerator_1150.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+          result.appendString ("_property = EBComputedProperty_") ;
+          result.appendString (extensionGetter_swiftTypeName (enumerator_1150.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 33)).stringValue ()) ;
+          result.appendString (" ()\n\n") ;
           } break ;
         default :
           break ;
@@ -5179,11 +4967,11 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       enumerator_1150.gotoNextObject () ;
     }
   }
-  result.addString ("  //····················································································································\n  //   BIND SELECTION\n  //····················································································································\n\n  private weak var mModel : ReadOnlyArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  final func bind_selection (model : ReadOnlyArrayOf_") ;
-  result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (") {\n    self.mModel = model\n") ;
+  result.appendString ("  //····················································································································\n  //   BIND SELECTION\n  //····················································································································\n\n  private weak var mModel : ReadOnlyArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  final func bind_selection (model : ReadOnlyArrayOf_") ;
+  result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (") {\n    self.mModel = model\n") ;
   GALGAS_uint index_2401_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_2401 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
@@ -5191,9 +4979,9 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       const enumGalgasBool test_2 = extensionGetter_isEntityType (enumerator_2401.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
       switch (test_2) {
       case kBoolTrue : {
-        result.addString ("    self.bind_property_") ;
-        result.addString (enumerator_2401.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString (" (model: model)\n") ;
+        result.appendString ("    self.bind_property_") ;
+        result.appendString (enumerator_2401.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (" (model: model)\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -5204,7 +4992,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       enumerator_2401.gotoNextObject () ;
     }
   }
-  result.addString ("  }\n\n  //····················································································································\n  //   UNBIND SELECTION\n  //····················································································································\n\n  /* final func unbind_selection () {\n") ;
+  result.appendString ("  }\n\n  //····················································································································\n  //   UNBIND SELECTION\n  //····················································································································\n\n  /* final func unbind_selection () {\n") ;
   GALGAS_uint index_2904_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_2904 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
@@ -5212,28 +5000,28 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       const enumGalgasBool test_3 = extensionGetter_isEntityType (enumerator_2904.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).boolEnum () ;
       switch (test_3) {
       case kBoolTrue : {
-        result.addString ("  //--- ") ;
-        result.addString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("\n    self.") ;
-        result.addString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_property.mReadModelFunction = nil \n") ;
+        result.appendString ("  //--- ") ;
+        result.appendString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("\n    self.") ;
+        result.appendString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_property.mReadModelFunction = nil \n") ;
         const enumGalgasBool test_4 = extensionGetter_isTransient (enumerator_2904.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
         switch (test_4) {
         case kBoolTrue : {
-          result.addString ("    self.") ;
-          result.addString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-          result.addString ("_property.mWriteModelFunction = nil \n") ;
+          result.appendString ("    self.") ;
+          result.appendString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+          result.appendString ("_property.mWriteModelFunction = nil \n") ;
           } break ;
         case kBoolFalse : {
           } break ;
         default :
           break ;
         }
-        result.addString ("    self.mModel\?.toMany_") ;
-        result.addString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_StopsBeingObserved (by: self.") ;
-        result.addString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_property)\n") ;
+        result.appendString ("    self.mModel\?.toMany_") ;
+        result.appendString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_StopsBeingObserved (by: self.") ;
+        result.appendString (enumerator_2904.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_property)\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -5244,7 +5032,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       enumerator_2904.gotoNextObject () ;
     }
   }
-  result.addString ("  //---\n    self.mModel = nil\n  } */\n\n") ;
+  result.appendString ("  //---\n    self.mModel = nil\n  } */\n\n") ;
   GALGAS_uint index_3403_ (0) ;
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_3403 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, kENUMERATION_UP) ;
@@ -5252,38 +5040,38 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).boolEnum () ;
       switch (test_5) {
       case kBoolTrue : {
-        result.addString ("  //···················································································································*\n\n  private final func bind_property_") ;
-        result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString (" (model : ReadOnlyArrayOf_") ;
-        result.addString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-        result.addString (") {\n    model.toMany_") ;
-        result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_StartsBeingObserved (by: self.") ;
-        result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_property)\n    self.") ;
-        result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_property.mReadModelFunction = { [weak self] in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          var s = Set <") ;
-        result.addString (extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 87)).stringValue ()) ;
-        result.addString ("> ()\n          var isMultipleSelection = false\n          for object in v {\n            switch object.") ;
-        result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-        result.addString ("_property.selection {\n            case .empty :\n              return .empty\n            case .multiple :\n              isMultipleSelection = true\n            case .single (let vProp) :\n              s.insert (vProp)\n            }\n          }\n          if isMultipleSelection {\n            return .multiple\n          }else if s.count == 0 {\n            return .empty\n          }else if s.count == 1 {\n            return .single (s.first!)\n          }else{\n            return .multiple\n          }\n        }\n      }else{\n        return .empty\n      }\n    }\n") ;
+        result.appendString ("  //···················································································································*\n\n  private final func bind_property_") ;
+        result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (" (model : ReadOnlyArrayOf_") ;
+        result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+        result.appendString (") {\n    model.toMany_") ;
+        result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_StartsBeingObserved (by: self.") ;
+        result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_property)\n    self.") ;
+        result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_property.mReadModelFunction = { [weak self] in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty :\n          return .empty\n        case .multiple :\n          return .multiple\n        case .single (let v) :\n          var s = Set <") ;
+        result.appendString (extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 87)).stringValue ()) ;
+        result.appendString ("> ()\n          var isMultipleSelection = false\n          for object in v {\n            switch object.") ;
+        result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString ("_property.selection {\n            case .empty :\n              return .empty\n            case .multiple :\n              isMultipleSelection = true\n            case .single (let vProp) :\n              s.insert (vProp)\n            }\n          }\n          if isMultipleSelection {\n            return .multiple\n          }else if s.count == 0 {\n            return .empty\n          }else if s.count == 1 {\n            return .single (s.first!)\n          }else{\n            return .multiple\n          }\n        }\n      }else{\n        return .empty\n      }\n    }\n") ;
         const enumGalgasBool test_6 = extensionGetter_isTransient (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).boolEnum () ;
         switch (test_6) {
         case kBoolTrue : {
-          result.addString ("    self.") ;
-          result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-          result.addString ("_property.mWriteModelFunction = { [weak self] (inValue : ") ;
-          result.addString (extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 114)).stringValue ()) ;
-          result.addString (") in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty, .multiple :\n          break\n        case .single (let v) :\n          for object in v {\n            object.") ;
-          result.addString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-          result.addString ("_property.setProp (inValue)\n          }\n        }\n      }\n    }\n") ;
+          result.appendString ("    self.") ;
+          result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+          result.appendString ("_property.mWriteModelFunction = { [weak self] (inValue : ") ;
+          result.appendString (extensionGetter_swiftTypeName (enumerator_3403.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 114)).stringValue ()) ;
+          result.appendString (") in\n      if let model = self\?.mModel {\n        switch model.selection {\n        case .empty, .multiple :\n          break\n        case .single (let v) :\n          for object in v {\n            object.") ;
+          result.appendString (enumerator_3403.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+          result.appendString ("_property.setProp (inValue)\n          }\n        }\n      }\n    }\n") ;
           } break ;
         case kBoolFalse : {
           } break ;
         default :
           break ;
         }
-        result.addString ("  }\n\n") ;
+        result.appendString ("  }\n\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -5294,7 +5082,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSele
       enumerator_3403.gotoNextObject () ;
     }
   }
-  result.addString ("\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -5313,33 +5101,33 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
                                                                                                                   const GALGAS_bool & /* in_HAS_5F_ATOMIC_5F_PROPERTIES */
                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Derived selection controller ") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString (" ") ;
-  result.addString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor final class SelectionController_") ;
-  result.addString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.addString ("_") ;
-  result.addString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
-  result.addString (" {\n\n  //····················································································································\n\n  init () {\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//    Derived selection controller ") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString (" ") ;
+  result.appendString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n@MainActor final class SelectionController_") ;
+  result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
+  result.appendString ("_") ;
+  result.appendString (in_SELECTION_5F_CONTROLLER_5F_NAME.stringValue ()) ;
+  result.appendString (" {\n\n  //····················································································································\n\n  init () {\n    noteObjectAllocation (self)\n  }\n\n  //····················································································································\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n") ;
   GALGAS_uint index_1118_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_1118 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1118.hasCurrentObject ()) {
-      result.addString (callExtensionGetter_declarationInSelectionControllerCode ((const cPtr_propertyGeneration *) enumerator_1118.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 26)).stringValue ()) ;
+      result.appendString (callExtensionGetter_declarationInSelectionControllerCode ((const cPtr_propertyGeneration *) enumerator_1118.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 26)).stringValue ()) ;
       index_1118_.increment () ;
       enumerator_1118.gotoNextObject () ;
     }
   }
-  result.addString ("  //····················································································································\n  //   Selected array (not observable)\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
-  result.addString (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> { return self.selectedArray_property.propval }\n\n  //····················································································································\n  //   BIND SELECTION\n  //····················································································································\n\n   let selectedArray_property = TransientArrayOfSuperOf_") ;
-  result.addString (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (" <") ;
-  result.addString (in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString ("> ()\n\n  //····················································································································\n\n  final func bind_selection (model : ReadOnlyArrayOf_") ;
-  result.addString (in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.addString (") {\n    self.selectedArray_property.setDataProvider (model)\n") ;
+  result.appendString ("  //····················································································································\n  //   Selected array (not observable)\n  //····················································································································\n\n  var selectedArray : EBReferenceArray <") ;
+  result.appendString (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> { return self.selectedArray_property.propval }\n\n  //····················································································································\n  //   BIND SELECTION\n  //····················································································································\n\n   let selectedArray_property = TransientArrayOfSuperOf_") ;
+  result.appendString (in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (" <") ;
+  result.appendString (in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString ("> ()\n\n  //····················································································································\n\n  final func bind_selection (model : ReadOnlyArrayOf_") ;
+  result.appendString (in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
+  result.appendString (") {\n    self.selectedArray_property.setDataProvider (model)\n") ;
   GALGAS_uint index_2268_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_2268 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
@@ -5347,9 +5135,9 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
       const enumGalgasBool test_0 = GALGAS_bool (enumerator_2268.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2268.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 46)).operator_or (GALGAS_bool (enumerator_2268.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 47)).operator_or (GALGAS_bool (enumerator_2268.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
       switch (test_0) {
       case kBoolTrue : {
-        result.addString ("    self.bind_property_") ;
-        result.addString (enumerator_2268.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        result.addString (" ()\n") ;
+        result.appendString ("    self.bind_property_") ;
+        result.appendString (enumerator_2268.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (" ()\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -5360,7 +5148,7 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
       enumerator_2268.gotoNextObject () ;
     }
   }
-  result.addString ("  }\n\n  //····················································································································\n  //   UNBIND SELECTION\n  //····················································································································\n\n  /* final func unbind_selection () {\n    self.selectedArray_property.setDataProvider (nil)\n") ;
+  result.appendString ("  }\n\n  //····················································································································\n  //   UNBIND SELECTION\n  //····················································································································\n\n  /* final func unbind_selection () {\n    self.selectedArray_property.setDataProvider (nil)\n") ;
   GALGAS_uint index_2972_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_2972 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
@@ -5368,28 +5156,28 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
       const enumGalgasBool test_1 = GALGAS_bool (enumerator_2972.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2972.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 63)).operator_or (GALGAS_bool (enumerator_2972.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
       switch (test_1) {
       case kBoolTrue : {
-        result.addString ("  //--- ") ;
-        result.addString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        result.addString ("\n    self.") ;
-        result.addString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        result.addString ("_property.mReadModelFunction = nil \n") ;
+        result.appendString ("  //--- ") ;
+        result.appendString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString ("\n    self.") ;
+        result.appendString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString ("_property.mReadModelFunction = nil \n") ;
         const enumGalgasBool test_2 = GALGAS_bool (enumerator_2972.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GALGAS_bool (enumerator_2972.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 68)).boolEnum () ;
         switch (test_2) {
         case kBoolTrue : {
-          result.addString ("    self.") ;
-          result.addString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-          result.addString ("_property.mWriteModelFunction = nil \n") ;
+          result.appendString ("    self.") ;
+          result.appendString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+          result.appendString ("_property.mWriteModelFunction = nil \n") ;
           } break ;
         case kBoolFalse : {
           } break ;
         default :
           break ;
         }
-        result.addString ("    self.selectedArray_property.toMany_") ;
-        result.addString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        result.addString ("_StopsBeingObserved (by: self.") ;
-        result.addString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-        result.addString ("_property)\n") ;
+        result.appendString ("    self.selectedArray_property.toMany_") ;
+        result.appendString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString ("_StopsBeingObserved (by: self.") ;
+        result.appendString (enumerator_2972.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString ("_property)\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -5400,17 +5188,17 @@ GALGAS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedS
       enumerator_2972.gotoNextObject () ;
     }
   }
-  result.addString ("  } */\n\n") ;
+  result.appendString ("  } */\n\n") ;
   GALGAS_uint index_3676_ (0) ;
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_3676 (in_PROPERTY_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3676.hasCurrentObject ()) {
-      result.addString (callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_3676.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 77)).stringValue ()) ;
+      result.appendString (callExtensionGetter_bindPropertyInSelectionController ((const cPtr_propertyGeneration *) enumerator_3676.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 77)).stringValue ()) ;
       index_3676_.increment () ;
       enumerator_3676.gotoNextObject () ;
     }
   }
-  result.addString ("\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6480,32 +6268,32 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_scalarProperty (Compile
                                                                          const GALGAS_string & /* in_COMPARISON_5F_METHOD */
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//   Scalar property ") ;
-  result.addString (in_TYPE.stringValue ()) ;
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//   Scalar property ") ;
+  result.appendString (in_TYPE.stringValue ()) ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 11)).boolEnum () ;
   switch (test_0) {
   case kBoolTrue : {
-    result.addString ("typealias EBReadWriteProperty_") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString ("   = EBObservableMutableProperty <") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString (">\ntypealias EBComputedProperty_") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString ("    = EBComputedProperty <") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString (">\ntypealias EBStoredProperty_") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString ("      = EBStoredProperty <") ;
-    result.addString (in_TYPE.stringValue ()) ;
-    result.addString (">\n") ;
+    result.appendString ("typealias EBReadWriteProperty_") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString ("   = EBObservableMutableProperty <") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString (">\ntypealias EBComputedProperty_") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString ("    = EBComputedProperty <") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString (">\ntypealias EBStoredProperty_") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString ("      = EBStoredProperty <") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString (">\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
+  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6520,46 +6308,46 @@ GALGAS_string filewrapperTemplate_standard_5F_properties_classProperty (Compiler
                                                                         const GALGAS_bool & in_TRANSIENT
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\nimport AppKit\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n") ;
   const enumGalgasBool test_0 = in_TRANSIENT.boolEnum () ;
   switch (test_0) {
   case kBoolTrue : {
-    result.addString ("//   Transient property class ") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString ("\n") ;
+    result.appendString ("//   Transient property class ") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("\n") ;
     } break ;
   case kBoolFalse : {
-    result.addString ("//   Property class ") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString ("\n") ;
+    result.appendString ("//   Property class ") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("\n") ;
     } break ;
   default :
     break ;
   }
-  result.addString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("//——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_1 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 17)).boolEnum () ;
   switch (test_1) {
   case kBoolTrue : {
-    result.addString ("typealias EBReadWriteProperty_") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString ("   = EBObservableMutableProperty <") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString (">\ntypealias EBComputedProperty_") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString ("    = EBComputedProperty <") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString (">\ntypealias EBStoredProperty_") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString ("      = EBStoredProperty <") ;
-    result.addString (in_CLASS_5F_NAME.stringValue ()) ;
-    result.addString (">\n") ;
+    result.appendString ("typealias EBReadWriteProperty_") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("   = EBObservableMutableProperty <") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString (">\ntypealias EBComputedProperty_") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("    = EBComputedProperty <") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString (">\ntypealias EBStoredProperty_") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("      = EBStoredProperty <") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString (">\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.addString ("\n") ;
+  result.appendString ("\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6857,21 +6645,21 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_main_5F_xib (Compiler * /
                                                                     const GALGAS_string & in_PROJECT_5F_NAME
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("<\?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"\?>\n<document type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"3.0\" toolsVersion=\"7528.3\" systemVersion=\"14C1514\" targetRuntime=\"MacOSX.Cocoa\" propertyAccessControl=\"none\">\n    <dependencies>\n        <deployment version=\"1090\" identifier=\"macosx\"/>\n        <plugIn identifier=\"com.apple.InterfaceBuilder.CocoaPlugin\" version=\"7528.3\"/>\n    </dependencies>\n    <objects>\n        <customObject id=\"-2\" userLabel=\"File's Owner\" customClass=\"NSApplication\"/>\n        <customObject id=\"-1\" userLabel=\"First Responder\" customClass=\"FirstResponder\"/>\n        <customObject id=\"-3\" userLabel=\"Application\" customClass=\"NSObject\"/>\n        <menu title=\"AMainMenu\" systemMenu=\"main\" id=\"29\">\n            <items>\n                <menuItem title=\"") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" id=\"56\">\n                    <menu key=\"submenu\" title=\"") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" systemMenu=\"apple\" id=\"57\">\n                        <items>\n                            <menuItem title=\"About ") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" id=\"58\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <connections>\n                                    <action selector=\"orderFrontStandardAboutPanel:\" target=\"-2\" id=\"142\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"236\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Preferences…\" keyEquivalent=\",\" id=\"129\"/>\n                            <menuItem isSeparatorItem=\"YES\" id=\"143\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Services\" id=\"131\">\n                                <menu key=\"submenu\" title=\"Services\" systemMenu=\"services\" id=\"130\"/>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"144\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Hide ") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" keyEquivalent=\"h\" id=\"134\">\n                                <connections>\n                                    <action selector=\"hide:\" target=\"-1\" id=\"367\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Hide Others\" keyEquivalent=\"h\" id=\"145\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"hideOtherApplications:\" target=\"-1\" id=\"368\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Show All\" id=\"150\">\n                                <connections>\n                                    <action selector=\"unhideAllApplications:\" target=\"-1\" id=\"370\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"149\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Quit ") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" keyEquivalent=\"q\" id=\"136\">\n                                <connections>\n                                    <action selector=\"terminate:\" target=\"-3\" id=\"449\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"File\" id=\"83\">\n                    <menu key=\"submenu\" title=\"File\" id=\"81\">\n                        <items>\n                            <menuItem title=\"New\" keyEquivalent=\"n\" id=\"82\">\n                                <connections>\n                                    <action selector=\"newDocument:\" target=\"-1\" id=\"373\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Open…\" keyEquivalent=\"o\" id=\"72\">\n                                <connections>\n                                    <action selector=\"openDocument:\" target=\"-1\" id=\"374\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Open Recent\" id=\"124\">\n                                <menu key=\"submenu\" title=\"Open Recent\" systemMenu=\"recentDocuments\" id=\"125\">\n                                    <items>\n                                        <menuItem title=\"Clear Menu\" id=\"126\">\n                                            <connections>\n                                                <action selector=\"clearRecentDocuments:\" target=\"-1\" id=\"127\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"79\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Close\" keyEquivalent=\"w\" id=\"73\">\n                                <connections>\n                                    <action selector=\"performClose:\" target=\"-1\" id=\"193\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Save…\" keyEquivalent=\"s\" id=\"75\">\n                                <connections>\n                                    <action selector=\"saveDocument:\" target=\"-1\" id=\"362\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Revert to Saved\" id=\"112\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <connections>\n                                    <action selector=\"revertDocumentToSaved:\" target=\"-1\" id=\"364\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"74\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Page Setup...\" keyEquivalent=\"P\" id=\"77\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"runPageLayout:\" target=\"-1\" id=\"87\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Print…\" keyEquivalent=\"p\" id=\"78\">\n                                <connections>\n                                    <action selector=\"print:\" target=\"-1\" id=\"86\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Edit\" id=\"217\">\n                    <menu key=\"submenu\" title=\"Edit\" id=\"205\">\n                        <items>\n                            <menuItem title=\"Undo\" keyEquivalent=\"z\" id=\"207\">\n                                <connections>\n                                    <action selector=\"undo:\" target=\"-1\" id=\"223\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Redo\" keyEquivalent=\"Z\" id=\"215\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"redo:\" target=\"-1\" id=\"231\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"206\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Cut\" keyEquivalent=\"x\" id=\"199\">\n                                <connections>\n                                    <action selector=\"cut:\" target=\"-1\" id=\"228\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Copy\" keyEquivalent=\"c\" id=\"197\">\n                                <connections>\n                                    <action selector=\"copy:\" target=\"-1\" id=\"224\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Paste\" keyEquivalent=\"v\" id=\"203\">\n                                <connections>\n                                    <action selector=\"paste:\" target=\"-1\" id=\"226\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Paste and Match Style\" keyEquivalent=\"V\" id=\"485\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"pasteAsPlainText:\" target=\"-1\" id=\"486\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Delete\" id=\"202\">\n                                <connections>\n                                    <action selector=\"delete:\" target=\"-1\" id=\"235\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Select All\" keyEquivalent=\"a\" id=\"198\">\n                                <connections>\n                                    <action selector=\"selectAll:\" target=\"-1\" id=\"232\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"214\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Find\" id=\"218\">\n                                <menu key=\"submenu\" title=\"Find\" id=\"220\">\n                                    <items>\n                                        <menuItem title=\"Find…\" tag=\"1\" keyEquivalent=\"f\" id=\"209\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"241\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find and Replace…\" tag=\"12\" keyEquivalent=\"f\" id=\"534\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"535\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find Next\" tag=\"2\" keyEquivalent=\"g\" id=\"208\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"487\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find Previous\" tag=\"3\" keyEquivalent=\"G\" id=\"213\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"488\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Use Selection for Find\" tag=\"7\" keyEquivalent=\"e\" id=\"221\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"489\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Jump to Selection\" keyEquivalent=\"j\" id=\"210\">\n                                            <connections>\n                                                <action selector=\"centerSelectionInVisibleArea:\" target=\"-1\" id=\"245\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Spelling and Grammar\" id=\"216\">\n                                <menu key=\"submenu\" title=\"Spelling and Grammar\" id=\"200\">\n                                    <items>\n                                        <menuItem title=\"Show Spelling and Grammar\" keyEquivalent=\":\" id=\"204\">\n                                            <connections>\n                                                <action selector=\"showGuessPanel:\" target=\"-1\" id=\"230\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Check Document Now\" keyEquivalent=\";\" id=\"201\">\n                                            <connections>\n                                                <action selector=\"checkSpelling:\" target=\"-1\" id=\"225\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"453\"/>\n                                        <menuItem title=\"Check Spelling While Typing\" id=\"219\">\n                                            <connections>\n                                                <action selector=\"toggleContinuousSpellChecking:\" target=\"-1\" id=\"222\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Check Grammar With Spelling\" id=\"346\">\n                                            <connections>\n                                                <action selector=\"toggleGrammarChecking:\" target=\"-1\" id=\"347\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Correct Spelling Automatically\" id=\"454\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticSpellingCorrection:\" target=\"-1\" id=\"456\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Substitutions\" id=\"348\">\n                                <menu key=\"submenu\" title=\"Substitutions\" id=\"349\">\n                                    <items>\n                                        <menuItem title=\"Show Substitutions\" id=\"457\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"orderFrontSubstitutionsPanel:\" target=\"-1\" id=\"458\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"459\"/>\n                                        <menuItem title=\"Smart Copy/Paste\" tag=\"1\" keyEquivalent=\"f\" id=\"350\">\n                                            <connections>\n                                                <action selector=\"toggleSmartInsertDelete:\" target=\"-1\" id=\"355\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Quotes\" tag=\"2\" keyEquivalent=\"g\" id=\"351\">\n                                            <connections>\n                                                <action selector=\"toggleAutomaticQuoteSubstitution:\" target=\"-1\" id=\"356\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Dashes\" id=\"460\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticDashSubstitution:\" target=\"-1\" id=\"461\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Links\" tag=\"3\" keyEquivalent=\"G\" id=\"354\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticLinkDetection:\" target=\"-1\" id=\"357\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Text Replacement\" id=\"462\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticTextReplacement:\" target=\"-1\" id=\"463\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Transformations\" id=\"450\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Transformations\" id=\"451\">\n                                    <items>\n                                        <menuItem title=\"Make Upper Case\" id=\"452\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"uppercaseWord:\" target=\"-1\" id=\"464\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Make Lower Case\" id=\"465\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"lowercaseWord:\" target=\"-1\" id=\"468\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Capitalize\" id=\"466\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"capitalizeWord:\" target=\"-1\" id=\"467\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Speech\" id=\"211\">\n                                <menu key=\"submenu\" title=\"Speech\" id=\"212\">\n                                    <items>\n                                        <menuItem title=\"Start Speaking\" id=\"196\">\n                                            <connections>\n                                                <action selector=\"startSpeaking:\" target=\"-1\" id=\"233\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Stop Speaking\" id=\"195\">\n                                            <connections>\n                                                <action selector=\"stopSpeaking:\" target=\"-1\" id=\"227\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Format\" id=\"375\">\n                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n                    <menu key=\"submenu\" title=\"Format\" id=\"376\">\n                        <items>\n                            <menuItem title=\"Font\" id=\"377\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Font\" systemMenu=\"font\" id=\"388\">\n                                    <items>\n                                        <menuItem title=\"Show Fonts\" keyEquivalent=\"t\" id=\"389\">\n                                            <connections>\n                                                <action selector=\"orderFrontFontPanel:\" target=\"420\" id=\"424\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Bold\" tag=\"2\" keyEquivalent=\"b\" id=\"390\">\n                                            <connections>\n                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"421\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Italic\" tag=\"1\" keyEquivalent=\"i\" id=\"391\">\n                                            <connections>\n                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"422\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Underline\" keyEquivalent=\"u\" id=\"392\">\n                                            <connections>\n                                                <action selector=\"underline:\" target=\"-1\" id=\"432\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"393\"/>\n                                        <menuItem title=\"Bigger\" tag=\"3\" keyEquivalent=\"+\" id=\"394\">\n                                            <connections>\n                                                <action selector=\"modifyFont:\" target=\"420\" id=\"425\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smaller\" tag=\"4\" keyEquivalent=\"-\" id=\"395\">\n                                            <connections>\n                                                <action selector=\"modifyFont:\" target=\"420\" id=\"423\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"396\"/>\n                                        <menuItem title=\"Kern\" id=\"397\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Kern\" id=\"415\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"416\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useStandardKerning:\" target=\"-1\" id=\"438\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use None\" id=\"417\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"turnOffKerning:\" target=\"-1\" id=\"441\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Tighten\" id=\"418\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"tightenKerning:\" target=\"-1\" id=\"431\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Loosen\" id=\"419\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"loosenKerning:\" target=\"-1\" id=\"435\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem title=\"Ligature\" id=\"398\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Ligature\" id=\"411\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"412\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useStandardLigatures:\" target=\"-1\" id=\"439\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use None\" id=\"413\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"turnOffLigatures:\" target=\"-1\" id=\"440\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use All\" id=\"414\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useAllLigatures:\" target=\"-1\" id=\"434\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem title=\"Baseline\" id=\"399\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Baseline\" id=\"405\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"406\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"unscript:\" target=\"-1\" id=\"437\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Superscript\" id=\"407\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"superscript:\" target=\"-1\" id=\"430\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Subscript\" id=\"408\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"subscript:\" target=\"-1\" id=\"429\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Raise\" id=\"409\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"raiseBaseline:\" target=\"-1\" id=\"426\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Lower\" id=\"410\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"lowerBaseline:\" target=\"-1\" id=\"427\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"400\"/>\n                                        <menuItem title=\"Show Colors\" keyEquivalent=\"C\" id=\"401\">\n                                            <connections>\n                                                <action selector=\"orderFrontColorPanel:\" target=\"-1\" id=\"433\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"402\"/>\n                                        <menuItem title=\"Copy Style\" keyEquivalent=\"c\" id=\"403\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"copyFont:\" target=\"-1\" id=\"428\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Paste Style\" keyEquivalent=\"v\" id=\"404\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"pasteFont:\" target=\"-1\" id=\"436\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Text\" id=\"496\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Text\" id=\"497\">\n                                    <items>\n                                        <menuItem title=\"Align Left\" keyEquivalent=\"{\" id=\"498\">\n                                            <connections>\n                                                <action selector=\"alignLeft:\" target=\"-1\" id=\"524\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Center\" keyEquivalent=\"|\" id=\"499\">\n                                            <connections>\n                                                <action selector=\"alignCenter:\" target=\"-1\" id=\"518\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Justify\" id=\"500\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"alignJustified:\" target=\"-1\" id=\"523\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Align Right\" keyEquivalent=\"}\" id=\"501\">\n                                            <connections>\n                                                <action selector=\"alignRight:\" target=\"-1\" id=\"521\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"502\"/>\n                                        <menuItem title=\"Writing Direction\" id=\"503\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Writing Direction\" id=\"508\">\n                                                <items>\n                                                    <menuItem title=\"Paragraph\" enabled=\"NO\" id=\"509\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                    </menuItem>\n                                                    <menuItem id=\"510\">\n                                                        <string key=\"title\"> Default</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionNatural:\" target=\"-1\" id=\"525\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"511\">\n                                                        <string key=\"title\"> Left to Right</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionLeftToRight:\" target=\"-1\" id=\"526\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"512\">\n                                                        <string key=\"title\"> Right to Left</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionRightToLeft:\" target=\"-1\" id=\"527\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem isSeparatorItem=\"YES\" id=\"513\"/>\n                                                    <menuItem title=\"Selection\" enabled=\"NO\" id=\"514\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                    </menuItem>\n                                                    <menuItem id=\"515\">\n                                                        <string key=\"title\"> Default</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionNatural:\" target=\"-1\" id=\"528\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"516\">\n                                                        <string key=\"title\"> Left to Right</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionLeftToRight:\" target=\"-1\" id=\"529\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"517\">\n                                                        <string key=\"title\"> Right to Left</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionRightToLeft:\" target=\"-1\" id=\"530\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"504\"/>\n                                        <menuItem title=\"Show Ruler\" id=\"505\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleRuler:\" target=\"-1\" id=\"520\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Copy Ruler\" keyEquivalent=\"c\" id=\"506\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"copyRuler:\" target=\"-1\" id=\"522\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Paste Ruler\" keyEquivalent=\"v\" id=\"507\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"pasteRuler:\" target=\"-1\" id=\"519\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"View\" id=\"295\">\n                    <menu key=\"submenu\" title=\"View\" id=\"296\">\n                        <items>\n                            <menuItem title=\"Show Toolbar\" keyEquivalent=\"t\" id=\"297\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"toggleToolbarShown:\" target=\"-1\" id=\"366\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Customize Toolbar…\" id=\"298\">\n                                <connections>\n                                    <action selector=\"runToolbarCustomizationPalette:\" target=\"-1\" id=\"365\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Window\" id=\"19\">\n                    <menu key=\"submenu\" title=\"Window\" systemMenu=\"window\" id=\"24\">\n                        <items>\n                            <menuItem title=\"Minimize\" keyEquivalent=\"m\" id=\"23\">\n                                <connections>\n                                    <action selector=\"performMiniaturize:\" target=\"-1\" id=\"37\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Zoom\" id=\"239\">\n                                <connections>\n                                    <action selector=\"performZoom:\" target=\"-1\" id=\"240\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"92\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Bring All to Front\" id=\"5\">\n                                <connections>\n                                    <action selector=\"arrangeInFront:\" target=\"-1\" id=\"39\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Help\" id=\"490\">\n                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n                    <menu key=\"submenu\" title=\"Help\" systemMenu=\"help\" id=\"491\">\n                        <items>\n                            <menuItem title=\"") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString (" Help\" keyEquivalent=\"\?\" id=\"492\">\n                                <connections>\n                                    <action selector=\"showHelp:\" target=\"-1\" id=\"493\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n            </items>\n        </menu>\n        <window identifier=\"PrefWindow\" title=\"") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" releasedWhenClosed=\"NO\" animationBehavior=\"default\" id=\"371\">\n            <windowStyleMask key=\"styleMask\" titled=\"YES\"/>\n            <windowPositionMask key=\"initialPositionMask\" leftStrut=\"YES\" rightStrut=\"YES\" topStrut=\"YES\" bottomStrut=\"YES\"/>\n            <rect key=\"contentRect\" x=\"335\" y=\"390\" width=\"615\" height=\"409\"/>\n            <rect key=\"screenRect\" x=\"0.0\" y=\"0.0\" width=\"2560\" height=\"1418\"/>\n            <view key=\"contentView\" id=\"372\">\n                <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"615\" height=\"409\"/>\n                <autoresizingMask key=\"autoresizingMask\"/>\n            </view>\n        </window>\n        <customObject id=\"536\" userLabel=\"Prefs\" customClass=\"Preferences\">\n            <connections>\n                <outlet property=\"window\" destination=\"371\" id=\"MyW-LM-hi6\"/>\n            </connections>\n        </customObject>\n        <customObject id=\"420\" customClass=\"NSFontManager\"/>\n    </objects>\n</document>\n") ;
+  result.appendString ("<\?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"\?>\n<document type=\"com.apple.InterfaceBuilder3.Cocoa.XIB\" version=\"3.0\" toolsVersion=\"7528.3\" systemVersion=\"14C1514\" targetRuntime=\"MacOSX.Cocoa\" propertyAccessControl=\"none\">\n    <dependencies>\n        <deployment version=\"1090\" identifier=\"macosx\"/>\n        <plugIn identifier=\"com.apple.InterfaceBuilder.CocoaPlugin\" version=\"7528.3\"/>\n    </dependencies>\n    <objects>\n        <customObject id=\"-2\" userLabel=\"File's Owner\" customClass=\"NSApplication\"/>\n        <customObject id=\"-1\" userLabel=\"First Responder\" customClass=\"FirstResponder\"/>\n        <customObject id=\"-3\" userLabel=\"Application\" customClass=\"NSObject\"/>\n        <menu title=\"AMainMenu\" systemMenu=\"main\" id=\"29\">\n            <items>\n                <menuItem title=\"") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" id=\"56\">\n                    <menu key=\"submenu\" title=\"") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" systemMenu=\"apple\" id=\"57\">\n                        <items>\n                            <menuItem title=\"About ") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" id=\"58\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <connections>\n                                    <action selector=\"orderFrontStandardAboutPanel:\" target=\"-2\" id=\"142\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"236\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Preferences…\" keyEquivalent=\",\" id=\"129\"/>\n                            <menuItem isSeparatorItem=\"YES\" id=\"143\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Services\" id=\"131\">\n                                <menu key=\"submenu\" title=\"Services\" systemMenu=\"services\" id=\"130\"/>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"144\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Hide ") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" keyEquivalent=\"h\" id=\"134\">\n                                <connections>\n                                    <action selector=\"hide:\" target=\"-1\" id=\"367\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Hide Others\" keyEquivalent=\"h\" id=\"145\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"hideOtherApplications:\" target=\"-1\" id=\"368\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Show All\" id=\"150\">\n                                <connections>\n                                    <action selector=\"unhideAllApplications:\" target=\"-1\" id=\"370\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"149\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Quit ") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" keyEquivalent=\"q\" id=\"136\">\n                                <connections>\n                                    <action selector=\"terminate:\" target=\"-3\" id=\"449\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"File\" id=\"83\">\n                    <menu key=\"submenu\" title=\"File\" id=\"81\">\n                        <items>\n                            <menuItem title=\"New\" keyEquivalent=\"n\" id=\"82\">\n                                <connections>\n                                    <action selector=\"newDocument:\" target=\"-1\" id=\"373\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Open…\" keyEquivalent=\"o\" id=\"72\">\n                                <connections>\n                                    <action selector=\"openDocument:\" target=\"-1\" id=\"374\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Open Recent\" id=\"124\">\n                                <menu key=\"submenu\" title=\"Open Recent\" systemMenu=\"recentDocuments\" id=\"125\">\n                                    <items>\n                                        <menuItem title=\"Clear Menu\" id=\"126\">\n                                            <connections>\n                                                <action selector=\"clearRecentDocuments:\" target=\"-1\" id=\"127\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"79\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Close\" keyEquivalent=\"w\" id=\"73\">\n                                <connections>\n                                    <action selector=\"performClose:\" target=\"-1\" id=\"193\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Save…\" keyEquivalent=\"s\" id=\"75\">\n                                <connections>\n                                    <action selector=\"saveDocument:\" target=\"-1\" id=\"362\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Revert to Saved\" id=\"112\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <connections>\n                                    <action selector=\"revertDocumentToSaved:\" target=\"-1\" id=\"364\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"74\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Page Setup...\" keyEquivalent=\"P\" id=\"77\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"runPageLayout:\" target=\"-1\" id=\"87\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Print…\" keyEquivalent=\"p\" id=\"78\">\n                                <connections>\n                                    <action selector=\"print:\" target=\"-1\" id=\"86\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Edit\" id=\"217\">\n                    <menu key=\"submenu\" title=\"Edit\" id=\"205\">\n                        <items>\n                            <menuItem title=\"Undo\" keyEquivalent=\"z\" id=\"207\">\n                                <connections>\n                                    <action selector=\"undo:\" target=\"-1\" id=\"223\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Redo\" keyEquivalent=\"Z\" id=\"215\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"redo:\" target=\"-1\" id=\"231\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"206\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Cut\" keyEquivalent=\"x\" id=\"199\">\n                                <connections>\n                                    <action selector=\"cut:\" target=\"-1\" id=\"228\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Copy\" keyEquivalent=\"c\" id=\"197\">\n                                <connections>\n                                    <action selector=\"copy:\" target=\"-1\" id=\"224\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Paste\" keyEquivalent=\"v\" id=\"203\">\n                                <connections>\n                                    <action selector=\"paste:\" target=\"-1\" id=\"226\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Paste and Match Style\" keyEquivalent=\"V\" id=\"485\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"pasteAsPlainText:\" target=\"-1\" id=\"486\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Delete\" id=\"202\">\n                                <connections>\n                                    <action selector=\"delete:\" target=\"-1\" id=\"235\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Select All\" keyEquivalent=\"a\" id=\"198\">\n                                <connections>\n                                    <action selector=\"selectAll:\" target=\"-1\" id=\"232\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"214\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Find\" id=\"218\">\n                                <menu key=\"submenu\" title=\"Find\" id=\"220\">\n                                    <items>\n                                        <menuItem title=\"Find…\" tag=\"1\" keyEquivalent=\"f\" id=\"209\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"241\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find and Replace…\" tag=\"12\" keyEquivalent=\"f\" id=\"534\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"535\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find Next\" tag=\"2\" keyEquivalent=\"g\" id=\"208\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"487\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Find Previous\" tag=\"3\" keyEquivalent=\"G\" id=\"213\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"488\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Use Selection for Find\" tag=\"7\" keyEquivalent=\"e\" id=\"221\">\n                                            <connections>\n                                                <action selector=\"performFindPanelAction:\" target=\"-1\" id=\"489\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Jump to Selection\" keyEquivalent=\"j\" id=\"210\">\n                                            <connections>\n                                                <action selector=\"centerSelectionInVisibleArea:\" target=\"-1\" id=\"245\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Spelling and Grammar\" id=\"216\">\n                                <menu key=\"submenu\" title=\"Spelling and Grammar\" id=\"200\">\n                                    <items>\n                                        <menuItem title=\"Show Spelling and Grammar\" keyEquivalent=\":\" id=\"204\">\n                                            <connections>\n                                                <action selector=\"showGuessPanel:\" target=\"-1\" id=\"230\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Check Document Now\" keyEquivalent=\";\" id=\"201\">\n                                            <connections>\n                                                <action selector=\"checkSpelling:\" target=\"-1\" id=\"225\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"453\"/>\n                                        <menuItem title=\"Check Spelling While Typing\" id=\"219\">\n                                            <connections>\n                                                <action selector=\"toggleContinuousSpellChecking:\" target=\"-1\" id=\"222\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Check Grammar With Spelling\" id=\"346\">\n                                            <connections>\n                                                <action selector=\"toggleGrammarChecking:\" target=\"-1\" id=\"347\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Correct Spelling Automatically\" id=\"454\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticSpellingCorrection:\" target=\"-1\" id=\"456\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Substitutions\" id=\"348\">\n                                <menu key=\"submenu\" title=\"Substitutions\" id=\"349\">\n                                    <items>\n                                        <menuItem title=\"Show Substitutions\" id=\"457\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"orderFrontSubstitutionsPanel:\" target=\"-1\" id=\"458\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"459\"/>\n                                        <menuItem title=\"Smart Copy/Paste\" tag=\"1\" keyEquivalent=\"f\" id=\"350\">\n                                            <connections>\n                                                <action selector=\"toggleSmartInsertDelete:\" target=\"-1\" id=\"355\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Quotes\" tag=\"2\" keyEquivalent=\"g\" id=\"351\">\n                                            <connections>\n                                                <action selector=\"toggleAutomaticQuoteSubstitution:\" target=\"-1\" id=\"356\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Dashes\" id=\"460\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticDashSubstitution:\" target=\"-1\" id=\"461\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smart Links\" tag=\"3\" keyEquivalent=\"G\" id=\"354\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" shift=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticLinkDetection:\" target=\"-1\" id=\"357\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Text Replacement\" id=\"462\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleAutomaticTextReplacement:\" target=\"-1\" id=\"463\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Transformations\" id=\"450\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Transformations\" id=\"451\">\n                                    <items>\n                                        <menuItem title=\"Make Upper Case\" id=\"452\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"uppercaseWord:\" target=\"-1\" id=\"464\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Make Lower Case\" id=\"465\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"lowercaseWord:\" target=\"-1\" id=\"468\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Capitalize\" id=\"466\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"capitalizeWord:\" target=\"-1\" id=\"467\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Speech\" id=\"211\">\n                                <menu key=\"submenu\" title=\"Speech\" id=\"212\">\n                                    <items>\n                                        <menuItem title=\"Start Speaking\" id=\"196\">\n                                            <connections>\n                                                <action selector=\"startSpeaking:\" target=\"-1\" id=\"233\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Stop Speaking\" id=\"195\">\n                                            <connections>\n                                                <action selector=\"stopSpeaking:\" target=\"-1\" id=\"227\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Format\" id=\"375\">\n                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n                    <menu key=\"submenu\" title=\"Format\" id=\"376\">\n                        <items>\n                            <menuItem title=\"Font\" id=\"377\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Font\" systemMenu=\"font\" id=\"388\">\n                                    <items>\n                                        <menuItem title=\"Show Fonts\" keyEquivalent=\"t\" id=\"389\">\n                                            <connections>\n                                                <action selector=\"orderFrontFontPanel:\" target=\"420\" id=\"424\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Bold\" tag=\"2\" keyEquivalent=\"b\" id=\"390\">\n                                            <connections>\n                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"421\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Italic\" tag=\"1\" keyEquivalent=\"i\" id=\"391\">\n                                            <connections>\n                                                <action selector=\"addFontTrait:\" target=\"420\" id=\"422\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Underline\" keyEquivalent=\"u\" id=\"392\">\n                                            <connections>\n                                                <action selector=\"underline:\" target=\"-1\" id=\"432\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"393\"/>\n                                        <menuItem title=\"Bigger\" tag=\"3\" keyEquivalent=\"+\" id=\"394\">\n                                            <connections>\n                                                <action selector=\"modifyFont:\" target=\"420\" id=\"425\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Smaller\" tag=\"4\" keyEquivalent=\"-\" id=\"395\">\n                                            <connections>\n                                                <action selector=\"modifyFont:\" target=\"420\" id=\"423\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"396\"/>\n                                        <menuItem title=\"Kern\" id=\"397\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Kern\" id=\"415\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"416\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useStandardKerning:\" target=\"-1\" id=\"438\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use None\" id=\"417\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"turnOffKerning:\" target=\"-1\" id=\"441\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Tighten\" id=\"418\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"tightenKerning:\" target=\"-1\" id=\"431\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Loosen\" id=\"419\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"loosenKerning:\" target=\"-1\" id=\"435\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem title=\"Ligature\" id=\"398\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Ligature\" id=\"411\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"412\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useStandardLigatures:\" target=\"-1\" id=\"439\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use None\" id=\"413\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"turnOffLigatures:\" target=\"-1\" id=\"440\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Use All\" id=\"414\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"useAllLigatures:\" target=\"-1\" id=\"434\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem title=\"Baseline\" id=\"399\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Baseline\" id=\"405\">\n                                                <items>\n                                                    <menuItem title=\"Use Default\" id=\"406\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"unscript:\" target=\"-1\" id=\"437\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Superscript\" id=\"407\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"superscript:\" target=\"-1\" id=\"430\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Subscript\" id=\"408\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"subscript:\" target=\"-1\" id=\"429\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Raise\" id=\"409\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"raiseBaseline:\" target=\"-1\" id=\"426\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem title=\"Lower\" id=\"410\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"lowerBaseline:\" target=\"-1\" id=\"427\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"400\"/>\n                                        <menuItem title=\"Show Colors\" keyEquivalent=\"C\" id=\"401\">\n                                            <connections>\n                                                <action selector=\"orderFrontColorPanel:\" target=\"-1\" id=\"433\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"402\"/>\n                                        <menuItem title=\"Copy Style\" keyEquivalent=\"c\" id=\"403\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"copyFont:\" target=\"-1\" id=\"428\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Paste Style\" keyEquivalent=\"v\" id=\"404\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"pasteFont:\" target=\"-1\" id=\"436\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                            <menuItem title=\"Text\" id=\"496\">\n                                <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                <menu key=\"submenu\" title=\"Text\" id=\"497\">\n                                    <items>\n                                        <menuItem title=\"Align Left\" keyEquivalent=\"{\" id=\"498\">\n                                            <connections>\n                                                <action selector=\"alignLeft:\" target=\"-1\" id=\"524\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Center\" keyEquivalent=\"|\" id=\"499\">\n                                            <connections>\n                                                <action selector=\"alignCenter:\" target=\"-1\" id=\"518\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Justify\" id=\"500\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"alignJustified:\" target=\"-1\" id=\"523\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Align Right\" keyEquivalent=\"}\" id=\"501\">\n                                            <connections>\n                                                <action selector=\"alignRight:\" target=\"-1\" id=\"521\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"502\"/>\n                                        <menuItem title=\"Writing Direction\" id=\"503\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <menu key=\"submenu\" title=\"Writing Direction\" id=\"508\">\n                                                <items>\n                                                    <menuItem title=\"Paragraph\" enabled=\"NO\" id=\"509\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                    </menuItem>\n                                                    <menuItem id=\"510\">\n                                                        <string key=\"title\"> Default</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionNatural:\" target=\"-1\" id=\"525\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"511\">\n                                                        <string key=\"title\"> Left to Right</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionLeftToRight:\" target=\"-1\" id=\"526\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"512\">\n                                                        <string key=\"title\"> Right to Left</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeBaseWritingDirectionRightToLeft:\" target=\"-1\" id=\"527\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem isSeparatorItem=\"YES\" id=\"513\"/>\n                                                    <menuItem title=\"Selection\" enabled=\"NO\" id=\"514\">\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                    </menuItem>\n                                                    <menuItem id=\"515\">\n                                                        <string key=\"title\"> Default</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionNatural:\" target=\"-1\" id=\"528\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"516\">\n                                                        <string key=\"title\"> Left to Right</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionLeftToRight:\" target=\"-1\" id=\"529\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                    <menuItem id=\"517\">\n                                                        <string key=\"title\"> Right to Left</string>\n                                                        <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                                        <connections>\n                                                            <action selector=\"makeTextWritingDirectionRightToLeft:\" target=\"-1\" id=\"530\"/>\n                                                        </connections>\n                                                    </menuItem>\n                                                </items>\n                                            </menu>\n                                        </menuItem>\n                                        <menuItem isSeparatorItem=\"YES\" id=\"504\"/>\n                                        <menuItem title=\"Show Ruler\" id=\"505\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\"/>\n                                            <connections>\n                                                <action selector=\"toggleRuler:\" target=\"-1\" id=\"520\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Copy Ruler\" keyEquivalent=\"c\" id=\"506\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"copyRuler:\" target=\"-1\" id=\"522\"/>\n                                            </connections>\n                                        </menuItem>\n                                        <menuItem title=\"Paste Ruler\" keyEquivalent=\"v\" id=\"507\">\n                                            <modifierMask key=\"keyEquivalentModifierMask\" control=\"YES\" command=\"YES\"/>\n                                            <connections>\n                                                <action selector=\"pasteRuler:\" target=\"-1\" id=\"519\"/>\n                                            </connections>\n                                        </menuItem>\n                                    </items>\n                                </menu>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"View\" id=\"295\">\n                    <menu key=\"submenu\" title=\"View\" id=\"296\">\n                        <items>\n                            <menuItem title=\"Show Toolbar\" keyEquivalent=\"t\" id=\"297\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" option=\"YES\" command=\"YES\"/>\n                                <connections>\n                                    <action selector=\"toggleToolbarShown:\" target=\"-1\" id=\"366\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Customize Toolbar…\" id=\"298\">\n                                <connections>\n                                    <action selector=\"runToolbarCustomizationPalette:\" target=\"-1\" id=\"365\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Window\" id=\"19\">\n                    <menu key=\"submenu\" title=\"Window\" systemMenu=\"window\" id=\"24\">\n                        <items>\n                            <menuItem title=\"Minimize\" keyEquivalent=\"m\" id=\"23\">\n                                <connections>\n                                    <action selector=\"performMiniaturize:\" target=\"-1\" id=\"37\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem title=\"Zoom\" id=\"239\">\n                                <connections>\n                                    <action selector=\"performZoom:\" target=\"-1\" id=\"240\"/>\n                                </connections>\n                            </menuItem>\n                            <menuItem isSeparatorItem=\"YES\" id=\"92\">\n                                <modifierMask key=\"keyEquivalentModifierMask\" command=\"YES\"/>\n                            </menuItem>\n                            <menuItem title=\"Bring All to Front\" id=\"5\">\n                                <connections>\n                                    <action selector=\"arrangeInFront:\" target=\"-1\" id=\"39\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n                <menuItem title=\"Help\" id=\"490\">\n                    <modifierMask key=\"keyEquivalentModifierMask\"/>\n                    <menu key=\"submenu\" title=\"Help\" systemMenu=\"help\" id=\"491\">\n                        <items>\n                            <menuItem title=\"") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString (" Help\" keyEquivalent=\"\?\" id=\"492\">\n                                <connections>\n                                    <action selector=\"showHelp:\" target=\"-1\" id=\"493\"/>\n                                </connections>\n                            </menuItem>\n                        </items>\n                    </menu>\n                </menuItem>\n            </items>\n        </menu>\n        <window identifier=\"PrefWindow\" title=\"") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("\" allowsToolTipsWhenApplicationIsInactive=\"NO\" autorecalculatesKeyViewLoop=\"NO\" releasedWhenClosed=\"NO\" animationBehavior=\"default\" id=\"371\">\n            <windowStyleMask key=\"styleMask\" titled=\"YES\"/>\n            <windowPositionMask key=\"initialPositionMask\" leftStrut=\"YES\" rightStrut=\"YES\" topStrut=\"YES\" bottomStrut=\"YES\"/>\n            <rect key=\"contentRect\" x=\"335\" y=\"390\" width=\"615\" height=\"409\"/>\n            <rect key=\"screenRect\" x=\"0.0\" y=\"0.0\" width=\"2560\" height=\"1418\"/>\n            <view key=\"contentView\" id=\"372\">\n                <rect key=\"frame\" x=\"0.0\" y=\"0.0\" width=\"615\" height=\"409\"/>\n                <autoresizingMask key=\"autoresizingMask\"/>\n            </view>\n        </window>\n        <customObject id=\"536\" userLabel=\"Prefs\" customClass=\"Preferences\">\n            <connections>\n                <outlet property=\"window\" destination=\"371\" id=\"MyW-LM-hi6\"/>\n            </connections>\n        </customObject>\n        <customObject id=\"420\" customClass=\"NSFontManager\"/>\n    </objects>\n</document>\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6888,29 +6676,29 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_info_5F_plist (Compiler *
                                                                       const GALGAS_stringset & in_HANDLED_5F_EXTENSION_5F_SET
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n <key>CFBundleDevelopmentRegion</key>\n <string>English</string>\n <key>CFBundleExecutable</key>\n <string>${EXECUTABLE_NAME}</string>\n <key>CFBundleIconFile</key>\n <string>application_icns</string>\n <key>CFBundleIdentifier</key>\n <string>") ;
-  result.addString (in_APPLICATION_5F_BUNDLE_5F_BASE.stringValue ()) ;
-  result.addString (".") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("</string>\n <key>CFBundleInfoDictionaryVersion</key>\n <string>6.0</string>\n <key>CFBundleName</key>\n <string>${PRODUCT_NAME}</string>\n <key>CFBundlePackageType</key>\n <string>APPL</string>\n <key>CFBundleSignature</key>\n <string>\?\?\?\?</string>\n <key>LSMinimumSystemVersion</key>\n <string>10.9</string>\n <key>CFBundleShortVersionString</key>\n <string>") ;
-  result.addString (in_VERSION_5F_STRING.stringValue ()) ;
-  result.addString ("</string>\n <key>NSMainNibFile</key>\n <string>MainMenu</string>\n <key>NSPrincipalClass</key>\n <string>EBApplication</string>\n <key>CFBundleDocumentTypes</key>\n <array>\n") ;
+  result.appendString ("<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n <key>CFBundleDevelopmentRegion</key>\n <string>English</string>\n <key>CFBundleExecutable</key>\n <string>${EXECUTABLE_NAME}</string>\n <key>CFBundleIconFile</key>\n <string>application_icns</string>\n <key>CFBundleIdentifier</key>\n <string>") ;
+  result.appendString (in_APPLICATION_5F_BUNDLE_5F_BASE.stringValue ()) ;
+  result.appendString (".") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("</string>\n <key>CFBundleInfoDictionaryVersion</key>\n <string>6.0</string>\n <key>CFBundleName</key>\n <string>${PRODUCT_NAME}</string>\n <key>CFBundlePackageType</key>\n <string>APPL</string>\n <key>CFBundleSignature</key>\n <string>\?\?\?\?</string>\n <key>LSMinimumSystemVersion</key>\n <string>10.9</string>\n <key>CFBundleShortVersionString</key>\n <string>") ;
+  result.appendString (in_VERSION_5F_STRING.stringValue ()) ;
+  result.appendString ("</string>\n <key>NSMainNibFile</key>\n <string>MainMenu</string>\n <key>NSPrincipalClass</key>\n <string>EBApplication</string>\n <key>CFBundleDocumentTypes</key>\n <array>\n") ;
   GALGAS_uint index_1016_ (0) ;
   if (in_HANDLED_5F_EXTENSION_5F_SET.isValid ()) {
     cEnumerator_stringset enumerator_1016 (in_HANDLED_5F_EXTENSION_5F_SET, kENUMERATION_UP) ;
     while (enumerator_1016.hasCurrentObject ()) {
-      result.addString ("  <dict>\n   <key>CFBundleTypeIconFile</key>\n   <string>") ;
-      result.addString (enumerator_1016.current_key (HERE).stringValue ()) ;
-      result.addString ("_icns</string>\n   <key>CFBundleTypeExtensions</key>\n   <array>\n    <string>") ;
-      result.addString (enumerator_1016.current_key (HERE).stringValue ()) ;
-      result.addString ("</string>\n   </array>\n   <key>CFBundleTypeName</key>\n   <string>") ;
-      result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-      result.addString (" Source</string>\n   <key>CFBundleTypeOSTypes</key>\n   <array>\n    <string>TEXT</string>\n   </array>\n   <key>CFBundleTypeRole</key>\n   <string>Editor</string>\n   <key>LSTypeIsPackage</key>\n   <false/>\n   <key>NSDocumentClass</key>\n   <string>OC_GGS_Document</string>\n  </dict>\n") ;
+      result.appendString ("  <dict>\n   <key>CFBundleTypeIconFile</key>\n   <string>") ;
+      result.appendString (enumerator_1016.current_key (HERE).stringValue ()) ;
+      result.appendString ("_icns</string>\n   <key>CFBundleTypeExtensions</key>\n   <array>\n    <string>") ;
+      result.appendString (enumerator_1016.current_key (HERE).stringValue ()) ;
+      result.appendString ("</string>\n   </array>\n   <key>CFBundleTypeName</key>\n   <string>") ;
+      result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+      result.appendString (" Source</string>\n   <key>CFBundleTypeOSTypes</key>\n   <array>\n    <string>TEXT</string>\n   </array>\n   <key>CFBundleTypeRole</key>\n   <string>Editor</string>\n   <key>LSTypeIsPackage</key>\n   <false/>\n   <key>NSDocumentClass</key>\n   <string>OC_GGS_Document</string>\n  </dict>\n") ;
       index_1016_.increment () ;
       enumerator_1016.gotoNextObject () ;
     }
   }
-  result.addString ("\n </array>\n</dict>\n</plist>\n") ;
+  result.appendString ("\n </array>\n</dict>\n</plist>\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6924,11 +6712,11 @@ GALGAS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (Compile
                                                                          const GALGAS_string & in_PROJECT_5F_NAME
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("#! /usr/bin/env python\n# -*- coding: UTF-8 -*-\n\n//-----------------------------------------------------------------------------*\n\nimport subprocess, os, sys, atexit\n\n//-----------------------------------------------------------------------------*\n\ndef cleanup () :\n  if buildProcess.poll () == None :\n    buildProcess.kill ()\n    print 'Build process killed'\n\n//-----------------------------------------------------------------------------*\n\n//------------------ Register a function for killing build subprocess\natexit.register (cleanup)\n//------------------ Get compiler as first argument\ncompiler = \"eb\" # Default compiler\nif len (sys.argv) > 1 :\n  compiler = sys.argv [1]\n//------------------ Get script absolute path\nscriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\nos.chdir (scriptDir)\n//------------------ Build\nprint \"+ \" + compiler + \" ") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString (".eb\"\nbuildProcess = subprocess.Popen ([compiler, \"") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString (".eb\"])\nbuildProcess.wait ()\n//------------------ Xcode build\nif buildProcess.returncode == 0 :\n  buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n  buildProcess.wait ()\n//------------------ Result\nif buildProcess.returncode != 0 :\n  sys.exit (buildProcess.returncode)\n\n//-----------------------------------------------------------------------------*\n") ;
+  result.appendString ("#! /usr/bin/env python\n# -*- coding: UTF-8 -*-\n\n//-----------------------------------------------------------------------------*\n\nimport subprocess, os, sys, atexit\n\n//-----------------------------------------------------------------------------*\n\ndef cleanup () :\n  if buildProcess.poll () == None :\n    buildProcess.kill ()\n    print 'Build process killed'\n\n//-----------------------------------------------------------------------------*\n\n//------------------ Register a function for killing build subprocess\natexit.register (cleanup)\n//------------------ Get compiler as first argument\ncompiler = \"eb\" # Default compiler\nif len (sys.argv) > 1 :\n  compiler = sys.argv [1]\n//------------------ Get script absolute path\nscriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\nos.chdir (scriptDir)\n//------------------ Build\nprint \"+ \" + compiler + \" ") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString (".eb\"\nbuildProcess = subprocess.Popen ([compiler, \"") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString (".eb\"])\nbuildProcess.wait ()\n//------------------ Xcode build\nif buildProcess.returncode == 0 :\n  buildProcess = subprocess.Popen ([\"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild\"])\n  buildProcess.wait ()\n//------------------ Result\nif buildProcess.returncode != 0 :\n  sys.exit (buildProcess.returncode)\n\n//-----------------------------------------------------------------------------*\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -6990,36 +6778,36 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
                                                                                const GALGAS_string & in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("// !$*UTF8*$!\n{\n  archiveVersion = 1;\n  classes = {\n  };\n  objectVersion = 42;\n  objects = {\n\n  /*------------------------------------------------------------------ PBXBuildFile */\n") ;
+  result.appendString ("// !$*UTF8*$!\n{\n  archiveVersion = 1;\n  classes = {\n  };\n  objectVersion = 42;\n  objects = {\n\n  /*------------------------------------------------------------------ PBXBuildFile */\n") ;
   GALGAS_uint index_249_ (0) ;
   if (in_BUILD_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator_BuildFileList enumerator_249 (in_BUILD_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_249.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_249.current_mBuildReference (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_249.current_mFileName (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXBuildFile;\n    fileRef = ") ;
-      result.addString (enumerator_249.current_mFileReference (HERE).stringValue ()) ;
-      result.addString (" ;\n    settings = {ATTRIBUTES = (); };\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_249.current_mBuildReference (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_249.current_mFileName (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXBuildFile;\n    fileRef = ") ;
+      result.appendString (enumerator_249.current_mFileReference (HERE).stringValue ()) ;
+      result.appendString (" ;\n    settings = {ATTRIBUTES = (); };\n  };\n\n") ;
       index_249_.increment () ;
       enumerator_249.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXFileReference */\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXFileReference */\n") ;
   GALGAS_uint index_554_ (0) ;
   if (in_CPP_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_554 (in_CPP_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_554.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_554.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_554.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.cpp.cpp;\n    name = ") ;
-      result.addString (enumerator_554.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_554.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 26)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_554.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_554.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.cpp.cpp;\n    name = ") ;
+      result.appendString (enumerator_554.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 25)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_554.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 26)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_554_.increment () ;
       enumerator_554.gotoNextObject () ;
     }
@@ -7028,15 +6816,15 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_M_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_901 (in_M_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_901.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_901.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_901.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.c.obj;\n    name = ") ;
-      result.addString (enumerator_901.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_901.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 36)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_901.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_901.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.c.obj;\n    name = ") ;
+      result.appendString (enumerator_901.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 35)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_901.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 36)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_901_.increment () ;
       enumerator_901.gotoNextObject () ;
     }
@@ -7045,15 +6833,15 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_MM_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_1247 (in_MM_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1247.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_1247.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_1247.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.cpp.objcpp;\n    name = ") ;
-      result.addString (enumerator_1247.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_1247.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 46)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_1247.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_1247.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.cpp.objcpp;\n    name = ") ;
+      result.appendString (enumerator_1247.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 45)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_1247.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 46)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_1247_.increment () ;
       enumerator_1247.gotoNextObject () ;
     }
@@ -7062,15 +6850,15 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_SWIFT_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_1601 (in_SWIFT_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1601.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_1601.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_1601.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.swift;\n    name = ") ;
-      result.addString (enumerator_1601.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_1601.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 56)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_1601.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_1601.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.swift;\n    name = ") ;
+      result.appendString (enumerator_1601.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 55)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_1601.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 56)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_1601_.increment () ;
       enumerator_1601.gotoNextObject () ;
     }
@@ -7079,15 +6867,15 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_HEADER_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_1951 (in_HEADER_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1951.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_1951.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_1951.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.c.h;\n    name = ") ;
-      result.addString (enumerator_1951.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_1951.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 66)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_1951.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_1951.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = sourcecode.c.h;\n    name = ") ;
+      result.appendString (enumerator_1951.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 65)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_1951.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 66)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_1951_.increment () ;
       enumerator_1951.gotoNextObject () ;
     }
@@ -7096,15 +6884,15 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_FRAMEWORK_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_2302 (in_FRAMEWORK_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2302.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_2302.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_2302.current_mValue_31_ (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXFileReference;\n    lastKnownFileType = wrapper.framework;\n    name = ") ;
-      result.addString (enumerator_2302.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_2302.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 75)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_2302.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_2302.current_mValue_31_ (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXFileReference;\n    lastKnownFileType = wrapper.framework;\n    name = ") ;
+      result.appendString (enumerator_2302.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 74)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_2302.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 75)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_2302_.increment () ;
       enumerator_2302.gotoNextObject () ;
     }
@@ -7113,11 +6901,11 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_2835 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_2835.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_2835.current_mProductFileReference (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    explicitFileType = \"compiled.mach-o.executable\";\n    includeInIndex = 0;\n    path = ") ;
-      result.addString (enumerator_2835.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 84)).stringValue ()) ;
-      result.addString (";\n    sourceTree = BUILT_PRODUCTS_DIR;\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_2835.current_mProductFileReference (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    explicitFileType = \"compiled.mach-o.executable\";\n    includeInIndex = 0;\n    path = ") ;
+      result.appendString (enumerator_2835.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 84)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = BUILT_PRODUCTS_DIR;\n  };\n\n") ;
       index_2835_.increment () ;
       enumerator_2835.gotoNextObject () ;
     }
@@ -7126,11 +6914,11 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_3426 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3426.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_3426.current_mProductFileReference (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    explicitFileType = \"compiled.mach-o.executable\";\n    includeInIndex = 0;\n    path = ") ;
-      result.addString (enumerator_3426.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 93)).stringValue ()) ;
-      result.addString (";\n    sourceTree = BUILT_PRODUCTS_DIR;\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_3426.current_mProductFileReference (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    explicitFileType = \"compiled.mach-o.executable\";\n    includeInIndex = 0;\n    path = ") ;
+      result.appendString (enumerator_3426.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 93)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = BUILT_PRODUCTS_DIR;\n  };\n\n") ;
       index_3426_.increment () ;
       enumerator_3426.gotoNextObject () ;
     }
@@ -7139,13 +6927,13 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_PLIST_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_3735 (in_PLIST_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_3735.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_3735.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = text.plist;\n    name = ") ;
-      result.addString (enumerator_3735.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_3735.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 103)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_3735.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = text.plist;\n    name = ") ;
+      result.appendString (enumerator_3735.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 102)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_3735.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 103)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_3735_.increment () ;
       enumerator_3735.gotoNextObject () ;
     }
@@ -7154,13 +6942,13 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_XIB_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_4059 (in_XIB_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_4059.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_4059.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = wrapper.xib;\n    name = ") ;
-      result.addString (enumerator_4059.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_4059.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 113)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_4059.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    fileEncoding = 4;\n    lastKnownFileType = wrapper.xib;\n    name = ") ;
+      result.appendString (enumerator_4059.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 112)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_4059.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 113)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_4059_.increment () ;
       enumerator_4059.gotoNextObject () ;
     }
@@ -7169,13 +6957,13 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_TIFF_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_4385 (in_TIFF_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_4385.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_4385.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    lastKnownFileType = image.tiff;\n    name = ") ;
-      result.addString (enumerator_4385.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_4385.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 122)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_4385.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    lastKnownFileType = image.tiff;\n    name = ") ;
+      result.appendString (enumerator_4385.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 121)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_4385.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 122)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_4385_.increment () ;
       enumerator_4385.gotoNextObject () ;
     }
@@ -7184,18 +6972,18 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_ICNS_5F_FILE_5F_LIST.isValid ()) {
     cEnumerator__32_stringlist enumerator_4684 (in_ICNS_5F_FILE_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_4684.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_4684.current_mValue_30_ (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFileReference;\n    lastKnownFileType = image.icns;\n    name = ") ;
-      result.addString (enumerator_4684.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_4684.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 131)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_4684.current_mValue_30_ (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFileReference;\n    lastKnownFileType = image.icns;\n    name = ") ;
+      result.appendString (enumerator_4684.current_mValue_31_ (HERE).getter_lastPathComponent (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 130)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_4684.current_mValue_31_ (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 131)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n\n") ;
       index_4684_.increment () ;
       enumerator_4684.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */\n\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXFrameworksBuildPhase */\n\n") ;
   GALGAS_uint index_5295_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_5295 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
@@ -7203,21 +6991,21 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
       const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, enumerator_5295.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
       switch (test_0) {
       case kBoolTrue : {
-        result.addString ("  ") ;
-        result.addString (enumerator_5295.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
-        result.addString (" = {\n    isa = PBXFrameworksBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
+        result.appendString ("  ") ;
+        result.appendString (enumerator_5295.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
+        result.appendString (" = {\n    isa = PBXFrameworksBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
         GALGAS_uint index_5534_ (0) ;
         if (enumerator_5295.current_mFrameworksFileRefList (HERE).isValid ()) {
           cEnumerator_stringlist enumerator_5534 (enumerator_5295.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
           while (enumerator_5534.hasCurrentObject ()) {
-            result.addString ("      ") ;
-            result.addString (enumerator_5534.current_mValue (HERE).stringValue ()) ;
-            result.addString (",\n") ;
+            result.appendString ("      ") ;
+            result.appendString (enumerator_5534.current_mValue (HERE).stringValue ()) ;
+            result.appendString (",\n") ;
             index_5534_.increment () ;
             enumerator_5534.gotoNextObject () ;
           }
         }
-        result.addString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
+        result.appendString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
@@ -7232,102 +7020,102 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_5987 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_5987.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_5987.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" = {\n    isa = PBXFrameworksBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_5987.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" = {\n    isa = PBXFrameworksBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
       GALGAS_uint index_6171_ (0) ;
       if (enumerator_5987.current_mFrameworksFileRefList (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_6171 (enumerator_5987.current_mFrameworksFileRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_6171.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_6171.current_mValue (HERE).stringValue ()) ;
-          result.addString (",\n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_6171.current_mValue (HERE).stringValue ()) ;
+          result.appendString (",\n") ;
           index_6171_.increment () ;
           enumerator_6171.gotoNextObject () ;
         }
       }
-      result.addString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
+      result.appendString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
       index_5987_.increment () ;
       enumerator_5987.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXGroup section */\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXGroup section */\n") ;
   GALGAS_uint index_6447_ (0) ;
   if (in_GROUPS.isValid ()) {
     cEnumerator_XCodeGroupList enumerator_6447 (in_GROUPS, kENUMERATION_UP) ;
     while (enumerator_6447.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_6447.current_mGroupReference (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_6447.current_mGroupName (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXGroup;\n    children = (\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_6447.current_mGroupReference (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_6447.current_mGroupName (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXGroup;\n    children = (\n") ;
       GALGAS_uint index_6574_ (0) ;
       if (enumerator_6447.current_mChildrenRefs (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_6574 (enumerator_6447.current_mChildrenRefs (HERE), kENUMERATION_UP) ;
         while (enumerator_6574.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_6574.current_mValue (HERE).stringValue ()) ;
-          result.addString (", \n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_6574.current_mValue (HERE).stringValue ()) ;
+          result.appendString (", \n") ;
           index_6574_.increment () ;
           enumerator_6574.gotoNextObject () ;
         }
       }
-      result.addString ("    );\n    name = ") ;
-      result.addString (enumerator_6447.current_mGroupName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 174)).stringValue ()) ;
-      result.addString (";\n    path = ") ;
-      result.addString (enumerator_6447.current_mGroupPath (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 175)).stringValue ()) ;
-      result.addString (";\n    sourceTree = \"<group>\";\n  };\n") ;
+      result.appendString ("    );\n    name = ") ;
+      result.appendString (enumerator_6447.current_mGroupName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 174)).stringValue ()) ;
+      result.appendString (";\n    path = ") ;
+      result.appendString (enumerator_6447.current_mGroupPath (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 175)).stringValue ()) ;
+      result.appendString (";\n    sourceTree = \"<group>\";\n  };\n") ;
       index_6447_.increment () ;
       enumerator_6447.gotoNextObject () ;
     }
   }
-  result.addString ("\n  ") ;
-  result.addString (in_MAIN_5F_GROUP_5F_REF.stringValue ()) ;
-  result.addString (" /* Main Group */ = {\n    isa = PBXGroup;\n    children = (\n") ;
+  result.appendString ("\n  ") ;
+  result.appendString (in_MAIN_5F_GROUP_5F_REF.stringValue ()) ;
+  result.appendString (" /* Main Group */ = {\n    isa = PBXGroup;\n    children = (\n") ;
   GALGAS_uint index_6886_ (0) ;
   if (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS.isValid ()) {
     cEnumerator_stringlist enumerator_6886 (in_MAIN_5F_GROUP_5F_CHILDREN_5F_REFS, kENUMERATION_UP) ;
     while (enumerator_6886.hasCurrentObject ()) {
-      result.addString ("      ") ;
-      result.addString (enumerator_6886.current_mValue (HERE).stringValue ()) ;
-      result.addString (",\n") ;
+      result.appendString ("      ") ;
+      result.appendString (enumerator_6886.current_mValue (HERE).stringValue ()) ;
+      result.appendString (",\n") ;
       index_6886_.increment () ;
       enumerator_6886.gotoNextObject () ;
     }
   }
-  result.addString ("    );\n    sourceTree = \"<group>\";\n  };\n\n  /*------------------------------------------------------------------ PBXNativeTarget */\n") ;
+  result.appendString ("    );\n    sourceTree = \"<group>\";\n  };\n\n  /*------------------------------------------------------------------ PBXNativeTarget */\n") ;
   GALGAS_uint index_7300_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_7300 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_7300.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_7300.current_mTargetRef (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_7300.current_mTargetName (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXNativeTarget;\n    buildConfigurationList = ") ;
-      result.addString (enumerator_7300.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
-      result.addString (" ;\n    buildPhases = (\n      ") ;
-      result.addString (enumerator_7300.current_mBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" ,\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_7300.current_mTargetRef (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_7300.current_mTargetName (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXNativeTarget;\n    buildConfigurationList = ") ;
+      result.appendString (enumerator_7300.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
+      result.appendString (" ;\n    buildPhases = (\n      ") ;
+      result.appendString (enumerator_7300.current_mBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" ,\n") ;
       const enumGalgasBool test_1 = GALGAS_bool (kIsStrictSup, enumerator_7300.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
       switch (test_1) {
       case kBoolTrue : {
-        result.addString ("      ") ;
-        result.addString (enumerator_7300.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
-        result.addString (" , /* Frameworks */\n") ;
+        result.appendString ("      ") ;
+        result.appendString (enumerator_7300.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
+        result.appendString (" , /* Frameworks */\n") ;
         } break ;
       case kBoolFalse : {
         } break ;
       default :
         break ;
       }
-      result.addString ("    );\n    buildRules = (\n    );\n    dependencies = (\n    );\n    name = ") ;
-      result.addString (enumerator_7300.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 208)).stringValue ()) ;
-      result.addString (";\n    productInstallPath = \"$(HOME)/bin\";\n    productName = ") ;
-      result.addString (enumerator_7300.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 210)).stringValue ()) ;
-      result.addString (";\n    productReference = ") ;
-      result.addString (enumerator_7300.current_mProductFileReference (HERE).stringValue ()) ;
-      result.addString (" ;\n    productType = \"com.apple.product-type.tool\";\n  };\n \n") ;
+      result.appendString ("    );\n    buildRules = (\n    );\n    dependencies = (\n    );\n    name = ") ;
+      result.appendString (enumerator_7300.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 208)).stringValue ()) ;
+      result.appendString (";\n    productInstallPath = \"$(HOME)/bin\";\n    productName = ") ;
+      result.appendString (enumerator_7300.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 210)).stringValue ()) ;
+      result.appendString (";\n    productReference = ") ;
+      result.appendString (enumerator_7300.current_mProductFileReference (HERE).stringValue ()) ;
+      result.appendString (" ;\n    productType = \"com.apple.product-type.tool\";\n  };\n \n") ;
       index_7300_.increment () ;
       enumerator_7300.gotoNextObject () ;
     }
@@ -7336,55 +7124,55 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_8232 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_8232.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_8232.current_mTargetRef (HERE).stringValue ()) ;
-      result.addString (" /* ") ;
-      result.addString (enumerator_8232.current_mTargetName (HERE).stringValue ()) ;
-      result.addString (" */ = {\n    isa = PBXNativeTarget;\n    buildConfigurationList = ") ;
-      result.addString (enumerator_8232.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
-      result.addString (" ;\n    buildPhases = (\n      ") ;
-      result.addString (enumerator_8232.current_mResourceBuildRef (HERE).stringValue ()) ;
-      result.addString (" , /* Resources */\n      ") ;
-      result.addString (enumerator_8232.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" , /* Frameworks */\n      ") ;
-      result.addString (enumerator_8232.current_mBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" , /* Sources */\n    );\n    buildRules = (\n    );\n    dependencies = (\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_8232.current_mTargetRef (HERE).stringValue ()) ;
+      result.appendString (" /* ") ;
+      result.appendString (enumerator_8232.current_mTargetName (HERE).stringValue ()) ;
+      result.appendString (" */ = {\n    isa = PBXNativeTarget;\n    buildConfigurationList = ") ;
+      result.appendString (enumerator_8232.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
+      result.appendString (" ;\n    buildPhases = (\n      ") ;
+      result.appendString (enumerator_8232.current_mResourceBuildRef (HERE).stringValue ()) ;
+      result.appendString (" , /* Resources */\n      ") ;
+      result.appendString (enumerator_8232.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" , /* Frameworks */\n      ") ;
+      result.appendString (enumerator_8232.current_mBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" , /* Sources */\n    );\n    buildRules = (\n    );\n    dependencies = (\n") ;
       GALGAS_uint index_8621_ (0) ;
       if (enumerator_8232.current_mDependentTargets (HERE).isValid ()) {
         cEnumerator__32_stringlist enumerator_8621 (enumerator_8232.current_mDependentTargets (HERE), kENUMERATION_UP) ;
         while (enumerator_8621.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_8621.current_mValue_30_ (HERE).stringValue ()) ;
-          result.addString (" ,\n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_8621.current_mValue_30_ (HERE).stringValue ()) ;
+          result.appendString (" ,\n") ;
           index_8621_.increment () ;
           enumerator_8621.gotoNextObject () ;
         }
       }
-      result.addString ("    );\n    name = ") ;
-      result.addString (enumerator_8232.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 234)).stringValue ()) ;
-      result.addString (";\n    productInstallPath = \"$(HOME)/bin\";\n    productName = ") ;
-      result.addString (enumerator_8232.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 236)).stringValue ()) ;
-      result.addString (";\n    productReference = ") ;
-      result.addString (enumerator_8232.current_mProductFileReference (HERE).stringValue ()) ;
-      result.addString (" ;\n    productType = \"com.apple.product-type.application\";\n  };\n\n") ;
+      result.appendString ("    );\n    name = ") ;
+      result.appendString (enumerator_8232.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 234)).stringValue ()) ;
+      result.appendString (";\n    productInstallPath = \"$(HOME)/bin\";\n    productName = ") ;
+      result.appendString (enumerator_8232.current_mTargetName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 236)).stringValue ()) ;
+      result.appendString (";\n    productReference = ") ;
+      result.appendString (enumerator_8232.current_mProductFileReference (HERE).stringValue ()) ;
+      result.appendString (" ;\n    productType = \"com.apple.product-type.application\";\n  };\n\n") ;
       index_8232_.increment () ;
       enumerator_8232.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXProject */\n  ") ;
-  result.addString (in_PROJECT_5F_REF.stringValue ()) ;
-  result.addString (" /* Project object */ = {\n   isa = PBXProject;\n   attributes = {\n     LastSwiftUpdateCheck = 0700;\n     LastUpgradeCheck = 0700;\n   };\n   buildConfigurationList = ") ;
-  result.addString (in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
-  result.addString (" /* Build configuration list for PBXProject */;\n   compatibilityVersion = \"Xcode 2.4\";\n   hasScannedForEncodings = 1;\n   mainGroup = ") ;
-  result.addString (in_MAIN_5F_GROUP_5F_REF.stringValue ()) ;
-  result.addString (";\n   projectDirPath = \"\";\n   projectRoot = \"\";\n   targets = (\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXProject */\n  ") ;
+  result.appendString (in_PROJECT_5F_REF.stringValue ()) ;
+  result.appendString (" /* Project object */ = {\n   isa = PBXProject;\n   attributes = {\n     LastSwiftUpdateCheck = 0700;\n     LastUpgradeCheck = 0700;\n   };\n   buildConfigurationList = ") ;
+  result.appendString (in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
+  result.appendString (" /* Build configuration list for PBXProject */;\n   compatibilityVersion = \"Xcode 2.4\";\n   hasScannedForEncodings = 1;\n   mainGroup = ") ;
+  result.appendString (in_MAIN_5F_GROUP_5F_REF.stringValue ()) ;
+  result.appendString (";\n   projectDirPath = \"\";\n   projectRoot = \"\";\n   targets = (\n") ;
   GALGAS_uint index_9693_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_9693 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_9693.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_9693.current_mTargetRef (HERE).stringValue ()) ;
-      result.addString (", \n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_9693.current_mTargetRef (HERE).stringValue ()) ;
+      result.appendString (", \n") ;
       index_9693_.increment () ;
       enumerator_9693.gotoNextObject () ;
     }
@@ -7393,57 +7181,57 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_10047 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_10047.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_10047.current_mTargetRef (HERE).stringValue ()) ;
-      result.addString (", \n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_10047.current_mTargetRef (HERE).stringValue ()) ;
+      result.appendString (", \n") ;
       index_10047_.increment () ;
       enumerator_10047.gotoNextObject () ;
     }
   }
-  result.addString ("   );\n  };\n\n  /*------------------------------------------------------------------ PBXResourcesBuildPhase */\n\n") ;
+  result.appendString ("   );\n  };\n\n  /*------------------------------------------------------------------ PBXResourcesBuildPhase */\n\n") ;
   GALGAS_uint index_10514_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_10514 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_10514.hasCurrentObject ()) {
-      result.addString ("  ") ;
-      result.addString (enumerator_10514.current_mResourceBuildRef (HERE).stringValue ()) ;
-      result.addString (" /* Resources */ = {\n    isa = PBXResourcesBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
+      result.appendString ("  ") ;
+      result.appendString (enumerator_10514.current_mResourceBuildRef (HERE).stringValue ()) ;
+      result.appendString (" /* Resources */ = {\n    isa = PBXResourcesBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
       GALGAS_uint index_10697_ (0) ;
       if (enumerator_10514.current_mResourceFileBuildRefs (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_10697 (enumerator_10514.current_mResourceFileBuildRefs (HERE), kENUMERATION_UP) ;
         while (enumerator_10697.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_10697.current_mValue (HERE).stringValue ()) ;
-          result.addString (",\n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_10697.current_mValue (HERE).stringValue ()) ;
+          result.appendString (",\n") ;
           index_10697_.increment () ;
           enumerator_10697.gotoNextObject () ;
         }
       }
-      result.addString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
+      result.appendString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
       index_10514_.increment () ;
       enumerator_10514.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXSourcesBuildPhase */\n") ;
   GALGAS_uint index_11147_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_11147 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_11147.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_11147.current_mBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" /* Sources */ = {\n      isa = PBXSourcesBuildPhase;\n      buildActionMask = 2147483647;\n      files = (\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_11147.current_mBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" /* Sources */ = {\n      isa = PBXSourcesBuildPhase;\n      buildActionMask = 2147483647;\n      files = (\n") ;
       GALGAS_uint index_11314_ (0) ;
       if (enumerator_11147.current_mBuildPhaseRefList (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_11314 (enumerator_11147.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_11314.hasCurrentObject ()) {
-          result.addString ("        ") ;
-          result.addString (enumerator_11314.current_mValue (HERE).stringValue ()) ;
-          result.addString (",\n") ;
+          result.appendString ("        ") ;
+          result.appendString (enumerator_11314.current_mValue (HERE).stringValue ()) ;
+          result.appendString (",\n") ;
           index_11314_.increment () ;
           enumerator_11314.gotoNextObject () ;
         }
       }
-      result.addString ("      );\n      runOnlyForDeploymentPostprocessing = 0;\n    };\n") ;
+      result.appendString ("      );\n      runOnlyForDeploymentPostprocessing = 0;\n    };\n") ;
       index_11147_.increment () ;
       enumerator_11147.gotoNextObject () ;
     }
@@ -7452,26 +7240,26 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_11735 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_11735.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_11735.current_mBuildPhaseRef (HERE).stringValue ()) ;
-      result.addString (" /* Sources */ = {\n      isa = PBXSourcesBuildPhase;\n      buildActionMask = 2147483647;\n      files = (\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_11735.current_mBuildPhaseRef (HERE).stringValue ()) ;
+      result.appendString (" /* Sources */ = {\n      isa = PBXSourcesBuildPhase;\n      buildActionMask = 2147483647;\n      files = (\n") ;
       GALGAS_uint index_11902_ (0) ;
       if (enumerator_11735.current_mBuildPhaseRefList (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_11902 (enumerator_11735.current_mBuildPhaseRefList (HERE), kENUMERATION_UP) ;
         while (enumerator_11902.hasCurrentObject ()) {
-          result.addString ("        ") ;
-          result.addString (enumerator_11902.current_mValue (HERE).stringValue ()) ;
-          result.addString (",\n") ;
+          result.appendString ("        ") ;
+          result.appendString (enumerator_11902.current_mValue (HERE).stringValue ()) ;
+          result.appendString (",\n") ;
           index_11902_.increment () ;
           enumerator_11902.gotoNextObject () ;
         }
       }
-      result.addString ("      );\n      runOnlyForDeploymentPostprocessing = 0;\n    };\n") ;
+      result.appendString ("      );\n      runOnlyForDeploymentPostprocessing = 0;\n    };\n") ;
       index_11735_.increment () ;
       enumerator_11735.gotoNextObject () ;
     }
   }
-  result.addString ("\n\n  /*------------------------------------------------------------------ PBXTargetDependency */\n \n") ;
+  result.appendString ("\n\n  /*------------------------------------------------------------------ PBXTargetDependency */\n \n") ;
   GALGAS_uint index_12424_ (0) ;
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_12424 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
@@ -7480,11 +7268,11 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
       if (enumerator_12424.current_mDependentTargets (HERE).isValid ()) {
         cEnumerator__32_stringlist enumerator_12472 (enumerator_12424.current_mDependentTargets (HERE), kENUMERATION_UP) ;
         while (enumerator_12472.hasCurrentObject ()) {
-          result.addString ("  ") ;
-          result.addString (enumerator_12472.current_mValue_30_ (HERE).stringValue ()) ;
-          result.addString (" = {\n    isa = PBXTargetDependency;\n    target = ") ;
-          result.addString (enumerator_12472.current_mValue_31_ (HERE).stringValue ()) ;
-          result.addString (";\n  };\n\n") ;
+          result.appendString ("  ") ;
+          result.appendString (enumerator_12472.current_mValue_30_ (HERE).stringValue ()) ;
+          result.appendString (" = {\n    isa = PBXTargetDependency;\n    target = ") ;
+          result.appendString (enumerator_12472.current_mValue_31_ (HERE).stringValue ()) ;
+          result.appendString (";\n  };\n\n") ;
           index_12472_.increment () ;
           enumerator_12472.gotoNextObject () ;
         }
@@ -7493,42 +7281,42 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
       enumerator_12424.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ PBXVariantGroup */\n \n  /*------------------------------------------------------------------ XCBuildConfiguration */\n    ") ;
-  result.addString (in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
-  result.addString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ PBXVariantGroup */\n \n  /*------------------------------------------------------------------ XCBuildConfiguration */\n    ") ;
+  result.appendString (in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
+  result.appendString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
   GALGAS_uint index_12949_ (0) ;
   if (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST.isValid ()) {
     cEnumerator_stringlist enumerator_12949 (in_DEFAULT_5F_CONFIGURATION_5F_SETTING_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_12949.hasCurrentObject ()) {
-      result.addString ("      ") ;
-      result.addString (enumerator_12949.current_mValue (HERE).stringValue ()) ;
-      result.addString (" ;\n") ;
+      result.appendString ("      ") ;
+      result.appendString (enumerator_12949.current_mValue (HERE).stringValue ()) ;
+      result.appendString (" ;\n") ;
       index_12949_.increment () ;
       enumerator_12949.gotoNextObject () ;
     }
   }
-  result.addString ("    };\n    name = Default;\n  };\n\n") ;
+  result.appendString ("    };\n    name = Default;\n  };\n\n") ;
   GALGAS_uint index_13264_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_13264 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_13264.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_13264.current_mBuildConfigurationRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_13264.current_mBuildConfigurationRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
       GALGAS_uint index_13432_ (0) ;
       if (enumerator_13264.current_mBuildConfigurationSettingList (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_13432 (enumerator_13264.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
         while (enumerator_13432.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_13432.current_mValue (HERE).stringValue ()) ;
-          result.addString (" ;\n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_13432.current_mValue (HERE).stringValue ()) ;
+          result.appendString (" ;\n") ;
           index_13432_.increment () ;
           enumerator_13432.gotoNextObject () ;
         }
       }
-      result.addString ("      PRODUCT_NAME = ") ;
-      result.addString (enumerator_13264.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 347)).stringValue ()) ;
-      result.addString (" ;\n    };\n    name = Default;\n  };\n\n") ;
+      result.appendString ("      PRODUCT_NAME = ") ;
+      result.appendString (enumerator_13264.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 347)).stringValue ()) ;
+      result.appendString (" ;\n    };\n    name = Default;\n  };\n\n") ;
       index_13264_.increment () ;
       enumerator_13264.gotoNextObject () ;
     }
@@ -7537,43 +7325,43 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_13902 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_13902.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_13902.current_mBuildConfigurationRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_13902.current_mBuildConfigurationRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */ = {\n      isa = XCBuildConfiguration;\n      buildSettings = {\n") ;
       GALGAS_uint index_14070_ (0) ;
       if (enumerator_13902.current_mBuildConfigurationSettingList (HERE).isValid ()) {
         cEnumerator_stringlist enumerator_14070 (enumerator_13902.current_mBuildConfigurationSettingList (HERE), kENUMERATION_UP) ;
         while (enumerator_14070.hasCurrentObject ()) {
-          result.addString ("      ") ;
-          result.addString (enumerator_14070.current_mValue (HERE).stringValue ()) ;
-          result.addString (" ;\n") ;
+          result.appendString ("      ") ;
+          result.appendString (enumerator_14070.current_mValue (HERE).stringValue ()) ;
+          result.appendString (" ;\n") ;
           index_14070_.increment () ;
           enumerator_14070.gotoNextObject () ;
         }
       }
-      result.addString ("      INFOPLIST_FILE = ") ;
-      result.addString (enumerator_13902.current_mInfoPListFile (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 359)).stringValue ()) ;
-      result.addString (";\n      PRODUCT_NAME = ") ;
-      result.addString (enumerator_13902.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 360)).stringValue ()) ;
-      result.addString (" ;\n    };\n    name = Default;\n  };\n\n") ;
+      result.appendString ("      INFOPLIST_FILE = ") ;
+      result.appendString (enumerator_13902.current_mInfoPListFile (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 359)).stringValue ()) ;
+      result.appendString (";\n      PRODUCT_NAME = ") ;
+      result.appendString (enumerator_13902.current_mProductFileName (HERE).getter_utf_38_Representation (SOURCE_FILE ("project.pbxproj.galgasTemplate", 360)).stringValue ()) ;
+      result.appendString (" ;\n    };\n    name = Default;\n  };\n\n") ;
       index_13902_.increment () ;
       enumerator_13902.gotoNextObject () ;
     }
   }
-  result.addString ("  /*------------------------------------------------------------------ XCConfigurationList section */\n\n    ") ;
-  result.addString (in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
-  result.addString (" /* Build configuration list for PBXProject */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
-  result.addString (in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
-  result.addString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
+  result.appendString ("  /*------------------------------------------------------------------ XCConfigurationList section */\n\n    ") ;
+  result.appendString (in_PROJECT_5F_BUILD_5F_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
+  result.appendString (" /* Build configuration list for PBXProject */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
+  result.appendString (in_DEFAULT_5F_CONFIGURATION_5F_REF.stringValue ()) ;
+  result.appendString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
   GALGAS_uint index_14952_ (0) ;
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_14952 (in_TOOL_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_14952.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_14952.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
-      result.addString (enumerator_14952.current_mBuildConfigurationRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_14952.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
+      result.appendString (enumerator_14952.current_mBuildConfigurationRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
       index_14952_.increment () ;
       enumerator_14952.gotoNextObject () ;
     }
@@ -7582,18 +7370,18 @@ GALGAS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (C
   if (in_APP_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeAppTargetList enumerator_15549 (in_APP_5F_TARGET_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_15549.hasCurrentObject ()) {
-      result.addString ("    ") ;
-      result.addString (enumerator_15549.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
-      result.addString (enumerator_15549.current_mBuildConfigurationRef (HERE).stringValue ()) ;
-      result.addString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
+      result.appendString ("    ") ;
+      result.appendString (enumerator_15549.current_mBuildConfigurationListRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */ = {\n      isa = XCConfigurationList;\n      buildConfigurations = (\n        ") ;
+      result.appendString (enumerator_15549.current_mBuildConfigurationRef (HERE).stringValue ()) ;
+      result.appendString (" /* Default */,\n      );\n      defaultConfigurationIsVisible = 0;\n      defaultConfigurationName = Default;\n    };\n\n") ;
       index_15549_.increment () ;
       enumerator_15549.gotoNextObject () ;
     }
   }
-  result.addString ("/*------------------------------------------------------------------ End */\n  };\n\n  rootObject = ") ;
-  result.addString (in_PROJECT_5F_REF.stringValue ()) ;
-  result.addString (" /* Project object */;\n}\n") ;
+  result.appendString ("/*------------------------------------------------------------------ End */\n  };\n\n  rootObject = ") ;
+  result.appendString (in_PROJECT_5F_REF.stringValue ()) ;
+  result.appendString (" /* Project object */;\n}\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -7694,35 +7482,35 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (Compiler * /* inCompiler
                                                         const GALGAS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
                                                         COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.addString ("//-----------------------------------------------------------------------------*\n\nimport random, string\n\nimport subprocess, os, sys, atexit\nimport atomac, sys, time, inspect\n\n//-----------------------------------------------------------------------------*\n#   GET SOURCE LINE NUMBER                                                     *\n//-----------------------------------------------------------------------------*\n\ndef lineno():\n  return inspect.currentframe().f_back.f_lineno\n\n//-----------------------------------------------------------------------------*\n#   LAUNCH APPLICATION                                                         *\n//-----------------------------------------------------------------------------*\n\ndef launchApplication ():\n  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString (".app\")\n  time.sleep (0.5)\n  application = atomac.getAppRefByBundleId ('") ;
-  result.addString (in_BUNDLE_5F_IDENTIFIER.stringValue ()) ;
-  result.addString (".") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("')\n  return application\n\n//-----------------------------------------------------------------------------*\n#   QUIT APPLICATION                                                           *\n//-----------------------------------------------------------------------------*\n\ndef quitApplication ():\n  atomac.terminateAppByBundleId ('") ;
-  result.addString (in_BUNDLE_5F_IDENTIFIER.stringValue ()) ;
-  result.addString (".") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("')\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   PREFERENCES WINDOW                                                         *\n//-----------------------------------------------------------------------------*\n\ndef setUpPreferencesWindow (application) :\n  time.sleep (0.5)\n  window = application.windows ('") ;
-  result.addString (in_PROJECT_5F_NAME.stringValue ()) ;
-  result.addString ("')[0]\n") ;
+  result.appendString ("//-----------------------------------------------------------------------------*\n\nimport random, string\n\nimport subprocess, os, sys, atexit\nimport atomac, sys, time, inspect\n\n//-----------------------------------------------------------------------------*\n#   GET SOURCE LINE NUMBER                                                     *\n//-----------------------------------------------------------------------------*\n\ndef lineno():\n  return inspect.currentframe().f_back.f_lineno\n\n//-----------------------------------------------------------------------------*\n#   LAUNCH APPLICATION                                                         *\n//-----------------------------------------------------------------------------*\n\ndef launchApplication ():\n  scriptDir = os.path.dirname (os.path.abspath (sys.argv [0]))\n  atomac.launchAppByBundlePath (scriptDir + \"/build/Default/") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString (".app\")\n  time.sleep (0.5)\n  application = atomac.getAppRefByBundleId ('") ;
+  result.appendString (in_BUNDLE_5F_IDENTIFIER.stringValue ()) ;
+  result.appendString (".") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("')\n  return application\n\n//-----------------------------------------------------------------------------*\n#   QUIT APPLICATION                                                           *\n//-----------------------------------------------------------------------------*\n\ndef quitApplication ():\n  atomac.terminateAppByBundleId ('") ;
+  result.appendString (in_BUNDLE_5F_IDENTIFIER.stringValue ()) ;
+  result.appendString (".") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("')\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   PREFERENCES WINDOW                                                         *\n//-----------------------------------------------------------------------------*\n\ndef setUpPreferencesWindow (application) :\n  time.sleep (0.5)\n  window = application.windows ('") ;
+  result.appendString (in_PROJECT_5F_NAME.stringValue ()) ;
+  result.appendString ("')[0]\n") ;
   GALGAS_uint index_1784_ (0) ;
   if (in_OUTLET_5F_IDENTIFIER_5F_LIST.isValid ()) {
     cEnumerator_stringlist enumerator_1784 (in_OUTLET_5F_IDENTIFIER_5F_LIST, kENUMERATION_UP) ;
     while (enumerator_1784.hasCurrentObject ()) {
-      result.addString ("  global ") ;
-      result.addString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
-      result.addString ("\n  ") ;
-      result.addString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
-      result.addString (" = window.findFirst (AXIdentifier='") ;
-      result.addString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
-      result.addString ("')\n") ;
+      result.appendString ("  global ") ;
+      result.appendString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
+      result.appendString ("\n  ") ;
+      result.appendString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
+      result.appendString (" = window.findFirst (AXIdentifier='") ;
+      result.appendString (enumerator_1784.current_mValue (HERE).stringValue ()) ;
+      result.appendString ("')\n") ;
       index_1784_.increment () ;
       enumerator_1784.gotoNextObject () ;
     }
   }
-  result.addString ("\n//-----------------------------------------------------------------------------*\n#   CHECK TEXT FIELD VALUE                                                     *\n//-----------------------------------------------------------------------------*\n\ndef checkTextFieldValue (textField, expectedValue, line):\n  if textField.AXValue != expectedValue :\n    print '*** Check error at line ' + str (line) + ' ***'\n    sys.exit (1)\n\n//-----------------------------------------------------------------------------*\n#   SET TEXT FIELD                                                             *\n//-----------------------------------------------------------------------------*\n\ndef setTextFieldValue (textField, value):\n  textField.AXFocused = True\n  textField.AXValue = value\n  textField.Confirm ()\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   MAIN                                                                       *\n//-----------------------------------------------------------------------------*\n\napplication = launchApplication ()\nsetUpPreferencesWindow (application)\n\n\n") ;
+  result.appendString ("\n//-----------------------------------------------------------------------------*\n#   CHECK TEXT FIELD VALUE                                                     *\n//-----------------------------------------------------------------------------*\n\ndef checkTextFieldValue (textField, expectedValue, line):\n  if textField.AXValue != expectedValue :\n    print '*** Check error at line ' + str (line) + ' ***'\n    sys.exit (1)\n\n//-----------------------------------------------------------------------------*\n#   SET TEXT FIELD                                                             *\n//-----------------------------------------------------------------------------*\n\ndef setTextFieldValue (textField, value):\n  textField.AXFocused = True\n  textField.AXValue = value\n  textField.Confirm ()\n  time.sleep (0.5)\n\n//-----------------------------------------------------------------------------*\n#   MAIN                                                                       *\n//-----------------------------------------------------------------------------*\n\napplication = launchApplication ()\nsetUpPreferencesWindow (application)\n\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -7742,7 +7530,7 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (Compiler * /* inCompiler
 //--------------------------------------------------------------------------------------------------
 
 static void print_tool_help_message (void) {
-  gCout.addString ("Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n") ;
+  gCout.appendString ("Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7955,7 +7743,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
   String executionModeOptionErrorMessage ;
   setExecutionMode (executionModeOptionErrorMessage) ;
   if (executionModeOptionErrorMessage.length () > 0) {
-    gCout.addString (executionModeOptionErrorMessage) ;
+    gCout.appendString (executionModeOptionErrorMessage) ;
     returnCode = 1 ;
   }else{
   //--- Common lexique object
@@ -8018,23 +7806,23 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
       if (verboseOptionOn || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
         String message ;
         if (totalWarningCount () == 0) {
-          message.addString ("No warning") ;
+          message.appendString ("No warning") ;
         }else if (totalWarningCount () == 1) {
-          message.addString ("1 warning") ;
+          message.appendString ("1 warning") ;
         }else{
-          message.addSigned (totalWarningCount ()) ;
-          message.addString (" warnings") ;
+          message.appendSigned (totalWarningCount ()) ;
+          message.appendString (" warnings") ;
         }
-        message.addString (", ") ;
+        message.appendString (", ") ;
         if (totalErrorCount () == 0) {
-          message.addString ("no error") ;
+          message.appendString ("no error") ;
         }else if (totalErrorCount () == 1) {
-          message.addString ("1 error") ;
+          message.appendString ("1 error") ;
         }else{
-          message.addSigned (totalErrorCount ()) ;
-          message.addString (" errors") ;
+          message.appendSigned (totalErrorCount ()) ;
+          message.appendString (" errors") ;
         }
-        message.addString (".\n") ;
+        message.appendString (".\n") ;
         ggs_printMessage (message COMMA_HERE) ;
       }
     }catch (const ::std::exception & e) {

@@ -428,17 +428,17 @@ const C_galgas_type_descriptor * cPtr_transientPropertyGeneration::classDescript
 
 void cPtr_transientPropertyGeneration::description (String & ioString,
                                                     const int32_t inIndentation) const {
-  ioString.addString ("[@transientPropertyGeneration:") ;
+  ioString.appendString ("[@transientPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerate.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -661,9 +661,9 @@ cCollectionElement * cCollectionElement_transientPropertyGenerationList::copy (v
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_transientPropertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -1728,17 +1728,17 @@ const C_galgas_type_descriptor * cPtr_transientRoutineGeneration::classDescripto
 
 void cPtr_transientRoutineGeneration::description (String & ioString,
                                                    const int32_t inIndentation) const {
-  ioString.addString ("[@transientRoutineGeneration:") ;
+  ioString.appendString ("[@transientRoutineGeneration:") ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTransientName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTransientType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGeneratedFunctionNamePrefix.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1962,9 +1962,9 @@ GALGAS_bool GALGAS_proxyKind::getter_isToManyProxy (UNUSED_LOCATION_ARGS) const 
 
 void GALGAS_proxyKind::description (String & ioString,
                                     const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @proxyKind: ") ;
-  ioString.addString (gEnumNameArrayFor_proxyKind [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @proxyKind: ") ;
+  ioString.appendString (gEnumNameArrayFor_proxyKind [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2336,17 +2336,17 @@ const C_galgas_type_descriptor * cPtr_toManyProxyGeneration::classDescriptor (vo
 
 void cPtr_toManyProxyGeneration::description (String & ioString,
                                               const int32_t inIndentation) const {
-  ioString.addString ("[@toManyProxyGeneration:") ;
+  ioString.appendString ("[@toManyProxyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mProxyKind.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mToManyTypeName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mObservedRelationshipName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mObservedPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2569,9 +2569,9 @@ cCollectionElement * cCollectionElement_toManyProxyGenerationList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_toManyProxyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -3119,17 +3119,17 @@ const C_galgas_type_descriptor * cPtr_atomicProxyGeneration::classDescriptor (vo
 
 void cPtr_atomicProxyGeneration::description (String & ioString,
                                               const int32_t inIndentation) const {
-  ioString.addString ("[@atomicProxyGeneration:") ;
+  ioString.appendString ("[@atomicProxyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mProxyKind.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mObservedRelationshipName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mObservedPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3352,9 +3352,9 @@ cCollectionElement * cCollectionElement_atomicProxyGenerationList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_atomicProxyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -4025,23 +4025,23 @@ const C_galgas_type_descriptor * cPtr_atomicPropertyGeneration::classDescriptor 
 
 void cPtr_atomicPropertyGeneration::description (String & ioString,
                                                  const int32_t inIndentation) const {
-  ioString.addString ("[@atomicPropertyGeneration:") ;
+  ioString.appendString ("[@atomicPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsProxy.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDefaultValueInSwift.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInPreferences.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4264,9 +4264,9 @@ cCollectionElement * cCollectionElement_atomicPropertyGenerationList::copy (void
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_atomicPropertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -4625,9 +4625,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne::description (String & ioString,
                                                                                    const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4654,9 +4654,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany::description (String & ioString,
                                                                                     const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4724,7 +4724,7 @@ void GALGAS_toOneOppositeRelationship::method_oppositeIsToOne (GALGAS_lstring & 
   if (mEnum != kEnum_oppositeIsToOne) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @toOneOppositeRelationship oppositeIsToOne invoked with an invalid enum value") ;
+    s.appendString ("method @toOneOppositeRelationship oppositeIsToOne invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne * ptr = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToOne *) unsafePointer () ;
@@ -4740,7 +4740,7 @@ void GALGAS_toOneOppositeRelationship::method_oppositeIsToMany (GALGAS_lstring &
   if (mEnum != kEnum_oppositeIsToMany) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @toOneOppositeRelationship oppositeIsToMany invoked with an invalid enum value") ;
+    s.appendString ("method @toOneOppositeRelationship oppositeIsToMany invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany * ptr = (const cEnumAssociatedValues_toOneOppositeRelationship_oppositeIsToMany *) unsafePointer () ;
@@ -4808,10 +4808,10 @@ GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isOppositeIsToMany (UNUSED_
 
 void GALGAS_toOneOppositeRelationship::description (String & ioString,
                                                     const int32_t inIndentation) const {
-  ioString.addString ("<enum @toOneOppositeRelationship: ") ;
-  ioString.addString (gEnumNameArrayFor_toOneOppositeRelationship [mEnum]) ;
+  ioString.appendString ("<enum @toOneOppositeRelationship: ") ;
+  ioString.appendString (gEnumNameArrayFor_toOneOppositeRelationship [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5012,17 +5012,17 @@ cMapElement * cMapElement_propertyMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_propertyMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mKind" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mKind" ":") ;
   mProperty_mKind.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mActionMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mActionMap" ":") ;
   mProperty_mActionMap.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mIsOverriding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mIsOverriding" ":") ;
   mProperty_mIsOverriding.description (ioString, inIndentation) ;
 }
 
@@ -5543,9 +5543,9 @@ cCollectionElement * cCollectionElement_toOnePropertyGenerationList::copy (void)
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_toOnePropertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -5904,9 +5904,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite::description (String & ioString,
                                                                                  const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5933,9 +5933,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance::description (String & ioString,
                                                                                    const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6003,7 +6003,7 @@ void GALGAS_toManyRelationshipOptionAST::method_hasOpposite (GALGAS_lstring & ou
   if (mEnum != kEnum_hasOpposite) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @toManyRelationshipOptionAST hasOpposite invoked with an invalid enum value") ;
+    s.appendString ("method @toManyRelationshipOptionAST hasOpposite invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite * ptr = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasOpposite *) unsafePointer () ;
@@ -6019,7 +6019,7 @@ void GALGAS_toManyRelationshipOptionAST::method_hasDependance (GALGAS_lstring & 
   if (mEnum != kEnum_hasDependance) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @toManyRelationshipOptionAST hasDependance invoked with an invalid enum value") ;
+    s.appendString ("method @toManyRelationshipOptionAST hasDependance invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance * ptr = (const cEnumAssociatedValues_toManyRelationshipOptionAST_hasDependance *) unsafePointer () ;
@@ -6087,10 +6087,10 @@ GALGAS_bool GALGAS_toManyRelationshipOptionAST::getter_isHasDependance (UNUSED_L
 
 void GALGAS_toManyRelationshipOptionAST::description (String & ioString,
                                                       const int32_t inIndentation) const {
-  ioString.addString ("<enum @toManyRelationshipOptionAST: ") ;
-  ioString.addString (gEnumNameArrayFor_toManyRelationshipOptionAST [mEnum]) ;
+  ioString.appendString ("<enum @toManyRelationshipOptionAST: ") ;
+  ioString.appendString (gEnumNameArrayFor_toManyRelationshipOptionAST [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6273,9 +6273,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite::description (String & ioString,
                                                                                         const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6304,10 +6304,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance::description (String & ioString,
                                                                                           const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6379,7 +6379,7 @@ void GALGAS_toManyRelationshipOptionGeneration::method_hasOpposite (GALGAS_strin
   if (mEnum != kEnum_hasOpposite) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @toManyRelationshipOptionGeneration hasOpposite invoked with an invalid enum value") ;
+    s.appendString ("method @toManyRelationshipOptionGeneration hasOpposite invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite * ptr = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite *) unsafePointer () ;
@@ -6397,7 +6397,7 @@ void GALGAS_toManyRelationshipOptionGeneration::method_hasDependance (GALGAS_str
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.addString ("method @toManyRelationshipOptionGeneration hasDependance invoked with an invalid enum value") ;
+    s.appendString ("method @toManyRelationshipOptionGeneration hasDependance invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * ptr = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) unsafePointer () ;
@@ -6468,10 +6468,10 @@ GALGAS_bool GALGAS_toManyRelationshipOptionGeneration::getter_isHasDependance (U
 
 void GALGAS_toManyRelationshipOptionGeneration::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("<enum @toManyRelationshipOptionGeneration: ") ;
-  ioString.addString (gEnumNameArrayFor_toManyRelationshipOptionGeneration [mEnum]) ;
+  ioString.appendString ("<enum @toManyRelationshipOptionGeneration: ") ;
+  ioString.appendString (gEnumNameArrayFor_toManyRelationshipOptionGeneration [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6746,23 +6746,23 @@ const C_galgas_type_descriptor * cPtr_toManyPropertyGeneration::classDescriptor 
 
 void cPtr_toManyPropertyGeneration::description (String & ioString,
                                                  const int32_t inIndentation) const {
-  ioString.addString ("[@toManyPropertyGeneration:") ;
+  ioString.appendString ("[@toManyPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRelationshipType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOption.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInPreferences.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCustomStore.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUsedForSignature.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6985,9 +6985,9 @@ cCollectionElement * cCollectionElement_toManyPropertyGenerationList::copy (void
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_toManyPropertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -7397,17 +7397,17 @@ cCollectionElement * cCollectionElement_validationStubRoutineListForGeneration::
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_validationStubRoutineListForGeneration::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mObjectTypeName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mObjectTypeName" ":") ;
   mObject.mProperty_mObjectTypeName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mModelName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mModelName" ":") ;
   mObject.mProperty_mModelName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mModelTypeName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mModelTypeName" ":") ;
   mObject.mProperty_mModelTypeName.description (ioString, inIndentation) ;
 }
 
@@ -8240,11 +8240,11 @@ const C_galgas_type_descriptor * cPtr_actionFileGeneration::classDescriptor (voi
 
 void cPtr_actionFileGeneration::description (String & ioString,
                                              const int32_t inIndentation) const {
-  ioString.addString ("[@actionFileGeneration:") ;
+  ioString.appendString ("[@actionFileGeneration:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mActionName.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8556,9 +8556,9 @@ GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isGreaterOrEqual (UNUSED
 
 void GALGAS_multipleBindingComparisonAST::description (String & ioString,
                                                        const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @multipleBindingComparisonAST: ") ;
-  ioString.addString (gEnumNameArrayFor_multipleBindingComparisonAST [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @multipleBindingComparisonAST: ") ;
+  ioString.appendString (gEnumNameArrayFor_multipleBindingComparisonAST [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9038,9 +9038,9 @@ const C_galgas_type_descriptor * cPtr_negateBooleanMultipleBindingExpressionAST:
 
 void cPtr_negateBooleanMultipleBindingExpressionAST::description (String & ioString,
                                                                   const int32_t inIndentation) const {
-  ioString.addString ("[@negateBooleanMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@negateBooleanMultipleBindingExpressionAST:") ;
   mProperty_mBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9370,13 +9370,13 @@ const C_galgas_type_descriptor * cPtr_comparisonMultipleBindingExpressionAST::cl
 
 void cPtr_comparisonMultipleBindingExpressionAST::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.addString ("[@comparisonMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@comparisonMultipleBindingExpressionAST:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOperator.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9676,11 +9676,11 @@ const C_galgas_type_descriptor * cPtr_andBooleanMultipleBindingExpressionAST::cl
 
 void cPtr_andBooleanMultipleBindingExpressionAST::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.addString ("[@andBooleanMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@andBooleanMultipleBindingExpressionAST:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9980,11 +9980,11 @@ const C_galgas_type_descriptor * cPtr_orBooleanMultipleBindingExpressionAST::cla
 
 void cPtr_orBooleanMultipleBindingExpressionAST::description (String & ioString,
                                                               const int32_t inIndentation) const {
-  ioString.addString ("[@orBooleanMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@orBooleanMultipleBindingExpressionAST:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10284,11 +10284,11 @@ const C_galgas_type_descriptor * cPtr_xorBooleanMultipleBindingExpressionAST::cl
 
 void cPtr_xorBooleanMultipleBindingExpressionAST::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.addString ("[@xorBooleanMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@xorBooleanMultipleBindingExpressionAST:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10558,9 +10558,9 @@ const C_galgas_type_descriptor * cPtr_observablePropertyInMultipleBindingExpress
 
 void cPtr_observablePropertyInMultipleBindingExpressionAST::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@observablePropertyInMultipleBindingExpressionAST:") ;
+  ioString.appendString ("[@observablePropertyInMultipleBindingExpressionAST:") ;
   mProperty_mProperty.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10940,9 +10940,9 @@ const C_galgas_type_descriptor * cPtr_observablePropertyAsBooleanMultipleBinding
 
 void cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@observablePropertyAsBooleanMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@observablePropertyAsBooleanMultipleBindingExpressionForGeneration:") ;
   mProperty_mObservedModelString.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11212,9 +11212,9 @@ const C_galgas_type_descriptor * cPtr_booleanMultipleBindingLiteralIntForGenerat
 
 void cPtr_booleanMultipleBindingLiteralIntForGeneration::description (String & ioString,
                                                                       const int32_t inIndentation) const {
-  ioString.addString ("[@booleanMultipleBindingLiteralIntForGeneration:") ;
+  ioString.appendString ("[@booleanMultipleBindingLiteralIntForGeneration:") ;
   mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11484,9 +11484,9 @@ const C_galgas_type_descriptor * cPtr_negateBooleanMultipleBindingExpressionForG
 
 void cPtr_negateBooleanMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.addString ("[@negateBooleanMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@negateBooleanMultipleBindingExpressionForGeneration:") ;
   mProperty_mBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11786,11 +11786,11 @@ const C_galgas_type_descriptor * cPtr_orBooleanMultipleBindingExpressionForGener
 
 void cPtr_orBooleanMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                         const int32_t inIndentation) const {
-  ioString.addString ("[@orBooleanMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@orBooleanMultipleBindingExpressionForGeneration:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12090,11 +12090,11 @@ const C_galgas_type_descriptor * cPtr_xorBooleanMultipleBindingExpressionForGene
 
 void cPtr_xorBooleanMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@xorBooleanMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@xorBooleanMultipleBindingExpressionForGeneration:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12394,11 +12394,11 @@ const C_galgas_type_descriptor * cPtr_andBooleanMultipleBindingExpressionForGene
 
 void cPtr_andBooleanMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@andBooleanMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@andBooleanMultipleBindingExpressionForGeneration:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12728,13 +12728,13 @@ const C_galgas_type_descriptor * cPtr_comparisonMultipleBindingExpressionForGene
 
 void cPtr_comparisonMultipleBindingExpressionForGeneration::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@comparisonMultipleBindingExpressionForGeneration:") ;
+  ioString.appendString ("[@comparisonMultipleBindingExpressionForGeneration:") ;
   mProperty_mLeftBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOperator.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRightBinding.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12953,9 +12953,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship::description (String & ioString,
                                                                                              const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13008,7 +13008,7 @@ void GALGAS_arrayControllerBoundModelAST::method_rootToManyRelationship (GALGAS_
   if (mEnum != kEnum_rootToManyRelationship) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @arrayControllerBoundModelAST rootToManyRelationship invoked with an invalid enum value") ;
+    s.appendString ("method @arrayControllerBoundModelAST rootToManyRelationship invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship * ptr = (const cEnumAssociatedValues_arrayControllerBoundModelAST_rootToManyRelationship *) unsafePointer () ;
@@ -13058,10 +13058,10 @@ GALGAS_bool GALGAS_arrayControllerBoundModelAST::getter_isSelfToManyRelationship
 
 void GALGAS_arrayControllerBoundModelAST::description (String & ioString,
                                                        const int32_t inIndentation) const {
-  ioString.addString ("<enum @arrayControllerBoundModelAST: ") ;
-  ioString.addString (gEnumNameArrayFor_arrayControllerBoundModelAST [mEnum]) ;
+  ioString.appendString ("<enum @arrayControllerBoundModelAST: ") ;
+  ioString.appendString (gEnumNameArrayFor_arrayControllerBoundModelAST [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13373,13 +13373,13 @@ const C_galgas_type_descriptor * cPtr_arrayControllerPropertyGeneration::classDe
 
 void cPtr_arrayControllerPropertyGeneration::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@arrayControllerPropertyGeneration:") ;
+  ioString.appendString ("[@arrayControllerPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mModelString.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13603,9 +13603,9 @@ GALGAS_bool GALGAS_arrayControllerModelKind::getter_isTransientArray (UNUSED_LOC
 
 void GALGAS_arrayControllerModelKind::description (String & ioString,
                                                    const int32_t /* inIndentation */) const {
-  ioString.addString ("<enum @arrayControllerModelKind: ") ;
-  ioString.addString (gEnumNameArrayFor_arrayControllerModelKind [mEnum]) ;
-  ioString.addString (">") ;
+  ioString.appendString ("<enum @arrayControllerModelKind: ") ;
+  ioString.appendString (gEnumNameArrayFor_arrayControllerModelKind [mEnum]) ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13841,21 +13841,21 @@ cCollectionElement * cCollectionElement_autoLayoutTableViewControllerBoundColumn
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mEditable" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mEditable" ":") ;
   mObject.mProperty_mEditable.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyName" ":") ;
   mObject.mProperty_mPropertyName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mColumnParameterListAST" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mColumnParameterListAST" ":") ;
   mObject.mProperty_mColumnParameterListAST.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mSortPropertyName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mSortPropertyName" ":") ;
   mObject.mProperty_mSortPropertyName.description (ioString, inIndentation) ;
 }
 
@@ -14443,13 +14443,13 @@ cCollectionElement * cCollectionElement_autoLayoutTableViewControllerAttributLis
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_autoLayoutTableViewControllerAttributListAST::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAttributeName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAttributeName" ":") ;
   mObject.mProperty_mAttributeName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAttributeValue" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAttributeValue" ":") ;
   mObject.mProperty_mAttributeValue.description (ioString, inIndentation) ;
 }
 

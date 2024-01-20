@@ -118,27 +118,27 @@ void GALGAS_selectionControllerForGeneration_2D_element::drop (void) {
 
 void GALGAS_selectionControllerForGeneration_2D_element::description (String & ioString,
                                                                       const int32_t inIndentation) const {
-  ioString.addString ("<struct @selectionControllerForGeneration-element:") ;
+  ioString.appendString ("<struct @selectionControllerForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mSelectionControllerName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBoundControllerName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBoundControllerPropertyName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBaseTypeName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mSelectionTypeName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mSelectionObservablePropertyMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mPropertyGenerationList.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -238,13 +238,13 @@ void GALGAS_typeKindList_2D_element::drop (void) {
 
 void GALGAS_typeKindList_2D_element::description (String & ioString,
                                                   const int32_t inIndentation) const {
-  ioString.addString ("<struct @typeKindList-element:") ;
+  ioString.appendString ("<struct @typeKindList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mType.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -344,13 +344,13 @@ void GALGAS_propertyGenerationList_2D_element::drop (void) {
 
 void GALGAS_propertyGenerationList_2D_element::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.addString ("<struct @propertyGenerationList-element:") ;
+  ioString.appendString ("<struct @propertyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -458,15 +458,15 @@ void GALGAS_transientExternTypeList_2D_element::drop (void) {
 
 void GALGAS_transientExternTypeList_2D_element::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("<struct @transientExternTypeList-element:") ;
+  ioString.appendString ("<struct @transientExternTypeList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mTypeName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mIsClass.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -566,13 +566,13 @@ void GALGAS_fileGenerationList_2D_element::drop (void) {
 
 void GALGAS_fileGenerationList_2D_element::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.addString ("<struct @fileGenerationList-element:") ;
+  ioString.appendString ("<struct @fileGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mFileGeneration.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -696,19 +696,19 @@ void GALGAS_XCodeGroupList_2D_element::drop (void) {
 
 void GALGAS_XCodeGroupList_2D_element::description (String & ioString,
                                                     const int32_t inIndentation) const {
-  ioString.addString ("<struct @XCodeGroupList-element:") ;
+  ioString.appendString ("<struct @XCodeGroupList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mGroupReference.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mGroupName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mGroupPath.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mChildrenRefs.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -888,33 +888,33 @@ void GALGAS_XCodeToolTargetList_2D_element::drop (void) {
 
 void GALGAS_XCodeToolTargetList_2D_element::description (String & ioString,
                                                          const int32_t inIndentation) const {
-  ioString.addString ("<struct @XCodeToolTargetList-element:") ;
+  ioString.appendString ("<struct @XCodeToolTargetList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mTargetRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mTargetName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mProductFileReference.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mProductFileName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildPhaseRefList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildPhaseRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationListRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationSettingList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mFrameworksFileRefList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mFrameworkBuildPhaseRef.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1126,41 +1126,41 @@ void GALGAS_XCodeAppTargetList_2D_element::drop (void) {
 
 void GALGAS_XCodeAppTargetList_2D_element::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.addString ("<struct @XCodeAppTargetList-element:") ;
+  ioString.appendString ("<struct @XCodeAppTargetList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mTargetRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mTargetName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mProductFileReference.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mProductFileName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildPhaseRefList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildPhaseRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationListRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationSettingList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildConfigurationRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mFrameworksFileRefList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mFrameworkBuildPhaseRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mDependentTargets.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mResourceBuildRef.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mResourceFileBuildRefs.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mInfoPListFile.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1276,17 +1276,17 @@ void GALGAS_BuildFileList_2D_element::drop (void) {
 
 void GALGAS_BuildFileList_2D_element::description (String & ioString,
                                                    const int32_t inIndentation) const {
-  ioString.addString ("<struct @BuildFileList-element:") ;
+  ioString.appendString ("<struct @BuildFileList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mFileReference.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mFileName.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBuildReference.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1386,13 +1386,13 @@ void GALGAS_mainXibDescriptorList_2D_element::drop (void) {
 
 void GALGAS_mainXibDescriptorList_2D_element::description (String & ioString,
                                                            const int32_t inIndentation) const {
-  ioString.addString ("<struct @mainXibDescriptorList-element:") ;
+  ioString.appendString ("<struct @mainXibDescriptorList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mLine.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1492,13 +1492,13 @@ void GALGAS_mainXibLineDescriptorList_2D_element::drop (void) {
 
 void GALGAS_mainXibLineDescriptorList_2D_element::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.addString ("<struct @mainXibLineDescriptorList-element:") ;
+  ioString.appendString ("<struct @mainXibLineDescriptorList-element:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mElement.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7957,25 +7957,25 @@ void GALGAS_prefDeclaration::drop (void) {
 
 void GALGAS_prefDeclaration::description (String & ioString,
                                           const int32_t inIndentation) const {
-  ioString.addString ("<struct @prefDeclaration:") ;
+  ioString.appendString ("<struct @prefDeclaration:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mOutletDeclarationList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mSimpleStoredAttributeList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mExternSwiftFunctionList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mSignatureList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8131,27 +8131,27 @@ void GALGAS_semanticContext::drop (void) {
 
 void GALGAS_semanticContext::description (String & ioString,
                                           const int32_t inIndentation) const {
-  ioString.addString ("<struct @semanticContext:") ;
+  ioString.appendString ("<struct @semanticContext:") ;
   if (! isValid ()) {
-    ioString.addString (" not built") ;
+    ioString.appendString (" not built") ;
   }else{
     mProperty_mClassMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mOutletClassMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mBindingSpecificationMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mAutolayoutViewClassMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mAutoLayoutBindingSpecificationMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mAutoLayoutVStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mAutoLayoutHStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.addString (", ") ;
+    ioString.appendString (", ") ;
     mProperty_mEnumerationFunctionListAST.description (ioString, inIndentation+1) ;
   }
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8549,11 +8549,11 @@ const C_galgas_type_descriptor * cPtr_transientClassDeclarationAST::classDescrip
 
 void cPtr_transientClassDeclarationAST::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.addString ("[@transientClassDeclarationAST:") ;
+  ioString.appendString ("[@transientClassDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsClass.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8726,13 +8726,13 @@ const C_galgas_type_descriptor * cPtr_enumerationDeclarationAST::classDescriptor
 
 void cPtr_enumerationDeclarationAST::description (String & ioString,
                                                   const int32_t inIndentation) const {
-  ioString.addString ("[@enumerationDeclarationAST:") ;
+  ioString.appendString ("[@enumerationDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEnumConstantNameList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCaseIterable.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8938,15 +8938,15 @@ const C_galgas_type_descriptor * cPtr_enumForGeneration::classDescriptor (void) 
 
 void cPtr_enumForGeneration::description (String & ioString,
                                           const int32_t inIndentation) const {
-  ioString.addString ("[@enumForGeneration:") ;
+  ioString.appendString ("[@enumForGeneration:") ;
   mProperty_mEnumName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEnumConstantList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEnumFuncMap.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCaseIterable.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9221,11 +9221,11 @@ const C_galgas_type_descriptor * cPtr_atomicClassDeclarationAST::classDescriptor
 
 void cPtr_atomicClassDeclarationAST::description (String & ioString,
                                                   const int32_t inIndentation) const {
-  ioString.addString ("[@atomicClassDeclarationAST:") ;
+  ioString.appendString ("[@atomicClassDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mKind.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9550,29 +9550,29 @@ const C_galgas_type_descriptor * cPtr_entityDeclarationAST::classDescriptor (voi
 
 void cPtr_entityDeclarationAST::description (String & ioString,
                                              const int32_t inIndentation) const {
-  ioString.addString ("[@entityDeclarationAST:") ;
+  ioString.appendString ("[@entityDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsAbstract.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlingOpposite.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSimpleStoredPropertyList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSignatureList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mObsoleteEntityNames.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsGraphicEntity.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGraphicOptionArray.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9930,31 +9930,31 @@ const C_galgas_type_descriptor * cPtr_entityForGeneration::classDescriptor (void
 
 void cPtr_entityForGeneration::description (String & ioString,
                                             const int32_t inIndentation) const {
-  ioString.addString ("[@entityForGeneration:") ;
+  ioString.appendString ("[@entityForGeneration:") ;
   mProperty_mEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSuperEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlingOpposite.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mPropertyGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSignatureSet.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsGraphicEntity.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mIsAbstract.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOverridenTransients.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mExternSwiftDelegateList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasSubEntity.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCanCopyAndPaste_5F_option.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCannotBeDeleted_5F_option.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10241,25 +10241,25 @@ const C_galgas_type_descriptor * cPtr_autoLayoutDocumentDeclarationAST::classDes
 
 void cPtr_autoLayoutDocumentDeclarationAST::description (String & ioString,
                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@autoLayoutDocumentDeclarationAST:") ;
+  ioString.appendString ("[@autoLayoutDocumentDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mMainViewName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mArrayControllerBindingListAST.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCustomSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletLinkerList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10693,39 +10693,39 @@ const C_galgas_type_descriptor * cPtr_autoLayoutDocumentFileGeneration::classDes
 
 void cPtr_autoLayoutDocumentFileGeneration::description (String & ioString,
                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@autoLayoutDocumentFileGeneration:") ;
+  ioString.appendString ("[@autoLayoutDocumentFileGeneration:") ;
   mProperty_mDocumentName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mMainViewName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDocumentPropertyGenearionList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletMap.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mAutoLayoutOutletMap.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTargetActionList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_multipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTableViewBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEBViewBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mImplicitViewFunctionGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mConfiguratorMap.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mCustomSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletLinkerGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10879,11 +10879,11 @@ const C_galgas_type_descriptor * cPtr_prefsDeclarationAST::classDescriptor (void
 
 void cPtr_prefsDeclarationAST::description (String & ioString,
                                             const int32_t inIndentation) const {
-  ioString.addString ("[@prefsDeclarationAST:") ;
+  ioString.appendString ("[@prefsDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDeclaration.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11470,27 +11470,27 @@ const C_galgas_type_descriptor * cPtr_autoLayoutViewClassDeclarationAST::classDe
 
 void cPtr_autoLayoutViewClassDeclarationAST::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.addString ("[@autoLayoutViewClassDeclarationAST:") ;
+  ioString.appendString ("[@autoLayoutViewClassDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11677,13 +11677,13 @@ const C_galgas_type_descriptor * cPtr_astComputedHorizontalViewDeclaration::clas
 
 void cPtr_astComputedHorizontalViewDeclaration::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("[@astComputedHorizontalViewDeclaration:") ;
+  ioString.appendString ("[@astComputedHorizontalViewDeclaration:") ;
   mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11832,9 +11832,9 @@ const C_galgas_type_descriptor * cPtr_astLocalViewInstruction::classDescriptor (
 
 void cPtr_astLocalViewInstruction::description (String & ioString,
                                                 const int32_t inIndentation) const {
-  ioString.addString ("[@astLocalViewInstruction:") ;
+  ioString.appendString ("[@astLocalViewInstruction:") ;
   mProperty_mLocalView.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12192,31 +12192,31 @@ const C_galgas_type_descriptor * cPtr_astComputedViewInstruction::classDescripto
 
 void cPtr_astComputedViewInstruction::description (String & ioString,
                                                    const int32_t inIndentation) const {
-  ioString.addString ("[@astComputedViewInstruction:") ;
+  ioString.appendString ("[@astComputedViewInstruction:") ;
   mProperty_mAutoLayoutViewClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRunActionDescriptor.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHiddenBindingDescriptor.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGraphicController.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegularBindingList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletIsArray.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12403,13 +12403,13 @@ const C_galgas_type_descriptor * cPtr_computedHorizontalViewGeneration::classDes
 
 void cPtr_computedHorizontalViewGeneration::description (String & ioString,
                                                          const int32_t inIndentation) const {
-  ioString.addString ("[@computedHorizontalViewGeneration:") ;
+  ioString.appendString ("[@computedHorizontalViewGeneration:") ;
   mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12615,15 +12615,15 @@ const C_galgas_type_descriptor * cPtr_hStackViewInstructionGeneration::classDesc
 
 void cPtr_hStackViewInstructionGeneration::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.addString ("[@hStackViewInstructionGeneration:") ;
+  ioString.appendString ("[@hStackViewInstructionGeneration:") ;
   mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12962,29 +12962,29 @@ const C_galgas_type_descriptor * cPtr_autoLayoutComputedViewInstructionGeneratio
 
 void cPtr_autoLayoutComputedViewInstructionGeneration::description (String & ioString,
                                                                     const int32_t inIndentation) const {
-  ioString.addString ("[@autoLayoutComputedViewInstructionGeneration:") ;
+  ioString.appendString ("[@autoLayoutComputedViewInstructionGeneration:") ;
   mProperty_mAutoLayoutViewClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRegularBindingsGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRunBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mTableViewBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mEBViewGraphicControllerBindingGeneration.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mOutletIsArray.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13329,23 +13329,23 @@ const C_galgas_type_descriptor * cPtr_outletClassDeclarationAST::classDescriptor
 
 void cPtr_outletClassDeclarationAST::description (String & ioString,
                                                   const int32_t inIndentation) const {
-  ioString.addString ("[@outletClassDeclarationAST:") ;
+  ioString.appendString ("[@outletClassDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13600,17 +13600,17 @@ const C_galgas_type_descriptor * cPtr_computedPropertyDeclarationAST::classDescr
 
 void cPtr_computedPropertyDeclarationAST::description (String & ioString,
                                                        const int32_t inIndentation) const {
-  ioString.addString ("[@computedPropertyDeclarationAST:") ;
+  ioString.appendString ("[@computedPropertyDeclarationAST:") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mComputedPropertyTypeName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mComputedPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13865,17 +13865,17 @@ const C_galgas_type_descriptor * cPtr_computedPropertyGeneration::classDescripto
 
 void cPtr_computedPropertyGeneration::description (String & ioString,
                                                    const int32_t inIndentation) const {
-  ioString.addString ("[@computedPropertyGeneration:") ;
+  ioString.appendString ("[@computedPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mType.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString.addString (", ") ;
+  ioString.appendString (", ") ;
   mProperty_mGenerate.description (ioString, inIndentation+1) ;
-  ioString.addString ("]") ;
+  ioString.appendString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------

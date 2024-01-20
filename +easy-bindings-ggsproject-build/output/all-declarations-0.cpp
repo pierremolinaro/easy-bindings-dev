@@ -68,13 +68,13 @@ cCollectionElement * cCollectionElement__32_lstringlist::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement__32_lstringlist::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mValue0" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mValue0" ":") ;
   mObject.mProperty_mValue_30_.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mValue1" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mValue1" ":") ;
   mObject.mProperty_mValue_31_.description (ioString, inIndentation) ;
 }
 
@@ -1845,536 +1845,536 @@ String Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken * in
   const cTokenFor_easyBindings_5F_lexique * ptr = (const cTokenFor_easyBindings_5F_lexique *) inTokenPtr ;
   String s ;
   if (ptr == nullptr) {
-    s.addString ("$$") ;
+    s.appendString ("$$") ;
   }else{
     switch (ptr->mTokenCode) {
     case kToken_:
-      s.addString ("$$") ;
+      s.appendString ("$$") ;
       break ;
     case kToken_identifier:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("identifier") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("identifier") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_Identifier:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("Identifier") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("Identifier") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken__40_attribute:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("@attribute") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("@attribute") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_bindingName:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("bindingName") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("bindingName") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_controllerName:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("controllerName") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("controllerName") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_viewName:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("viewName") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("viewName") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_literal_5F_integer:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("literal_integer") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addUnsigned (ptr->mLexicalAttribute_uint_33__32_value) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("literal_integer") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendUnsigned (ptr->mLexicalAttribute_uint_33__32_value) ;
       break ;
     case kToken_literal_5F_double:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("literal_double") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addDouble (ptr->mLexicalAttribute_floatValue) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("literal_double") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendDouble (ptr->mLexicalAttribute_floatValue) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_literal_5F_string:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("literal_string") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
-      s.addStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("literal_string") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_comment:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("comment") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("comment") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_abstract:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("abstract") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("abstract") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_action:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("action") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("action") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_all:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("all") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("all") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_arrayController:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("arrayController") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("arrayController") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_autolayout:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("autolayout") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("autolayout") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_autoLayoutDocument:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("autoLayoutDocument") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("autoLayoutDocument") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_binding:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("binding") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("binding") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_calledBy:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("calledBy") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("calledBy") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_class:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("class") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("class") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_classForSwift:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("classForSwift") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("classForSwift") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_column:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("column") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("column") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_computed:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("computed") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("computed") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_configurator:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("configurator") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("configurator") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_default:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("default") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("default") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_dependsFrom:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("dependsFrom") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("dependsFrom") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_divider:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("divider") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("divider") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_enum:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("enum") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("enum") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_editableColumn:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("editableColumn") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("editableColumn") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_entity:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("entity") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("entity") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_extern:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("extern") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("extern") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_externDelegate:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("externDelegate") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("externDelegate") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_externFunc:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("externFunc") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("externFunc") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_func:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("func") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("func") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_graphic:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("graphic") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("graphic") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_graphviz:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("graphviz") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("graphviz") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_handlingOpposite:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("handlingOpposite") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("handlingOpposite") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_hStack:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("hStack") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("hStack") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_include:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("include") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("include") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_inverse:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("inverse") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("inverse") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_linker:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("linker") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("linker") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_mainxib:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("mainxib") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("mainxib") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_menuItem:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("menuItem") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("menuItem") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_no:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("no") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("no") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_newView:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("newView") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("newView") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_none:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("none") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("none") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_one:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("one") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("one") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_outlet:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("outlet") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("outlet") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_outletArray:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("outletArray") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("outletArray") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_override:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("override") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("override") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_prefs:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("prefs") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("prefs") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_property:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("property") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("property") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_proxy:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("proxy") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("proxy") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_root:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("root") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("root") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_selectionController:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("selectionController") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("selectionController") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_self:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("self") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("self") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_separator:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("separator") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("separator") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_signature:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("signature") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("signature") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_sortkey:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("sortkey") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("sortkey") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_space:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("space") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("space") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_stackView:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("stackView") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("stackView") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_struct:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("struct") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("struct") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_super:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("super") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("super") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_tableViewController:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("tableViewController") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("tableViewController") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_toMany:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("toMany") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("toMany") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_toOne:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("toOne") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("toOne") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_transient:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("transient") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("transient") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_typeView:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("typeView") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("typeView") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_version:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("version") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("version") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_vStack:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("vStack") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("vStack") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_versionShouldChange:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("versionShouldChange") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("versionShouldChange") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_view:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("view") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("view") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_weak:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("weak") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("weak") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_xcodeproject:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("xcodeproject") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("xcodeproject") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_yes:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("yes") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("yes") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_enabled:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("enabled") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("enabled") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_graphicController:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("graphicController") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("graphicController") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_hidden:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("hidden") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("hidden") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_tableValue:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("tableValue") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("tableValue") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken_run:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("run") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("run") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3A_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (":") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (":") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__2C_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (",") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (",") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3B_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (";") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (";") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__21_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("!") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("!") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__5B_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("[") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("[") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__5D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("]") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("]") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__7B_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("{") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("{") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__7D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("}") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("}") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__28_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("(") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("(") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__29_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (")") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (")") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__2E_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (".") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (".") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__7C_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("|") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("|") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__26_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("&") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("&") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3C_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("<") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("<") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3E_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (">") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (">") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3C__3D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("<=") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("<=") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3E__3D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString (">=") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString (">=") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__21__3D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("!=") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("!=") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3D__3D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("==") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("==") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__5E_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("^") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("^") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__2D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("-") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("-") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     case kToken__3D_:
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.addString ("=") ;
-      s.addUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendString ("=") ;
+      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
       break ;
     default:
       break ;
@@ -3155,9 +3155,9 @@ cCollectionElement * cCollectionElement_declarationListAST::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_declarationListAST::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyDeclaration" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyDeclaration" ":") ;
   mObject.mProperty_mPropertyDeclaration.description (ioString, inIndentation) ;
 }
 
@@ -3569,21 +3569,21 @@ cCollectionElement * cCollectionElement_outletClassBindingSpecificationList::cop
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_outletClassBindingSpecificationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletClassName" ":") ;
   mObject.mProperty_mOutletClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletClassBindingSpecificationModelList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletClassBindingSpecificationModelList" ":") ;
   mObject.mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingOptionList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
 }
 
@@ -4175,21 +4175,21 @@ cCollectionElement * cCollectionElement_autoLayoutViewClassBindingSpecificationL
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_autoLayoutViewClassBindingSpecificationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletClassName" ":") ;
   mObject.mProperty_mOutletClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletClassBindingSpecificationModelList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletClassBindingSpecificationModelList" ":") ;
   mObject.mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingOptionList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
 }
 
@@ -4742,9 +4742,9 @@ cMapElement * cMapElement_astAutoLayoutViewFunctionMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_astAutoLayoutViewFunctionMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mFomalParameterList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mFomalParameterList" ":") ;
   mProperty_mFomalParameterList.description (ioString, inIndentation) ;
 }
 
@@ -5063,17 +5063,17 @@ cCollectionElement * cCollectionElement_enumerationFunctionListAST::copy (void) 
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_enumerationFunctionListAST::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mEnumName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mEnumName" ":") ;
   mObject.mProperty_mEnumName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mFunctionName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mFunctionName" ":") ;
   mObject.mProperty_mFunctionName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAssociationList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAssociationList" ":") ;
   mObject.mProperty_mAssociationList.description (ioString, inIndentation) ;
 }
 
@@ -5572,21 +5572,21 @@ cMapElement * cMapElement_classMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_classMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mClassKind" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mClassKind" ":") ;
   mProperty_mClassKind.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyMap" ":") ;
   mProperty_mPropertyMap.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mActionMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mActionMap" ":") ;
   mProperty_mActionMap.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyGenerationList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyGenerationList" ":") ;
   mProperty_mPropertyGenerationList.description (ioString, inIndentation) ;
 }
 
@@ -6024,33 +6024,33 @@ cMapElement * cMapElement_outletClassMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_outletClassMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mSuperClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mSuperClassName" ":") ;
   mProperty_mSuperClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandlesRunAction" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandlesRunAction" ":") ;
   mProperty_mHandlesRunAction.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandlesTableValueBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandlesTableValueBinding" ":") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleEnabledBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleEnabledBinding" ":") ;
   mProperty_mHandleEnabledBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleHiddenBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleHiddenBinding" ":") ;
   mProperty_mHandleHiddenBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleGraphicControllerBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleGraphicControllerBinding" ":") ;
   mProperty_mHandleGraphicControllerBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mUserDefined" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mUserDefined" ":") ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
 }
 
@@ -6622,13 +6622,13 @@ cMapElement * cMapElement_bindingSpecificationMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_bindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletSuperClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletSuperClassName" ":") ;
   mProperty_mOutletSuperClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingMap" ":") ;
   mProperty_mBindingMap.description (ioString, inIndentation) ;
 }
 
@@ -6995,41 +6995,41 @@ cMapElement * cMapElement_autolayoutViewClassMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_autolayoutViewClassMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mSuperClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mSuperClassName" ":") ;
   mProperty_mSuperClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandlesRunAction" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandlesRunAction" ":") ;
   mProperty_mHandlesRunAction.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandlesTableValueBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandlesTableValueBinding" ":") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleEnabledBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleEnabledBinding" ":") ;
   mProperty_mHandleEnabledBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleHiddenBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleHiddenBinding" ":") ;
   mProperty_mHandleHiddenBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHandleGraphicControllerBinding" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHandleGraphicControllerBinding" ":") ;
   mProperty_mHandleGraphicControllerBinding.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mUserDefined" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mUserDefined" ":") ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mParameterList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mParameterList" ":") ;
   mProperty_mParameterList.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAutoLayoutViewFunctionMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAutoLayoutViewFunctionMap" ":") ;
   mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation) ;
 }
 
@@ -7697,13 +7697,13 @@ cMapElement * cMapElement_autoLayoutBindingSpecificationMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_autoLayoutBindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletSuperClassName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletSuperClassName" ":") ;
   mProperty_mOutletSuperClassName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mBindingMap" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mBindingMap" ":") ;
   mProperty_mBindingMap.description (ioString, inIndentation) ;
 }
 
@@ -8379,9 +8379,9 @@ cCollectionElement * cCollectionElement_externSwiftDelegateList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_externSwiftDelegateList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mExternSwiftDelegateName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mExternSwiftDelegateName" ":") ;
   mObject.mProperty_mExternSwiftDelegateName.description (ioString, inIndentation) ;
 }
 
@@ -8789,13 +8789,13 @@ cCollectionElement * cCollectionElement_externSwiftFunctionList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_externSwiftFunctionList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mExternSwiftFunctionName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mExternSwiftFunctionName" ":") ;
   mObject.mProperty_mExternSwiftFunctionName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mCallerName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mCallerName" ":") ;
   mObject.mProperty_mCallerName.description (ioString, inIndentation) ;
 }
 
@@ -9659,9 +9659,9 @@ cMapElement * cMapElement_enumConstantMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_enumConstantMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mIndex" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mIndex" ":") ;
   mProperty_mIndex.description (ioString, inIndentation) ;
 }
 
@@ -9973,13 +9973,13 @@ cSortedListElement * cSortedListElement_enumFunAssociationSortedList::copy (void
 //--------------------------------------------------------------------------------------------------
 
 void cSortedListElement_enumFunAssociationSortedList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mIndex" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mIndex" ":") ;
   mObject.mProperty_mIndex.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAssociatedString" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAssociatedString" ":") ;
   mObject.mProperty_mAssociatedString.description (ioString, inIndentation) ;
 }
 
@@ -10251,9 +10251,9 @@ cMapElement * cMapElement_enumFuncMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_enumFuncMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mAssociationSortedList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mAssociationSortedList" ":") ;
   mProperty_mAssociationSortedList.description (ioString, inIndentation) ;
 }
 
@@ -10728,11 +10728,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_typeKind_enumType::description (String & ioString,
                                                            const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10767,10 +10767,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_typeKind_entityType::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10800,9 +10800,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_typeKind_classType::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10829,9 +10829,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_typeKind_transientPropertyExternType::description (String & ioString,
                                                                               const int32_t inIndentation) const {
-  ioString.addString ("(\n") ;
+  ioString.appendString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.addString (")") ;
+  ioString.appendString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11016,7 +11016,7 @@ void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue0,
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.addString ("method @typeKind enumType invoked with an invalid enum value") ;
+    s.appendString ("method @typeKind enumType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_enumType * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
@@ -11036,7 +11036,7 @@ void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue0,
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.addString ("method @typeKind entityType invoked with an invalid enum value") ;
+    s.appendString ("method @typeKind entityType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_entityType * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
@@ -11053,7 +11053,7 @@ void GALGAS_typeKind::method_classType (GALGAS_string & outAssociatedValue0,
   if (mEnum != kEnum_classType) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @typeKind classType invoked with an invalid enum value") ;
+    s.appendString ("method @typeKind classType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_classType * ptr = (const cEnumAssociatedValues_typeKind_classType *) unsafePointer () ;
@@ -11069,7 +11069,7 @@ void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAss
   if (mEnum != kEnum_transientPropertyExternType) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.addString ("method @typeKind transientPropertyExternType invoked with an invalid enum value") ;
+    s.appendString ("method @typeKind transientPropertyExternType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_transientPropertyExternType * ptr = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) unsafePointer () ;
@@ -11319,10 +11319,10 @@ GALGAS_bool GALGAS_typeKind::getter_isTransientPropertyExternType (UNUSED_LOCATI
 
 void GALGAS_typeKind::description (String & ioString,
                                    const int32_t inIndentation) const {
-  ioString.addString ("<enum @typeKind: ") ;
-  ioString.addString (gEnumNameArrayFor_typeKind [mEnum]) ;
+  ioString.appendString ("<enum @typeKind: ") ;
+  ioString.appendString (gEnumNameArrayFor_typeKind [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.addString (">") ;
+  ioString.appendString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11556,17 +11556,17 @@ cCollectionElement * cCollectionElement_simpleStoredPropertyList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_simpleStoredPropertyList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyTypeName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyTypeName" ":") ;
   mObject.mProperty_mPropertyTypeName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mPropertyName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mPropertyName" ":") ;
   mObject.mProperty_mPropertyName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mDefaultValue" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mDefaultValue" ":") ;
   mObject.mProperty_mDefaultValue.description (ioString, inIndentation) ;
 }
 
@@ -12202,9 +12202,9 @@ cCollectionElement * cCollectionElement_propertyGenerationList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_propertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mProperty" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -12722,13 +12722,13 @@ cCollectionElement * cCollectionElement_entityListForGeneratingEBManagedObjectCo
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_entityListForGeneratingEBManagedObjectContext::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mEntityName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mEntityName" ":") ;
   mObject.mProperty_mEntityName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mObsoleteEntityNames" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mObsoleteEntityNames" ":") ;
   mObject.mProperty_mObsoleteEntityNames.description (ioString, inIndentation) ;
 }
 
@@ -13208,37 +13208,37 @@ cCollectionElement * cCollectionElement_outletDeclarationList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_outletDeclarationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletTypeName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletTypeName" ":") ;
   mObject.mProperty_mOutletTypeName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletName" ":") ;
   mObject.mProperty_mOutletName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mTableValueBindingDescriptor" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mTableValueBindingDescriptor" ":") ;
   mObject.mProperty_mTableValueBindingDescriptor.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mRunDescriptor" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mRunDescriptor" ":") ;
   mObject.mProperty_mRunDescriptor.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mEnabledBindingDescriptor" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mEnabledBindingDescriptor" ":") ;
   mObject.mProperty_mEnabledBindingDescriptor.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHiddenBindingDescriptor" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHiddenBindingDescriptor" ":") ;
   mObject.mProperty_mHiddenBindingDescriptor.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mRegularBindingList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mRegularBindingList" ":") ;
   mObject.mProperty_mRegularBindingList.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mGraphicController" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mGraphicController" ":") ;
   mObject.mProperty_mGraphicController.description (ioString, inIndentation) ;
 }
 
@@ -14066,13 +14066,13 @@ cCollectionElement * cCollectionElement_arrayControllerBindingListAST::copy (voi
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_arrayControllerBindingListAST::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mControllerName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mControllerName" ":") ;
   mObject.mProperty_mControllerName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mHiddenSelectionViewBindingDescriptor" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mHiddenSelectionViewBindingDescriptor" ":") ;
   mObject.mProperty_mHiddenSelectionViewBindingDescriptor.description (ioString, inIndentation) ;
 }
 
@@ -14540,13 +14540,13 @@ cCollectionElement * cCollectionElement_astViewDeclarationList::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_astViewDeclarationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mViewName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mViewName" ":") ;
   mObject.mProperty_mViewName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mView" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mView" ":") ;
   mObject.mProperty_mView.description (ioString, inIndentation) ;
 }
 
@@ -15014,13 +15014,13 @@ cCollectionElement * cCollectionElement_astAutoLayoutOutletLinkerList::copy (voi
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_astAutoLayoutOutletLinkerList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mLinkerName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mLinkerName" ":") ;
   mObject.mProperty_mLinkerName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletNameList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletNameList" ":") ;
   mObject.mProperty_mOutletNameList.description (ioString, inIndentation) ;
 }
 
@@ -15598,13 +15598,13 @@ cCollectionElement * cCollectionElement_autoLayoutOutletLinkerGenerationList::co
 //--------------------------------------------------------------------------------------------------
 
 void cCollectionElement_autoLayoutOutletLinkerGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mLinkerName" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mLinkerName" ":") ;
   mObject.mProperty_mLinkerName.description (ioString, inIndentation) ;
-  ioString.addNL () ;
-  ioString.addStringMultiple ("| ", inIndentation) ;
-  ioString.addString ("mOutletNameAndTypeNameList" ":") ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendString ("mOutletNameAndTypeNameList" ":") ;
   mObject.mProperty_mOutletNameAndTypeNameList.description (ioString, inIndentation) ;
 }
 
