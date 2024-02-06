@@ -2524,7 +2524,6 @@ void Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_easyB
         if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C_n, 2, true)) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\n')) ;
         }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C__22_, 2, true)) {
-          ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\\')) ;
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\"')) ;
         }else if (testForInputUTF32Char (TO_UNICODE (' ')) || testForInputUTF32Char (TO_UNICODE ('!')) || testForInputUTF32CharRange (TO_UNICODE ('#'), TO_UNICODE (65533))) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;

@@ -422,14 +422,14 @@ override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarati
    let @stringset unused inOverriddenTransients) -> @string
 {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "//   Table View controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }

@@ -227,13 +227,13 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unuse
                                                             let @bool unused inGenerationDirectAccess,
                                                             let @stringset unused inOverriddenTransients) -> @string {
   if self.mOption.isHasDependance () then
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     self.mOption.hasDependance (?1*, ?masterPropertySwiftTypeName: let masterPropertyTypeName)
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + self.mRelationshipType.swiftTypeName ()
            + " <" + masterPropertyTypeName + "> ()\n\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + self.mRelationshipType.swiftTypeName () + "> {\n"
     result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
     if not self.mOption.isHasDependance () then
@@ -241,15 +241,15 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unuse
     end
     result += "  }\n\n"
   elsif self.mInPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "//   To many property: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = PreferencesArrayOf_" + self.mRelationshipType.swiftTypeName ()
     result += " (prefKey: Preferences_" + self.mPropertyName + ")\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property = "
     if self.mCustomStore then
       result += "Custom_" + self.mRelationshipType.swiftTypeName () + "_"
@@ -263,7 +263,7 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unuse
     end
     result += ")\n\n"
     if self.mGenerateDirectAccess || self.mGenerateDirectRead then
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
       result += "  final var " + self.mPropertyName + " : EBReferenceArray <" + self.mRelationshipType.swiftTypeName () + "> {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
       if not self.mOption.isHasDependance (), self.mGenerateDirectAccess then

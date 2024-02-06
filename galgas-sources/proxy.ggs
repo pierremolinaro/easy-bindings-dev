@@ -206,9 +206,9 @@ list @toManyProxyGenerationList {
 #·······················································································································
 
 override func @toManyProxyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
 }
 
@@ -231,13 +231,13 @@ override func @toManyProxyGeneration.propertyDeclarationCode(
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string
 {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  var " + self.mPropertyName + "_modelDidChangeController : EBObservablePropertyController? = nil\n"
   result += "  // var " + self.mPropertyName + "_boundObjectDidChangeController : EBObservablePropertyController? = nil\n"
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  var " + self.mPropertyName + " : EBReferenceArray <" + self.mToManyTypeName + "> {\n"
   result += "    get {\n"
   result += "      switch self." + self.mPropertyName + "_property.selection {\n"
@@ -291,9 +291,9 @@ list @atomicProxyGenerationList {
 #·······················································································································
 
 override func @atomicProxyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
 }
 
@@ -306,7 +306,7 @@ override func @atomicProxyGeneration.initCode() -> @string {
 #·······················································································································
 
 override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -366,11 +366,11 @@ override func @atomicProxyGeneration.propertyDeclarationCode(
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string
 {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  var " + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.optionalValue\n"

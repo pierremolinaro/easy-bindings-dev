@@ -189,16 +189,16 @@ override func @atomicPropertyGeneration.prefKeyDefinitionCode() -> @string {
 #·······················································································································
 
 override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
 }
 
 #·······················································································································
 
 override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -259,25 +259,25 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
    let @stringset unused inOverriddenTransients) -> @string
 {
   if self.mInPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "//   Atomic property: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferenceProperty <" + self.mType.swiftTypeName ()
     result += "> (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
     result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + self.mType.swiftTypeName () + "\n\n"
     if self.mGenerateResetMethod then
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
       result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
       result += "    self." + self.mPropertyName + "_property.setProp (" + self.mDefaultValueInSwift + ")\n"
       result += "  }\n\n"
     end
     let generateAccess = inGenerationDirectAccess || self.mGenerateDirectRead || self.mGenerateDirectAccess
     if generateAccess then
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + self.mType.swiftTypeName () + " {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
       if self.mGenerateDirectAccess then

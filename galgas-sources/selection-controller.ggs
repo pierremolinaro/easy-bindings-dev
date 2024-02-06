@@ -168,9 +168,9 @@ override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
    let @bool unused inPreferences,
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 

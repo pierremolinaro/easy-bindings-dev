@@ -1,7 +1,7 @@
 lexique easyBindings_lexique {
 
 //---------------------------------------------------------------------------*
-#   Identifiers and keywords                                                 *
+//   Identifiers and keywords
 //---------------------------------------------------------------------------*
 
 @string tokenString
@@ -97,7 +97,7 @@ rule 'A'->'Z' {
 }
 
   //----------------------------------------------------------
-  #! Attributes
+  //! Attributes
   //----------------------------------------------------------
   
   style attributeStyle -> "Attributes"
@@ -120,7 +120,7 @@ rule 'A'->'Z' {
   }
   
 //---------------------------------------------------------------------------*
-#   Binding name                                                             *
+//   Binding name                                                             *
 //---------------------------------------------------------------------------*
 
 style bindingNameStyle -> "Binding Names"
@@ -146,7 +146,7 @@ rule '$' {
 }
 
 //---------------------------------------------------------------------------*
-#   Controller names                                                         *
+//   Controller names                                                         
 //---------------------------------------------------------------------------*
 
 style controllerNameStyle -> "Controller Names"
@@ -163,7 +163,7 @@ rule '#' {
 }
 
 //---------------------------------------------------------------------------*
-#   View names                                                               *
+//   View names
 //---------------------------------------------------------------------------*
 
 style viewNameStyle -> "View Names"
@@ -180,7 +180,7 @@ rule '\\' {
 }
 
 //---------------------------------------------------------------------------*
-#   Literal decimal integers                                                 *
+//   Literal decimal integers
 //---------------------------------------------------------------------------*
 
 style integerStyle -> "Integer Constants"
@@ -218,7 +218,7 @@ rule '0'->'9' {
 }
 
 //---------------------------------------------------------------------------*
-#   Literal character strings                                                *
+//   Literal character strings
 //---------------------------------------------------------------------------*
 
 style stringStyle -> "String Constants"
@@ -231,11 +231,8 @@ rule '"' {
   repeat
    while "\\n" :
      enterCharacterIntoString (!?tokenString !'\n')
-#   while "\\u" :
-#     enterCharacterIntoString (!?tokenString !'\\')
-#     enterCharacterIntoString (!?tokenString !'u')
    while "\\\"" :
-     enterCharacterIntoString (!?tokenString !'\\')
+//     enterCharacterIntoString (!?tokenString !'\\')
      enterCharacterIntoString (!?tokenString !'"')
    while ' ' | '!' | '#'-> '\uFFFD' :
      enterCharacterIntoString (!?tokenString !*)
@@ -251,7 +248,7 @@ rule '"' {
 }
 
 //---------------------------------------------------------------------------*
-#   Delimiters                                                               *
+//   Delimiters
 //---------------------------------------------------------------------------*
 
 style delimitersStyle -> "Delimiters"
@@ -264,7 +261,7 @@ list delimitorsList style delimitersStyle %errorMessage "the '%K' delimitor"{
 rule list delimitorsList
 
 //---------------------------------------------------------------------------*
-#   Comments                                                                 *
+//   Comments
 //---------------------------------------------------------------------------*
 
 style commentStyle -> "Comments"
@@ -277,7 +274,7 @@ rule "//" {
 }
 
 //---------------------------------------------------------------------------*
-#   Separators                                                               *
+//   Separators
 //---------------------------------------------------------------------------*
 
 rule '\u0001' -> ' ' {

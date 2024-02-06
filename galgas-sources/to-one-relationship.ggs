@@ -189,13 +189,13 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
                                                    (let @bool unused inPreferences,
                                                     let @bool unused inGenerationDirectAccess,
                                                     let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + self.mRelationshipType.swiftTypeName ()
   result += " (usedForSignature: " + self.mUsedForSignature.cString ()
   result += ", strongRef: " + self.mStrongRef.cString () + ", key: \"" + self.mPropertyName + "\")\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + self.mRelationshipType.swiftTypeName () + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
@@ -211,7 +211,7 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 116) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_none = EBTransientProperty <Bool> ()\n\n"
 }
 
