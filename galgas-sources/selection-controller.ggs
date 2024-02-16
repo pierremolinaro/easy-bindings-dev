@@ -258,7 +258,7 @@ proc generateSelectionControllers(
     else
       var hasAtomicStoredProperties = false
       for (property) in propertyGenerationList while not hasAtomicStoredProperties do
-        hasAtomicStoredProperties = property is == @atomicPropertyGeneration
+        hasAtomicStoredProperties = property is @atomicPropertyGeneration
       end
       let s = filewrapper [selectionControllerGenerationTemplate.derivedSelectionControllerImplementation:
         ownerName,

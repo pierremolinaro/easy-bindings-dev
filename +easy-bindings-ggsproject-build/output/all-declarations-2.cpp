@@ -931,11 +931,11 @@ cCollectionElement * cCollectionElement_autoLayoutViewInstructionGenerationFuncC
 void cCollectionElement_autoLayoutViewInstructionGenerationFuncCallList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFunctionName" ":") ;
+  ioString.appendCString ("mFunctionName" ":") ;
   mObject.mProperty_mFunctionName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mParameters" ":") ;
+  ioString.appendCString ("mParameters" ":") ;
   mObject.mProperty_mParameters.description (ioString, inIndentation) ;
 }
 
@@ -1403,7 +1403,7 @@ cCollectionElement * cCollectionElement_autoLayoutViewInstructionGenerationList:
 void cCollectionElement_autoLayoutViewInstructionGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInstruction" ":") ;
+  ioString.appendCString ("mInstruction" ":") ;
   mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
 }
 
@@ -1993,13 +1993,13 @@ const C_galgas_type_descriptor * cPtr_computedVerticalViewGeneration::classDescr
 
 void cPtr_computedVerticalViewGeneration::description (String & ioString,
                                                        const int32_t inIndentation) const {
-  ioString.appendString ("[@computedVerticalViewGeneration:") ;
+  ioString.appendCString ("[@computedVerticalViewGeneration:") ;
   mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2336,11 +2336,11 @@ cCollectionElement * cCollectionElement_autoLayoutMultipleBindingGenerationList:
 void cCollectionElement_autoLayoutMultipleBindingGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingName" ":") ;
+  ioString.appendCString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBoundObjectExpression" ":") ;
+  ioString.appendCString ("mBoundObjectExpression" ":") ;
   mObject.mProperty_mBoundObjectExpression.description (ioString, inIndentation) ;
 }
 
@@ -3009,15 +3009,15 @@ const C_galgas_type_descriptor * cPtr_vStackViewInstructionGeneration::classDesc
 
 void cPtr_vStackViewInstructionGeneration::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.appendString ("[@vStackViewInstructionGeneration:") ;
+  ioString.appendCString ("[@vStackViewInstructionGeneration:") ;
   mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3252,7 +3252,7 @@ const C_galgas_type_descriptor * cPtr_autoLayoutSpaceViewInstructionGeneration::
 
 void cPtr_autoLayoutSpaceViewInstructionGeneration::description (String & ioString,
                                                                  const int32_t /* inIndentation */) const {
-  ioString.appendString ("[@autoLayoutSpaceViewInstructionGeneration]") ;
+  ioString.appendCString ("[@autoLayoutSpaceViewInstructionGeneration]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3511,9 +3511,9 @@ const C_galgas_type_descriptor * cPtr_autoLayoutSeparatorInstructionGeneration::
 
 void cPtr_autoLayoutSeparatorInstructionGeneration::description (String & ioString,
                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("[@autoLayoutSeparatorInstructionGeneration:") ;
+  ioString.appendCString ("[@autoLayoutSeparatorInstructionGeneration:") ;
   mProperty_horizontal.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3772,9 +3772,9 @@ const C_galgas_type_descriptor * cPtr_autoLayoutDividerInstructionGeneration::cl
 
 void cPtr_autoLayoutDividerInstructionGeneration::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("[@autoLayoutDividerInstructionGeneration:") ;
+  ioString.appendCString ("[@autoLayoutDividerInstructionGeneration:") ;
   mProperty_horizontal.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4033,9 +4033,9 @@ const C_galgas_type_descriptor * cPtr_autoLayoutLocalViewInstructionGeneration::
 
 void cPtr_autoLayoutLocalViewInstructionGeneration::description (String & ioString,
                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("[@autoLayoutLocalViewInstructionGeneration:") ;
+  ioString.appendCString ("[@autoLayoutLocalViewInstructionGeneration:") ;
   mProperty_mLocalView.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4264,15 +4264,15 @@ cCollectionElement * cCollectionElement_autoLayoutRegularBindingsGenerationList:
 void cCollectionElement_autoLayoutRegularBindingsGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingName" ":") ;
+  ioString.appendCString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBoundObjectList" ":") ;
+  ioString.appendCString ("mBoundObjectList" ":") ;
   mObject.mProperty_mBoundObjectList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingOptionsString" ":") ;
+  ioString.appendCString ("mBindingOptionsString" ":") ;
   mObject.mProperty_mBindingOptionsString.description (ioString, inIndentation) ;
 }
 
@@ -4802,11 +4802,11 @@ cCollectionElement * cCollectionElement_boundObjectList::copy (void) {
 void cCollectionElement_boundObjectList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBoundObjectString" ":") ;
+  ioString.appendCString ("mBoundObjectString" ":") ;
   mObject.mProperty_mBoundObjectString.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mKind" ":") ;
+  ioString.appendCString ("mKind" ":") ;
   mObject.mProperty_mKind.description (ioString, inIndentation) ;
 }
 
@@ -5322,11 +5322,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_autolayoutRunBindingForGeneration_run::description (String & ioString,
                                                                                const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5391,7 +5391,7 @@ void GALGAS_autolayoutRunBindingForGeneration::method_run (GALGAS_string & outAs
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.appendString ("method @autolayoutRunBindingForGeneration run invoked with an invalid enum value") ;
+    s.appendCString ("method @autolayoutRunBindingForGeneration run invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run * ptr = (const cEnumAssociatedValues_autolayoutRunBindingForGeneration_run *) unsafePointer () ;
@@ -5447,10 +5447,10 @@ GALGAS_bool GALGAS_autolayoutRunBindingForGeneration::getter_isRun (UNUSED_LOCAT
 
 void GALGAS_autolayoutRunBindingForGeneration::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<enum @autolayoutRunBindingForGeneration: ") ;
-  ioString.appendString (gEnumNameArrayFor_autolayoutRunBindingForGeneration [mEnum]) ;
+  ioString.appendCString ("<enum @autolayoutRunBindingForGeneration: ") ;
+  ioString.appendCString (gEnumNameArrayFor_autolayoutRunBindingForGeneration [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5523,9 +5523,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding::description (String & ioString,
                                                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5578,7 +5578,7 @@ void GALGAS_autoLayoutViewGraphicControllerBindingGeneration::method_binding (GA
   if (mEnum != kEnum_binding) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @autoLayoutViewGraphicControllerBindingGeneration binding invoked with an invalid enum value") ;
+    s.appendCString ("method @autoLayoutViewGraphicControllerBindingGeneration binding invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding * ptr = (const cEnumAssociatedValues_autoLayoutViewGraphicControllerBindingGeneration_binding *) unsafePointer () ;
@@ -5628,10 +5628,10 @@ GALGAS_bool GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_isBi
 
 void GALGAS_autoLayoutViewGraphicControllerBindingGeneration::description (String & ioString,
                                                                            const int32_t inIndentation) const {
-  ioString.appendString ("<enum @autoLayoutViewGraphicControllerBindingGeneration: ") ;
-  ioString.appendString (gEnumNameArrayFor_autoLayoutViewGraphicControllerBindingGeneration [mEnum]) ;
+  ioString.appendCString ("<enum @autoLayoutViewGraphicControllerBindingGeneration: ") ;
+  ioString.appendCString (gEnumNameArrayFor_autoLayoutViewGraphicControllerBindingGeneration [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5704,9 +5704,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled::description (String & ioString,
                                                                                        const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5759,7 +5759,7 @@ void GALGAS_autolayoutEnabledBindingForGeneration::method_enabled (GALGAS_abstra
   if (mEnum != kEnum_enabled) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @autolayoutEnabledBindingForGeneration enabled invoked with an invalid enum value") ;
+    s.appendCString ("method @autolayoutEnabledBindingForGeneration enabled invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled * ptr = (const cEnumAssociatedValues_autolayoutEnabledBindingForGeneration_enabled *) unsafePointer () ;
@@ -5809,10 +5809,10 @@ GALGAS_bool GALGAS_autolayoutEnabledBindingForGeneration::getter_isEnabled (UNUS
 
 void GALGAS_autolayoutEnabledBindingForGeneration::description (String & ioString,
                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<enum @autolayoutEnabledBindingForGeneration: ") ;
-  ioString.appendString (gEnumNameArrayFor_autolayoutEnabledBindingForGeneration [mEnum]) ;
+  ioString.appendCString ("<enum @autolayoutEnabledBindingForGeneration: ") ;
+  ioString.appendCString (gEnumNameArrayFor_autolayoutEnabledBindingForGeneration [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5936,11 +5936,11 @@ cCollectionElement * cCollectionElement_autoLayoutViewInstructionGenerationParam
 void cCollectionElement_autoLayoutViewInstructionGenerationParameterList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mParameterName" ":") ;
+  ioString.appendCString ("mParameterName" ":") ;
   mObject.mProperty_mParameterName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mParameterValue" ":") ;
+  ioString.appendCString ("mParameterValue" ":") ;
   mObject.mProperty_mParameterValue.description (ioString, inIndentation) ;
 }
 
@@ -6663,11 +6663,11 @@ cMapElement * cMapElement_outletBindingSpecificationMap::copy (void) {
 void cMapElement_outletBindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletBindingSpecificationModelList" ":") ;
+  ioString.appendCString ("mOutletBindingSpecificationModelList" ":") ;
   mProperty_mOutletBindingSpecificationModelList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mControllerBindingOptionList" ":") ;
+  ioString.appendCString ("mControllerBindingOptionList" ":") ;
   mProperty_mControllerBindingOptionList.description (ioString, inIndentation) ;
 }
 
@@ -7034,11 +7034,11 @@ cCollectionElement * cCollectionElement_bindingOptionList::copy (void) {
 void cCollectionElement_bindingOptionList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOptionName" ":") ;
+  ioString.appendCString ("mOptionName" ":") ;
   mObject.mProperty_mOptionName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOptionValue" ":") ;
+  ioString.appendCString ("mOptionValue" ":") ;
   mObject.mProperty_mOptionValue.description (ioString, inIndentation) ;
 }
 
@@ -7601,11 +7601,11 @@ cCollectionElement * cCollectionElement_outletBindingModelList::copy (void) {
 void cCollectionElement_outletBindingModelList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mKind" ":") ;
+  ioString.appendCString ("mKind" ":") ;
   mObject.mProperty_mKind.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mErrorLocation" ":") ;
+  ioString.appendCString ("mErrorLocation" ":") ;
   mObject.mProperty_mErrorLocation.description (ioString, inIndentation) ;
 }
 
@@ -8026,10 +8026,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_propertyKind_property::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8065,12 +8065,12 @@ mAssociatedValue3 (inAssociatedValue3) {
 
 void cEnumAssociatedValues_propertyKind_toMany::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
   mAssociatedValue3.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8114,13 +8114,13 @@ mAssociatedValue4 (inAssociatedValue4) {
 
 void cEnumAssociatedValues_propertyKind_toOne::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
   mAssociatedValue3.description (ioString, inIndentation) ;
   mAssociatedValue4.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8161,10 +8161,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_propertyKind_arrayController::description (String & ioString,
                                                                       const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8194,9 +8194,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_propertyKind_selectionController::description (String & ioString,
                                                                           const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8312,7 +8312,7 @@ void GALGAS_propertyKind::method_property (GALGAS_typeKind & outAssociatedValue0
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @propertyKind property invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyKind property invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyKind_property * ptr = (const cEnumAssociatedValues_propertyKind_property *) unsafePointer () ;
@@ -8335,7 +8335,7 @@ void GALGAS_propertyKind::method_toMany (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue2.drop () ;
     outAssociatedValue3.drop () ;
     String s ;
-    s.appendString ("method @propertyKind toMany invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyKind toMany invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyKind_toMany * ptr = (const cEnumAssociatedValues_propertyKind_toMany *) unsafePointer () ;
@@ -8362,7 +8362,7 @@ void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue3.drop () ;
     outAssociatedValue4.drop () ;
     String s ;
-    s.appendString ("method @propertyKind toOne invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyKind toOne invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyKind_toOne * ptr = (const cEnumAssociatedValues_propertyKind_toOne *) unsafePointer () ;
@@ -8384,7 +8384,7 @@ void GALGAS_propertyKind::method_arrayController (GALGAS_lstring & outAssociated
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @propertyKind arrayController invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyKind arrayController invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyKind_arrayController * ptr = (const cEnumAssociatedValues_propertyKind_arrayController *) unsafePointer () ;
@@ -8401,7 +8401,7 @@ void GALGAS_propertyKind::method_selectionController (GALGAS_string & outAssocia
   if (mEnum != kEnum_selectionController) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @propertyKind selectionController invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyKind selectionController invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyKind_selectionController * ptr = (const cEnumAssociatedValues_propertyKind_selectionController *) unsafePointer () ;
@@ -8527,10 +8527,10 @@ GALGAS_bool GALGAS_propertyKind::getter_isSelectionController (UNUSED_LOCATION_A
 
 void GALGAS_propertyKind::description (String & ioString,
                                        const int32_t inIndentation) const {
-  ioString.appendString ("<enum @propertyKind: ") ;
-  ioString.appendString (gEnumNameArrayFor_propertyKind [mEnum]) ;
+  ioString.appendCString ("<enum @propertyKind: ") ;
+  ioString.appendCString (gEnumNameArrayFor_propertyKind [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8603,9 +8603,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_rootProperty::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8634,10 +8634,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption::description (String & ioString,
                                                                                       const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8669,10 +8669,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship::description (String & ioString,
                                                                                         const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8702,9 +8702,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_rootPropertyNone::description (String & ioString,
                                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8731,9 +8731,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfWithoutProperty::description (String & ioString,
                                                                                    const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8760,9 +8760,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfProperty::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8791,10 +8791,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfPropertyWithOption::description (String & ioString,
                                                                                       const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8826,10 +8826,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfPropertyArray::description (String & ioString,
                                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8861,10 +8861,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfPropertyObject::description (String & ioString,
                                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8894,9 +8894,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfPropertyNone::description (String & ioString,
                                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8923,9 +8923,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_prefsProperty::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8954,10 +8954,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_prefsPropertyWithOption::description (String & ioString,
                                                                                        const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8989,10 +8989,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfControllerProperty::description (String & ioString,
                                                                                       const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9026,11 +9026,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty::description (String & ioString,
                                                                                                const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9067,11 +9067,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfControllerAllProperties::description (String & ioString,
                                                                                            const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9106,10 +9106,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_selfControllerOneProperty::description (String & ioString,
                                                                                          const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9139,9 +9139,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_signatureProperty::description (String & ioString,
                                                                                  const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9168,9 +9168,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_versionProperty::description (String & ioString,
                                                                                const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9197,9 +9197,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty::description (String & ioString,
                                                                                            const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9228,10 +9228,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_observablePropertyAST_superProperty::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9265,11 +9265,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue::description (String & ioString,
                                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9635,7 +9635,7 @@ void GALGAS_observablePropertyAST::method_rootProperty (GALGAS_lstring & outAsso
   if (mEnum != kEnum_rootProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST rootProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST rootProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_rootProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_rootProperty *) unsafePointer () ;
@@ -9653,7 +9653,7 @@ void GALGAS_observablePropertyAST::method_rootPropertyWithOption (GALGAS_lstring
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST rootPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST rootPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption * ptr = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyWithOption *) unsafePointer () ;
@@ -9672,7 +9672,7 @@ void GALGAS_observablePropertyAST::method_rootPropertyRelationship (GALGAS_lstri
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST rootPropertyRelationship invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST rootPropertyRelationship invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship * ptr = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyRelationship *) unsafePointer () ;
@@ -9689,7 +9689,7 @@ void GALGAS_observablePropertyAST::method_rootPropertyNone (GALGAS_lstring & out
   if (mEnum != kEnum_rootPropertyNone) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST rootPropertyNone invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST rootPropertyNone invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_rootPropertyNone * ptr = (const cEnumAssociatedValues_observablePropertyAST_rootPropertyNone *) unsafePointer () ;
@@ -9705,7 +9705,7 @@ void GALGAS_observablePropertyAST::method_selfWithoutProperty (GALGAS_location &
   if (mEnum != kEnum_selfWithoutProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfWithoutProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfWithoutProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfWithoutProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfWithoutProperty *) unsafePointer () ;
@@ -9721,7 +9721,7 @@ void GALGAS_observablePropertyAST::method_selfProperty (GALGAS_lstring & outAsso
   if (mEnum != kEnum_selfProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfProperty *) unsafePointer () ;
@@ -9739,7 +9739,7 @@ void GALGAS_observablePropertyAST::method_selfPropertyWithOption (GALGAS_lstring
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfPropertyWithOption * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfPropertyWithOption *) unsafePointer () ;
@@ -9758,7 +9758,7 @@ void GALGAS_observablePropertyAST::method_selfPropertyArray (GALGAS_lstring & ou
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfPropertyArray invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfPropertyArray invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfPropertyArray * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfPropertyArray *) unsafePointer () ;
@@ -9777,7 +9777,7 @@ void GALGAS_observablePropertyAST::method_selfPropertyObject (GALGAS_lstring & o
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfPropertyObject invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfPropertyObject invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfPropertyObject * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfPropertyObject *) unsafePointer () ;
@@ -9794,7 +9794,7 @@ void GALGAS_observablePropertyAST::method_selfPropertyNone (GALGAS_lstring & out
   if (mEnum != kEnum_selfPropertyNone) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfPropertyNone invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfPropertyNone invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfPropertyNone * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfPropertyNone *) unsafePointer () ;
@@ -9810,7 +9810,7 @@ void GALGAS_observablePropertyAST::method_prefsProperty (GALGAS_lstring & outAss
   if (mEnum != kEnum_prefsProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST prefsProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST prefsProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_prefsProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_prefsProperty *) unsafePointer () ;
@@ -9828,7 +9828,7 @@ void GALGAS_observablePropertyAST::method_prefsPropertyWithOption (GALGAS_lstrin
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST prefsPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST prefsPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_prefsPropertyWithOption * ptr = (const cEnumAssociatedValues_observablePropertyAST_prefsPropertyWithOption *) unsafePointer () ;
@@ -9847,7 +9847,7 @@ void GALGAS_observablePropertyAST::method_selfControllerProperty (GALGAS_lstring
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfControllerProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfControllerProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfControllerProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfControllerProperty *) unsafePointer () ;
@@ -9868,7 +9868,7 @@ void GALGAS_observablePropertyAST::method_selfControllerSecondaryProperty (GALGA
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfControllerSecondaryProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfControllerSecondaryProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfControllerSecondaryProperty *) unsafePointer () ;
@@ -9890,7 +9890,7 @@ void GALGAS_observablePropertyAST::method_selfControllerAllProperties (GALGAS_ls
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfControllerAllProperties invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfControllerAllProperties invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfControllerAllProperties * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfControllerAllProperties *) unsafePointer () ;
@@ -9910,7 +9910,7 @@ void GALGAS_observablePropertyAST::method_selfControllerOneProperty (GALGAS_lstr
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST selfControllerOneProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST selfControllerOneProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_selfControllerOneProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_selfControllerOneProperty *) unsafePointer () ;
@@ -9927,7 +9927,7 @@ void GALGAS_observablePropertyAST::method_signatureProperty (GALGAS_location & o
   if (mEnum != kEnum_signatureProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST signatureProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST signatureProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_signatureProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_signatureProperty *) unsafePointer () ;
@@ -9943,7 +9943,7 @@ void GALGAS_observablePropertyAST::method_versionProperty (GALGAS_location & out
   if (mEnum != kEnum_versionProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST versionProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST versionProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_versionProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_versionProperty *) unsafePointer () ;
@@ -9959,7 +9959,7 @@ void GALGAS_observablePropertyAST::method_versionShouldChangeProperty (GALGAS_lo
   if (mEnum != kEnum_versionShouldChangeProperty) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST versionShouldChangeProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST versionShouldChangeProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_versionShouldChangeProperty *) unsafePointer () ;
@@ -9977,7 +9977,7 @@ void GALGAS_observablePropertyAST::method_superProperty (GALGAS_lstring & outAss
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST superProperty invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST superProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_superProperty * ptr = (const cEnumAssociatedValues_observablePropertyAST_superProperty *) unsafePointer () ;
@@ -9998,7 +9998,7 @@ void GALGAS_observablePropertyAST::method_superPropertyWithDefaultValue (GALGAS_
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.appendString ("method @observablePropertyAST superPropertyWithDefaultValue invoked with an invalid enum value") ;
+    s.appendCString ("method @observablePropertyAST superPropertyWithDefaultValue invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue * ptr = (const cEnumAssociatedValues_observablePropertyAST_superPropertyWithDefaultValue *) unsafePointer () ;
@@ -10426,10 +10426,10 @@ GALGAS_bool GALGAS_observablePropertyAST::getter_isSuperPropertyWithDefaultValue
 
 void GALGAS_observablePropertyAST::description (String & ioString,
                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<enum @observablePropertyAST: ") ;
-  ioString.appendString (gEnumNameArrayFor_observablePropertyAST [mEnum]) ;
+  ioString.appendCString ("<enum @observablePropertyAST: ") ;
+  ioString.appendCString (gEnumNameArrayFor_observablePropertyAST [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10551,7 +10551,7 @@ cCollectionElement * cCollectionElement_observablePropertyList::copy (void) {
 void cCollectionElement_observablePropertyList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mObservableProperty" ":") ;
+  ioString.appendCString ("mObservableProperty" ":") ;
   mObject.mProperty_mObservableProperty.description (ioString, inIndentation) ;
 }
 
@@ -12813,19 +12813,19 @@ cCollectionElement * cCollectionElement_transientDependencyListForGeneration::co
 void cCollectionElement_transientDependencyListForGeneration::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDependency" ":") ;
+  ioString.appendCString ("mDependency" ":") ;
   mObject.mProperty_mDependency.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFunctionArgumentName" ":") ;
+  ioString.appendCString ("mFunctionArgumentName" ":") ;
   mObject.mProperty_mFunctionArgumentName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFunctionArgumentTypeString" ":") ;
+  ioString.appendCString ("mFunctionArgumentTypeString" ":") ;
   mObject.mProperty_mFunctionArgumentTypeString.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDefaultValueAsString" ":") ;
+  ioString.appendCString ("mDefaultValueAsString" ":") ;
   mObject.mProperty_mDefaultValueAsString.description (ioString, inIndentation) ;
 }
 
@@ -13523,7 +13523,7 @@ cCollectionElement * cCollectionElement_computedPropertyGenerationList::copy (vo
 void cCollectionElement_computedPropertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProperty" ":") ;
+  ioString.appendCString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -14066,15 +14066,15 @@ const C_galgas_type_descriptor * cPtr_computeRoutineGeneration::classDescriptor 
 
 void cPtr_computeRoutineGeneration::description (String & ioString,
                                                  const int32_t inIndentation) const {
-  ioString.appendString ("[@computeRoutineGeneration:") ;
+  ioString.appendCString ("[@computeRoutineGeneration:") ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mTransientName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mTransientType.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mDependencyList.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------

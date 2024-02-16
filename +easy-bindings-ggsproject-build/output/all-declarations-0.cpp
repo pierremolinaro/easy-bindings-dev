@@ -70,11 +70,11 @@ cCollectionElement * cCollectionElement__32_lstringlist::copy (void) {
 void cCollectionElement__32_lstringlist::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mValue0" ":") ;
+  ioString.appendCString ("mValue0" ":") ;
   mObject.mProperty_mValue_30_.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mValue1" ":") ;
+  ioString.appendCString ("mValue1" ":") ;
   mObject.mProperty_mValue_31_.description (ioString, inIndentation) ;
 }
 
@@ -649,147 +649,125 @@ String Lexique_easyBindings_5F_lexique::getMessageForTerminal (const int32_t inT
 //                      U N I C O D E    S T R I N G S                                           
 //--------------------------------------------------------------------------------------------------
 
-//--- Unicode string for '$_21_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__21_ [] = {
+//--- Unicode string for '$!$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__21_ = {
   TO_UNICODE ('!'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_21__3D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__21__3D_ [] = {
+//--- Unicode string for '$!=$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__21__3D_ = {
   TO_UNICODE ('!'),
   TO_UNICODE ('='),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_26_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__26_ [] = {
+//--- Unicode string for '$&$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__26_ = {
   TO_UNICODE ('&'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_28_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__28_ [] = {
+//--- Unicode string for '$($'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__28_ = {
   TO_UNICODE ('('),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_29_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__29_ [] = {
+//--- Unicode string for '$)$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__29_ = {
   TO_UNICODE (')'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2C_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__2C_ [] = {
+//--- Unicode string for '$,$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__2C_ = {
   TO_UNICODE (','),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__2D_ [] = {
+//--- Unicode string for '$-$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__2D_ = {
   TO_UNICODE ('-'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2E_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__2E_ [] = {
+//--- Unicode string for '$.$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__2E_ = {
   TO_UNICODE ('.'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_2F__2F_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__2F__2F_ [] = {
+//--- Unicode string for '$//$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__2F__2F_ = {
   TO_UNICODE ('/'),
   TO_UNICODE ('/'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3A_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3A_ [] = {
+//--- Unicode string for '$:$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3A_ = {
   TO_UNICODE (':'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3B_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3B_ [] = {
+//--- Unicode string for '$;$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3B_ = {
   TO_UNICODE (';'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3C_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3C_ [] = {
+//--- Unicode string for '$<$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3C_ = {
   TO_UNICODE ('<'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3C__3D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3C__3D_ [] = {
+//--- Unicode string for '$<=$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3C__3D_ = {
   TO_UNICODE ('<'),
   TO_UNICODE ('='),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3D_ [] = {
+//--- Unicode string for '$=$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3D_ = {
   TO_UNICODE ('='),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3D__3D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3D__3D_ [] = {
+//--- Unicode string for '$==$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3D__3D_ = {
   TO_UNICODE ('='),
   TO_UNICODE ('='),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3E_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3E_ [] = {
+//--- Unicode string for '$>$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3E_ = {
   TO_UNICODE ('>'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_3E__3D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__3E__3D_ [] = {
+//--- Unicode string for '$>=$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__3E__3D_ = {
   TO_UNICODE ('>'),
   TO_UNICODE ('='),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5B_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__5B_ [] = {
+//--- Unicode string for '$[$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__5B_ = {
   TO_UNICODE ('['),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5C__22_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__5C__22_ [] = {
+//--- Unicode string for '$\\\"$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__5C__22_ = {
   TO_UNICODE ('\\'),
   TO_UNICODE ('\"'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5C_n$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__5C_n [] = {
+//--- Unicode string for '$\\n$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__5C_n = {
   TO_UNICODE ('\\'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__5D_ [] = {
+//--- Unicode string for '$]$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__5D_ = {
   TO_UNICODE (']'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_5E_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__5E_ [] = {
+//--- Unicode string for '$^$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__5E_ = {
   TO_UNICODE ('^'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$abstract$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_abstract [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_abstract = {
   TO_UNICODE ('a'),
   TO_UNICODE ('b'),
   TO_UNICODE ('s'),
@@ -798,30 +776,27 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_abstract [] = {
   TO_UNICODE ('a'),
   TO_UNICODE ('c'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$action$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_action [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_action = {
   TO_UNICODE ('a'),
   TO_UNICODE ('c'),
   TO_UNICODE ('t'),
   TO_UNICODE ('i'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$all$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_all [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_all = {
   TO_UNICODE ('a'),
   TO_UNICODE ('l'),
   TO_UNICODE ('l'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$arrayController$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_arrayController [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_arrayController = {
   TO_UNICODE ('a'),
   TO_UNICODE ('r'),
   TO_UNICODE ('r'),
@@ -837,11 +812,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_arrayController [] = {
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$autoLayoutDocument$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument = {
   TO_UNICODE ('a'),
   TO_UNICODE ('u'),
   TO_UNICODE ('t'),
@@ -860,11 +834,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument [] 
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$autolayout$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_autolayout [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_autolayout = {
   TO_UNICODE ('a'),
   TO_UNICODE ('u'),
   TO_UNICODE ('t'),
@@ -875,11 +848,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_autolayout [] = {
   TO_UNICODE ('o'),
   TO_UNICODE ('u'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$binding$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_binding [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_binding = {
   TO_UNICODE ('b'),
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
@@ -887,11 +859,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_binding [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
   TO_UNICODE ('g'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$calledBy$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_calledBy [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_calledBy = {
   TO_UNICODE ('c'),
   TO_UNICODE ('a'),
   TO_UNICODE ('l'),
@@ -900,21 +871,19 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_calledBy [] = {
   TO_UNICODE ('d'),
   TO_UNICODE ('B'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$class$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_class [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_class = {
   TO_UNICODE ('c'),
   TO_UNICODE ('l'),
   TO_UNICODE ('a'),
   TO_UNICODE ('s'),
   TO_UNICODE ('s'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$classForSwift$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_classForSwift [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_classForSwift = {
   TO_UNICODE ('c'),
   TO_UNICODE ('l'),
   TO_UNICODE ('a'),
@@ -928,22 +897,20 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_classForSwift [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('f'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$column$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_column [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_column = {
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
   TO_UNICODE ('l'),
   TO_UNICODE ('u'),
   TO_UNICODE ('m'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$computed$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_computed [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_computed = {
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
   TO_UNICODE ('m'),
@@ -952,11 +919,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_computed [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('d'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$configurator$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_configurator [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_configurator = {
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
@@ -969,11 +935,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_configurator [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('o'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$default$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_default [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_default = {
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
   TO_UNICODE ('f'),
@@ -981,11 +946,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_default [] = {
   TO_UNICODE ('u'),
   TO_UNICODE ('l'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$dependsFrom$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_dependsFrom [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_dependsFrom = {
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
   TO_UNICODE ('p'),
@@ -997,11 +961,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_dependsFrom [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('m'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$divider$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_divider [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_divider = {
   TO_UNICODE ('d'),
   TO_UNICODE ('i'),
   TO_UNICODE ('v'),
@@ -1009,11 +972,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_divider [] = {
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$editableColumn$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_editableColumn [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_editableColumn = {
   TO_UNICODE ('e'),
   TO_UNICODE ('d'),
   TO_UNICODE ('i'),
@@ -1028,11 +990,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_editableColumn [] = {
   TO_UNICODE ('u'),
   TO_UNICODE ('m'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$enabled$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_enabled [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_enabled = {
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
   TO_UNICODE ('a'),
@@ -1040,42 +1001,38 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_enabled [] = {
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('d'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$entity$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_entity [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_entity = {
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
   TO_UNICODE ('t'),
   TO_UNICODE ('i'),
   TO_UNICODE ('t'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$enum$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_enum [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_enum = {
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
   TO_UNICODE ('u'),
   TO_UNICODE ('m'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$extern$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_extern [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_extern = {
   TO_UNICODE ('e'),
   TO_UNICODE ('x'),
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$externDelegate$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_externDelegate [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_externDelegate = {
   TO_UNICODE ('e'),
   TO_UNICODE ('x'),
   TO_UNICODE ('t'),
@@ -1090,11 +1047,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_externDelegate [] = {
   TO_UNICODE ('a'),
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$externFunc$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_externFunc [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_externFunc = {
   TO_UNICODE ('e'),
   TO_UNICODE ('x'),
   TO_UNICODE ('t'),
@@ -1105,20 +1061,18 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_externFunc [] = {
   TO_UNICODE ('u'),
   TO_UNICODE ('n'),
   TO_UNICODE ('c'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$func$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_func [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_func = {
   TO_UNICODE ('f'),
   TO_UNICODE ('u'),
   TO_UNICODE ('n'),
   TO_UNICODE ('c'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$graphic$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_graphic [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_graphic = {
   TO_UNICODE ('g'),
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
@@ -1126,11 +1080,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_graphic [] = {
   TO_UNICODE ('h'),
   TO_UNICODE ('i'),
   TO_UNICODE ('c'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$graphicController$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_graphicController [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_graphicController = {
   TO_UNICODE ('g'),
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
@@ -1148,11 +1101,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_graphicController [] =
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$graphviz$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_graphviz [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_graphviz = {
   TO_UNICODE ('g'),
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
@@ -1161,22 +1113,20 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_graphviz [] = {
   TO_UNICODE ('v'),
   TO_UNICODE ('i'),
   TO_UNICODE ('z'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$hStack$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_hStack [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_hStack = {
   TO_UNICODE ('h'),
   TO_UNICODE ('S'),
   TO_UNICODE ('t'),
   TO_UNICODE ('a'),
   TO_UNICODE ('c'),
   TO_UNICODE ('k'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$handlingOpposite$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_handlingOpposite [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_handlingOpposite = {
   TO_UNICODE ('h'),
   TO_UNICODE ('a'),
   TO_UNICODE ('n'),
@@ -1193,22 +1143,20 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_handlingOpposite [] = 
   TO_UNICODE ('i'),
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$hidden$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_hidden [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_hidden = {
   TO_UNICODE ('h'),
   TO_UNICODE ('i'),
   TO_UNICODE ('d'),
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$include$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_include [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_include = {
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
   TO_UNICODE ('c'),
@@ -1216,11 +1164,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_include [] = {
   TO_UNICODE ('u'),
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$inverse$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_inverse [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_inverse = {
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
   TO_UNICODE ('v'),
@@ -1228,22 +1175,20 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_inverse [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('s'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$linker$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_linker [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_linker = {
   TO_UNICODE ('l'),
   TO_UNICODE ('i'),
   TO_UNICODE ('n'),
   TO_UNICODE ('k'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$mainxib$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_mainxib [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_mainxib = {
   TO_UNICODE ('m'),
   TO_UNICODE ('a'),
   TO_UNICODE ('i'),
@@ -1251,11 +1196,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_mainxib [] = {
   TO_UNICODE ('x'),
   TO_UNICODE ('i'),
   TO_UNICODE ('b'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$menuItem$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_menuItem [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_menuItem = {
   TO_UNICODE ('m'),
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
@@ -1264,11 +1208,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_menuItem [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('e'),
   TO_UNICODE ('m'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$newView$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_newView [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_newView = {
   TO_UNICODE ('n'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
@@ -1276,46 +1219,41 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_newView [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$no$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_no [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_no = {
   TO_UNICODE ('n'),
   TO_UNICODE ('o'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$none$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_none [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_none = {
   TO_UNICODE ('n'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$one$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_one [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_one = {
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$outlet$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_outlet [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_outlet = {
   TO_UNICODE ('o'),
   TO_UNICODE ('u'),
   TO_UNICODE ('t'),
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$outletArray$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_outletArray [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_outletArray = {
   TO_UNICODE ('o'),
   TO_UNICODE ('u'),
   TO_UNICODE ('t'),
@@ -1327,11 +1265,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_outletArray [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$override$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_override [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_override = {
   TO_UNICODE ('o'),
   TO_UNICODE ('v'),
   TO_UNICODE ('e'),
@@ -1340,21 +1277,19 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_override [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('d'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$prefs$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_prefs [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_prefs = {
   TO_UNICODE ('p'),
   TO_UNICODE ('r'),
   TO_UNICODE ('e'),
   TO_UNICODE ('f'),
   TO_UNICODE ('s'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$property$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_property [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_property = {
   TO_UNICODE ('p'),
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
@@ -1363,38 +1298,34 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_property [] = {
   TO_UNICODE ('r'),
   TO_UNICODE ('t'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$proxy$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_proxy [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_proxy = {
   TO_UNICODE ('p'),
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('x'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$root$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_root [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_root = {
   TO_UNICODE ('r'),
   TO_UNICODE ('o'),
   TO_UNICODE ('o'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$run$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_run [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_run = {
   TO_UNICODE ('r'),
   TO_UNICODE ('u'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$selectionController$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_selectionController [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_selectionController = {
   TO_UNICODE ('s'),
   TO_UNICODE ('e'),
   TO_UNICODE ('l'),
@@ -1414,20 +1345,18 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_selectionController []
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$self$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_self [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_self = {
   TO_UNICODE ('s'),
   TO_UNICODE ('e'),
   TO_UNICODE ('l'),
   TO_UNICODE ('f'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$separator$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_separator [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_separator = {
   TO_UNICODE ('s'),
   TO_UNICODE ('e'),
   TO_UNICODE ('p'),
@@ -1437,11 +1366,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_separator [] = {
   TO_UNICODE ('t'),
   TO_UNICODE ('o'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$signature$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_signature [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_signature = {
   TO_UNICODE ('s'),
   TO_UNICODE ('i'),
   TO_UNICODE ('g'),
@@ -1451,11 +1379,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_signature [] = {
   TO_UNICODE ('u'),
   TO_UNICODE ('r'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$sortkey$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_sortkey [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_sortkey = {
   TO_UNICODE ('s'),
   TO_UNICODE ('o'),
   TO_UNICODE ('r'),
@@ -1463,21 +1390,19 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_sortkey [] = {
   TO_UNICODE ('k'),
   TO_UNICODE ('e'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$space$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_space [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_space = {
   TO_UNICODE ('s'),
   TO_UNICODE ('p'),
   TO_UNICODE ('a'),
   TO_UNICODE ('c'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$stackView$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_stackView [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_stackView = {
   TO_UNICODE ('s'),
   TO_UNICODE ('t'),
   TO_UNICODE ('a'),
@@ -1487,32 +1412,29 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_stackView [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$struct$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_struct [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_struct = {
   TO_UNICODE ('s'),
   TO_UNICODE ('t'),
   TO_UNICODE ('r'),
   TO_UNICODE ('u'),
   TO_UNICODE ('c'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$super$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_super [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_super = {
   TO_UNICODE ('s'),
   TO_UNICODE ('u'),
   TO_UNICODE ('p'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$tableValue$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_tableValue [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_tableValue = {
   TO_UNICODE ('t'),
   TO_UNICODE ('a'),
   TO_UNICODE ('b'),
@@ -1523,11 +1445,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_tableValue [] = {
   TO_UNICODE ('l'),
   TO_UNICODE ('u'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$tableViewController$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_tableViewController [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_tableViewController = {
   TO_UNICODE ('t'),
   TO_UNICODE ('a'),
   TO_UNICODE ('b'),
@@ -1547,32 +1468,29 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_tableViewController []
   TO_UNICODE ('l'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$toMany$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_toMany [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_toMany = {
   TO_UNICODE ('t'),
   TO_UNICODE ('o'),
   TO_UNICODE ('M'),
   TO_UNICODE ('a'),
   TO_UNICODE ('n'),
   TO_UNICODE ('y'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$toOne$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_toOne [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_toOne = {
   TO_UNICODE ('t'),
   TO_UNICODE ('o'),
   TO_UNICODE ('O'),
   TO_UNICODE ('n'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$transient$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_transient [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_transient = {
   TO_UNICODE ('t'),
   TO_UNICODE ('r'),
   TO_UNICODE ('a'),
@@ -1582,11 +1500,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_transient [] = {
   TO_UNICODE ('e'),
   TO_UNICODE ('n'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$typeView$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_typeView [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_typeView = {
   TO_UNICODE ('t'),
   TO_UNICODE ('y'),
   TO_UNICODE ('p'),
@@ -1595,22 +1512,20 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_typeView [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$vStack$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_vStack [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_vStack = {
   TO_UNICODE ('v'),
   TO_UNICODE ('S'),
   TO_UNICODE ('t'),
   TO_UNICODE ('a'),
   TO_UNICODE ('c'),
   TO_UNICODE ('k'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$version$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_version [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_version = {
   TO_UNICODE ('v'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
@@ -1618,11 +1533,10 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_version [] = {
   TO_UNICODE ('i'),
   TO_UNICODE ('o'),
   TO_UNICODE ('n'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$versionShouldChange$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_versionShouldChange [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_versionShouldChange = {
   TO_UNICODE ('v'),
   TO_UNICODE ('e'),
   TO_UNICODE ('r'),
@@ -1642,29 +1556,26 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_versionShouldChange []
   TO_UNICODE ('n'),
   TO_UNICODE ('g'),
   TO_UNICODE ('e'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$view$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_view [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_view = {
   TO_UNICODE ('v'),
   TO_UNICODE ('i'),
   TO_UNICODE ('e'),
   TO_UNICODE ('w'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$weak$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_weak [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_weak = {
   TO_UNICODE ('w'),
   TO_UNICODE ('e'),
   TO_UNICODE ('a'),
   TO_UNICODE ('k'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$xcodeproject$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_xcodeproject [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_xcodeproject = {
   TO_UNICODE ('x'),
   TO_UNICODE ('c'),
   TO_UNICODE ('o'),
@@ -1677,33 +1588,28 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique_xcodeproject [] = {
   TO_UNICODE ('e'),
   TO_UNICODE ('c'),
   TO_UNICODE ('t'),
-  TO_UNICODE (0)
 } ;
 
 //--- Unicode string for '$yes$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique_yes [] = {
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique_yes = {
   TO_UNICODE ('y'),
   TO_UNICODE ('e'),
   TO_UNICODE ('s'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_7B_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__7B_ [] = {
+//--- Unicode string for '${$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__7B_ = {
   TO_UNICODE ('{'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_7C_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__7C_ [] = {
+//--- Unicode string for '$|$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__7C_ = {
   TO_UNICODE ('|'),
-  TO_UNICODE (0)
 } ;
 
-//--- Unicode string for '$_7D_$'
-static const utf32 kUnicodeString_easyBindings_5F_lexique__7D_ [] = {
+//--- Unicode string for '$}$'
+static const std::initializer_list <utf32> kUnicodeString_easyBindings_5F_lexique__7D_ = {
   TO_UNICODE ('}'),
-  TO_UNICODE (0)
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1713,28 +1619,28 @@ static const utf32 kUnicodeString_easyBindings_5F_lexique__7D_ [] = {
 static const int32_t ktable_size_easyBindings_5F_lexique_delimitorsList = 22 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_delimitorsList [ktable_size_easyBindings_5F_lexique_delimitorsList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21_, 1, Lexique_easyBindings_5F_lexique::kToken__21_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__26_, 1, Lexique_easyBindings_5F_lexique::kToken__26_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__28_, 1, Lexique_easyBindings_5F_lexique::kToken__28_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__29_, 1, Lexique_easyBindings_5F_lexique::kToken__29_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2C_, 1, Lexique_easyBindings_5F_lexique::kToken__2C_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2D_, 1, Lexique_easyBindings_5F_lexique::kToken__2D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2E_, 1, Lexique_easyBindings_5F_lexique::kToken__2E_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3A_, 1, Lexique_easyBindings_5F_lexique::kToken__3A_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3B_, 1, Lexique_easyBindings_5F_lexique::kToken__3B_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C_, 1, Lexique_easyBindings_5F_lexique::kToken__3C_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D_, 1, Lexique_easyBindings_5F_lexique::kToken__3D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E_, 1, Lexique_easyBindings_5F_lexique::kToken__3E_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5B_, 1, Lexique_easyBindings_5F_lexique::kToken__5B_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5D_, 1, Lexique_easyBindings_5F_lexique::kToken__5D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5E_, 1, Lexique_easyBindings_5F_lexique::kToken__5E_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7B_, 1, Lexique_easyBindings_5F_lexique::kToken__7B_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7C_, 1, Lexique_easyBindings_5F_lexique::kToken__7C_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7D_, 1, Lexique_easyBindings_5F_lexique::kToken__7D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21__3D_, 2, Lexique_easyBindings_5F_lexique::kToken__21__3D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C__3D_, 2, Lexique_easyBindings_5F_lexique::kToken__3C__3D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D__3D_, 2, Lexique_easyBindings_5F_lexique::kToken__3D__3D_),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E__3D_, 2, Lexique_easyBindings_5F_lexique::kToken__3E__3D_)
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21_, Lexique_easyBindings_5F_lexique::kToken__21_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__26_, Lexique_easyBindings_5F_lexique::kToken__26_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__28_, Lexique_easyBindings_5F_lexique::kToken__28_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__29_, Lexique_easyBindings_5F_lexique::kToken__29_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2C_, Lexique_easyBindings_5F_lexique::kToken__2C_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2D_, Lexique_easyBindings_5F_lexique::kToken__2D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__2E_, Lexique_easyBindings_5F_lexique::kToken__2E_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3A_, Lexique_easyBindings_5F_lexique::kToken__3A_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3B_, Lexique_easyBindings_5F_lexique::kToken__3B_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C_, Lexique_easyBindings_5F_lexique::kToken__3C_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D_, Lexique_easyBindings_5F_lexique::kToken__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E_, Lexique_easyBindings_5F_lexique::kToken__3E_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5B_, Lexique_easyBindings_5F_lexique::kToken__5B_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5D_, Lexique_easyBindings_5F_lexique::kToken__5D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__5E_, Lexique_easyBindings_5F_lexique::kToken__5E_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7B_, Lexique_easyBindings_5F_lexique::kToken__7B_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7C_, Lexique_easyBindings_5F_lexique::kToken__7C_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__7D_, Lexique_easyBindings_5F_lexique::kToken__7D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__21__3D_, Lexique_easyBindings_5F_lexique::kToken__21__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3C__3D_, Lexique_easyBindings_5F_lexique::kToken__3C__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3D__3D_, Lexique_easyBindings_5F_lexique::kToken__3D__3D_),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique__3E__3D_, Lexique_easyBindings_5F_lexique::kToken__3E__3D_)
 } ;
 
 int32_t Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const String & inSearchedString) {
@@ -1748,70 +1654,70 @@ int32_t Lexique_easyBindings_5F_lexique::search_into_delimitorsList (const Strin
 static const int32_t ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList = 64 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_lowerCaseKeyWordList [ktable_size_easyBindings_5F_lexique_lowerCaseKeyWordList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, 2, Lexique_easyBindings_5F_lexique::kToken_no),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_all, 3, Lexique_easyBindings_5F_lexique::kToken_all),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_one, 3, Lexique_easyBindings_5F_lexique::kToken_one),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_yes, 3, Lexique_easyBindings_5F_lexique::kToken_yes),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_enum, 4, Lexique_easyBindings_5F_lexique::kToken_enum),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_func, 4, Lexique_easyBindings_5F_lexique::kToken_func),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_none, 4, Lexique_easyBindings_5F_lexique::kToken_none),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_root, 4, Lexique_easyBindings_5F_lexique::kToken_root),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_self, 4, Lexique_easyBindings_5F_lexique::kToken_self),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_view, 4, Lexique_easyBindings_5F_lexique::kToken_view),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_weak, 4, Lexique_easyBindings_5F_lexique::kToken_weak),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_class, 5, Lexique_easyBindings_5F_lexique::kToken_class),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_prefs, 5, Lexique_easyBindings_5F_lexique::kToken_prefs),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_proxy, 5, Lexique_easyBindings_5F_lexique::kToken_proxy),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_space, 5, Lexique_easyBindings_5F_lexique::kToken_space),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_super, 5, Lexique_easyBindings_5F_lexique::kToken_super),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toOne, 5, Lexique_easyBindings_5F_lexique::kToken_toOne),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_action, 6, Lexique_easyBindings_5F_lexique::kToken_action),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_column, 6, Lexique_easyBindings_5F_lexique::kToken_column),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_entity, 6, Lexique_easyBindings_5F_lexique::kToken_entity),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_extern, 6, Lexique_easyBindings_5F_lexique::kToken_extern),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_hStack, 6, Lexique_easyBindings_5F_lexique::kToken_hStack),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_linker, 6, Lexique_easyBindings_5F_lexique::kToken_linker),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_outlet, 6, Lexique_easyBindings_5F_lexique::kToken_outlet),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_struct, 6, Lexique_easyBindings_5F_lexique::kToken_struct),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toMany, 6, Lexique_easyBindings_5F_lexique::kToken_toMany),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_vStack, 6, Lexique_easyBindings_5F_lexique::kToken_vStack),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_binding, 7, Lexique_easyBindings_5F_lexique::kToken_binding),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_default, 7, Lexique_easyBindings_5F_lexique::kToken_default),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_divider, 7, Lexique_easyBindings_5F_lexique::kToken_divider),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphic, 7, Lexique_easyBindings_5F_lexique::kToken_graphic),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_include, 7, Lexique_easyBindings_5F_lexique::kToken_include),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_inverse, 7, Lexique_easyBindings_5F_lexique::kToken_inverse),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_mainxib, 7, Lexique_easyBindings_5F_lexique::kToken_mainxib),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_newView, 7, Lexique_easyBindings_5F_lexique::kToken_newView),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_sortkey, 7, Lexique_easyBindings_5F_lexique::kToken_sortkey),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_version, 7, Lexique_easyBindings_5F_lexique::kToken_version),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_abstract, 8, Lexique_easyBindings_5F_lexique::kToken_abstract),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_calledBy, 8, Lexique_easyBindings_5F_lexique::kToken_calledBy),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_computed, 8, Lexique_easyBindings_5F_lexique::kToken_computed),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphviz, 8, Lexique_easyBindings_5F_lexique::kToken_graphviz),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_menuItem, 8, Lexique_easyBindings_5F_lexique::kToken_menuItem),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_override, 8, Lexique_easyBindings_5F_lexique::kToken_override),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_property, 8, Lexique_easyBindings_5F_lexique::kToken_property),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_typeView, 8, Lexique_easyBindings_5F_lexique::kToken_typeView),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_separator, 9, Lexique_easyBindings_5F_lexique::kToken_separator),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_signature, 9, Lexique_easyBindings_5F_lexique::kToken_signature),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_stackView, 9, Lexique_easyBindings_5F_lexique::kToken_stackView),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_transient, 9, Lexique_easyBindings_5F_lexique::kToken_transient),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autolayout, 10, Lexique_easyBindings_5F_lexique::kToken_autolayout),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externFunc, 10, Lexique_easyBindings_5F_lexique::kToken_externFunc),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_dependsFrom, 11, Lexique_easyBindings_5F_lexique::kToken_dependsFrom),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_outletArray, 11, Lexique_easyBindings_5F_lexique::kToken_outletArray),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_configurator, 12, Lexique_easyBindings_5F_lexique::kToken_configurator),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, 12, Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_classForSwift, 13, Lexique_easyBindings_5F_lexique::kToken_classForSwift),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_editableColumn, 14, Lexique_easyBindings_5F_lexique::kToken_editableColumn),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externDelegate, 14, Lexique_easyBindings_5F_lexique::kToken_externDelegate),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_arrayController, 15, Lexique_easyBindings_5F_lexique::kToken_arrayController),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_handlingOpposite, 16, Lexique_easyBindings_5F_lexique::kToken_handlingOpposite),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument, 18, Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_selectionController, 19, Lexique_easyBindings_5F_lexique::kToken_selectionController),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableViewController, 19, Lexique_easyBindings_5F_lexique::kToken_tableViewController),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_versionShouldChange, 19, Lexique_easyBindings_5F_lexique::kToken_versionShouldChange)
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_no, Lexique_easyBindings_5F_lexique::kToken_no),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_all, Lexique_easyBindings_5F_lexique::kToken_all),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_one, Lexique_easyBindings_5F_lexique::kToken_one),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_yes, Lexique_easyBindings_5F_lexique::kToken_yes),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_enum, Lexique_easyBindings_5F_lexique::kToken_enum),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_func, Lexique_easyBindings_5F_lexique::kToken_func),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_none, Lexique_easyBindings_5F_lexique::kToken_none),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_root, Lexique_easyBindings_5F_lexique::kToken_root),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_self, Lexique_easyBindings_5F_lexique::kToken_self),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_view, Lexique_easyBindings_5F_lexique::kToken_view),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_weak, Lexique_easyBindings_5F_lexique::kToken_weak),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_class, Lexique_easyBindings_5F_lexique::kToken_class),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_prefs, Lexique_easyBindings_5F_lexique::kToken_prefs),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_proxy, Lexique_easyBindings_5F_lexique::kToken_proxy),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_space, Lexique_easyBindings_5F_lexique::kToken_space),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_super, Lexique_easyBindings_5F_lexique::kToken_super),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toOne, Lexique_easyBindings_5F_lexique::kToken_toOne),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_action, Lexique_easyBindings_5F_lexique::kToken_action),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_column, Lexique_easyBindings_5F_lexique::kToken_column),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_entity, Lexique_easyBindings_5F_lexique::kToken_entity),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_extern, Lexique_easyBindings_5F_lexique::kToken_extern),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_hStack, Lexique_easyBindings_5F_lexique::kToken_hStack),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_linker, Lexique_easyBindings_5F_lexique::kToken_linker),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_outlet, Lexique_easyBindings_5F_lexique::kToken_outlet),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_struct, Lexique_easyBindings_5F_lexique::kToken_struct),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_toMany, Lexique_easyBindings_5F_lexique::kToken_toMany),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_vStack, Lexique_easyBindings_5F_lexique::kToken_vStack),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_binding, Lexique_easyBindings_5F_lexique::kToken_binding),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_default, Lexique_easyBindings_5F_lexique::kToken_default),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_divider, Lexique_easyBindings_5F_lexique::kToken_divider),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphic, Lexique_easyBindings_5F_lexique::kToken_graphic),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_include, Lexique_easyBindings_5F_lexique::kToken_include),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_inverse, Lexique_easyBindings_5F_lexique::kToken_inverse),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_mainxib, Lexique_easyBindings_5F_lexique::kToken_mainxib),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_newView, Lexique_easyBindings_5F_lexique::kToken_newView),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_sortkey, Lexique_easyBindings_5F_lexique::kToken_sortkey),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_version, Lexique_easyBindings_5F_lexique::kToken_version),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_abstract, Lexique_easyBindings_5F_lexique::kToken_abstract),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_calledBy, Lexique_easyBindings_5F_lexique::kToken_calledBy),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_computed, Lexique_easyBindings_5F_lexique::kToken_computed),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphviz, Lexique_easyBindings_5F_lexique::kToken_graphviz),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_menuItem, Lexique_easyBindings_5F_lexique::kToken_menuItem),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_override, Lexique_easyBindings_5F_lexique::kToken_override),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_property, Lexique_easyBindings_5F_lexique::kToken_property),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_typeView, Lexique_easyBindings_5F_lexique::kToken_typeView),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_separator, Lexique_easyBindings_5F_lexique::kToken_separator),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_signature, Lexique_easyBindings_5F_lexique::kToken_signature),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_stackView, Lexique_easyBindings_5F_lexique::kToken_stackView),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_transient, Lexique_easyBindings_5F_lexique::kToken_transient),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autolayout, Lexique_easyBindings_5F_lexique::kToken_autolayout),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externFunc, Lexique_easyBindings_5F_lexique::kToken_externFunc),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_dependsFrom, Lexique_easyBindings_5F_lexique::kToken_dependsFrom),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_outletArray, Lexique_easyBindings_5F_lexique::kToken_outletArray),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_configurator, Lexique_easyBindings_5F_lexique::kToken_configurator),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_xcodeproject, Lexique_easyBindings_5F_lexique::kToken_xcodeproject),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_classForSwift, Lexique_easyBindings_5F_lexique::kToken_classForSwift),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_editableColumn, Lexique_easyBindings_5F_lexique::kToken_editableColumn),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_externDelegate, Lexique_easyBindings_5F_lexique::kToken_externDelegate),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_arrayController, Lexique_easyBindings_5F_lexique::kToken_arrayController),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_handlingOpposite, Lexique_easyBindings_5F_lexique::kToken_handlingOpposite),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_autoLayoutDocument, Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_selectionController, Lexique_easyBindings_5F_lexique::kToken_selectionController),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableViewController, Lexique_easyBindings_5F_lexique::kToken_tableViewController),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_versionShouldChange, Lexique_easyBindings_5F_lexique::kToken_versionShouldChange)
 } ;
 
 int32_t Lexique_easyBindings_5F_lexique::search_into_lowerCaseKeyWordList (const String & inSearchedString) {
@@ -1825,11 +1731,11 @@ int32_t Lexique_easyBindings_5F_lexique::search_into_lowerCaseKeyWordList (const
 static const int32_t ktable_size_easyBindings_5F_lexique_reservedBindingNameKeyWordList = 5 ;
 
 static const C_unicode_lexique_table_entry ktable_for_easyBindings_5F_lexique_reservedBindingNameKeyWordList [ktable_size_easyBindings_5F_lexique_reservedBindingNameKeyWordList] = {
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_run, 3, Lexique_easyBindings_5F_lexique::kToken_run),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_hidden, 6, Lexique_easyBindings_5F_lexique::kToken_hidden),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_enabled, 7, Lexique_easyBindings_5F_lexique::kToken_enabled),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableValue, 10, Lexique_easyBindings_5F_lexique::kToken_tableValue),
-  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphicController, 17, Lexique_easyBindings_5F_lexique::kToken_graphicController)
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_run, Lexique_easyBindings_5F_lexique::kToken_run),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_hidden, Lexique_easyBindings_5F_lexique::kToken_hidden),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_enabled, Lexique_easyBindings_5F_lexique::kToken_enabled),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_tableValue, Lexique_easyBindings_5F_lexique::kToken_tableValue),
+  C_unicode_lexique_table_entry (kUnicodeString_easyBindings_5F_lexique_graphicController, Lexique_easyBindings_5F_lexique::kToken_graphicController)
 } ;
 
 int32_t Lexique_easyBindings_5F_lexique::search_into_reservedBindingNameKeyWordList (const String & inSearchedString) {
@@ -1845,536 +1751,536 @@ String Lexique_easyBindings_5F_lexique::getCurrentTokenString (const cToken * in
   const cTokenFor_easyBindings_5F_lexique * ptr = (const cTokenFor_easyBindings_5F_lexique *) inTokenPtr ;
   String s ;
   if (ptr == nullptr) {
-    s.appendString ("$$") ;
+    s.appendCString ("$$") ;
   }else{
     switch (ptr->mTokenCode) {
     case kToken_:
-      s.appendString ("$$") ;
+      s.appendCString ("$$") ;
       break ;
     case kToken_identifier:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("identifier") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("identifier") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_Identifier:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("Identifier") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("Identifier") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken__40_attribute:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("@attribute") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("@attribute") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_bindingName:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("bindingName") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("bindingName") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_controllerName:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("controllerName") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("controllerName") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_viewName:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("viewName") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("viewName") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_literal_5F_integer:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("literal_integer") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("literal_integer") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendUnsigned (ptr->mLexicalAttribute_uint_33__32_value) ;
       break ;
     case kToken_literal_5F_double:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("literal_double") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("literal_double") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendDouble (ptr->mLexicalAttribute_floatValue) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_literal_5F_string:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("literal_string") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendUnicodeChar (TO_UNICODE (' ') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("literal_string") ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendChar (TO_UNICODE (' ')) ;
       s.appendStringAsCLiteralStringConstant (ptr->mLexicalAttribute_tokenString) ;
       break ;
     case kToken_comment:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("comment") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("comment") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_abstract:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("abstract") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("abstract") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_action:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("action") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("action") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_all:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("all") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("all") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_arrayController:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("arrayController") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("arrayController") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_autolayout:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("autolayout") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("autolayout") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_autoLayoutDocument:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("autoLayoutDocument") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("autoLayoutDocument") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_binding:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("binding") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("binding") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_calledBy:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("calledBy") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("calledBy") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_class:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("class") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("class") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_classForSwift:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("classForSwift") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("classForSwift") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_column:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("column") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("column") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_computed:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("computed") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("computed") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_configurator:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("configurator") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("configurator") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_default:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("default") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("default") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_dependsFrom:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("dependsFrom") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("dependsFrom") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_divider:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("divider") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("divider") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_enum:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("enum") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("enum") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_editableColumn:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("editableColumn") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("editableColumn") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_entity:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("entity") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("entity") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_extern:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("extern") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("extern") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_externDelegate:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("externDelegate") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("externDelegate") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_externFunc:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("externFunc") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("externFunc") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_func:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("func") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("func") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_graphic:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("graphic") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("graphic") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_graphviz:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("graphviz") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("graphviz") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_handlingOpposite:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("handlingOpposite") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("handlingOpposite") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_hStack:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("hStack") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("hStack") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_include:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("include") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("include") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_inverse:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("inverse") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("inverse") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_linker:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("linker") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("linker") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_mainxib:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("mainxib") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("mainxib") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_menuItem:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("menuItem") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("menuItem") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_no:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("no") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("no") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_newView:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("newView") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("newView") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_none:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("none") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("none") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_one:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("one") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("one") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_outlet:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("outlet") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("outlet") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_outletArray:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("outletArray") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("outletArray") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_override:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("override") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("override") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_prefs:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("prefs") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("prefs") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_property:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("property") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("property") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_proxy:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("proxy") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("proxy") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_root:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("root") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("root") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_selectionController:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("selectionController") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("selectionController") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_self:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("self") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("self") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_separator:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("separator") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("separator") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_signature:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("signature") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("signature") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_sortkey:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("sortkey") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("sortkey") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_space:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("space") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("space") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_stackView:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("stackView") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("stackView") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_struct:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("struct") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("struct") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_super:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("super") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("super") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_tableViewController:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("tableViewController") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("tableViewController") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_toMany:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("toMany") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("toMany") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_toOne:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("toOne") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("toOne") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_transient:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("transient") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("transient") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_typeView:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("typeView") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("typeView") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_version:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("version") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("version") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_vStack:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("vStack") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("vStack") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_versionShouldChange:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("versionShouldChange") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("versionShouldChange") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_view:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("view") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("view") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_weak:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("weak") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("weak") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_xcodeproject:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("xcodeproject") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("xcodeproject") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_yes:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("yes") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("yes") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_enabled:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("enabled") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("enabled") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_graphicController:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("graphicController") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("graphicController") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_hidden:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("hidden") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("hidden") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_tableValue:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("tableValue") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("tableValue") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken_run:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("run") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("run") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3A_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (":") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (":") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2C_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (",") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (",") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (";") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (";") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__21_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("!") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("!") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__5B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("[") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("[") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__5D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("]") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("]") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__7B_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("{") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("{") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__7D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("}") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("}") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__28_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("(") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("(") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__29_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (")") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (")") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2E_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (".") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (".") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__7C_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("|") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("|") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__26_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("&") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("&") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3C_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("<") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("<") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3E_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (">") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (">") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3C__3D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("<=") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("<=") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3E__3D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString (">=") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString (">=") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__21__3D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("!=") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("!=") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3D__3D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("==") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("==") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__5E_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("^") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("^") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__2D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("-") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("-") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     case kToken__3D_:
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
-      s.appendString ("=") ;
-      s.appendUnicodeChar (TO_UNICODE ('$') COMMA_HERE) ;
+      s.appendChar (TO_UNICODE ('$')) ;
+      s.appendCString ("=") ;
+      s.appendChar (TO_UNICODE ('$')) ;
       break ;
     default:
       break ;
@@ -2521,9 +2427,9 @@ void Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_easyB
       }
     }else if (testForInputUTF32Char (TO_UNICODE ('\"'))) {
       do {
-        if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C_n, 2, true)) {
+        if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C_n, true)) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\n')) ;
-        }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C__22_, 2, true)) {
+        }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5C__22_, true)) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, TO_UNICODE ('\"')) ;
         }else if (testForInputUTF32Char (TO_UNICODE (' ')) || testForInputUTF32Char (TO_UNICODE ('!')) || testForInputUTF32CharRange (TO_UNICODE ('#'), TO_UNICODE (65533))) {
           ::scanner_routine_enterCharacterIntoString (*this, token.mLexicalAttribute_tokenString, previousChar ()) ;
@@ -2540,73 +2446,73 @@ void Lexique_easyBindings_5F_lexique::internalParseLexicalToken (cTokenFor_easyB
       }else{
         lexicalError (gLexicalMessage_easyBindings_5F_lexique_incorrectStringEnd COMMA_LINE_AND_SOURCE_FILE) ;
       }
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E__3D_, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E__3D_, true)) {
       token.mTokenCode = kToken__3E__3D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D__3D_, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D__3D_, true)) {
       token.mTokenCode = kToken__3D__3D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C__3D_, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C__3D_, true)) {
       token.mTokenCode = kToken__3C__3D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__21__3D_, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__21__3D_, true)) {
       token.mTokenCode = kToken__21__3D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7D_, true)) {
       token.mTokenCode = kToken__7D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7C_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7C_, true)) {
       token.mTokenCode = kToken__7C_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__7B_, true)) {
       token.mTokenCode = kToken__7B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5E_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5E_, true)) {
       token.mTokenCode = kToken__5E_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5D_, true)) {
       token.mTokenCode = kToken__5D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__5B_, true)) {
       token.mTokenCode = kToken__5B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3E_, true)) {
       token.mTokenCode = kToken__3E_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3D_, true)) {
       token.mTokenCode = kToken__3D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3C_, true)) {
       token.mTokenCode = kToken__3C_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3B_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3B_, true)) {
       token.mTokenCode = kToken__3B_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3A_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__3A_, true)) {
       token.mTokenCode = kToken__3A_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2E_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2E_, true)) {
       token.mTokenCode = kToken__2E_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2D_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2D_, true)) {
       token.mTokenCode = kToken__2D_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2C_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2C_, true)) {
       token.mTokenCode = kToken__2C_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__29_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__29_, true)) {
       token.mTokenCode = kToken__29_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__28_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__28_, true)) {
       token.mTokenCode = kToken__28_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__26_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__26_, true)) {
       token.mTokenCode = kToken__26_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__21_, 1, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__21_, true)) {
       token.mTokenCode = kToken__21_ ;
       enterToken (token) ;
-    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2F__2F_, 2, true)) {
+    }else if (testForInputUTF32String (kUnicodeString_easyBindings_5F_lexique__2F__2F_, true)) {
       do {
         if (testForInputUTF32CharRange (TO_UNICODE (1), TO_UNICODE ('\t')) || testForInputUTF32Char (TO_UNICODE ('\v')) || testForInputUTF32Char (TO_UNICODE ('\f')) || testForInputUTF32CharRange (TO_UNICODE (14), TO_UNICODE (65533))) {
         }else{
@@ -3156,7 +3062,7 @@ cCollectionElement * cCollectionElement_declarationListAST::copy (void) {
 void cCollectionElement_declarationListAST::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyDeclaration" ":") ;
+  ioString.appendCString ("mPropertyDeclaration" ":") ;
   mObject.mProperty_mPropertyDeclaration.description (ioString, inIndentation) ;
 }
 
@@ -3570,19 +3476,19 @@ cCollectionElement * cCollectionElement_outletClassBindingSpecificationList::cop
 void cCollectionElement_outletClassBindingSpecificationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletClassName" ":") ;
+  ioString.appendCString ("mOutletClassName" ":") ;
   mObject.mProperty_mOutletClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingName" ":") ;
+  ioString.appendCString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletClassBindingSpecificationModelList" ":") ;
+  ioString.appendCString ("mOutletClassBindingSpecificationModelList" ":") ;
   mObject.mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingOptionList" ":") ;
+  ioString.appendCString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
 }
 
@@ -4176,19 +4082,19 @@ cCollectionElement * cCollectionElement_autoLayoutViewClassBindingSpecificationL
 void cCollectionElement_autoLayoutViewClassBindingSpecificationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletClassName" ":") ;
+  ioString.appendCString ("mOutletClassName" ":") ;
   mObject.mProperty_mOutletClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingName" ":") ;
+  ioString.appendCString ("mBindingName" ":") ;
   mObject.mProperty_mBindingName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletClassBindingSpecificationModelList" ":") ;
+  ioString.appendCString ("mOutletClassBindingSpecificationModelList" ":") ;
   mObject.mProperty_mOutletClassBindingSpecificationModelList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingOptionList" ":") ;
+  ioString.appendCString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
 }
 
@@ -4743,7 +4649,7 @@ cMapElement * cMapElement_astAutoLayoutViewFunctionMap::copy (void) {
 void cMapElement_astAutoLayoutViewFunctionMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFomalParameterList" ":") ;
+  ioString.appendCString ("mFomalParameterList" ":") ;
   mProperty_mFomalParameterList.description (ioString, inIndentation) ;
 }
 
@@ -5064,15 +4970,15 @@ cCollectionElement * cCollectionElement_enumerationFunctionListAST::copy (void) 
 void cCollectionElement_enumerationFunctionListAST::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mEnumName" ":") ;
+  ioString.appendCString ("mEnumName" ":") ;
   mObject.mProperty_mEnumName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFunctionName" ":") ;
+  ioString.appendCString ("mFunctionName" ":") ;
   mObject.mProperty_mFunctionName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mAssociationList" ":") ;
+  ioString.appendCString ("mAssociationList" ":") ;
   mObject.mProperty_mAssociationList.description (ioString, inIndentation) ;
 }
 
@@ -5573,19 +5479,19 @@ cMapElement * cMapElement_classMap::copy (void) {
 void cMapElement_classMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mClassKind" ":") ;
+  ioString.appendCString ("mClassKind" ":") ;
   mProperty_mClassKind.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyMap" ":") ;
+  ioString.appendCString ("mPropertyMap" ":") ;
   mProperty_mPropertyMap.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mActionMap" ":") ;
+  ioString.appendCString ("mActionMap" ":") ;
   mProperty_mActionMap.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyGenerationList" ":") ;
+  ioString.appendCString ("mPropertyGenerationList" ":") ;
   mProperty_mPropertyGenerationList.description (ioString, inIndentation) ;
 }
 
@@ -6025,31 +5931,31 @@ cMapElement * cMapElement_outletClassMap::copy (void) {
 void cMapElement_outletClassMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSuperClassName" ":") ;
+  ioString.appendCString ("mSuperClassName" ":") ;
   mProperty_mSuperClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandlesRunAction" ":") ;
+  ioString.appendCString ("mHandlesRunAction" ":") ;
   mProperty_mHandlesRunAction.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandlesTableValueBinding" ":") ;
+  ioString.appendCString ("mHandlesTableValueBinding" ":") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleEnabledBinding" ":") ;
+  ioString.appendCString ("mHandleEnabledBinding" ":") ;
   mProperty_mHandleEnabledBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleHiddenBinding" ":") ;
+  ioString.appendCString ("mHandleHiddenBinding" ":") ;
   mProperty_mHandleHiddenBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleGraphicControllerBinding" ":") ;
+  ioString.appendCString ("mHandleGraphicControllerBinding" ":") ;
   mProperty_mHandleGraphicControllerBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mUserDefined" ":") ;
+  ioString.appendCString ("mUserDefined" ":") ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
 }
 
@@ -6623,11 +6529,11 @@ cMapElement * cMapElement_bindingSpecificationMap::copy (void) {
 void cMapElement_bindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletSuperClassName" ":") ;
+  ioString.appendCString ("mOutletSuperClassName" ":") ;
   mProperty_mOutletSuperClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingMap" ":") ;
+  ioString.appendCString ("mBindingMap" ":") ;
   mProperty_mBindingMap.description (ioString, inIndentation) ;
 }
 
@@ -6996,39 +6902,39 @@ cMapElement * cMapElement_autolayoutViewClassMap::copy (void) {
 void cMapElement_autolayoutViewClassMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSuperClassName" ":") ;
+  ioString.appendCString ("mSuperClassName" ":") ;
   mProperty_mSuperClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandlesRunAction" ":") ;
+  ioString.appendCString ("mHandlesRunAction" ":") ;
   mProperty_mHandlesRunAction.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandlesTableValueBinding" ":") ;
+  ioString.appendCString ("mHandlesTableValueBinding" ":") ;
   mProperty_mHandlesTableValueBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleEnabledBinding" ":") ;
+  ioString.appendCString ("mHandleEnabledBinding" ":") ;
   mProperty_mHandleEnabledBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleHiddenBinding" ":") ;
+  ioString.appendCString ("mHandleHiddenBinding" ":") ;
   mProperty_mHandleHiddenBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHandleGraphicControllerBinding" ":") ;
+  ioString.appendCString ("mHandleGraphicControllerBinding" ":") ;
   mProperty_mHandleGraphicControllerBinding.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mUserDefined" ":") ;
+  ioString.appendCString ("mUserDefined" ":") ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mParameterList" ":") ;
+  ioString.appendCString ("mParameterList" ":") ;
   mProperty_mParameterList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mAutoLayoutViewFunctionMap" ":") ;
+  ioString.appendCString ("mAutoLayoutViewFunctionMap" ":") ;
   mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation) ;
 }
 
@@ -7698,11 +7604,11 @@ cMapElement * cMapElement_autoLayoutBindingSpecificationMap::copy (void) {
 void cMapElement_autoLayoutBindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletSuperClassName" ":") ;
+  ioString.appendCString ("mOutletSuperClassName" ":") ;
   mProperty_mOutletSuperClassName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBindingMap" ":") ;
+  ioString.appendCString ("mBindingMap" ":") ;
   mProperty_mBindingMap.description (ioString, inIndentation) ;
 }
 
@@ -8380,7 +8286,7 @@ cCollectionElement * cCollectionElement_externSwiftDelegateList::copy (void) {
 void cCollectionElement_externSwiftDelegateList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mExternSwiftDelegateName" ":") ;
+  ioString.appendCString ("mExternSwiftDelegateName" ":") ;
   mObject.mProperty_mExternSwiftDelegateName.description (ioString, inIndentation) ;
 }
 
@@ -8790,11 +8696,11 @@ cCollectionElement * cCollectionElement_externSwiftFunctionList::copy (void) {
 void cCollectionElement_externSwiftFunctionList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mExternSwiftFunctionName" ":") ;
+  ioString.appendCString ("mExternSwiftFunctionName" ":") ;
   mObject.mProperty_mExternSwiftFunctionName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mCallerName" ":") ;
+  ioString.appendCString ("mCallerName" ":") ;
   mObject.mProperty_mCallerName.description (ioString, inIndentation) ;
 }
 
@@ -9660,7 +9566,7 @@ cMapElement * cMapElement_enumConstantMap::copy (void) {
 void cMapElement_enumConstantMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIndex" ":") ;
+  ioString.appendCString ("mIndex" ":") ;
   mProperty_mIndex.description (ioString, inIndentation) ;
 }
 
@@ -9974,11 +9880,11 @@ cSortedListElement * cSortedListElement_enumFunAssociationSortedList::copy (void
 void cSortedListElement_enumFunAssociationSortedList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIndex" ":") ;
+  ioString.appendCString ("mIndex" ":") ;
   mObject.mProperty_mIndex.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mAssociatedString" ":") ;
+  ioString.appendCString ("mAssociatedString" ":") ;
   mObject.mProperty_mAssociatedString.description (ioString, inIndentation) ;
 }
 
@@ -10252,7 +10158,7 @@ cMapElement * cMapElement_enumFuncMap::copy (void) {
 void cMapElement_enumFuncMap::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mAssociationSortedList" ":") ;
+  ioString.appendCString ("mAssociationSortedList" ":") ;
   mProperty_mAssociationSortedList.description (ioString, inIndentation) ;
 }
 
@@ -10727,11 +10633,11 @@ mAssociatedValue2 (inAssociatedValue2) {
 
 void cEnumAssociatedValues_typeKind_enumType::description (String & ioString,
                                                            const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10766,10 +10672,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_typeKind_entityType::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10799,9 +10705,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_typeKind_classType::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10828,9 +10734,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_typeKind_transientPropertyExternType::description (String & ioString,
                                                                               const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11015,7 +10921,7 @@ void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue0,
     outAssociatedValue1.drop () ;
     outAssociatedValue2.drop () ;
     String s ;
-    s.appendString ("method @typeKind enumType invoked with an invalid enum value") ;
+    s.appendCString ("method @typeKind enumType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_enumType * ptr = (const cEnumAssociatedValues_typeKind_enumType *) unsafePointer () ;
@@ -11035,7 +10941,7 @@ void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue0,
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @typeKind entityType invoked with an invalid enum value") ;
+    s.appendCString ("method @typeKind entityType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_entityType * ptr = (const cEnumAssociatedValues_typeKind_entityType *) unsafePointer () ;
@@ -11052,7 +10958,7 @@ void GALGAS_typeKind::method_classType (GALGAS_string & outAssociatedValue0,
   if (mEnum != kEnum_classType) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @typeKind classType invoked with an invalid enum value") ;
+    s.appendCString ("method @typeKind classType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_classType * ptr = (const cEnumAssociatedValues_typeKind_classType *) unsafePointer () ;
@@ -11068,7 +10974,7 @@ void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAss
   if (mEnum != kEnum_transientPropertyExternType) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @typeKind transientPropertyExternType invoked with an invalid enum value") ;
+    s.appendCString ("method @typeKind transientPropertyExternType invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_typeKind_transientPropertyExternType * ptr = (const cEnumAssociatedValues_typeKind_transientPropertyExternType *) unsafePointer () ;
@@ -11318,10 +11224,10 @@ GALGAS_bool GALGAS_typeKind::getter_isTransientPropertyExternType (UNUSED_LOCATI
 
 void GALGAS_typeKind::description (String & ioString,
                                    const int32_t inIndentation) const {
-  ioString.appendString ("<enum @typeKind: ") ;
-  ioString.appendString (gEnumNameArrayFor_typeKind [mEnum]) ;
+  ioString.appendCString ("<enum @typeKind: ") ;
+  ioString.appendCString (gEnumNameArrayFor_typeKind [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11557,15 +11463,15 @@ cCollectionElement * cCollectionElement_simpleStoredPropertyList::copy (void) {
 void cCollectionElement_simpleStoredPropertyList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyTypeName" ":") ;
+  ioString.appendCString ("mPropertyTypeName" ":") ;
   mObject.mProperty_mPropertyTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyName" ":") ;
+  ioString.appendCString ("mPropertyName" ":") ;
   mObject.mProperty_mPropertyName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDefaultValue" ":") ;
+  ioString.appendCString ("mDefaultValue" ":") ;
   mObject.mProperty_mDefaultValue.description (ioString, inIndentation) ;
 }
 
@@ -12203,7 +12109,7 @@ cCollectionElement * cCollectionElement_propertyGenerationList::copy (void) {
 void cCollectionElement_propertyGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProperty" ":") ;
+  ioString.appendCString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
 }
 
@@ -12723,11 +12629,11 @@ cCollectionElement * cCollectionElement_entityListForGeneratingEBManagedObjectCo
 void cCollectionElement_entityListForGeneratingEBManagedObjectContext::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mEntityName" ":") ;
+  ioString.appendCString ("mEntityName" ":") ;
   mObject.mProperty_mEntityName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mObsoleteEntityNames" ":") ;
+  ioString.appendCString ("mObsoleteEntityNames" ":") ;
   mObject.mProperty_mObsoleteEntityNames.description (ioString, inIndentation) ;
 }
 
@@ -13209,35 +13115,35 @@ cCollectionElement * cCollectionElement_outletDeclarationList::copy (void) {
 void cCollectionElement_outletDeclarationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletTypeName" ":") ;
+  ioString.appendCString ("mOutletTypeName" ":") ;
   mObject.mProperty_mOutletTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletName" ":") ;
+  ioString.appendCString ("mOutletName" ":") ;
   mObject.mProperty_mOutletName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTableValueBindingDescriptor" ":") ;
+  ioString.appendCString ("mTableValueBindingDescriptor" ":") ;
   mObject.mProperty_mTableValueBindingDescriptor.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRunDescriptor" ":") ;
+  ioString.appendCString ("mRunDescriptor" ":") ;
   mObject.mProperty_mRunDescriptor.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mEnabledBindingDescriptor" ":") ;
+  ioString.appendCString ("mEnabledBindingDescriptor" ":") ;
   mObject.mProperty_mEnabledBindingDescriptor.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHiddenBindingDescriptor" ":") ;
+  ioString.appendCString ("mHiddenBindingDescriptor" ":") ;
   mObject.mProperty_mHiddenBindingDescriptor.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRegularBindingList" ":") ;
+  ioString.appendCString ("mRegularBindingList" ":") ;
   mObject.mProperty_mRegularBindingList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mGraphicController" ":") ;
+  ioString.appendCString ("mGraphicController" ":") ;
   mObject.mProperty_mGraphicController.description (ioString, inIndentation) ;
 }
 
@@ -14067,11 +13973,11 @@ cCollectionElement * cCollectionElement_arrayControllerBindingListAST::copy (voi
 void cCollectionElement_arrayControllerBindingListAST::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mControllerName" ":") ;
+  ioString.appendCString ("mControllerName" ":") ;
   mObject.mProperty_mControllerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mHiddenSelectionViewBindingDescriptor" ":") ;
+  ioString.appendCString ("mHiddenSelectionViewBindingDescriptor" ":") ;
   mObject.mProperty_mHiddenSelectionViewBindingDescriptor.description (ioString, inIndentation) ;
 }
 
@@ -14541,11 +14447,11 @@ cCollectionElement * cCollectionElement_astViewDeclarationList::copy (void) {
 void cCollectionElement_astViewDeclarationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mViewName" ":") ;
+  ioString.appendCString ("mViewName" ":") ;
   mObject.mProperty_mViewName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mView" ":") ;
+  ioString.appendCString ("mView" ":") ;
   mObject.mProperty_mView.description (ioString, inIndentation) ;
 }
 
@@ -15015,11 +14921,11 @@ cCollectionElement * cCollectionElement_astAutoLayoutOutletLinkerList::copy (voi
 void cCollectionElement_astAutoLayoutOutletLinkerList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mLinkerName" ":") ;
+  ioString.appendCString ("mLinkerName" ":") ;
   mObject.mProperty_mLinkerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletNameList" ":") ;
+  ioString.appendCString ("mOutletNameList" ":") ;
   mObject.mProperty_mOutletNameList.description (ioString, inIndentation) ;
 }
 
@@ -15599,11 +15505,11 @@ cCollectionElement * cCollectionElement_autoLayoutOutletLinkerGenerationList::co
 void cCollectionElement_autoLayoutOutletLinkerGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mLinkerName" ":") ;
+  ioString.appendCString ("mLinkerName" ":") ;
   mObject.mProperty_mLinkerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOutletNameAndTypeNameList" ":") ;
+  ioString.appendCString ("mOutletNameAndTypeNameList" ":") ;
   mObject.mProperty_mOutletNameAndTypeNameList.description (ioString, inIndentation) ;
 }
 

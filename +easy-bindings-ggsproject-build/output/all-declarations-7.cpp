@@ -126,29 +126,29 @@ void GALGAS_astDeclarationStruct::drop (void) {
 
 void GALGAS_astDeclarationStruct::description (String & ioString,
                                                const int32_t inIndentation) const {
-  ioString.appendString ("<struct @astDeclarationStruct:") ;
+  ioString.appendCString ("<struct @astDeclarationStruct:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mUnifiedDeclarationList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mAutoLayoutBindingSpecificationList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mPreferences.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGraphvizList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mAutoLayoutVStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mAutoLayoutHStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEnumerationFunctionListAST.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -299,9 +299,9 @@ const C_galgas_type_descriptor * cPtr_doubleAsDefaultValue::classDescriptor (voi
 
 void cPtr_doubleAsDefaultValue::description (String & ioString,
                                              const int32_t inIndentation) const {
-  ioString.appendString ("[@doubleAsDefaultValue:") ;
+  ioString.appendCString ("[@doubleAsDefaultValue:") ;
   mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------

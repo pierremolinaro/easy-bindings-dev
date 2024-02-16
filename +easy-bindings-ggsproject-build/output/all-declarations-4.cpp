@@ -126,13 +126,13 @@ const C_galgas_type_descriptor * cPtr_autoLayoutTableViewControllerPropertyGener
 
 void cPtr_autoLayoutTableViewControllerPropertyGeneration::description (String & ioString,
                                                                         const int32_t inIndentation) const {
-  ioString.appendString ("[@autoLayoutTableViewControllerPropertyGeneration:") ;
+  ioString.appendCString ("[@autoLayoutTableViewControllerPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mModelString.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -356,9 +356,9 @@ GALGAS_bool GALGAS_autoLayoutTableViewControllerModelKind::getter_isTransientArr
 
 void GALGAS_autoLayoutTableViewControllerModelKind::description (String & ioString,
                                                                  const int32_t /* inIndentation */) const {
-  ioString.appendString ("<enum @autoLayoutTableViewControllerModelKind: ") ;
-  ioString.appendString (gEnumNameArrayFor_autoLayoutTableViewControllerModelKind [mEnum]) ;
-  ioString.appendString (">") ;
+  ioString.appendCString ("<enum @autoLayoutTableViewControllerModelKind: ") ;
+  ioString.appendCString (gEnumNameArrayFor_autoLayoutTableViewControllerModelKind [mEnum]) ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -490,27 +490,27 @@ cCollectionElement * cCollectionElement_autoLayoutTableViewControllerBoundColumn
 void cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mEditable" ":") ;
+  ioString.appendCString ("mEditable" ":") ;
   mObject.mProperty_mEditable.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSortPropertyName" ":") ;
+  ioString.appendCString ("mSortPropertyName" ":") ;
   mObject.mProperty_mSortPropertyName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDisplayedPropertyName" ":") ;
+  ioString.appendCString ("mDisplayedPropertyName" ":") ;
   mObject.mProperty_mDisplayedPropertyName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mColumnObjectTypeName" ":") ;
+  ioString.appendCString ("mColumnObjectTypeName" ":") ;
   mObject.mProperty_mColumnObjectTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mRunAction" ":") ;
+  ioString.appendCString ("mRunAction" ":") ;
   mObject.mProperty_mRunAction.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mActualParameterList" ":") ;
+  ioString.appendCString ("mActualParameterList" ":") ;
   mObject.mProperty_mActualParameterList.description (ioString, inIndentation) ;
 }
 
@@ -1222,15 +1222,15 @@ cCollectionElement * cCollectionElement_autoLayoutTableViewControllerSortedColum
 void cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mColumnName" ":") ;
+  ioString.appendCString ("mColumnName" ":") ;
   mObject.mProperty_mColumnName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSortPropertyKind" ":") ;
+  ioString.appendCString ("mSortPropertyKind" ":") ;
   mObject.mProperty_mSortPropertyKind.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mObservablePropertyForSorting" ":") ;
+  ioString.appendCString ("mObservablePropertyForSorting" ":") ;
   mObject.mProperty_mObservablePropertyForSorting.description (ioString, inIndentation) ;
 }
 
@@ -2055,15 +2055,15 @@ const C_galgas_type_descriptor * cPtr_selectionControllerPropertyGeneration::cla
 
 void cPtr_selectionControllerPropertyGeneration::description (String & ioString,
                                                               const int32_t inIndentation) const {
-  ioString.appendString ("[@selectionControllerPropertyGeneration:") ;
+  ioString.appendCString ("[@selectionControllerPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mModelControllerName.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mModelControllerPropertyName.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2302,35 +2302,35 @@ cCollectionElement * cCollectionElement_selectionControllerForGeneration::copy (
 void cCollectionElement_selectionControllerForGeneration::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mOwnerName" ":") ;
+  ioString.appendCString ("mOwnerName" ":") ;
   mObject.mProperty_mOwnerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSelectionControllerName" ":") ;
+  ioString.appendCString ("mSelectionControllerName" ":") ;
   mObject.mProperty_mSelectionControllerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBoundControllerName" ":") ;
+  ioString.appendCString ("mBoundControllerName" ":") ;
   mObject.mProperty_mBoundControllerName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBoundControllerPropertyName" ":") ;
+  ioString.appendCString ("mBoundControllerPropertyName" ":") ;
   mObject.mProperty_mBoundControllerPropertyName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBaseTypeName" ":") ;
+  ioString.appendCString ("mBaseTypeName" ":") ;
   mObject.mProperty_mBaseTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSelectionTypeName" ":") ;
+  ioString.appendCString ("mSelectionTypeName" ":") ;
   mObject.mProperty_mSelectionTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mSelectionObservablePropertyMap" ":") ;
+  ioString.appendCString ("mSelectionObservablePropertyMap" ":") ;
   mObject.mProperty_mSelectionObservablePropertyMap.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mPropertyGenerationList" ":") ;
+  ioString.appendCString ("mPropertyGenerationList" ":") ;
   mObject.mProperty_mPropertyGenerationList.description (ioString, inIndentation) ;
 }
 
@@ -3563,11 +3563,11 @@ const C_galgas_type_descriptor * cPtr_integerAsDefaultValue::classDescriptor (vo
 
 void cPtr_integerAsDefaultValue::description (String & ioString,
                                               const int32_t inIndentation) const {
-  ioString.appendString ("[@integerAsDefaultValue:") ;
+  ioString.appendCString ("[@integerAsDefaultValue:") ;
   mProperty_mValue.description (ioString, inIndentation+1) ;
-  ioString.appendString (", ") ;
+  ioString.appendCString (", ") ;
   mProperty_mNegative.description (ioString, inIndentation+1) ;
-  ioString.appendString ("]") ;
+  ioString.appendCString ("]") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4395,7 +4395,7 @@ cCollectionElement * cCollectionElement_typeKindList::copy (void) {
 void cCollectionElement_typeKindList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mType" ":") ;
+  ioString.appendCString ("mType" ":") ;
   mObject.mProperty_mType.description (ioString, inIndentation) ;
 }
 
@@ -5171,9 +5171,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_classKind_atomic::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5200,9 +5200,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_classKind_document::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5235,12 +5235,12 @@ mAssociatedValue3 (inAssociatedValue3) {
 
 void cEnumAssociatedValues_classKind_entity::description (String & ioString,
                                                           const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
   mAssociatedValue2.description (ioString, inIndentation) ;
   mAssociatedValue3.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5335,7 +5335,7 @@ void GALGAS_classKind::method_atomic (GALGAS_typeKind & outAssociatedValue0,
   if (mEnum != kEnum_atomic) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @classKind atomic invoked with an invalid enum value") ;
+    s.appendCString ("method @classKind atomic invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_classKind_atomic * ptr = (const cEnumAssociatedValues_classKind_atomic *) unsafePointer () ;
@@ -5351,7 +5351,7 @@ void GALGAS_classKind::method_document (GALGAS_lstring & outAssociatedValue0,
   if (mEnum != kEnum_document) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @classKind document invoked with an invalid enum value") ;
+    s.appendCString ("method @classKind document invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_classKind_document * ptr = (const cEnumAssociatedValues_classKind_document *) unsafePointer () ;
@@ -5373,7 +5373,7 @@ void GALGAS_classKind::method_entity (GALGAS_string & outAssociatedValue0,
     outAssociatedValue2.drop () ;
     outAssociatedValue3.drop () ;
     String s ;
-    s.appendString ("method @classKind entity invoked with an invalid enum value") ;
+    s.appendCString ("method @classKind entity invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_classKind_entity * ptr = (const cEnumAssociatedValues_classKind_entity *) unsafePointer () ;
@@ -5468,10 +5468,10 @@ GALGAS_bool GALGAS_classKind::getter_isEntity (UNUSED_LOCATION_ARGS) const {
 
 void GALGAS_classKind::description (String & ioString,
                                     const int32_t inIndentation) const {
-  ioString.appendString ("<enum @classKind: ") ;
-  ioString.appendString (gEnumNameArrayFor_classKind [mEnum]) ;
+  ioString.appendCString ("<enum @classKind: ") ;
+  ioString.appendCString (gEnumNameArrayFor_classKind [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5792,9 +5792,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_propertyAccessibility_transient::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5855,7 +5855,7 @@ void GALGAS_propertyAccessibility::method_transient (GALGAS_bool & outAssociated
   if (mEnum != kEnum_transient) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @propertyAccessibility transient invoked with an invalid enum value") ;
+    s.appendCString ("method @propertyAccessibility transient invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_propertyAccessibility_transient * ptr = (const cEnumAssociatedValues_propertyAccessibility_transient *) unsafePointer () ;
@@ -5919,10 +5919,10 @@ GALGAS_bool GALGAS_propertyAccessibility::getter_isTransient (UNUSED_LOCATION_AR
 
 void GALGAS_propertyAccessibility::description (String & ioString,
                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<enum @propertyAccessibility: ") ;
-  ioString.appendString (gEnumNameArrayFor_propertyAccessibility [mEnum]) ;
+  ioString.appendCString ("<enum @propertyAccessibility: ") ;
+  ioString.appendCString (gEnumNameArrayFor_propertyAccessibility [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6046,11 +6046,11 @@ cCollectionElement * cCollectionElement_transientExternTypeList::copy (void) {
 void cCollectionElement_transientExternTypeList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTypeName" ":") ;
+  ioString.appendCString ("mTypeName" ":") ;
   mObject.mProperty_mTypeName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mIsClass" ":") ;
+  ioString.appendCString ("mIsClass" ":") ;
   mObject.mProperty_mIsClass.description (ioString, inIndentation) ;
 }
 
@@ -6537,7 +6537,7 @@ cCollectionElement * cCollectionElement_fileGenerationList::copy (void) {
 void cCollectionElement_fileGenerationList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFileGeneration" ":") ;
+  ioString.appendCString ("mFileGeneration" ":") ;
   mObject.mProperty_mFileGeneration.description (ioString, inIndentation) ;
 }
 
@@ -7067,45 +7067,45 @@ void GALGAS_generationStruct::drop (void) {
 
 void GALGAS_generationStruct::description (String & ioString,
                                            const int32_t inIndentation) const {
-  ioString.appendString ("<struct @generationStruct:") ;
+  ioString.appendCString ("<struct @generationStruct:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mValidationStubRoutineListForGeneration.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mFileGenerationList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mEntityListForGeneration.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateEBManagedXibDocumentSwift.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateEBManagedAutoLayoutDocumentSwift.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mNeededOutletClasses.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mMainXibDescriptorList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mToOneClassImplementations.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mToManyClassImplementations.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mSelectionControllerListForGeneration.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mPropertyClassList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mTransientPropertyTypeList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateClass_5F_ProxyArrayOf_5F_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateClass_5F_TransientArrayOfSuperOf_5F_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateClass_5F_TransientArrayOf_5F_.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mGenerateClass_5F_StoredArrayOf_5F_.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7217,19 +7217,19 @@ cCollectionElement * cCollectionElement_XCodeGroupList::copy (void) {
 void cCollectionElement_XCodeGroupList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mGroupReference" ":") ;
+  ioString.appendCString ("mGroupReference" ":") ;
   mObject.mProperty_mGroupReference.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mGroupName" ":") ;
+  ioString.appendCString ("mGroupName" ":") ;
   mObject.mProperty_mGroupName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mGroupPath" ":") ;
+  ioString.appendCString ("mGroupPath" ":") ;
   mObject.mProperty_mGroupPath.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mChildrenRefs" ":") ;
+  ioString.appendCString ("mChildrenRefs" ":") ;
   mObject.mProperty_mChildrenRefs.description (ioString, inIndentation) ;
 }
 
@@ -7837,47 +7837,47 @@ cCollectionElement * cCollectionElement_XCodeToolTargetList::copy (void) {
 void cCollectionElement_XCodeToolTargetList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTargetRef" ":") ;
+  ioString.appendCString ("mTargetRef" ":") ;
   mObject.mProperty_mTargetRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTargetName" ":") ;
+  ioString.appendCString ("mTargetName" ":") ;
   mObject.mProperty_mTargetName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProductFileReference" ":") ;
+  ioString.appendCString ("mProductFileReference" ":") ;
   mObject.mProperty_mProductFileReference.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProductFileName" ":") ;
+  ioString.appendCString ("mProductFileName" ":") ;
   mObject.mProperty_mProductFileName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildPhaseRefList" ":") ;
+  ioString.appendCString ("mBuildPhaseRefList" ":") ;
   mObject.mProperty_mBuildPhaseRefList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildPhaseRef" ":") ;
+  ioString.appendCString ("mBuildPhaseRef" ":") ;
   mObject.mProperty_mBuildPhaseRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationListRef" ":") ;
+  ioString.appendCString ("mBuildConfigurationListRef" ":") ;
   mObject.mProperty_mBuildConfigurationListRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationSettingList" ":") ;
+  ioString.appendCString ("mBuildConfigurationSettingList" ":") ;
   mObject.mProperty_mBuildConfigurationSettingList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationRef" ":") ;
+  ioString.appendCString ("mBuildConfigurationRef" ":") ;
   mObject.mProperty_mBuildConfigurationRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFrameworksFileRefList" ":") ;
+  ioString.appendCString ("mFrameworksFileRefList" ":") ;
   mObject.mProperty_mFrameworksFileRefList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFrameworkBuildPhaseRef" ":") ;
+  ioString.appendCString ("mFrameworkBuildPhaseRef" ":") ;
   mObject.mProperty_mFrameworkBuildPhaseRef.description (ioString, inIndentation) ;
 }
 
@@ -8913,63 +8913,63 @@ cCollectionElement * cCollectionElement_XCodeAppTargetList::copy (void) {
 void cCollectionElement_XCodeAppTargetList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTargetRef" ":") ;
+  ioString.appendCString ("mTargetRef" ":") ;
   mObject.mProperty_mTargetRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mTargetName" ":") ;
+  ioString.appendCString ("mTargetName" ":") ;
   mObject.mProperty_mTargetName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProductFileReference" ":") ;
+  ioString.appendCString ("mProductFileReference" ":") ;
   mObject.mProperty_mProductFileReference.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mProductFileName" ":") ;
+  ioString.appendCString ("mProductFileName" ":") ;
   mObject.mProperty_mProductFileName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildPhaseRefList" ":") ;
+  ioString.appendCString ("mBuildPhaseRefList" ":") ;
   mObject.mProperty_mBuildPhaseRefList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildPhaseRef" ":") ;
+  ioString.appendCString ("mBuildPhaseRef" ":") ;
   mObject.mProperty_mBuildPhaseRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationListRef" ":") ;
+  ioString.appendCString ("mBuildConfigurationListRef" ":") ;
   mObject.mProperty_mBuildConfigurationListRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationSettingList" ":") ;
+  ioString.appendCString ("mBuildConfigurationSettingList" ":") ;
   mObject.mProperty_mBuildConfigurationSettingList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildConfigurationRef" ":") ;
+  ioString.appendCString ("mBuildConfigurationRef" ":") ;
   mObject.mProperty_mBuildConfigurationRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFrameworksFileRefList" ":") ;
+  ioString.appendCString ("mFrameworksFileRefList" ":") ;
   mObject.mProperty_mFrameworksFileRefList.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFrameworkBuildPhaseRef" ":") ;
+  ioString.appendCString ("mFrameworkBuildPhaseRef" ":") ;
   mObject.mProperty_mFrameworkBuildPhaseRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mDependentTargets" ":") ;
+  ioString.appendCString ("mDependentTargets" ":") ;
   mObject.mProperty_mDependentTargets.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mResourceBuildRef" ":") ;
+  ioString.appendCString ("mResourceBuildRef" ":") ;
   mObject.mProperty_mResourceBuildRef.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mResourceFileBuildRefs" ":") ;
+  ioString.appendCString ("mResourceFileBuildRefs" ":") ;
   mObject.mProperty_mResourceFileBuildRefs.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mInfoPListFile" ":") ;
+  ioString.appendCString ("mInfoPListFile" ":") ;
   mObject.mProperty_mInfoPListFile.description (ioString, inIndentation) ;
 }
 
@@ -10221,15 +10221,15 @@ cCollectionElement * cCollectionElement_BuildFileList::copy (void) {
 void cCollectionElement_BuildFileList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFileReference" ":") ;
+  ioString.appendCString ("mFileReference" ":") ;
   mObject.mProperty_mFileReference.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mFileName" ":") ;
+  ioString.appendCString ("mFileName" ":") ;
   mObject.mProperty_mFileName.description (ioString, inIndentation) ;
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mBuildReference" ":") ;
+  ioString.appendCString ("mBuildReference" ":") ;
   mObject.mProperty_mBuildReference.description (ioString, inIndentation) ;
 }
 
@@ -10757,7 +10757,7 @@ cCollectionElement * cCollectionElement_mainXibLineDescriptorList::copy (void) {
 void cCollectionElement_mainXibLineDescriptorList::description (String & ioString, const int32_t inIndentation) const {
   ioString.appendNewLine () ;
   ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendString ("mElement" ":") ;
+  ioString.appendCString ("mElement" ":") ;
   mObject.mProperty_mElement.description (ioString, inIndentation) ;
 }
 
@@ -11116,9 +11116,9 @@ mAssociatedValue0 (inAssociatedValue0) {
 
 void cEnumAssociatedValues_mainXibElement_text::description (String & ioString,
                                                              const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11147,10 +11147,10 @@ mAssociatedValue1 (inAssociatedValue1) {
 
 void cEnumAssociatedValues_mainXibElement_outlet::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("(\n") ;
+  ioString.appendCString ("(\n") ;
   mAssociatedValue0.description (ioString, inIndentation) ;
   mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendString (")") ;
+  ioString.appendCString (")") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11214,7 +11214,7 @@ void GALGAS_mainXibElement::method_text (GALGAS_lstring & outAssociatedValue0,
   if (mEnum != kEnum_text) {
     outAssociatedValue0.drop () ;
     String s ;
-    s.appendString ("method @mainXibElement text invoked with an invalid enum value") ;
+    s.appendCString ("method @mainXibElement text invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_mainXibElement_text * ptr = (const cEnumAssociatedValues_mainXibElement_text *) unsafePointer () ;
@@ -11232,7 +11232,7 @@ void GALGAS_mainXibElement::method_outlet (GALGAS_lstring & outAssociatedValue0,
     outAssociatedValue0.drop () ;
     outAssociatedValue1.drop () ;
     String s ;
-    s.appendString ("method @mainXibElement outlet invoked with an invalid enum value") ;
+    s.appendCString ("method @mainXibElement outlet invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const cEnumAssociatedValues_mainXibElement_outlet * ptr = (const cEnumAssociatedValues_mainXibElement_outlet *) unsafePointer () ;
@@ -11289,10 +11289,10 @@ GALGAS_bool GALGAS_mainXibElement::getter_isOutlet (UNUSED_LOCATION_ARGS) const 
 
 void GALGAS_mainXibElement::description (String & ioString,
                                          const int32_t inIndentation) const {
-  ioString.appendString ("<enum @mainXibElement: ") ;
-  ioString.appendString (gEnumNameArrayFor_mainXibElement [mEnum]) ;
+  ioString.appendCString ("<enum @mainXibElement: ") ;
+  ioString.appendCString (gEnumNameArrayFor_mainXibElement [mEnum]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11500,15 +11500,15 @@ void GALGAS_enumFunAssociationSortedList_2D_element::drop (void) {
 
 void GALGAS_enumFunAssociationSortedList_2D_element::description (String & ioString,
                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("<struct @enumFunAssociationSortedList-element:") ;
+  ioString.appendCString ("<struct @enumFunAssociationSortedList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mIndex.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mAssociatedString.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11616,15 +11616,15 @@ void GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element::drop (void
 
 void GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element::description (String & ioString,
                                                                                    const int32_t inIndentation) const {
-  ioString.appendString ("<struct @entityListForGeneratingEBManagedObjectContext-element:") ;
+  ioString.appendCString ("<struct @entityListForGeneratingEBManagedObjectContext-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mEntityName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mObsoleteEntityNames.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11732,15 +11732,15 @@ void GALGAS_autoLayoutOutletLinkerGenerationList_2D_element::drop (void) {
 
 void GALGAS_autoLayoutOutletLinkerGenerationList_2D_element::description (String & ioString,
                                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutOutletLinkerGenerationList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutOutletLinkerGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mLinkerName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mOutletNameAndTypeNameList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11840,13 +11840,13 @@ void GALGAS_astViewInstructionList_2D_element::drop (void) {
 
 void GALGAS_astViewInstructionList_2D_element::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<struct @astViewInstructionList-element:") ;
+  ioString.appendCString ("<struct @astViewInstructionList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11946,13 +11946,13 @@ void GALGAS_implicitViewFunctionGenerationList_2D_element::drop (void) {
 
 void GALGAS_implicitViewFunctionGenerationList_2D_element::description (String & ioString,
                                                                         const int32_t inIndentation) const {
-  ioString.appendString ("<struct @implicitViewFunctionGenerationList-element:") ;
+  ioString.appendCString ("<struct @implicitViewFunctionGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12060,15 +12060,15 @@ void GALGAS_viewGenerationList_2D_element::drop (void) {
 
 void GALGAS_viewGenerationList_2D_element::description (String & ioString,
                                                         const int32_t inIndentation) const {
-  ioString.appendString ("<struct @viewGenerationList-element:") ;
+  ioString.appendCString ("<struct @viewGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mViewName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mView.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12184,17 +12184,17 @@ void GALGAS_autoLayoutRegularBindingsGenerationList_2D_element::drop (void) {
 
 void GALGAS_autoLayoutRegularBindingsGenerationList_2D_element::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutRegularBindingsGenerationList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutRegularBindingsGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBoundObjectList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBindingOptionsString.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12302,15 +12302,15 @@ void GALGAS_autoLayoutMultipleBindingGenerationList_2D_element::drop (void) {
 
 void GALGAS_autoLayoutMultipleBindingGenerationList_2D_element::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutMultipleBindingGenerationList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutMultipleBindingGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBoundObjectExpression.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12418,15 +12418,15 @@ void GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element::drop (v
 
 void GALGAS_autoLayoutViewInstructionGenerationParameterList_2D_element::description (String & ioString,
                                                                                       const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutViewInstructionGenerationParameterList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutViewInstructionGenerationParameterList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mParameterName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mParameterValue.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12534,15 +12534,15 @@ void GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element::drop (vo
 
 void GALGAS_autoLayoutViewInstructionGenerationFuncCallList_2D_element::description (String & ioString,
                                                                                      const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutViewInstructionGenerationFuncCallList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutViewInstructionGenerationFuncCallList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mFunctionName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mParameters.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12642,13 +12642,13 @@ void GALGAS_autoLayoutViewInstructionGenerationList_2D_element::drop (void) {
 
 void GALGAS_autoLayoutViewInstructionGenerationList_2D_element::description (String & ioString,
                                                                              const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutViewInstructionGenerationList-element:") ;
+  ioString.appendCString ("<struct @autoLayoutViewInstructionGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mInstruction.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12756,15 +12756,15 @@ void GALGAS_outletBindingSpecificationModelList_2D_element::drop (void) {
 
 void GALGAS_outletBindingSpecificationModelList_2D_element::description (String & ioString,
                                                                          const int32_t inIndentation) const {
-  ioString.appendString ("<struct @outletBindingSpecificationModelList-element:") ;
+  ioString.appendCString ("<struct @outletBindingSpecificationModelList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mModelType.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mModelShouldBeWritableProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12872,15 +12872,15 @@ void GALGAS_outletBindingModelList_2D_element::drop (void) {
 
 void GALGAS_outletBindingModelList_2D_element::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<struct @outletBindingModelList-element:") ;
+  ioString.appendCString ("<struct @outletBindingModelList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mKind.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mErrorLocation.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12988,15 +12988,15 @@ void GALGAS_tableViewBindingGenerationList_2D_element::drop (void) {
 
 void GALGAS_tableViewBindingGenerationList_2D_element::description (String & ioString,
                                                                     const int32_t inIndentation) const {
-  ioString.appendString ("<struct @tableViewBindingGenerationList-element:") ;
+  ioString.appendCString ("<struct @tableViewBindingGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mTableValueBindingOutletName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mTableValueBindingControllerName.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13104,15 +13104,15 @@ void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::drop (void)
 
 void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::description (String & ioString,
                                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("<struct @ebViewGraphicControllerBindingGenerationList-element:") ;
+  ioString.appendCString ("<struct @ebViewGraphicControllerBindingGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mEBViewOutletName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mArrayControllerControllerName.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13220,15 +13220,15 @@ void GALGAS_boundObjectList_2D_element::drop (void) {
 
 void GALGAS_boundObjectList_2D_element::description (String & ioString,
                                                      const int32_t inIndentation) const {
-  ioString.appendString ("<struct @boundObjectList-element:") ;
+  ioString.appendCString ("<struct @boundObjectList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mBoundObjectString.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mKind.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13352,19 +13352,19 @@ void GALGAS_regularBindingsGenerationList_2D_element::drop (void) {
 
 void GALGAS_regularBindingsGenerationList_2D_element::description (String & ioString,
                                                                    const int32_t inIndentation) const {
-  ioString.appendString ("<struct @regularBindingsGenerationList-element:") ;
+  ioString.appendCString ("<struct @regularBindingsGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mOutletName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBoundObjectList.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBindingOptionsString.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13488,19 +13488,19 @@ void GALGAS_actionBindingListForGeneration_2D_element::drop (void) {
 
 void GALGAS_actionBindingListForGeneration_2D_element::description (String & ioString,
                                                                     const int32_t inIndentation) const {
-  ioString.appendString ("<struct @actionBindingListForGeneration-element:") ;
+  ioString.appendCString ("<struct @actionBindingListForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mOutletName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mTargetName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mActionName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mTargetTypeName.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13600,13 +13600,13 @@ void GALGAS_observablePropertyList_2D_element::drop (void) {
 
 void GALGAS_observablePropertyList_2D_element::description (String & ioString,
                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<struct @observablePropertyList-element:") ;
+  ioString.appendCString ("<struct @observablePropertyList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mObservableProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13706,13 +13706,13 @@ void GALGAS_transientPropertyGenerationList_2D_element::drop (void) {
 
 void GALGAS_transientPropertyGenerationList_2D_element::description (String & ioString,
                                                                      const int32_t inIndentation) const {
-  ioString.appendString ("<struct @transientPropertyGenerationList-element:") ;
+  ioString.appendCString ("<struct @transientPropertyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13836,19 +13836,19 @@ void GALGAS_transientDependencyListForGeneration_2D_element::drop (void) {
 
 void GALGAS_transientDependencyListForGeneration_2D_element::description (String & ioString,
                                                                           const int32_t inIndentation) const {
-  ioString.appendString ("<struct @transientDependencyListForGeneration-element:") ;
+  ioString.appendCString ("<struct @transientDependencyListForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mDependency.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mFunctionArgumentName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mFunctionArgumentTypeString.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mDefaultValueAsString.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13948,13 +13948,13 @@ void GALGAS_toManyProxyGenerationList_2D_element::drop (void) {
 
 void GALGAS_toManyProxyGenerationList_2D_element::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("<struct @toManyProxyGenerationList-element:") ;
+  ioString.appendCString ("<struct @toManyProxyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14054,13 +14054,13 @@ void GALGAS_atomicProxyGenerationList_2D_element::drop (void) {
 
 void GALGAS_atomicProxyGenerationList_2D_element::description (String & ioString,
                                                                const int32_t inIndentation) const {
-  ioString.appendString ("<struct @atomicProxyGenerationList-element:") ;
+  ioString.appendCString ("<struct @atomicProxyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14160,13 +14160,13 @@ void GALGAS_atomicPropertyGenerationList_2D_element::drop (void) {
 
 void GALGAS_atomicPropertyGenerationList_2D_element::description (String & ioString,
                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("<struct @atomicPropertyGenerationList-element:") ;
+  ioString.appendCString ("<struct @atomicPropertyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14266,13 +14266,13 @@ void GALGAS_toManyPropertyGenerationList_2D_element::drop (void) {
 
 void GALGAS_toManyPropertyGenerationList_2D_element::description (String & ioString,
                                                                   const int32_t inIndentation) const {
-  ioString.appendString ("<struct @toManyPropertyGenerationList-element:") ;
+  ioString.appendCString ("<struct @toManyPropertyGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mProperty.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14388,17 +14388,17 @@ void GALGAS_validationStubRoutineListForGeneration_2D_element::drop (void) {
 
 void GALGAS_validationStubRoutineListForGeneration_2D_element::description (String & ioString,
                                                                             const int32_t inIndentation) const {
-  ioString.appendString ("<struct @validationStubRoutineListForGeneration-element:") ;
+  ioString.appendCString ("<struct @validationStubRoutineListForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mObjectTypeName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mModelName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mModelTypeName.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14514,17 +14514,17 @@ void GALGAS_multipleBindingGenerationList_2D_element::drop (void) {
 
 void GALGAS_multipleBindingGenerationList_2D_element::description (String & ioString,
                                                                    const int32_t inIndentation) const {
-  ioString.appendString ("<struct @multipleBindingGenerationList-element:") ;
+  ioString.appendCString ("<struct @multipleBindingGenerationList-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mOutletName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBindingName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mBoundObjectExpression.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14664,23 +14664,23 @@ void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element
 
 void GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::description (String & ioString,
                                                                                                const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutTableViewControllerBoundColumnListForGeneration-element:") ;
+  ioString.appendCString ("<struct @autoLayoutTableViewControllerBoundColumnListForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mEditable.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mSortPropertyName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mDisplayedPropertyName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mColumnObjectTypeName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mRunAction.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mActualParameterList.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14796,17 +14796,17 @@ void GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_elemen
 
 void GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::description (String & ioString,
                                                                                                 const int32_t inIndentation) const {
-  ioString.appendString ("<struct @autoLayoutTableViewControllerSortedColumnListForGeneration-element:") ;
+  ioString.appendCString ("<struct @autoLayoutTableViewControllerSortedColumnListForGeneration-element:") ;
   if (! isValid ()) {
-    ioString.appendString (" not built") ;
+    ioString.appendCString (" not built") ;
   }else{
     mProperty_mColumnName.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mSortPropertyKind.description (ioString, inIndentation+1) ;
-    ioString.appendString (", ") ;
+    ioString.appendCString (", ") ;
     mProperty_mObservablePropertyForSorting.description (ioString, inIndentation+1) ;
   }
-  ioString.appendString (">") ;
+  ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------

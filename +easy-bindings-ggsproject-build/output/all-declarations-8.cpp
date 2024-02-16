@@ -5235,20 +5235,20 @@ void routine_generateSelectionControllers_3F__3F__26_ (const GALGAS_selectionCon
       bool bool_1 = var_hasAtomicStoredProperties_11775.operator_not (SOURCE_FILE ("selection-controller.ggs", 260)).isValidAndTrue () ;
       if (enumerator_11820.hasCurrentObject () && bool_1) {
         while (enumerator_11820.hasCurrentObject () && bool_1) {
-          var_hasAtomicStoredProperties_11775 = GALGAS_bool (enumerator_11820.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration) ;
+          var_hasAtomicStoredProperties_11775 = GALGAS_bool (nullptr != dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_11820.current_mProperty (HERE).ptr ())) ;
           enumerator_11820.gotoNextObject () ;
           if (enumerator_11820.hasCurrentObject ()) {
             bool_1 = var_hasAtomicStoredProperties_11775.operator_not (SOURCE_FILE ("selection-controller.ggs", 260)).isValidAndTrue () ;
           }
         }
       }
-      GALGAS_string var_s_11992 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (inCompiler, enumerator_11183.current_mOwnerName (HERE), enumerator_11183.current_mSelectionControllerName (HERE), enumerator_11183.current_mBaseTypeName (HERE), enumerator_11183.current_mSelectionTypeName (HERE), enumerator_11183.current_mPropertyGenerationList (HERE), var_hasAtomicStoredProperties_11775 COMMA_SOURCE_FILE ("selection-controller.ggs", 263))) ;
-      GALGAS_string var_fileName_12274 = GALGAS_string ("selectionController-").add_operation (enumerator_11183.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (enumerator_11183.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)) ;
+      GALGAS_string var_s_11989 = GALGAS_string (filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (inCompiler, enumerator_11183.current_mOwnerName (HERE), enumerator_11183.current_mSelectionControllerName (HERE), enumerator_11183.current_mBaseTypeName (HERE), enumerator_11183.current_mSelectionTypeName (HERE), enumerator_11183.current_mPropertyGenerationList (HERE), var_hasAtomicStoredProperties_11775 COMMA_SOURCE_FILE ("selection-controller.ggs", 263))) ;
+      GALGAS_string var_fileName_12271 = GALGAS_string ("selectionController-").add_operation (enumerator_11183.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (enumerator_11183.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 271)) ;
       {
-      ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_12274, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)) ;
+      ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_12271, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 272)) ;
       }
       {
-      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12274, var_s_11992, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 273)) ;
+      GALGAS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_12271, var_s_11989, inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 273)) ;
       }
     }
     enumerator_11183.gotoNextObject () ;
@@ -7530,7 +7530,7 @@ GALGAS_string filewrapperTemplate_testFiles_test_5F_py (Compiler * /* inCompiler
 //--------------------------------------------------------------------------------------------------
 
 static void print_tool_help_message (void) {
-  gCout.appendString ("Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n") ;
+  gCout.appendCString ("Compiled with GALGAS revision NUMERO_REVISION_GALGAS\n") ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7806,23 +7806,23 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
       if (verboseOptionOn || (totalWarningCount () > 0) || (totalErrorCount () > 0)) {
         String message ;
         if (totalWarningCount () == 0) {
-          message.appendString ("No warning") ;
+          message.appendCString ("No warning") ;
         }else if (totalWarningCount () == 1) {
-          message.appendString ("1 warning") ;
+          message.appendCString ("1 warning") ;
         }else{
           message.appendSigned (totalWarningCount ()) ;
-          message.appendString (" warnings") ;
+          message.appendCString (" warnings") ;
         }
-        message.appendString (", ") ;
+        message.appendCString (", ") ;
         if (totalErrorCount () == 0) {
-          message.appendString ("no error") ;
+          message.appendCString ("no error") ;
         }else if (totalErrorCount () == 1) {
-          message.appendString ("1 error") ;
+          message.appendCString ("1 error") ;
         }else{
           message.appendSigned (totalErrorCount ()) ;
-          message.appendString (" errors") ;
+          message.appendCString (" errors") ;
         }
-        message.appendString (".\n") ;
+        message.appendCString (".\n") ;
         ggs_printMessage (message COMMA_HERE) ;
       }
     }catch (const ::std::exception & e) {
