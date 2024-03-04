@@ -936,21 +936,21 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   if (in_FUNCTION_5F_MAP.isValid ()) {
     cEnumerator_enumFuncMap enumerator_645 (in_FUNCTION_5F_MAP, kENUMERATION_UP) ;
     while (enumerator_645.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  // Function ") ;
+      result.appendString ("  //································································································\n  // Function ") ;
       result.appendString (enumerator_645.current_lkey (HERE).readProperty_string ().stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n  static func ") ;
+      result.appendString ("\n  //································································································\n\n  static func ") ;
       result.appendString (enumerator_645.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (" () -> [String] {\n    return [") ;
-      GALGAS_uint index_1057_ (0) ;
+      GALGAS_uint index_1017_ (0) ;
       if (enumerator_645.current_mAssociationSortedList (HERE).isValid ()) {
-        cEnumerator_enumFunAssociationSortedList enumerator_1057 (enumerator_645.current_mAssociationSortedList (HERE), kENUMERATION_UP) ;
-        while (enumerator_1057.hasCurrentObject ()) {
-          result.appendString (enumerator_1057.current_mAssociatedString (HERE).getter_utf_38_Representation (SOURCE_FILE ("enum.swift.galgasTemplate", 23)).stringValue ()) ;
-          if (enumerator_1057.hasNextObject ()) {
+        cEnumerator_enumFunAssociationSortedList enumerator_1017 (enumerator_645.current_mAssociationSortedList (HERE), kENUMERATION_UP) ;
+        while (enumerator_1017.hasCurrentObject ()) {
+          result.appendString (enumerator_1017.current_mAssociatedString (HERE).getter_utf_38_Representation (SOURCE_FILE ("enum.swift.galgasTemplate", 23)).stringValue ()) ;
+          if (enumerator_1017.hasNextObject ()) {
             result.appendString (", ") ;
           }
-          index_1057_.increment () ;
-          enumerator_1057.gotoNextObject () ;
+          index_1017_.increment () ;
+          enumerator_1017.gotoNextObject () ;
         }
       }
       result.appendString ("]\n  }\n\n") ;
@@ -958,17 +958,17 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
       enumerator_645.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //  Enum generic bindings utility functions\n  //····················································································································\n\n  static func buildfromRawValue (rawValue : Int) -> ") ;
+  result.appendString ("  //································································································\n  //  Enum generic bindings utility functions\n  //································································································\n\n  static func buildfromRawValue (rawValue : Int) -> ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("\? {\n    if let v = ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (rawValue:rawValue) {\n      return v\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n  func enumfromRawValue (rawValue : Int) -> ") ;
+  result.appendString (" (rawValue:rawValue) {\n      return v\n    }else{\n      return nil\n    }\n  }\n\n  //································································································\n\n  func enumfromRawValue (rawValue : Int) -> ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" {\n    var result = self\n    let v : ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("\? = ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (rawValue:rawValue) ;\n    if let unwrappedV = v {\n      result = unwrappedV\n    }\n    return result\n  }\n\n  //····················································································································\n  //  EBStoredPropertyProtocol\n  //····················································································································\n\n  func ebHashValue () -> UInt32 {\n    return UInt32 (self.rawValue)\n  }\n\n  //····················································································································\n\n  func convertToNSObject () -> NSObject {\n    return NSNumber (value: self.rawValue)\n  }\n\n  //····················································································································\n\n  static func convertFromNSObject (object : NSObject) -> ") ;
+  result.appendString (" (rawValue:rawValue) ;\n    if let unwrappedV = v {\n      result = unwrappedV\n    }\n    return result\n  }\n\n  //································································································\n  //  EBStoredPropertyProtocol\n  //································································································\n\n  func ebHashValue () -> UInt32 {\n    return UInt32 (self.rawValue)\n  }\n\n  //································································································\n\n  func convertToNSObject () -> NSObject {\n    return NSNumber (value: self.rawValue)\n  }\n\n  //································································································\n\n  static func convertFromNSObject (object : NSObject) -> ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" {\n    var result = ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
@@ -976,11 +976,11 @@ GALGAS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (
   result.appendString (in_CONSTANT_5F_ORDERED_5F_LIST.getter_mValueAtIndex (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("enum.swift.galgasTemplate", 70)).readProperty_string ().stringValue ()) ;
   result.appendString ("\n    if let number = object as\? NSNumber, let v = ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (rawValue: number.intValue) {\n      result = v\n    }\n    return result\n  }\n\n  //····················································································································\n\n  static func unarchiveFromDataRange (_ inData : Data, _ inRange : NSRange) -> ") ;
+  result.appendString (" (rawValue: number.intValue) {\n      result = v\n    }\n    return result\n  }\n\n  //································································································\n\n  static func unarchiveFromDataRange (_ inData : Data, _ inRange : NSRange) -> ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("\? {\n    if let rawValue = inData.base62EncodedInt (range: inRange), let enumValue = ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (rawValue: rawValue) {\n      return enumValue\n    }else{\n      return nil\n    }\n  }\n\n  //····················································································································\n\n  func appendPropertyValueTo (_ ioData : inout Data) {\n    ioData.append (base62Encoded: self.rawValue)\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\ntypealias EBReadWriteProperty_") ;
+  result.appendString (" (rawValue: rawValue) {\n      return enumValue\n    }else{\n      return nil\n    }\n  }\n\n  //································································································\n\n  func appendPropertyValueTo (_ ioData : inout Data) {\n    ioData.append (base62Encoded: self.rawValue)\n  }\n\n  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\ntypealias EBReadWriteProperty_") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" = EBEnumReadWriteProperty <") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
@@ -1961,49 +1961,49 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
       enumerator_2095.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //    init\n  //····················································································································\n\n  required init (_ inUndoManager : UndoManager\?) {\n") ;
-  GALGAS_uint index_2564_ (0) ;
+  result.appendString ("  //································································································\n  //    init\n  //································································································\n\n  required init (_ inUndoManager : UndoManager\?) {\n") ;
+  GALGAS_uint index_2524_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_2564 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_2564.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_initCode ((const cPtr_propertyGeneration *) enumerator_2564.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 70)).stringValue ()) ;
-      index_2564_.increment () ;
-      enumerator_2564.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_2524 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_2524.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_initCode ((const cPtr_propertyGeneration *) enumerator_2524.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 70)).stringValue ()) ;
+      index_2524_.increment () ;
+      enumerator_2524.gotoNextObject () ;
     }
   }
   result.appendString ("    super.init (inUndoManager)\n") ;
-  GALGAS_uint index_2673_ (0) ;
+  GALGAS_uint index_2633_ (0) ;
   if (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toOnePropertyGenerationList enumerator_2673 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_2673.hasCurrentObject ()) {
+    cEnumerator_toOnePropertyGenerationList enumerator_2633 (in_TO_5F_ONE_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_2633.hasCurrentObject ()) {
       result.appendString ("    self.") ;
-      result.appendString (enumerator_2673.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2633.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_none.mReadModelFunction = { [weak self] in\n      if let uwSelf = self {\n        return .single (uwSelf.") ;
-      result.appendString (enumerator_2673.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2633.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.propval == nil)\n      }else{\n        return .empty\n      }\n    }\n    self.") ;
-      result.appendString (enumerator_2673.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2633.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: self.") ;
-      result.appendString (enumerator_2673.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2633.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_none)\n") ;
-      index_2673_.increment () ;
-      enumerator_2673.gotoNextObject () ;
+      index_2633_.increment () ;
+      enumerator_2633.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_3108_ (0) ;
+  GALGAS_uint index_3068_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_3108 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_3108.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_3108.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 85)).stringValue ()) ;
-      index_3108_.increment () ;
-      enumerator_3108.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_3068 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_3068.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_3068.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 85)).stringValue ()) ;
+      index_3068_.increment () ;
+      enumerator_3068.gotoNextObject () ;
     }
   }
   result.appendString ("  //--- Install undoers and opposite setter for relationships\n") ;
-  GALGAS_uint index_3265_ (0) ;
+  GALGAS_uint index_3225_ (0) ;
   if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toManyPropertyGenerationList enumerator_3265 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_3265.hasCurrentObject ()) {
-      switch (enumerator_3265.current_mProperty (HERE).readProperty_mOption ().enumValue ()) {
+    cEnumerator_toManyPropertyGenerationList enumerator_3225 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3225.hasCurrentObject ()) {
+      switch (enumerator_3225.current_mProperty (HERE).readProperty_mOption ().enumValue ()) {
       case GALGAS_toManyRelationshipOptionGeneration::kNotBuilt :
         break ;
       case GALGAS_toManyRelationshipOptionGeneration::kEnum_none :
@@ -2012,87 +2012,87 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
         break ;
       case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasDependance :
         {
-          const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_3438 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (enumerator_3265.current_mProperty (HERE).readProperty_mOption ().unsafePointer ()) ;
-          const GALGAS_string extractedValue_3340_masterPropertyName = extractPtr_3438->mAssociatedValue0 ;
+          const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance * extractPtr_3398 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasDependance *) (enumerator_3225.current_mProperty (HERE).readProperty_mOption ().unsafePointer ()) ;
+          const GALGAS_string extractedValue_3300_masterPropertyName = extractPtr_3398->mAssociatedValue0 ;
           result.appendString ("    self.") ;
-          result.appendString (enumerator_3265.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+          result.appendString (enumerator_3225.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
           result.appendString ("_property.setDataProvider (self.") ;
-          result.appendString (extractedValue_3340_masterPropertyName.stringValue ()) ;
+          result.appendString (extractedValue_3300_masterPropertyName.stringValue ()) ;
           result.appendString ("_property)\n") ;
         }
         break ;
       case GALGAS_toManyRelationshipOptionGeneration::kEnum_hasOpposite :
         {
-          const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite * extractPtr_3768 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite *) (enumerator_3265.current_mProperty (HERE).readProperty_mOption ().unsafePointer ()) ;
-          const GALGAS_string extractedValue_3499_oppositeName = extractPtr_3768->mAssociatedValue0 ;
+          const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite * extractPtr_3728 = (const cEnumAssociatedValues_toManyRelationshipOptionGeneration_hasOpposite *) (enumerator_3225.current_mProperty (HERE).readProperty_mOption ().unsafePointer ()) ;
+          const GALGAS_string extractedValue_3459_oppositeName = extractPtr_3728->mAssociatedValue0 ;
           result.appendString ("    self.") ;
-          result.appendString (enumerator_3265.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+          result.appendString (enumerator_3225.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
           result.appendString ("_property.setOppositeRelationShipFunctions (\n      setter: { [weak self] inObject in if let me = self { inObject.") ;
-          result.appendString (extractedValue_3499_oppositeName.stringValue ()) ;
+          result.appendString (extractedValue_3459_oppositeName.stringValue ()) ;
           result.appendString ("_property.setProp (me) } },\n      resetter: { inObject in inObject.") ;
-          result.appendString (extractedValue_3499_oppositeName.stringValue ()) ;
+          result.appendString (extractedValue_3459_oppositeName.stringValue ()) ;
           result.appendString ("_property.setProp (nil) }\n    )\n") ;
         }
         break ;
       }
-      index_3265_.increment () ;
-      enumerator_3265.gotoNextObject () ;
+      index_3225_.increment () ;
+      enumerator_3225.gotoNextObject () ;
     }
   }
   result.appendString ("  //--- Register properties for handling signature\n") ;
-  GALGAS_uint index_3915_ (0) ;
+  GALGAS_uint index_3875_ (0) ;
   if (in_SIGNATURE_5F_SET.isValid ()) {
-    cEnumerator_stringset enumerator_3915 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
-    while (enumerator_3915.hasCurrentObject ()) {
+    cEnumerator_stringset enumerator_3875 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
+    while (enumerator_3875.hasCurrentObject ()) {
       result.appendString ("    self.") ;
-      result.appendString (enumerator_3915.current_key (HERE).stringValue ()) ;
+      result.appendString (enumerator_3875.current_key (HERE).stringValue ()) ;
       result.appendString ("_property.setSignatureObserver (observer: self)\n") ;
-      index_3915_.increment () ;
-      enumerator_3915.gotoNextObject () ;
+      index_3875_.increment () ;
+      enumerator_3875.gotoNextObject () ;
     }
   }
   result.appendString ("  //--- Extern delegates\n") ;
-  GALGAS_uint index_4099_idx (0) ;
+  GALGAS_uint index_4059_idx (0) ;
   if (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_externSwiftDelegateList enumerator_4099 (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_4099.hasCurrentObject ()) {
+    cEnumerator_externSwiftDelegateList enumerator_4059 (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_4059.hasCurrentObject ()) {
       result.appendString ("    self.mExternDelegate") ;
-      result.appendString (index_4099_idx.getter_string (SOURCE_FILE ("entity.swift.galgasTemplate", 110)).stringValue ()) ;
+      result.appendString (index_4059_idx.getter_string (SOURCE_FILE ("entity.swift.galgasTemplate", 110)).stringValue ()) ;
       result.appendString (" = ") ;
-      result.appendString (enumerator_4099.current_mExternSwiftDelegateName (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_4059.current_mExternSwiftDelegateName (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (" (object: self)\n") ;
-      index_4099_idx.increment () ;
-      enumerator_4099.gotoNextObject () ;
+      index_4059_idx.increment () ;
+      enumerator_4059.gotoNextObject () ;
     }
   }
-  result.appendString ("   }\n  \n  //····················································································································\n  //    Extern delegates\n  //····················································································································\n\n") ;
-  GALGAS_uint index_4569_idx (0) ;
+  result.appendString ("   }\n  \n  //································································································\n  //    Extern delegates\n  //································································································\n\n") ;
+  GALGAS_uint index_4489_idx (0) ;
   if (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_externSwiftDelegateList enumerator_4569 (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_4569.hasCurrentObject ()) {
+    cEnumerator_externSwiftDelegateList enumerator_4489 (in_EXTERN_5F_DELEGATE_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_4489.hasCurrentObject ()) {
       result.appendString ("  final var mExternDelegate") ;
-      result.appendString (index_4569_idx.getter_string (SOURCE_FILE ("entity.swift.galgasTemplate", 120)).stringValue ()) ;
+      result.appendString (index_4489_idx.getter_string (SOURCE_FILE ("entity.swift.galgasTemplate", 120)).stringValue ()) ;
       result.appendString (" : ") ;
-      result.appendString (enumerator_4569.current_mExternSwiftDelegateName (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_4489.current_mExternSwiftDelegateName (HERE).readProperty_string ().stringValue ()) ;
       result.appendString ("\? = nil\n") ;
-      index_4569_idx.increment () ;
-      enumerator_4569.gotoNextObject () ;
+      index_4489_idx.increment () ;
+      enumerator_4489.gotoNextObject () ;
     }
   }
   result.appendString ("\n") ;
   const enumGalgasBool test_6 = GALGAS_bool (kIsStrictSup, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 124)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_6) {
   case kBoolTrue : {
-    result.appendString ("  //····················································································································\n  //   computeSignature\n  //····················································································································\n\n  override func computeSignature () -> UInt32 {\n    var crc = super.computeSignature ()\n") ;
-    GALGAS_uint index_5098_ (0) ;
+    result.appendString ("  //································································································\n  //   computeSignature\n  //································································································\n\n  override func computeSignature () -> UInt32 {\n    var crc = super.computeSignature ()\n") ;
+    GALGAS_uint index_4978_ (0) ;
     if (in_SIGNATURE_5F_SET.isValid ()) {
-      cEnumerator_stringset enumerator_5098 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
-      while (enumerator_5098.hasCurrentObject ()) {
+      cEnumerator_stringset enumerator_4978 (in_SIGNATURE_5F_SET, kENUMERATION_UP) ;
+      while (enumerator_4978.hasCurrentObject ()) {
         result.appendString ("    crc.accumulate (u32: self.") ;
-        result.appendString (enumerator_5098.current_key (HERE).stringValue ()) ;
+        result.appendString (enumerator_4978.current_key (HERE).stringValue ()) ;
         result.appendString ("_property.signature ())\n") ;
-        index_5098_.increment () ;
-        enumerator_5098.gotoNextObject () ;
+        index_4978_.increment () ;
+        enumerator_4978.gotoNextObject () ;
       }
     }
     result.appendString ("    return crc\n  }\n\n") ;
@@ -2105,49 +2105,49 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
   const enumGalgasBool test_7 = in_IS_5F_GRAPHIC_5F_ENTITY.operator_and (in_IS_5F_ABSTRACT.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 140)) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 140)).boolEnum () ;
   switch (test_7) {
   case kBoolTrue : {
-    result.appendString ("  //····················································································································\n\n  override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor\? {\n    return self.cursorForKnob_") ;
+    result.appendString ("  //································································································\n\n  override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor\? {\n    return self.cursorForKnob_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (knob: inKnobIndex)\n  }\n\n  //····················································································································\n  //  Translate\n  //····················································································································\n\n  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {\n    return self.acceptedTranslation_") ;
+    result.appendString (" (knob: inKnobIndex)\n  }\n\n  //································································································\n  //  Translate\n  //································································································\n\n  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {\n    return self.acceptedTranslation_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (xBy: inDx, yBy: inDy)\n  }\n\n  //····················································································································\n\n  override func acceptToTranslate (xBy inDx: Int, yBy inDy: Int) -> Bool {\n    return self.acceptToTranslate_") ;
+    result.appendString (" (xBy: inDx, yBy: inDy)\n  }\n\n  //································································································\n\n  override func acceptToTranslate (xBy inDx: Int, yBy inDy: Int) -> Bool {\n    return self.acceptToTranslate_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (xBy: inDx, yBy: inDy)\n  }\n\n  //····················································································································\n\n  override func translate (xBy inDx: Int, yBy inDy: Int,\n                           userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.translate_") ;
+    result.appendString (" (xBy: inDx, yBy: inDy)\n  }\n\n  //································································································\n\n  override func translate (xBy inDx: Int, yBy inDy: Int,\n                           userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.translate_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (xBy: inDx, yBy: inDy, userSet: &ioSet)\n  }\n\n  //····················································································································\n  //   Move\n  //····················································································································\n\n  override func canMove (knob inKnobIndex : Int,\n                         proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : CanariPoint,\n                         proposedAlignedTranslation inProposedAlignedTranslation : CanariPoint,\n                         unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : CanariPoint,\n                         shift inShift : Bool) -> CanariPoint {\n    return self.canMove_") ;
+    result.appendString (" (xBy: inDx, yBy: inDy, userSet: &ioSet)\n  }\n\n  //································································································\n  //   Move\n  //································································································\n\n  override func canMove (knob inKnobIndex : Int,\n                         proposedUnalignedAlignedTranslation inProposedUnalignedTranslation : CanariPoint,\n                         proposedAlignedTranslation inProposedAlignedTranslation : CanariPoint,\n                         unalignedMouseDraggedLocation inUnalignedMouseDraggedLocation : CanariPoint,\n                         shift inShift : Bool) -> CanariPoint {\n    return self.canMove_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (\n      knob: inKnobIndex,\n      proposedUnalignedAlignedTranslation: inProposedUnalignedTranslation,\n      proposedAlignedTranslation: inProposedAlignedTranslation,\n      unalignedMouseDraggedLocation: inUnalignedMouseDraggedLocation,\n      shift: inShift\n    )\n  }\n\n  //····················································································································\n\n  override func move (knob inKnobIndex: Int,\n                      proposedDx inDx: Int,\n                      proposedDy inDy: Int,\n                      unalignedMouseLocationX inUnlignedMouseLocationX : Int,\n                      unalignedMouseLocationY inUnlignedMouseLocationY : Int,\n                      alignedMouseLocationX inAlignedMouseLocationX : Int,\n                      alignedMouseLocationY inAlignedMouseLocationY : Int,\n                      shift inShift : Bool) {\n    self.move_") ;
+    result.appendString (" (\n      knob: inKnobIndex,\n      proposedUnalignedAlignedTranslation: inProposedUnalignedTranslation,\n      proposedAlignedTranslation: inProposedAlignedTranslation,\n      unalignedMouseDraggedLocation: inUnalignedMouseDraggedLocation,\n      shift: inShift\n    )\n  }\n\n  //································································································\n\n  override func move (knob inKnobIndex: Int,\n                      proposedDx inDx: Int,\n                      proposedDy inDy: Int,\n                      unalignedMouseLocationX inUnlignedMouseLocationX : Int,\n                      unalignedMouseLocationY inUnlignedMouseLocationY : Int,\n                      alignedMouseLocationX inAlignedMouseLocationX : Int,\n                      alignedMouseLocationY inAlignedMouseLocationY : Int,\n                      shift inShift : Bool) {\n    self.move_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (\n      knob: inKnobIndex,\n      proposedDx: inDx,\n      proposedDy: inDy,\n      unalignedMouseLocationX: inUnlignedMouseLocationX,\n      unalignedMouseLocationY: inUnlignedMouseLocationY,\n      alignedMouseLocationX: inAlignedMouseLocationX,\n      alignedMouseLocationY: inAlignedMouseLocationY,\n      shift: inShift\n    )\n  }\n\n  //····················································································································\n  //  Snap to grid\n  //····················································································································\n\n  override func snapToGrid (_ inGrid : Int) {\n    self.snapToGrid_") ;
+    result.appendString (" (\n      knob: inKnobIndex,\n      proposedDx: inDx,\n      proposedDy: inDy,\n      unalignedMouseLocationX: inUnlignedMouseLocationX,\n      unalignedMouseLocationY: inUnlignedMouseLocationY,\n      alignedMouseLocationX: inAlignedMouseLocationX,\n      alignedMouseLocationY: inAlignedMouseLocationY,\n      shift: inShift\n    )\n  }\n\n  //································································································\n  //  Snap to grid\n  //································································································\n\n  override func snapToGrid (_ inGrid : Int) {\n    self.snapToGrid_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (inGrid)\n  }\n\n  //····················································································································\n\n  override func canSnapToGrid (_ inGrid : Int) -> Bool {\n    return self.canSnapToGrid_") ;
+    result.appendString (" (inGrid)\n  }\n\n  //································································································\n\n  override func canSnapToGrid (_ inGrid : Int) -> Bool {\n    return self.canSnapToGrid_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (inGrid)\n  }\n\n  //····················································································································\n  //  HORIZONTAL FLIP\n  //····················································································································\n\n  override func flipHorizontally () {\n    self.flipHorizontally_") ;
+    result.appendString (" (inGrid)\n  }\n\n  //································································································\n  //  HORIZONTAL FLIP\n  //································································································\n\n  override func flipHorizontally () {\n    self.flipHorizontally_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" ()\n  }\n\n  //····················································································································\n\n  override func canFlipHorizontally () -> Bool {\n    return self.canFlipHorizontally_") ;
+    result.appendString (" ()\n  }\n\n  //································································································\n\n  override func canFlipHorizontally () -> Bool {\n    return self.canFlipHorizontally_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" ()\n  }\n\n  //····················································································································\n  //  VERTICAL FLIP\n  //····················································································································\n\n  override func flipVertically () {\n    self.flipVertically_") ;
+    result.appendString (" ()\n  }\n\n  //································································································\n  //  VERTICAL FLIP\n  //································································································\n\n  override func flipVertically () {\n    self.flipVertically_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" ()\n  }\n\n  //····················································································································\n\n  override func canFlipVertically () -> Bool {\n    return self.canFlipVertically_") ;
+    result.appendString (" ()\n  }\n\n  //································································································\n\n  override func canFlipVertically () -> Bool {\n    return self.canFlipVertically_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" ()\n  }\n\n  //····················································································································\n  //  ROTATE 90\n  //····················································································································\n\n  override func canRotate90 (accumulatedPoints : inout Set <CanariPoint>) -> Bool {\n    return self.canRotate90_") ;
+    result.appendString (" ()\n  }\n\n  //································································································\n  //  ROTATE 90\n  //································································································\n\n  override func canRotate90 (accumulatedPoints : inout Set <CanariPoint>) -> Bool {\n    return self.canRotate90_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (accumulatedPoints: &accumulatedPoints)\n  }\n\n  //····················································································································\n\n  override func rotate90Clockwise (from inRotationCenter : CanariPoint,\n                                   userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.rotate90Clockwise_") ;
+    result.appendString (" (accumulatedPoints: &accumulatedPoints)\n  }\n\n  //································································································\n\n  override func rotate90Clockwise (from inRotationCenter : CanariPoint,\n                                   userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.rotate90Clockwise_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (from: inRotationCenter, userSet: &ioSet)\n  }\n\n  //····················································································································\n\n  override func rotate90CounterClockwise (from inRotationCenter : CanariPoint,\n                                          userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.rotate90CounterClockwise_") ;
+    result.appendString (" (from: inRotationCenter, userSet: &ioSet)\n  }\n\n  //································································································\n\n  override func rotate90CounterClockwise (from inRotationCenter : CanariPoint,\n                                          userSet ioSet : inout EBReferenceSet <EBManagedObject>) {\n    self.rotate90CounterClockwise_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (from: inRotationCenter, userSet: &ioSet)\n  }\n\n  //····················································································································\n  //  Save into additional dictionary\n  //····················································································································\n\n  override func saveIntoAdditionalDictionary (_ ioDictionary : inout [String : Any]) {\n    self.saveIntoAdditionalDictionary_") ;
+    result.appendString (" (from: inRotationCenter, userSet: &ioSet)\n  }\n\n  //································································································\n  //  Save into additional dictionary\n  //································································································\n\n  override func saveIntoAdditionalDictionary (_ ioDictionary : inout [String : Any]) {\n    self.saveIntoAdditionalDictionary_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (&ioDictionary)\n  }\n\n  //····················································································································\n  //  operationAfterPasting\n  //····················································································································\n\n  override func operationAfterPasting (additionalDictionary inDictionary : [String : Any],\n                                       optionalDocument inOptionalDocument : EBAutoLayoutManagedDocument\?,\n                                       objectArray inObjectArray : [EBGraphicManagedObject]) -> String {\n    return self.operationAfterPasting_") ;
+    result.appendString (" (&ioDictionary)\n  }\n\n  //································································································\n  //  operationAfterPasting\n  //································································································\n\n  override func operationAfterPasting (additionalDictionary inDictionary : [String : Any],\n                                       optionalDocument inOptionalDocument : EBAutoLayoutManagedDocument\?,\n                                       objectArray inObjectArray : [EBGraphicManagedObject]) -> String {\n    return self.operationAfterPasting_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" (additionalDictionary: inDictionary,\n                                                      optionalDocument: inOptionalDocument,\n                                                      objectArray: inObjectArray)\n  }\n\n  //····················································································································\n  //  Alignment Points\n  //····················································································································\n\n  override func alignmentPoints () -> Set <CanariPoint> {\n    return self.alignmentPoints_") ;
+    result.appendString (" (additionalDictionary: inDictionary,\n                                                      optionalDocument: inOptionalDocument,\n                                                      objectArray: inObjectArray)\n  }\n\n  //································································································\n  //  Alignment Points\n  //································································································\n\n  override func alignmentPoints () -> Set <CanariPoint> {\n    return self.alignmentPoints_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" ()\n  }\n\n  //····················································································································\n  //  operationBeforeRemoving\n  //····················································································································\n\n  override func operationBeforeRemoving () {\n    self.operationBeforeRemoving_") ;
+    result.appendString (" ()\n  }\n\n  //································································································\n  //  operationBeforeRemoving\n  //································································································\n\n  override func operationBeforeRemoving () {\n    self.operationBeforeRemoving_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" ()\n  }\n\n") ;
     const enumGalgasBool test_8 = in_OPTION_5F_CanCopyAndPaste.boolEnum () ;
     switch (test_8) {
     case kBoolTrue : {
-      result.appendString ("  //····················································································································\n  //  COPY AND PASTE\n  //····················································································································\n\n  override func canCopyAndPaste () -> Bool {\n    return true\n  }\n\n") ;
+      result.appendString ("  //································································································\n  //  COPY AND PASTE\n  //································································································\n\n  override func canCopyAndPaste () -> Bool {\n    return true\n  }\n\n") ;
       } break ;
     case kBoolFalse : {
       } break ;
@@ -2157,7 +2157,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
     const enumGalgasBool test_9 = in_OPTION_5F_CannotBeDeleted.boolEnum () ;
     switch (test_9) {
     case kBoolTrue : {
-      result.appendString ("  //····················································································································\n  //  Can be deleted\n  //····················································································································\n\n  override func canBeDeleted () -> Bool {\n    return false\n  }\n\n") ;
+      result.appendString ("  //································································································\n  //  Can be deleted\n  //································································································\n\n  override func canBeDeleted () -> Bool {\n    return false\n  }\n\n") ;
       } break ;
     case kBoolFalse : {
       } break ;
@@ -2170,7 +2170,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationI
   default :
     break ;
   }
-  result.appendString ("  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -2210,243 +2210,243 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" : EBReadOnlyAbstractArrayProperty <") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("> {\n\n  //····················································································································\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
+  result.appendString ("> {\n\n  //································································································\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (">,                            \n                                 addedSet inAddedSet : EBReferenceSet <") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (">) {\n    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)\n  //--- Remove observers from removed objects\n    for managedObject in inRemovedSet.values {\n") ;
-  GALGAS_uint index_1179_ (0) ;
+  GALGAS_uint index_1159_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_1179 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_1179.hasCurrentObject ()) {
+    cEnumerator_atomicPropertyGenerationList enumerator_1159 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_1159.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_1179.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1159.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Stored property\n        managedObject.") ;
-      result.appendString (enumerator_1179.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1159.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.stopsBeingObserved (by: relay)\n      }\n") ;
-      index_1179_.increment () ;
-      enumerator_1179.gotoNextObject () ;
+      index_1159_.increment () ;
+      enumerator_1159.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_1441_ (0) ;
+  GALGAS_uint index_1421_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_1441 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_1441.hasCurrentObject ()) {
+    cEnumerator_transientPropertyGenerationList enumerator_1421 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_1421.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_1441.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1421.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Transient property\n        managedObject.") ;
-      result.appendString (enumerator_1441.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1421.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.stopsBeingObserved (by: relay)\n      }\n") ;
-      index_1441_.increment () ;
-      enumerator_1441.gotoNextObject () ;
+      index_1421_.increment () ;
+      enumerator_1421.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_1714_ (0) ;
+  GALGAS_uint index_1694_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_1714 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_1714.hasCurrentObject ()) {
+    cEnumerator_computedPropertyGenerationList enumerator_1694 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_1694.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_1714.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1694.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Computed property\n        managedObject.") ;
-      result.appendString (enumerator_1714.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1694.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.stopsBeingObserved (by: relay)\n      }\n") ;
-      index_1714_.increment () ;
-      enumerator_1714.gotoNextObject () ;
+      index_1694_.increment () ;
+      enumerator_1694.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_1978_ (0) ;
+  GALGAS_uint index_1958_ (0) ;
   if (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_toManyProxyGenerationList enumerator_1978 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_1978.hasCurrentObject ()) {
+    cEnumerator_toManyProxyGenerationList enumerator_1958 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_1958.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_1978.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1958.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Tomany proxy\n        managedObject.") ;
-      result.appendString (enumerator_1978.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_1958.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.stopsBeingObserved (by: relay)\n      }\n") ;
-      index_1978_.increment () ;
-      enumerator_1978.gotoNextObject () ;
+      index_1958_.increment () ;
+      enumerator_1958.gotoNextObject () ;
     }
   }
   result.appendString ("    }\n  //--- Add observers to added objects\n    for managedObject in inAddedSet.values {\n") ;
-  GALGAS_uint index_2338_ (0) ;
+  GALGAS_uint index_2318_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_2338 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_2338.hasCurrentObject ()) {
+    cEnumerator_atomicPropertyGenerationList enumerator_2318 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_2318.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_2338.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2318.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Stored property\n        managedObject.") ;
-      result.appendString (enumerator_2338.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2318.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n") ;
-      index_2338_.increment () ;
-      enumerator_2338.gotoNextObject () ;
+      index_2318_.increment () ;
+      enumerator_2318.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_2601_ (0) ;
+  GALGAS_uint index_2581_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_2601 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_2601.hasCurrentObject ()) {
+    cEnumerator_transientPropertyGenerationList enumerator_2581 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_2581.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_2601.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2581.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Transient property\n        managedObject.") ;
-      result.appendString (enumerator_2601.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2581.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n") ;
-      index_2601_.increment () ;
-      enumerator_2601.gotoNextObject () ;
+      index_2581_.increment () ;
+      enumerator_2581.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_2875_ (0) ;
+  GALGAS_uint index_2855_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_2875 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_2875.hasCurrentObject ()) {
+    cEnumerator_computedPropertyGenerationList enumerator_2855 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_2855.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_2875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2855.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Computed property\n        managedObject.") ;
-      result.appendString (enumerator_2875.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_2855.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n") ;
-      index_2875_.increment () ;
-      enumerator_2875.gotoNextObject () ;
+      index_2855_.increment () ;
+      enumerator_2855.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_3140_ (0) ;
+  GALGAS_uint index_3120_ (0) ;
   if (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_toManyProxyGenerationList enumerator_3140 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_3140.hasCurrentObject ()) {
+    cEnumerator_toManyProxyGenerationList enumerator_3120 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_3120.hasCurrentObject ()) {
       result.appendString ("      if let relay = self.mObserversOf_") ;
-      result.appendString (enumerator_3140.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3120.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" { // Tomany proxy\n        managedObject.") ;
-      result.appendString (enumerator_3140.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3120.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n") ;
-      index_3140_.increment () ;
-      enumerator_3140.gotoNextObject () ;
+      index_3120_.increment () ;
+      enumerator_3120.gotoNextObject () ;
     }
   }
   result.appendString ("    }\n  }\n\n") ;
-  GALGAS_uint index_3423_ (0) ;
+  GALGAS_uint index_3403_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_3423 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_3423.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' stored property\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_atomicPropertyGenerationList enumerator_3403 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_3403.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' stored property\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsBeingObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject.") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n      self.mObserversOf_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_3423.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_3403.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_3423_.increment () ;
-      enumerator_3423.gotoNextObject () ;
+      index_3403_.increment () ;
+      enumerator_3403.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_4896_ (0) ;
+  GALGAS_uint index_4796_ (0) ;
   if (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_toManyProxyGenerationList enumerator_4896 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_4896.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' toMany proxy\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_toManyProxyGenerationList enumerator_4796 (in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_4796.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' toMany proxy\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsBeingObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject.") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n      self.mObserversOf_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_4896.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4796.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_4896_.increment () ;
-      enumerator_4896.gotoNextObject () ;
+      index_4796_.increment () ;
+      enumerator_4796.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6358_ (0) ;
+  GALGAS_uint index_6178_ (0) ;
   if (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicProxyGenerationList enumerator_6358 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6358.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' proxy property\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_atomicProxyGenerationList enumerator_6178 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6178.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' proxy property\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsBeingObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject.") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n      self.mObserversOf_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_6358.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6178.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_6358_.increment () ;
-      enumerator_6358.gotoNextObject () ;
+      index_6178_.increment () ;
+      enumerator_6178.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_7830_ (0) ;
+  GALGAS_uint index_7570_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_7830 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_7830.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' transient property\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_transientPropertyGenerationList enumerator_7570 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_7570.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' transient property\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsBeingObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject.") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n      self.mObserversOf_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by:  inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by:  inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_7830.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_7570.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_7830_.increment () ;
-      enumerator_7830.gotoNextObject () ;
+      index_7570_.increment () ;
+      enumerator_7570.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_9315_ (0) ;
+  GALGAS_uint index_8975_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_9315 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_9315.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' computed property\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_computedPropertyGenerationList enumerator_8975 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_8975.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' computed property\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.startsBeingObserved (by: relay)\n      for managedObject in self.propval.values {\n        managedObject.") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n      self.mObserversOf_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_9315.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_8975.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_9315_.increment () ;
-      enumerator_9315.gotoNextObject () ;
+      index_8975_.increment () ;
+      enumerator_8975.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n//    TransientArrayOf ") ;
+  result.appendString ("  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n//    TransientArrayOf ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   const enumGalgasBool test_0 = in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 235)).boolEnum () ;
@@ -2461,25 +2461,25 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadOnlyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n\n  //····················································································································\n  //   Sort\n  //····················································································································\n\n  private var mIsOrderedBefore : Optional < (_ left : ") ;
+    result.appendString (" {\n\n  //································································································\n  //   Sort\n  //································································································\n\n  private var mIsOrderedBefore : Optional < (_ left : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (", _ right : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (") -> Bool > = nil\n  private var mSortObserver : EBModelNotifierEvent\? = nil\n//  private let mModelEvent = EBModelEvent ()\n\n  //····················································································································\n\n/*  override init () {\n    super.init ()\n    self.mModelEvent.mEventCallBack = { [weak self] in self\?.computeModelArray () }\n  } */\n\n  //····················································································································\n  //   Data provider\n  //····················································································································\n\n  private weak var mDataProvider : ReadOnlyArrayOf_") ;
+    result.appendString (") -> Bool > = nil\n  private var mSortObserver : EBModelNotifierEvent\? = nil\n//  private let mModelEvent = EBModelEvent ()\n\n  //································································································\n\n/*  override init () {\n    super.init ()\n    self.mModelEvent.mEventCallBack = { [weak self] in self\?.computeModelArray () }\n  } */\n\n  //································································································\n  //   Data provider\n  //································································································\n\n  private weak var mDataProvider : ReadOnlyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("\? = nil // SHOULD BE WEAK\n  private var mTransientKind : PropertyKind = .empty\n  private var mModelArrayShouldBeComputed = true\n\n  //····················································································································\n\n  func setDataProvider (_ inProvider : ReadOnlyArrayOf_") ;
+    result.appendString ("\? = nil // SHOULD BE WEAK\n  private var mTransientKind : PropertyKind = .empty\n  private var mModelArrayShouldBeComputed = true\n\n  //································································································\n\n  func setDataProvider (_ inProvider : ReadOnlyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (",\n                        sortCallback inSortCallBack : Optional < (_ left : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (", _ right : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (") -> Bool >,\n                        addSortObserversCallback inAddSortObserversCallback : (EBModelNotifierEvent) -> Void,\n                        removeSortObserversCallback inRemoveSortObserversCallback : @escaping (EBModelNotifierEvent) -> Void) {\n    if self.mDataProvider !== inProvider {\n      self.mSortObserver\?.removeSortObservers ()\n      self.mSortObserver = nil\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = inProvider\n      self.mIsOrderedBefore = inSortCallBack\n      self.mDataProvider\?.attachClient (self)\n      if inSortCallBack != nil {\n        self.mSortObserver = EBModelNotifierEvent (\n          self,\n          addSortObserversCallback: inAddSortObserversCallback,\n          removeSortObserversCallback: inRemoveSortObserversCallback\n        )\n      }else{\n        self.mInternalArrayValue = EBReferenceArray ()\n      }\n    }\n  }\n\n  //····················································································································\n\n/*  func resetDataProvider () {\n    if self.mDataProvider != nil {\n      self.mSortObserver = nil\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = nil\n      self.mIsOrderedBefore = nil\n    }\n  } */\n\n  //····················································································································\n\n  override func notifyModelDidChange () {\n    if !self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = true\n      DispatchQueue.main.async {\n        self.computeModelArray ()\n      }\n    }\n//    self.mModelArrayShouldBeComputed = true\n//    self.mModelEvent.observedObjectDidChange ()\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n  private final func computeModelArray () {\n    if self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = false\n      let newArray : EBReferenceArray <") ;
+    result.appendString (") -> Bool >,\n                        addSortObserversCallback inAddSortObserversCallback : (EBModelNotifierEvent) -> Void,\n                        removeSortObserversCallback inRemoveSortObserversCallback : @escaping (EBModelNotifierEvent) -> Void) {\n    if self.mDataProvider !== inProvider {\n      self.mSortObserver\?.removeSortObservers ()\n      self.mSortObserver = nil\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = inProvider\n      self.mIsOrderedBefore = inSortCallBack\n      self.mDataProvider\?.attachClient (self)\n      if inSortCallBack != nil {\n        self.mSortObserver = EBModelNotifierEvent (\n          self,\n          addSortObserversCallback: inAddSortObserversCallback,\n          removeSortObserversCallback: inRemoveSortObserversCallback\n        )\n      }else{\n        self.mInternalArrayValue = EBReferenceArray ()\n      }\n    }\n  }\n\n  //································································································\n\n/*  func resetDataProvider () {\n    if self.mDataProvider != nil {\n      self.mSortObserver = nil\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = nil\n      self.mIsOrderedBefore = nil\n    }\n  } */\n\n  //································································································\n\n  override func notifyModelDidChange () {\n    if !self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = true\n      DispatchQueue.main.async {\n        self.computeModelArray ()\n      }\n    }\n//    self.mModelArrayShouldBeComputed = true\n//    self.mModelEvent.observedObjectDidChange ()\n    super.notifyModelDidChange ()\n  }\n\n  //································································································\n\n  private final func computeModelArray () {\n    if self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = false\n      let newArray : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">\n      if let dataProvider = self.mDataProvider {\n        switch dataProvider.selection {\n        case .empty :\n          newArray = EBReferenceArray ()\n          self.mTransientKind = .empty\n        case .single (let v) :\n          if let sortFunction = self.mIsOrderedBefore {\n            newArray = EBReferenceArray (v.sorted { sortFunction ($0, $1) })\n          }else{\n            newArray = EBReferenceArray (v)\n          }\n          self.mTransientKind = .single\n        case .multiple :\n          newArray = EBReferenceArray ()\n          self.mTransientKind = .multiple\n        }\n      }else{\n        newArray = EBReferenceArray ()\n        self.mTransientKind = .empty\n      }\n      self.mInternalArrayValue = newArray\n    }\n  }\n\n  //····················································································································\n\n  override var selection : EBSelection < [") ;
+    result.appendString (">\n      if let dataProvider = self.mDataProvider {\n        switch dataProvider.selection {\n        case .empty :\n          newArray = EBReferenceArray ()\n          self.mTransientKind = .empty\n        case .single (let v) :\n          if let sortFunction = self.mIsOrderedBefore {\n            newArray = EBReferenceArray (v.sorted { sortFunction ($0, $1) })\n          }else{\n            newArray = EBReferenceArray (v)\n          }\n          self.mTransientKind = .single\n        case .multiple :\n          newArray = EBReferenceArray ()\n          self.mTransientKind = .multiple\n        }\n      }else{\n        newArray = EBReferenceArray ()\n        self.mTransientKind = .empty\n      }\n      self.mInternalArrayValue = newArray\n    }\n  }\n\n  //································································································\n\n  override var selection : EBSelection < [") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.propval.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
+    result.appendString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.propval.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //································································································\n\n  override var propval : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //····················································································································\n\n}\n") ;
+    result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2499,15 +2499,15 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" <SUPER : EBManagedObject> : ReadOnlyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n\n  //····················································································································\n  //   Data provider\n  //····················································································································\n\n  private weak var mDataProvider : EBReadOnlyAbstractArrayProperty <SUPER>\? = nil // SHOULD BE WEAK\n  private var mTransientKind : PropertyKind = .empty\n  private var mModelArrayShouldBeComputed = true\n//  private let mModelEvent = EBModelEvent ()\n\n  //····················································································································\n\n/*  override init () {\n    super.init ()\n    self.mModelEvent.mEventCallBack = { [weak self] in self\?.computeModelArray () }\n  } */\n\n  //····················································································································\n\n  func setDataProvider (_ inProvider : EBReadOnlyAbstractArrayProperty <SUPER>\?) {\n    if self.mDataProvider !== inProvider {\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = inProvider\n      self.mDataProvider\?.attachClient (self)\n    }\n  }\n\n  //····················································································································\n\n  override func notifyModelDidChange () {\n    if !self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = true\n      DispatchQueue.main.async {\n        self.computeModelArray ()\n      }\n    }\n//    self.mModelArrayShouldBeComputed = true\n//    self.mModelEvent.observedObjectDidChange ()\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n  private final func computeModelArray () {\n    if self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = false\n      var newModelArray : EBReferenceArray <SUPER>\n      if let dataProvider = self.mDataProvider {\n        switch dataProvider.selection {\n        case .empty :\n          newModelArray = EBReferenceArray ()\n          self.mTransientKind = .empty\n        case .single (let v) :\n          newModelArray = EBReferenceArray (v)\n          self.mTransientKind = .single\n         case .multiple :\n          newModelArray = EBReferenceArray ()\n          self.mTransientKind = .multiple\n        }\n      }else{\n        newModelArray = EBReferenceArray ()\n        self.mTransientKind = .empty\n      }\n      var newArray = EBReferenceArray <") ;
+    result.appendString (" {\n\n  //································································································\n  //   Data provider\n  //································································································\n\n  private weak var mDataProvider : EBReadOnlyAbstractArrayProperty <SUPER>\? = nil // SHOULD BE WEAK\n  private var mTransientKind : PropertyKind = .empty\n  private var mModelArrayShouldBeComputed = true\n//  private let mModelEvent = EBModelEvent ()\n\n  //································································································\n\n/*  override init () {\n    super.init ()\n    self.mModelEvent.mEventCallBack = { [weak self] in self\?.computeModelArray () }\n  } */\n\n  //································································································\n\n  func setDataProvider (_ inProvider : EBReadOnlyAbstractArrayProperty <SUPER>\?) {\n    if self.mDataProvider !== inProvider {\n      self.mDataProvider\?.detachClient (self)\n      self.mDataProvider = inProvider\n      self.mDataProvider\?.attachClient (self)\n    }\n  }\n\n  //································································································\n\n  override func notifyModelDidChange () {\n    if !self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = true\n      DispatchQueue.main.async {\n        self.computeModelArray ()\n      }\n    }\n//    self.mModelArrayShouldBeComputed = true\n//    self.mModelEvent.observedObjectDidChange ()\n    super.notifyModelDidChange ()\n  }\n\n  //································································································\n\n  private final func computeModelArray () {\n    if self.mModelArrayShouldBeComputed {\n      self.mModelArrayShouldBeComputed = false\n      var newModelArray : EBReferenceArray <SUPER>\n      if let dataProvider = self.mDataProvider {\n        switch dataProvider.selection {\n        case .empty :\n          newModelArray = EBReferenceArray ()\n          self.mTransientKind = .empty\n        case .single (let v) :\n          newModelArray = EBReferenceArray (v)\n          self.mTransientKind = .single\n         case .multiple :\n          newModelArray = EBReferenceArray ()\n          self.mTransientKind = .multiple\n        }\n      }else{\n        newModelArray = EBReferenceArray ()\n        self.mTransientKind = .empty\n      }\n      var newArray = EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> ()\n      for superObject in newModelArray.values {\n        if let object = superObject as\? ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n          newArray.append (object)\n        }\n      }\n      self.mInternalArrayValue = newArray\n    }\n  }\n\n  //····················································································································\n\n  override var selection : EBSelection < [") ;
+    result.appendString (" {\n          newArray.append (object)\n        }\n      }\n      self.mInternalArrayValue = newArray\n    }\n  }\n\n  //································································································\n\n  override var selection : EBSelection < [") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.mInternalArrayValue.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
+    result.appendString ("] > {\n    self.computeModelArray ()\n    switch self.mTransientKind {\n    case .empty :\n      return .empty\n    case .single :\n      return .single (self.mInternalArrayValue.values)\n    case .multiple :\n      return .multiple\n    }\n  }\n\n  //································································································\n\n  override var propval : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //····················································································································\n\n}\n") ;
+    result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2527,9 +2527,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadOnlyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n\n  //····················································································································\n\n  func setProp (_ value :  EBReferenceArray <") ;
+    result.appendString (" {\n\n  //································································································\n\n  func setProp (_ value :  EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">) { } // Abstract method\n\n  //····················································································································\n\n}\n") ;
+    result.appendString (">) { } // Abstract method\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2549,21 +2549,21 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n\n  //····················································································································\n\n  private weak var mModel : ReadWriteArrayOf_") ;
+    result.appendString (" {\n\n  //································································································\n\n  private weak var mModel : ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("\? = nil // SHOULD BE WEAK\n\n  //····················································································································\n\n  func setModel (_ inModel : ReadWriteArrayOf_") ;
+    result.appendString ("\? = nil // SHOULD BE WEAK\n\n  //································································································\n\n  func setModel (_ inModel : ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("\?) {\n    if self.mModel !== inModel {\n      self.mModel\?.detachClient (self)\n      self.mModel = inModel\n      self.mModel\?.attachClient (self)\n    }\n  }\n\n  //····················································································································\n\n  override func notifyModelDidChange () {\n    let newModelArray : EBReferenceArray <") ;
+    result.appendString ("\?) {\n    if self.mModel !== inModel {\n      self.mModel\?.detachClient (self)\n      self.mModel = inModel\n      self.mModel\?.attachClient (self)\n    }\n  }\n\n  //································································································\n\n  override func notifyModelDidChange () {\n    let newModelArray : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (">\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty :\n        newModelArray = EBReferenceArray ()\n      case .single (let v) :\n        newModelArray = EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("> (v)\n      case .multiple :\n        newModelArray = EBReferenceArray ()\n      }\n    }else{\n      newModelArray = EBReferenceArray ()\n    }\n    self.mInternalArrayValue = newModelArray\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n  override func setProp (_ inArrayValue : EBReferenceArray <") ;
+    result.appendString ("> (v)\n      case .multiple :\n        newModelArray = EBReferenceArray ()\n      }\n    }else{\n      newModelArray = EBReferenceArray ()\n    }\n    self.mInternalArrayValue = newModelArray\n    super.notifyModelDidChange ()\n  }\n\n  //································································································\n\n  override func setProp (_ inArrayValue : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">) {\n    self.mModel\?.setProp (inArrayValue)\n  }\n\n  //····················································································································\n\n  override var selection : EBSelection < [") ;
+    result.appendString (">) {\n    self.mModel\?.setProp (inArrayValue)\n  }\n\n  //································································································\n\n  override var selection : EBSelection < [") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("] > {\n    if let model = self.mModel {\n      return model.selection\n    }else{\n      return .empty\n    }\n  }\n\n  //····················································································································\n\n  override var propval : EBReferenceArray <") ;
+    result.appendString ("] > {\n    if let model = self.mModel {\n      return model.selection\n    }else{\n      return .empty\n    }\n  }\n\n  //································································································\n\n  override var propval : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("> {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        return EBReferenceArray ()\n      case .single (let v) :\n        return EBReferenceArray (v)\n      }\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //····················································································································\n\n}\n") ;
+    result.appendString ("> {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        return EBReferenceArray ()\n      case .single (let v) :\n        return EBReferenceArray (v)\n      }\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2583,23 +2583,23 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (", EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol {\n\n  //····················································································································\n\n  init (usedForSignature inUsedForSignature : Bool, key inKey : String\?) {\n    self.mUsedForSignature = inUsedForSignature\n    self.mKey = inKey\n    super.init ()\n  }\n\n  //····················································································································\n  \n  private final let mKey : String\?\n  final var key : String\? { return self.mKey }\n  \n  //····················································································································\n\n  func initialize (fromDictionary inDictionary : [String : Any],\n                   managedObjectArray inManagedObjectArray : [EBManagedObject]) {\n    if let key = self.mKey, let objectSavingIndexArray = inDictionary [key] as\? [Int] {\n      var objectArray = EBReferenceArray <") ;
+    result.appendString (", EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol {\n\n  //································································································\n\n  init (usedForSignature inUsedForSignature : Bool, key inKey : String\?) {\n    self.mUsedForSignature = inUsedForSignature\n    self.mKey = inKey\n    super.init ()\n  }\n\n  //································································································\n  \n  private final let mKey : String\?\n  final var key : String\? { return self.mKey }\n  \n  //································································································\n\n  func initialize (fromDictionary inDictionary : [String : Any],\n                   managedObjectArray inManagedObjectArray : [EBManagedObject]) {\n    if let key = self.mKey, let objectSavingIndexArray = inDictionary [key] as\? [Int] {\n      var objectArray = EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> ()\n      for idx in objectSavingIndexArray {\n        objectArray.append (inManagedObjectArray [idx] as! ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (")\n      }\n      self.setProp (objectArray)\n    }\n  }\n\n  //····················································································································\n\n  func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {\n    var objectArray = EBReferenceArray <") ;
+    result.appendString (")\n      }\n      self.setProp (objectArray)\n    }\n  }\n\n  //································································································\n\n  func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {\n    var objectArray = EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> ()\n    let indexArray = inData.base62EncodedIntArray (fromRange: inRange)\n    for idx in indexArray {\n      objectArray.append (inRawObjectArray [idx].object as! ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (")\n    }\n    self.setProp (objectArray)\n  }\n\n  //····················································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, self.mInternalArrayValue.count > 0 {\n      var array = [Int] ()\n      for object in self.mInternalArrayValue.values {\n        array.append (object.savingIndex)\n      }\n      ioDictionary [key] = array\n    }\n  }\n\n  //····················································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, self.mInternalArrayValue.count > 0 {\n      for object in self.mInternalArrayValue.values {\n        ioArray.append (object)\n      }\n    }\n  }\n\n  //····················································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    enterToManyRelationshipObjectIndexes (from: self.propval.values, into: &ioData)\n  }\n\n  //····················································································································\n  //   Signature \?\n  //····················································································································\n\n  final private let mUsedForSignature : Bool\n\n  //····················································································································\n  //   Undo manager\n  //····················································································································\n\n  weak final var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
+    result.appendString (")\n    }\n    self.setProp (objectArray)\n  }\n\n  //································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, self.mInternalArrayValue.count > 0 {\n      var array = [Int] ()\n      for object in self.mInternalArrayValue.values {\n        array.append (object.savingIndex)\n      }\n      ioDictionary [key] = array\n    }\n  }\n\n  //································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, self.mInternalArrayValue.count > 0 {\n      for object in self.mInternalArrayValue.values {\n        ioArray.append (object)\n      }\n    }\n  }\n\n  //································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    enterToManyRelationshipObjectIndexes (from: self.propval.values, into: &ioData)\n  }\n\n  //································································································\n  //   Signature \?\n  //································································································\n\n  final private let mUsedForSignature : Bool\n\n  //································································································\n  //   Undo manager\n  //································································································\n\n  weak final var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
     const enumGalgasBool test_5 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
     switch (test_5) {
     case kBoolTrue : {
-      result.appendString ("  //····················································································································\n  //   Opposite relationship management\n  //····················································································································\n\n  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
+      result.appendString ("  //································································································\n  //   Opposite relationship management\n  //································································································\n\n  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.appendString (") -> Void > = nil\n  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-      result.appendString (") -> Void > = nil\n\n  //····················································································································\n\n  final func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : ") ;
+      result.appendString (") -> Void > = nil\n\n  //································································································\n\n  final func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : ") ;
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.appendString (") -> Void,\n                                               resetter inResetter : @escaping (_ inManagedObject : ") ;
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -2610,9 +2610,9 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     default :
       break ;
     }
-    result.appendString ("  //····················································································································\n  // Model will change\n  //····················································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <") ;
+    result.appendString ("  //································································································\n  // Model will change\n  //································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { $0.mInternalArrayValue = inOldValue }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  //····················································································································\n  // Model did change\n  //····················································································································\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n  // Update observers\n  //····················································································································\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
+    result.appendString (">) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { $0.mInternalArrayValue = inOldValue }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  //································································································\n  // Model did change\n  //································································································\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  //································································································\n  // Update observers\n  //································································································\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (">,\n                                 addedSet inAddedSet : EBReferenceSet <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -2638,17 +2638,17 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     default :
       break ;
     }
-    result.appendString ("    }\n  //---\n    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)\n }\n\n  //····················································································································\n\n  override final var selection : EBSelection < [") ;
+    result.appendString ("    }\n  //---\n    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)\n }\n\n  //································································································\n\n  override final var selection : EBSelection < [") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("] > { return .single (self.mInternalArrayValue.values) }\n\n  //····················································································································\n\n  override func setProp (_ inValue : EBReferenceArray <") ;
+    result.appendString ("] > { return .single (self.mInternalArrayValue.values) }\n\n  //································································································\n\n  override func setProp (_ inValue : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">) { self.mInternalArrayValue = inValue }\n\n  //····················································································································\n\n  final override var propval : EBReferenceArray <") ;
+    result.appendString (">) { self.mInternalArrayValue = inValue }\n\n  //································································································\n\n  final override var propval : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString ("> { return self.mInternalArrayValue }\n\n  //····················································································································\n\n  final func remove (_ object : ") ;
+    result.appendString ("> { return self.mInternalArrayValue }\n\n  //································································································\n\n  final func remove (_ object : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (") {\n    if let idx = self.mInternalArrayValue.firstIndex (of: object) {\n      self.mInternalArrayValue.remove (at: idx)\n    }\n  }\n\n  //····················································································································\n\n  final func add (_ object : ") ;
+    result.appendString (") {\n    if let idx = self.mInternalArrayValue.firstIndex (of: object) {\n      self.mInternalArrayValue.remove (at: idx)\n    }\n  }\n\n  //································································································\n\n  final func add (_ object : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (") {\n    if !self.internalSetValue.contains (object) {\n      self.mInternalArrayValue.append (object)\n    }\n  }\n\n  //····················································································································\n  //   signature\n  //····················································································································\n\n  private weak final var mSignatureObserver : EBSignatureObserverProtocol\? = nil // SOULD BE WEAK\n\n  //····················································································································\n\n  private final var mSignatureCache : UInt32\? = nil\n\n  //····················································································································\n\n  final func setSignatureObserver (observer : EBSignatureObserverProtocol\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = observer\n    observer\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n }\n\n  //····················································································································\n\n  final func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  //····················································································································\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    for object in self.mInternalArrayValue.values {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  //····················································································································\n\n  final func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  //····················································································································\n\n}\n") ;
+    result.appendString (") {\n    if !self.internalSetValue.contains (object) {\n      self.mInternalArrayValue.append (object)\n    }\n  }\n\n  //································································································\n  //   signature\n  //································································································\n\n  private weak final var mSignatureObserver : EBSignatureObserverProtocol\? = nil // SOULD BE WEAK\n\n  //································································································\n\n  private final var mSignatureCache : UInt32\? = nil\n\n  //································································································\n\n  final func setSignatureObserver (observer : EBSignatureObserverProtocol\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = observer\n    observer\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n }\n\n  //································································································\n\n  final func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  //································································································\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    for object in self.mInternalArrayValue.values {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  //································································································\n\n  final func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2668,25 +2668,25 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplement
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : StoredArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (" {\n\n  //····················································································································\n\n  private let mPrefKey : String\n  private let mObserverForWritingPreferences = EBOutletEvent ()\n\n  //····················································································································\n\n  init (prefKey inPrefKey : String) {\n    self.mPrefKey = inPrefKey\n    super.init (usedForSignature: false, key: nil)\n    if let array = UserDefaults.standard.array (forKey: inPrefKey) as\? [[String : Any]] {\n      var objectArray = EBReferenceArray <") ;
+    result.appendString (" {\n\n  //································································································\n\n  private let mPrefKey : String\n  private let mObserverForWritingPreferences = EBOutletEvent ()\n\n  //································································································\n\n  init (prefKey inPrefKey : String) {\n    self.mPrefKey = inPrefKey\n    super.init (usedForSignature: false, key: nil)\n    if let array = UserDefaults.standard.array (forKey: inPrefKey) as\? [[String : Any]] {\n      var objectArray = EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> ()\n      for dictionary in array {\n        let object = newInstanceOfEntityNamed (self.undoManager, \"") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("\") as! ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("\n        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])\n        objectArray.append (object)\n      }\n      self.setProp (objectArray)\n    }\n") ;
-    GALGAS_uint index_35453_ (0) ;
+    GALGAS_uint index_33713_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_35453 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_35453.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_33713 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_33713.hasCurrentObject ()) {
         result.appendString ("    toMany_") ;
-        result.appendString (enumerator_35453.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_33713.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_StartsBeingObserved (by: self.mObserverForWritingPreferences)\n") ;
-        index_35453_.increment () ;
-        enumerator_35453.gotoNextObject () ;
+        index_33713_.increment () ;
+        enumerator_33713.gotoNextObject () ;
       }
     }
-    result.appendString ("    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  //····················································································································\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  //····················································································································\n\n}\n") ;
+    result.appendString ("    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  //································································································\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  //································································································\n\n}\n") ;
     } break ;
   default :
     break ;
@@ -2726,63 +2726,63 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" : EBReadOnlyAbstractObjectProperty <") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("> {\n\n  //····················································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
+  result.appendString ("> {\n\n  //································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\?) {\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  //--- Remove observers from removed objects\n") ;
   const enumGalgasBool test_0 = GALGAS_bool (kIsStrictSup, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_0) {
   case kBoolTrue : {
     result.appendString ("    if let oldValue = inOldValue {\n") ;
-    GALGAS_uint index_1181_ (0) ;
+    GALGAS_uint index_1161_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_1181 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_1181.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_1161 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_1161.hasCurrentObject ()) {
         result.appendString ("      oldValue.") ;
-        result.appendString (enumerator_1181.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1161.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.stopsBeingObserved (by: self.") ;
-        result.appendString (enumerator_1181.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1161.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Stored property\n") ;
-        index_1181_.increment () ;
-        enumerator_1181.gotoNextObject () ;
+        index_1161_.increment () ;
+        enumerator_1161.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_1383_ (0) ;
+    GALGAS_uint index_1363_ (0) ;
     if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-      cEnumerator_transientPropertyGenerationList enumerator_1383 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-      while (enumerator_1383.hasCurrentObject ()) {
+      cEnumerator_transientPropertyGenerationList enumerator_1363 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+      while (enumerator_1363.hasCurrentObject ()) {
         result.appendString ("      oldValue.") ;
-        result.appendString (enumerator_1383.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1363.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.stopsBeingObserved (by: self.") ;
-        result.appendString (enumerator_1383.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1363.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Transient property\n") ;
-        index_1383_.increment () ;
-        enumerator_1383.gotoNextObject () ;
+        index_1363_.increment () ;
+        enumerator_1363.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_1596_ (0) ;
+    GALGAS_uint index_1576_ (0) ;
     if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-      cEnumerator_computedPropertyGenerationList enumerator_1596 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-      while (enumerator_1596.hasCurrentObject ()) {
+      cEnumerator_computedPropertyGenerationList enumerator_1576 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+      while (enumerator_1576.hasCurrentObject ()) {
         result.appendString ("      oldValue.") ;
-        result.appendString (enumerator_1596.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1576.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.stopsBeingObserved (by: self.") ;
-        result.appendString (enumerator_1596.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1576.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Computed property\n") ;
-        index_1596_.increment () ;
-        enumerator_1596.gotoNextObject () ;
+        index_1576_.increment () ;
+        enumerator_1576.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_1792_ (0) ;
+    GALGAS_uint index_1772_ (0) ;
     if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toManyPropertyGenerationList enumerator_1792 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-      while (enumerator_1792.hasCurrentObject ()) {
+      cEnumerator_toManyPropertyGenerationList enumerator_1772 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+      while (enumerator_1772.hasCurrentObject ()) {
         result.appendString ("      if let relay = self.mObserversOf_") ;
-        result.appendString (enumerator_1792.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1772.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString (" { // to Many\n        oldValue.") ;
-        result.appendString (enumerator_1792.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_1772.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.stopsBeingObserved (by: relay)\n      }\n") ;
-        index_1792_.increment () ;
-        enumerator_1792.gotoNextObject () ;
+        index_1772_.increment () ;
+        enumerator_1772.gotoNextObject () ;
       }
     }
     result.appendString ("    }\n") ;
@@ -2797,56 +2797,56 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   switch (test_1) {
   case kBoolTrue : {
     result.appendString ("    if let newValue = self.mWeakInternalValue {\n") ;
-    GALGAS_uint index_2317_ (0) ;
+    GALGAS_uint index_2297_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_2317 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-      while (enumerator_2317.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_2297 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+      while (enumerator_2297.hasCurrentObject ()) {
         result.appendString ("      newValue.") ;
-        result.appendString (enumerator_2317.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2297.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.startsBeingObserved (by: self.") ;
-        result.appendString (enumerator_2317.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2297.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Stored property\n") ;
-        index_2317_.increment () ;
-        enumerator_2317.gotoNextObject () ;
+        index_2297_.increment () ;
+        enumerator_2297.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_2520_ (0) ;
+    GALGAS_uint index_2500_ (0) ;
     if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-      cEnumerator_transientPropertyGenerationList enumerator_2520 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-      while (enumerator_2520.hasCurrentObject ()) {
+      cEnumerator_transientPropertyGenerationList enumerator_2500 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+      while (enumerator_2500.hasCurrentObject ()) {
         result.appendString ("      newValue.") ;
-        result.appendString (enumerator_2520.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2500.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.startsBeingObserved (by: self.") ;
-        result.appendString (enumerator_2520.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2500.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Transient property\n") ;
-        index_2520_.increment () ;
-        enumerator_2520.gotoNextObject () ;
+        index_2500_.increment () ;
+        enumerator_2500.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_2734_ (0) ;
+    GALGAS_uint index_2714_ (0) ;
     if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-      cEnumerator_computedPropertyGenerationList enumerator_2734 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-      while (enumerator_2734.hasCurrentObject ()) {
+      cEnumerator_computedPropertyGenerationList enumerator_2714 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+      while (enumerator_2714.hasCurrentObject ()) {
         result.appendString ("      newValue.") ;
-        result.appendString (enumerator_2734.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2714.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.startsBeingObserved (by: self.") ;
-        result.appendString (enumerator_2734.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2714.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property) // Computed property\n") ;
-        index_2734_.increment () ;
-        enumerator_2734.gotoNextObject () ;
+        index_2714_.increment () ;
+        enumerator_2714.gotoNextObject () ;
       }
     }
-    GALGAS_uint index_2931_ (0) ;
+    GALGAS_uint index_2911_ (0) ;
     if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-      cEnumerator_toManyPropertyGenerationList enumerator_2931 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-      while (enumerator_2931.hasCurrentObject ()) {
+      cEnumerator_toManyPropertyGenerationList enumerator_2911 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+      while (enumerator_2911.hasCurrentObject ()) {
         result.appendString ("      if let relay = self.mObserversOf_") ;
-        result.appendString (enumerator_2931.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2911.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString (" { // to Many\n        newValue.") ;
-        result.appendString (enumerator_2931.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_2911.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.startsBeingObserved (by: relay)\n      }\n") ;
-        index_2931_.increment () ;
-        enumerator_2931.gotoNextObject () ;
+        index_2911_.increment () ;
+        enumerator_2911.gotoNextObject () ;
       }
     }
     result.appendString ("    }\n") ;
@@ -2857,141 +2857,141 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
     break ;
   }
   result.appendString ("  }\n\n") ;
-  GALGAS_uint index_3212_ (0) ;
+  GALGAS_uint index_3192_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_3212 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_3212.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_3212.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' stored property\n  //····················································································································\n\n  final let ") ;
-      result.appendString (enumerator_3212.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_atomicPropertyGenerationList enumerator_3192 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_3192.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_3192.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' stored property\n  //································································································\n\n  final let ") ;
+      result.appendString (enumerator_3192.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property = EBTransientProperty <") ;
-      result.appendString (extensionGetter_swiftTypeName (enumerator_3212.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 64)).stringValue ()) ;
+      result.appendString (extensionGetter_swiftTypeName (enumerator_3192.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 64)).stringValue ()) ;
       result.appendString ("\?> ()\n\n") ;
-      index_3212_.increment () ;
-      enumerator_3212.gotoNextObject () ;
+      index_3192_.increment () ;
+      enumerator_3192.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_3696_ (0) ;
+  GALGAS_uint index_3636_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_3696 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_3696.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_3696.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' transient property\n  //····················································································································\n\n  final let ") ;
-      result.appendString (enumerator_3696.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_transientPropertyGenerationList enumerator_3636 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_3636.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_3636.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' transient property\n  //································································································\n\n  final let ") ;
+      result.appendString (enumerator_3636.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property = EBTransientProperty <") ;
-      result.appendString (extensionGetter_swiftTypeName (enumerator_3696.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 73)).stringValue ()) ;
+      result.appendString (extensionGetter_swiftTypeName (enumerator_3636.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 73)).stringValue ()) ;
       result.appendString ("\?> ()\n\n") ;
-      index_3696_.increment () ;
-      enumerator_3696.gotoNextObject () ;
+      index_3636_.increment () ;
+      enumerator_3636.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_4190_ (0) ;
+  GALGAS_uint index_4090_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_4190 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_4190.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observers of '") ;
-      result.appendString (enumerator_4190.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("' computed property\n  //····················································································································\n\n  final let ") ;
-      result.appendString (enumerator_4190.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_computedPropertyGenerationList enumerator_4090 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_4090.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observers of '") ;
+      result.appendString (enumerator_4090.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("' computed property\n  //································································································\n\n  final let ") ;
+      result.appendString (enumerator_4090.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property = EBTransientProperty <") ;
-      result.appendString (extensionGetter_swiftTypeName (enumerator_4190.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 82)).stringValue ()) ;
+      result.appendString (extensionGetter_swiftTypeName (enumerator_4090.current_mProperty (HERE).readProperty_mType (), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 82)).stringValue ()) ;
       result.appendString ("\?> ()\n\n") ;
-      index_4190_.increment () ;
-      enumerator_4190.gotoNextObject () ;
+      index_4090_.increment () ;
+      enumerator_4090.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_4667_ (0) ;
+  GALGAS_uint index_4527_ (0) ;
   if (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST.isValid ()) {
-    cEnumerator_toManyPropertyGenerationList enumerator_4667 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_4667.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //   Observable toMany property: ") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n  private final var mObserversOf_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" : EBObservedObserver\? = nil\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+    cEnumerator_toManyPropertyGenerationList enumerator_4527 (in_TO_5F_MANY_5F_RELATIONSHIP_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4527.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //   Observable toMany property: ") ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString ("\n  //································································································\n\n  private final var mObserversOf_") ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" : EBObservedObserver\? = nil\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by inObserver : EBObserverProtocol) {\n    let relay : EBObservedObserver\n    if let r = self.mObserversOf_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" {\n      relay = r\n    }else{\n      relay = EBObservedObserver ()\n      self.mWeakInternalValue\?.") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.startsBeingObserved (by: relay)\n      self.mObserversOf_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
-      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //····················································································································\n\n  final func toMany_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (" = relay\n    }\n    relay.startsBeingObserved (by: inObserver)\n  }\n\n  //································································································\n\n  final func toMany_") ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_StopsBeingObserved (by inObserver : EBObserverProtocol) {\n    self.mObserversOf_") ;
-      result.appendString (enumerator_4667.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_4527.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("\?.stopsBeingObserved (by: inObserver)\n  }\n\n") ;
-      index_4667_.increment () ;
-      enumerator_4667.gotoNextObject () ;
+      index_4527_.increment () ;
+      enumerator_4527.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //   INIT\n  //····················································································································\n\n  override init () {\n    super.init ()\n") ;
-  GALGAS_uint index_6474_ (0) ;
+  result.appendString ("  //································································································\n  //   INIT\n  //································································································\n\n  override init () {\n    super.init ()\n") ;
+  GALGAS_uint index_6214_ (0) ;
   if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_atomicPropertyGenerationList enumerator_6474 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_6474.hasCurrentObject ()) {
+    cEnumerator_atomicPropertyGenerationList enumerator_6214 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_6214.hasCurrentObject ()) {
       result.appendString ("  //--- Configure ") ;
-      result.appendString (enumerator_6474.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6214.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" simple stored property\n    self.") ;
-      result.appendString (enumerator_6474.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6214.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?.") ;
-      result.appendString (enumerator_6474.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6214.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.optionalSelection \?\? .single (nil)\n    }\n") ;
-      index_6474_.increment () ;
-      enumerator_6474.gotoNextObject () ;
+      index_6214_.increment () ;
+      enumerator_6214.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_6817_ (0) ;
+  GALGAS_uint index_6557_ (0) ;
   if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_transientPropertyGenerationList enumerator_6817 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_6817.hasCurrentObject ()) {
+    cEnumerator_transientPropertyGenerationList enumerator_6557 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_6557.hasCurrentObject ()) {
       result.appendString ("  //--- Configure ") ;
-      result.appendString (enumerator_6817.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6557.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" transient property\n    self.") ;
-      result.appendString (enumerator_6817.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6557.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?.") ;
-      result.appendString (enumerator_6817.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6557.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.optionalSelection \?\? .single (nil)\n    }\n") ;
-      index_6817_.increment () ;
-      enumerator_6817.gotoNextObject () ;
+      index_6557_.increment () ;
+      enumerator_6557.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_7164_ (0) ;
+  GALGAS_uint index_6904_ (0) ;
   if (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
-    cEnumerator_computedPropertyGenerationList enumerator_7164 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
-    while (enumerator_7164.hasCurrentObject ()) {
+    cEnumerator_computedPropertyGenerationList enumerator_6904 (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION, kENUMERATION_UP) ;
+    while (enumerator_6904.hasCurrentObject ()) {
       result.appendString ("  //--- Configure ") ;
-      result.appendString (enumerator_7164.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6904.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString (" computed property\n    self.") ;
-      result.appendString (enumerator_7164.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6904.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.mReadModelFunction = { [weak self] in\n      return self\?.mWeakInternalValue\?.") ;
-      result.appendString (enumerator_7164.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+      result.appendString (enumerator_6904.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
       result.appendString ("_property.optionalSelection \?\? .single (nil)\n    }\n") ;
-      index_7164_.increment () ;
-      enumerator_7164.gotoNextObject () ;
+      index_6904_.increment () ;
+      enumerator_6904.gotoNextObject () ;
     }
   }
-  result.appendString ("  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n//    StoredObject_") ;
+  result.appendString ("  }\n\n  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n//    StoredObject_") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\nfinal class StoredObject_") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" : ReadOnlyObject_") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString (", EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol {\n\n //····················································································································\n\n  init (usedForSignature inUsedForSignature : Bool, strongRef inStrongReference : Bool, key inKey : String\?) {\n    self.mUsedForSignature = inUsedForSignature\n    self.mIsStrongReference = inStrongReference\n    self.mKey = inKey\n    super.init ()\n  }\n\n  //····················································································································\n\n  private let mKey : String\?\n  var key : String\? { return self.mKey }\n  \n  //····················································································································\n\n  func initialize (fromDictionary inDictionary : [String : Any],\n                   managedObjectArray inManagedObjectArray : [EBManagedObject]) {\n    if let key = self.mKey, let objectSavingIndex = inDictionary [key] as\? Int {\n      let object = inManagedObjectArray [objectSavingIndex] as! ") ;
+  result.appendString (", EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol {\n\n //································································································\n\n  init (usedForSignature inUsedForSignature : Bool, strongRef inStrongReference : Bool, key inKey : String\?) {\n    self.mUsedForSignature = inUsedForSignature\n    self.mIsStrongReference = inStrongReference\n    self.mKey = inKey\n    super.init ()\n  }\n\n  //································································································\n\n  private let mKey : String\?\n  var key : String\? { return self.mKey }\n  \n  //································································································\n\n  func initialize (fromDictionary inDictionary : [String : Any],\n                   managedObjectArray inManagedObjectArray : [EBManagedObject]) {\n    if let key = self.mKey, let objectSavingIndex = inDictionary [key] as\? Int {\n      let object = inManagedObjectArray [objectSavingIndex] as! ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  //····················································································································\n\n  func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {\n    if let idx = inData.base62EncodedInt (range: inRange) {\n      let object = inRawObjectArray [idx].object as! ") ;
+  result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  //································································································\n\n  func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {\n    if let idx = inData.base62EncodedInt (range: inRange) {\n      let object = inRawObjectArray [idx].object as! ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  //····················································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, let idx = self.mWeakInternalValue\?.savingIndex {\n      ioDictionary [key] = idx\n    }\n  }\n\n  //····················································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, let object = self.mWeakInternalValue {\n      ioArray.append (object)\n    }\n  }\n\n  //····················································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    if let object = self.propval {\n      ioData.append (base62Encoded: object.savingIndex)\n    }\n  }\n\n  //····················································································································\n  //   Signature \?\n  //····················································································································\n\n  private let mUsedForSignature : Bool\n\n  //····················································································································\n  //   Undo manager\n  //····················································································································\n\n  weak var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
+  result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  //································································································\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, let idx = self.mWeakInternalValue\?.savingIndex {\n      ioDictionary [key] = idx\n    }\n  }\n\n  //································································································\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, let object = self.mWeakInternalValue {\n      ioArray.append (object)\n    }\n  }\n\n  //································································································\n\n  func appendValueTo (data ioData : inout Data) {\n    if let object = self.propval {\n      ioData.append (base62Encoded: object.savingIndex)\n    }\n  }\n\n  //································································································\n  //   Signature \?\n  //································································································\n\n  private let mUsedForSignature : Bool\n\n  //································································································\n  //   Undo manager\n  //································································································\n\n  weak var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
   const enumGalgasBool test_2 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
   switch (test_2) {
   case kBoolTrue : {
-    result.appendString ("  //····················································································································\n  //   Opposite relationship management\n  //····················································································································\n\n  private var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
+    result.appendString ("  //································································································\n  //   Opposite relationship management\n  //································································································\n\n  private var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (") -> Void > = nil\n  private var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (") -> Void > = nil\n\n  //····················································································································\n\n  func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : ") ;
+    result.appendString (") -> Void > = nil\n\n  //································································································\n\n  func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (") -> Void,\n                                         resetter inResetter : @escaping (_ inManagedObject : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -3002,7 +3002,7 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   default :
     break ;
   }
-  result.appendString ("  //····················································································································\n  // Model will change\n  //····················································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
+  result.appendString ("  //································································································\n  // Model will change\n  //································································································\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\?) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { $0.mWeakInternalValue = inOldValue }\n  //---\n    if let object = inOldValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: nil)\n      }\n") ;
   const enumGalgasBool test_3 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
@@ -3026,13 +3026,13 @@ GALGAS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementa
   default :
     break ;
   }
-  result.appendString ("    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  //····················································································································\n  // Model did change\n  //····················································································································\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n    self.clearSignatureCache ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  //····················································································································\n\n  override var selection : EBSelection < ") ;
+  result.appendString ("    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  //································································································\n  // Model did change\n  //································································································\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n    self.clearSignatureCache ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  //································································································\n\n  override var selection : EBSelection < ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\? > {\n    if let object = self.mWeakInternalValue {\n      return .single (object)\n    }else{\n      return .empty\n    }\n  }\n\n  //····················································································································\n\n  var propval : ") ;
+  result.appendString ("\? > {\n    if let object = self.mWeakInternalValue {\n      return .single (object)\n    }else{\n      return .empty\n    }\n  }\n\n  //································································································\n\n  var propval : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\? { return self.mWeakInternalValue }\n\n  //····················································································································\n  //   setProp\n  //····················································································································\n\n  private let mIsStrongReference : Bool\n  private var mStrongInternalValue : EBManagedObject\? = nil // Only used for retaining\n\n  //····················································································································\n\n  func setProp (_ inValue : ") ;
+  result.appendString ("\? { return self.mWeakInternalValue }\n\n  //································································································\n  //   setProp\n  //································································································\n\n  private let mIsStrongReference : Bool\n  private var mStrongInternalValue : EBManagedObject\? = nil // Only used for retaining\n\n  //································································································\n\n  func setProp (_ inValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\?) {\n    self.mWeakInternalValue = inValue\n    if self.mIsStrongReference {\n      self.mStrongInternalValue = inValue\n    }\n  }\n\n  //····················································································································\n  //   signature\n  //····················································································································\n\n  private weak var mSignatureObserver : EBSignatureObserverProtocol\? = nil // SOULD BE WEAK\n\n  //····················································································································\n\n  private var mSignatureCache : UInt32\? = nil\n\n  //····················································································································\n\n  func setSignatureObserver (observer inObserver : EBSignatureObserverProtocol\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = inObserver\n    inObserver\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n  }\n\n  //····················································································································\n\n  func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  //····················································································································\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    if let object = self.mWeakInternalValue {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  //····················································································································\n\n  func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("\?) {\n    self.mWeakInternalValue = inValue\n    if self.mIsStrongReference {\n      self.mStrongInternalValue = inValue\n    }\n  }\n\n  //································································································\n  //   signature\n  //································································································\n\n  private weak var mSignatureObserver : EBSignatureObserverProtocol\? = nil // SOULD BE WEAK\n\n  //································································································\n\n  private var mSignatureCache : UInt32\? = nil\n\n  //································································································\n\n  func setSignatureObserver (observer inObserver : EBSignatureObserverProtocol\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = inObserver\n    inObserver\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n  }\n\n  //································································································\n\n  func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  //································································································\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    if let object = self.mWeakInternalValue {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  //································································································\n\n  func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -3494,138 +3494,138 @@ GALGAS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_documentI
       enumerator_521.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //    Outlets\n  //····················································································································\n\n") ;
-  GALGAS_uint index_941_ (0) ;
+  result.appendString ("  //································································································\n  //    Outlets\n  //································································································\n\n") ;
+  GALGAS_uint index_901_ (0) ;
   if (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP.isValid ()) {
-    cEnumerator_autoLayoutOutletMap enumerator_941 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_941.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = enumerator_941.current_mOutletIsArray (HERE).boolEnum () ;
+    cEnumerator_autoLayoutOutletMap enumerator_901 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_901.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = enumerator_901.current_mOutletIsArray (HERE).boolEnum () ;
       switch (test_0) {
       case kBoolTrue : {
         result.appendString ("  final var ") ;
-        result.appendString (enumerator_941.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_901.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" = EBWeakReferenceArray <AutoLayout") ;
-        result.appendString (enumerator_941.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_901.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("> ()\n") ;
         } break ;
       case kBoolFalse : {
         result.appendString ("  weak final var ") ;
-        result.appendString (enumerator_941.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_901.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" : AutoLayout") ;
-        result.appendString (enumerator_941.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_901.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("\? = nil\n") ;
         } break ;
       default :
         break ;
       }
-      index_941_.increment () ;
-      enumerator_941.gotoNextObject () ;
+      index_901_.increment () ;
+      enumerator_901.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    Outlets\n  //····················································································································\n\n") ;
-  GALGAS_uint index_1488_ (0) ;
+  result.appendString ("\n  //································································································\n  //    Outlets\n  //································································································\n\n") ;
+  GALGAS_uint index_1408_ (0) ;
   if (in_OUTLET_5F_GENERATION_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_1488 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_1488.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_1408 (in_OUTLET_5F_GENERATION_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_1408.hasCurrentObject ()) {
       result.appendString ("  @IBOutlet final var ") ;
-      result.appendString (enumerator_1488.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_1408.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (" : ") ;
-      result.appendString (enumerator_1488.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_1408.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString ("\? = nil\n") ;
-      index_1488_.increment () ;
-      enumerator_1488.gotoNextObject () ;
+      index_1408_.increment () ;
+      enumerator_1408.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    Multiple bindings controllers\n  //····················································································································\n\n") ;
-  GALGAS_uint index_1938_ (0) ;
+  result.appendString ("\n  //································································································\n  //    Multiple bindings controllers\n  //································································································\n\n") ;
+  GALGAS_uint index_1818_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_1938 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_1938.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_1818 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1818.hasCurrentObject ()) {
       result.appendString ("//  final var mController_") ;
-      result.appendString (enumerator_1938.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_1818.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_1938.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_1818.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" : MultipleBindingController_") ;
-      result.appendString (enumerator_1938.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_1818.current_mBindingName (HERE).stringValue ()) ;
       result.appendString ("\? = nil\n") ;
-      index_1938_.increment () ;
-      enumerator_1938.gotoNextObject () ;
+      index_1818_.increment () ;
+      enumerator_1818.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    displayName\n  //····················································································································\n\n  override var displayName : String\? {\n    get {\n      return super.displayName\n    }\n    set {\n      super.displayName = newValue\n      self.documentFileName_property.observedObjectDidChange ()\n    }\n  }\n\n  //····················································································································\n  //    rootEntityClassName\n  //····················································································································\n\n  override final func rootEntityClassName () -> String {\n    return \"") ;
+  result.appendString ("\n  //································································································\n  //    displayName\n  //································································································\n\n  override var displayName : String\? {\n    get {\n      return super.displayName\n    }\n    set {\n      super.displayName = newValue\n      self.documentFileName_property.observedObjectDidChange ()\n    }\n  }\n\n  //································································································\n  //    rootEntityClassName\n  //································································································\n\n  override final func rootEntityClassName () -> String {\n    return \"") ;
   result.appendString (in_ROOT_5F_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\"\n  }\n\n  //····················································································································\n  //    rootObject\n  //····················································································································\n\n  final var rootObject : ") ;
+  result.appendString ("\"\n  }\n\n  //································································································\n  //    rootObject\n  //································································································\n\n  final var rootObject : ") ;
   result.appendString (in_ROOT_5F_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" { return self.mRootObject as! ") ;
   result.appendString (in_ROOT_5F_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" }\n\n") ;
-  GALGAS_uint index_3304_ (0) ;
+  GALGAS_uint index_3064_ (0) ;
   if (in_VIEW_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_viewGenerationList enumerator_3304 (in_VIEW_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_3304.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //    VIEW ") ;
-      result.appendString (enumerator_3304.current_mViewName (HERE).stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n") ;
-      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_3304.current_mView (HERE).ptr (), GALGAS_bool (false), enumerator_3304.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 78)).stringValue ()) ;
-      index_3304_.increment () ;
-      enumerator_3304.gotoNextObject () ;
+    cEnumerator_viewGenerationList enumerator_3064 (in_VIEW_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3064.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //    VIEW ") ;
+      result.appendString (enumerator_3064.current_mViewName (HERE).stringValue ()) ;
+      result.appendString ("\n  //································································································\n\n") ;
+      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_3064.current_mView (HERE).ptr (), GALGAS_bool (false), enumerator_3064.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 78)).stringValue ()) ;
+      index_3064_.increment () ;
+      enumerator_3064.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_3720_idx (0) ;
+  GALGAS_uint index_3440_idx (0) ;
   if (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_implicitViewFunctionGenerationList enumerator_3720 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_3720.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //    IMPLICIT VIEW ") ;
-      result.appendString (index_3720_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 82)).stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n  private final func computeImplicitView_") ;
-      result.appendString (index_3720_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 84)).stringValue ()) ;
+    cEnumerator_implicitViewFunctionGenerationList enumerator_3440 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3440.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //    IMPLICIT VIEW ") ;
+      result.appendString (index_3440_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 82)).stringValue ()) ;
+      result.appendString ("\n  //································································································\n\n  private final func computeImplicitView_") ;
+      result.appendString (index_3440_idx.getter_string (SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 84)).stringValue ()) ;
       result.appendString (" () -> NSView {\n") ;
-      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_3720.current_mInstruction (HERE).ptr (), GALGAS_bool (false), GALGAS_string ("view"), GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 85)).stringValue ()) ;
+      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_3440.current_mInstruction (HERE).ptr (), GALGAS_bool (false), GALGAS_string ("view"), GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 85)).stringValue ()) ;
       result.appendString ("    return view\n  }\n\n") ;
-      index_3720_idx.increment () ;
-      enumerator_3720.gotoNextObject () ;
+      index_3440_idx.increment () ;
+      enumerator_3440.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //    Build User Interface\n  //····················································································································\n\n  override func ebBuildUserInterface () {\n  //--------------------------- Read documentFileName model\n    self.documentFileName_property.mReadModelFunction = { [weak self] in\n      if let r = self\?.displayName {\n        return .single (r)\n      }else{\n        return .single (\"\")\n      }\n    }\n  //--- Build window content view\n    self.configureProperties ()\n    let mainView = self.") ;
+  result.appendString ("  //································································································\n  //    Build User Interface\n  //································································································\n\n  override func ebBuildUserInterface () {\n  //--------------------------- Read documentFileName model\n    self.documentFileName_property.mReadModelFunction = { [weak self] in\n      if let r = self\?.displayName {\n        return .single (r)\n      }else{\n        return .single (\"\")\n      }\n    }\n  //--- Build window content view\n    self.configureProperties ()\n    let mainView = self.") ;
   result.appendString (in_MAIN_5F_VIEW_5F_NAME.stringValue ()) ;
   result.appendString (" ()\n  //--- Call outlet linkers\n") ;
-  GALGAS_uint index_4991_ (0) ;
+  GALGAS_uint index_4631_ (0) ;
   if (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST.isValid ()) {
-    cEnumerator_autoLayoutOutletLinkerGenerationList enumerator_4991 (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_4991.hasCurrentObject ()) {
+    cEnumerator_autoLayoutOutletLinkerGenerationList enumerator_4631 (in_AUTO_5F_LAYOUT_5F_LINKER_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_4631.hasCurrentObject ()) {
       result.appendString ("    self.linker_") ;
-      result.appendString (enumerator_4991.current_mLinkerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_4631.current_mLinkerName (HERE).stringValue ()) ;
       result.appendString (" (") ;
-      GALGAS_uint index_5100_ (0) ;
-      if (enumerator_4991.current_mOutletNameAndTypeNameList (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_5100 (enumerator_4991.current_mOutletNameAndTypeNameList (HERE), kENUMERATION_UP) ;
-        while (enumerator_5100.hasCurrentObject ()) {
+      GALGAS_uint index_4740_ (0) ;
+      if (enumerator_4631.current_mOutletNameAndTypeNameList (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_4740 (enumerator_4631.current_mOutletNameAndTypeNameList (HERE), kENUMERATION_UP) ;
+        while (enumerator_4740.hasCurrentObject ()) {
           result.appendString ("self.") ;
-          result.appendString (enumerator_5100.current_mValue_30_ (HERE).stringValue ()) ;
-          if (enumerator_5100.hasNextObject ()) {
+          result.appendString (enumerator_4740.current_mValue_30_ (HERE).stringValue ()) ;
+          if (enumerator_4740.hasNextObject ()) {
             result.appendString (", ") ;
           }
-          index_5100_.increment () ;
-          enumerator_5100.gotoNextObject () ;
+          index_4740_.increment () ;
+          enumerator_4740.gotoNextObject () ;
         }
       }
       result.appendString (")\n") ;
-      index_4991_.increment () ;
-      enumerator_4991.gotoNextObject () ;
+      index_4631_.increment () ;
+      enumerator_4631.gotoNextObject () ;
     }
   }
-  result.appendString ("  //--- Assign main view to window\n    self.windowForSheet\?.contentView = AutoLayoutWindowContentView (view: mainView)\n  }\n\n  //····················································································································\n  //    configureProperties\n  //····················································································································\n\n  final private func configureProperties () {\n") ;
-  GALGAS_uint index_5657_ (0) ;
+  result.appendString ("  //--- Assign main view to window\n    self.windowForSheet\?.contentView = AutoLayoutWindowContentView (view: mainView)\n  }\n\n  //································································································\n  //    configureProperties\n  //································································································\n\n  final private func configureProperties () {\n") ;
+  GALGAS_uint index_5257_ (0) ;
   if (in_DOCUMENT_5F_PROPERTY_5F_LIST.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_5657 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_5657.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5657.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 125)).stringValue ()) ;
+    cEnumerator_propertyGenerationList enumerator_5257 (in_DOCUMENT_5F_PROPERTY_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5257.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5257.current_mProperty (HERE).ptr (), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.swift.galgasTemplate", 125)).stringValue ()) ;
       result.appendString ("\n") ;
-      index_5657_.increment () ;
-      enumerator_5657.gotoNextObject () ;
+      index_5257_.increment () ;
+      enumerator_5257.gotoNextObject () ;
     }
   }
-  result.appendString ("  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  result.appendString ("  }\n\n  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
   return GALGAS_string (result) ;
 }
 
@@ -4031,114 +4031,114 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 13)).stringValue ()) ;
   result.appendString (" : ") ;
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 13)).stringValue ()) ;
-  result.appendString ("_SuperClass, NSWindowDelegate {\n\n  //····················································································································\n\n  private final var mWindow : CanariWindow\? = nil\n\n  //····················································································································\n  //    Show Preferences window\n  //····················································································································\n\n  @IBAction func showPreferencesWindowAction (_ inSender : Any\?) {\n    let window : CanariWindow\n    if let w = self.mWindow {\n      window = w\n    }else{\n      window = CanariWindow (\n        contentRect: .zero,\n        styleMask: [.closable, .resizable, .titled],\n        backing: .buffered,\n        defer: false\n      )\n      self.mWindow = window\n      window.setFrameAutosaveName (\"PrefsWindowSettings\")\n      window.title = \"Preferences\"\n      window.isReleasedWhenClosed = false\n      window.contentView = AutoLayoutWindowContentView (view: self.mPrefsMainView ())\n    //--- Contrôler le comportement en plein écran\n      window.collectionBehavior = [.fullScreenAuxiliary, .fullScreenNone]\n      let zoomButton = window.standardWindowButton (.zoomButton)\n      zoomButton\?.isEnabled = false\n    }\n    window.makeKeyAndOrderFront (nil)\n  }\n\n") ;
-  GALGAS_uint index_2017_ (0) ;
+  result.appendString ("_SuperClass, NSWindowDelegate {\n\n  //································································································\n\n  private final var mWindow : CanariWindow\? = nil\n\n  //································································································\n  //    Show Preferences window\n  //································································································\n\n  @IBAction func showPreferencesWindowAction (_ inSender : Any\?) {\n    let window : CanariWindow\n    if let w = self.mWindow {\n      window = w\n    }else{\n      window = CanariWindow (\n        contentRect: .zero,\n        styleMask: [.closable, .resizable, .titled],\n        backing: .buffered,\n        defer: false\n      )\n      self.mWindow = window\n      window.setFrameAutosaveName (\"PrefsWindowSettings\")\n      window.title = \"Preferences\"\n      window.isReleasedWhenClosed = false\n      window.contentView = AutoLayoutWindowContentView (view: self.mPrefsMainView ())\n    //--- Contrôler le comportement en plein écran\n      window.collectionBehavior = [.fullScreenAuxiliary, .fullScreenNone]\n      let zoomButton = window.standardWindowButton (.zoomButton)\n      zoomButton\?.isEnabled = false\n    }\n    window.makeKeyAndOrderFront (nil)\n  }\n\n") ;
+  GALGAS_uint index_1957_ (0) ;
   if (in_VIEW_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_viewGenerationList enumerator_2017 (in_VIEW_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_2017.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //    VIEW ") ;
-      result.appendString (enumerator_2017.current_mViewName (HERE).stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n") ;
-      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_2017.current_mView (HERE).ptr (), GALGAS_bool (true), enumerator_2017.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 52)).stringValue ()) ;
-      index_2017_.increment () ;
-      enumerator_2017.gotoNextObject () ;
+    cEnumerator_viewGenerationList enumerator_1957 (in_VIEW_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_1957.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //    VIEW ") ;
+      result.appendString (enumerator_1957.current_mViewName (HERE).stringValue ()) ;
+      result.appendString ("\n  //································································································\n\n") ;
+      result.appendString (callExtensionGetter_generateViewBuilder ((const cPtr_abstractViewGeneration *) enumerator_1957.current_mView (HERE).ptr (), GALGAS_bool (true), enumerator_1957.current_mViewName (HERE), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 52)).stringValue ()) ;
+      index_1957_.increment () ;
+      enumerator_1957.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_2432_idx (0) ;
+  GALGAS_uint index_2332_idx (0) ;
   if (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_implicitViewFunctionGenerationList enumerator_2432 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_2432.hasCurrentObject ()) {
-      result.appendString ("  //····················································································································\n  //    IMPLICIT VIEW ") ;
-      result.appendString (index_2432_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 56)).stringValue ()) ;
-      result.appendString ("\n  //····················································································································\n\n  fileprivate final func computeImplicitView_") ;
-      result.appendString (index_2432_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 58)).stringValue ()) ;
+    cEnumerator_implicitViewFunctionGenerationList enumerator_2332 (in_IMPLICIT_5F_VIEW_5F_GENERATION_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_2332.hasCurrentObject ()) {
+      result.appendString ("  //································································································\n  //    IMPLICIT VIEW ") ;
+      result.appendString (index_2332_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 56)).stringValue ()) ;
+      result.appendString ("\n  //································································································\n\n  fileprivate final func computeImplicitView_") ;
+      result.appendString (index_2332_idx.getter_string (SOURCE_FILE ("preferences.swift.galgasTemplate", 58)).stringValue ()) ;
       result.appendString (" () -> NSView {\n") ;
-      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_2432.current_mInstruction (HERE).ptr (), GALGAS_bool (true), GALGAS_string ("view"), GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 59)).stringValue ()) ;
+      result.appendString (callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) enumerator_2332.current_mInstruction (HERE).ptr (), GALGAS_bool (true), GALGAS_string ("view"), GALGAS_string ("    "), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 59)).stringValue ()) ;
       result.appendString ("    return view\n  }\n\n") ;
-      index_2432_idx.increment () ;
-      enumerator_2432.gotoNextObject () ;
+      index_2332_idx.increment () ;
+      enumerator_2332.gotoNextObject () ;
     }
   }
-  result.appendString ("  //····················································································································\n  //    Outlets\n  //····················································································································\n\n") ;
-  GALGAS_uint index_3258_ (0) ;
+  result.appendString ("  //································································································\n  //    Outlets\n  //································································································\n\n") ;
+  GALGAS_uint index_3078_ (0) ;
   if (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP.isValid ()) {
-    cEnumerator_autoLayoutOutletMap enumerator_3258 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_3258.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = enumerator_3258.current_mOutletIsArray (HERE).boolEnum () ;
+    cEnumerator_autoLayoutOutletMap enumerator_3078 (in_AUTO_5F_LAYOUT_5F_OUTLET_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_3078.hasCurrentObject ()) {
+      const enumGalgasBool test_0 = enumerator_3078.current_mOutletIsArray (HERE).boolEnum () ;
       switch (test_0) {
       case kBoolTrue : {
         result.appendString ("  final var ") ;
-        result.appendString (enumerator_3258.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_3078.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" = EBWeakReferenceArray <AutoLayout") ;
-        result.appendString (enumerator_3258.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_3078.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("> ()\n") ;
         } break ;
       case kBoolFalse : {
         result.appendString ("  weak final var ") ;
-        result.appendString (enumerator_3258.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_3078.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" : AutoLayout") ;
-        result.appendString (enumerator_3258.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_3078.current_mAutoLayoutOutletTypeName (HERE).stringValue ()) ;
         result.appendString ("\? = nil\n") ;
         } break ;
       default :
         break ;
       }
-      index_3258_.increment () ;
-      enumerator_3258.gotoNextObject () ;
+      index_3078_.increment () ;
+      enumerator_3078.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    Outlets (EX)\n  //····················································································································\n\n") ;
-  GALGAS_uint index_3799_ (0) ;
+  result.appendString ("\n  //································································································\n  //    Outlets (EX)\n  //································································································\n\n") ;
+  GALGAS_uint index_3579_ (0) ;
   if (in_OUTLET_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_3799 (in_OUTLET_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_3799.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_3579 (in_OUTLET_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_3579.hasCurrentObject ()) {
       result.appendString ("  @IBOutlet var ") ;
-      result.appendString (enumerator_3799.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_3579.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (" : ") ;
-      result.appendString (enumerator_3799.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3579.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString ("\? = nil\n") ;
-      index_3799_.increment () ;
-      enumerator_3799.gotoNextObject () ;
+      index_3579_.increment () ;
+      enumerator_3579.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    Multiple bindings controllers\n  //····················································································································\n\n") ;
-  GALGAS_uint index_4243_ (0) ;
+  result.appendString ("\n  //································································································\n  //    Multiple bindings controllers\n  //································································································\n\n") ;
+  GALGAS_uint index_3983_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_4243 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_4243.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_3983 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_3983.hasCurrentObject ()) {
       result.appendString ("  private var mController_") ;
-      result.appendString (enumerator_4243.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3983.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_4243.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3983.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" : MultipleBindingController_") ;
-      result.appendString (enumerator_4243.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_3983.current_mBindingName (HERE).stringValue ()) ;
       result.appendString ("\?\n") ;
-      index_4243_.increment () ;
-      enumerator_4243.gotoNextObject () ;
+      index_3983_.increment () ;
+      enumerator_3983.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  //····················································································································\n  //    Undo Manager\n  //····················································································································\n\n  private var mUndoManager = EBUndoManager ()\n\n  //····················································································································\n\n  var undoManager : UndoManager { return self.mUndoManager }\n\n  //····················································································································\n  // The preferences window should register this object as delegate (do it in Interface Builder)\n  //····················································································································\n\n  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager\? {\n    return self.undoManager\n  }\n\n  //····················································································································\n  //    Init\n  //····················································································································\n\n  override init () {\n    super.init ()\n    g_") ;
+  result.appendString ("\n  //································································································\n  //    Undo Manager\n  //································································································\n\n  private var mUndoManager = EBUndoManager ()\n\n  //································································································\n\n  var undoManager : UndoManager { return self.mUndoManager }\n\n  //································································································\n  // The preferences window should register this object as delegate (do it in Interface Builder)\n  //································································································\n\n  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager\? {\n    return self.undoManager\n  }\n\n  //································································································\n  //    Init\n  //································································································\n\n  override init () {\n    super.init ()\n    g_") ;
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 117)).stringValue ()) ;
   result.appendString (" = self ;\n  //--- Read from preferences\n") ;
-  GALGAS_uint index_5720_ (0) ;
+  GALGAS_uint index_5320_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_5720 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_5720.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5720.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 121)).stringValue ()) ;
-      index_5720_.increment () ;
-      enumerator_5720.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_5320 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_5320.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5320.current_mProperty (HERE).ptr (), GALGAS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 121)).stringValue ()) ;
+      index_5320_.increment () ;
+      enumerator_5320.gotoNextObject () ;
     }
   }
   result.appendString ("  //--- Notify application will terminate\n    /* NotificationCenter.default.addObserver (self,\n      selector:#selector(Preferences.applicationWillTerminateAction(_:)),\n      name:NSApplication.willTerminateNotification,\n      object:nil\n    ) */\n  //--- Extern functions\n") ;
-  GALGAS_uint index_6116_ (0) ;
+  GALGAS_uint index_5716_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_6116 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_6116.hasCurrentObject ()) {
-      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, enumerator_6116.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("init"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_5716 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_5716.hasCurrentObject ()) {
+      const enumGalgasBool test_1 = GALGAS_bool (kIsEqual, enumerator_5716.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("init"))).boolEnum () ;
       switch (test_1) {
       case kBoolTrue : {
         result.appendString ("    self.") ;
-        result.appendString (enumerator_6116.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_5716.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case kBoolFalse : {
@@ -4146,143 +4146,143 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
       default :
         break ;
       }
-      index_6116_.increment () ;
-      enumerator_6116.gotoNextObject () ;
+      index_5716_.increment () ;
+      enumerator_5716.gotoNextObject () ;
     }
   }
   result.appendString ("  }\n\n") ;
   const enumGalgasBool test_2 = GALGAS_bool (kIsStrictSup, in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST.getter_count (SOURCE_FILE ("preferences.swift.galgasTemplate", 139)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_2) {
   case kBoolTrue : {
-    result.appendString ("  //····················································································································\n\n  @IBOutlet private final var window : NSWindow\?\n  let OUTLET_WIDTH = 200.0\n  let OUTLET_HEIGHT = 22.0\n\n") ;
+    result.appendString ("  //································································································\n\n  @IBOutlet private final var window : NSWindow\?\n  let OUTLET_WIDTH = 200.0\n  let OUTLET_HEIGHT = 22.0\n\n") ;
     } break ;
   case kBoolFalse : {
     } break ;
   default :
     break ;
   }
-  result.appendString ("  //····················································································································\n  //    awakeFromNib\n  //····················································································································\n\n  override func awakeFromNib () {\n") ;
+  result.appendString ("  //································································································\n  //    awakeFromNib\n  //································································································\n\n  override func awakeFromNib () {\n") ;
   result.appendString (extensionGetter_generateCode (in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST, inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 154)).stringValue ()) ;
-  GALGAS_uint index_6900_ (0) ;
+  GALGAS_uint index_6440_ (0) ;
   if (in_OUTLET_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_6900 (in_OUTLET_5F_MAP, kENUMERATION_UP) ;
-    while (enumerator_6900.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_6440 (in_OUTLET_5F_MAP, kENUMERATION_UP) ;
+    while (enumerator_6440.hasCurrentObject ()) {
       result.appendString ("    checkOutletConnection (self.") ;
-      result.appendString (enumerator_6900.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_6440.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (", \"") ;
-      result.appendString (enumerator_6900.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_6440.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString ("\", ") ;
-      result.appendString (enumerator_6900.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6440.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString (".self, #file, #line)\n") ;
-      index_6900_.increment () ;
-      enumerator_6900.gotoNextObject () ;
+      index_6440_.increment () ;
+      enumerator_6440.gotoNextObject () ;
     }
   }
   result.appendString ("  //--------------------------- Install bindings\n") ;
-  GALGAS_uint index_7174_ (0) ;
+  GALGAS_uint index_6714_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_7174 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_7174.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_6714 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_6714.hasCurrentObject ()) {
       result.appendString ("    ") ;
-      result.appendString (enumerator_7174.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6714.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.bind_") ;
-      result.appendString (enumerator_7174.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6714.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" (") ;
-      GALGAS_uint index_7281_ (0) ;
-      if (enumerator_7174.current_mBoundObjectList (HERE).isValid ()) {
-        cEnumerator_boundObjectList enumerator_7281 (enumerator_7174.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
-        while (enumerator_7281.hasCurrentObject ()) {
-          result.appendString (enumerator_7281.current_mBoundObjectString (HERE).stringValue ()) ;
-          if (enumerator_7281.hasNextObject ()) {
+      GALGAS_uint index_6821_ (0) ;
+      if (enumerator_6714.current_mBoundObjectList (HERE).isValid ()) {
+        cEnumerator_boundObjectList enumerator_6821 (enumerator_6714.current_mBoundObjectList (HERE), kENUMERATION_UP) ;
+        while (enumerator_6821.hasCurrentObject ()) {
+          result.appendString (enumerator_6821.current_mBoundObjectString (HERE).stringValue ()) ;
+          if (enumerator_6821.hasNextObject ()) {
             result.appendString (", ") ;
           }
-          index_7281_.increment () ;
-          enumerator_7281.gotoNextObject () ;
+          index_6821_.increment () ;
+          enumerator_6821.gotoNextObject () ;
         }
       }
-      result.appendString (enumerator_7174.current_mBindingOptionsString (HERE).stringValue ()) ;
+      result.appendString (enumerator_6714.current_mBindingOptionsString (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_7174_.increment () ;
-      enumerator_7174.gotoNextObject () ;
+      index_6714_.increment () ;
+      enumerator_6714.gotoNextObject () ;
     }
   }
   result.appendString ("  //--------------------------- Install multiple bindings\n") ;
-  GALGAS_uint index_7512_ (0) ;
+  GALGAS_uint index_7052_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_7512 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_7512.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_7052 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7052.hasCurrentObject ()) {
       result.appendString ("    do{\n      let controller = MultipleBindingController_") ;
-      result.appendString (enumerator_7512.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7052.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" (\n        computeFunction: ") ;
-      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7512.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 173)).stringValue ()) ;
+      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_7052.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 173)).stringValue ()) ;
       result.appendString (",\n        outlet: self.") ;
-      result.appendString (enumerator_7512.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7052.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\n      )\n      self.mController_") ;
-      result.appendString (enumerator_7512.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7052.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_7512.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7052.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" = controller\n    }\n") ;
-      index_7512_.increment () ;
-      enumerator_7512.gotoNextObject () ;
+      index_7052_.increment () ;
+      enumerator_7052.gotoNextObject () ;
     }
   }
   result.appendString ("  //--------------------------- Array controller\n") ;
-  GALGAS_uint index_7983_ (0) ;
+  GALGAS_uint index_7523_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_7983 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_7983.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_7523 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7523.hasCurrentObject ()) {
       result.appendString ("    preferences_") ;
-      result.appendString (enumerator_7983.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7523.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_tableView (self.") ;
-      result.appendString (enumerator_7983.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7523.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_7983_.increment () ;
-      enumerator_7983.gotoNextObject () ;
+      index_7523_.increment () ;
+      enumerator_7523.gotoNextObject () ;
     }
   }
-  GALGAS_uint index_8211_ (0) ;
+  GALGAS_uint index_7751_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_8211 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8211.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_7751 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7751.hasCurrentObject ()) {
       result.appendString ("    preferences_") ;
-      result.appendString (enumerator_8211.current_mArrayControllerControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7751.current_mArrayControllerControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_ebView (self.") ;
-      result.appendString (enumerator_8211.current_mEBViewOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7751.current_mEBViewOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_8211_.increment () ;
-      enumerator_8211.gotoNextObject () ;
+      index_7751_.increment () ;
+      enumerator_7751.gotoNextObject () ;
     }
   }
   result.appendString ("  //--------------------------- Set targets / actions\n") ;
-  GALGAS_uint index_8450_ (0) ;
+  GALGAS_uint index_7990_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_8450 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8450.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_7990 (in_TARGET_5F_ACTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_7990.hasCurrentObject ()) {
       result.appendString ("    self.") ;
-      result.appendString (enumerator_8450.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7990.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.target = ") ;
-      result.appendString (enumerator_8450.current_mTargetName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7990.current_mTargetName (HERE).stringValue ()) ;
       result.appendString ("\n    self.") ;
-      result.appendString (enumerator_8450.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7990.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.action = #selector (") ;
-      result.appendString (enumerator_8450.current_mTargetTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7990.current_mTargetTypeName (HERE).stringValue ()) ;
       result.appendString (".") ;
-      result.appendString (enumerator_8450.current_mActionName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7990.current_mActionName (HERE).stringValue ()) ;
       result.appendString (" (_:))\n") ;
-      index_8450_.increment () ;
-      enumerator_8450.gotoNextObject () ;
+      index_7990_.increment () ;
+      enumerator_7990.gotoNextObject () ;
     }
   }
   result.appendString ("  //--------------------------- Extern functions\n") ;
-  GALGAS_uint index_8726_ (0) ;
+  GALGAS_uint index_8266_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_8726 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
-    while (enumerator_8726.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, enumerator_8726.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_8266 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, kENUMERATION_UP) ;
+    while (enumerator_8266.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = GALGAS_bool (kIsEqual, enumerator_8266.current_mCallerName (HERE).readProperty_string ().objectCompare (GALGAS_string ("awakeFromNib"))).boolEnum () ;
       switch (test_3) {
       case kBoolTrue : {
         result.appendString ("    self.") ;
-        result.appendString (enumerator_8726.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_8266.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case kBoolFalse : {
@@ -4290,28 +4290,28 @@ GALGAS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler 
       default :
         break ;
       }
-      index_8726_.increment () ;
-      enumerator_8726.gotoNextObject () ;
+      index_8266_.increment () ;
+      enumerator_8266.gotoNextObject () ;
     }
   }
-  result.appendString ("  }\n\n  //····················································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
-  GALGAS_uint index_9131_ (0) ;
+  result.appendString ("  }\n\n  //································································································\n\n}\n\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
+  GALGAS_uint index_8651_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_9131 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_9131.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_9131.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 208)).stringValue ()) ;
-      index_9131_.increment () ;
-      enumerator_9131.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8651 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_8651.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_8651.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 208)).stringValue ()) ;
+      index_8651_.increment () ;
+      enumerator_8651.gotoNextObject () ;
     }
   }
   result.appendString ("\n") ;
-  GALGAS_uint index_9227_ (0) ;
+  GALGAS_uint index_8747_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_9227 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
-    while (enumerator_9227.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_9227.current_mProperty (HERE).ptr (), GALGAS_bool (true), GALGAS_bool (true), GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 213)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 213)).stringValue ()) ;
-      index_9227_.increment () ;
-      enumerator_9227.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8747 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, kENUMERATION_UP) ;
+    while (enumerator_8747.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_8747.current_mProperty (HERE).ptr (), GALGAS_bool (true), GALGAS_bool (true), GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 213)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 213)).stringValue ()) ;
+      index_8747_.increment () ;
+      enumerator_8747.gotoNextObject () ;
     }
   }
   result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\n") ;
@@ -8711,9 +8711,9 @@ GALGAS_string filewrapperTemplate_computedPropertyManager_computedComputationFun
                                                                                            const GALGAS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
-  result.appendString ("\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
+  result.appendString ("//································································································\n//——————————————————————————————————————————————————————————————————————————————————————————————————\n\nextension ") ;
   result.appendString (in_OWNER_5F_NAME.stringValue ()) ;
-  result.appendString (" {\n\n  //····················································································································\n\n  func compute_") ;
+  result.appendString (" {\n\n  //································································································\n\n  func compute_") ;
   result.appendString (in_COMPUTED_5F_PROPERTY_5F_NAME.stringValue ()) ;
   result.appendString ("_property (_ inValue : ") ;
   result.appendString (extensionGetter_swiftTypeName (in_TRANSIENT_5F_TYPE, inCompiler COMMA_SOURCE_FILE ("compute-property-function.swift.galgasTemplate", 8)).stringValue ()) ;
@@ -9443,3 +9443,39 @@ GALGAS_string cPtr_transientPropertyGeneration::getter_configurationCode (const 
 }
 
 
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@transientRoutineGeneration generateCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_transientRoutineGeneration::method_generateCode (const GALGAS_string constinArgument_inOutputDirectory,
+                                                           const GALGAS_generationStruct /* constinArgument_inGenerationStruct */,
+                                                           GALGAS_stringset & ioArgument_ioGeneratedFileSet,
+                                                           Compiler * inCompiler
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_transientRoutineGeneration temp_1 = this ;
+    test_0 = GALGAS_bool (kIsStrictSup, temp_1.readProperty_mDependencyList ().getter_count (SOURCE_FILE ("transient-property.ggs", 603)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      const GALGAS_transientRoutineGeneration temp_2 = this ;
+      const GALGAS_transientRoutineGeneration temp_3 = this ;
+      const GALGAS_transientRoutineGeneration temp_4 = this ;
+      const GALGAS_transientRoutineGeneration temp_5 = this ;
+      const GALGAS_transientRoutineGeneration temp_6 = this ;
+      GALGAS_string var_s_28639 = GALGAS_string (filewrapperTemplate_transientManager_transientComputationFunctionFile (inCompiler, temp_2.readProperty_mOwnerName (), temp_3.readProperty_mTransientName (), temp_4.readProperty_mDependencyList (), temp_5.readProperty_mTransientType (), temp_6.readProperty_mGeneratedFunctionNamePrefix () COMMA_SOURCE_FILE ("transient-property.ggs", 604))) ;
+      GALGAS_string var_header_28866 = GALGAS_string ("//").add_operation (GALGAS_string::class_func_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("transient-property.ggs", 611)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 611)).add_operation (GALGAS_string ("\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 611)).add_operation (GALGAS_string::class_func_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("transient-property.ggs", 613)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 613)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 613)).add_operation (GALGAS_string ("import AppKit\n\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 613)).add_operation (GALGAS_string ("//"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 614)).add_operation (GALGAS_string::class_func_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("transient-property.ggs", 615)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 615)).add_operation (GALGAS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 615)) ;
+      const GALGAS_transientRoutineGeneration temp_7 = this ;
+      const GALGAS_transientRoutineGeneration temp_8 = this ;
+      const GALGAS_transientRoutineGeneration temp_9 = this ;
+      GALGAS_string var_fileName_29207 = temp_7.readProperty_mGeneratedFunctionNamePrefix ().add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 616)).add_operation (temp_8.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 616)).add_operation (GALGAS_string ("-"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 616)).add_operation (temp_9.readProperty_mTransientName (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 616)).add_operation (GALGAS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 616)) ;
+      {
+      ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_29207, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 617)) ;
+      }
+      {
+      GALGAS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_29207, GALGAS_string ("//"), var_header_28866, GALGAS_string ("\n\n"), var_s_28639, GALGAS_string ("\n"), GALGAS_string ("}\n\n//").add_operation (GALGAS_string::class_func_stringWithSequenceOfCharacters (GALGAS_char (TO_UNICODE (8212)), GALGAS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("transient-property.ggs", 626)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 626)).add_operation (GALGAS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 626)), GALGAS_bool (false), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 618)) ;
+      }
+    }
+  }
+}
