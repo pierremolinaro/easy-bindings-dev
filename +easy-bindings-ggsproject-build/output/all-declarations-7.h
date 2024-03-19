@@ -45,7 +45,7 @@ void routine_print_3F_ (const class GALGAS_string constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-extern C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDependencyGraph ;
+extern BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDependencyGraph ;
 
 //--------------------------------------------------------------------------------------------------
 //

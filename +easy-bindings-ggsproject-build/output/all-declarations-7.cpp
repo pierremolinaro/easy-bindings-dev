@@ -421,7 +421,7 @@ void extensionSetter_addICNS_5F_file (GALGAS_XcodeProjectDescriptor & ioObject,
 //
 //--------------------------------------------------------------------------------------------------
 
-C_BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDependencyGraph ("easyBindings_options",
+BoolCommandLineOption gOption_easyBindings_5F_options_outputDeclarationDependencyGraph ("easyBindings_options",
                                          "outputDeclarationDependencyGraph",
                                          103,
                                          "output-declaration-graph",
