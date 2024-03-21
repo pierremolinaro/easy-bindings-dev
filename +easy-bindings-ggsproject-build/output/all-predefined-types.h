@@ -7,13 +7,15 @@
 
 //--------------------------------------------------------------------------------------------------
 
-#include "String-class.h"
-#include "Timer.h"
 #include "AC_GALGAS_root.h"
 #include "C_galgas_type_descriptor.h"
-#include "typeComparisonResult.h"
+#include "ComparisonResult.h"
+#include "ComparisonKind.h"
+#include "EnumerationOrder.h"
 #include "cGenericAbstractEnumerator.h"
 #include "cEnumerator_range.h"
+#include "String-class.h"
+#include "Timer.h"
 #include "AC_GALGAS_list.h"
 #include "AC_GALGAS_sortedlist.h"
 #include "AC_GALGAS_map.h"
@@ -86,8 +88,8 @@ class GALGAS_bool : public AC_GALGAS_root {
   public: GALGAS_bool (const bool inBuilt, const bool inValue) ;
 
 //--------------------------------- Constructor for comparison result
-  public: GALGAS_bool (const typeComparisonKind inComparisonKind,
-                        const typeComparisonResult inComparisonResult) ;
+  public: GALGAS_bool (const ComparisonKind inComparisonKind,
+                       const ComparisonResult inComparisonResult) ;
 
 //-- Start of type generic part
 
@@ -121,7 +123,7 @@ class GALGAS_bool : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_bool & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_bool & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -311,7 +313,7 @@ class GALGAS_uint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_uint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_uint & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -494,7 +496,7 @@ class GALGAS_string : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_string & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_string & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_appendSpacesUntilColumn (class GALGAS_uint constinArgument0,
@@ -891,7 +893,7 @@ class GALGAS_stringset : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_stringset & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_stringset & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insert (class GALGAS_string constinArgument0,
@@ -936,7 +938,7 @@ class GALGAS_stringset : public AC_GALGAS_root {
 
 class cEnumerator_stringset : public cGenericAbstractEnumerator {
   public: cEnumerator_stringset (const GALGAS_stringset & inEnumeratedObject,
-                                 const typeEnumerationOrder inOrder) ;
+                                 const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_string current_key (LOCATION_ARGS) const ;
@@ -1012,7 +1014,7 @@ class GALGAS_location : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_location & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_location & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1303,7 +1305,7 @@ class GALGAS_bigint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_bigint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_bigint & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_complementBitAtIndex (class GALGAS_uint constinArgument0
@@ -1553,7 +1555,7 @@ class GALGAS_binaryset : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_binaryset & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_binaryset & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1762,7 +1764,7 @@ class GALGAS_char : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_char & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_char & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1868,7 +1870,7 @@ class GALGAS_data : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_data & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_data & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_appendByte (class GALGAS_uint constinArgument0,
@@ -1937,7 +1939,7 @@ class GALGAS_data : public AC_GALGAS_root {
 
 class cEnumerator_data : public cGenericAbstractEnumerator {
   public: cEnumerator_data (const GALGAS_data & inEnumeratedObject,
-                            const typeEnumerationOrder inOrder) ;
+                            const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_uint current_data (LOCATION_ARGS) const ;
@@ -2043,7 +2045,7 @@ class GALGAS_double : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_double & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_double & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2191,7 +2193,7 @@ class GALGAS_filewrapper : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_filewrapper & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_filewrapper & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_setCurrentDirectory (class GALGAS_string constinArgument0,
@@ -2314,7 +2316,7 @@ class GALGAS_function : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_function & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_function & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2395,7 +2397,7 @@ class GALGAS_object : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_object & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_object & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2569,7 +2571,7 @@ class GALGAS_sint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_sint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_sint & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2774,7 +2776,7 @@ class GALGAS_sint_36__34_ : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_sint_36__34_ & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_sint_36__34_ & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2866,7 +2868,7 @@ class GALGAS_timer : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_timer & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_timer & inOperand) const ;
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_resume (LOCATION_ARGS) ;
@@ -2942,7 +2944,7 @@ class GALGAS_type : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_type & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_type & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3122,7 +3124,7 @@ class GALGAS_uint_36__34_ : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_uint_36__34_ & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_uint_36__34_ & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3308,7 +3310,7 @@ class GALGAS_lstringlist : public AC_GALGAS_list {
 
 class cEnumerator_lstringlist : public cGenericAbstractEnumerator {
   public: cEnumerator_lstringlist (const GALGAS_lstringlist & inEnumeratedObject,
-                                   const typeEnumerationOrder inOrder) ;
+                                   const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lstring current_mValue (LOCATION_ARGS) const ;
@@ -3461,7 +3463,7 @@ class GALGAS__32_stringlist : public AC_GALGAS_list {
 
 class cEnumerator__32_stringlist : public cGenericAbstractEnumerator {
   public: cEnumerator__32_stringlist (const GALGAS__32_stringlist & inEnumeratedObject,
-                                      const typeEnumerationOrder inOrder) ;
+                                      const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_string current_mValue_30_ (LOCATION_ARGS) const ;
@@ -3596,7 +3598,7 @@ class GALGAS_stringlist : public AC_GALGAS_list {
 
 class cEnumerator_stringlist : public cGenericAbstractEnumerator {
   public: cEnumerator_stringlist (const GALGAS_stringlist & inEnumeratedObject,
-                                  const typeEnumerationOrder inOrder) ;
+                                  const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_string current_mValue (LOCATION_ARGS) const ;
@@ -3669,7 +3671,7 @@ class GALGAS_luint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_luint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_luint & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3751,7 +3753,7 @@ class GALGAS_lbool : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lbool & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lbool & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -3894,7 +3896,7 @@ class GALGAS_functionlist : public AC_GALGAS_list {
 
 class cEnumerator_functionlist : public cGenericAbstractEnumerator {
   public: cEnumerator_functionlist (const GALGAS_functionlist & inEnumeratedObject,
-                                    const typeEnumerationOrder inOrder) ;
+                                    const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_function current_mValue (LOCATION_ARGS) const ;
@@ -4028,7 +4030,7 @@ class GALGAS_luintlist : public AC_GALGAS_list {
 
 class cEnumerator_luintlist : public cGenericAbstractEnumerator {
   public: cEnumerator_luintlist (const GALGAS_luintlist & inEnumeratedObject,
-                                 const typeEnumerationOrder inOrder) ;
+                                 const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_luint current_mValue (LOCATION_ARGS) const ;
@@ -4162,7 +4164,7 @@ class GALGAS_objectlist : public AC_GALGAS_list {
 
 class cEnumerator_objectlist : public cGenericAbstractEnumerator {
   public: cEnumerator_objectlist (const GALGAS_objectlist & inEnumeratedObject,
-                                  const typeEnumerationOrder inOrder) ;
+                                  const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_object current_mValue (LOCATION_ARGS) const ;
@@ -4296,7 +4298,7 @@ class GALGAS_typelist : public AC_GALGAS_list {
 
 class cEnumerator_typelist : public cGenericAbstractEnumerator {
   public: cEnumerator_typelist (const GALGAS_typelist & inEnumeratedObject,
-                                const typeEnumerationOrder inOrder) ;
+                                const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_type current_mValue (LOCATION_ARGS) const ;
@@ -4430,7 +4432,7 @@ class GALGAS_uintlist : public AC_GALGAS_list {
 
 class cEnumerator_uintlist : public cGenericAbstractEnumerator {
   public: cEnumerator_uintlist (const GALGAS_uintlist & inEnumeratedObject,
-                                const typeEnumerationOrder inOrder) ;
+                                const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_uint current_mValue (LOCATION_ARGS) const ;
@@ -4564,7 +4566,7 @@ class GALGAS_uint_36__34_list : public AC_GALGAS_list {
 
 class cEnumerator_uint_36__34_list : public cGenericAbstractEnumerator {
   public: cEnumerator_uint_36__34_list (const GALGAS_uint_36__34_list & inEnumeratedObject,
-                                        const typeEnumerationOrder inOrder) ;
+                                        const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_uint_36__34_ current_mValue (LOCATION_ARGS) const ;
@@ -4698,7 +4700,7 @@ class GALGAS_bigintlist : public AC_GALGAS_list {
 
 class cEnumerator_bigintlist : public cGenericAbstractEnumerator {
   public: cEnumerator_bigintlist (const GALGAS_bigintlist & inEnumeratedObject,
-                                  const typeEnumerationOrder inOrder) ;
+                                  const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_bigint current_mValue (LOCATION_ARGS) const ;
@@ -4832,7 +4834,7 @@ class GALGAS_lbigintlist : public AC_GALGAS_list {
 
 class cEnumerator_lbigintlist : public cGenericAbstractEnumerator {
   public: cEnumerator_lbigintlist (const GALGAS_lbigintlist & inEnumeratedObject,
-                                   const typeEnumerationOrder inOrder) ;
+                                   const EnumerationOrder inOrder) ;
 
 //--- Current element access
   public: class GALGAS_lbigint current_mValue (LOCATION_ARGS) const ;
@@ -4905,7 +4907,7 @@ class GALGAS_lbigint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lbigint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lbigint & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4987,7 +4989,7 @@ class GALGAS_lchar : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lchar & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lchar & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5069,7 +5071,7 @@ class GALGAS_lsint : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lsint & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lsint & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5151,7 +5153,7 @@ class GALGAS_lsint_36__34_ : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lsint_36__34_ & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lsint_36__34_ & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5233,7 +5235,7 @@ class GALGAS_luint_36__34_ : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_luint_36__34_ & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_luint_36__34_ & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5315,7 +5317,7 @@ class GALGAS_range : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_range & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_range & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5386,7 +5388,7 @@ class GALGAS_functionlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_functionlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_functionlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5457,7 +5459,7 @@ class GALGAS_luintlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_luintlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_luintlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5528,7 +5530,7 @@ class GALGAS_objectlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_objectlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_objectlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5599,7 +5601,7 @@ class GALGAS_stringlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_stringlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_stringlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5670,7 +5672,7 @@ class GALGAS_typelist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_typelist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_typelist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5741,7 +5743,7 @@ class GALGAS_uintlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_uintlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_uintlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5812,7 +5814,7 @@ class GALGAS_uint_36__34_list_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_uint_36__34_list_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_uint_36__34_list_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5883,7 +5885,7 @@ class GALGAS_bigintlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_bigintlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_bigintlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -5954,7 +5956,7 @@ class GALGAS_lbigintlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lbigintlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lbigintlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -6036,7 +6038,7 @@ class GALGAS__32_stringlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS__32_stringlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS__32_stringlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -6118,7 +6120,7 @@ class GALGAS_lstring : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lstring & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lstring & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -6200,7 +6202,7 @@ class GALGAS_ldouble : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_ldouble & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_ldouble & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -6271,7 +6273,7 @@ class GALGAS_lstringlist_2D_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_lstringlist_2D_element & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_lstringlist_2D_element & inOperand) const ;
 
 //--------------------------------- Setters
 

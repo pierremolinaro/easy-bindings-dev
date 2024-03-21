@@ -40,7 +40,7 @@ class GALGAS_computedPropertyGeneration_2D_weak : public GALGAS_propertyGenerati
   public: static class GALGAS_computedPropertyGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_computedPropertyGeneration_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_computedPropertyGeneration_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -310,7 +310,7 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_XcodeProjectDescriptor & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_XcodeProjectDescriptor & inOperand) const ;
 
 //--------------------------------- Setters
 

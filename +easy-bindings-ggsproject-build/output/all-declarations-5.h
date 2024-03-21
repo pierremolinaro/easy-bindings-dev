@@ -1735,7 +1735,7 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_astDeclarationStruct & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_astDeclarationStruct & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1865,7 +1865,7 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_enumForGeneration & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_enumForGeneration & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1924,7 +1924,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-  public: virtual typeComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
 
   public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
 
@@ -1962,7 +1962,7 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
   public: static class GALGAS_enumForGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: typeComparisonResult objectCompare (const GALGAS_enumForGeneration_2D_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GALGAS_enumForGeneration_2D_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
