@@ -5,7 +5,7 @@
                        "../+easy-bindings-ggsproject-build/libpm/big-integers",
                        "../+easy-bindings-ggsproject-build/libpm/command_line_interface",
                        "../+easy-bindings-ggsproject-build/libpm/files",
-                       "../+easy-bindings-ggsproject-build/libpm/galgas2",
+                       "../+easy-bindings-ggsproject-build/libpm/galgas",
                        "../+easy-bindings-ggsproject-build/libpm/generic-arraies",
                        "../+easy-bindings-ggsproject-build/libpm/streams",
                        "../+easy-bindings-ggsproject-build/libpm/strings",
