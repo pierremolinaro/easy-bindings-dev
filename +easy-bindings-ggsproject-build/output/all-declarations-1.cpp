@@ -5127,6 +5127,25 @@ GALGAS_prefsDeclarationAST_2D_weak GALGAS_prefsDeclarationAST_2D_weak::extractOb
 // @preferencesForGeneration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_preferencesForGeneration::cPtr_preferencesForGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractFileGeneration (inCompiler COMMA_THERE),
+mProperty_mPropertyListForGeneration (),
+mProperty_mMainXibDescriptorList (),
+mProperty_mRegularBindingsGenerationList (),
+mProperty_mMultipleBindingGenerationList (),
+mProperty_mActionBindingListForGeneration (),
+mProperty_mOutletMap (),
+mProperty_mExternSwiftFunctionList (),
+mProperty_mTableViewBindingGenerationList (),
+mProperty_mEBViewBindingGenerationList (),
+mProperty_mViewGenerationList (),
+mProperty_mImplicitViewFunctionGenerationList (),
+mProperty_mConfiguratorMap (),
+mProperty_mAutoLayoutOutletMap () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_preferencesForGeneration::printNonNullClassInstanceProperties (void) const {
     cPtr_abstractFileGeneration::printNonNullClassInstanceProperties () ;
@@ -5218,6 +5237,43 @@ ComparisonResult GALGAS_preferencesForGeneration::objectCompare (const GALGAS_pr
 GALGAS_preferencesForGeneration::GALGAS_preferencesForGeneration (void) :
 GALGAS_abstractFileGeneration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_preferencesForGeneration GALGAS_preferencesForGeneration::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_propertyGenerationList & in_mPropertyListForGeneration,
+                                                                                                                                  const GALGAS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                                                                                                                  const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                                                                                                  const GALGAS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
+                                                                                                                                  const GALGAS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
+                                                                                                                                  const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                                                                                                  const GALGAS_externSwiftFunctionList & in_mExternSwiftFunctionList,
+                                                                                                                                  const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                                                                                                  const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                                                                                                  const GALGAS_viewGenerationList & in_mViewGenerationList,
+                                                                                                                                  const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                                                                                  const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                                                                                                                  const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                                                                                                                  Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  cPtr_preferencesForGeneration * object = nullptr ;
+  macroMyNew (object, cPtr_preferencesForGeneration (inCompiler COMMA_THERE)) ;
+  object->mProperty_mPropertyListForGeneration = in_mPropertyListForGeneration ;
+  object->mProperty_mMainXibDescriptorList = in_mMainXibDescriptorList ;
+  object->mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
+  object->mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
+  object->mProperty_mActionBindingListForGeneration = in_mActionBindingListForGeneration ;
+  object->mProperty_mOutletMap = in_mOutletMap ;
+  object->mProperty_mExternSwiftFunctionList = in_mExternSwiftFunctionList ;
+  object->mProperty_mTableViewBindingGenerationList = in_mTableViewBindingGenerationList ;
+  object->mProperty_mEBViewBindingGenerationList = in_mEBViewBindingGenerationList ;
+  object->mProperty_mViewGenerationList = in_mViewGenerationList ;
+  object->mProperty_mImplicitViewFunctionGenerationList = in_mImplicitViewFunctionGenerationList ;
+  object->mProperty_mConfiguratorMap = in_mConfiguratorMap ;
+  object->mProperty_mAutoLayoutOutletMap = in_mAutoLayoutOutletMap ;
+  const GALGAS_preferencesForGeneration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8835,6 +8891,12 @@ GALGAS_controllerBindingOptionDecoratedList GALGAS_controllerBindingOptionDecora
 // @astAbstractViewDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astAbstractViewDeclaration::cPtr_astAbstractViewDeclaration (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -8866,6 +8928,17 @@ ComparisonResult GALGAS_astAbstractViewDeclaration::objectCompare (const GALGAS_
 GALGAS_astAbstractViewDeclaration::GALGAS_astAbstractViewDeclaration (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astAbstractViewDeclaration GALGAS_astAbstractViewDeclaration::init_28__29_ (Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  cPtr_astAbstractViewDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE)) ;
+  const GALGAS_astAbstractViewDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10504,6 +10577,15 @@ GALGAS_astComputedHorizontalViewDeclaration_2D_weak GALGAS_astComputedHorizontal
 // @astComputedVerticalViewDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astComputedVerticalViewDeclaration::cPtr_astComputedVerticalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astComputedVerticalViewDeclaration::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
@@ -10555,6 +10637,23 @@ ComparisonResult GALGAS_astComputedVerticalViewDeclaration::objectCompare (const
 GALGAS_astComputedVerticalViewDeclaration::GALGAS_astComputedVerticalViewDeclaration (void) :
 GALGAS_astAbstractViewDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astComputedVerticalViewDeclaration GALGAS_astComputedVerticalViewDeclaration::init_28__2C__2C__29_ (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                                              const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                                                                              const GALGAS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  cPtr_astComputedVerticalViewDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astComputedVerticalViewDeclaration (inCompiler COMMA_THERE)) ;
+  object->mProperty_mFunctionCallList = in_mFunctionCallList ;
+  object->mProperty_mInstructionList = in_mInstructionList ;
+  object->mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+  const GALGAS_astComputedVerticalViewDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10807,6 +10906,12 @@ GALGAS_astComputedVerticalViewDeclaration_2D_weak GALGAS_astComputedVerticalView
 // @astAbstractViewInstructionDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astAbstractViewInstructionDeclaration::cPtr_astAbstractViewInstructionDeclaration (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -10838,6 +10943,17 @@ ComparisonResult GALGAS_astAbstractViewInstructionDeclaration::objectCompare (co
 GALGAS_astAbstractViewInstructionDeclaration::GALGAS_astAbstractViewInstructionDeclaration (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astAbstractViewInstructionDeclaration GALGAS_astAbstractViewInstructionDeclaration::init_28__29_ (Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  cPtr_astAbstractViewInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  const GALGAS_astAbstractViewInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11010,6 +11126,13 @@ GALGAS_astAbstractViewInstructionDeclaration_2D_weak GALGAS_astAbstractViewInstr
 // @astSeparatorInstructionDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astSeparatorInstructionDeclaration::cPtr_astSeparatorInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_horizontal () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astSeparatorInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
@@ -11053,6 +11176,19 @@ ComparisonResult GALGAS_astSeparatorInstructionDeclaration::objectCompare (const
 GALGAS_astSeparatorInstructionDeclaration::GALGAS_astSeparatorInstructionDeclaration (void) :
 GALGAS_astAbstractViewInstructionDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astSeparatorInstructionDeclaration GALGAS_astSeparatorInstructionDeclaration::init_28_horizontal_29_ (const GALGAS_bool & in_horizontal,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) {
+  cPtr_astSeparatorInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astSeparatorInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  object->mProperty_horizontal = in_horizontal ;
+  const GALGAS_astSeparatorInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11271,6 +11407,13 @@ GALGAS_astSeparatorInstructionDeclaration_2D_weak GALGAS_astSeparatorInstruction
 // @astDividerInstructionDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astDividerInstructionDeclaration::cPtr_astDividerInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_horizontal () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astDividerInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
@@ -11314,6 +11457,19 @@ ComparisonResult GALGAS_astDividerInstructionDeclaration::objectCompare (const G
 GALGAS_astDividerInstructionDeclaration::GALGAS_astDividerInstructionDeclaration (void) :
 GALGAS_astAbstractViewInstructionDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astDividerInstructionDeclaration GALGAS_astDividerInstructionDeclaration::init_28_horizontal_29_ (const GALGAS_bool & in_horizontal,
+                                                                                                            Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  cPtr_astDividerInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astDividerInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  object->mProperty_horizontal = in_horizontal ;
+  const GALGAS_astDividerInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11713,6 +11869,16 @@ GALGAS_optionalHiddenBinding GALGAS_optionalHiddenBinding::extractObject (const 
 // @astHStackViewInstructionDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astHStackViewInstructionDeclaration::cPtr_astHStackViewInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mOptionalHiddenBinding (),
+mProperty_mAstNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astHStackViewInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
@@ -11768,6 +11934,25 @@ ComparisonResult GALGAS_astHStackViewInstructionDeclaration::objectCompare (cons
 GALGAS_astHStackViewInstructionDeclaration::GALGAS_astHStackViewInstructionDeclaration (void) :
 GALGAS_astAbstractViewInstructionDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astHStackViewInstructionDeclaration GALGAS_astHStackViewInstructionDeclaration::init_28__2C__2C__2C__29_ (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                                                    const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                                                                                    const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding,
+                                                                                                                    const GALGAS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  cPtr_astHStackViewInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astHStackViewInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  object->mProperty_mFunctionCallList = in_mFunctionCallList ;
+  object->mProperty_mInstructionList = in_mInstructionList ;
+  object->mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
+  object->mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
+  const GALGAS_astHStackViewInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12037,6 +12222,16 @@ GALGAS_astHStackViewInstructionDeclaration_2D_weak GALGAS_astHStackViewInstructi
 // @astVStackViewInstructionDeclaration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astVStackViewInstructionDeclaration::cPtr_astVStackViewInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mOptionalHiddenBinding (),
+mProperty_mAstNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astVStackViewInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
@@ -12092,6 +12287,25 @@ ComparisonResult GALGAS_astVStackViewInstructionDeclaration::objectCompare (cons
 GALGAS_astVStackViewInstructionDeclaration::GALGAS_astVStackViewInstructionDeclaration (void) :
 GALGAS_astAbstractViewInstructionDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astVStackViewInstructionDeclaration GALGAS_astVStackViewInstructionDeclaration::init_28__2C__2C__2C__29_ (const GALGAS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                                                    const GALGAS_astViewInstructionList & in_mInstructionList,
+                                                                                                                    const GALGAS_optionalHiddenBinding & in_mOptionalHiddenBinding,
+                                                                                                                    const GALGAS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  cPtr_astVStackViewInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astVStackViewInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  object->mProperty_mFunctionCallList = in_mFunctionCallList ;
+  object->mProperty_mInstructionList = in_mInstructionList ;
+  object->mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
+  object->mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
+  const GALGAS_astVStackViewInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12361,6 +12575,12 @@ GALGAS_astVStackViewInstructionDeclaration_2D_weak GALGAS_astVStackViewInstructi
 // @astSpaceViewInstruction reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_astSpaceViewInstruction::cPtr_astSpaceViewInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_astSpaceViewInstruction::printNonNullClassInstanceProperties (void) const {
     cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
@@ -12397,6 +12617,17 @@ ComparisonResult GALGAS_astSpaceViewInstruction::objectCompare (const GALGAS_ast
 GALGAS_astSpaceViewInstruction::GALGAS_astSpaceViewInstruction (void) :
 GALGAS_astAbstractViewInstructionDeclaration () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_astSpaceViewInstruction GALGAS_astSpaceViewInstruction::init_28__29_ (Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  cPtr_astSpaceViewInstruction * object = nullptr ;
+  macroMyNew (object, cPtr_astSpaceViewInstruction (inCompiler COMMA_THERE)) ;
+  const GALGAS_astSpaceViewInstruction result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 

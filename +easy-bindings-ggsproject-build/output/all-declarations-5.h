@@ -1703,8 +1703,11 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
     mProperty_mEnumerationFunctionListAST = inValue ;
   }
 
-//--------------------------------- Virtual destructor (in debug mode)
+//--------------------------------- Virtual destructor
   public: virtual ~ GALGAS_astDeclarationStruct (void) ;
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
   public: GALGAS_astDeclarationStruct (const GALGAS_declarationListAST & in_mUnifiedDeclarationList,
@@ -1718,6 +1721,10 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
                                        const GALGAS_enumerationFunctionListAST & in_mEnumerationFunctionListAST) ;
 
 //-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GALGAS_astDeclarationStruct init_28__29_ (Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1849,6 +1856,14 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
 //-- Start of type generic part
 
+//--------------------------------- Initializers
+  public: static GALGAS_enumForGeneration init_28__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
+                                                                    const class GALGAS_lstringlist & inOperand1,
+                                                                    const class GALGAS_enumFuncMap & inOperand2,
+                                                                    const class GALGAS_bool & inOperand3,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
@@ -1898,9 +1913,9 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
 //--- Extension method generateCode
-  public: virtual void method_generateCode (const class GALGAS_string inOutputDirectory,
-           const class GALGAS_generationStruct inGenerationStruct,
-           class GALGAS_stringset & ioGeneratedFileSet,
+  public: virtual void method_generateCode (const class GALGAS_string arg_inOutputDirectory,
+           const class GALGAS_generationStruct arg_inGenerationStruct,
+           class GALGAS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
@@ -1908,6 +1923,10 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
   public: GALGAS_lstringlist mProperty_mEnumConstantList ;
   public: GALGAS_enumFuncMap mProperty_mEnumFuncMap ;
   public: GALGAS_bool mProperty_mCaseIterable ;
+
+
+//--- Default constructor
+  public: cPtr_enumForGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
   public: cPtr_enumForGeneration (const GALGAS_string & in_mEnumName,
@@ -1949,6 +1968,8 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
   public: GALGAS_enumForGeneration bang_enumForGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //-- Start of type generic part
+
+//--------------------------------- Initializers
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1994,6 +2015,8 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
   public: GALGAS_entityStrongReferenceGraph (void) ;
 
 //-- Start of type generic part
+
+//--------------------------------- Initializers
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;

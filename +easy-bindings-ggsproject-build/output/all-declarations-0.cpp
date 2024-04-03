@@ -10418,6 +10418,12 @@ GALGAS_enumFuncMap GALGAS_enumFuncMap::extractObject (const GALGAS_object & inOb
 // @abstractFileGeneration reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_abstractFileGeneration::cPtr_abstractFileGeneration (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_abstractFileGeneration::printNonNullClassInstanceProperties (void) const {
     acStrongPtr_class::printNonNullClassInstanceProperties () ;
@@ -10449,6 +10455,17 @@ ComparisonResult GALGAS_abstractFileGeneration::objectCompare (const GALGAS_abst
 GALGAS_abstractFileGeneration::GALGAS_abstractFileGeneration (void) :
 AC_GALGAS_reference_class () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_abstractFileGeneration GALGAS_abstractFileGeneration::init_28__29_ (Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
+  cPtr_abstractFileGeneration * object = nullptr ;
+  macroMyNew (object, cPtr_abstractFileGeneration (inCompiler COMMA_THERE)) ;
+  const GALGAS_abstractFileGeneration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 

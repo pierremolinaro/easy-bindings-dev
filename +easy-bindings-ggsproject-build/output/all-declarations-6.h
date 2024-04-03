@@ -28,6 +28,8 @@ class GALGAS_computedPropertyGeneration_2D_weak : public GALGAS_propertyGenerati
 
 //-- Start of type generic part
 
+//--------------------------------- Initializers
+
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
@@ -266,8 +268,11 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
     mProperty_mICNS_5F_fileList = inValue ;
   }
 
-//--------------------------------- Virtual destructor (in debug mode)
+//--------------------------------- Virtual destructor
   public: virtual ~ GALGAS_XcodeProjectDescriptor (void) ;
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
   public: GALGAS_XcodeProjectDescriptor (const GALGAS_uint & in_mSequenceNumber,
@@ -293,6 +298,10 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
                                          const GALGAS__32_stringlist & in_mICNS_5F_fileList) ;
 
 //-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GALGAS_XcodeProjectDescriptor init_28__29_ (Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;

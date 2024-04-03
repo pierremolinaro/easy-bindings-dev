@@ -26,6 +26,29 @@ mProperty_mEnumerationFunctionListAST () {
 GALGAS_astDeclarationStruct::~ GALGAS_astDeclarationStruct (void) {
 }
 
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::init_28__29_ (Compiler * inCompiler
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_astDeclarationStruct result ;
+  result.setInitializedProperties (inCompiler) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_astDeclarationStruct::setInitializedProperties (Compiler * inCompiler) {
+  mProperty_mUnifiedDeclarationList = GALGAS_declarationListAST::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 15)) ;
+  mProperty_mBindingSpecificationListMap = GALGAS_outletClassBindingSpecificationList::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 16)) ;
+  mProperty_mAutoLayoutBindingSpecificationList = GALGAS_autoLayoutViewClassBindingSpecificationList::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 17)) ;
+  mProperty_mPreferences = GALGAS_prefDeclaration::class_func_new (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 18)) ;
+  mProperty_mXcodeProject = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.ggs", 19)) ;
+  mProperty_mGraphvizList = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 20)) ;
+  mProperty_mAutoLayoutVStackFunctionMap = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("grammar-syntax.ggs", 21)) ;
+  mProperty_mAutoLayoutHStackFunctionMap = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("grammar-syntax.ggs", 22)) ;
+  mProperty_mEnumerationFunctionListAST = GALGAS_enumerationFunctionListAST::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 23)) ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_astDeclarationStruct::GALGAS_astDeclarationStruct (const GALGAS_declarationListAST & inOperand0,
@@ -52,19 +75,8 @@ mProperty_mEnumerationFunctionListAST (inOperand8) {
 
 GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::class_func_new (Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_declarationListAST in_mUnifiedDeclarationList = GALGAS_declarationListAST::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 15)) ;
-  const GALGAS_outletClassBindingSpecificationList in_mBindingSpecificationListMap = GALGAS_outletClassBindingSpecificationList::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 16)) ;
-  const GALGAS_autoLayoutViewClassBindingSpecificationList in_mAutoLayoutBindingSpecificationList = GALGAS_autoLayoutViewClassBindingSpecificationList::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 17)) ;
-  const GALGAS_prefDeclaration in_mPreferences = GALGAS_prefDeclaration::class_func_new (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 18)) ;
-  const GALGAS_lstring in_mXcodeProject = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.ggs", 19)) ;
-  const GALGAS_lstringlist in_mGraphvizList = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 20)) ;
-  const GALGAS_astAutoLayoutViewFunctionMap in_mAutoLayoutVStackFunctionMap = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("grammar-syntax.ggs", 21)) ;
-  const GALGAS_astAutoLayoutViewFunctionMap in_mAutoLayoutHStackFunctionMap = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("grammar-syntax.ggs", 22)) ;
-  const GALGAS_enumerationFunctionListAST in_mEnumerationFunctionListAST = GALGAS_enumerationFunctionListAST::class_func_emptyList (SOURCE_FILE ("grammar-syntax.ggs", 23)) ;
   GALGAS_astDeclarationStruct result ;
-  if (in_mUnifiedDeclarationList.isValid () && in_mBindingSpecificationListMap.isValid () && in_mAutoLayoutBindingSpecificationList.isValid () && in_mPreferences.isValid () && in_mXcodeProject.isValid () && in_mGraphvizList.isValid () && in_mAutoLayoutVStackFunctionMap.isValid () && in_mAutoLayoutHStackFunctionMap.isValid () && in_mEnumerationFunctionListAST.isValid ()) {
-    result = GALGAS_astDeclarationStruct (in_mUnifiedDeclarationList, in_mBindingSpecificationListMap, in_mAutoLayoutBindingSpecificationList, in_mPreferences, in_mXcodeProject, in_mGraphvizList, in_mAutoLayoutVStackFunctionMap, in_mAutoLayoutHStackFunctionMap, in_mEnumerationFunctionListAST) ;
-  }
+  result.setInitializedProperties (inCompiler) ;
   return result ;
 }
 
@@ -197,6 +209,13 @@ GALGAS_astDeclarationStruct GALGAS_astDeclarationStruct::extractObject (const GA
 // @doubleAsDefaultValue reference class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_doubleAsDefaultValue::cPtr_doubleAsDefaultValue (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractDefaultValue (inCompiler COMMA_THERE),
+mProperty_mValue () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_doubleAsDefaultValue::printNonNullClassInstanceProperties (void) const {
     cPtr_abstractDefaultValue::printNonNullClassInstanceProperties () ;
@@ -240,6 +259,19 @@ ComparisonResult GALGAS_doubleAsDefaultValue::objectCompare (const GALGAS_double
 GALGAS_doubleAsDefaultValue::GALGAS_doubleAsDefaultValue (void) :
 GALGAS_abstractDefaultValue () {
 }
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+/* GALGAS_doubleAsDefaultValue GALGAS_doubleAsDefaultValue::init_28__29_ (const GALGAS_ldouble & in_mValue,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  cPtr_doubleAsDefaultValue * object = nullptr ;
+  macroMyNew (object, cPtr_doubleAsDefaultValue (inCompiler COMMA_THERE)) ;
+  object->mProperty_mValue = in_mValue ;
+  const GALGAS_doubleAsDefaultValue result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+} */
 
 //--------------------------------------------------------------------------------------------------
 
