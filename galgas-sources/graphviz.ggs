@@ -43,10 +43,10 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
   var @stringlist exploreArray = [inRootEntityName]
   var @stringlist nodeList = []
   var @stringlist arrowList = []
-  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.count () > 0 do
+  loop (inSemanticContext.mClassMap.count + 1) while exploreArray.count > 0 do
     !?exploreArray.popLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
-    inSemanticContext.mClassMap.searchKey (entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*)
+    inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
     entityKind.entity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
@@ -60,14 +60,14 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
       case property (type, accessibility) :
         switch accessibility 
         case stored :
-          node += "|" + type.swiftTypeName () + " " + propertyName
+          node += "|" + type.swiftTypeName + " " + propertyName
         case transient (*) :
         case computed :
         end
       case arrayController (2*) :
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, *, optionKind) :
-       if accessibility.isStored () then
+       if accessibility.isStored then
          node += "|<" + propertyName + ">[" + typeName + "] " + propertyName
          switch optionKind
          case none :
@@ -94,7 +94,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
          end
         end
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, *) :
-        if accessibility.isStored () then
+        if accessibility.isStored then
           node += "|<" + propertyName + ">" + typeName + "? " + propertyName
           switch opposite
           case none :
@@ -133,7 +133,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
   end
   s += "}\n"
   let filePath = inSourceFileDirectory + "/models/graph-" + inRootEntityName + ".dot"
-  let temp = filePath.stringByDeletingLastPathComponent () ; temp.makeDirectory ()
+  let temp = filePath.stringByDeletingLastPathComponent ; temp.makeDirectory ()
 #  filePath.stringByDeletingLastPathComponent ().makeDirectory ()
 }
 
@@ -153,11 +153,11 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   var @stringlist nodeList = []
   var @stringlist arrowList = []
   var @entityStrongReferenceGraph entityStrongReferenceGraph = .emptyGraph
-  loop (inSemanticContext.mClassMap.count () + 1) while exploreArray.count () > 0 do
+  loop (inSemanticContext.mClassMap.count + 1) while exploreArray.count > 0 do
     !?exploreArray.popLast (?let @string entityName)
     !?nodeList.append (entityName)
-    !?entityStrongReferenceGraph.addNode (.new (entityName, .nowhere), entityName)
-    inSemanticContext.mClassMap.searchKey (entityName.nowhere (), ?let entityKind, ?let @propertyMap propertyMap, ?2*)
+    !?entityStrongReferenceGraph.addNode (.init (entityName, .nowhere), entityName)
+    inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
     entityKind.entity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
@@ -165,7 +165,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
         !?exploreArray.append (superEntityName)
       end
       !?arrowList.append (superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]")
-      !?entityStrongReferenceGraph.addEdge (.new (superEntityName, .nowhere), .new (entityName, .nowhere))
+      !?entityStrongReferenceGraph.addEdge (.init (superEntityName, .nowhere), .init (entityName, .nowhere))
     end
     for (*, propertyKind, 2*) in propertyMap do
       switch propertyKind
@@ -174,8 +174,8 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, 2*) :
         !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
-        !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
-        if accessibility.isStored () then
+        !?entityStrongReferenceGraph.addEdge (.init (entityName, .nowhere), .init (typeName, .nowhere))
+        if accessibility.isStored then
           if not reachableEntityNameSet.hasKey (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
@@ -184,9 +184,9 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, weak) :
         if not weak then
           !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
-          !?entityStrongReferenceGraph.addEdge (.new (entityName, .nowhere), .new (typeName, .nowhere))
+          !?entityStrongReferenceGraph.addEdge (.init (entityName, .nowhere), .init (typeName, .nowhere))
         end
-        if accessibility.isStored () then
+        if accessibility.isStored then
           switch opposite
           case none :
             if not reachableEntityNameSet.hasKey (typeName) then
@@ -216,14 +216,14 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   end
   s += "}\n"
   var filePath = inSourceFileDirectory + "/models/strong-" + inRootEntityName + ".dot"
-  let temp = filePath.stringByDeletingLastPathComponent () ; temp.makeDirectory ()
+  let temp = filePath.stringByDeletingLastPathComponent ; temp.makeDirectory ()
   s.writeToFileWhenDifferentContents (filePath, ?*)
 //-- Print graph
   filePath = inSourceFileDirectory + "/models/strong-dep-" + inRootEntityName + ".dot"
-  let temp2 = entityStrongReferenceGraph.graphviz () ; temp2.writeToFileWhenDifferentContents (filePath, ?*)
+  let temp2 = entityStrongReferenceGraph.graphviz ; temp2.writeToFileWhenDifferentContents (filePath, ?*)
 //-- Check all node are defined
-  let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList ()
-  if undefinedNodeList.count () > 0 then
+  let undefinedNodeList = entityStrongReferenceGraph.undefinedNodeKeyList
+  if undefinedNodeList.count > 0 then
     var s = "for " + inRootEntityName + " graph , the following entities are not defined"
     for (node) in undefinedNodeList do
       s += "\n -- " + node
@@ -231,8 +231,8 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     error .nowhere : s
   end
 //-- Check accessibility
-  if undefinedNodeList.count () == 0 then
-    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ([.new (inRootEntityName, .nowhere)], [])
+  if undefinedNodeList.count == 0 then
+    let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom ([.init (inRootEntityName, .nowhere)], [])
     let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
     for (node) in nodeList do
       if not accessibleNodeSet.hasKey (node) then
@@ -241,10 +241,10 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     end
   end
 //-- Check no circularities
-  if undefinedNodeList.count () == 0 then 
+  if undefinedNodeList.count == 0 then 
     entityStrongReferenceGraph.circularities (?*, ?let @lstringlist unsortedNodeList)
-    if unsortedNodeList.count () > 0 then
-      var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.count ()
+    if unsortedNodeList.count > 0 then
+      var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.count
       s += " entities are involved in a strong reference cycle"
       for (node) in unsortedNodeList do
         s += "\n -- " + node

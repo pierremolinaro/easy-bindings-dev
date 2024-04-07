@@ -143,7 +143,7 @@ map @propertyMap {
 func @propertyMap-element.isAbstract() -> @bool {
   result = false
   if let [self.mKind property ?1* ?accessibility:let @propertyAccessibility accessibility] then
-    if accessibility.isTransient () then
+    if accessibility.isTransient then
       accessibility.transient (?isAbstract: let ab)
       result = ab
     end

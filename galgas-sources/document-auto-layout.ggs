@@ -125,8 +125,8 @@ syntax extension easyBindings_syntax {
     !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
       documentName,
       rootEntityName,
-      "String".here (),
-      "documentFileName".here (),
+      "String".here ,
+      "documentFileName".here ,
       [],
       false
     )
@@ -169,14 +169,14 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   ioSemanticContext.mClassMap.searchKey (
-    .new (preferencesName (), .nowhere),
+    .init (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
   )
 //-- Get document property map
   ioSemanticContext.mClassMap.searchKey (
-    .new (self.mClassName, .nowhere),
+    .init (self.mClassName, .nowhere),
     ?*,
     ?let documentPropertyMap,
     ?let documentActionMap,
@@ -225,7 +225,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
         ?let @typeKind type,
         ?let @location errorLocation
       )
-      if not type.isBoolType () then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       !?multipleBindingGenerationList.append (

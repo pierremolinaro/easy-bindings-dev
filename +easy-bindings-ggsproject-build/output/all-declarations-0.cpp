@@ -10456,17 +10456,6 @@ GALGAS_abstractFileGeneration::GALGAS_abstractFileGeneration (void) :
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_abstractFileGeneration GALGAS_abstractFileGeneration::init_28__29_ (Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  cPtr_abstractFileGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_abstractFileGeneration (inCompiler COMMA_THERE)) ;
-  const GALGAS_abstractFileGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_abstractFileGeneration::GALGAS_abstractFileGeneration (const cPtr_abstractFileGeneration * inSourcePtr) :

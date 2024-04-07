@@ -10,6 +10,593 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//                                       Phase 1: @arrayControllerModelKind enum                                       *
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GALGAS_arrayControllerModelKind (void) ;
+
+//--------------------------------- Enumeration
+  public: typedef enum {
+    kNotBuilt,
+    kEnum_entityArray,
+    kEnum_transientArray
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private: enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
+  public: inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_arrayControllerModelKind extractObject (const GALGAS_object & inObject,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerModelKind class_func_entityArray (LOCATION_ARGS) ;
+
+  public: static class GALGAS_arrayControllerModelKind class_func_transientArray (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_arrayControllerModelKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_entityArray () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_transientArray () const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_arrayControllerModelKind class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerModelKind ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @arrayControllerGeneration reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
+//--------------------------------- Default constructor
+  public: GALGAS_arrayControllerGeneration (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_arrayControllerGeneration (const class cPtr_arrayControllerGeneration * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GALGAS_string readProperty_mOwnerName (void) const ;
+  public: void setProperty_mOwnerName (const GALGAS_string & inValue) ;
+
+  public: class GALGAS_lstring readProperty_mControllerName (void) const ;
+  public: void setProperty_mControllerName (const GALGAS_lstring & inValue) ;
+
+  public: class GALGAS_string readProperty_mModelTypeName (void) const ;
+  public: void setProperty_mModelTypeName (const GALGAS_string & inValue) ;
+
+  public: class GALGAS_arrayControllerModelKind readProperty_mArrayControllerModelKind (void) const ;
+  public: void setProperty_mArrayControllerModelKind (const GALGAS_arrayControllerModelKind & inValue) ;
+
+  public: class GALGAS_string readProperty_mElementTypeName (void) const ;
+  public: void setProperty_mElementTypeName (const GALGAS_string & inValue) ;
+
+  public: class GALGAS_bool readProperty_mElementTypeIsGraphic (void) const ;
+  public: void setProperty_mElementTypeIsGraphic (const GALGAS_bool & inValue) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GALGAS_arrayControllerGeneration init_21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                const class GALGAS_lstring & inOperand1,
+                                                                                const class GALGAS_string & inOperand2,
+                                                                                const class GALGAS_arrayControllerModelKind & inOperand3,
+                                                                                const class GALGAS_string & inOperand4,
+                                                                                const class GALGAS_bool & inOperand5,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_arrayControllerGeneration extractObject (const GALGAS_object & inObject,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerGeneration class_func_new (const class GALGAS_string & inOperand0,
+                                                                        const class GALGAS_lstring & inOperand1,
+                                                                        const class GALGAS_string & inOperand2,
+                                                                        const class GALGAS_arrayControllerModelKind & inOperand3,
+                                                                        const class GALGAS_string & inOperand4,
+                                                                        const class GALGAS_bool & inOperand5
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_arrayControllerGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_arrayControllerGeneration class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerGeneration ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @arrayControllerGeneration class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_arrayControllerGeneration : public cPtr_abstractFileGeneration {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void arrayControllerGeneration_init_21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                       const class GALGAS_lstring & inOperand1,
+                                                                       const class GALGAS_string & inOperand2,
+                                                                       const class GALGAS_arrayControllerModelKind & inOperand3,
+                                                                       const class GALGAS_string & inOperand4,
+                                                                       const class GALGAS_bool & inOperand5,
+                                                                       Compiler * inCompiler) ;
+
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GALGAS_string arg_inOutputDirectory,
+           const class GALGAS_generationStruct arg_inGenerationStruct,
+           class GALGAS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_string mProperty_mOwnerName ;
+  public: GALGAS_lstring mProperty_mControllerName ;
+  public: GALGAS_string mProperty_mModelTypeName ;
+  public: GALGAS_arrayControllerModelKind mProperty_mArrayControllerModelKind ;
+  public: GALGAS_string mProperty_mElementTypeName ;
+  public: GALGAS_bool mProperty_mElementTypeIsGraphic ;
+
+
+//--- Default constructor
+  public: cPtr_arrayControllerGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_arrayControllerGeneration (const GALGAS_string & in_mOwnerName,
+                                          const GALGAS_lstring & in_mControllerName,
+                                          const GALGAS_string & in_mModelTypeName,
+                                          const GALGAS_arrayControllerModelKind & in_mArrayControllerModelKind,
+                                          const GALGAS_string & in_mElementTypeName,
+                                          const GALGAS_bool & in_mElementTypeIsGraphic
+                                          COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @arrayControllerGeneration_2D_weak weak reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_arrayControllerGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_arrayControllerGeneration_2D_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_arrayControllerGeneration_2D_weak (const class GALGAS_arrayControllerGeneration & inSource) ;
+
+  public: GALGAS_arrayControllerGeneration_2D_weak & operator = (const class GALGAS_arrayControllerGeneration & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_arrayControllerGeneration bang_arrayControllerGeneration_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_arrayControllerGeneration_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_arrayControllerGeneration_2D_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_arrayControllerGeneration_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_arrayControllerGeneration_2D_weak class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerGeneration_2D_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutTableViewControllerBoundColumnListAST list
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutTableViewControllerBoundColumnListAST (void) ;
+
+//--------------------------------- List constructor used by listmap
+  public: GALGAS_autoLayoutTableViewControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                 const class GALGAS_bool & in_mEditable,
+                                                 const class GALGAS_lstring & in_mPropertyName,
+                                                 const class GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                 const class GALGAS_lstring & in_mSortPropertyName
+                                                 COMMA_LOCATION_ARGS) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutTableViewControllerBoundColumnListAST extractObject (const GALGAS_object & inObject,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST class_func_emptyList (LOCATION_ARGS) ;
+
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST class_func_listWithValue (const class GALGAS_bool & inOperand0,
+                                                                                                        const class GALGAS_lstring & inOperand1,
+                                                                                                        const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                        const class GALGAS_lstring & inOperand3
+                                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
+                                                       class Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GALGAS_bool & inOperand0,
+                                                     const class GALGAS_lstring & inOperand1,
+                                                     const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                     const class GALGAS_lstring & inOperand3
+                                                     COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GALGAS_autoLayoutTableViewControllerBoundColumnListAST add_operation (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_append (class GALGAS_bool constinArgument0,
+                                               class GALGAS_lstring constinArgument1,
+                                               class GALGAS_astAutoLayoutViewInstructionParameterList constinArgument2,
+                                               class GALGAS_lstring constinArgument3,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GALGAS_bool constinArgument0,
+                                                      class GALGAS_lstring constinArgument1,
+                                                      class GALGAS_astAutoLayoutViewInstructionParameterList constinArgument2,
+                                                      class GALGAS_lstring constinArgument3,
+                                                      class GALGAS_uint constinArgument4,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GALGAS_bool & outArgument0,
+                                                 class GALGAS_lstring & outArgument1,
+                                                 class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                                 class GALGAS_lstring & outArgument3,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_popLast (class GALGAS_bool & outArgument0,
+                                                class GALGAS_lstring & outArgument1,
+                                                class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                                class GALGAS_lstring & outArgument3,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GALGAS_bool & outArgument0,
+                                                      class GALGAS_lstring & outArgument1,
+                                                      class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                                      class GALGAS_lstring & outArgument3,
+                                                      class GALGAS_uint constinArgument4,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMColumnParameterListASTAtIndex (class GALGAS_astAutoLayoutViewInstructionParameterList constinArgument0,
+                                                                          class GALGAS_uint constinArgument1,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMEditableAtIndex (class GALGAS_bool constinArgument0,
+                                                            class GALGAS_uint constinArgument1,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMPropertyNameAtIndex (class GALGAS_lstring constinArgument0,
+                                                                class GALGAS_uint constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMSortPropertyNameAtIndex (class GALGAS_lstring constinArgument0,
+                                                                    class GALGAS_uint constinArgument1,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_first (class GALGAS_bool & outArgument0,
+                                              class GALGAS_lstring & outArgument1,
+                                              class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                              class GALGAS_lstring & outArgument3,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_last (class GALGAS_bool & outArgument0,
+                                             class GALGAS_lstring & outArgument1,
+                                             class GALGAS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                             class GALGAS_lstring & outArgument3,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListASTAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                         Compiler * inCompiler
+                                                                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_mEditableAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_lstring getter_mSortPropertyNameAtIndex (const class GALGAS_uint & constinOperand0,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutTableViewControllerBoundColumnListAST getter_subListFromIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutTableViewControllerBoundColumnListAST getter_subListToIndex (const class GALGAS_uint & constinOperand0,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutTableViewControllerBoundColumnListAST getter_subListWithRange (const class GALGAS_range & constinOperand0,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+
+  friend class cEnumerator_autoLayoutTableViewControllerBoundColumnListAST ;
+ 
+} ; // End of GALGAS_autoLayoutTableViewControllerBoundColumnListAST class
+
+//--------------------------------------------------------------------------------------------------
+//   Enumerator declaration                                                                      
+//--------------------------------------------------------------------------------------------------
+
+class cEnumerator_autoLayoutTableViewControllerBoundColumnListAST : public cGenericAbstractEnumerator {
+  public: cEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inEnumeratedObject,
+                                                                       const EnumerationOrder inOrder) ;
+
+//--- Current element access
+  public: class GALGAS_bool current_mEditable (LOCATION_ARGS) const ;
+  public: class GALGAS_lstring current_mPropertyName (LOCATION_ARGS) const ;
+  public: class GALGAS_astAutoLayoutViewInstructionParameterList current_mColumnParameterListAST (LOCATION_ARGS) const ;
+  public: class GALGAS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @autoLayoutTableViewControllerBoundColumnListAST_2D_element struct
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GALGAS_bool mProperty_mEditable ;
+  public: inline GALGAS_bool readProperty_mEditable (void) const {
+    return mProperty_mEditable ;
+  }
+
+  public: GALGAS_lstring mProperty_mPropertyName ;
+  public: inline GALGAS_lstring readProperty_mPropertyName (void) const {
+    return mProperty_mPropertyName ;
+  }
+
+  public: GALGAS_astAutoLayoutViewInstructionParameterList mProperty_mColumnParameterListAST ;
+  public: inline GALGAS_astAutoLayoutViewInstructionParameterList readProperty_mColumnParameterListAST (void) const {
+    return mProperty_mColumnParameterListAST ;
+  }
+
+  public: GALGAS_lstring mProperty_mSortPropertyName ;
+  public: inline GALGAS_lstring readProperty_mSortPropertyName (void) const {
+    return mProperty_mSortPropertyName ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMEditable (const GALGAS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEditable = inValue ;
+  }
+
+  public: inline void setter_setMPropertyName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mPropertyName = inValue ;
+  }
+
+  public: inline void setter_setMColumnParameterListAST (const GALGAS_astAutoLayoutViewInstructionParameterList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mColumnParameterListAST = inValue ;
+  }
+
+  public: inline void setter_setMSortPropertyName (const GALGAS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSortPropertyName = inValue ;
+  }
+
+//--------------------------------- Virtual destructor
+  public: virtual ~ GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (void) ;
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element (const GALGAS_bool & in_mEditable,
+                                                                             const GALGAS_lstring & in_mPropertyName,
+                                                                             const GALGAS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
+                                                                             const GALGAS_lstring & in_mSortPropertyName) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element init_21__21__21__21_ (const class GALGAS_bool & inOperand0,
+                                                                                                         const class GALGAS_lstring & inOperand1,
+                                                                                                         const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                         const class GALGAS_lstring & inOperand3,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element extractObject (const GALGAS_object & inObject,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element class_func_new (const class GALGAS_bool & inOperand0,
+                                                                                                         const class GALGAS_lstring & inOperand1,
+                                                                                                         const class GALGAS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                                                         const class GALGAS_lstring & inOperand3,
+                                                                                                         class Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @autoLayoutTableViewControllerAttributListAST list
 //
 //--------------------------------------------------------------------------------------------------
@@ -211,10 +798,10 @@ class GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element : public AC
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                                  const class GALGAS_abstractDefaultValue & inOperand1,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerAttributListAST_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                              const class GALGAS_abstractDefaultValue & inOperand1,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -268,7 +855,7 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST : public GALGAS_abstrac
 //--------------------------------- Constructor from pointer
   public: GALGAS_autoLayoutTableViewControllerDeclarationAST (const class cPtr_autoLayoutTableViewControllerDeclarationAST * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mControllerName (void) const ;
 
   public: class GALGAS_bool readProperty_mIsRoot (void) const ;
@@ -284,15 +871,15 @@ class GALGAS_autoLayoutTableViewControllerDeclarationAST : public GALGAS_abstrac
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerDeclarationAST init_28__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                                          const class GALGAS_lstring & inOperand1,
-                                                                                                          const class GALGAS_bool & inOperand2,
-                                                                                                          const class GALGAS_lstring & inOperand3,
-                                                                                                          const class GALGAS_lstring & inOperand4,
-                                                                                                          const class GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand5,
-                                                                                                          const class GALGAS_autoLayoutTableViewControllerAttributListAST & inOperand6,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerDeclarationAST init_21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                                      const class GALGAS_lstring & inOperand1,
+                                                                                                      const class GALGAS_bool & inOperand2,
+                                                                                                      const class GALGAS_lstring & inOperand3,
+                                                                                                      const class GALGAS_lstring & inOperand4,
+                                                                                                      const class GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand5,
+                                                                                                      const class GALGAS_autoLayoutTableViewControllerAttributListAST & inOperand6,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -345,6 +932,18 @@ class cPtr_autoLayoutTableViewControllerDeclarationAST : public cPtr_abstractDec
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void autoLayoutTableViewControllerDeclarationAST_init_21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                             const class GALGAS_lstring & inOperand1,
+                                                                                             const class GALGAS_bool & inOperand2,
+                                                                                             const class GALGAS_lstring & inOperand3,
+                                                                                             const class GALGAS_lstring & inOperand4,
+                                                                                             const class GALGAS_autoLayoutTableViewControllerBoundColumnListAST & inOperand5,
+                                                                                             const class GALGAS_autoLayoutTableViewControllerAttributListAST & inOperand6,
+                                                                                             Compiler * inCompiler) ;
+
+
 //--- Extension getter nodeKey
   public: virtual class GALGAS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -466,7 +1065,7 @@ class GALGAS_autoLayoutTableViewControllerPropertyGeneration : public GALGAS_pro
 //--------------------------------- Constructor from pointer
   public: GALGAS_autoLayoutTableViewControllerPropertyGeneration (const class cPtr_autoLayoutTableViewControllerPropertyGeneration * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_string readProperty_mModelString (void) const ;
 
   public: class GALGAS_string readProperty_mOwnerName (void) const ;
@@ -474,11 +1073,11 @@ class GALGAS_autoLayoutTableViewControllerPropertyGeneration : public GALGAS_pro
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerPropertyGeneration init_28__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                              const class GALGAS_string & inOperand1,
-                                                                                              const class GALGAS_string & inOperand2,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerPropertyGeneration init_21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                          const class GALGAS_string & inOperand1,
+                                                                                          const class GALGAS_string & inOperand2,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -527,6 +1126,14 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void autoLayoutTableViewControllerPropertyGeneration_init_21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                 const class GALGAS_string & inOperand1,
+                                                                                 const class GALGAS_string & inOperand2,
+                                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -1024,14 +1631,14 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_elemen
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element init_28__2C__2C__2C__2C__2C__29_ (const class GALGAS_bool & inOperand0,
-                                                                                                                               const class GALGAS_string & inOperand1,
-                                                                                                                               const class GALGAS_string & inOperand2,
-                                                                                                                               const class GALGAS_string & inOperand3,
-                                                                                                                               const class GALGAS_string & inOperand4,
-                                                                                                                               const class GALGAS__32_stringlist & inOperand5,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element init_21__21__21__21__21__21_ (const class GALGAS_bool & inOperand0,
+                                                                                                                           const class GALGAS_string & inOperand1,
+                                                                                                                           const class GALGAS_string & inOperand2,
+                                                                                                                           const class GALGAS_string & inOperand3,
+                                                                                                                           const class GALGAS_string & inOperand4,
+                                                                                                                           const class GALGAS__32_stringlist & inOperand5,
+                                                                                                                           Compiler * inCompiler
+                                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1309,11 +1916,11 @@ class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_eleme
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element init_28__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                                    const class GALGAS_propertyKind & inOperand1,
-                                                                                                                    const class GALGAS_string & inOperand2,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element init_21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                                const class GALGAS_propertyKind & inOperand1,
+                                                                                                                const class GALGAS_string & inOperand2,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1368,7 +1975,7 @@ class GALGAS_autoLayoutTableViewControllerGeneration : public GALGAS_abstractFil
 //--------------------------------- Constructor from pointer
   public: GALGAS_autoLayoutTableViewControllerGeneration (const class cPtr_autoLayoutTableViewControllerGeneration * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_string readProperty_mOwnerName (void) const ;
 
   public: class GALGAS_lstring readProperty_mControllerName (void) const ;
@@ -1392,18 +1999,18 @@ class GALGAS_autoLayoutTableViewControllerGeneration : public GALGAS_abstractFil
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_autoLayoutTableViewControllerGeneration init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                                  const class GALGAS_lstring & inOperand1,
-                                                                                                                  const class GALGAS_string & inOperand2,
-                                                                                                                  const class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand3,
-                                                                                                                  const class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration & inOperand4,
-                                                                                                                  const class GALGAS_string & inOperand5,
-                                                                                                                  const class GALGAS_autoLayoutTableViewControllerModelKind & inOperand6,
-                                                                                                                  const class GALGAS_string & inOperand7,
-                                                                                                                  const class GALGAS_bool & inOperand8,
-                                                                                                                  const class GALGAS__32_stringlist & inOperand9,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_autoLayoutTableViewControllerGeneration init_21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                              const class GALGAS_lstring & inOperand1,
+                                                                                                              const class GALGAS_string & inOperand2,
+                                                                                                              const class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand3,
+                                                                                                              const class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration & inOperand4,
+                                                                                                              const class GALGAS_string & inOperand5,
+                                                                                                              const class GALGAS_autoLayoutTableViewControllerModelKind & inOperand6,
+                                                                                                              const class GALGAS_string & inOperand7,
+                                                                                                              const class GALGAS_bool & inOperand8,
+                                                                                                              const class GALGAS__32_stringlist & inOperand9,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1459,6 +2066,21 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void autoLayoutTableViewControllerGeneration_init_21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                     const class GALGAS_lstring & inOperand1,
+                                                                                                     const class GALGAS_string & inOperand2,
+                                                                                                     const class GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration & inOperand3,
+                                                                                                     const class GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration & inOperand4,
+                                                                                                     const class GALGAS_string & inOperand5,
+                                                                                                     const class GALGAS_autoLayoutTableViewControllerModelKind & inOperand6,
+                                                                                                     const class GALGAS_string & inOperand7,
+                                                                                                     const class GALGAS_bool & inOperand8,
+                                                                                                     const class GALGAS__32_stringlist & inOperand9,
+                                                                                                     Compiler * inCompiler) ;
+
+
 //--- Extension method generateCode
   public: virtual void method_generateCode (const class GALGAS_string arg_inOutputDirectory,
            const class GALGAS_generationStruct arg_inGenerationStruct,
@@ -1576,7 +2198,7 @@ class GALGAS_selectionControllerDeclarationAST : public GALGAS_abstractDeclarati
 //--------------------------------- Constructor from pointer
   public: GALGAS_selectionControllerDeclarationAST (const class cPtr_selectionControllerDeclarationAST * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mSelectionControllerName (void) const ;
 
   public: class GALGAS_lstring readProperty_mModelControllerName (void) const ;
@@ -1588,13 +2210,13 @@ class GALGAS_selectionControllerDeclarationAST : public GALGAS_abstractDeclarati
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_selectionControllerDeclarationAST init_28__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                        const class GALGAS_lstring & inOperand1,
-                                                                                        const class GALGAS_lstring & inOperand2,
-                                                                                        const class GALGAS_lstring & inOperand3,
-                                                                                        const class GALGAS_lstring & inOperand4,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_selectionControllerDeclarationAST init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_lstring & inOperand1,
+                                                                                    const class GALGAS_lstring & inOperand2,
+                                                                                    const class GALGAS_lstring & inOperand3,
+                                                                                    const class GALGAS_lstring & inOperand4,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1645,6 +2267,16 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void selectionControllerDeclarationAST_init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                           const class GALGAS_lstring & inOperand1,
+                                                                           const class GALGAS_lstring & inOperand2,
+                                                                           const class GALGAS_lstring & inOperand3,
+                                                                           const class GALGAS_lstring & inOperand4,
+                                                                           Compiler * inCompiler) ;
+
+
 //--- Extension getter nodeKey
   public: virtual class GALGAS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -1762,7 +2394,7 @@ class GALGAS_selectionControllerPropertyGeneration : public GALGAS_propertyGener
 //--------------------------------- Constructor from pointer
   public: GALGAS_selectionControllerPropertyGeneration (const class cPtr_selectionControllerPropertyGeneration * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_string readProperty_mOwnerName (void) const ;
 
   public: class GALGAS_string readProperty_mModelControllerName (void) const ;
@@ -1772,12 +2404,12 @@ class GALGAS_selectionControllerPropertyGeneration : public GALGAS_propertyGener
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_selectionControllerPropertyGeneration init_28__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                        const class GALGAS_string & inOperand1,
-                                                                                        const class GALGAS_string & inOperand2,
-                                                                                        const class GALGAS_string & inOperand3,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_selectionControllerPropertyGeneration init_21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                    const class GALGAS_string & inOperand1,
+                                                                                    const class GALGAS_string & inOperand2,
+                                                                                    const class GALGAS_string & inOperand3,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1827,6 +2459,15 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void selectionControllerPropertyGeneration_init_21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                           const class GALGAS_string & inOperand1,
+                                                                           const class GALGAS_string & inOperand2,
+                                                                           const class GALGAS_string & inOperand3,
+                                                                           Compiler * inCompiler) ;
+
+
 //--- Extension getter configurationCode
   public: virtual class GALGAS_string getter_configurationCode (const class GALGAS_bool inPreferences,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2311,16 +2952,16 @@ class GALGAS_selectionControllerForGeneration_2D_element : public AC_GALGAS_root
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_selectionControllerForGeneration_2D_element init_28__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                              const class GALGAS_string & inOperand1,
-                                                                                                              const class GALGAS_string & inOperand2,
-                                                                                                              const class GALGAS_string & inOperand3,
-                                                                                                              const class GALGAS_string & inOperand4,
-                                                                                                              const class GALGAS_string & inOperand5,
-                                                                                                              const class GALGAS_propertyMap & inOperand6,
-                                                                                                              const class GALGAS_propertyGenerationList & inOperand7,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_selectionControllerForGeneration_2D_element init_21__21__21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                          const class GALGAS_string & inOperand1,
+                                                                                                          const class GALGAS_string & inOperand2,
+                                                                                                          const class GALGAS_string & inOperand3,
+                                                                                                          const class GALGAS_string & inOperand4,
+                                                                                                          const class GALGAS_string & inOperand5,
+                                                                                                          const class GALGAS_propertyMap & inOperand6,
+                                                                                                          const class GALGAS_propertyGenerationList & inOperand7,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2435,15 +3076,16 @@ class GALGAS_boolAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_boolAsDefaultValue (const class cPtr_boolAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lbool readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_lbool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_boolAsDefaultValue init_28__29_ (const class GALGAS_lbool & inOperand0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_boolAsDefaultValue init_21_ (const class GALGAS_lbool & inOperand0,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2461,9 +3103,6 @@ class GALGAS_boolAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_boolAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_lbool inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2493,6 +3132,12 @@ class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void boolAsDefaultValue_init_21_ (const class GALGAS_lbool & inOperand0,
+                                            Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -2592,15 +3237,16 @@ class GALGAS_doubleAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_doubleAsDefaultValue (const class cPtr_doubleAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ldouble readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_ldouble & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_doubleAsDefaultValue init_28__29_ (const class GALGAS_ldouble & inOperand0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_doubleAsDefaultValue init_21_ (const class GALGAS_ldouble & inOperand0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2618,9 +3264,6 @@ class GALGAS_doubleAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_doubleAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_ldouble inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2650,6 +3293,12 @@ class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void doubleAsDefaultValue_init_21_ (const class GALGAS_ldouble & inOperand0,
+                                              Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -2749,18 +3398,20 @@ class GALGAS_integerAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_integerAsDefaultValue (const class cPtr_integerAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_luint & inValue) ;
 
   public: class GALGAS_bool readProperty_mNegative (void) const ;
+  public: void setProperty_mNegative (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_integerAsDefaultValue init_28__2C__29_ (const class GALGAS_luint & inOperand0,
-                                                                const class GALGAS_bool & inOperand1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_integerAsDefaultValue init_21__21_ (const class GALGAS_luint & inOperand0,
+                                                            const class GALGAS_bool & inOperand1,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2779,12 +3430,6 @@ class GALGAS_integerAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_integerAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMNegative (class GALGAS_bool inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_luint inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2814,6 +3459,13 @@ class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void integerAsDefaultValue_init_21__21_ (const class GALGAS_luint & inOperand0,
+                                                   const class GALGAS_bool & inOperand1,
+                                                   Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -2915,15 +3567,16 @@ class GALGAS_stringAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_stringAsDefaultValue (const class cPtr_stringAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_lstring & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_stringAsDefaultValue init_28__29_ (const class GALGAS_lstring & inOperand0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_stringAsDefaultValue init_21_ (const class GALGAS_lstring & inOperand0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2941,9 +3594,6 @@ class GALGAS_stringAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_stringAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_lstring inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2973,6 +3623,12 @@ class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void stringAsDefaultValue_init_21_ (const class GALGAS_lstring & inOperand0,
+                                              Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -3072,15 +3728,16 @@ class GALGAS_identifierAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_identifierAsDefaultValue (const class cPtr_identifierAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_lstring & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_identifierAsDefaultValue init_28__29_ (const class GALGAS_lstring & inOperand0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_identifierAsDefaultValue init_21_ (const class GALGAS_lstring & inOperand0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3098,9 +3755,6 @@ class GALGAS_identifierAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_identifierAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_lstring inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3130,6 +3784,12 @@ class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void identifierAsDefaultValue_init_21_ (const class GALGAS_lstring & inOperand0,
+                                                  Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -3229,15 +3889,16 @@ class GALGAS_prefsAsDefaultValue : public GALGAS_abstractDefaultValue {
 //--------------------------------- Constructor from pointer
   public: GALGAS_prefsAsDefaultValue (const class cPtr_prefsAsDefaultValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mPrefPropertyName (void) const ;
+  public: void setProperty_mPrefPropertyName (const GALGAS_lstring & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_prefsAsDefaultValue init_28__29_ (const class GALGAS_lstring & inOperand0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_prefsAsDefaultValue init_21_ (const class GALGAS_lstring & inOperand0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3255,9 +3916,6 @@ class GALGAS_prefsAsDefaultValue : public GALGAS_abstractDefaultValue {
   public: ComparisonResult objectCompare (const GALGAS_prefsAsDefaultValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMPrefPropertyName (class GALGAS_lstring inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3287,6 +3945,12 @@ class cPtr_prefsAsDefaultValue : public cPtr_abstractDefaultValue {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void prefsAsDefaultValue_init_21_ (const class GALGAS_lstring & inOperand0,
+                                             Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GALGAS_typeKindList arg_inAttributeActualTypeList,
            const class GALGAS_propertyMap arg_inPreferencesPropertyMap,
@@ -3457,9 +4121,9 @@ class GALGAS_typeKindList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_typeKindList_2D_element init_28__29_ (const class GALGAS_typeKind & inOperand0,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_typeKindList_2D_element init_21_ (const class GALGAS_typeKind & inOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3856,10 +4520,10 @@ class GALGAS_transientExternTypeList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_transientExternTypeList_2D_element init_28__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                             const class GALGAS_bool & inOperand1,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_transientExternTypeList_2D_element init_21__21_ (const class GALGAS_string & inOperand0,
+                                                                         const class GALGAS_bool & inOperand1,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4246,8 +4910,8 @@ class GALGAS_generationStruct : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_generationStruct init_28__29_ (Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_generationStruct init (Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4323,9 +4987,9 @@ class GALGAS_fileGenerationList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_fileGenerationList_2D_element init_28__29_ (const class GALGAS_abstractFileGeneration & inOperand0,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_fileGenerationList_2D_element init_21_ (const class GALGAS_abstractFileGeneration & inOperand0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4628,12 +5292,12 @@ class GALGAS_XCodeGroupList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_XCodeGroupList_2D_element init_28__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                            const class GALGAS_string & inOperand1,
-                                                                            const class GALGAS_string & inOperand2,
-                                                                            const class GALGAS_stringlist & inOperand3,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_XCodeGroupList_2D_element init_21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                        const class GALGAS_string & inOperand1,
+                                                                        const class GALGAS_string & inOperand2,
+                                                                        const class GALGAS_stringlist & inOperand3,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5149,19 +5813,19 @@ class GALGAS_XCodeToolTargetList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_XCodeToolTargetList_2D_element init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                             const class GALGAS_string & inOperand1,
-                                                                                                             const class GALGAS_string & inOperand2,
-                                                                                                             const class GALGAS_string & inOperand3,
-                                                                                                             const class GALGAS_stringlist & inOperand4,
-                                                                                                             const class GALGAS_string & inOperand5,
-                                                                                                             const class GALGAS_string & inOperand6,
-                                                                                                             const class GALGAS_stringlist & inOperand7,
-                                                                                                             const class GALGAS_string & inOperand8,
-                                                                                                             const class GALGAS_stringlist & inOperand9,
-                                                                                                             const class GALGAS_string & inOperand10,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_XCodeToolTargetList_2D_element init_21__21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                         const class GALGAS_string & inOperand1,
+                                                                                                         const class GALGAS_string & inOperand2,
+                                                                                                         const class GALGAS_string & inOperand3,
+                                                                                                         const class GALGAS_stringlist & inOperand4,
+                                                                                                         const class GALGAS_string & inOperand5,
+                                                                                                         const class GALGAS_string & inOperand6,
+                                                                                                         const class GALGAS_stringlist & inOperand7,
+                                                                                                         const class GALGAS_string & inOperand8,
+                                                                                                         const class GALGAS_stringlist & inOperand9,
+                                                                                                         const class GALGAS_string & inOperand10,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5804,23 +6468,23 @@ class GALGAS_XCodeAppTargetList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_XCodeAppTargetList_2D_element init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                                            const class GALGAS_string & inOperand1,
-                                                                                                                            const class GALGAS_string & inOperand2,
-                                                                                                                            const class GALGAS_string & inOperand3,
-                                                                                                                            const class GALGAS_stringlist & inOperand4,
-                                                                                                                            const class GALGAS_string & inOperand5,
-                                                                                                                            const class GALGAS_string & inOperand6,
-                                                                                                                            const class GALGAS_stringlist & inOperand7,
-                                                                                                                            const class GALGAS_string & inOperand8,
-                                                                                                                            const class GALGAS_stringlist & inOperand9,
-                                                                                                                            const class GALGAS_string & inOperand10,
-                                                                                                                            const class GALGAS__32_stringlist & inOperand11,
-                                                                                                                            const class GALGAS_string & inOperand12,
-                                                                                                                            const class GALGAS_stringlist & inOperand13,
-                                                                                                                            const class GALGAS_string & inOperand14,
-                                                                                                                            Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_XCodeAppTargetList_2D_element init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                                        const class GALGAS_string & inOperand1,
+                                                                                                                        const class GALGAS_string & inOperand2,
+                                                                                                                        const class GALGAS_string & inOperand3,
+                                                                                                                        const class GALGAS_stringlist & inOperand4,
+                                                                                                                        const class GALGAS_string & inOperand5,
+                                                                                                                        const class GALGAS_string & inOperand6,
+                                                                                                                        const class GALGAS_stringlist & inOperand7,
+                                                                                                                        const class GALGAS_string & inOperand8,
+                                                                                                                        const class GALGAS_stringlist & inOperand9,
+                                                                                                                        const class GALGAS_string & inOperand10,
+                                                                                                                        const class GALGAS__32_stringlist & inOperand11,
+                                                                                                                        const class GALGAS_string & inOperand12,
+                                                                                                                        const class GALGAS_stringlist & inOperand13,
+                                                                                                                        const class GALGAS_string & inOperand14,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6107,11 +6771,11 @@ class GALGAS_BuildFileList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_BuildFileList_2D_element init_28__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                       const class GALGAS_string & inOperand1,
-                                                                       const class GALGAS_string & inOperand2,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_BuildFileList_2D_element init_21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                   const class GALGAS_string & inOperand1,
+                                                                   const class GALGAS_string & inOperand2,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6263,7 +6927,7 @@ class cEnumAssociatedValues_mainXibElement_text : public cEnumAssociatedValues {
                                     const int32_t inIndentation) const ;
   public: virtual ComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public: virtual ~ cEnumAssociatedValues_mainXibElement_text (void) {}
+  public: virtual ~ cEnumAssociatedValues_mainXibElement_text (void) { }
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -6281,7 +6945,7 @@ class cEnumAssociatedValues_mainXibElement_outlet : public cEnumAssociatedValues
                                     const int32_t inIndentation) const ;
   public: virtual ComparisonResult compare (const cEnumAssociatedValues * inOperand) const ;
 
-  public: virtual ~ cEnumAssociatedValues_mainXibElement_outlet (void) {}
+  public: virtual ~ cEnumAssociatedValues_mainXibElement_outlet (void) { }
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -6321,9 +6985,9 @@ class GALGAS_mainXibLineDescriptorList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_mainXibLineDescriptorList_2D_element init_28__29_ (const class GALGAS_mainXibElement & inOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_mainXibLineDescriptorList_2D_element init_21_ (const class GALGAS_mainXibElement & inOperand0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;

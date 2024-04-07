@@ -21,50 +21,50 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
     switch dependency.mObservableProperty
     case rootProperty (propertyName) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
+        !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyWithOption (propertyName, *) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + propertyName, propertyName.location))
+        !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + propertyName, propertyName.location))
       end
     case rootPropertyRelationship (relationshipName, *) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
+        !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case rootPropertyNone (relationshipName) :
       if self.mRootEntityName.string != "" then
-        !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
+        !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + relationshipName, relationshipName.location))
       end
     case selfWithoutProperty (*) :
     case selfProperty (propertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyWithOption (@lstring propertyName, *) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyArray (@lstring propertyName, *) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyObject (@lstring propertyName, *) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + propertyName, propertyName.location))
     case selfPropertyNone (@lstring propertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + propertyName, propertyName.location))
     case prefsProperty (@lstring propertyName) :
-      !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (preferencesName () + " " + propertyName, propertyName.location))
     case prefsPropertyWithOption (@lstring propertyName, *) :
-      !?ioGraph.addEdge (node, .new (preferencesName () + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (preferencesName () + " " + propertyName, propertyName.location))
     case selfControllerProperty (@lstring controllerName, unused propertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerSecondaryProperty (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerAllProperties (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string  + " " + controllerName, controllerName.location))
     case selfControllerOneProperty (@lstring controllerName, unused propertyName) :
-      !?ioGraph.addEdge (node, .new (self.mClassName.string  + " " + controllerName, controllerName.location))
+      !?ioGraph.addEdge (node, .init (self.mClassName.string  + " " + controllerName, controllerName.location))
     case signatureProperty (*) :
     case versionProperty (*) :
     case versionShouldChangeProperty (*) :
     case superProperty (@lstring superEntityName, @lstring propertyName) :
-      !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (superEntityName.string + " " + propertyName, propertyName.location))
     case superPropertyWithDefaultValue (@lstring superEntityName, @lstring propertyName, *) :
-      !?ioGraph.addEdge (node, .new (superEntityName.string + " " + propertyName, propertyName.location))
+      !?ioGraph.addEdge (node, .init (superEntityName.string + " " + propertyName, propertyName.location))
     end
   end
 }
@@ -196,13 +196,13 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
-      error mObservableProperty.location () : "only an atomic property can be observed"
+      error mObservableProperty.location : "only an atomic property can be observed"
     case selectionController (*) :
-      error mObservableProperty.location () : "only an atomic property can be observed"
+      error mObservableProperty.location : "only an atomic property can be observed"
     end
     !?dependencies.append (
       !mObservableProperty,
-      !mObservableProperty.modelStringFunctionArgument (),
+      !mObservableProperty.modelStringFunctionArgument ,
       !swiftTypeStringForTransientFunctionArgument,
       !defaultValueAsString
     )
@@ -274,7 +274,7 @@ override func @computedPropertyGeneration.declarationInSelectionControllerCode()
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+  result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
 #·······················································································································
@@ -297,7 +297,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
   result += "        case .multiple :\n"
   result += "          return .multiple\n"
   result += "        case .single (let v) :\n"
-  result += "          var s = Set <" + self.mType.swiftTypeName () + "> ()\n"
+  result += "          var s = Set <" + self.mType.swiftTypeName + "> ()\n"
   result += "          var isMultipleSelection = false\n"
   result += "          for object in v {\n"
   result += "            switch object." + self.mPropertyName + "_property.selection {\n"
@@ -324,7 +324,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
   result += "      }\n"
   result += "    }\n"
 
-  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + self.mType.swiftTypeName () + ") in\n"
+  result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + self.mType.swiftTypeName + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
   result += "        case .empty, .multiple :\n"
@@ -350,16 +350,16 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
       result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
       result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-      result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+      result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
       result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-      result += "  var preferences_" + self.mPropertyName + " : " + self.mType.swiftTypeName () + "? {\n"
+      result += "  var preferences_" + self.mPropertyName + " : " + self.mType.swiftTypeName + "? {\n"
       result += "    return preferences_" + self.mPropertyName + "_property.optionalValue\n"
      result += "  }\n\n"
     else
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-      result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName () + " ()\n\n"
+      result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
     end
   end
 }
@@ -369,7 +369,7 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
 override func @computedPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   result  = ""
-  if self.mDependencyList.count () > 0 then
+  if self.mDependencyList.count > 0 then
     let needs_unwSelf = self.mDependencyList.needs_unwSelf (inPreferences)
     result += "  //--- Computed property: " + self.mPropertyName + "\n"
     if needs_unwSelf then
@@ -411,7 +411,7 @@ override proc @computeRoutineGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
-  if self.mDependencyList.count () > 0 then
+  if self.mDependencyList.count > 0 then
     let s = filewrapper [computedPropertyManager.computedComputationFunctionFile:
       self.mOwnerName,
       self.mTransientName,

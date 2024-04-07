@@ -59,8 +59,8 @@ proc generateCode(
   let @generationStruct inGeneration,
   let @string inSourceFile)
 {
-  let outputDirectory = inSourceFile.stringByDeletingLastPathComponent ()
-  let projectName = inSourceFile.lastPathComponent ().stringByDeletingPathExtension ()
+  let outputDirectory = inSourceFile.stringByDeletingLastPathComponent
+  let projectName = inSourceFile.lastPathComponent .stringByDeletingPathExtension
   let fileOutputDirectory = outputDirectory + "/" + projectName
   var @stringset generatedFileSet = []
   for (fileGeneration) in inGeneration.mFileGenerationList do

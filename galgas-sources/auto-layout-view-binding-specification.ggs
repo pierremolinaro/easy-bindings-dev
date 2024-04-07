@@ -35,7 +35,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?modelTypeName)
       or
         $enum$
-        modelTypeName = .new ("enum", .here)
+        modelTypeName = .init ("enum", .here)
       end
       !?outletClassBindingSpecificationModelList.append (modelTypeName, modelShouldBeWritableProperty)
     while

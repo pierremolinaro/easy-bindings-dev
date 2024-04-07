@@ -16,7 +16,7 @@ struct @astDeclarationStruct {
   public var @outletClassBindingSpecificationList mBindingSpecificationListMap = []
   public var @autoLayoutViewClassBindingSpecificationList mAutoLayoutBindingSpecificationList = []
   public var @prefDeclaration mPreferences = @prefDeclaration ()
-  public var @lstring mXcodeProject = "".nowhere ()
+  public var @lstring mXcodeProject = "".nowhere
   public var @lstringlist mGraphvizList = []
   public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = []
   public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = []
@@ -41,7 +41,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       $literal_string$ (?let @lstring filePath)
       $;$
       let sourceFile = @lstring (
-        filePath.string.absolutePathFromPath (@string.stringWithSourceFilePath.stringByDeletingLastPathComponent ()),
+        filePath.string.absolutePathFromPath (@string.stringWithSourceFilePath.stringByDeletingLastPathComponent ),
         filePath.location
       )
       grammar easyBindings_grammar (!?ioDeclarationAST, ?*) in sourceFile

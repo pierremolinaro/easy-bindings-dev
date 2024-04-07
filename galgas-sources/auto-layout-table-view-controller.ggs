@@ -34,9 +34,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGrap
   !?ioGraph.addNode (node, self)
   !?ioGraph.addEdge (node, self.mClassName)
   if not self.mIsRoot then
-    !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   elsif self.mRootEntityName.string != "" then
-    !?ioGraph.addEdge (node, .new (self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
@@ -103,7 +103,7 @@ syntax extension easyBindings_syntax {
         <view_actual_parameter_list> (!?*, ?let columnParameterListAST) #§
         let @lstring sortPropertyName
         select
-          sortPropertyName = "".nowhere ()
+          sortPropertyName = "".nowhere
         or
           $sortkey$
           $identifier$ (?sortPropertyName)
@@ -144,7 +144,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     %errorMessage searchKey
   do
-    let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
+    let @actionMap controllerActions = ["add".nowhere : "remove".nowhere ]
     if self.mIsRoot then
       ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?let rootProperties, ?2*)
       rootProperties.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
@@ -209,7 +209,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   ioSemanticContext.mClassMap.searchKey (
-    .new (preferencesName (), .nowhere),
+    .init (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
@@ -270,7 +270,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   case toMany (typeName, accessibility, isGraphic, *) :
     elementTypeName = typeName
     graphic = isGraphic
-    arrayControllerModelKind = if accessibility.isTransient ()
+    arrayControllerModelKind = if accessibility.isTransient
       then .transientArray
       else .entityArray
     end
@@ -316,14 +316,14 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
 #    )
   //------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = []
-    !?formalArgumentList.append ("title".nowhere (), .typeString)
-    !?formalArgumentList.append ("minWidth".nowhere (), .typeInt)
-    !?formalArgumentList.append ("maxWidth".nowhere (), .typeInt)
-    !?formalArgumentList.append ("headerAlignment".nowhere (), .typeEnum (!name: "TextAlignment".nowhere ()))
-    !?formalArgumentList.append ("contentAlignment".nowhere (), .typeEnum (!name: "TextAlignment".nowhere ()))
+    !?formalArgumentList.append ("title".nowhere , .typeString)
+    !?formalArgumentList.append ("minWidth".nowhere , .typeInt)
+    !?formalArgumentList.append ("maxWidth".nowhere , .typeInt)
+    !?formalArgumentList.append ("headerAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
+    !?formalArgumentList.append ("contentAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
     var @2stringlist actualParameterList = []
-    if formalArgumentList.count () != columnParameterList.count () then
-      error propertyName : columnParameterList.count ().string () + " parameter(s), " + formalArgumentList.count () + " required"
+    if formalArgumentList.count != columnParameterList.count then
+      error propertyName : columnParameterList.count .string + " parameter(s), " + formalArgumentList.count + " required"
     else
       for (formalName, formalType) in formalArgumentList, (actualName, actualType, actualParameter) in columnParameterList do
         if formalName.string != actualName.string then
@@ -353,7 +353,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         ?let sortPropertyKind,
         ?2*
       )
-      if not sortPropertyKind.isComparable () then
+      if not sortPropertyKind.isComparable then
         error sortPropertyName : "this property is not comparable"
       end 
       !?arrayControllerSortedColumnListForGeneration.append (  
@@ -372,7 +372,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       !editable,
       !sortPropertyName.string,
       !propertyName.string,
-      !propertyKind.swiftTypeName (), # columnOutletTypeName.string
+      !propertyKind.swiftTypeName , # columnOutletTypeName.string
       !"", # columnBindings.mRunActionName.string
       !actualParameterList
     )

@@ -53,10 +53,10 @@ syntax extension easyBindings_syntax {
    rule <explicit_value> (!@abstractDefaultValue outDefaultValue) {
     select
       $yes$
-      outDefaultValue = @boolAsDefaultValue (.new (true, .here))
+      outDefaultValue = @boolAsDefaultValue (.init (true, .here))
     or
       $no$
-      outDefaultValue = @boolAsDefaultValue (.new (false, .here))
+      outDefaultValue = @boolAsDefaultValue (.init (false, .here))
     or
       $literal_integer$ (?let @luint integerValue)
       outDefaultValue = @integerAsDefaultValue (integerValue, false)
@@ -141,13 +141,13 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case integerType :
-      outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + self.mValue.uint.string ()
+      outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + self.mValue.uint.string
       found = true
     case uint32Type :
       if self.mNegative then
         error self.mValue : "Uint32 value should be ≥ 0"
       end
-      outSwiftDefaultValueAsString = self.mValue.uint.string ()
+      outSwiftDefaultValueAsString = self.mValue.uint.string
       found = true
     case fontType :
       outSwiftDefaultValueAsString = "NSFont.systemFont (ofSize: " + self.mValue.uint + ".0)"
@@ -177,7 +177,7 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
     case doubleType :
-      outSwiftDefaultValueAsString = self.mValue.double.string ()
+      outSwiftDefaultValueAsString = self.mValue.double.string
       found = true
     case boolType, dateType, dataType, integerType, uint32Type,
          stringType, fontType, colorType, bezierPathType, bezierPathArrayType :

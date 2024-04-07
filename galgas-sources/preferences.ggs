@@ -68,13 +68,13 @@ syntax extension easyBindings_syntax {
     while
       <outlet_declaration> (!?ioDeclarationAST.mPreferences.mOutletDeclarationList)
     while
-      <transient_declaration> (prefs, "".nowhere (), !?ioDeclarationAST)
+      <transient_declaration> (prefs, "".nowhere , !?ioDeclarationAST)
     while
       <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
       <toMany_relationship> (prefs, !?*, !?ioDeclarationAST)
     while
-      <controller_declaration> (prefs, "".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
+      <controller_declaration> (prefs, "".nowhere , !?arrayControllerBindingListAST, !?ioDeclarationAST)
     end
     ioDeclarationAST.mPreferences.mSignatureList += signatureList
     $}$
@@ -94,7 +94,7 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
 {
   buildActionMap (self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
-    .new (preferencesName (), .here),
+    .init (preferencesName (), .here),
     .prefs,
     [],
     actionMap,
@@ -133,7 +133,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   end
 //-- Get preference property map
   ioSemanticContext.mClassMap.searchKey (
-    .new (preferencesName (), .nowhere),
+    .init (preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?let actionMap,

@@ -27,7 +27,7 @@ case ."eb"
   grammar easyBindings_grammar (!?declarationStruct, ?let @location unused endOfSourceFile) in inSourceFile
 //----------------------- Add prefs declaration
   !?declarationStruct.mUnifiedDeclarationList.append (@prefsDeclarationAST (
-    .new(preferencesName (), .nowhere),
+    .init(preferencesName (), .nowhere),
     declarationStruct.mPreferences
   )
   )
@@ -73,11 +73,11 @@ case ."eb"
   if @uint.errorCount == 0 then
     for (enumTypeName, 2*) in semanticContext.mEnumerationFunctionListAST do
       semanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
-      if not type.isAtomic () then
+      if not type.isAtomic then
         error enumTypeName : "this type should be an enum type"
       else
         type.atomic (?kind:let typeKind)
-        if not typeKind.isEnumType () then
+        if not typeKind.isEnumType then
           error enumTypeName : "this type should be an enum type"
         end
       end

@@ -84,8 +84,8 @@ syntax extension easyBindings_syntax {
 
 func @mainXibDescriptorList.generateCode() -> @string outResult {
   outResult = ""
-  if self.count () > 0 then
-    outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + self.count () + ".0\n"
+  if self.count > 0 then
+    outResult =  "    var y = OUTLET_HEIGHT * 1.5 * " + self.count + ".0\n"
     outResult += "    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"
     var idx = 0
     var columnMax = 1
@@ -118,7 +118,7 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
       outResult += "    y -= OUTLET_HEIGHT / 2.0\n"
    end
     outResult += "  //--- Set pref window content view\n"
-    outResult += "    window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * " + columnMax + ".0, height:OUTLET_HEIGHT * (1.5 * " + self.count () + ".0 + 0.5)))\n"
+    outResult += "    window?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * " + columnMax + ".0, height:OUTLET_HEIGHT * (1.5 * " + self.count + ".0 + 0.5)))\n"
     outResult += "    window?.contentView = view\n"
   end
 }
@@ -131,7 +131,7 @@ proc generateTestFile(
   let @mainXibDescriptorList inMainXibDescriptorList,
   let @string inOutputDirectory)
 {
-  if (inMainXibDescriptorList.count () > 0) && (inBundleIdentifier != "") then
+  if (inMainXibDescriptorList.count > 0) && (inBundleIdentifier != "") then
     var @stringlist outlet_identifier_list = []
     for (mLine) in inMainXibDescriptorList do
       for (mElement) in mLine do

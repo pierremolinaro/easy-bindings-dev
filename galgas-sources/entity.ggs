@@ -76,7 +76,7 @@ syntax extension easyBindings_syntax {
     end
     let @lstring superEntityName
     select
-      superEntityName = "".nowhere ()
+      superEntityName = "".nowhere
     or
       $:$
       $Identifier$ (? superEntityName)
@@ -92,7 +92,7 @@ syntax extension easyBindings_syntax {
     while
       <simple_stored_declaration> (entityName, !?simpleStoredPropertyList, !?signatureList, !?ioDeclarationAST)
     while
-      <transient_declaration> (entityName, "".nowhere (), !?ioDeclarationAST)
+      <transient_declaration> (entityName, "".nowhere , !?ioDeclarationAST)
     while
       <toMany_relationship> (entityName, !?signatureList, !?ioDeclarationAST)
     while
@@ -100,7 +100,7 @@ syntax extension easyBindings_syntax {
     while
       <action_declaration> (!?actionDeclarationList)
     while
-      <controller_declaration> (entityName, "".nowhere (), !?arrayControllerBindingListAST, !?ioDeclarationAST)
+      <controller_declaration> (entityName, "".nowhere , !?arrayControllerBindingListAST, !?ioDeclarationAST)
     while
       <extern_swift_delegate> (!?externSwiftDelegateList)
     while
@@ -130,18 +130,18 @@ syntax extension easyBindings_syntax {
     if isAbstract && graphicEntity then
       !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
         entityName,
-        "".here (),
-        "EBShape".here (),
-        "selectionDisplay".here (),
+        "".here ,
+        "EBShape".here ,
+        "selectionDisplay".here ,
         [],
         false
       )
       )
       !?ioDeclarationAST.mUnifiedDeclarationList.append (@transientDeclarationAST (
         entityName,
-        "".here (),
-        "EBShape".here (),
-        "objectDisplay".here (),
+        "".here ,
+        "EBShape".here ,
+        "objectDisplay".here ,
         [],
         false
       )
@@ -248,12 +248,12 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       end
       if isAbstract & not self.mIsAbstract then # Check all abstract properties are defined
         for superProperty in superPropertyMap do
-          if superProperty.isAbstract () then
+          if superProperty.isAbstract then
             if propertyMap.hasKey (superProperty.lkey.string) then
               !?overridenTransients.insert (superProperty.lkey.string)
               propertyMap.searchKey (superProperty.lkey, ?let @propertyKind propertyKind, ?2*)
-              let typeName = propertyKind.typeName ()
-              let superTypeName = superProperty.mKind.typeName ()
+              let typeName = propertyKind.typeName
+              let superTypeName = superProperty.mKind.typeName
               if typeName != superTypeName then
                 error propertyMap.locationForKey (superProperty.lkey)
                   : "type '" + superTypeName + "' is required by declaration in super entity"
@@ -293,7 +293,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
 //-- Search for a subclass
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
-    if classDeclaration.mClassKind.isEntity () then
+    if classDeclaration.mClassKind.isEntity then
       classDeclaration.mClassKind.entity (?superEntityName: let superEntityName, ?3*)
       hasSubClass = self.mClassName.string == superEntityName
     end 
@@ -483,7 +483,7 @@ proc generateEBManagedObjectContext(
   let @string inOutputDirectory,
   ?!@stringset ioGeneratedFileSet)
 {
-  if inEntityListForGeneration.count () > 0 then
+  if inEntityListForGeneration.count > 0 then
     let fileName = "EBManagedObjectFactory.swift"
     !?ioGeneratedFileSet.insert (fileName)
     let s = filewrapper [entityGenerationTemplate.managedObjectFactory: inEntityListForGeneration]

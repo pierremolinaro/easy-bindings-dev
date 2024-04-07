@@ -31,10 +31,10 @@ override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarat
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      !?ioGraph.addEdge (node, .new (rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+      !?ioGraph.addEdge (node, .init (rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
     end
   case selfToManyRelationship :
-    !?ioGraph.addEdge (node, .new (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
@@ -108,7 +108,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     %errorMessage searchKey
   do
-    let @actionMap controllerActions = ["add".nowhere () : "remove".nowhere ()]
+    let @actionMap controllerActions = ["add".nowhere : "remove".nowhere ]
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
       ioSemanticContext.mClassMap.searchKey (rootEntityName, ?*, ?let rootProperties, ?2*)
@@ -207,7 +207,7 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
   case toMany (typeName, accessibility, isGraphic, *) :
     elementTypeName = typeName
     graphic = isGraphic
-    arrayControllerModelKind = if accessibility.isTransient ()
+    arrayControllerModelKind = if accessibility.isTransient
       then .transientArray
       else .entityArray
     end

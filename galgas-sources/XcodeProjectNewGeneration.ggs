@@ -225,48 +225,48 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
 //--
   var @stringlist childrenRefs = []
   for (f) in inFileNames do
-    if f.pathExtension () == "cpp" then
+    if f.pathExtension == "cpp" then
       !?self.addCppFile (!fileName:f, ?fileRef:let @string cppFileRef)
       !?childrenRefs.append (cppFileRef)
       !?self.addBuildFile (!fileRef:cppFileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?ioCppFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "h" then
+    elsif f.pathExtension == "h" then
       !?self.addHeaderFile (!fileName:f, ?fileRef:let @string headerFileRef)
       !?childrenRefs.append (headerFileRef)
-    elsif f.pathExtension () == "m" then
+    elsif f.pathExtension == "m" then
       !?self.addMFile (!fileName:f, ?fileRef:let @string m_FileRef)
       !?self.addBuildFile (!fileRef:m_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?childrenRefs.append (m_FileRef)
       !?ioMFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "swift" then
+    elsif f.pathExtension == "swift" then
       !?self.addSwiftFile (!fileName:f, ?fileRef:let @string swift_FileRef)
       !?self.addBuildFile (!fileRef:swift_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?childrenRefs.append (swift_FileRef)
       !?ioSwiftFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "mm" then
+    elsif f.pathExtension == "mm" then
       !?self.addMMFile (!fileName:f, ?fileRef:let @string m_FileRef)
       !?self.addBuildFile (!fileRef:m_FileRef ,!fileName:f, ?buildRef:let @string buildRef)
       !?childrenRefs.append (m_FileRef)
       !?ioMMFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "framework" then
+    elsif f.pathExtension == "framework" then
       !?self.addFrameworkFile (!fileName:f, ?fileRef:let @string framework_FileRef)
       !?self.addBuildFile (!fileRef:framework_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?childrenRefs.append (framework_FileRef)
       !?ioFrameWorkFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "plist" then
+    elsif f.pathExtension == "plist" then
       !?self.addInfoPlistFile (!fileName:f, ?fileRef:let @string resource_FileRef)
       !?childrenRefs.append (resource_FileRef)
-    elsif f.pathExtension () == "xib" then
+    elsif f.pathExtension == "xib" then
       !?self.addXIBFile (!fileName:f, ?fileRef:let @string resource_FileRef)
       !?childrenRefs.append (resource_FileRef)
       !?self.addBuildFile (!fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?ioResourceFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "tiff" then
+    elsif f.pathExtension == "tiff" then
       !?self.addTIFF_file (!fileName:f, ?fileRef:let @string resource_FileRef)
       !?childrenRefs.append (resource_FileRef)
       !?self.addBuildFile (!fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?ioResourceFileBuildRefs.append (buildRef)
-    elsif f.pathExtension () == "icns" then
+    elsif f.pathExtension == "icns" then
       !?self.addICNS_file (!fileName:f, ?fileRef:let @string resource_FileRef)
       !?childrenRefs.append (resource_FileRef)
       !?self.addBuildFile (!fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef)
@@ -349,10 +349,10 @@ list @BuildFileList {
 
 mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
   if self.mProjectObjectReference == "" then
-    self.mProjectObjectReference = self.mSequenceNumber.string ().md5 ().rightSubString (24)
+    self.mProjectObjectReference = self.mSequenceNumber.string .md5 .rightSubString (24)
     self.mSequenceNumber += 1
   end
-  outRef = self.mSequenceNumber.string ().md5().rightSubString (24)
+  outRef = self.mSequenceNumber.string .md5 .rightSubString (24)
   self.mSequenceNumber += 1
 }
 
@@ -441,7 +441,7 @@ proc @XcodeProjectDescriptor.generateAtPath(
     self.mProjectBuildConfigurationRef
   ]
   let projectCoreFile = inPath + "/project.pbxproj"
-  if (not projectCoreFile.fileExists ()) || (not inCacheFilePath.fileExists ()) || (@string.stringWithContentsOfFile (inCacheFilePath) != contents) then 
+  if (not projectCoreFile.fileExists ) || (not inCacheFilePath.fileExists ) || (@string.stringWithContentsOfFile (inCacheFilePath) != contents) then 
     contents.writeToFileWhenDifferentContents (inCacheFilePath, ?*)
     contents.makeDirectoryAndWriteToFile (projectCoreFile)
   end

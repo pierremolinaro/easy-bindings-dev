@@ -9,6 +9,849 @@
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_tableViewBindingGenerationList_2D_element::GALGAS_tableViewBindingGenerationList_2D_element (void) :
+mProperty_mTableValueBindingOutletName (),
+mProperty_mTableValueBindingControllerName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_tableViewBindingGenerationList_2D_element::~ GALGAS_tableViewBindingGenerationList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_tableViewBindingGenerationList_2D_element GALGAS_tableViewBindingGenerationList_2D_element::init_21__21_ (const GALGAS_string & in_mTableValueBindingOutletName,
+                                                                                                                 const GALGAS_string & in_mTableValueBindingControllerName,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_tableViewBindingGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mTableValueBindingOutletName = in_mTableValueBindingOutletName ;
+  result.mProperty_mTableValueBindingControllerName = in_mTableValueBindingControllerName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_tableViewBindingGenerationList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_tableViewBindingGenerationList_2D_element::GALGAS_tableViewBindingGenerationList_2D_element (const GALGAS_string & inOperand0,
+                                                                                                    const GALGAS_string & inOperand1) :
+mProperty_mTableValueBindingOutletName (inOperand0),
+mProperty_mTableValueBindingControllerName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_tableViewBindingGenerationList_2D_element GALGAS_tableViewBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mTableValueBindingOutletName,
+                                                                                                                   const GALGAS_string & in_mTableValueBindingControllerName,
+                                                                                                                   Compiler * inCompiler
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_tableViewBindingGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mTableValueBindingOutletName = in_mTableValueBindingOutletName ;
+  result.mProperty_mTableValueBindingControllerName = in_mTableValueBindingControllerName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_tableViewBindingGenerationList_2D_element::objectCompare (const GALGAS_tableViewBindingGenerationList_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mTableValueBindingOutletName.objectCompare (inOperand.mProperty_mTableValueBindingOutletName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mTableValueBindingControllerName.objectCompare (inOperand.mProperty_mTableValueBindingControllerName) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_tableViewBindingGenerationList_2D_element::isValid (void) const {
+  return mProperty_mTableValueBindingOutletName.isValid () && mProperty_mTableValueBindingControllerName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_tableViewBindingGenerationList_2D_element::drop (void) {
+  mProperty_mTableValueBindingOutletName.drop () ;
+  mProperty_mTableValueBindingControllerName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_tableViewBindingGenerationList_2D_element::description (String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @tableViewBindingGenerationList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mTableValueBindingOutletName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mTableValueBindingControllerName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @tableViewBindingGenerationList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ("tableViewBindingGenerationList-element",
+                                                                                                 nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_tableViewBindingGenerationList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_tableViewBindingGenerationList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_tableViewBindingGenerationList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_tableViewBindingGenerationList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_tableViewBindingGenerationList_2D_element GALGAS_tableViewBindingGenerationList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_tableViewBindingGenerationList_2D_element result ;
+  const GALGAS_tableViewBindingGenerationList_2D_element * p = (const GALGAS_tableViewBindingGenerationList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_tableViewBindingGenerationList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("tableViewBindingGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) :
+mProperty_mEBViewOutletName (),
+mProperty_mArrayControllerControllerName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::~ GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::init_21__21_ (const GALGAS_string & in_mEBViewOutletName,
+                                                                                                                                             const GALGAS_string & in_mArrayControllerControllerName,
+                                                                                                                                             Compiler * inCompiler
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mEBViewOutletName = in_mEBViewOutletName ;
+  result.mProperty_mArrayControllerControllerName = in_mArrayControllerControllerName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (const GALGAS_string & inOperand0,
+                                                                                                                                const GALGAS_string & inOperand1) :
+mProperty_mEBViewOutletName (inOperand0),
+mProperty_mArrayControllerControllerName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::class_func_new (const GALGAS_string & in_mEBViewOutletName,
+                                                                                                                                               const GALGAS_string & in_mArrayControllerControllerName,
+                                                                                                                                               Compiler * inCompiler
+                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mEBViewOutletName = in_mEBViewOutletName ;
+  result.mProperty_mArrayControllerControllerName = in_mArrayControllerControllerName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::objectCompare (const GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mEBViewOutletName.objectCompare (inOperand.mProperty_mEBViewOutletName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mArrayControllerControllerName.objectCompare (inOperand.mProperty_mArrayControllerControllerName) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::isValid (void) const {
+  return mProperty_mEBViewOutletName.isValid () && mProperty_mArrayControllerControllerName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::drop (void) {
+  mProperty_mEBViewOutletName.drop () ;
+  mProperty_mArrayControllerControllerName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::description (String & ioString,
+                                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @ebViewGraphicControllerBindingGenerationList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mEBViewOutletName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mArrayControllerControllerName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @ebViewGraphicControllerBindingGenerationList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ("ebViewGraphicControllerBindingGenerationList-element",
+                                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                                              Compiler * inCompiler
+                                                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element result ;
+  const GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element * p = (const GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_ebViewGraphicControllerBindingGenerationList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ebViewGraphicControllerBindingGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element::GALGAS_boundObjectList_2D_element (void) :
+mProperty_mBoundObjectString (),
+mProperty_mKind () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element::~ GALGAS_boundObjectList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element GALGAS_boundObjectList_2D_element::init_21__21_ (const GALGAS_string & in_mBoundObjectString,
+                                                                                   const GALGAS_propertyKind & in_mKind,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_boundObjectList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mBoundObjectString = in_mBoundObjectString ;
+  result.mProperty_mKind = in_mKind ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_boundObjectList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element::GALGAS_boundObjectList_2D_element (const GALGAS_string & inOperand0,
+                                                                      const GALGAS_propertyKind & inOperand1) :
+mProperty_mBoundObjectString (inOperand0),
+mProperty_mKind (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element GALGAS_boundObjectList_2D_element::class_func_new (const GALGAS_string & in_mBoundObjectString,
+                                                                                     const GALGAS_propertyKind & in_mKind,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_boundObjectList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mBoundObjectString = in_mBoundObjectString ;
+  result.mProperty_mKind = in_mKind ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_boundObjectList_2D_element::objectCompare (const GALGAS_boundObjectList_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mBoundObjectString.objectCompare (inOperand.mProperty_mBoundObjectString) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mKind.objectCompare (inOperand.mProperty_mKind) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_boundObjectList_2D_element::isValid (void) const {
+  return mProperty_mBoundObjectString.isValid () && mProperty_mKind.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_boundObjectList_2D_element::drop (void) {
+  mProperty_mBoundObjectString.drop () ;
+  mProperty_mKind.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_boundObjectList_2D_element::description (String & ioString,
+                                                     const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @boundObjectList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mBoundObjectString.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mKind.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @boundObjectList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boundObjectList_2D_element ("boundObjectList-element",
+                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_boundObjectList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_boundObjectList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_boundObjectList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_boundObjectList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_boundObjectList_2D_element GALGAS_boundObjectList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_boundObjectList_2D_element result ;
+  const GALGAS_boundObjectList_2D_element * p = (const GALGAS_boundObjectList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_boundObjectList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("boundObjectList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (void) :
+mProperty_mOutletName (),
+mProperty_mBindingName (),
+mProperty_mBoundObjectList (),
+mProperty_mBindingOptionsString () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element::~ GALGAS_regularBindingsGenerationList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::init_21__21__21__21_ (const GALGAS_string & in_mOutletName,
+                                                                                                                       const GALGAS_string & in_mBindingName,
+                                                                                                                       const GALGAS_boundObjectList & in_mBoundObjectList,
+                                                                                                                       const GALGAS_string & in_mBindingOptionsString,
+                                                                                                                       Compiler * inCompiler
+                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_regularBindingsGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletName = in_mOutletName ;
+  result.mProperty_mBindingName = in_mBindingName ;
+  result.mProperty_mBoundObjectList = in_mBoundObjectList ;
+  result.mProperty_mBindingOptionsString = in_mBindingOptionsString ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_regularBindingsGenerationList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element::GALGAS_regularBindingsGenerationList_2D_element (const GALGAS_string & inOperand0,
+                                                                                                  const GALGAS_string & inOperand1,
+                                                                                                  const GALGAS_boundObjectList & inOperand2,
+                                                                                                  const GALGAS_string & inOperand3) :
+mProperty_mOutletName (inOperand0),
+mProperty_mBindingName (inOperand1),
+mProperty_mBoundObjectList (inOperand2),
+mProperty_mBindingOptionsString (inOperand3) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::class_func_new (const GALGAS_string & in_mOutletName,
+                                                                                                                 const GALGAS_string & in_mBindingName,
+                                                                                                                 const GALGAS_boundObjectList & in_mBoundObjectList,
+                                                                                                                 const GALGAS_string & in_mBindingOptionsString,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_regularBindingsGenerationList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletName = in_mOutletName ;
+  result.mProperty_mBindingName = in_mBindingName ;
+  result.mProperty_mBoundObjectList = in_mBoundObjectList ;
+  result.mProperty_mBindingOptionsString = in_mBindingOptionsString ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_regularBindingsGenerationList_2D_element::objectCompare (const GALGAS_regularBindingsGenerationList_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mOutletName.objectCompare (inOperand.mProperty_mOutletName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mBindingName.objectCompare (inOperand.mProperty_mBindingName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mBoundObjectList.objectCompare (inOperand.mProperty_mBoundObjectList) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mBindingOptionsString.objectCompare (inOperand.mProperty_mBindingOptionsString) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_regularBindingsGenerationList_2D_element::isValid (void) const {
+  return mProperty_mOutletName.isValid () && mProperty_mBindingName.isValid () && mProperty_mBoundObjectList.isValid () && mProperty_mBindingOptionsString.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_regularBindingsGenerationList_2D_element::drop (void) {
+  mProperty_mOutletName.drop () ;
+  mProperty_mBindingName.drop () ;
+  mProperty_mBoundObjectList.drop () ;
+  mProperty_mBindingOptionsString.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_regularBindingsGenerationList_2D_element::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @regularBindingsGenerationList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mOutletName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBoundObjectList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBindingOptionsString.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @regularBindingsGenerationList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ("regularBindingsGenerationList-element",
+                                                                                                nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_regularBindingsGenerationList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_regularBindingsGenerationList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_regularBindingsGenerationList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_regularBindingsGenerationList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_regularBindingsGenerationList_2D_element GALGAS_regularBindingsGenerationList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_regularBindingsGenerationList_2D_element result ;
+  const GALGAS_regularBindingsGenerationList_2D_element * p = (const GALGAS_regularBindingsGenerationList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_regularBindingsGenerationList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("regularBindingsGenerationList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element::GALGAS_actionBindingListForGeneration_2D_element (void) :
+mProperty_mOutletName (),
+mProperty_mTargetName (),
+mProperty_mActionName (),
+mProperty_mTargetTypeName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element::~ GALGAS_actionBindingListForGeneration_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::init_21__21__21__21_ (const GALGAS_string & in_mOutletName,
+                                                                                                                         const GALGAS_string & in_mTargetName,
+                                                                                                                         const GALGAS_string & in_mActionName,
+                                                                                                                         const GALGAS_string & in_mTargetTypeName,
+                                                                                                                         Compiler * inCompiler
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_actionBindingListForGeneration_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletName = in_mOutletName ;
+  result.mProperty_mTargetName = in_mTargetName ;
+  result.mProperty_mActionName = in_mActionName ;
+  result.mProperty_mTargetTypeName = in_mTargetTypeName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_actionBindingListForGeneration_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element::GALGAS_actionBindingListForGeneration_2D_element (const GALGAS_string & inOperand0,
+                                                                                                    const GALGAS_string & inOperand1,
+                                                                                                    const GALGAS_string & inOperand2,
+                                                                                                    const GALGAS_string & inOperand3) :
+mProperty_mOutletName (inOperand0),
+mProperty_mTargetName (inOperand1),
+mProperty_mActionName (inOperand2),
+mProperty_mTargetTypeName (inOperand3) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::class_func_new (const GALGAS_string & in_mOutletName,
+                                                                                                                   const GALGAS_string & in_mTargetName,
+                                                                                                                   const GALGAS_string & in_mActionName,
+                                                                                                                   const GALGAS_string & in_mTargetTypeName,
+                                                                                                                   Compiler * inCompiler
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_actionBindingListForGeneration_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mOutletName = in_mOutletName ;
+  result.mProperty_mTargetName = in_mTargetName ;
+  result.mProperty_mActionName = in_mActionName ;
+  result.mProperty_mTargetTypeName = in_mTargetTypeName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_actionBindingListForGeneration_2D_element::objectCompare (const GALGAS_actionBindingListForGeneration_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mOutletName.objectCompare (inOperand.mProperty_mOutletName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mTargetName.objectCompare (inOperand.mProperty_mTargetName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mActionName.objectCompare (inOperand.mProperty_mActionName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mTargetTypeName.objectCompare (inOperand.mProperty_mTargetTypeName) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_actionBindingListForGeneration_2D_element::isValid (void) const {
+  return mProperty_mOutletName.isValid () && mProperty_mTargetName.isValid () && mProperty_mActionName.isValid () && mProperty_mTargetTypeName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_actionBindingListForGeneration_2D_element::drop (void) {
+  mProperty_mOutletName.drop () ;
+  mProperty_mTargetName.drop () ;
+  mProperty_mActionName.drop () ;
+  mProperty_mTargetTypeName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_actionBindingListForGeneration_2D_element::description (String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @actionBindingListForGeneration-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mOutletName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mTargetName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mActionName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mTargetTypeName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @actionBindingListForGeneration-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListForGeneration_2D_element ("actionBindingListForGeneration-element",
+                                                                                                 nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_actionBindingListForGeneration_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_actionBindingListForGeneration_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_actionBindingListForGeneration_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_actionBindingListForGeneration_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_actionBindingListForGeneration_2D_element GALGAS_actionBindingListForGeneration_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_actionBindingListForGeneration_2D_element result ;
+  const GALGAS_actionBindingListForGeneration_2D_element * p = (const GALGAS_actionBindingListForGeneration_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_actionBindingListForGeneration_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("actionBindingListForGeneration-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (void) :
+mProperty_mObservableProperty () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element::~ GALGAS_observablePropertyList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::init_21_ (const GALGAS_observablePropertyAST & in_mObservableProperty,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mObservableProperty = in_mObservableProperty ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_observablePropertyList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element::GALGAS_observablePropertyList_2D_element (const GALGAS_observablePropertyAST & inOperand0) :
+mProperty_mObservableProperty (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::class_func_new (const GALGAS_observablePropertyAST & in_mObservableProperty,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mObservableProperty = in_mObservableProperty ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_observablePropertyList_2D_element::objectCompare (const GALGAS_observablePropertyList_2D_element & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_mObservableProperty.objectCompare (inOperand.mProperty_mObservableProperty) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_observablePropertyList_2D_element::isValid (void) const {
+  return mProperty_mObservableProperty.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_observablePropertyList_2D_element::drop (void) {
+  mProperty_mObservableProperty.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_observablePropertyList_2D_element::description (String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mObservableProperty.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @observablePropertyList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList_2D_element ("observablePropertyList-element",
+                                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_observablePropertyList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_observablePropertyList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_observablePropertyList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_observablePropertyList_2D_element GALGAS_observablePropertyList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_observablePropertyList_2D_element result ;
+  const GALGAS_observablePropertyList_2D_element * p = (const GALGAS_observablePropertyList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_observablePropertyList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_transientPropertyGenerationList_2D_element::GALGAS_transientPropertyGenerationList_2D_element (void) :
 mProperty_mProperty () {
 }
@@ -20,9 +863,9 @@ GALGAS_transientPropertyGenerationList_2D_element::~ GALGAS_transientPropertyGen
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_transientPropertyGenerationList_2D_element GALGAS_transientPropertyGenerationList_2D_element::init_28__29_ (const GALGAS_transientPropertyGeneration & in_mProperty,
-                                                                                                                   Compiler * inCompiler
-                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_transientPropertyGenerationList_2D_element GALGAS_transientPropertyGenerationList_2D_element::init_21_ (const GALGAS_transientPropertyGeneration & in_mProperty,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_transientPropertyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -144,12 +987,12 @@ GALGAS_transientDependencyListForGeneration_2D_element::~ GALGAS_transientDepend
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::init_28__2C__2C__2C__29_ (const GALGAS_observablePropertyAST & in_mDependency,
-                                                                                                                                         const GALGAS_string & in_mFunctionArgumentName,
-                                                                                                                                         const GALGAS_string & in_mFunctionArgumentTypeString,
-                                                                                                                                         const GALGAS_string & in_mDefaultValueAsString,
-                                                                                                                                         Compiler * inCompiler
-                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_transientDependencyListForGeneration_2D_element GALGAS_transientDependencyListForGeneration_2D_element::init_21__21__21__21_ (const GALGAS_observablePropertyAST & in_mDependency,
+                                                                                                                                     const GALGAS_string & in_mFunctionArgumentName,
+                                                                                                                                     const GALGAS_string & in_mFunctionArgumentTypeString,
+                                                                                                                                     const GALGAS_string & in_mDefaultValueAsString,
+                                                                                                                                     Compiler * inCompiler
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_transientDependencyListForGeneration_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mDependency = in_mDependency ;
@@ -301,9 +1144,9 @@ GALGAS_toManyProxyGenerationList_2D_element::~ GALGAS_toManyProxyGenerationList_
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_toManyProxyGenerationList_2D_element GALGAS_toManyProxyGenerationList_2D_element::init_28__29_ (const GALGAS_toManyProxyGeneration & in_mProperty,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_toManyProxyGenerationList_2D_element GALGAS_toManyProxyGenerationList_2D_element::init_21_ (const GALGAS_toManyProxyGeneration & in_mProperty,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toManyProxyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -422,9 +1265,9 @@ GALGAS_atomicProxyGenerationList_2D_element::~ GALGAS_atomicProxyGenerationList_
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_atomicProxyGenerationList_2D_element GALGAS_atomicProxyGenerationList_2D_element::init_28__29_ (const GALGAS_atomicProxyGeneration & in_mProperty,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_atomicProxyGenerationList_2D_element GALGAS_atomicProxyGenerationList_2D_element::init_21_ (const GALGAS_atomicProxyGeneration & in_mProperty,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_atomicProxyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -543,9 +1386,9 @@ GALGAS_atomicPropertyGenerationList_2D_element::~ GALGAS_atomicPropertyGeneratio
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_atomicPropertyGenerationList_2D_element GALGAS_atomicPropertyGenerationList_2D_element::init_28__29_ (const GALGAS_atomicPropertyGeneration & in_mProperty,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_atomicPropertyGenerationList_2D_element GALGAS_atomicPropertyGenerationList_2D_element::init_21_ (const GALGAS_atomicPropertyGeneration & in_mProperty,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_atomicPropertyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -664,9 +1507,9 @@ GALGAS_toManyPropertyGenerationList_2D_element::~ GALGAS_toManyPropertyGeneratio
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_toManyPropertyGenerationList_2D_element GALGAS_toManyPropertyGenerationList_2D_element::init_28__29_ (const GALGAS_toManyPropertyGeneration & in_mProperty,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_toManyPropertyGenerationList_2D_element GALGAS_toManyPropertyGenerationList_2D_element::init_21_ (const GALGAS_toManyPropertyGeneration & in_mProperty,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_toManyPropertyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -787,11 +1630,11 @@ GALGAS_validationStubRoutineListForGeneration_2D_element::~ GALGAS_validationStu
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::init_28__2C__2C__29_ (const GALGAS_string & in_mObjectTypeName,
-                                                                                                                                         const GALGAS_string & in_mModelName,
-                                                                                                                                         const GALGAS_string & in_mModelTypeName,
-                                                                                                                                         Compiler * inCompiler
-                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_validationStubRoutineListForGeneration_2D_element GALGAS_validationStubRoutineListForGeneration_2D_element::init_21__21__21_ (const GALGAS_string & in_mObjectTypeName,
+                                                                                                                                     const GALGAS_string & in_mModelName,
+                                                                                                                                     const GALGAS_string & in_mModelTypeName,
+                                                                                                                                     Compiler * inCompiler
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_validationStubRoutineListForGeneration_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mObjectTypeName = in_mObjectTypeName ;
@@ -934,11 +1777,11 @@ GALGAS_multipleBindingGenerationList_2D_element::~ GALGAS_multipleBindingGenerat
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_multipleBindingGenerationList_2D_element GALGAS_multipleBindingGenerationList_2D_element::init_28__2C__2C__29_ (const GALGAS_string & in_mOutletName,
-                                                                                                                       const GALGAS_string & in_mBindingName,
-                                                                                                                       const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
-                                                                                                                       Compiler * inCompiler
-                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_multipleBindingGenerationList_2D_element GALGAS_multipleBindingGenerationList_2D_element::init_21__21__21_ (const GALGAS_string & in_mOutletName,
+                                                                                                                   const GALGAS_string & in_mBindingName,
+                                                                                                                   const GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression,
+                                                                                                                   Compiler * inCompiler
+                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_multipleBindingGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mOutletName = in_mOutletName ;
@@ -1084,14 +1927,14 @@ GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::~ G
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::init_28__2C__2C__2C__2C__2C__29_ (const GALGAS_bool & in_mEditable,
-                                                                                                                                                                                           const GALGAS_string & in_mSortPropertyName,
-                                                                                                                                                                                           const GALGAS_string & in_mDisplayedPropertyName,
-                                                                                                                                                                                           const GALGAS_string & in_mColumnObjectTypeName,
-                                                                                                                                                                                           const GALGAS_string & in_mRunAction,
-                                                                                                                                                                                           const GALGAS__32_stringlist & in_mActualParameterList,
-                                                                                                                                                                                           Compiler * inCompiler
-                                                                                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element::init_21__21__21__21__21__21_ (const GALGAS_bool & in_mEditable,
+                                                                                                                                                                                       const GALGAS_string & in_mSortPropertyName,
+                                                                                                                                                                                       const GALGAS_string & in_mDisplayedPropertyName,
+                                                                                                                                                                                       const GALGAS_string & in_mColumnObjectTypeName,
+                                                                                                                                                                                       const GALGAS_string & in_mRunAction,
+                                                                                                                                                                                       const GALGAS__32_stringlist & in_mActualParameterList,
+                                                                                                                                                                                       Compiler * inCompiler
+                                                                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerBoundColumnListForGeneration_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mEditable = in_mEditable ;
@@ -1267,11 +2110,11 @@ GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::~ 
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::init_28__2C__2C__29_ (const GALGAS_string & in_mColumnName,
-                                                                                                                                                                                 const GALGAS_propertyKind & in_mSortPropertyKind,
-                                                                                                                                                                                 const GALGAS_string & in_mObservablePropertyForSorting,
-                                                                                                                                                                                 Compiler * inCompiler
-                                                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element::init_21__21__21_ (const GALGAS_string & in_mColumnName,
+                                                                                                                                                                             const GALGAS_propertyKind & in_mSortPropertyKind,
+                                                                                                                                                                             const GALGAS_string & in_mObservablePropertyForSorting,
+                                                                                                                                                                             Compiler * inCompiler
+                                                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutTableViewControllerSortedColumnListForGeneration_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mColumnName = in_mColumnName ;
@@ -1419,16 +2262,16 @@ GALGAS_selectionControllerForGeneration_2D_element::~ GALGAS_selectionController
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerForGeneration_2D_element::init_28__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_string & in_mOwnerName,
-                                                                                                                                                 const GALGAS_string & in_mSelectionControllerName,
-                                                                                                                                                 const GALGAS_string & in_mBoundControllerName,
-                                                                                                                                                 const GALGAS_string & in_mBoundControllerPropertyName,
-                                                                                                                                                 const GALGAS_string & in_mBaseTypeName,
-                                                                                                                                                 const GALGAS_string & in_mSelectionTypeName,
-                                                                                                                                                 const GALGAS_propertyMap & in_mSelectionObservablePropertyMap,
-                                                                                                                                                 const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
-                                                                                                                                                 Compiler * inCompiler
-                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_selectionControllerForGeneration_2D_element GALGAS_selectionControllerForGeneration_2D_element::init_21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mOwnerName,
+                                                                                                                                             const GALGAS_string & in_mSelectionControllerName,
+                                                                                                                                             const GALGAS_string & in_mBoundControllerName,
+                                                                                                                                             const GALGAS_string & in_mBoundControllerPropertyName,
+                                                                                                                                             const GALGAS_string & in_mBaseTypeName,
+                                                                                                                                             const GALGAS_string & in_mSelectionTypeName,
+                                                                                                                                             const GALGAS_propertyMap & in_mSelectionObservablePropertyMap,
+                                                                                                                                             const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                                                                                                                             Compiler * inCompiler
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_selectionControllerForGeneration_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mOwnerName = in_mOwnerName ;
@@ -1624,9 +2467,9 @@ GALGAS_typeKindList_2D_element::~ GALGAS_typeKindList_2D_element (void) {
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_typeKindList_2D_element GALGAS_typeKindList_2D_element::init_28__29_ (const GALGAS_typeKind & in_mType,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_typeKindList_2D_element GALGAS_typeKindList_2D_element::init_21_ (const GALGAS_typeKind & in_mType,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_typeKindList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mType = in_mType ;
@@ -1745,9 +2588,9 @@ GALGAS_propertyGenerationList_2D_element::~ GALGAS_propertyGenerationList_2D_ele
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_propertyGenerationList_2D_element GALGAS_propertyGenerationList_2D_element::init_28__29_ (const GALGAS_propertyGeneration & in_mProperty,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_propertyGenerationList_2D_element GALGAS_propertyGenerationList_2D_element::init_21_ (const GALGAS_propertyGeneration & in_mProperty,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_propertyGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mProperty = in_mProperty ;
@@ -1867,10 +2710,10 @@ GALGAS_transientExternTypeList_2D_element::~ GALGAS_transientExternTypeList_2D_e
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_transientExternTypeList_2D_element GALGAS_transientExternTypeList_2D_element::init_28__2C__29_ (const GALGAS_string & in_mTypeName,
-                                                                                                       const GALGAS_bool & in_mIsClass,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_transientExternTypeList_2D_element GALGAS_transientExternTypeList_2D_element::init_21__21_ (const GALGAS_string & in_mTypeName,
+                                                                                                   const GALGAS_bool & in_mIsClass,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_transientExternTypeList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mTypeName = in_mTypeName ;
@@ -2000,9 +2843,9 @@ GALGAS_fileGenerationList_2D_element::~ GALGAS_fileGenerationList_2D_element (vo
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_fileGenerationList_2D_element GALGAS_fileGenerationList_2D_element::init_28__29_ (const GALGAS_abstractFileGeneration & in_mFileGeneration,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_fileGenerationList_2D_element GALGAS_fileGenerationList_2D_element::init_21_ (const GALGAS_abstractFileGeneration & in_mFileGeneration,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_fileGenerationList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mFileGeneration = in_mFileGeneration ;
@@ -2124,12 +2967,12 @@ GALGAS_XCodeGroupList_2D_element::~ GALGAS_XCodeGroupList_2D_element (void) {
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_XCodeGroupList_2D_element GALGAS_XCodeGroupList_2D_element::init_28__2C__2C__2C__29_ (const GALGAS_string & in_mGroupReference,
-                                                                                             const GALGAS_string & in_mGroupName,
-                                                                                             const GALGAS_string & in_mGroupPath,
-                                                                                             const GALGAS_stringlist & in_mChildrenRefs,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeGroupList_2D_element GALGAS_XCodeGroupList_2D_element::init_21__21__21__21_ (const GALGAS_string & in_mGroupReference,
+                                                                                         const GALGAS_string & in_mGroupName,
+                                                                                         const GALGAS_string & in_mGroupPath,
+                                                                                         const GALGAS_stringlist & in_mChildrenRefs,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_XCodeGroupList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mGroupReference = in_mGroupReference ;
@@ -2291,19 +3134,19 @@ GALGAS_XCodeToolTargetList_2D_element::~ GALGAS_XCodeToolTargetList_2D_element (
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_XCodeToolTargetList_2D_element GALGAS_XCodeToolTargetList_2D_element::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_string & in_mTargetRef,
-                                                                                                                                   const GALGAS_string & in_mTargetName,
-                                                                                                                                   const GALGAS_string & in_mProductFileReference,
-                                                                                                                                   const GALGAS_string & in_mProductFileName,
-                                                                                                                                   const GALGAS_stringlist & in_mBuildPhaseRefList,
-                                                                                                                                   const GALGAS_string & in_mBuildPhaseRef,
-                                                                                                                                   const GALGAS_string & in_mBuildConfigurationListRef,
-                                                                                                                                   const GALGAS_stringlist & in_mBuildConfigurationSettingList,
-                                                                                                                                   const GALGAS_string & in_mBuildConfigurationRef,
-                                                                                                                                   const GALGAS_stringlist & in_mFrameworksFileRefList,
-                                                                                                                                   const GALGAS_string & in_mFrameworkBuildPhaseRef,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeToolTargetList_2D_element GALGAS_XCodeToolTargetList_2D_element::init_21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mTargetRef,
+                                                                                                                               const GALGAS_string & in_mTargetName,
+                                                                                                                               const GALGAS_string & in_mProductFileReference,
+                                                                                                                               const GALGAS_string & in_mProductFileName,
+                                                                                                                               const GALGAS_stringlist & in_mBuildPhaseRefList,
+                                                                                                                               const GALGAS_string & in_mBuildPhaseRef,
+                                                                                                                               const GALGAS_string & in_mBuildConfigurationListRef,
+                                                                                                                               const GALGAS_stringlist & in_mBuildConfigurationSettingList,
+                                                                                                                               const GALGAS_string & in_mBuildConfigurationRef,
+                                                                                                                               const GALGAS_stringlist & in_mFrameworksFileRefList,
+                                                                                                                               const GALGAS_string & in_mFrameworkBuildPhaseRef,
+                                                                                                                               Compiler * inCompiler
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_XCodeToolTargetList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mTargetRef = in_mTargetRef ;
@@ -2546,23 +3389,23 @@ GALGAS_XCodeAppTargetList_2D_element::~ GALGAS_XCodeAppTargetList_2D_element (vo
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_XCodeAppTargetList_2D_element GALGAS_XCodeAppTargetList_2D_element::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_string & in_mTargetRef,
-                                                                                                                                                 const GALGAS_string & in_mTargetName,
-                                                                                                                                                 const GALGAS_string & in_mProductFileReference,
-                                                                                                                                                 const GALGAS_string & in_mProductFileName,
-                                                                                                                                                 const GALGAS_stringlist & in_mBuildPhaseRefList,
-                                                                                                                                                 const GALGAS_string & in_mBuildPhaseRef,
-                                                                                                                                                 const GALGAS_string & in_mBuildConfigurationListRef,
-                                                                                                                                                 const GALGAS_stringlist & in_mBuildConfigurationSettingList,
-                                                                                                                                                 const GALGAS_string & in_mBuildConfigurationRef,
-                                                                                                                                                 const GALGAS_stringlist & in_mFrameworksFileRefList,
-                                                                                                                                                 const GALGAS_string & in_mFrameworkBuildPhaseRef,
-                                                                                                                                                 const GALGAS__32_stringlist & in_mDependentTargets,
-                                                                                                                                                 const GALGAS_string & in_mResourceBuildRef,
-                                                                                                                                                 const GALGAS_stringlist & in_mResourceFileBuildRefs,
-                                                                                                                                                 const GALGAS_string & in_mInfoPListFile,
-                                                                                                                                                 Compiler * inCompiler
-                                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_XCodeAppTargetList_2D_element GALGAS_XCodeAppTargetList_2D_element::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mTargetRef,
+                                                                                                                                             const GALGAS_string & in_mTargetName,
+                                                                                                                                             const GALGAS_string & in_mProductFileReference,
+                                                                                                                                             const GALGAS_string & in_mProductFileName,
+                                                                                                                                             const GALGAS_stringlist & in_mBuildPhaseRefList,
+                                                                                                                                             const GALGAS_string & in_mBuildPhaseRef,
+                                                                                                                                             const GALGAS_string & in_mBuildConfigurationListRef,
+                                                                                                                                             const GALGAS_stringlist & in_mBuildConfigurationSettingList,
+                                                                                                                                             const GALGAS_string & in_mBuildConfigurationRef,
+                                                                                                                                             const GALGAS_stringlist & in_mFrameworksFileRefList,
+                                                                                                                                             const GALGAS_string & in_mFrameworkBuildPhaseRef,
+                                                                                                                                             const GALGAS__32_stringlist & in_mDependentTargets,
+                                                                                                                                             const GALGAS_string & in_mResourceBuildRef,
+                                                                                                                                             const GALGAS_stringlist & in_mResourceFileBuildRefs,
+                                                                                                                                             const GALGAS_string & in_mInfoPListFile,
+                                                                                                                                             Compiler * inCompiler
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_XCodeAppTargetList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mTargetRef = in_mTargetRef ;
@@ -2837,11 +3680,11 @@ GALGAS_BuildFileList_2D_element::~ GALGAS_BuildFileList_2D_element (void) {
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_BuildFileList_2D_element GALGAS_BuildFileList_2D_element::init_28__2C__2C__29_ (const GALGAS_string & in_mFileReference,
-                                                                                       const GALGAS_string & in_mFileName,
-                                                                                       const GALGAS_string & in_mBuildReference,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_BuildFileList_2D_element GALGAS_BuildFileList_2D_element::init_21__21__21_ (const GALGAS_string & in_mFileReference,
+                                                                                   const GALGAS_string & in_mFileName,
+                                                                                   const GALGAS_string & in_mBuildReference,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_BuildFileList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mFileReference = in_mFileReference ;
@@ -2982,9 +3825,9 @@ GALGAS_mainXibDescriptorList_2D_element::~ GALGAS_mainXibDescriptorList_2D_eleme
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_mainXibDescriptorList_2D_element GALGAS_mainXibDescriptorList_2D_element::init_28__29_ (const GALGAS_mainXibLineDescriptorList & in_mLine,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_mainXibDescriptorList_2D_element GALGAS_mainXibDescriptorList_2D_element::init_21_ (const GALGAS_mainXibLineDescriptorList & in_mLine,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_mainXibDescriptorList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mLine = in_mLine ;
@@ -3103,9 +3946,9 @@ GALGAS_mainXibLineDescriptorList_2D_element::~ GALGAS_mainXibLineDescriptorList_
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_mainXibLineDescriptorList_2D_element GALGAS_mainXibLineDescriptorList_2D_element::init_28__29_ (const GALGAS_mainXibElement & in_mElement,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_mainXibLineDescriptorList_2D_element GALGAS_mainXibLineDescriptorList_2D_element::init_21_ (const GALGAS_mainXibElement & in_mElement,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_mainXibLineDescriptorList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mElement = in_mElement ;
@@ -3213,7 +4056,7 @@ GALGAS_mainXibLineDescriptorList_2D_element GALGAS_mainXibLineDescriptorList_2D_
 
 
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol_i0_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                       GALGAS_location & outArgument_outEndOfFile,
@@ -3224,12 +4067,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
     switch (select_easyBindings_5F_syntax_0 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_include COMMA_SOURCE_FILE ("grammar-syntax.ggs", 40)) ;
-      GALGAS_lstring var_filePath_1971 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_filePath_1968 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("grammar-syntax.ggs", 41)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("grammar-syntax.ggs", 42)) ;
-      GALGAS_lstring var_sourceFile_2001 = GALGAS_lstring::class_func_new (var_filePath_1971.readProperty_string ().getter_absolutePathFromPath (GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("grammar-syntax.ggs", 44)) COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)), var_filePath_1971.readProperty_location (), inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 43)) ;
-      GALGAS_location joker_2233 ; // Joker input parameter
-      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile_2001, ioArgument_ioDeclarationAST, joker_2233  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 47)) ;
+      GALGAS_lstring var_sourceFile_1998 = GALGAS_lstring::init_21__21_ (var_filePath_1968.readProperty_string ().getter_absolutePathFromPath (GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("grammar-syntax.ggs", 44)) COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)), var_filePath_1968.readProperty_location (), inCompiler COMMA_HERE) ;
+      GALGAS_location joker_2228 ; // Joker input parameter
+      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile_1998, ioArgument_ioDeclarationAST, joker_2228  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 47)) ;
     } break ;
     case 3: {
       nt_autolayout_5F_class_5F_declaration_ (ioArgument_ioDeclarationAST, inCompiler) ;
@@ -3275,7 +4118,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
   outArgument_outEndOfFile = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 73)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -3330,7 +4173,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol_i0_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -3384,7 +4227,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_ (GALGAS_externSwiftDelegateList & ioArgument_ioExternSwiftDelegateList,
                                                                                                   Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3397,7 +4240,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externDelegate COMMA_SOURCE_FILE ("extern-delegate.ggs", 20)) ;
@@ -3406,7 +4249,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i1_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externDelegate COMMA_SOURCE_FILE ("extern-delegate.ggs", 20)) ;
@@ -3414,7 +4257,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("extern-delegate.ggs", 22)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_ (GALGAS_externSwiftFunctionList & ioArgument_ioExternSwiftFunctionList,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3430,7 +4273,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externFunc COMMA_SOURCE_FILE ("extern-swift-func.ggs", 21)) ;
@@ -3441,7 +4284,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i2_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externFunc COMMA_SOURCE_FILE ("extern-swift-func.ggs", 21)) ;
@@ -3451,7 +4294,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("extern-swift-func.ggs", 25)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declaration_i3_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                            Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3474,11 +4317,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property-class.ggs", 40)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property-class.ggs", 41)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientClassDeclarationAST::class_func_new (var_propertyTypeName_1540, var_isClass_1402  COMMA_SOURCE_FILE ("transient-property-class.ggs", 42)), inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 42)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientClassDeclarationAST::init_21__21_ (var_propertyTypeName_1540, var_isClass_1402, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 42)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declaration_i3_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property-class.ggs", 30)) ;
@@ -3498,7 +4341,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declaration_i3_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property-class.ggs", 30)) ;
@@ -3517,7 +4360,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property-class.ggs", 41)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declaration_i4_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3563,11 +4406,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("enumeration.ggs", 59)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_enumerationDeclarationAST::class_func_new (var_enumName_1681, var_enumConstants_2031, var_caseIterable_1705  COMMA_SOURCE_FILE ("enumeration.ggs", 60)), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 60)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_enumerationDeclarationAST::init_21__21__21_ (var_enumName_1681, var_enumConstants_2031, var_caseIterable_1705, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 60)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declaration_i4_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("enumeration.ggs", 39)) ;
@@ -3595,7 +4438,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declaration_i4_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("enumeration.ggs", 39)) ;
@@ -3622,7 +4465,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("enumeration.ggs", 59)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                       Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3657,7 +4500,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_functio
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("enumeration.ggs", 66)) ;
@@ -3681,7 +4524,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_functio
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i5_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("enumeration.ggs", 66)) ;
@@ -3704,7 +4547,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_functio
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("enumeration.ggs", 81)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i6_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                             Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -3785,42 +4628,42 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("entity.ggs", 84)) ;
-  GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2723 = GALGAS_simpleStoredPropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 85)) ;
-  GALGAS_stringset var_signatureList_2772 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("entity.ggs", 86)) ;
-  GALGAS_lstringlist var_actionDeclarationList_2812 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("entity.ggs", 87)) ;
-  GALGAS_externSwiftDelegateList var_externSwiftDelegateList_2872 = GALGAS_externSwiftDelegateList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 88)) ;
-  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2940 = GALGAS_arrayControllerBindingListAST::class_func_emptyList (SOURCE_FILE ("entity.ggs", 89)) ;
-  GALGAS_lstringlist var_graphicOptionArray_2996 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("entity.ggs", 90)) ;
+  GALGAS_simpleStoredPropertyList var_simpleStoredPropertyList_2720 = GALGAS_simpleStoredPropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 85)) ;
+  GALGAS_stringset var_signatureList_2769 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("entity.ggs", 86)) ;
+  GALGAS_lstringlist var_actionDeclarationList_2809 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("entity.ggs", 87)) ;
+  GALGAS_externSwiftDelegateList var_externSwiftDelegateList_2869 = GALGAS_externSwiftDelegateList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 88)) ;
+  GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2937 = GALGAS_arrayControllerBindingListAST::class_func_emptyList (SOURCE_FILE ("entity.ggs", 89)) ;
+  GALGAS_lstringlist var_graphicOptionArray_2993 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("entity.ggs", 90)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
     switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
     case 2: {
-      nt_simple_5F_stored_5F_declaration_ (var_entityName_2282, var_simpleStoredPropertyList_2723, var_signatureList_2772, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_simple_5F_stored_5F_declaration_ (var_entityName_2282, var_simpleStoredPropertyList_2720, var_signatureList_2769, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 3: {
       nt_transient_5F_declaration_ (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 95)), ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 4: {
-      nt_toMany_5F_relationship_ (var_entityName_2282, var_signatureList_2772, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_toMany_5F_relationship_ (var_entityName_2282, var_signatureList_2769, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 5: {
       nt_toOne_5F_relationship_ (var_entityName_2282, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 6: {
-      nt_action_5F_declaration_ (var_actionDeclarationList_2812, inCompiler) ;
+      nt_action_5F_declaration_ (var_actionDeclarationList_2809, inCompiler) ;
     } break ;
     case 7: {
-      nt_controller_5F_declaration_ (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 103)), var_arrayControllerBindingListAST_2940, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_controller_5F_declaration_ (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 103)), var_arrayControllerBindingListAST_2937, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 8: {
-      nt_extern_5F_swift_5F_delegate_ (var_externSwiftDelegateList_2872, inCompiler) ;
+      nt_extern_5F_swift_5F_delegate_ (var_externSwiftDelegateList_2869, inCompiler) ;
     } break ;
     case 9: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphic COMMA_SOURCE_FILE ("entity.ggs", 107)) ;
-      GALGAS_lstring var_graphicOption_3703 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_graphicOption_3696 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("entity.ggs", 108)) ;
       {
-      var_graphicOptionArray_2996.setter_append (var_graphicOption_3703, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 109)) ;
+      var_graphicOptionArray_2993.setter_append (var_graphicOption_3696, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 109)) ;
       }
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("entity.ggs", 110)) ;
       enumGalgasBool test_2 = kBoolTrue ;
@@ -3828,7 +4671,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
         test_2 = var_graphicEntity_1983.operator_not (SOURCE_FILE ("entity.ggs", 111)).boolEnum () ;
         if (kBoolTrue == test_2) {
           TC_Array <FixItDescription> fixItArray3 ;
-          inCompiler->emitSemanticError (var_graphicOption_3703.readProperty_location (), GALGAS_string ("only a graphic entity accepts a graphic option"), fixItArray3  COMMA_SOURCE_FILE ("entity.ggs", 112)) ;
+          inCompiler->emitSemanticError (var_graphicOption_3696.readProperty_location (), GALGAS_string ("only a graphic entity accepts a graphic option"), fixItArray3  COMMA_SOURCE_FILE ("entity.ggs", 112)) ;
         }
       }
     } break ;
@@ -3839,7 +4682,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("entity.ggs", 115)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_entityDeclarationAST::class_func_new (var_entityName_2282, var_isAbstract_1866, var_superEntityName_2552, var_handlingOpposite_2108, var_simpleStoredPropertyList_2723, var_signatureList_2772, var_actionDeclarationList_2812, var_obsoleteEntityNames_2315, var_graphicEntity_1983, var_externSwiftDelegateList_2872, var_graphicOptionArray_2996  COMMA_SOURCE_FILE ("entity.ggs", 116)), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 116)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_entityDeclarationAST::init_21__21__21__21__21__21__21__21__21__21__21_ (var_entityName_2282, var_isAbstract_1866, var_superEntityName_2552, var_handlingOpposite_2108, var_simpleStoredPropertyList_2720, var_signatureList_2769, var_actionDeclarationList_2809, var_obsoleteEntityNames_2315, var_graphicEntity_1983, var_externSwiftDelegateList_2869, var_graphicOptionArray_2993, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 116)) ;
   }
   enumGalgasBool test_4 = kBoolTrue ;
   if (kBoolTrue == test_4) {
@@ -3850,16 +4693,16 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
     test_4 = test_5.boolEnum () ;
     if (kBoolTrue == test_4) {
       {
-      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::class_func_new (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 133)), GALGAS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 134)), GALGAS_string ("selectionDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 135)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 135)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("entity.ggs", 131)), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 131)) ;
+      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 133)), GALGAS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 134)), GALGAS_string ("selectionDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 135)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 135)), GALGAS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 131)) ;
       }
       {
-      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::class_func_new (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 142)), GALGAS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 143)), GALGAS_string ("objectDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 144)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 144)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("entity.ggs", 140)), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 140)) ;
+      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2282, GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 142)), GALGAS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 143)), GALGAS_string ("objectDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 144)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("entity.ggs", 144)), GALGAS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 140)) ;
       }
     }
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i6_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
@@ -3959,7 +4802,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i6_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
@@ -4058,7 +4901,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("entity.ggs", 115)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -4140,14 +4983,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 112)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutDocumentDeclarationAST::class_func_new (var_documentName_2917, var_rootEntityName_3151, var_mainViewName_3213, var_outletDeclarationList_3266, var_actionDeclarationList_3314, var_arrayControllerBindingListAST_3380, var_viewDeclarationList_3447, var_customSuperClassName_2947, var_autoLayoutOutletLinkerList_3581  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 113)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 113)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutDocumentDeclarationAST::init_21__21__21__21__21__21__21__21__21_ (var_documentName_2917, var_rootEntityName_3151, var_mainViewName_3213, var_outletDeclarationList_3266, var_actionDeclarationList_3314, var_arrayControllerBindingListAST_3380, var_viewDeclarationList_3447, var_customSuperClassName_2947, var_autoLayoutOutletLinkerList_3581, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 113)) ;
   }
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::class_func_new (var_documentName_2917, var_rootEntityName_3151, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 128)), GALGAS_string ("documentFileName").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 129)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("document-auto-layout.ggs", 129)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("document-auto-layout.ggs", 125)), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 125)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_documentName_2917, var_rootEntityName_3151, GALGAS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 128)), GALGAS_string ("documentFileName").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 129)), GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("document-auto-layout.ggs", 129)), GALGAS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 125)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.ggs", 66)) ;
@@ -4209,7 +5052,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.ggs", 66)) ;
@@ -4270,12 +5113,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 112)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.ggs", 48)) ;
-  GALGAS_lstring var_prefs_2135 = GALGAS_lstring::class_func_new (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 49)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 49)), inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 49)) ;
+  GALGAS_lstring var_prefs_2135 = GALGAS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 49)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 49)), inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.ggs", 50)) ;
   GALGAS_stringset var_signatureList_2207 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.ggs", 51)) ;
   GALGAS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2265 = GALGAS_arrayControllerBindingListAST::class_func_emptyList (SOURCE_FILE ("preferences.ggs", 52)) ;
@@ -4305,8 +5148,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       nt_extern_5F_swift_5F_func_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mExternSwiftFunctionList, inCompiler) ;
     } break ;
     case 8: {
-      GALGAS_stringset joker_3233 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.ggs", 75)) ;
-      nt_toMany_5F_relationship_ (var_prefs_2135, joker_3233, ioArgument_ioDeclarationAST, inCompiler) ;
+      GALGAS_stringset joker_3231 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.ggs", 75)) ;
+      nt_toMany_5F_relationship_ (var_prefs_2135, joker_3231, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 9: {
       nt_controller_5F_declaration_ (var_prefs_2135, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("preferences.ggs", 77)), var_arrayControllerBindingListAST_2265, ioArgument_ioDeclarationAST, inCompiler) ;
@@ -4320,7 +5163,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.ggs", 80)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.ggs", 48)) ;
@@ -4361,7 +5204,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i8_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.ggs", 48)) ;
@@ -4401,7 +5244,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.ggs", 80)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -4414,7 +5257,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_dec
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("graphviz.ggs", 13)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphviz COMMA_SOURCE_FILE ("graphviz.ggs", 10)) ;
@@ -4423,7 +5266,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_dec
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i9_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphviz COMMA_SOURCE_FILE ("graphviz.ggs", 10)) ;
@@ -4431,7 +5274,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_dec
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("graphviz.ggs", 13)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i10_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -4448,7 +5291,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i10_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 84)) ;
@@ -4459,7 +5302,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i10_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 84)) ;
@@ -4469,7 +5312,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 88)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i11_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -4486,7 +5329,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i11_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 95)) ;
@@ -4497,7 +5340,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i11_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 95)) ;
@@ -4507,7 +5350,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 99)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i12_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -4533,73 +5376,73 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
     var_parameterList_4485 = GALGAS_autoLayoutClassParameterList::class_func_emptyList (SOURCE_FILE ("auto-layout-view-class.ggs", 118)) ;
   } break ;
   case 2: {
-    GALGAS_lstring joker_4615 ; // Joker input parameter
-    nt_autolayout_5F_formal_5F_parameter_5F_list_ (GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view-class.ggs", 120)), var_parameterList_4485, joker_4615, inCompiler) ;
-    joker_4615.drop () ; // Release temporary input variables (joker in source)
+    GALGAS_lstring joker_4613 ; // Joker input parameter
+    nt_autolayout_5F_formal_5F_parameter_5F_list_ (GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view-class.ggs", 120)), var_parameterList_4485, joker_4613, inCompiler) ;
+    joker_4613.drop () ; // Release temporary input variables (joker in source)
   } break ;
   default:
     break ;
   }
-  GALGAS_lstring var_superClassName_4644 ;
+  GALGAS_lstring var_superClassName_4642 ;
   switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
   case 1: {
-    var_superClassName_4644 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 124)) ;
+    var_superClassName_4642 = GALGAS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 124)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 126)) ;
-    var_superClassName_4644 = inCompiler->synthetizedAttribute_tokenString () ;
+    var_superClassName_4642 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 127)) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_bool var_hasRunAction_4780 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasEnabled_4815 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasHidden_4848 = GALGAS_bool (false) ;
-  GALGAS_bool var_handlesTableViewBinding_4880 = GALGAS_bool (false) ;
-  GALGAS_bool var_handlesGraphicControllerBinding_4926 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasRunAction_4775 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasEnabled_4810 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasHidden_4843 = GALGAS_bool (false) ;
+  GALGAS_bool var_handlesTableViewBinding_4875 = GALGAS_bool (false) ;
+  GALGAS_bool var_handlesGraphicControllerBinding_4921 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 136)) ;
-      var_handlesTableViewBinding_4880 = GALGAS_bool (true) ;
+      var_handlesTableViewBinding_4875 = GALGAS_bool (true) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 139)) ;
-      var_hasRunAction_4780 = GALGAS_bool (true) ;
+      var_hasRunAction_4775 = GALGAS_bool (true) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 142)) ;
-      var_hasEnabled_4815 = GALGAS_bool (true) ;
+      var_hasEnabled_4810 = GALGAS_bool (true) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 145)) ;
-      var_hasHidden_4848 = GALGAS_bool (true) ;
+      var_hasHidden_4843 = GALGAS_bool (true) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 148)) ;
-      var_handlesGraphicControllerBinding_4926 = GALGAS_bool (true) ;
+      var_handlesGraphicControllerBinding_4921 = GALGAS_bool (true) ;
     } break ;
     default:
       repeatFlag_0 = false ;
       break ;
     }
   }
-  GALGAS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5316 = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("auto-layout-view-class.ggs", 151)) ;
+  GALGAS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5311 = GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (SOURCE_FILE ("auto-layout-view-class.ggs", 151)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 152)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
     switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 155)) ;
-      GALGAS_lstring var_functionName_5417 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_functionName_5412 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 156)) ;
-      GALGAS_autoLayoutClassParameterList var_parameterList_5492 ;
-      GALGAS_lstring var_mangledName_5512 ;
-      nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_5417, var_parameterList_5492, var_mangledName_5512, inCompiler) ;
+      GALGAS_autoLayoutClassParameterList var_parameterList_5487 ;
+      GALGAS_lstring var_mangledName_5507 ;
+      nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_5412, var_parameterList_5487, var_mangledName_5507, inCompiler) ;
       {
-      var_astAutoLayoutViewFunctionMap_5316.setter_insertKey (var_mangledName_5512, var_parameterList_5492, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 158)) ;
+      var_astAutoLayoutViewFunctionMap_5311.setter_insertKey (var_mangledName_5507, var_parameterList_5487, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 158)) ;
       }
     } break ;
     case 3: {
@@ -4612,11 +5455,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 162)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutViewClassDeclarationAST::class_func_new (var_outletClassName_4430, var_userDefined_4265, var_superClassName_4644, var_hasRunAction_4780, var_hasEnabled_4815, var_handlesTableViewBinding_4880, var_handlesGraphicControllerBinding_4926, var_hasHidden_4848, var_parameterList_4485, var_astAutoLayoutViewFunctionMap_5316  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutViewClassDeclarationAST::init_21__21__21__21__21__21__21__21__21__21_ (var_outletClassName_4430, var_userDefined_4265, var_superClassName_4642, var_hasRunAction_4775, var_hasEnabled_4810, var_handlesTableViewBinding_4875, var_handlesGraphicControllerBinding_4921, var_hasHidden_4843, var_parameterList_4485, var_astAutoLayoutViewFunctionMap_5311, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i12_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
@@ -4694,7 +5537,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i12_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
@@ -4771,7 +5614,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 162)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_ (const GALGAS_lstring constinArgument_inFunctionName,
                                                                                                                  GALGAS_autoLayoutClassParameterList & outArgument_ioParameterList,
@@ -4780,7 +5623,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   outArgument_ioParameterList.drop () ; // Release 'out' argument
   outArgument_outMangledName.drop () ; // Release 'out' argument
   outArgument_ioParameterList = GALGAS_autoLayoutClassParameterList::class_func_emptyList (SOURCE_FILE ("auto-layout-view-class.ggs", 183)) ;
-  GALGAS_string var_mangledName_6489 = constinArgument_inFunctionName.readProperty_string ().add_operation (GALGAS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 184)) ;
+  GALGAS_string var_mangledName_6484 = constinArgument_inFunctionName.readProperty_string ().add_operation (GALGAS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 184)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
   switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
   case 1: {
@@ -4788,74 +5631,74 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   case 2: {
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_parameterName_6597 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_parameterName_6592 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 189)) ;
-      var_mangledName_6489.plusAssign_operation(var_parameterName_6597.readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
+      var_mangledName_6484.plusAssign_operation(var_parameterName_6592.readProperty_string ().add_operation (GALGAS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 191)) ;
       switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 193)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view-class.ggs", 194)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 194)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view-class.ggs", 194)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 194)) ;
         }
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_menuItem COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 196)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view-class.ggs", 197)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 197)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view-class.ggs", 197)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 197)) ;
         }
       } break ;
       case 3: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 199)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view-class.ggs", 200)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 200)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view-class.ggs", 200)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 200)) ;
         }
       } break ;
       case 4: {
-        GALGAS_lstring var_parameterTypeName_6992 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_parameterTypeName_6987 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 202)) ;
         enumGalgasBool test_1 = kBoolTrue ;
         if (kBoolTrue == test_1) {
-          test_1 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6992.readProperty_string ().objectCompare (GALGAS_string ("String"))).boolEnum () ;
+          test_1 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6987.readProperty_string ().objectCompare (GALGAS_string ("String"))).boolEnum () ;
           if (kBoolTrue == test_1) {
             {
-            outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view-class.ggs", 204)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 204)) ;
+            outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view-class.ggs", 204)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 204)) ;
             }
           }
         }
         if (kBoolFalse == test_1) {
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
-            test_2 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6992.readProperty_string ().objectCompare (GALGAS_string ("StringArray"))).boolEnum () ;
+            test_2 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6987.readProperty_string ().objectCompare (GALGAS_string ("StringArray"))).boolEnum () ;
             if (kBoolTrue == test_2) {
               {
-              outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view-class.ggs", 206)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 206)) ;
+              outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view-class.ggs", 206)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 206)) ;
               }
             }
           }
           if (kBoolFalse == test_2) {
             enumGalgasBool test_3 = kBoolTrue ;
             if (kBoolTrue == test_3) {
-              test_3 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6992.readProperty_string ().objectCompare (GALGAS_string ("Int"))).boolEnum () ;
+              test_3 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6987.readProperty_string ().objectCompare (GALGAS_string ("Int"))).boolEnum () ;
               if (kBoolTrue == test_3) {
                 {
-                outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view-class.ggs", 208)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 208)) ;
+                outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view-class.ggs", 208)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 208)) ;
                 }
               }
             }
             if (kBoolFalse == test_3) {
               enumGalgasBool test_4 = kBoolTrue ;
               if (kBoolTrue == test_4) {
-                test_4 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6992.readProperty_string ().objectCompare (GALGAS_string ("Bool"))).boolEnum () ;
+                test_4 = GALGAS_bool (ComparisonKind::equal, var_parameterTypeName_6987.readProperty_string ().objectCompare (GALGAS_string ("Bool"))).boolEnum () ;
                 if (kBoolTrue == test_4) {
                   {
-                  outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view-class.ggs", 210)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 210)) ;
+                  outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view-class.ggs", 210)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 210)) ;
                   }
                 }
               }
               if (kBoolFalse == test_4) {
                 {
-                outArgument_ioParameterList.setter_append (var_parameterName_6597, GALGAS_autoLayoutClassParameterType::class_func_typeEnum (var_parameterTypeName_6992  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)) ;
+                outArgument_ioParameterList.setter_append (var_parameterName_6592, GALGAS_autoLayoutClassParameterType::class_func_typeEnum (var_parameterTypeName_6987  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)) ;
                 }
               }
             }
@@ -4876,11 +5719,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 219)) ;
-  var_mangledName_6489.plusAssign_operation(GALGAS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
-  outArgument_outMangledName = GALGAS_lstring::class_func_new (var_mangledName_6489, constinArgument_inFunctionName.readProperty_location (), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 221)) ;
+  var_mangledName_6484.plusAssign_operation(GALGAS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
+  outArgument_outMangledName = GALGAS_lstring::init_21__21_ (var_mangledName_6484, constinArgument_inFunctionName.readProperty_location (), inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
@@ -4922,7 +5765,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i13_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
@@ -4963,7 +5806,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 219)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_ (const GALGAS_lstring constinArgument_inClassName,
                                                                                                                           GALGAS_autoLayoutViewClassBindingSpecificationList & ioArgument_ioBindingList,
@@ -4994,7 +5837,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 37)) ;
-      var_modelTypeName_1523 = GALGAS_lstring::class_func_new (GALGAS_string ("enum"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 38)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 38)) ;
+      var_modelTypeName_1523 = GALGAS_lstring::init_21__21_ (GALGAS_string ("enum"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 38)), inCompiler COMMA_HERE) ;
     } break ;
     default:
       break ;
@@ -5008,7 +5851,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       repeatFlag_0 = false ;
     }
   }
-  GALGAS_controllerBindingOptionList var_bindingOptionList_1835 = GALGAS_controllerBindingOptionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 44)) ;
+  GALGAS_controllerBindingOptionList var_bindingOptionList_1836 = GALGAS_controllerBindingOptionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 44)) ;
   switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
   case 1: {
   } break ;
@@ -5016,13 +5859,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 47)) ;
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      GALGAS_lstring var_optionName_1935 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_optionName_1936 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 49)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 50)) ;
-      GALGAS_lstring var_optionType_1995 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_optionType_1996 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 51)) ;
       {
-      var_bindingOptionList_1835.setter_append (var_optionName_1935, var_optionType_1995, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 52)) ;
+      var_bindingOptionList_1836.setter_append (var_optionName_1936, var_optionType_1996, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 52)) ;
       }
       if (select_easyBindings_5F_syntax_28 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 54)) ;
@@ -5036,11 +5879,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
     break ;
   }
   {
-  ioArgument_ioBindingList.setter_append (constinArgument_inClassName, var_bindingName_1176, var_outletClassBindingSpecificationModelList_1239, var_bindingOptionList_1835, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 58)) ;
+  ioArgument_ioBindingList.setter_append (constinArgument_inClassName, var_bindingName_1176, var_outletClassBindingSpecificationModelList_1239, var_bindingOptionList_1836, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 58)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 22)) ;
@@ -5096,7 +5939,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i14_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 22)) ;
@@ -5151,7 +5994,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i15_ (GALGAS_astViewDeclarationList & ioArgument_ioViewDeclarationList,
                                                                                                     Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -5169,11 +6012,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   nt_view_5F_instruction_5F_list_ (GALGAS_bool (false), var_stackViewInstances_6787, var_astNewStackViewDeclarationList_6732, var_instructionList_6819, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 157)) ;
   {
-  ioArgument_ioViewDeclarationList.setter_append (var_viewName_6599, GALGAS_astComputedVerticalViewDeclaration::class_func_new (var_functionCallList_6666, var_instructionList_6819, var_astNewStackViewDeclarationList_6732  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 160)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 158)) ;
+  ioArgument_ioViewDeclarationList.setter_append (var_viewName_6599, GALGAS_astComputedVerticalViewDeclaration::init_21__21__21_ (var_functionCallList_6666, var_instructionList_6819, var_astNewStackViewDeclarationList_6732, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 158)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i15_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 148)) ;
@@ -5186,7 +6029,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i15_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 148)) ;
@@ -5198,7 +6041,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 157)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i16_ (GALGAS_astViewDeclarationList & ioArgument_ioViewDeclarationList,
                                                                                                     Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -5216,11 +6059,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   nt_view_5F_instruction_5F_list_ (GALGAS_bool (true), var_stackViewInstances_7606, var_astNewStackViewDeclarationList_7551, var_instructionList_7638, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 176)) ;
   {
-  ioArgument_ioViewDeclarationList.setter_append (var_viewName_7418, GALGAS_astComputedHorizontalViewDeclaration::class_func_new (var_functionCallList_7485, var_instructionList_7638, var_astNewStackViewDeclarationList_7551  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 179)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 177)) ;
+  ioArgument_ioViewDeclarationList.setter_append (var_viewName_7418, GALGAS_astComputedHorizontalViewDeclaration::init_21__21__21_ (var_functionCallList_7485, var_instructionList_7638, var_astNewStackViewDeclarationList_7551, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 177)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i16_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 167)) ;
@@ -5233,7 +6076,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i16_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 167)) ;
@@ -5245,7 +6088,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 176)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                                               GALGAS_astAutoLayoutViewFunctionCallList & outArgument_outFunctionCallList,
@@ -5268,7 +6111,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -5283,7 +6126,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i17_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -5297,7 +6140,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_ (GALGAS_bool inArgument_inHorizontal,
                                                                                                    GALGAS_stringset & ioArgument_ioStackViewInstances,
@@ -5326,13 +6169,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_separator COMMA_SOURCE_FILE ("auto-layout-view.ggs", 213)) ;
       {
-      ioArgument_ioInstructionList.setter_append (GALGAS_astSeparatorInstructionDeclaration::class_func_new (inArgument_inHorizontal  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 214)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 214)) ;
+      ioArgument_ioInstructionList.setter_append (GALGAS_astSeparatorInstructionDeclaration::init_21_horizontal (inArgument_inHorizontal, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 214)) ;
       }
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_divider COMMA_SOURCE_FILE ("auto-layout-view.ggs", 216)) ;
       {
-      ioArgument_ioInstructionList.setter_append (GALGAS_astDividerInstructionDeclaration::class_func_new (inArgument_inHorizontal  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 217)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 217)) ;
+      ioArgument_ioInstructionList.setter_append (GALGAS_astDividerInstructionDeclaration::init_21_horizontal (inArgument_inHorizontal, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 217)) ;
       }
     } break ;
     case 5: {
@@ -5348,7 +6191,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
         }
       }
       {
-      ioArgument_ioInstructionList.setter_append (GALGAS_astLocalViewInstruction::class_func_new (var_localViewName_9585  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 224)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 224)) ;
+      ioArgument_ioInstructionList.setter_append (GALGAS_astLocalViewInstruction::init_21_ (var_localViewName_9585, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 224)) ;
       }
     } break ;
     case 6: {
@@ -5365,7 +6208,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -5400,7 +6243,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i18_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -5434,30 +6277,30 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_ (GALGAS_stringset & /* ioArgument_ioStackViewInstances */,
                                                                                            GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("auto-layout-view.ggs", 235)) ;
-  outArgument_outInstruction = GALGAS_astSpaceViewInstruction::class_func_new (SOURCE_FILE ("auto-layout-view.ggs", 236)) ;
+  outArgument_outInstruction = GALGAS_astSpaceViewInstruction::init (inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("auto-layout-view.ggs", 235)) ;
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i19_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("auto-layout-view.ggs", 235)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i20_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                            GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
@@ -5468,20 +6311,20 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   outArgument_outInstruction = var_instruction_10630 ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i20_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_computed_5F_view_5F_instruction_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i20_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_computed_5F_view_5F_instruction_indexing (inCompiler) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                                        GALGAS_astComputedViewInstruction & outArgument_outInstruction,
@@ -5548,36 +6391,36 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_vie
   default:
     break ;
   }
-  GALGAS_tableValueBinding var_tableValueBinding_11904 ;
-  GALGAS_runActionDescriptor var_runActionDescriptor_11951 ;
-  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_12006 ;
-  GALGAS_multipleBindingDescriptor var_hiddenBindingDescriptor_12066 ;
-  GALGAS_graphicController var_graphicController_12117 ;
-  GALGAS_regularBindingList var_regularBindingList_12163 ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_autoLayoutViewFunctionCallList_12225 ;
+  GALGAS_tableValueBinding var_tableValueBinding_11892 ;
+  GALGAS_runActionDescriptor var_runActionDescriptor_11939 ;
+  GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_11994 ;
+  GALGAS_multipleBindingDescriptor var_hiddenBindingDescriptor_12054 ;
+  GALGAS_graphicController var_graphicController_12105 ;
+  GALGAS_regularBindingList var_regularBindingList_12151 ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_autoLayoutViewFunctionCallList_12213 ;
   switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
   case 1: {
-    var_tableValueBinding_11904 = GALGAS_tableValueBinding::class_func_noTableValueBinding (SOURCE_FILE ("auto-layout-view.ggs", 295)) ;
-    var_runActionDescriptor_11951 = GALGAS_runActionDescriptor::class_func_noAction (SOURCE_FILE ("auto-layout-view.ggs", 296)) ;
-    var_enabledBindingDescriptor_12006 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 297)) ;
-    var_hiddenBindingDescriptor_12066 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 298)) ;
-    var_graphicController_12117 = GALGAS_graphicController::class_func_none (SOURCE_FILE ("auto-layout-view.ggs", 299)) ;
-    var_regularBindingList_12163 = GALGAS_regularBindingList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 300)) ;
-    var_autoLayoutViewFunctionCallList_12225 = GALGAS_astAutoLayoutViewFunctionCallList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 301)) ;
+    var_tableValueBinding_11892 = GALGAS_tableValueBinding::class_func_noTableValueBinding (SOURCE_FILE ("auto-layout-view.ggs", 295)) ;
+    var_runActionDescriptor_11939 = GALGAS_runActionDescriptor::class_func_noAction (SOURCE_FILE ("auto-layout-view.ggs", 296)) ;
+    var_enabledBindingDescriptor_11994 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 297)) ;
+    var_hiddenBindingDescriptor_12054 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 298)) ;
+    var_graphicController_12105 = GALGAS_graphicController::class_func_none (SOURCE_FILE ("auto-layout-view.ggs", 299)) ;
+    var_regularBindingList_12151 = GALGAS_regularBindingList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 300)) ;
+    var_autoLayoutViewFunctionCallList_12213 = GALGAS_astAutoLayoutViewFunctionCallList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 301)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 303)) ;
-    nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_autoLayoutViewFunctionCallList_12225, inCompiler) ;
-    nt_outlet_5F_binding_ (var_tableValueBinding_11904, var_runActionDescriptor_11951, var_enabledBindingDescriptor_12006, var_hiddenBindingDescriptor_12066, var_graphicController_12117, var_regularBindingList_12163, inCompiler) ;
+    nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_autoLayoutViewFunctionCallList_12213, inCompiler) ;
+    nt_outlet_5F_binding_ (var_tableValueBinding_11892, var_runActionDescriptor_11939, var_enabledBindingDescriptor_11994, var_hiddenBindingDescriptor_12054, var_graphicController_12105, var_regularBindingList_12151, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 311)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outInstruction = GALGAS_astComputedViewInstruction::class_func_new (var_viewClassName_10984, var_instanciationParameterList_11050, var_autoLayoutViewFunctionCallList_12225, var_tableValueBinding_11904, var_runActionDescriptor_11951, var_enabledBindingDescriptor_12006, var_hiddenBindingDescriptor_12066, var_graphicController_12117, var_regularBindingList_12163, var_configuratorName_11247, var_outletName_11281, var_outletIsArray_11306  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 313)) ;
+  outArgument_outInstruction = GALGAS_astComputedViewInstruction::init_21__21__21__21__21__21__21__21__21__21__21__21_ (var_viewClassName_10984, var_instanciationParameterList_11050, var_autoLayoutViewFunctionCallList_12213, var_tableValueBinding_11892, var_runActionDescriptor_11939, var_enabledBindingDescriptor_11994, var_hiddenBindingDescriptor_12054, var_graphicController_12105, var_regularBindingList_12151, var_configuratorName_11247, var_outletName_11281, var_outletIsArray_11306, inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 251)) ;
@@ -5639,7 +6482,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_vie
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i21_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 251)) ;
@@ -5700,7 +6543,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_vie
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                                            GALGAS_astAutoLayoutViewInstructionParameterList & outArgument_outParameterList,
@@ -5714,141 +6557,141 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
   case 2: {
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_parameterName_13723 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_parameterName_13711 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 338)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 339)) ;
       switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
       case 1: {
-        GALGAS_astAbstractViewInstructionDeclaration var_instruction_13863 ;
-        nt_view_5F_instruction_ (ioArgument_ioStackViewInstances, var_instruction_13863, inCompiler) ;
+        GALGAS_astAbstractViewInstructionDeclaration var_instruction_13851 ;
+        nt_view_5F_instruction_ (ioArgument_ioStackViewInstances, var_instruction_13851, inCompiler) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view.ggs", 342)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_viewFunc (var_instruction_13863  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 342)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 342)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view.ggs", 342)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_viewFunc (var_instruction_13851  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 342)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 342)) ;
         }
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("auto-layout-view.ggs", 344)) ;
-        GALGAS_lstring var_entityName_14037 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_entityName_14025 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 345)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view.ggs", 346)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_entity (var_entityName_14037  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 346)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 346)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view.ggs", 346)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_entity (var_entityName_14025  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 346)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 346)) ;
         }
       } break ;
       case 3: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_menuItem COMMA_SOURCE_FILE ("auto-layout-view.ggs", 348)) ;
-        GALGAS_lstring var_menuItemTitle_14209 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_menuItemTitle_14197 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.ggs", 349)) ;
-        GALGAS_runActionDescriptor var_runActionDescriptor_14259 ;
+        GALGAS_runActionDescriptor var_runActionDescriptor_14247 ;
         switch (select_easyBindings_5F_syntax_39 (inCompiler)) {
         case 1: {
-          var_runActionDescriptor_14259 = GALGAS_runActionDescriptor::class_func_noAction (SOURCE_FILE ("auto-layout-view.ggs", 352)) ;
+          var_runActionDescriptor_14247 = GALGAS_runActionDescriptor::class_func_noAction (SOURCE_FILE ("auto-layout-view.ggs", 352)) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("auto-layout-view.ggs", 354)) ;
-          GALGAS_lstring var_runTargetName_14396 ;
+          GALGAS_lstring var_runTargetName_14384 ;
           switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
           case 1: {
-            var_runTargetName_14396 = GALGAS_lstring::class_func_new (GALGAS_string ("self"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 357)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 357)) ;
+            var_runTargetName_14384 = GALGAS_lstring::init_21__21_ (GALGAS_string ("self"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 357)), inCompiler COMMA_HERE) ;
           } break ;
           case 2: {
-            var_runTargetName_14396 = inCompiler->synthetizedAttribute_tokenString () ;
+            var_runTargetName_14384 = inCompiler->synthetizedAttribute_tokenString () ;
             inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 359)) ;
             inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 360)) ;
           } break ;
           default:
             break ;
           }
-          GALGAS_lstring var_runActionName_14621 = inCompiler->synthetizedAttribute_tokenString () ;
+          GALGAS_lstring var_runActionName_14609 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 362)) ;
-          var_runActionDescriptor_14259 = GALGAS_runActionDescriptor::class_func_action (var_runTargetName_14396, var_runActionName_14621  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 363)) ;
+          var_runActionDescriptor_14247 = GALGAS_runActionDescriptor::class_func_action (var_runTargetName_14384, var_runActionName_14609  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 363)) ;
         } break ;
         default:
           break ;
         }
-        GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_14780 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 365)) ;
+        GALGAS_multipleBindingDescriptor var_enabledBindingDescriptor_14768 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 365)) ;
         switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
         case 1: {
-          var_enabledBindingDescriptor_14780 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 367)) ;
+          var_enabledBindingDescriptor_14768 = GALGAS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 367)) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("auto-layout-view.ggs", 369)) ;
-          GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_15018 ;
-          nt_booleanMultipleBindingExpression_ (var_bindingExpression_15018, inCompiler) ;
-          var_enabledBindingDescriptor_14780 = GALGAS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_15018  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 371)) ;
+          GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_15006 ;
+          nt_booleanMultipleBindingExpression_ (var_bindingExpression_15006, inCompiler) ;
+          var_enabledBindingDescriptor_14768 = GALGAS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_15006  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 371)) ;
         } break ;
         default:
           break ;
         }
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view.ggs", 375)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_menuItem (var_menuItemTitle_14209.readProperty_string (), var_runActionDescriptor_14259, var_enabledBindingDescriptor_14780  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 376)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 373)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view.ggs", 375)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_menuItem (var_menuItemTitle_14197.readProperty_string (), var_runActionDescriptor_14247, var_enabledBindingDescriptor_14768  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 376)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 373)) ;
         }
       } break ;
       case 4: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.ggs", 379)) ;
-        GALGAS_lstring var_viewName_15396 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_viewName_15384 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 380)) ;
         enumGalgasBool test_1 = kBoolTrue ;
         if (kBoolTrue == test_1) {
-          test_1 = ioArgument_ioStackViewInstances.getter_hasKey (var_viewName_15396.readProperty_string () COMMA_SOURCE_FILE ("auto-layout-view.ggs", 381)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 381)).boolEnum () ;
+          test_1 = ioArgument_ioStackViewInstances.getter_hasKey (var_viewName_15384.readProperty_string () COMMA_SOURCE_FILE ("auto-layout-view.ggs", 381)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 381)).boolEnum () ;
           if (kBoolTrue == test_1) {
             TC_Array <FixItDescription> fixItArray2 ;
-            inCompiler->emitSemanticError (var_viewName_15396.readProperty_location (), GALGAS_string ("view is not instancied"), fixItArray2  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 382)) ;
+            inCompiler->emitSemanticError (var_viewName_15384.readProperty_location (), GALGAS_string ("view is not instancied"), fixItArray2  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 382)) ;
           }
         }
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view.ggs", 384)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_viewName_15396.readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 384)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 384)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view.ggs", 384)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_viewName_15384.readProperty_string ()  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 384)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 384)) ;
         }
       } break ;
       case 5: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.ggs", 386)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view.ggs", 387)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 387)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 387)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view.ggs", 387)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("true")  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 387)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 387)) ;
         }
       } break ;
       case 6: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.ggs", 389)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view.ggs", 390)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 390)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 390)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view.ggs", 390)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("false")  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 390)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 390)) ;
         }
       } break ;
       case 7: {
-        GALGAS_luint var_uint_33__32__15917 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GALGAS_luint var_uint_33__32__15905 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.ggs", 392)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view.ggs", 393)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_uint_33__32__15917.readProperty_uint ().getter_string (SOURCE_FILE ("auto-layout-view.ggs", 393))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 393)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 393)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view.ggs", 393)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_uint_33__32__15905.readProperty_uint ().getter_string (SOURCE_FILE ("auto-layout-view.ggs", 393))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 393)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 393)) ;
         }
       } break ;
       case 8: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 395)) ;
-        GALGAS_luint var_uint_33__32__16087 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GALGAS_luint var_uint_33__32__16073 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.ggs", 396)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view.ggs", 397)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("-").add_operation (var_uint_33__32__16087.readProperty_uint ().getter_string (SOURCE_FILE ("auto-layout-view.ggs", 397)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view.ggs", 397)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string ("-").add_operation (var_uint_33__32__16073.readProperty_uint ().getter_string (SOURCE_FILE ("auto-layout-view.ggs", 397)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 397)) ;
         }
       } break ;
       case 9: {
-        GALGAS_lstring var_literalString_16245 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_literalString_16231 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.ggs", 399)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view.ggs", 400)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_literalString_16245.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 400))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 400)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 400)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view.ggs", 400)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (var_literalString_16231.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 400))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 400)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 400)) ;
         }
       } break ;
       case 10: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 402)) ;
-        GALGAS_lstring var_enumConstantName_16438 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_enumConstantName_16424 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 403)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeEnum (var_enumConstantName_16438  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string (".").add_operation (var_enumConstantName_16438.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeEnum (var_enumConstantName_16424  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_string (GALGAS_string (".").add_operation (var_enumConstantName_16424.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404))  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 404)) ;
         }
       } break ;
       case 11: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("auto-layout-view.ggs", 406)) ;
-        GALGAS_lstring var_enumTypeName_16644 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_enumTypeName_16630 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 407)) ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 408)) ;
-        GALGAS_lstring var_enumFuncName_16701 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_enumFuncName_16687 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 409)) ;
         {
-        outArgument_outParameterList.setter_append (var_parameterName_13723, GALGAS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view.ggs", 412)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_enumFunc (var_enumTypeName_16644, var_enumFuncName_16701  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 413)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 410)) ;
+        outArgument_outParameterList.setter_append (var_parameterName_13711, GALGAS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view.ggs", 412)), GALGAS_astAutoLayoutViewInstructionParameterValue::class_func_enumFunc (var_enumTypeName_16630, var_enumFuncName_16687  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 413)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 410)) ;
         }
       } break ;
       default:
@@ -5867,7 +6710,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 420)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 334)) ;
@@ -5968,7 +6811,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i22_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 334)) ;
@@ -6068,38 +6911,38 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 420)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i23_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                            GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 427)) ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_17320 ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_functionCallList_17320, inCompiler) ;
-  GALGAS_optionalHiddenBinding var_optionalHiddenBinding_17369 ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_17306 ;
+  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_functionCallList_17306, inCompiler) ;
+  GALGAS_optionalHiddenBinding var_optionalHiddenBinding_17355 ;
   switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
   case 1: {
-    var_optionalHiddenBinding_17369 = GALGAS_optionalHiddenBinding::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 431)) ;
+    var_optionalHiddenBinding_17355 = GALGAS_optionalHiddenBinding::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 431)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view.ggs", 433)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_17557 ;
-    nt_booleanMultipleBindingExpression_ (var_bindingExpression_17557, inCompiler) ;
-    var_optionalHiddenBinding_17369 = GALGAS_optionalHiddenBinding::class_func_binding (var_bindingExpression_17557  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 435)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_17543 ;
+    nt_booleanMultipleBindingExpression_ (var_bindingExpression_17543, inCompiler) ;
+    var_optionalHiddenBinding_17355 = GALGAS_optionalHiddenBinding::class_func_binding (var_bindingExpression_17543  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 435)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 437)) ;
-  GALGAS_astNewStackViewDeclarationList var_astNewStackViewDeclarationList_17700 = GALGAS_astNewStackViewDeclarationList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 438)) ;
-  GALGAS_astViewInstructionList var_instructionList_17744 = GALGAS_astViewInstructionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 439)) ;
-  nt_view_5F_instruction_5F_list_ (GALGAS_bool (false), ioArgument_ioStackViewInstances, var_astNewStackViewDeclarationList_17700, var_instructionList_17744, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::class_func_new (var_functionCallList_17320, var_instructionList_17744, var_optionalHiddenBinding_17369, var_astNewStackViewDeclarationList_17700  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 441)) ;
+  GALGAS_astNewStackViewDeclarationList var_astNewStackViewDeclarationList_17686 = GALGAS_astNewStackViewDeclarationList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 438)) ;
+  GALGAS_astViewInstructionList var_instructionList_17730 = GALGAS_astViewInstructionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 439)) ;
+  nt_view_5F_instruction_5F_list_ (GALGAS_bool (false), ioArgument_ioStackViewInstances, var_astNewStackViewDeclarationList_17686, var_instructionList_17730, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astVStackViewInstructionDeclaration::init_21__21__21__21_ (var_functionCallList_17306, var_instructionList_17730, var_optionalHiddenBinding_17355, var_astNewStackViewDeclarationList_17686, inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 442)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i23_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 427)) ;
@@ -6120,7 +6963,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i23_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 427)) ;
@@ -6140,38 +6983,38 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 442)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i24_ (GALGAS_stringset & ioArgument_ioStackViewInstances,
                                                                                            GALGAS_astAbstractViewInstructionDeclaration & outArgument_outInstruction,
                                                                                            Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 449)) ;
-  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_18425 ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_functionCallList_18425, inCompiler) ;
-  GALGAS_optionalHiddenBinding var_optionalHiddenBinding_18474 ;
+  GALGAS_astAutoLayoutViewFunctionCallList var_functionCallList_18411 ;
+  nt_auto_5F_layout_5F_func_5F_call_5F_list_ (ioArgument_ioStackViewInstances, var_functionCallList_18411, inCompiler) ;
+  GALGAS_optionalHiddenBinding var_optionalHiddenBinding_18460 ;
   switch (select_easyBindings_5F_syntax_43 (inCompiler)) {
   case 1: {
-    var_optionalHiddenBinding_18474 = GALGAS_optionalHiddenBinding::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 453)) ;
+    var_optionalHiddenBinding_18460 = GALGAS_optionalHiddenBinding::class_func_noBinding (SOURCE_FILE ("auto-layout-view.ggs", 453)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view.ggs", 455)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_18662 ;
-    nt_booleanMultipleBindingExpression_ (var_bindingExpression_18662, inCompiler) ;
-    var_optionalHiddenBinding_18474 = GALGAS_optionalHiddenBinding::class_func_binding (var_bindingExpression_18662  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 457)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_18648 ;
+    nt_booleanMultipleBindingExpression_ (var_bindingExpression_18648, inCompiler) ;
+    var_optionalHiddenBinding_18460 = GALGAS_optionalHiddenBinding::class_func_binding (var_bindingExpression_18648  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 457)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 459)) ;
-  GALGAS_astNewStackViewDeclarationList var_astNewStackViewDeclarationList_18805 = GALGAS_astNewStackViewDeclarationList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 460)) ;
-  GALGAS_astViewInstructionList var_instructionList_18849 = GALGAS_astViewInstructionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 461)) ;
-  nt_view_5F_instruction_5F_list_ (GALGAS_bool (true), ioArgument_ioStackViewInstances, var_astNewStackViewDeclarationList_18805, var_instructionList_18849, inCompiler) ;
-  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::class_func_new (var_functionCallList_18425, var_instructionList_18849, var_optionalHiddenBinding_18474, var_astNewStackViewDeclarationList_18805  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 463)) ;
+  GALGAS_astNewStackViewDeclarationList var_astNewStackViewDeclarationList_18791 = GALGAS_astNewStackViewDeclarationList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 460)) ;
+  GALGAS_astViewInstructionList var_instructionList_18835 = GALGAS_astViewInstructionList::class_func_emptyList (SOURCE_FILE ("auto-layout-view.ggs", 461)) ;
+  nt_view_5F_instruction_5F_list_ (GALGAS_bool (true), ioArgument_ioStackViewInstances, var_astNewStackViewDeclarationList_18791, var_instructionList_18835, inCompiler) ;
+  outArgument_outInstruction = GALGAS_astHStackViewInstructionDeclaration::init_21__21__21__21_ (var_functionCallList_18411, var_instructionList_18835, var_optionalHiddenBinding_18460, var_astNewStackViewDeclarationList_18791, inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 464)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i24_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 449)) ;
@@ -6192,7 +7035,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i24_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 449)) ;
@@ -6212,7 +7055,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 464)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_ (GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                       Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -6245,33 +7088,33 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   default:
     break ;
   }
-  GALGAS_bool var_hasRunAction_2025 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasEnabled_2060 = GALGAS_bool (false) ;
-  GALGAS_bool var_hasHidden_2093 = GALGAS_bool (false) ;
-  GALGAS_bool var_handlesTableViewBinding_2125 = GALGAS_bool (false) ;
-  GALGAS_bool var_handlesGraphicControllerBinding_2171 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasRunAction_2022 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasEnabled_2057 = GALGAS_bool (false) ;
+  GALGAS_bool var_hasHidden_2090 = GALGAS_bool (false) ;
+  GALGAS_bool var_handlesTableViewBinding_2122 = GALGAS_bool (false) ;
+  GALGAS_bool var_handlesGraphicControllerBinding_2168 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.ggs", 63)) ;
-      var_handlesTableViewBinding_2125 = GALGAS_bool (true) ;
+      var_handlesTableViewBinding_2122 = GALGAS_bool (true) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.ggs", 66)) ;
-      var_hasRunAction_2025 = GALGAS_bool (true) ;
+      var_hasRunAction_2022 = GALGAS_bool (true) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.ggs", 69)) ;
-      var_hasEnabled_2060 = GALGAS_bool (true) ;
+      var_hasEnabled_2057 = GALGAS_bool (true) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-class.ggs", 72)) ;
-      var_hasHidden_2093 = GALGAS_bool (true) ;
+      var_hasHidden_2090 = GALGAS_bool (true) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("outlet-class.ggs", 75)) ;
-      var_handlesGraphicControllerBinding_2171 = GALGAS_bool (true) ;
+      var_handlesGraphicControllerBinding_2168 = GALGAS_bool (true) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6280,11 +7123,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.ggs", 78)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_outletClassDeclarationAST::class_func_new (var_outletClassName_1855, var_userDefined_1694, var_superClassName_1889, var_hasRunAction_2025, var_hasEnabled_2060, var_handlesTableViewBinding_2125, var_handlesGraphicControllerBinding_2171, var_hasHidden_2093  COMMA_SOURCE_FILE ("outlet-class.ggs", 79)), inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 79)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_outletClassDeclarationAST::init_21__21__21__21__21__21__21__21_ (var_outletClassName_1855, var_userDefined_1694, var_superClassName_1889, var_hasRunAction_2022, var_hasEnabled_2057, var_handlesTableViewBinding_2122, var_handlesGraphicControllerBinding_2168, var_hasHidden_2090, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 79)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
@@ -6336,7 +7179,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
@@ -6387,7 +7230,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.ggs", 78)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_ (GALGAS_outletClassBindingSpecificationList & ioArgument_ioControllerTemplateList,
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -6421,7 +7264,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 54)) ;
-      var_modelTypeName_2000 = GALGAS_lstring::class_func_new (GALGAS_string ("enum"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 55)), inCompiler  COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 55)) ;
+      var_modelTypeName_2000 = GALGAS_lstring::init_21__21_ (GALGAS_string ("enum"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 55)), inCompiler COMMA_HERE) ;
     } break ;
     default:
       break ;
@@ -6435,7 +7278,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       repeatFlag_0 = false ;
     }
   }
-  GALGAS_controllerBindingOptionList var_bindingOptionList_2312 = GALGAS_controllerBindingOptionList::class_func_emptyList (SOURCE_FILE ("outlet-binding-specification.ggs", 61)) ;
+  GALGAS_controllerBindingOptionList var_bindingOptionList_2313 = GALGAS_controllerBindingOptionList::class_func_emptyList (SOURCE_FILE ("outlet-binding-specification.ggs", 61)) ;
   switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
   case 1: {
   } break ;
@@ -6443,13 +7286,13 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 64)) ;
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      GALGAS_lstring var_optionName_2412 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_optionName_2413 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 66)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 67)) ;
-      GALGAS_lstring var_optionType_2472 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_optionType_2473 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 68)) ;
       {
-      var_bindingOptionList_2312.setter_append (var_optionName_2412, var_optionType_2472, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 69)) ;
+      var_bindingOptionList_2313.setter_append (var_optionName_2413, var_optionType_2473, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 69)) ;
       }
       if (select_easyBindings_5F_syntax_51 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 71)) ;
@@ -6464,11 +7307,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 75)) ;
   {
-  ioArgument_ioControllerTemplateList.setter_append (var_outletClassName_1595, var_bindingName_1645, var_outletClassBindingSpecificationModelList_1716, var_bindingOptionList_2312, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 76)) ;
+  ioArgument_ioControllerTemplateList.setter_append (var_outletClassName_1595, var_bindingName_1645, var_outletClassBindingSpecificationModelList_1716, var_bindingOptionList_2313, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 76)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_binding COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 36)) ;
@@ -6528,7 +7371,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i26_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_binding COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 36)) ;
@@ -6587,7 +7430,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 75)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_ (GALGAS_outletDeclarationList & ioArgument_ioOutletDeclarationList,
                                                                                              Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -6609,7 +7452,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-declaration.ggs", 46)) ;
@@ -6620,7 +7463,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i27_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-declaration.ggs", 46)) ;
@@ -6630,7 +7473,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 55)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i28_ (GALGAS_tableValueBinding & outArgument_tableValueBinding,
                                                                                          GALGAS_runActionDescriptor & outArgument_runActionDescriptor,
@@ -6681,7 +7524,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       GALGAS_lstring var_runTargetName_3975 ;
       switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
       case 1: {
-        var_runTargetName_3975 = GALGAS_lstring::class_func_new (GALGAS_string ("self"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 98)), inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 98)) ;
+        var_runTargetName_3975 = GALGAS_lstring::init_21__21_ (GALGAS_string ("self"), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 98)), inCompiler COMMA_HERE) ;
       } break ;
       case 2: {
         var_runTargetName_3975 = inCompiler->synthetizedAttribute_tokenString () ;
@@ -6782,7 +7625,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i28_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -6849,7 +7692,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i28_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -6915,7 +7758,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i29_ (GALGAS_observablePropertyAST & outArgument_outObservablePropertyAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -7108,7 +7951,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i29_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
@@ -7262,7 +8105,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i29_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
@@ -7415,25 +8258,25 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
-  GALGAS_lstring var_transientTypeName_5559 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientTypeName_5576 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("computed-property.ggs", 99)) ;
-  GALGAS_lstring var_transientName_5610 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientName_5627 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("computed-property.ggs", 100)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("computed-property.ggs", 101)) ;
-  GALGAS_observablePropertyList var_dependanceList_5675 = GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("computed-property.ggs", 102)) ;
+  GALGAS_observablePropertyList var_dependanceList_5692 = GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("computed-property.ggs", 102)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    GALGAS_observablePropertyAST var_observablePropertyAST_5763 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_5763, inCompiler) ;
+    GALGAS_observablePropertyAST var_observablePropertyAST_5780 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_5780, inCompiler) ;
     {
-    var_dependanceList_5675.setter_append (var_observablePropertyAST_5763, inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 105)) ;
+    var_dependanceList_5692.setter_append (var_observablePropertyAST_5780, inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 105)) ;
     }
     if (select_easyBindings_5F_syntax_66 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("computed-property.ggs", 107)) ;
@@ -7443,11 +8286,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("computed-property.ggs", 109)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_computedPropertyDeclarationAST::class_func_new (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5559, var_transientName_5610, var_dependanceList_5675  COMMA_SOURCE_FILE ("computed-property.ggs", 110)), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 110)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_computedPropertyDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5576, var_transientName_5627, var_dependanceList_5692, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 110)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
@@ -7467,7 +8310,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i30_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
@@ -7486,7 +8329,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("computed-property.ggs", 109)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
@@ -7494,17 +8337,17 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.ggs", 91)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 92)) ;
-  GALGAS_lstring var_transientTypeName_5389 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientTypeName_5406 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 93)) ;
-  GALGAS_lstring var_transientName_5440 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientName_5457 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 94)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 95)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::class_func_new (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5389, var_transientName_5440, GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("transient-property.ggs", 100)), GALGAS_bool (false)  COMMA_SOURCE_FILE ("transient-property.ggs", 96)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 96)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5406, var_transientName_5457, GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("transient-property.ggs", 100)), GALGAS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 96)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.ggs", 91)) ;
@@ -7515,7 +8358,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i31_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.ggs", 91)) ;
@@ -7525,37 +8368,37 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 95)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i32_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                 const GALGAS_lstring constinArgument_inRootEntity,
                                                                                                 GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
-  GALGAS_bool var_isOverriding_5982 ;
+  GALGAS_bool var_isOverriding_5999 ;
   switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
   case 1: {
-    var_isOverriding_5982 = GALGAS_bool (false) ;
+    var_isOverriding_5999 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_override COMMA_SOURCE_FILE ("transient-property.ggs", 118)) ;
-    var_isOverriding_5982 = GALGAS_bool (true) ;
+    var_isOverriding_5999 = GALGAS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 121)) ;
-  GALGAS_lstring var_transientTypeName_6130 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientTypeName_6147 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 122)) ;
-  GALGAS_lstring var_transientName_6181 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_transientName_6198 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 123)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("transient-property.ggs", 124)) ;
-  GALGAS_observablePropertyList var_dependanceList_6246 = GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("transient-property.ggs", 125)) ;
+  GALGAS_observablePropertyList var_dependanceList_6263 = GALGAS_observablePropertyList::class_func_emptyList (SOURCE_FILE ("transient-property.ggs", 125)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    GALGAS_observablePropertyAST var_observablePropertyAST_6334 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_6334, inCompiler) ;
+    GALGAS_observablePropertyAST var_observablePropertyAST_6351 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_6351, inCompiler) ;
     {
-    var_dependanceList_6246.setter_append (var_observablePropertyAST_6334, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 128)) ;
+    var_dependanceList_6263.setter_append (var_observablePropertyAST_6351, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 128)) ;
     }
     if (select_easyBindings_5F_syntax_68 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.ggs", 130)) ;
@@ -7565,11 +8408,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 132)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::class_func_new (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_6130, var_transientName_6181, var_dependanceList_6246, var_isOverriding_5982  COMMA_SOURCE_FILE ("transient-property.ggs", 133)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 133)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_6147, var_transientName_6198, var_dependanceList_6263, var_isOverriding_5999, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 133)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i32_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
@@ -7598,7 +8441,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i32_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
@@ -7626,7 +8469,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 132)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i33_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring /* constinArgument_inRootEntity */,
@@ -7659,11 +8502,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 63)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("proxy.ggs", 64)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_proxyDeclarationAST::class_func_new (constinArgument_inCurrentEntity, var_proxyKind_2105, var_proxyTypeName_2281, var_proxyName_2328, var_toOnePropertyName_2379, var_propertyName_2438  COMMA_SOURCE_FILE ("proxy.ggs", 65)), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 65)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_proxyDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_proxyKind_2105, var_proxyTypeName_2281, var_proxyName_2328, var_toOnePropertyName_2379, var_propertyName_2438, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 65)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i33_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
@@ -7687,7 +8530,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i33_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
@@ -7710,7 +8553,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("proxy.ggs", 64)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_ (const GALGAS_lstring constinArgument_inClassName,
                                                                                                        GALGAS_simpleStoredPropertyList & ioArgument_ioAttributeList,
@@ -7839,14 +8682,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   nt_explicit_5F_value_ (var_defaultValue_3998, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_atomicPropertyDeclarationAST::class_func_new (constinArgument_inClassName, var_attributeTypeName_3778, var_attributeName_3829, var_defaultValue_3998, var_generateResetMethod_2348, var_generateDirectRead_2384, var_generateDirectAccess_2419  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_atomicPropertyDeclarationAST::init_21__21__21__21__21__21__21_ (constinArgument_inClassName, var_attributeTypeName_3778, var_attributeName_3829, var_defaultValue_3998, var_generateResetMethod_2348, var_generateDirectRead_2384, var_generateDirectAccess_2419, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 98)) ;
   }
   {
   ioArgument_ioAttributeList.setter_append (var_attributeTypeName_3778, var_attributeName_3829, var_defaultValue_3998, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 108)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 52)) ;
@@ -7866,7 +8709,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 52)) ;
@@ -7885,7 +8728,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                              GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
@@ -7975,11 +8818,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_toOneRelationshipAST::class_func_new (constinArgument_inCurrentEntity, var_destinationEntityName_2773, var_relationshipName_2828, var_opposite_2881, var_usedForSignature_2128, var_weak_2161  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_toOneRelationshipAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_2773, var_relationshipName_2828, var_opposite_2881, var_usedForSignature_2128, var_weak_2161, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
@@ -8018,7 +8861,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
@@ -8056,7 +8899,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                               GALGAS_stringset & ioArgument_ioSignatureList,
@@ -8204,11 +9047,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 115)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_toManyRelationshipAST::class_func_new (constinArgument_inCurrentEntity, var_destinationEntityName_3955, var_relationshipName_4001, var_toManyRelationshipOption_4150, var_customStore_2574, var_usedForSignature_2541, var_generateDirectAccess_2602, var_generateDirectRead_2639  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_toManyRelationshipAST::init_21__21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_3955, var_relationshipName_4001, var_toManyRelationshipOption_4150, var_customStore_2574, var_usedForSignature_2541, var_generateDirectAccess_2602, var_generateDirectRead_2639, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.ggs", 57)) ;
@@ -8243,7 +9086,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.ggs", 57)) ;
@@ -8277,7 +9120,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 115)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i37_ (GALGAS_lstringlist & ioArgument_ioActionDeclarationList,
                                                                                              Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8290,7 +9133,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i37_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_action COMMA_SOURCE_FILE ("run-action.ggs", 19)) ;
@@ -8299,7 +9142,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i37_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_action COMMA_SOURCE_FILE ("run-action.ggs", 19)) ;
@@ -8307,7 +9150,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("run-action.ggs", 21)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                         Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8319,14 +9162,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 87)) ;
       GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_3851 ;
       nt_booleanMultipleBindingComparison_ (var_binding_3851, inCompiler) ;
-      outArgument_outBinding = GALGAS_andBooleanMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, var_binding_3851  COMMA_SOURCE_FILE ("multiple-binding.ggs", 89)) ;
+      outArgument_outBinding = GALGAS_andBooleanMultipleBindingExpressionAST::init_21__21_ (outArgument_outBinding, var_binding_3851, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingComparison_parse (inCompiler) ;
@@ -8342,7 +9185,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingComparison_indexing (inCompiler) ;
@@ -8357,7 +9200,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                         Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8368,46 +9211,46 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 99)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4305 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_4305, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_greater (SOURCE_FILE ("multiple-binding.ggs", 101)), var_rightBinding_4305  COMMA_SOURCE_FILE ("multiple-binding.ggs", 101)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4306 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4306, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_greater (SOURCE_FILE ("multiple-binding.ggs", 101)), var_rightBinding_4306, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 103)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4474 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_4474, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_greaterOrEqual (SOURCE_FILE ("multiple-binding.ggs", 105)), var_rightBinding_4474  COMMA_SOURCE_FILE ("multiple-binding.ggs", 105)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4475 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4475, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_greaterOrEqual (SOURCE_FILE ("multiple-binding.ggs", 105)), var_rightBinding_4475, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 107)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4650 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_4650, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_lowerOrEqual (SOURCE_FILE ("multiple-binding.ggs", 109)), var_rightBinding_4650  COMMA_SOURCE_FILE ("multiple-binding.ggs", 109)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4651 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4651, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_lowerOrEqual (SOURCE_FILE ("multiple-binding.ggs", 109)), var_rightBinding_4651, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 111)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4823 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_4823, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_lower (SOURCE_FILE ("multiple-binding.ggs", 113)), var_rightBinding_4823  COMMA_SOURCE_FILE ("multiple-binding.ggs", 113)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4824 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4824, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_lower (SOURCE_FILE ("multiple-binding.ggs", 113)), var_rightBinding_4824, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 115)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4990 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_4990, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_equal (SOURCE_FILE ("multiple-binding.ggs", 117)), var_rightBinding_4990  COMMA_SOURCE_FILE ("multiple-binding.ggs", 117)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_4991 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_4991, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_equal (SOURCE_FILE ("multiple-binding.ggs", 117)), var_rightBinding_4991, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 119)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_5157 ;
-    nt_booleanMultipleBindingTerm_ (var_rightBinding_5157, inCompiler) ;
-    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_notEqual (SOURCE_FILE ("multiple-binding.ggs", 121)), var_rightBinding_5157  COMMA_SOURCE_FILE ("multiple-binding.ggs", 121)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_rightBinding_5158 ;
+    nt_booleanMultipleBindingTerm_ (var_rightBinding_5158, inCompiler) ;
+    outArgument_outBinding = GALGAS_comparisonMultipleBindingExpressionAST::init_21__21__21_ (outArgument_outBinding, GALGAS_multipleBindingComparisonAST::class_func_notEqual (SOURCE_FILE ("multiple-binding.ggs", 121)), var_rightBinding_5158, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingTerm_parse (inCompiler) ;
@@ -8444,7 +9287,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingTerm_indexing (inCompiler) ;
@@ -8480,7 +9323,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                   Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8491,15 +9334,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
     switch (select_easyBindings_5F_syntax_78 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 133)) ;
-      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5681 ;
-      nt_booleanMultipleBindingOperand_ (var_binding_5681, inCompiler) ;
-      outArgument_outBinding = GALGAS_orBooleanMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, var_binding_5681  COMMA_SOURCE_FILE ("multiple-binding.ggs", 135)) ;
+      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5682 ;
+      nt_booleanMultipleBindingOperand_ (var_binding_5682, inCompiler) ;
+      outArgument_outBinding = GALGAS_orBooleanMultipleBindingExpressionAST::init_21__21_ (outArgument_outBinding, var_binding_5682, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 137)) ;
-      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5884 ;
-      nt_booleanMultipleBindingOperand_ (var_binding_5884, inCompiler) ;
-      outArgument_outBinding = GALGAS_xorBooleanMultipleBindingExpressionAST::class_func_new (outArgument_outBinding, var_binding_5884  COMMA_SOURCE_FILE ("multiple-binding.ggs", 139)) ;
+      GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_5886 ;
+      nt_booleanMultipleBindingOperand_ (var_binding_5886, inCompiler) ;
+      outArgument_outBinding = GALGAS_xorBooleanMultipleBindingExpressionAST::init_21__21_ (outArgument_outBinding, var_binding_5886, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -8508,7 +9351,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingOperand_parse (inCompiler) ;
@@ -8531,7 +9374,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingOperand_indexing (inCompiler) ;
@@ -8553,41 +9396,41 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  GALGAS_observablePropertyAST var_observablePropertyAST_6280 ;
-  nt_observable_5F_property_ (var_observablePropertyAST_6280, inCompiler) ;
-  outArgument_outBinding = GALGAS_observablePropertyInMultipleBindingExpressionAST::class_func_new (var_observablePropertyAST_6280  COMMA_SOURCE_FILE ("multiple-binding.ggs", 149)) ;
+  GALGAS_observablePropertyAST var_observablePropertyAST_6283 ;
+  nt_observable_5F_property_ (var_observablePropertyAST_6283, inCompiler) ;
+  outArgument_outBinding = GALGAS_observablePropertyInMultipleBindingExpressionAST::init_21_ (var_observablePropertyAST_6283, inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_observable_5F_property_parse (inCompiler) ;
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_observable_5F_property_indexing (inCompiler) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 157)) ;
-  GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_6732 ;
-  nt_booleanMultipleBindingOperand_ (var_binding_6732, inCompiler) ;
-  outArgument_outBinding = GALGAS_negateBooleanMultipleBindingExpressionAST::class_func_new (var_binding_6732  COMMA_SOURCE_FILE ("multiple-binding.ggs", 159)) ;
+  GALGAS_abstractBooleanMultipleBindingExpressionAST var_binding_6736 ;
+  nt_booleanMultipleBindingOperand_ (var_binding_6736, inCompiler) ;
+  outArgument_outBinding = GALGAS_negateBooleanMultipleBindingExpressionAST::init_21_ (var_binding_6736, inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 157)) ;
@@ -8595,14 +9438,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 157)) ;
   nt_booleanMultipleBindingOperand_indexing (inCompiler) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8612,7 +9455,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 169)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 167)) ;
@@ -8621,7 +9464,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i43_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 167)) ;
@@ -8629,30 +9472,30 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 169)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_ (GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument_outBinding,
                                                                                                      Lexique_easyBindings_5F_lexique * inCompiler) {
   outArgument_outBinding.drop () ; // Release 'out' argument
-  GALGAS_luint var_value_7387 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GALGAS_luint var_value_7392 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.ggs", 177)) ;
-  outArgument_outBinding = GALGAS_literalIntMultipleBindingExpressionAST::class_func_new (var_value_7387  COMMA_SOURCE_FILE ("multiple-binding.ggs", 178)) ;
+  outArgument_outBinding = GALGAS_literalIntMultipleBindingExpressionAST::init_21_ (var_value_7392, inCompiler COMMA_HERE) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.ggs", 177)) ;
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.ggs", 177)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_ (GALGAS_bindingOptionList & outArgument_outBindingOptions,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -8686,7 +9529,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
@@ -8713,7 +9556,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
@@ -8739,7 +9582,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring constinArgument_inRootEntity,
@@ -8747,35 +9590,35 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.ggs", 61)) ;
-  GALGAS_lstring var_controllerName_2843 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_controllerName_2845 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("array-controller.ggs", 62)) ;
-  GALGAS_arrayControllerBoundModelAST var_model_2910 ;
+  GALGAS_arrayControllerBoundModelAST var_model_2912 ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.ggs", 65)) ;
   switch (select_easyBindings_5F_syntax_81 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.ggs", 67)) ;
-    var_model_2910 = GALGAS_arrayControllerBoundModelAST::class_func_rootToManyRelationship (constinArgument_inRootEntity  COMMA_SOURCE_FILE ("array-controller.ggs", 68)) ;
+    var_model_2912 = GALGAS_arrayControllerBoundModelAST::class_func_rootToManyRelationship (constinArgument_inRootEntity  COMMA_SOURCE_FILE ("array-controller.ggs", 68)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("array-controller.ggs", 70)) ;
-    var_model_2910 = GALGAS_arrayControllerBoundModelAST::class_func_selfToManyRelationship (SOURCE_FILE ("array-controller.ggs", 71)) ;
+    var_model_2912 = GALGAS_arrayControllerBoundModelAST::class_func_selfToManyRelationship (SOURCE_FILE ("array-controller.ggs", 71)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.ggs", 73)) ;
-  GALGAS_lstring var_relationshipName_3124 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_relationshipName_3126 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.ggs", 74)) ;
   switch (select_easyBindings_5F_syntax_82 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("array-controller.ggs", 78)) ;
-    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3292 ;
-    nt_booleanMultipleBindingExpression_ (var_bindingExpression_3292, inCompiler) ;
-    GALGAS_multipleBindingDescriptor var_hiddenSelectionViewBindingDescriptor_3321 = GALGAS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_3292  COMMA_SOURCE_FILE ("array-controller.ggs", 80)) ;
+    GALGAS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3294 ;
+    nt_booleanMultipleBindingExpression_ (var_bindingExpression_3294, inCompiler) ;
+    GALGAS_multipleBindingDescriptor var_hiddenSelectionViewBindingDescriptor_3323 = GALGAS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_3294  COMMA_SOURCE_FILE ("array-controller.ggs", 80)) ;
     {
-    ioArgument_ioArrayControllerBindingListAST.setter_append (var_controllerName_2843, var_hiddenSelectionViewBindingDescriptor_3321, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 81)) ;
+    ioArgument_ioArrayControllerBindingListAST.setter_append (var_controllerName_2845, var_hiddenSelectionViewBindingDescriptor_3323, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 81)) ;
     }
   } break ;
   default:
@@ -8783,11 +9626,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("array-controller.ggs", 86)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_arrayControllerDeclarationAST::class_func_new (constinArgument_inCurrentEntity, var_controllerName_2843, var_model_2910, var_relationshipName_3124  COMMA_SOURCE_FILE ("array-controller.ggs", 87)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 87)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_arrayControllerDeclarationAST::init_21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2845, var_model_2912, var_relationshipName_3126, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 87)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.ggs", 61)) ;
@@ -8819,7 +9662,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i46_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.ggs", 61)) ;
@@ -8850,7 +9693,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("array-controller.ggs", 86)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i47_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring constinArgument_inRootEntity,
@@ -8858,19 +9701,19 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 63)) ;
-  GALGAS_lstring var_controllerName_3130 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_controllerName_3132 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 64)) ;
-  GALGAS_autoLayoutTableViewControllerAttributListAST var_arrayControllerAttributListAST_3200 = GALGAS_autoLayoutTableViewControllerAttributListAST::class_func_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 65)) ;
+  GALGAS_autoLayoutTableViewControllerAttributListAST var_arrayControllerAttributListAST_3202 = GALGAS_autoLayoutTableViewControllerAttributListAST::class_func_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 65)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 66)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
-    GALGAS_lstring var_attributeName_3289 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_attributeName_3291 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 68)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 69)) ;
-    GALGAS_abstractDefaultValue var_attributeValue_3365 ;
-    nt_explicit_5F_value_ (var_attributeValue_3365, inCompiler) ;
+    GALGAS_abstractDefaultValue var_attributeValue_3367 ;
+    nt_explicit_5F_value_ (var_attributeValue_3367, inCompiler) ;
     {
-    var_arrayControllerAttributListAST_3200.setter_append (var_attributeName_3289, var_attributeValue_3365, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 71)) ;
+    var_arrayControllerAttributListAST_3202.setter_append (var_attributeName_3291, var_attributeValue_3367, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 71)) ;
     }
     if (select_easyBindings_5F_syntax_83 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 73)) ;
@@ -8879,23 +9722,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     }
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 75)) ;
-  GALGAS_bool var_isRoot_3522 ;
+  GALGAS_bool var_isRoot_3524 ;
   switch (select_easyBindings_5F_syntax_84 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 79)) ;
-    var_isRoot_3522 = GALGAS_bool (true) ;
+    var_isRoot_3524 = GALGAS_bool (true) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 82)) ;
-    var_isRoot_3522 = GALGAS_bool (false) ;
+    var_isRoot_3524 = GALGAS_bool (false) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 85)) ;
-  GALGAS_lstring var_relationshipName_3662 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_relationshipName_3664 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 86)) ;
-  GALGAS_autoLayoutTableViewControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3737 = GALGAS_autoLayoutTableViewControllerBoundColumnListAST::class_func_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 87)) ;
+  GALGAS_autoLayoutTableViewControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3739 = GALGAS_autoLayoutTableViewControllerBoundColumnListAST::class_func_emptyList (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 87)) ;
   switch (select_easyBindings_5F_syntax_85 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 89)) ;
@@ -8905,39 +9748,39 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
       if (select_easyBindings_5F_syntax_86 (inCompiler) == 2) {
-        GALGAS_bool var_editableColumn_3857 ;
+        GALGAS_bool var_editableColumn_3859 ;
         switch (select_easyBindings_5F_syntax_87 (inCompiler)) {
         case 1: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 96)) ;
-          var_editableColumn_3857 = GALGAS_bool (false) ;
+          var_editableColumn_3859 = GALGAS_bool (false) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_editableColumn COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 99)) ;
-          var_editableColumn_3857 = GALGAS_bool (true) ;
+          var_editableColumn_3859 = GALGAS_bool (true) ;
         } break ;
         default:
           break ;
         }
-        GALGAS_lstring var_propertyName_4048 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_propertyName_4050 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 102)) ;
-        GALGAS_stringset joker_4100 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 103)) ;
-        GALGAS_astAutoLayoutViewInstructionParameterList var_columnParameterListAST_4110 ;
-        nt_view_5F_actual_5F_parameter_5F_list_ (joker_4100, var_columnParameterListAST_4110, inCompiler) ;
-        GALGAS_lstring var_sortPropertyName_4158 ;
+        GALGAS_stringset joker_4102 = GALGAS_stringset::class_func_emptySet (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 103)) ;
+        GALGAS_astAutoLayoutViewInstructionParameterList var_columnParameterListAST_4112 ;
+        nt_view_5F_actual_5F_parameter_5F_list_ (joker_4102, var_columnParameterListAST_4112, inCompiler) ;
+        GALGAS_lstring var_sortPropertyName_4160 ;
         switch (select_easyBindings_5F_syntax_88 (inCompiler)) {
         case 1: {
-          var_sortPropertyName_4158 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 106)) ;
+          var_sortPropertyName_4160 = GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 106)) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_sortkey COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 108)) ;
-          var_sortPropertyName_4158 = inCompiler->synthetizedAttribute_tokenString () ;
+          var_sortPropertyName_4160 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 109)) ;
         } break ;
         default:
           break ;
         }
         {
-        var_arrayControllerBoundColumnListAST_3737.setter_append (var_editableColumn_3857, var_propertyName_4048, var_columnParameterListAST_4110, var_sortPropertyName_4158, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 111)) ;
+        var_arrayControllerBoundColumnListAST_3739.setter_append (var_editableColumn_3859, var_propertyName_4050, var_columnParameterListAST_4112, var_sortPropertyName_4160, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 111)) ;
         }
       }else{
         repeatFlag_1 = false ;
@@ -8949,11 +9792,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     break ;
   }
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutTableViewControllerDeclarationAST::class_func_new (constinArgument_inCurrentEntity, var_controllerName_3130, var_isRoot_3522, constinArgument_inRootEntity, var_relationshipName_3662, var_arrayControllerBoundColumnListAST_3737, var_arrayControllerAttributListAST_3200  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 120)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 120)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_autoLayoutTableViewControllerDeclarationAST::init_21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_3132, var_isRoot_3524, constinArgument_inRootEntity, var_relationshipName_3664, var_arrayControllerBoundColumnListAST_3739, var_arrayControllerAttributListAST_3202, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 120)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i47_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 63)) ;
@@ -9026,7 +9869,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i47_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 63)) ;
@@ -9098,7 +9941,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i48_ (const GALGAS_lstring constinArgument_inCurrentEntity,
                                                                                                  const GALGAS_lstring /* constinArgument_inRootEntity */,
@@ -9106,23 +9949,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GALGAS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.ggs", 41)) ;
-  GALGAS_lstring var_selectionEntityName_2158 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_selectionEntityName_2159 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 42)) ;
-  GALGAS_lstring var_selectionControllerName_2215 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_selectionControllerName_2216 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 43)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("selection-controller.ggs", 44)) ;
-  GALGAS_lstring var_modelControllerName_2275 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_modelControllerName_2276 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 45)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("selection-controller.ggs", 46)) ;
-  GALGAS_lstring var_propertyName_2336 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_propertyName_2337 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 47)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("selection-controller.ggs", 48)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_selectionControllerDeclarationAST::class_func_new (constinArgument_inCurrentEntity, var_selectionControllerName_2215, var_modelControllerName_2275, var_propertyName_2336, var_selectionEntityName_2158  COMMA_SOURCE_FILE ("selection-controller.ggs", 49)), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 49)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GALGAS_selectionControllerDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, var_selectionControllerName_2216, var_modelControllerName_2276, var_propertyName_2337, var_selectionEntityName_2159, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 49)) ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i48_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.ggs", 41)) ;
@@ -9136,7 +9979,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i48_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.ggs", 41)) ;
@@ -9149,7 +9992,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("selection-controller.ggs", 48)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i49_ (GALGAS_abstractDefaultValue & outArgument_outDefaultValue,
                                                                                          Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -9157,51 +10000,51 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
   switch (select_easyBindings_5F_syntax_89 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.ggs", 55)) ;
-    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::class_func_new (GALGAS_lbool::class_func_new (GALGAS_bool (true), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 56)), inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 56))  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 56)) ;
+    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::init_21_ (GALGAS_lbool::init_21__21_ (GALGAS_bool (true), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 56)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.ggs", 58)) ;
-    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::class_func_new (GALGAS_lbool::class_func_new (GALGAS_bool (false), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 59)), inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 59))  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 59)) ;
+    outArgument_outDefaultValue = GALGAS_boolAsDefaultValue::init_21_ (GALGAS_lbool::init_21__21_ (GALGAS_bool (false), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 59)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
-    GALGAS_luint var_integerValue_2284 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_luint var_integerValue_2286 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.ggs", 61)) ;
-    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::class_func_new (var_integerValue_2284, GALGAS_bool (false)  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 62)) ;
+    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::init_21__21_ (var_integerValue_2286, GALGAS_bool (false), inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("explicit-default-value.ggs", 64)) ;
-    GALGAS_luint var_integerValue_2421 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_luint var_integerValue_2423 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.ggs", 65)) ;
-    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::class_func_new (var_integerValue_2421, GALGAS_bool (true)  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 66)) ;
+    outArgument_outDefaultValue = GALGAS_integerAsDefaultValue::init_21__21_ (var_integerValue_2423, GALGAS_bool (true), inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
-    GALGAS_ldouble var_doubleValue_2548 = inCompiler->synthetizedAttribute_floatValue () ;
+    GALGAS_ldouble var_doubleValue_2550 = inCompiler->synthetizedAttribute_floatValue () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.ggs", 68)) ;
-    outArgument_outDefaultValue = GALGAS_doubleAsDefaultValue::class_func_new (var_doubleValue_2548  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 69)) ;
+    outArgument_outDefaultValue = GALGAS_doubleAsDefaultValue::init_21_ (var_doubleValue_2550, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
-    GALGAS_lstring var_stringValue_2670 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_stringValue_2672 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.ggs", 71)) ;
-    outArgument_outDefaultValue = GALGAS_stringAsDefaultValue::class_func_new (var_stringValue_2670  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 72)) ;
+    outArgument_outDefaultValue = GALGAS_stringAsDefaultValue::init_21_ (var_stringValue_2672, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
-    GALGAS_lstring var_stringValue_2784 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_stringValue_2786 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.ggs", 74)) ;
-    outArgument_outDefaultValue = GALGAS_identifierAsDefaultValue::class_func_new (var_stringValue_2784  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 75)) ;
+    outArgument_outDefaultValue = GALGAS_identifierAsDefaultValue::init_21_ (var_stringValue_2786, inCompiler COMMA_HERE) ;
   } break ;
   case 8: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("explicit-default-value.ggs", 77)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("explicit-default-value.ggs", 78)) ;
-    GALGAS_lstring var_name_2917 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_name_2919 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.ggs", 79)) ;
-    outArgument_outDefaultValue = GALGAS_prefsAsDefaultValue::class_func_new (var_name_2917  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 80)) ;
+    outArgument_outDefaultValue = GALGAS_prefsAsDefaultValue::init_21_ (var_name_2919, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i49_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_89 (inCompiler)) {
@@ -9238,7 +10081,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i49_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_89 (inCompiler)) {
@@ -9274,7 +10117,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i50_ (GALGAS_lstring & ioArgument_ioXcodeProjectString,
                                                                                         Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -9305,7 +10148,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i50_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.ggs", 12)) ;
@@ -9314,7 +10157,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i50_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.ggs", 12)) ;
@@ -9322,7 +10165,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("xcode-project.ggs", 14)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51_ (GALGAS_mainXibDescriptorList & ioArgument_ioElementList,
                                                                                    Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -9372,7 +10215,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("main-xib.ggs", 52)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.ggs", 33)) ;
@@ -9405,7 +10248,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.ggs", 33)) ;
@@ -9437,7 +10280,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i51
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("main-xib.ggs", 52)) ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_ (GALGAS_mainXibLineDescriptorList & outArgument_outLineDescription,
                                                                                            Lexique_easyBindings_5F_lexique * inCompiler) {
@@ -9473,7 +10316,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
   }
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -9498,7 +10341,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
   inCompiler->resetTemplateString () ;
 }
 
-//---------------------------------------------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------------------------
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
@@ -9541,8 +10384,8 @@ GALGAS_prefDeclaration::~ GALGAS_prefDeclaration (void) {
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_prefDeclaration GALGAS_prefDeclaration::init_28__29_ (Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_prefDeclaration GALGAS_prefDeclaration::init (Compiler * inCompiler
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_prefDeclaration result ;
   result.setInitializedProperties (inCompiler) ;
   return result ;
@@ -9720,8 +10563,8 @@ GALGAS_semanticContext::~ GALGAS_semanticContext (void) {
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_semanticContext GALGAS_semanticContext::init_28__29_ (Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_semanticContext GALGAS_semanticContext::init (Compiler * inCompiler
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_semanticContext result ;
   result.setInitializedProperties (inCompiler) ;
   return result ;
@@ -9932,36 +10775,12 @@ GALGAS_abstractDeclarationAST::GALGAS_abstractDeclarationAST (void) :
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_abstractDeclarationAST GALGAS_abstractDeclarationAST::init_28__29_ (const GALGAS_lstring & in_mClassName,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  cPtr_abstractDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_abstractDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  const GALGAS_abstractDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_abstractDeclarationAST::GALGAS_abstractDeclarationAST (const cPtr_abstractDeclarationAST * inSourcePtr) :
 AC_GALGAS_reference_class (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractDeclarationAST) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_abstractDeclarationAST::setter_setMClassName (GALGAS_lstring inValue
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_abstractDeclarationAST * p = (cPtr_abstractDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_abstractDeclarationAST) ;
-    p->mProperty_mClassName = inValue ;
-  }
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_lstring GALGAS_abstractDeclarationAST::readProperty_mClassName (void) const {
@@ -9975,13 +10794,24 @@ GALGAS_lstring GALGAS_abstractDeclarationAST::readProperty_mClassName (void) con
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_abstractDeclarationAST::setProperty_mClassName (const GALGAS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_abstractDeclarationAST * p = (cPtr_abstractDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_abstractDeclarationAST) ;
+    p->mProperty_mClassName = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @abstractDeclarationAST class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_abstractDeclarationAST::cPtr_abstractDeclarationAST (const GALGAS_lstring & in_mClassName
                                                           COMMA_LOCATION_ARGS) :
 acStrongPtr_class (THERE),
-mProperty_mClassName (in_mClassName) {
+mProperty_mClassName () {
+  mProperty_mClassName = in_mClassName ;
 }
 
 
@@ -10210,18 +11040,28 @@ GALGAS_abstractDeclarationAST () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_transientClassDeclarationAST GALGAS_transientClassDeclarationAST::init_28__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                              const GALGAS_bool & in_mIsClass,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_transientClassDeclarationAST GALGAS_transientClassDeclarationAST::
+init_21__21_ (const GALGAS_lstring & in_mClassName,
+              const GALGAS_bool & in_mIsClass,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_transientClassDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_transientClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mIsClass = in_mIsClass ;
+  object->transientClassDeclarationAST_init_21__21_ (in_mClassName, in_mIsClass, inCompiler) ;
   const GALGAS_transientClassDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_transientClassDeclarationAST::
+transientClassDeclarationAST_init_21__21_ (const GALGAS_lstring & in_mClassName,
+                                           const GALGAS_bool & in_mIsClass,
+                                           Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mIsClass = in_mIsClass ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10231,25 +11071,12 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_transientClassDeclarationAST GALGAS_transientClassDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                         const GALGAS_bool & inAttribute_mIsClass
+GALGAS_transientClassDeclarationAST GALGAS_transientClassDeclarationAST::class_func_new (const GALGAS_lstring & in_mClassName,
+                                                                                         const GALGAS_bool & in_mIsClass
                                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_transientClassDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mIsClass.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_transientClassDeclarationAST (inAttribute_mClassName, inAttribute_mIsClass COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_transientClassDeclarationAST (in_mClassName, in_mIsClass COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_transientClassDeclarationAST::setter_setMIsClass (GALGAS_bool inValue
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_transientClassDeclarationAST * p = (cPtr_transientClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientClassDeclarationAST) ;
-    p->mProperty_mIsClass = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10265,6 +11092,16 @@ GALGAS_bool GALGAS_transientClassDeclarationAST::readProperty_mIsClass (void) co
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_transientClassDeclarationAST::setProperty_mIsClass (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_transientClassDeclarationAST * p = (cPtr_transientClassDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_transientClassDeclarationAST) ;
+    p->mProperty_mIsClass = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @transientClassDeclarationAST class
 //--------------------------------------------------------------------------------------------------
 
@@ -10272,7 +11109,9 @@ cPtr_transientClassDeclarationAST::cPtr_transientClassDeclarationAST (const GALG
                                                                       const GALGAS_bool & in_mIsClass
                                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mIsClass (in_mIsClass) {
+mProperty_mIsClass () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mIsClass = in_mIsClass ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10406,20 +11245,31 @@ GALGAS_abstractDeclarationAST () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_enumerationDeclarationAST GALGAS_enumerationDeclarationAST::init_28__2C__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                            const GALGAS_lstringlist & in_mEnumConstantNameList,
-                                                                                            const GALGAS_bool & in_mCaseIterable,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_enumerationDeclarationAST GALGAS_enumerationDeclarationAST::
+init_21__21__21_ (const GALGAS_lstring & in_mClassName,
+                  const GALGAS_lstringlist & in_mEnumConstantNameList,
+                  const GALGAS_bool & in_mCaseIterable,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
   cPtr_enumerationDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_enumerationDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mEnumConstantNameList = in_mEnumConstantNameList ;
-  object->mProperty_mCaseIterable = in_mCaseIterable ;
+  object->enumerationDeclarationAST_init_21__21__21_ (in_mClassName, in_mEnumConstantNameList, in_mCaseIterable, inCompiler) ;
   const GALGAS_enumerationDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_enumerationDeclarationAST::
+enumerationDeclarationAST_init_21__21__21_ (const GALGAS_lstring & in_mClassName,
+                                            const GALGAS_lstringlist & in_mEnumConstantNameList,
+                                            const GALGAS_bool & in_mCaseIterable,
+                                            Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mEnumConstantNameList = in_mEnumConstantNameList ;
+  mProperty_mCaseIterable = in_mCaseIterable ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10429,14 +11279,12 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_enumerationDeclarationAST GALGAS_enumerationDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                   const GALGAS_lstringlist & inAttribute_mEnumConstantNameList,
-                                                                                   const GALGAS_bool & inAttribute_mCaseIterable
+GALGAS_enumerationDeclarationAST GALGAS_enumerationDeclarationAST::class_func_new (const GALGAS_lstring & in_mClassName,
+                                                                                   const GALGAS_lstringlist & in_mEnumConstantNameList,
+                                                                                   const GALGAS_bool & in_mCaseIterable
                                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_enumerationDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mEnumConstantNameList.isValid () && inAttribute_mCaseIterable.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_enumerationDeclarationAST (inAttribute_mClassName, inAttribute_mEnumConstantNameList, inAttribute_mCaseIterable COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_enumerationDeclarationAST (in_mClassName, in_mEnumConstantNameList, in_mCaseIterable COMMA_THERE)) ;
   return result ;
 }
 
@@ -10473,8 +11321,11 @@ cPtr_enumerationDeclarationAST::cPtr_enumerationDeclarationAST (const GALGAS_lst
                                                                 const GALGAS_bool & in_mCaseIterable
                                                                 COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mEnumConstantNameList (in_mEnumConstantNameList),
-mProperty_mCaseIterable (in_mCaseIterable) {
+mProperty_mEnumConstantNameList (),
+mProperty_mCaseIterable () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mEnumConstantNameList = in_mEnumConstantNameList ;
+  mProperty_mCaseIterable = in_mCaseIterable ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10617,22 +11468,34 @@ GALGAS_abstractFileGeneration () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_enumForGeneration GALGAS_enumForGeneration::init_28__2C__2C__2C__29_ (const GALGAS_string & in_mEnumName,
-                                                                                const GALGAS_lstringlist & in_mEnumConstantList,
-                                                                                const GALGAS_enumFuncMap & in_mEnumFuncMap,
-                                                                                const GALGAS_bool & in_mCaseIterable,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_enumForGeneration GALGAS_enumForGeneration::
+init_21__21__21__21_ (const GALGAS_string & in_mEnumName,
+                      const GALGAS_lstringlist & in_mEnumConstantList,
+                      const GALGAS_enumFuncMap & in_mEnumFuncMap,
+                      const GALGAS_bool & in_mCaseIterable,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
   cPtr_enumForGeneration * object = nullptr ;
   macroMyNew (object, cPtr_enumForGeneration (inCompiler COMMA_THERE)) ;
-  object->mProperty_mEnumName = in_mEnumName ;
-  object->mProperty_mEnumConstantList = in_mEnumConstantList ;
-  object->mProperty_mEnumFuncMap = in_mEnumFuncMap ;
-  object->mProperty_mCaseIterable = in_mCaseIterable ;
+  object->enumForGeneration_init_21__21__21__21_ (in_mEnumName, in_mEnumConstantList, in_mEnumFuncMap, in_mCaseIterable, inCompiler) ;
   const GALGAS_enumForGeneration result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_enumForGeneration::
+enumForGeneration_init_21__21__21__21_ (const GALGAS_string & in_mEnumName,
+                                        const GALGAS_lstringlist & in_mEnumConstantList,
+                                        const GALGAS_enumFuncMap & in_mEnumFuncMap,
+                                        const GALGAS_bool & in_mCaseIterable,
+                                        Compiler * /* inCompiler */) {
+  mProperty_mEnumName = in_mEnumName ;
+  mProperty_mEnumConstantList = in_mEnumConstantList ;
+  mProperty_mEnumFuncMap = in_mEnumFuncMap ;
+  mProperty_mCaseIterable = in_mCaseIterable ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10642,15 +11505,13 @@ GALGAS_abstractFileGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_enumForGeneration GALGAS_enumForGeneration::class_func_new (const GALGAS_string & inAttribute_mEnumName,
-                                                                   const GALGAS_lstringlist & inAttribute_mEnumConstantList,
-                                                                   const GALGAS_enumFuncMap & inAttribute_mEnumFuncMap,
-                                                                   const GALGAS_bool & inAttribute_mCaseIterable
+GALGAS_enumForGeneration GALGAS_enumForGeneration::class_func_new (const GALGAS_string & in_mEnumName,
+                                                                   const GALGAS_lstringlist & in_mEnumConstantList,
+                                                                   const GALGAS_enumFuncMap & in_mEnumFuncMap,
+                                                                   const GALGAS_bool & in_mCaseIterable
                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_enumForGeneration result ;
-  if (inAttribute_mEnumName.isValid () && inAttribute_mEnumConstantList.isValid () && inAttribute_mEnumFuncMap.isValid () && inAttribute_mCaseIterable.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_enumForGeneration (inAttribute_mEnumName, inAttribute_mEnumConstantList, inAttribute_mEnumFuncMap, inAttribute_mCaseIterable COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_enumForGeneration (in_mEnumName, in_mEnumConstantList, in_mEnumFuncMap, in_mCaseIterable COMMA_THERE)) ;
   return result ;
 }
 
@@ -10712,10 +11573,14 @@ cPtr_enumForGeneration::cPtr_enumForGeneration (const GALGAS_string & in_mEnumNa
                                                 const GALGAS_bool & in_mCaseIterable
                                                 COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
-mProperty_mEnumName (in_mEnumName),
-mProperty_mEnumConstantList (in_mEnumConstantList),
-mProperty_mEnumFuncMap (in_mEnumFuncMap),
-mProperty_mCaseIterable (in_mCaseIterable) {
+mProperty_mEnumName (),
+mProperty_mEnumConstantList (),
+mProperty_mEnumFuncMap (),
+mProperty_mCaseIterable () {
+  mProperty_mEnumName = in_mEnumName ;
+  mProperty_mEnumConstantList = in_mEnumConstantList ;
+  mProperty_mEnumFuncMap = in_mEnumFuncMap ;
+  mProperty_mCaseIterable = in_mCaseIterable ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10958,18 +11823,28 @@ GALGAS_abstractDeclarationAST () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_atomicClassDeclarationAST GALGAS_atomicClassDeclarationAST::init_28__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                        const GALGAS_typeKind & in_mKind,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_atomicClassDeclarationAST GALGAS_atomicClassDeclarationAST::
+init_21__21_ (const GALGAS_lstring & in_mClassName,
+              const GALGAS_typeKind & in_mKind,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_atomicClassDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_atomicClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mKind = in_mKind ;
+  object->atomicClassDeclarationAST_init_21__21_ (in_mClassName, in_mKind, inCompiler) ;
   const GALGAS_atomicClassDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_atomicClassDeclarationAST::
+atomicClassDeclarationAST_init_21__21_ (const GALGAS_lstring & in_mClassName,
+                                        const GALGAS_typeKind & in_mKind,
+                                        Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mKind = in_mKind ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10979,25 +11854,12 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_atomicClassDeclarationAST GALGAS_atomicClassDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                   const GALGAS_typeKind & inAttribute_mKind
+GALGAS_atomicClassDeclarationAST GALGAS_atomicClassDeclarationAST::class_func_new (const GALGAS_lstring & in_mClassName,
+                                                                                   const GALGAS_typeKind & in_mKind
                                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_atomicClassDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mKind.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_atomicClassDeclarationAST (inAttribute_mClassName, inAttribute_mKind COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_atomicClassDeclarationAST (in_mClassName, in_mKind COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_atomicClassDeclarationAST::setter_setMKind (GALGAS_typeKind inValue
-                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_atomicClassDeclarationAST * p = (cPtr_atomicClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_atomicClassDeclarationAST) ;
-    p->mProperty_mKind = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11013,6 +11875,16 @@ GALGAS_typeKind GALGAS_atomicClassDeclarationAST::readProperty_mKind (void) cons
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_atomicClassDeclarationAST::setProperty_mKind (const GALGAS_typeKind & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_atomicClassDeclarationAST * p = (cPtr_atomicClassDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicClassDeclarationAST) ;
+    p->mProperty_mKind = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @atomicClassDeclarationAST class
 //--------------------------------------------------------------------------------------------------
 
@@ -11020,7 +11892,9 @@ cPtr_atomicClassDeclarationAST::cPtr_atomicClassDeclarationAST (const GALGAS_lst
                                                                 const GALGAS_typeKind & in_mKind
                                                                 COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mKind (in_mKind) {
+mProperty_mKind () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mKind = in_mKind ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11194,36 +12068,55 @@ GALGAS_abstractDeclarationAST () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                                                  const GALGAS_bool & in_mIsAbstract,
-                                                                                                                  const GALGAS_lstring & in_mSuperEntityName,
-                                                                                                                  const GALGAS_bool & in_mHandlingOpposite,
-                                                                                                                  const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
-                                                                                                                  const GALGAS_stringset & in_mSignatureList,
-                                                                                                                  const GALGAS_lstringlist & in_mActionDeclarationList,
-                                                                                                                  const GALGAS_lstringlist & in_mObsoleteEntityNames,
-                                                                                                                  const GALGAS_bool & in_mIsGraphicEntity,
-                                                                                                                  const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
-                                                                                                                  const GALGAS_lstringlist & in_mGraphicOptionArray,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::
+init_21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_lstring & in_mClassName,
+                                                  const GALGAS_bool & in_mIsAbstract,
+                                                  const GALGAS_lstring & in_mSuperEntityName,
+                                                  const GALGAS_bool & in_mHandlingOpposite,
+                                                  const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
+                                                  const GALGAS_stringset & in_mSignatureList,
+                                                  const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                  const GALGAS_lstringlist & in_mObsoleteEntityNames,
+                                                  const GALGAS_bool & in_mIsGraphicEntity,
+                                                  const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                  const GALGAS_lstringlist & in_mGraphicOptionArray,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
   cPtr_entityDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_entityDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mIsAbstract = in_mIsAbstract ;
-  object->mProperty_mSuperEntityName = in_mSuperEntityName ;
-  object->mProperty_mHandlingOpposite = in_mHandlingOpposite ;
-  object->mProperty_mSimpleStoredPropertyList = in_mSimpleStoredPropertyList ;
-  object->mProperty_mSignatureList = in_mSignatureList ;
-  object->mProperty_mActionDeclarationList = in_mActionDeclarationList ;
-  object->mProperty_mObsoleteEntityNames = in_mObsoleteEntityNames ;
-  object->mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
-  object->mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
-  object->mProperty_mGraphicOptionArray = in_mGraphicOptionArray ;
+  object->entityDeclarationAST_init_21__21__21__21__21__21__21__21__21__21__21_ (in_mClassName, in_mIsAbstract, in_mSuperEntityName, in_mHandlingOpposite, in_mSimpleStoredPropertyList, in_mSignatureList, in_mActionDeclarationList, in_mObsoleteEntityNames, in_mIsGraphicEntity, in_mExternSwiftDelegateList, in_mGraphicOptionArray, inCompiler) ;
   const GALGAS_entityDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_entityDeclarationAST::
+entityDeclarationAST_init_21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_lstring & in_mClassName,
+                                                                       const GALGAS_bool & in_mIsAbstract,
+                                                                       const GALGAS_lstring & in_mSuperEntityName,
+                                                                       const GALGAS_bool & in_mHandlingOpposite,
+                                                                       const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
+                                                                       const GALGAS_stringset & in_mSignatureList,
+                                                                       const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                                       const GALGAS_lstringlist & in_mObsoleteEntityNames,
+                                                                       const GALGAS_bool & in_mIsGraphicEntity,
+                                                                       const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                                       const GALGAS_lstringlist & in_mGraphicOptionArray,
+                                                                       Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mIsAbstract = in_mIsAbstract ;
+  mProperty_mSuperEntityName = in_mSuperEntityName ;
+  mProperty_mHandlingOpposite = in_mHandlingOpposite ;
+  mProperty_mSimpleStoredPropertyList = in_mSimpleStoredPropertyList ;
+  mProperty_mSignatureList = in_mSignatureList ;
+  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
+  mProperty_mObsoleteEntityNames = in_mObsoleteEntityNames ;
+  mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
+  mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
+  mProperty_mGraphicOptionArray = in_mGraphicOptionArray ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11233,22 +12126,20 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                         const GALGAS_bool & inAttribute_mIsAbstract,
-                                                                         const GALGAS_lstring & inAttribute_mSuperEntityName,
-                                                                         const GALGAS_bool & inAttribute_mHandlingOpposite,
-                                                                         const GALGAS_simpleStoredPropertyList & inAttribute_mSimpleStoredPropertyList,
-                                                                         const GALGAS_stringset & inAttribute_mSignatureList,
-                                                                         const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
-                                                                         const GALGAS_lstringlist & inAttribute_mObsoleteEntityNames,
-                                                                         const GALGAS_bool & inAttribute_mIsGraphicEntity,
-                                                                         const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList,
-                                                                         const GALGAS_lstringlist & inAttribute_mGraphicOptionArray
+GALGAS_entityDeclarationAST GALGAS_entityDeclarationAST::class_func_new (const GALGAS_lstring & in_mClassName,
+                                                                         const GALGAS_bool & in_mIsAbstract,
+                                                                         const GALGAS_lstring & in_mSuperEntityName,
+                                                                         const GALGAS_bool & in_mHandlingOpposite,
+                                                                         const GALGAS_simpleStoredPropertyList & in_mSimpleStoredPropertyList,
+                                                                         const GALGAS_stringset & in_mSignatureList,
+                                                                         const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                                         const GALGAS_lstringlist & in_mObsoleteEntityNames,
+                                                                         const GALGAS_bool & in_mIsGraphicEntity,
+                                                                         const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                                         const GALGAS_lstringlist & in_mGraphicOptionArray
                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_entityDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mHandlingOpposite.isValid () && inAttribute_mSimpleStoredPropertyList.isValid () && inAttribute_mSignatureList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mObsoleteEntityNames.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mGraphicOptionArray.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_entityDeclarationAST (inAttribute_mClassName, inAttribute_mIsAbstract, inAttribute_mSuperEntityName, inAttribute_mHandlingOpposite, inAttribute_mSimpleStoredPropertyList, inAttribute_mSignatureList, inAttribute_mActionDeclarationList, inAttribute_mObsoleteEntityNames, inAttribute_mIsGraphicEntity, inAttribute_mExternSwiftDelegateList, inAttribute_mGraphicOptionArray COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_entityDeclarationAST (in_mClassName, in_mIsAbstract, in_mSuperEntityName, in_mHandlingOpposite, in_mSimpleStoredPropertyList, in_mSignatureList, in_mActionDeclarationList, in_mObsoleteEntityNames, in_mIsGraphicEntity, in_mExternSwiftDelegateList, in_mGraphicOptionArray COMMA_THERE)) ;
   return result ;
 }
 
@@ -11389,16 +12280,27 @@ cPtr_entityDeclarationAST::cPtr_entityDeclarationAST (const GALGAS_lstring & in_
                                                       const GALGAS_lstringlist & in_mGraphicOptionArray
                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mIsAbstract (in_mIsAbstract),
-mProperty_mSuperEntityName (in_mSuperEntityName),
-mProperty_mHandlingOpposite (in_mHandlingOpposite),
-mProperty_mSimpleStoredPropertyList (in_mSimpleStoredPropertyList),
-mProperty_mSignatureList (in_mSignatureList),
-mProperty_mActionDeclarationList (in_mActionDeclarationList),
-mProperty_mObsoleteEntityNames (in_mObsoleteEntityNames),
-mProperty_mIsGraphicEntity (in_mIsGraphicEntity),
-mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList),
-mProperty_mGraphicOptionArray (in_mGraphicOptionArray) {
+mProperty_mIsAbstract (),
+mProperty_mSuperEntityName (),
+mProperty_mHandlingOpposite (),
+mProperty_mSimpleStoredPropertyList (),
+mProperty_mSignatureList (),
+mProperty_mActionDeclarationList (),
+mProperty_mObsoleteEntityNames (),
+mProperty_mIsGraphicEntity (),
+mProperty_mExternSwiftDelegateList (),
+mProperty_mGraphicOptionArray () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mIsAbstract = in_mIsAbstract ;
+  mProperty_mSuperEntityName = in_mSuperEntityName ;
+  mProperty_mHandlingOpposite = in_mHandlingOpposite ;
+  mProperty_mSimpleStoredPropertyList = in_mSimpleStoredPropertyList ;
+  mProperty_mSignatureList = in_mSignatureList ;
+  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
+  mProperty_mObsoleteEntityNames = in_mObsoleteEntityNames ;
+  mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
+  mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
+  mProperty_mGraphicOptionArray = in_mGraphicOptionArray ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11597,38 +12499,58 @@ GALGAS_abstractFileGeneration () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_entityForGeneration GALGAS_entityForGeneration::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_string & in_mEntityName,
-                                                                                                                    const GALGAS_string & in_mSuperEntityName,
-                                                                                                                    const GALGAS_bool & in_mHandlingOpposite,
-                                                                                                                    const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
-                                                                                                                    const GALGAS_stringset & in_mSignatureSet,
-                                                                                                                    const GALGAS_bool & in_mIsGraphicEntity,
-                                                                                                                    const GALGAS_bool & in_mIsAbstract,
-                                                                                                                    const GALGAS_stringset & in_mOverridenTransients,
-                                                                                                                    const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
-                                                                                                                    const GALGAS_bool & in_mHasSubEntity,
-                                                                                                                    const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
-                                                                                                                    const GALGAS_bool & in_mCannotBeDeleted_5F_option,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_entityForGeneration GALGAS_entityForGeneration::
+init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mEntityName,
+                                                      const GALGAS_string & in_mSuperEntityName,
+                                                      const GALGAS_bool & in_mHandlingOpposite,
+                                                      const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                                      const GALGAS_stringset & in_mSignatureSet,
+                                                      const GALGAS_bool & in_mIsGraphicEntity,
+                                                      const GALGAS_bool & in_mIsAbstract,
+                                                      const GALGAS_stringset & in_mOverridenTransients,
+                                                      const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                      const GALGAS_bool & in_mHasSubEntity,
+                                                      const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
+                                                      const GALGAS_bool & in_mCannotBeDeleted_5F_option,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
   cPtr_entityForGeneration * object = nullptr ;
   macroMyNew (object, cPtr_entityForGeneration (inCompiler COMMA_THERE)) ;
-  object->mProperty_mEntityName = in_mEntityName ;
-  object->mProperty_mSuperEntityName = in_mSuperEntityName ;
-  object->mProperty_mHandlingOpposite = in_mHandlingOpposite ;
-  object->mProperty_mPropertyGenerationList = in_mPropertyGenerationList ;
-  object->mProperty_mSignatureSet = in_mSignatureSet ;
-  object->mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
-  object->mProperty_mIsAbstract = in_mIsAbstract ;
-  object->mProperty_mOverridenTransients = in_mOverridenTransients ;
-  object->mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
-  object->mProperty_mHasSubEntity = in_mHasSubEntity ;
-  object->mProperty_mCanCopyAndPaste_5F_option = in_mCanCopyAndPaste_5F_option ;
-  object->mProperty_mCannotBeDeleted_5F_option = in_mCannotBeDeleted_5F_option ;
+  object->entityForGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21_ (in_mEntityName, in_mSuperEntityName, in_mHandlingOpposite, in_mPropertyGenerationList, in_mSignatureSet, in_mIsGraphicEntity, in_mIsAbstract, in_mOverridenTransients, in_mExternSwiftDelegateList, in_mHasSubEntity, in_mCanCopyAndPaste_5F_option, in_mCannotBeDeleted_5F_option, inCompiler) ;
   const GALGAS_entityForGeneration result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_entityForGeneration::
+entityForGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mEntityName,
+                                                                          const GALGAS_string & in_mSuperEntityName,
+                                                                          const GALGAS_bool & in_mHandlingOpposite,
+                                                                          const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                                                          const GALGAS_stringset & in_mSignatureSet,
+                                                                          const GALGAS_bool & in_mIsGraphicEntity,
+                                                                          const GALGAS_bool & in_mIsAbstract,
+                                                                          const GALGAS_stringset & in_mOverridenTransients,
+                                                                          const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                                          const GALGAS_bool & in_mHasSubEntity,
+                                                                          const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
+                                                                          const GALGAS_bool & in_mCannotBeDeleted_5F_option,
+                                                                          Compiler * /* inCompiler */) {
+  mProperty_mEntityName = in_mEntityName ;
+  mProperty_mSuperEntityName = in_mSuperEntityName ;
+  mProperty_mHandlingOpposite = in_mHandlingOpposite ;
+  mProperty_mPropertyGenerationList = in_mPropertyGenerationList ;
+  mProperty_mSignatureSet = in_mSignatureSet ;
+  mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
+  mProperty_mIsAbstract = in_mIsAbstract ;
+  mProperty_mOverridenTransients = in_mOverridenTransients ;
+  mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
+  mProperty_mHasSubEntity = in_mHasSubEntity ;
+  mProperty_mCanCopyAndPaste_5F_option = in_mCanCopyAndPaste_5F_option ;
+  mProperty_mCannotBeDeleted_5F_option = in_mCannotBeDeleted_5F_option ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11638,23 +12560,21 @@ GALGAS_abstractFileGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_entityForGeneration GALGAS_entityForGeneration::class_func_new (const GALGAS_string & inAttribute_mEntityName,
-                                                                       const GALGAS_string & inAttribute_mSuperEntityName,
-                                                                       const GALGAS_bool & inAttribute_mHandlingOpposite,
-                                                                       const GALGAS_propertyGenerationList & inAttribute_mPropertyGenerationList,
-                                                                       const GALGAS_stringset & inAttribute_mSignatureSet,
-                                                                       const GALGAS_bool & inAttribute_mIsGraphicEntity,
-                                                                       const GALGAS_bool & inAttribute_mIsAbstract,
-                                                                       const GALGAS_stringset & inAttribute_mOverridenTransients,
-                                                                       const GALGAS_externSwiftDelegateList & inAttribute_mExternSwiftDelegateList,
-                                                                       const GALGAS_bool & inAttribute_mHasSubEntity,
-                                                                       const GALGAS_bool & inAttribute_mCanCopyAndPaste_5F_option,
-                                                                       const GALGAS_bool & inAttribute_mCannotBeDeleted_5F_option
+GALGAS_entityForGeneration GALGAS_entityForGeneration::class_func_new (const GALGAS_string & in_mEntityName,
+                                                                       const GALGAS_string & in_mSuperEntityName,
+                                                                       const GALGAS_bool & in_mHandlingOpposite,
+                                                                       const GALGAS_propertyGenerationList & in_mPropertyGenerationList,
+                                                                       const GALGAS_stringset & in_mSignatureSet,
+                                                                       const GALGAS_bool & in_mIsGraphicEntity,
+                                                                       const GALGAS_bool & in_mIsAbstract,
+                                                                       const GALGAS_stringset & in_mOverridenTransients,
+                                                                       const GALGAS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                                                       const GALGAS_bool & in_mHasSubEntity,
+                                                                       const GALGAS_bool & in_mCanCopyAndPaste_5F_option,
+                                                                       const GALGAS_bool & in_mCannotBeDeleted_5F_option
                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_entityForGeneration result ;
-  if (inAttribute_mEntityName.isValid () && inAttribute_mSuperEntityName.isValid () && inAttribute_mHandlingOpposite.isValid () && inAttribute_mPropertyGenerationList.isValid () && inAttribute_mSignatureSet.isValid () && inAttribute_mIsGraphicEntity.isValid () && inAttribute_mIsAbstract.isValid () && inAttribute_mOverridenTransients.isValid () && inAttribute_mExternSwiftDelegateList.isValid () && inAttribute_mHasSubEntity.isValid () && inAttribute_mCanCopyAndPaste_5F_option.isValid () && inAttribute_mCannotBeDeleted_5F_option.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (inAttribute_mEntityName, inAttribute_mSuperEntityName, inAttribute_mHandlingOpposite, inAttribute_mPropertyGenerationList, inAttribute_mSignatureSet, inAttribute_mIsGraphicEntity, inAttribute_mIsAbstract, inAttribute_mOverridenTransients, inAttribute_mExternSwiftDelegateList, inAttribute_mHasSubEntity, inAttribute_mCanCopyAndPaste_5F_option, inAttribute_mCannotBeDeleted_5F_option COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (in_mEntityName, in_mSuperEntityName, in_mHandlingOpposite, in_mPropertyGenerationList, in_mSignatureSet, in_mIsGraphicEntity, in_mIsAbstract, in_mOverridenTransients, in_mExternSwiftDelegateList, in_mHasSubEntity, in_mCanCopyAndPaste_5F_option, in_mCannotBeDeleted_5F_option COMMA_THERE)) ;
   return result ;
 }
 
@@ -11820,18 +12740,30 @@ cPtr_entityForGeneration::cPtr_entityForGeneration (const GALGAS_string & in_mEn
                                                     const GALGAS_bool & in_mCannotBeDeleted_5F_option
                                                     COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
-mProperty_mEntityName (in_mEntityName),
-mProperty_mSuperEntityName (in_mSuperEntityName),
-mProperty_mHandlingOpposite (in_mHandlingOpposite),
-mProperty_mPropertyGenerationList (in_mPropertyGenerationList),
-mProperty_mSignatureSet (in_mSignatureSet),
-mProperty_mIsGraphicEntity (in_mIsGraphicEntity),
-mProperty_mIsAbstract (in_mIsAbstract),
-mProperty_mOverridenTransients (in_mOverridenTransients),
-mProperty_mExternSwiftDelegateList (in_mExternSwiftDelegateList),
-mProperty_mHasSubEntity (in_mHasSubEntity),
-mProperty_mCanCopyAndPaste_5F_option (in_mCanCopyAndPaste_5F_option),
-mProperty_mCannotBeDeleted_5F_option (in_mCannotBeDeleted_5F_option) {
+mProperty_mEntityName (),
+mProperty_mSuperEntityName (),
+mProperty_mHandlingOpposite (),
+mProperty_mPropertyGenerationList (),
+mProperty_mSignatureSet (),
+mProperty_mIsGraphicEntity (),
+mProperty_mIsAbstract (),
+mProperty_mOverridenTransients (),
+mProperty_mExternSwiftDelegateList (),
+mProperty_mHasSubEntity (),
+mProperty_mCanCopyAndPaste_5F_option (),
+mProperty_mCannotBeDeleted_5F_option () {
+  mProperty_mEntityName = in_mEntityName ;
+  mProperty_mSuperEntityName = in_mSuperEntityName ;
+  mProperty_mHandlingOpposite = in_mHandlingOpposite ;
+  mProperty_mPropertyGenerationList = in_mPropertyGenerationList ;
+  mProperty_mSignatureSet = in_mSignatureSet ;
+  mProperty_mIsGraphicEntity = in_mIsGraphicEntity ;
+  mProperty_mIsAbstract = in_mIsAbstract ;
+  mProperty_mOverridenTransients = in_mOverridenTransients ;
+  mProperty_mExternSwiftDelegateList = in_mExternSwiftDelegateList ;
+  mProperty_mHasSubEntity = in_mHasSubEntity ;
+  mProperty_mCanCopyAndPaste_5F_option = in_mCanCopyAndPaste_5F_option ;
+  mProperty_mCannotBeDeleted_5F_option = in_mCannotBeDeleted_5F_option ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12015,32 +12947,49 @@ GALGAS_abstractDeclarationAST () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST::init_28__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                                                                  const GALGAS_lstring & in_mRootEntityName,
-                                                                                                                                  const GALGAS_lstring & in_mMainViewName,
-                                                                                                                                  const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
-                                                                                                                                  const GALGAS_lstringlist & in_mActionDeclarationList,
-                                                                                                                                  const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                                                                                                  const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
-                                                                                                                                  const GALGAS_string & in_mCustomSuperClassName,
-                                                                                                                                  const GALGAS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
-                                                                                                                                  Compiler * inCompiler
-                                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST::
+init_21__21__21__21__21__21__21__21__21_ (const GALGAS_lstring & in_mClassName,
+                                          const GALGAS_lstring & in_mRootEntityName,
+                                          const GALGAS_lstring & in_mMainViewName,
+                                          const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
+                                          const GALGAS_lstringlist & in_mActionDeclarationList,
+                                          const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
+                                          const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
+                                          const GALGAS_string & in_mCustomSuperClassName,
+                                          const GALGAS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) {
   cPtr_autoLayoutDocumentDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_autoLayoutDocumentDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mRootEntityName = in_mRootEntityName ;
-  object->mProperty_mMainViewName = in_mMainViewName ;
-  object->mProperty_mOutletDeclarationList = in_mOutletDeclarationList ;
-  object->mProperty_mActionDeclarationList = in_mActionDeclarationList ;
-  object->mProperty_mArrayControllerBindingListAST = in_mArrayControllerBindingListAST ;
-  object->mProperty_mViewDeclarationList = in_mViewDeclarationList ;
-  object->mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
-  object->mProperty_mOutletLinkerList = in_mOutletLinkerList ;
+  object->autoLayoutDocumentDeclarationAST_init_21__21__21__21__21__21__21__21__21_ (in_mClassName, in_mRootEntityName, in_mMainViewName, in_mOutletDeclarationList, in_mActionDeclarationList, in_mArrayControllerBindingListAST, in_mViewDeclarationList, in_mCustomSuperClassName, in_mOutletLinkerList, inCompiler) ;
   const GALGAS_autoLayoutDocumentDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_autoLayoutDocumentDeclarationAST::
+autoLayoutDocumentDeclarationAST_init_21__21__21__21__21__21__21__21__21_ (const GALGAS_lstring & in_mClassName,
+                                                                           const GALGAS_lstring & in_mRootEntityName,
+                                                                           const GALGAS_lstring & in_mMainViewName,
+                                                                           const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
+                                                                           const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                                           const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
+                                                                           const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
+                                                                           const GALGAS_string & in_mCustomSuperClassName,
+                                                                           const GALGAS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
+                                                                           Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mRootEntityName = in_mRootEntityName ;
+  mProperty_mMainViewName = in_mMainViewName ;
+  mProperty_mOutletDeclarationList = in_mOutletDeclarationList ;
+  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
+  mProperty_mArrayControllerBindingListAST = in_mArrayControllerBindingListAST ;
+  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
+  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
+  mProperty_mOutletLinkerList = in_mOutletLinkerList ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12050,20 +12999,18 @@ GALGAS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                                 const GALGAS_lstring & inAttribute_mRootEntityName,
-                                                                                                 const GALGAS_lstring & inAttribute_mMainViewName,
-                                                                                                 const GALGAS_outletDeclarationList & inAttribute_mOutletDeclarationList,
-                                                                                                 const GALGAS_lstringlist & inAttribute_mActionDeclarationList,
-                                                                                                 const GALGAS_arrayControllerBindingListAST & inAttribute_mArrayControllerBindingListAST,
-                                                                                                 const GALGAS_astViewDeclarationList & inAttribute_mViewDeclarationList,
-                                                                                                 const GALGAS_string & inAttribute_mCustomSuperClassName,
-                                                                                                 const GALGAS_astAutoLayoutOutletLinkerList & inAttribute_mOutletLinkerList
+GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST::class_func_new (const GALGAS_lstring & in_mClassName,
+                                                                                                 const GALGAS_lstring & in_mRootEntityName,
+                                                                                                 const GALGAS_lstring & in_mMainViewName,
+                                                                                                 const GALGAS_outletDeclarationList & in_mOutletDeclarationList,
+                                                                                                 const GALGAS_lstringlist & in_mActionDeclarationList,
+                                                                                                 const GALGAS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
+                                                                                                 const GALGAS_astViewDeclarationList & in_mViewDeclarationList,
+                                                                                                 const GALGAS_string & in_mCustomSuperClassName,
+                                                                                                 const GALGAS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList
                                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutDocumentDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mOutletDeclarationList.isValid () && inAttribute_mActionDeclarationList.isValid () && inAttribute_mArrayControllerBindingListAST.isValid () && inAttribute_mViewDeclarationList.isValid () && inAttribute_mCustomSuperClassName.isValid () && inAttribute_mOutletLinkerList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentDeclarationAST (inAttribute_mClassName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mOutletDeclarationList, inAttribute_mActionDeclarationList, inAttribute_mArrayControllerBindingListAST, inAttribute_mViewDeclarationList, inAttribute_mCustomSuperClassName, inAttribute_mOutletLinkerList COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentDeclarationAST (in_mClassName, in_mRootEntityName, in_mMainViewName, in_mOutletDeclarationList, in_mActionDeclarationList, in_mArrayControllerBindingListAST, in_mViewDeclarationList, in_mCustomSuperClassName, in_mOutletLinkerList COMMA_THERE)) ;
   return result ;
 }
 
@@ -12178,14 +13125,23 @@ cPtr_autoLayoutDocumentDeclarationAST::cPtr_autoLayoutDocumentDeclarationAST (co
                                                                               const GALGAS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList
                                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mRootEntityName (in_mRootEntityName),
-mProperty_mMainViewName (in_mMainViewName),
-mProperty_mOutletDeclarationList (in_mOutletDeclarationList),
-mProperty_mActionDeclarationList (in_mActionDeclarationList),
-mProperty_mArrayControllerBindingListAST (in_mArrayControllerBindingListAST),
-mProperty_mViewDeclarationList (in_mViewDeclarationList),
-mProperty_mCustomSuperClassName (in_mCustomSuperClassName),
-mProperty_mOutletLinkerList (in_mOutletLinkerList) {
+mProperty_mRootEntityName (),
+mProperty_mMainViewName (),
+mProperty_mOutletDeclarationList (),
+mProperty_mActionDeclarationList (),
+mProperty_mArrayControllerBindingListAST (),
+mProperty_mViewDeclarationList (),
+mProperty_mCustomSuperClassName (),
+mProperty_mOutletLinkerList () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mRootEntityName = in_mRootEntityName ;
+  mProperty_mMainViewName = in_mMainViewName ;
+  mProperty_mOutletDeclarationList = in_mOutletDeclarationList ;
+  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
+  mProperty_mArrayControllerBindingListAST = in_mArrayControllerBindingListAST ;
+  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
+  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
+  mProperty_mOutletLinkerList = in_mOutletLinkerList ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12400,46 +13356,70 @@ GALGAS_abstractFileGeneration () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_string & in_mDocumentName,
-                                                                                                                                                              const GALGAS_string & in_mRootEntityName,
-                                                                                                                                                              const GALGAS_string & in_mMainViewName,
-                                                                                                                                                              const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
-                                                                                                                                                              const GALGAS_decoratedOutletMap & in_mOutletMap,
-                                                                                                                                                              const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
-                                                                                                                                                              const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
-                                                                                                                                                              const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                                                                                                                              const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
-                                                                                                                                                              const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
-                                                                                                                                                              const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
-                                                                                                                                                              const GALGAS_viewGenerationList & in_mViewDeclarationList,
-                                                                                                                                                              const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
-                                                                                                                                                              const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
-                                                                                                                                                              const GALGAS_string & in_mCustomSuperClassName,
-                                                                                                                                                              const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList,
-                                                                                                                                                              Compiler * inCompiler
-                                                                                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration::
+init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mDocumentName,
+                                                                      const GALGAS_string & in_mRootEntityName,
+                                                                      const GALGAS_string & in_mMainViewName,
+                                                                      const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                                                      const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                                      const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                                                      const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                                                      const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                                      const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                                                      const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                                      const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                                      const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                                      const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                      const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                                                      const GALGAS_string & in_mCustomSuperClassName,
+                                                                      const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
   cPtr_autoLayoutDocumentFileGeneration * object = nullptr ;
   macroMyNew (object, cPtr_autoLayoutDocumentFileGeneration (inCompiler COMMA_THERE)) ;
-  object->mProperty_mDocumentName = in_mDocumentName ;
-  object->mProperty_mRootEntityName = in_mRootEntityName ;
-  object->mProperty_mMainViewName = in_mMainViewName ;
-  object->mProperty_mDocumentPropertyGenearionList = in_mDocumentPropertyGenearionList ;
-  object->mProperty_mOutletMap = in_mOutletMap ;
-  object->mProperty_mAutoLayoutOutletMap = in_mAutoLayoutOutletMap ;
-  object->mProperty_mTargetActionList = in_mTargetActionList ;
-  object->mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
-  object->mProperty_multipleBindingGenerationList = in_multipleBindingGenerationList ;
-  object->mProperty_mTableViewBindingGenerationList = in_mTableViewBindingGenerationList ;
-  object->mProperty_mEBViewBindingGenerationList = in_mEBViewBindingGenerationList ;
-  object->mProperty_mViewDeclarationList = in_mViewDeclarationList ;
-  object->mProperty_mImplicitViewFunctionGenerationList = in_mImplicitViewFunctionGenerationList ;
-  object->mProperty_mConfiguratorMap = in_mConfiguratorMap ;
-  object->mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
-  object->mProperty_mOutletLinkerGenerationList = in_mOutletLinkerGenerationList ;
+  object->autoLayoutDocumentFileGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (in_mDocumentName, in_mRootEntityName, in_mMainViewName, in_mDocumentPropertyGenearionList, in_mOutletMap, in_mAutoLayoutOutletMap, in_mTargetActionList, in_mRegularBindingsGenerationList, in_multipleBindingGenerationList, in_mTableViewBindingGenerationList, in_mEBViewBindingGenerationList, in_mViewDeclarationList, in_mImplicitViewFunctionGenerationList, in_mConfiguratorMap, in_mCustomSuperClassName, in_mOutletLinkerGenerationList, inCompiler) ;
   const GALGAS_autoLayoutDocumentFileGeneration result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_autoLayoutDocumentFileGeneration::
+autoLayoutDocumentFileGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const GALGAS_string & in_mDocumentName,
+                                                                                                       const GALGAS_string & in_mRootEntityName,
+                                                                                                       const GALGAS_string & in_mMainViewName,
+                                                                                                       const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                                                                                       const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                                                                       const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                                                                                       const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                                                                                       const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                                                                       const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                                                                                       const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                                                                       const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                                                                       const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                                                                       const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                                                       const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                                                                                       const GALGAS_string & in_mCustomSuperClassName,
+                                                                                                       const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList,
+                                                                                                       Compiler * /* inCompiler */) {
+  mProperty_mDocumentName = in_mDocumentName ;
+  mProperty_mRootEntityName = in_mRootEntityName ;
+  mProperty_mMainViewName = in_mMainViewName ;
+  mProperty_mDocumentPropertyGenearionList = in_mDocumentPropertyGenearionList ;
+  mProperty_mOutletMap = in_mOutletMap ;
+  mProperty_mAutoLayoutOutletMap = in_mAutoLayoutOutletMap ;
+  mProperty_mTargetActionList = in_mTargetActionList ;
+  mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
+  mProperty_multipleBindingGenerationList = in_multipleBindingGenerationList ;
+  mProperty_mTableViewBindingGenerationList = in_mTableViewBindingGenerationList ;
+  mProperty_mEBViewBindingGenerationList = in_mEBViewBindingGenerationList ;
+  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
+  mProperty_mImplicitViewFunctionGenerationList = in_mImplicitViewFunctionGenerationList ;
+  mProperty_mConfiguratorMap = in_mConfiguratorMap ;
+  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
+  mProperty_mOutletLinkerGenerationList = in_mOutletLinkerGenerationList ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12449,27 +13429,25 @@ GALGAS_abstractFileGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration::class_func_new (const GALGAS_string & inAttribute_mDocumentName,
-                                                                                                 const GALGAS_string & inAttribute_mRootEntityName,
-                                                                                                 const GALGAS_string & inAttribute_mMainViewName,
-                                                                                                 const GALGAS_propertyGenerationList & inAttribute_mDocumentPropertyGenearionList,
-                                                                                                 const GALGAS_decoratedOutletMap & inAttribute_mOutletMap,
-                                                                                                 const GALGAS_autoLayoutOutletMap & inAttribute_mAutoLayoutOutletMap,
-                                                                                                 const GALGAS_actionBindingListForGeneration & inAttribute_mTargetActionList,
-                                                                                                 const GALGAS_regularBindingsGenerationList & inAttribute_mRegularBindingsGenerationList,
-                                                                                                 const GALGAS_multipleBindingGenerationList & inAttribute_multipleBindingGenerationList,
-                                                                                                 const GALGAS_tableViewBindingGenerationList & inAttribute_mTableViewBindingGenerationList,
-                                                                                                 const GALGAS_ebViewGraphicControllerBindingGenerationList & inAttribute_mEBViewBindingGenerationList,
-                                                                                                 const GALGAS_viewGenerationList & inAttribute_mViewDeclarationList,
-                                                                                                 const GALGAS_implicitViewFunctionGenerationList & inAttribute_mImplicitViewFunctionGenerationList,
-                                                                                                 const GALGAS_autoLayoutConfiguratorMap & inAttribute_mConfiguratorMap,
-                                                                                                 const GALGAS_string & inAttribute_mCustomSuperClassName,
-                                                                                                 const GALGAS_autoLayoutOutletLinkerGenerationList & inAttribute_mOutletLinkerGenerationList
+GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration::class_func_new (const GALGAS_string & in_mDocumentName,
+                                                                                                 const GALGAS_string & in_mRootEntityName,
+                                                                                                 const GALGAS_string & in_mMainViewName,
+                                                                                                 const GALGAS_propertyGenerationList & in_mDocumentPropertyGenearionList,
+                                                                                                 const GALGAS_decoratedOutletMap & in_mOutletMap,
+                                                                                                 const GALGAS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                                                                                 const GALGAS_actionBindingListForGeneration & in_mTargetActionList,
+                                                                                                 const GALGAS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                                                                                 const GALGAS_multipleBindingGenerationList & in_multipleBindingGenerationList,
+                                                                                                 const GALGAS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                                                                                 const GALGAS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                                                                                 const GALGAS_viewGenerationList & in_mViewDeclarationList,
+                                                                                                 const GALGAS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                                                                                 const GALGAS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                                                                                 const GALGAS_string & in_mCustomSuperClassName,
+                                                                                                 const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList
                                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutDocumentFileGeneration result ;
-  if (inAttribute_mDocumentName.isValid () && inAttribute_mRootEntityName.isValid () && inAttribute_mMainViewName.isValid () && inAttribute_mDocumentPropertyGenearionList.isValid () && inAttribute_mOutletMap.isValid () && inAttribute_mAutoLayoutOutletMap.isValid () && inAttribute_mTargetActionList.isValid () && inAttribute_mRegularBindingsGenerationList.isValid () && inAttribute_multipleBindingGenerationList.isValid () && inAttribute_mTableViewBindingGenerationList.isValid () && inAttribute_mEBViewBindingGenerationList.isValid () && inAttribute_mViewDeclarationList.isValid () && inAttribute_mImplicitViewFunctionGenerationList.isValid () && inAttribute_mConfiguratorMap.isValid () && inAttribute_mCustomSuperClassName.isValid () && inAttribute_mOutletLinkerGenerationList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentFileGeneration (inAttribute_mDocumentName, inAttribute_mRootEntityName, inAttribute_mMainViewName, inAttribute_mDocumentPropertyGenearionList, inAttribute_mOutletMap, inAttribute_mAutoLayoutOutletMap, inAttribute_mTargetActionList, inAttribute_mRegularBindingsGenerationList, inAttribute_multipleBindingGenerationList, inAttribute_mTableViewBindingGenerationList, inAttribute_mEBViewBindingGenerationList, inAttribute_mViewDeclarationList, inAttribute_mImplicitViewFunctionGenerationList, inAttribute_mConfiguratorMap, inAttribute_mCustomSuperClassName, inAttribute_mOutletLinkerGenerationList COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentFileGeneration (in_mDocumentName, in_mRootEntityName, in_mMainViewName, in_mDocumentPropertyGenearionList, in_mOutletMap, in_mAutoLayoutOutletMap, in_mTargetActionList, in_mRegularBindingsGenerationList, in_multipleBindingGenerationList, in_mTableViewBindingGenerationList, in_mEBViewBindingGenerationList, in_mViewDeclarationList, in_mImplicitViewFunctionGenerationList, in_mConfiguratorMap, in_mCustomSuperClassName, in_mOutletLinkerGenerationList COMMA_THERE)) ;
   return result ;
 }
 
@@ -12687,22 +13665,38 @@ cPtr_autoLayoutDocumentFileGeneration::cPtr_autoLayoutDocumentFileGeneration (co
                                                                               const GALGAS_autoLayoutOutletLinkerGenerationList & in_mOutletLinkerGenerationList
                                                                               COMMA_LOCATION_ARGS) :
 cPtr_abstractFileGeneration (THERE),
-mProperty_mDocumentName (in_mDocumentName),
-mProperty_mRootEntityName (in_mRootEntityName),
-mProperty_mMainViewName (in_mMainViewName),
-mProperty_mDocumentPropertyGenearionList (in_mDocumentPropertyGenearionList),
-mProperty_mOutletMap (in_mOutletMap),
-mProperty_mAutoLayoutOutletMap (in_mAutoLayoutOutletMap),
-mProperty_mTargetActionList (in_mTargetActionList),
-mProperty_mRegularBindingsGenerationList (in_mRegularBindingsGenerationList),
-mProperty_multipleBindingGenerationList (in_multipleBindingGenerationList),
-mProperty_mTableViewBindingGenerationList (in_mTableViewBindingGenerationList),
-mProperty_mEBViewBindingGenerationList (in_mEBViewBindingGenerationList),
-mProperty_mViewDeclarationList (in_mViewDeclarationList),
-mProperty_mImplicitViewFunctionGenerationList (in_mImplicitViewFunctionGenerationList),
-mProperty_mConfiguratorMap (in_mConfiguratorMap),
-mProperty_mCustomSuperClassName (in_mCustomSuperClassName),
-mProperty_mOutletLinkerGenerationList (in_mOutletLinkerGenerationList) {
+mProperty_mDocumentName (),
+mProperty_mRootEntityName (),
+mProperty_mMainViewName (),
+mProperty_mDocumentPropertyGenearionList (),
+mProperty_mOutletMap (),
+mProperty_mAutoLayoutOutletMap (),
+mProperty_mTargetActionList (),
+mProperty_mRegularBindingsGenerationList (),
+mProperty_multipleBindingGenerationList (),
+mProperty_mTableViewBindingGenerationList (),
+mProperty_mEBViewBindingGenerationList (),
+mProperty_mViewDeclarationList (),
+mProperty_mImplicitViewFunctionGenerationList (),
+mProperty_mConfiguratorMap (),
+mProperty_mCustomSuperClassName (),
+mProperty_mOutletLinkerGenerationList () {
+  mProperty_mDocumentName = in_mDocumentName ;
+  mProperty_mRootEntityName = in_mRootEntityName ;
+  mProperty_mMainViewName = in_mMainViewName ;
+  mProperty_mDocumentPropertyGenearionList = in_mDocumentPropertyGenearionList ;
+  mProperty_mOutletMap = in_mOutletMap ;
+  mProperty_mAutoLayoutOutletMap = in_mAutoLayoutOutletMap ;
+  mProperty_mTargetActionList = in_mTargetActionList ;
+  mProperty_mRegularBindingsGenerationList = in_mRegularBindingsGenerationList ;
+  mProperty_multipleBindingGenerationList = in_multipleBindingGenerationList ;
+  mProperty_mTableViewBindingGenerationList = in_mTableViewBindingGenerationList ;
+  mProperty_mEBViewBindingGenerationList = in_mEBViewBindingGenerationList ;
+  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
+  mProperty_mImplicitViewFunctionGenerationList = in_mImplicitViewFunctionGenerationList ;
+  mProperty_mConfiguratorMap = in_mConfiguratorMap ;
+  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
+  mProperty_mOutletLinkerGenerationList = in_mOutletLinkerGenerationList ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12794,839 +13788,6 @@ GALGAS_autoLayoutDocumentFileGeneration GALGAS_autoLayoutDocumentFileGeneration:
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutDocumentFileGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @prefsDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_prefsDeclarationAST::cPtr_prefsDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mDeclaration () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_prefsDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mDeclaration.printNonNullClassInstanceProperties ("mDeclaration") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_prefsDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_prefsDeclarationAST * p = (const cPtr_prefsDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_prefsDeclarationAST) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mDeclaration.objectCompare (p->mProperty_mDeclaration) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
-ComparisonResult GALGAS_prefsDeclarationAST::objectCompare (const GALGAS_prefsDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST::GALGAS_prefsDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::init_28__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                            const GALGAS_prefDeclaration & in_mDeclaration,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  cPtr_prefsDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_prefsDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mDeclaration = in_mDeclaration ;
-  const GALGAS_prefsDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST::GALGAS_prefsDeclarationAST (const cPtr_prefsDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_prefsDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                       const GALGAS_prefDeclaration & inAttribute_mDeclaration
-                                                                       COMMA_LOCATION_ARGS) {
-  GALGAS_prefsDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mDeclaration.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_prefsDeclarationAST (inAttribute_mClassName, inAttribute_mDeclaration COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_prefDeclaration GALGAS_prefsDeclarationAST::readProperty_mDeclaration (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_prefDeclaration () ;
-  }else{
-    cPtr_prefsDeclarationAST * p = (cPtr_prefsDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_prefsDeclarationAST) ;
-    return p->mProperty_mDeclaration ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @prefsDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_prefsDeclarationAST::cPtr_prefsDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                    const GALGAS_prefDeclaration & in_mDeclaration
-                                                    COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mDeclaration (in_mDeclaration) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_prefsDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsDeclarationAST ;
-}
-
-void cPtr_prefsDeclarationAST::description (String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString.appendCString ("[@prefsDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mDeclaration.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_prefsDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_prefsDeclarationAST (mProperty_mClassName, mProperty_mDeclaration COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @prefsDeclarationAST generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST ("prefsDeclarationAST",
-                                                                           & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_prefsDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_prefsDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_prefsDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_prefsDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_prefsDeclarationAST GALGAS_prefsDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_prefsDeclarationAST result ;
-  const GALGAS_prefsDeclarationAST * p = (const GALGAS_prefsDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_prefsDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("prefsDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//'@entityStrongReferenceGraph' graph
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph::GALGAS_entityStrongReferenceGraph (void) :
-AC_GALGAS_graph () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::class_func_emptyGraph (LOCATION_ARGS) {
-  GALGAS_entityStrongReferenceGraph result ;
-  result.makeNewEmptyGraph (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::setter_addNode (GALGAS_lstring inKey,
-                                                        GALGAS_string inArgument_0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  GALGAS_stringlist::makeAttributesFromObjects (attributes, inArgument_0 COMMA_THERE) ;
-  const char * kErrorMessage = "the '%K' entity is already declared at %L" ;
-  internalAddNode (inKey, kErrorMessage, attributes, inCompiler COMMA_THERE) ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_topologicalSort (GALGAS_stringlist & outSortedList,
-                                                                GALGAS_lstringlist & outSortedKeyList,
-                                                                GALGAS_stringlist & outUnsortedList,
-                                                                GALGAS_lstringlist & outUnsortedKeyList,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray sortedList ;
-  capCollectionElementArray unsortedList ;
-  internalTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_stringlist (sortedList) ;
-  outUnsortedList = GALGAS_stringlist (unsortedList) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_depthFirstTopologicalSort (GALGAS_stringlist & outSortedList,
-                                                                          GALGAS_lstringlist & outSortedKeyList,
-                                                                          GALGAS_stringlist & outUnsortedList,
-                                                                          GALGAS_lstringlist & outUnsortedKeyList,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray sortedList ;
-  capCollectionElementArray unsortedList ;
-  internalDepthFirstTopologicalSort (sortedList, outSortedKeyList, unsortedList, outUnsortedKeyList, inCompiler COMMA_THERE) ;
-  outSortedList = GALGAS_stringlist (sortedList) ;
-  outUnsortedList = GALGAS_stringlist (unsortedList) ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::getter_reversedGraph (LOCATION_ARGS) const {
-  GALGAS_entityStrongReferenceGraph result ;
-  result.reversedGraphFromGraph (*this COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_circularities (GALGAS_stringlist & outInfoList,
-                                                              GALGAS_lstringlist & outKeyList
-                                                              COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalFindCircularities (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_nodesWithNoSuccessor (GALGAS_stringlist & outInfoList,
-                                                                     GALGAS_lstringlist & outKeyList
-                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalNodesWithNoSuccessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_entityStrongReferenceGraph::method_nodesWithNoPredecessor (GALGAS_stringlist & outInfoList,
-                                                                       GALGAS_lstringlist & outKeyList
-                                                                       COMMA_LOCATION_ARGS) const {
-  capCollectionElementArray infoList ;
-  internalNodesWithNoPredecessor (infoList, outKeyList COMMA_THERE) ;
-  outInfoList = GALGAS_stringlist (infoList) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::getter_subgraphFromNodes (const GALGAS_lstringlist & inStartKeyList,
-                                                                                               const GALGAS_stringset & inKeysToExclude,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const {
-  GALGAS_entityStrongReferenceGraph result ;
-  subGraph (result, inStartKeyList, inKeysToExclude, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_stringlist GALGAS_entityStrongReferenceGraph::getter_nodeList (UNUSED_LOCATION_ARGS) const {
-  GALGAS_stringlist resultingList ;
-  if (isValid ()) {
-    resultingList = graph () ;
-  }
-  return resultingList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_lstringlist GALGAS_entityStrongReferenceGraph::getter_accessibleNodesFrom (const GALGAS_lstringlist & inStartKeyList,
-                                                                                  const GALGAS_stringset & inNodesToExclude,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_lstringlist result ;
-  GALGAS_entityStrongReferenceGraph resultingGraph ;
-  subGraph (resultingGraph,
-            inStartKeyList,
-            inNodesToExclude,
-            inCompiler
-            COMMA_THERE) ;
-  if (resultingGraph.isValid ()) {
-    result = resultingGraph.getter_lkeyList (THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @entityStrongReferenceGraph generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityStrongReferenceGraph ("entityStrongReferenceGraph",
-                                                                                  nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_entityStrongReferenceGraph::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_entityStrongReferenceGraph ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_entityStrongReferenceGraph::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_entityStrongReferenceGraph (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_entityStrongReferenceGraph GALGAS_entityStrongReferenceGraph::extractObject (const GALGAS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_entityStrongReferenceGraph result ;
-  const GALGAS_entityStrongReferenceGraph * p = (const GALGAS_entityStrongReferenceGraph *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_entityStrongReferenceGraph *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("entityStrongReferenceGraph", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @autoLayoutViewClassDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutViewClassDeclarationAST::cPtr_autoLayoutViewClassDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mUserDefined (),
-mProperty_mSuperClassName (),
-mProperty_mHasRunAction (),
-mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding (),
-mProperty_mHandlesGraphicControllerBinding (),
-mProperty_mHasHidden (),
-mProperty_mParameterList (),
-mProperty_mAutoLayoutViewFunctionMap () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_autoLayoutViewClassDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mUserDefined.printNonNullClassInstanceProperties ("mUserDefined") ;
-    mProperty_mSuperClassName.printNonNullClassInstanceProperties ("mSuperClassName") ;
-    mProperty_mHasRunAction.printNonNullClassInstanceProperties ("mHasRunAction") ;
-    mProperty_mHasEnabled.printNonNullClassInstanceProperties ("mHasEnabled") ;
-    mProperty_mHandlesTableValueBinding.printNonNullClassInstanceProperties ("mHandlesTableValueBinding") ;
-    mProperty_mHandlesGraphicControllerBinding.printNonNullClassInstanceProperties ("mHandlesGraphicControllerBinding") ;
-    mProperty_mHasHidden.printNonNullClassInstanceProperties ("mHasHidden") ;
-    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
-    mProperty_mAutoLayoutViewFunctionMap.printNonNullClassInstanceProperties ("mAutoLayoutViewFunctionMap") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_autoLayoutViewClassDeclarationAST::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_autoLayoutViewClassDeclarationAST * p = (const cPtr_autoLayoutViewClassDeclarationAST *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mClassName.objectCompare (p->mProperty_mClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mUserDefined.objectCompare (p->mProperty_mUserDefined) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSuperClassName.objectCompare (p->mProperty_mSuperClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHasRunAction.objectCompare (p->mProperty_mHasRunAction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHasEnabled.objectCompare (p->mProperty_mHasEnabled) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesTableValueBinding.objectCompare (p->mProperty_mHandlesTableValueBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesGraphicControllerBinding.objectCompare (p->mProperty_mHandlesGraphicControllerBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHasHidden.objectCompare (p->mProperty_mHasHidden) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mParameterList.objectCompare (p->mProperty_mParameterList) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mAutoLayoutViewFunctionMap.objectCompare (p->mProperty_mAutoLayoutViewFunctionMap) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
-ComparisonResult GALGAS_autoLayoutViewClassDeclarationAST::objectCompare (const GALGAS_autoLayoutViewClassDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST::GALGAS_autoLayoutViewClassDeclarationAST (void) :
-GALGAS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const GALGAS_lstring & in_mClassName,
-                                                                                                                                        const GALGAS_bool & in_mUserDefined,
-                                                                                                                                        const GALGAS_lstring & in_mSuperClassName,
-                                                                                                                                        const GALGAS_bool & in_mHasRunAction,
-                                                                                                                                        const GALGAS_bool & in_mHasEnabled,
-                                                                                                                                        const GALGAS_bool & in_mHandlesTableValueBinding,
-                                                                                                                                        const GALGAS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                                                                        const GALGAS_bool & in_mHasHidden,
-                                                                                                                                        const GALGAS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                                                                        const GALGAS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                                                                                                                        Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) {
-  cPtr_autoLayoutViewClassDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_autoLayoutViewClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->mProperty_mClassName = in_mClassName ;
-  object->mProperty_mUserDefined = in_mUserDefined ;
-  object->mProperty_mSuperClassName = in_mSuperClassName ;
-  object->mProperty_mHasRunAction = in_mHasRunAction ;
-  object->mProperty_mHasEnabled = in_mHasEnabled ;
-  object->mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  object->mProperty_mHandlesGraphicControllerBinding = in_mHandlesGraphicControllerBinding ;
-  object->mProperty_mHasHidden = in_mHasHidden ;
-  object->mProperty_mParameterList = in_mParameterList ;
-  object->mProperty_mAutoLayoutViewFunctionMap = in_mAutoLayoutViewFunctionMap ;
-  const GALGAS_autoLayoutViewClassDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST::GALGAS_autoLayoutViewClassDeclarationAST (const cPtr_autoLayoutViewClassDeclarationAST * inSourcePtr) :
-GALGAS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutViewClassDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::class_func_new (const GALGAS_lstring & inAttribute_mClassName,
-                                                                                                   const GALGAS_bool & inAttribute_mUserDefined,
-                                                                                                   const GALGAS_lstring & inAttribute_mSuperClassName,
-                                                                                                   const GALGAS_bool & inAttribute_mHasRunAction,
-                                                                                                   const GALGAS_bool & inAttribute_mHasEnabled,
-                                                                                                   const GALGAS_bool & inAttribute_mHandlesTableValueBinding,
-                                                                                                   const GALGAS_bool & inAttribute_mHandlesGraphicControllerBinding,
-                                                                                                   const GALGAS_bool & inAttribute_mHasHidden,
-                                                                                                   const GALGAS_autoLayoutClassParameterList & inAttribute_mParameterList,
-                                                                                                   const GALGAS_astAutoLayoutViewFunctionMap & inAttribute_mAutoLayoutViewFunctionMap
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutViewClassDeclarationAST result ;
-  if (inAttribute_mClassName.isValid () && inAttribute_mUserDefined.isValid () && inAttribute_mSuperClassName.isValid () && inAttribute_mHasRunAction.isValid () && inAttribute_mHasEnabled.isValid () && inAttribute_mHandlesTableValueBinding.isValid () && inAttribute_mHandlesGraphicControllerBinding.isValid () && inAttribute_mHasHidden.isValid () && inAttribute_mParameterList.isValid () && inAttribute_mAutoLayoutViewFunctionMap.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_autoLayoutViewClassDeclarationAST (inAttribute_mClassName, inAttribute_mUserDefined, inAttribute_mSuperClassName, inAttribute_mHasRunAction, inAttribute_mHasEnabled, inAttribute_mHandlesTableValueBinding, inAttribute_mHandlesGraphicControllerBinding, inAttribute_mHasHidden, inAttribute_mParameterList, inAttribute_mAutoLayoutViewFunctionMap COMMA_THERE)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMUserDefined (GALGAS_bool inValue
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mUserDefined = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMSuperClassName (GALGAS_lstring inValue
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mSuperClassName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasRunAction (GALGAS_bool inValue
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasRunAction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasEnabled (GALGAS_bool inValue
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasEnabled = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHandlesTableValueBinding (GALGAS_bool inValue
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesTableValueBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHandlesGraphicControllerBinding (GALGAS_bool inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesGraphicControllerBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMHasHidden (GALGAS_bool inValue
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasHidden = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMParameterList (GALGAS_autoLayoutClassParameterList inValue
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mParameterList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutViewClassDeclarationAST::setter_setMAutoLayoutViewFunctionMap (GALGAS_astAutoLayoutViewFunctionMap inValue
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mAutoLayoutViewFunctionMap = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mUserDefined (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mUserDefined ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_lstring GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mSuperClassName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_lstring () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mSuperClassName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasRunAction (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasRunAction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasEnabled (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasEnabled ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesTableValueBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesTableValueBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesGraphicControllerBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesGraphicControllerBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mHasHidden (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasHidden ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutClassParameterList GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mParameterList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_autoLayoutClassParameterList () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mParameterList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_astAutoLayoutViewFunctionMap GALGAS_autoLayoutViewClassDeclarationAST::readProperty_mAutoLayoutViewFunctionMap (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_astAutoLayoutViewFunctionMap () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mAutoLayoutViewFunctionMap ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @autoLayoutViewClassDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutViewClassDeclarationAST::cPtr_autoLayoutViewClassDeclarationAST (const GALGAS_lstring & in_mClassName,
-                                                                                const GALGAS_bool & in_mUserDefined,
-                                                                                const GALGAS_lstring & in_mSuperClassName,
-                                                                                const GALGAS_bool & in_mHasRunAction,
-                                                                                const GALGAS_bool & in_mHasEnabled,
-                                                                                const GALGAS_bool & in_mHandlesTableValueBinding,
-                                                                                const GALGAS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                const GALGAS_bool & in_mHasHidden,
-                                                                                const GALGAS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                const GALGAS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap
-                                                                                COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName COMMA_THERE),
-mProperty_mUserDefined (in_mUserDefined),
-mProperty_mSuperClassName (in_mSuperClassName),
-mProperty_mHasRunAction (in_mHasRunAction),
-mProperty_mHasEnabled (in_mHasEnabled),
-mProperty_mHandlesTableValueBinding (in_mHandlesTableValueBinding),
-mProperty_mHandlesGraphicControllerBinding (in_mHandlesGraphicControllerBinding),
-mProperty_mHasHidden (in_mHasHidden),
-mProperty_mParameterList (in_mParameterList),
-mProperty_mAutoLayoutViewFunctionMap (in_mAutoLayoutViewFunctionMap) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_autoLayoutViewClassDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-void cPtr_autoLayoutViewClassDeclarationAST::description (String & ioString,
-                                                          const int32_t inIndentation) const {
-  ioString.appendCString ("[@autoLayoutViewClassDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_autoLayoutViewClassDeclarationAST::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_autoLayoutViewClassDeclarationAST (mProperty_mClassName, mProperty_mUserDefined, mProperty_mSuperClassName, mProperty_mHasRunAction, mProperty_mHasEnabled, mProperty_mHandlesTableValueBinding, mProperty_mHandlesGraphicControllerBinding, mProperty_mHasHidden, mProperty_mParameterList, mProperty_mAutoLayoutViewFunctionMap COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutViewClassDeclarationAST generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ("autoLayoutViewClassDeclarationAST",
-                                                                                         & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_autoLayoutViewClassDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_autoLayoutViewClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_autoLayoutViewClassDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutViewClassDeclarationAST GALGAS_autoLayoutViewClassDeclarationAST::extractObject (const GALGAS_object & inObject,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutViewClassDeclarationAST result ;
-  const GALGAS_autoLayoutViewClassDeclarationAST * p = (const GALGAS_autoLayoutViewClassDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_autoLayoutViewClassDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutViewClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

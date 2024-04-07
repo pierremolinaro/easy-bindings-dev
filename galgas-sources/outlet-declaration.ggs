@@ -140,12 +140,12 @@ syntax extension easyBindings_syntax {
       $controllerName$ (?let @lstring graphicControllerName)
       let @lstring propertyName
       select
-        propertyName = "".here ()
+        propertyName = "".here
       or
         $.$
         $identifier$ (?propertyName)
       end
-      if graphicController.isNone () then
+      if graphicController.isNone then
         graphicController = .defined (!controller:graphicControllerName, !propertyName: propertyName)
       else
         error graphicControllerName : "binding already defined"
@@ -289,7 +289,7 @@ proc analyzeOutlets(
           ?let @propertyKind unused kind,
           ?2*
         )
-        if not kind.isArrayController () then
+        if not kind.isArrayController then
           error controllerName : "the bound model should be an array controller"
         end
         !?outTableViewBindingGenerationList.append (
@@ -345,7 +345,7 @@ proc analyzeOutlets(
       if not handlesEnabledBinding then
         error errorLocation : "cet outlet n'accepte pas le binding $enabled"
       end
-      if not type.isBoolType () then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       !?outMultipleBindingGenerationList.append (
@@ -368,7 +368,7 @@ proc analyzeOutlets(
         ?let @typeKind type,
         ?let @location errorLocation
       )
-      if not type.isBoolType () then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       if not handlesHiddenBinding then
@@ -424,26 +424,26 @@ proc analyzeRegularBinding(
       switch kind
       case property (2*) : # Ok
       case toMany (4*) :
-        error mObservableProperty.location ():"a toMany property cannot be bound"
+        error mObservableProperty.location :"a toMany property cannot be bound"
       case toOne (5*) :
-        error mObservableProperty.location ():"a toOne property cannot be bound"
+        error mObservableProperty.location :"a toOne property cannot be bound"
       case arrayController (2*) :
-        error mObservableProperty.location ():"an array controller cannot be bound"
+        error mObservableProperty.location :"an array controller cannot be bound"
       case selectionController (*) :
-        error mObservableProperty.location ():"a selection controller cannot be bound"
+        error mObservableProperty.location :"a selection controller cannot be bound"
       end
       !?boundModelListForGeneration.append (
         mObservableProperty.modelStringForSelf (inSelfSwiftName),
         kind
       )
-      !?boundModelTypeList.append (kind, mObservableProperty.location ())
+      !?boundModelTypeList.append (kind, mObservableProperty.location )
     end
   //-- Analyze outlet binding
     var @outletBindingSpecificationModelList outletBindingSpecificationModelList = []
     var @controllerBindingOptionDecoratedList controllerBindingOptionDecoratedList = []
     var outletTypeName = inOutletTypeName
     var continues = true
-    loop (inSemanticContext.mBindingSpecificationMap.count () + 1) while (outletTypeName.string != "") & continues do
+    loop (inSemanticContext.mBindingSpecificationMap.count + 1) while (outletTypeName.string != "") & continues do
       continues = false
       inSemanticContext.mBindingSpecificationMap.searchKey
         (outletTypeName,
@@ -463,32 +463,32 @@ proc analyzeRegularBinding(
     end
     if continues then
       error mBindingName : "this binding is not defined"
-    elsif boundModelTypeList.count () != outletBindingSpecificationModelList.count () then
+    elsif boundModelTypeList.count != outletBindingSpecificationModelList.count then
       error mBindingName
-      : outletBindingSpecificationModelList.count ().string ()
+      : outletBindingSpecificationModelList.count .string
         + " model(s) required for this binding (found: "
-        + boundModelTypeList.count () + ")"
+        + boundModelTypeList.count + ")"
     else
       for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
-        if required_mModelShouldBeWritableProperty && found_mKind.isTransient () then
+        if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
-        if required_mModelType.isEnumType () && found_mKind.isEnumType () then # Ok
-        elsif required_mModelType.swiftTypeName () != found_mKind.swiftTypeName () then
-          error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName ()
+        if required_mModelType.isEnumType && found_mKind.isEnumType then # Ok
+        elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
+          error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName
         end
       end
     end
   //-- Check options
     var bindingOptionString = ""
-    if controllerBindingOptionDecoratedList.count () != mBindingOptionList.count () then
+    if controllerBindingOptionDecoratedList.count != mBindingOptionList.count then
       var @string s
-      if controllerBindingOptionDecoratedList.count () == 0 then
+      if controllerBindingOptionDecoratedList.count == 0 then
         s = "this binding has no option"
       else 
         s = "this binding requires the following options:"
         for (mOptionType, mOptionName) in controllerBindingOptionDecoratedList do
-          s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName ()
+          s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName
         end
       end
       error mBindingName : s

@@ -121,7 +121,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
 {
   var @enumConstantMap enumConstantMap = []
   for (s) in self.mEnumConstantNameList do
-    !?enumConstantMap.insertKey (s, enumConstantMap.count ())
+    !?enumConstantMap.insertKey (s, enumConstantMap.count )
   end
   var @enumFuncMap enumFuncMap = []
   for (enumTypeName, funcName, associationList) in ioSemanticContext.mEnumerationFunctionListAST do
@@ -191,7 +191,7 @@ override proc @enumForGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
-  if self.mEnumConstantList.count () > 0 then # Empty list is the generic type "Enum"
+  if self.mEnumConstantList.count > 0 then # Empty list is the generic type "Enum"
     let s = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
       self.mEnumName,
       self.mEnumConstantList,

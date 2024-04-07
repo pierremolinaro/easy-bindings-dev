@@ -70,14 +70,14 @@ proc sortProperties(
   end
 //----------------------- dot files
   if option easyBindings_options [outputDeclarationDependencyGraph.value] then
-    let s = declarationPrecedenceGraph.graphviz ()
+    let s = declarationPrecedenceGraph.graphviz
     let path = inSourceFile + ".declarationDependancy.dot"
     s.writeToFileWhenDifferentContents (path, ?*)
   end
 //-----------------------  Get ordered declaration list
   outSortedDeclarationListAST = []
-  if declarationPrecedenceGraph.undefinedNodeCount () > 0 then
-    for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList () do
+  if declarationPrecedenceGraph.undefinedNodeCount > 0 then
+    for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList do
       error mValue : "the property " + mValue.string + " is not defined"
     end
   else
@@ -87,16 +87,16 @@ proc sortProperties(
       ?let unsortedSemanticDeclarationListAST,
       ?*
     )
-    if unsortedSemanticDeclarationListAST.count () > 0 then
+    if unsortedSemanticDeclarationListAST.count > 0 then
       var s = "semantic analysis not performed, "
-            + unsortedSemanticDeclarationListAST.count ()
+            + unsortedSemanticDeclarationListAST.count
             + " declarations are involved in circular definition:"
       for (declaration) in  unsortedSemanticDeclarationListAST do
-        s += "\n-  " + declaration.nodeKey ()
+        s += "\n-  " + declaration.nodeKey
       end
       error .nowhere : s
       for (declaration) in  unsortedSemanticDeclarationListAST do
-        error declaration.nodeKey () : "the " + declaration.nodeKey () + " property is declared here"
+        error declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here"
       end
     end
   end
