@@ -36,13 +36,13 @@ abstract class @astAbstractViewInstructionDeclaration {
 //----------------------------------------------------------------------------------------------------------------------
 
 class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public let @bool horizontal %selector
+  public let @bool horizontal %initArgLabel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class @astDividerInstructionDeclaration : @astAbstractViewInstructionDeclaration {
-  public let @bool horizontal %selector
+  public let @bool horizontal %initArgLabel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -148,7 +148,8 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let viewName)
     $vStack$
-    <auto_layout_func_call_list> (!?*, ?let functionCallList)
+    var unusedSet = @stringset ()
+    <auto_layout_func_call_list> (!?unusedSet, ?let functionCallList)
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
     var @stringset stackViewInstances = []
@@ -167,7 +168,8 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let viewName)
     $hStack$
-    <auto_layout_func_call_list> (!?*, ?let functionCallList)
+    var unusedSet = @stringset ()
+    <auto_layout_func_call_list> (!?unusedSet, ?let functionCallList)
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
     var @stringset stackViewInstances = []
@@ -1400,7 +1402,7 @@ proc analyzeAutoLayoutRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         binding_mOptionValue.analyzeDefaultValueType (
-          [controller_mOptionType],
+          [.init (controller_mOptionType)],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )
@@ -1636,13 +1638,13 @@ class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGenera
 //----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
-  public let @bool horizontal %selector
+  public let @bool horizontal %initArgLabel
 }
 
 //----------------------------------------------------------------------------------------------------------------------
 
 class @autoLayoutDividerInstructionGeneration : @abstractViewInstructionGeneration {
-  public let @bool horizontal %selector
+  public let @bool horizontal %initArgLabel
 }
 
 //----------------------------------------------------------------------------------------------------------------------

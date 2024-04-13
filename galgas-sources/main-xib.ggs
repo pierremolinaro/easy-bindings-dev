@@ -36,10 +36,10 @@ syntax extension easyBindings_syntax {
       select
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
-        !?ioElementList.append ([.outlet (!outletType:outletType, !outletName:outletName)])
+        !?ioElementList.append ([.init (.outlet (!outletType:outletType, !outletName:outletName))])
       or
         $literal_string$ (?let @lstring s)
-        !?ioElementList.append ([.text (!text:s)])
+        !?ioElementList.append ([.init (.text (!text:s))])
       or
         ${$
         <main_xib_line> (?let @mainXibLineDescriptorList lineDescription)

@@ -100,7 +100,8 @@ syntax extension easyBindings_syntax {
           editableColumn = true
         end
         $identifier$ (?let propertyName)
-        <view_actual_parameter_list> (!?*, ?let columnParameterListAST) #§
+        var unusedSet = @stringset ()
+        <view_actual_parameter_list> (!?unusedSet, ?let columnParameterListAST) #§
         let @lstring sortPropertyName
         select
           sortPropertyName = "".nowhere
@@ -144,7 +145,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     %errorMessage searchKey
   do
-    let @actionMap controllerActions = ["add".nowhere : "remove".nowhere ]
+    let @actionMap controllerActions = [.init ("add".nowhere), .init ("remove".nowhere)]
     if self.mIsRoot then
       ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?let rootProperties, ?2*)
       rootProperties.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
@@ -215,8 +216,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     ?2*
   )
 //----------------------------------------------------------- Check array controller attributes
-  let attributes = @stringset ["allowsEmptySelection" : "allowsMultipleSelection"]
-  let allowedTypes = @typeKindList [.boolType]
+  let attributes = @stringset ["allowsEmptySelection", "allowsMultipleSelection"]
+  let allowedTypes = @typeKindList [.init (.boolType)]
   var @stringset definedAttributes = []
   var @2stringlist attributeListForGeneration = []
   for (name, value) in self.mTableViewControllerAttributListAST do

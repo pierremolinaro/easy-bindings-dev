@@ -499,7 +499,7 @@ proc analyzeRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         binding_mOptionValue.analyzeDefaultValueType (
-          [controller_mOptionType],
+          [.init (controller_mOptionType)],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )

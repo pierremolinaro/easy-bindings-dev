@@ -72,7 +72,8 @@ syntax extension easyBindings_syntax {
     while
       <extern_swift_func> (!?ioDeclarationAST.mPreferences.mExternSwiftFunctionList)
     while
-      <toMany_relationship> (prefs, !?*, !?ioDeclarationAST)
+      var unusedSignatureList = @stringset ()
+      <toMany_relationship> (prefs, !?unusedSignatureList, !?ioDeclarationAST)
     while
       <controller_declaration> (prefs, "".nowhere , !?arrayControllerBindingListAST, !?ioDeclarationAST)
     end
@@ -119,7 +120,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
 //-- Analyze extern functions
-  let @stringset availableCallers = ["awakeFromNib" : "init"]
+  let @stringset availableCallers = ["awakeFromNib", "init"]
   var @externFunctionMap externFunctionMap = []
   for (mExternSwiftFunctionName, mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     !?externFunctionMap.insertKey (mExternSwiftFunctionName)

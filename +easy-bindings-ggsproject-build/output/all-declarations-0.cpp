@@ -106,6 +106,25 @@ GALGAS__32_lstringlist GALGAS__32_lstringlist::class_func_emptyList (UNUSED_LOCA
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS__32_lstringlist GALGAS__32_lstringlist::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS__32_lstringlist (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS__32_lstringlist::enterElement (const GALGAS__32_lstringlist_2D_element & inValue,
+                                           Compiler * /* inCompiler */
+                                           COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement__32_lstringlist (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS__32_lstringlist GALGAS__32_lstringlist::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                          const GALGAS_lstring & inOperand1
                                                                          COMMA_LOCATION_ARGS) {
@@ -3094,6 +3113,25 @@ GALGAS_declarationListAST GALGAS_declarationListAST::class_func_emptyList (UNUSE
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_declarationListAST GALGAS_declarationListAST::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_declarationListAST (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_declarationListAST::enterElement (const GALGAS_declarationListAST_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_declarationListAST (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_declarationListAST GALGAS_declarationListAST::class_func_listWithValue (const GALGAS_abstractDeclarationAST & inOperand0
                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_declarationListAST result ;
@@ -3516,6 +3554,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_outletClassBindingSpecificationList GALGAS_outletClassBindingSpecificationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletClassBindingSpecificationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_outletClassBindingSpecificationList GALGAS_outletClassBindingSpecificationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_outletClassBindingSpecificationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_outletClassBindingSpecificationList::enterElement (const GALGAS_outletClassBindingSpecificationList_2D_element & inValue,
+                                                               Compiler * /* inCompiler */
+                                                               COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_outletClassBindingSpecificationList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4126,6 +4183,25 @@ GALGAS_autoLayoutViewClassBindingSpecificationList GALGAS_autoLayoutViewClassBin
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_autoLayoutViewClassBindingSpecificationList GALGAS_autoLayoutViewClassBindingSpecificationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_autoLayoutViewClassBindingSpecificationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutViewClassBindingSpecificationList::enterElement (const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element & inValue,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_autoLayoutViewClassBindingSpecificationList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_autoLayoutViewClassBindingSpecificationList GALGAS_autoLayoutViewClassBindingSpecificationList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                                                  const GALGAS_lstring & inOperand1,
                                                                                                                                  const GALGAS_outletClassBindingSpecificationModelList & inOperand2,
@@ -4623,6 +4699,14 @@ GALGAS_autoLayoutViewClassBindingSpecificationList GALGAS_autoLayoutViewClassBin
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_astAutoLayoutViewFunctionMap::cMapElement_astAutoLayoutViewFunctionMap (const GALGAS_astAutoLayoutViewFunctionMap_2D_element & inValue
+                                                                                    COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mFomalParameterList (inValue.mProperty_mFomalParameterList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_astAutoLayoutViewFunctionMap::cMapElement_astAutoLayoutViewFunctionMap (const GALGAS_lstring & inKey,
                                                                                     const GALGAS_autoLayoutClassParameterList & in_mFomalParameterList
                                                                                     COMMA_LOCATION_ARGS) :
@@ -4685,6 +4769,14 @@ GALGAS_astAutoLayoutViewFunctionMap & GALGAS_astAutoLayoutViewFunctionMap::opera
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_astAutoLayoutViewFunctionMap GALGAS_astAutoLayoutViewFunctionMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_astAutoLayoutViewFunctionMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_astAutoLayoutViewFunctionMap GALGAS_astAutoLayoutViewFunctionMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_astAutoLayoutViewFunctionMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -4707,6 +4799,21 @@ GALGAS_astAutoLayoutViewFunctionMap GALGAS_astAutoLayoutViewFunctionMap::getter_
   GALGAS_astAutoLayoutViewFunctionMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_astAutoLayoutViewFunctionMap::enterElement (const GALGAS_astAutoLayoutViewFunctionMap_2D_element & inValue,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  cMapElement_astAutoLayoutViewFunctionMap * p = nullptr ;
+  macroMyNew (p, cMapElement_astAutoLayoutViewFunctionMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@astAutoLayoutViewFunctionMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5006,6 +5113,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_enumerationFunctionListAST GALGAS_enumerationFunctionListAST::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_enumerationFunctionListAST (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_enumerationFunctionListAST GALGAS_enumerationFunctionListAST::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_enumerationFunctionListAST (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_enumerationFunctionListAST::enterElement (const GALGAS_enumerationFunctionListAST_2D_element & inValue,
+                                                      Compiler * /* inCompiler */
+                                                      COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_enumerationFunctionListAST (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5447,6 +5573,17 @@ GALGAS_enumerationFunctionListAST GALGAS_enumerationFunctionListAST::extractObje
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_classMap::cMapElement_classMap (const GALGAS_classMap_2D_element & inValue
+                                            COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mClassKind (inValue.mProperty_mClassKind),
+mProperty_mPropertyMap (inValue.mProperty_mPropertyMap),
+mProperty_mActionMap (inValue.mProperty_mActionMap),
+mProperty_mPropertyGenerationList (inValue.mProperty_mPropertyGenerationList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_classMap::cMapElement_classMap (const GALGAS_lstring & inKey,
                                             const GALGAS_classKind & in_mClassKind,
                                             const GALGAS_propertyMap & in_mPropertyMap,
@@ -5536,6 +5673,14 @@ GALGAS_classMap & GALGAS_classMap::operator = (const GALGAS_classMap & inSource)
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_classMap GALGAS_classMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_classMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_classMap GALGAS_classMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_classMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -5558,6 +5703,21 @@ GALGAS_classMap GALGAS_classMap::getter_overriddenMap (Compiler * inCompiler
   GALGAS_classMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_classMap::enterElement (const GALGAS_classMap_2D_element & inValue,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) {
+  cMapElement_classMap * p = nullptr ;
+  macroMyNew (p, cMapElement_classMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@classMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5893,6 +6053,20 @@ GALGAS_classMap GALGAS_classMap::extractObject (const GALGAS_object & inObject,
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_outletClassMap::cMapElement_outletClassMap (const GALGAS_outletClassMap_2D_element & inValue
+                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mSuperClassName (inValue.mProperty_mSuperClassName),
+mProperty_mHandlesRunAction (inValue.mProperty_mHandlesRunAction),
+mProperty_mHandlesTableValueBinding (inValue.mProperty_mHandlesTableValueBinding),
+mProperty_mHandleEnabledBinding (inValue.mProperty_mHandleEnabledBinding),
+mProperty_mHandleHiddenBinding (inValue.mProperty_mHandleHiddenBinding),
+mProperty_mHandleGraphicControllerBinding (inValue.mProperty_mHandleGraphicControllerBinding),
+mProperty_mUserDefined (inValue.mProperty_mUserDefined) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_outletClassMap::cMapElement_outletClassMap (const GALGAS_lstring & inKey,
                                                         const GALGAS_lstring & in_mSuperClassName,
                                                         const GALGAS_bool & in_mHandlesRunAction,
@@ -6009,6 +6183,14 @@ GALGAS_outletClassMap & GALGAS_outletClassMap::operator = (const GALGAS_outletCl
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_outletClassMap GALGAS_outletClassMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_outletClassMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_outletClassMap GALGAS_outletClassMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_outletClassMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -6031,6 +6213,21 @@ GALGAS_outletClassMap GALGAS_outletClassMap::getter_overriddenMap (Compiler * in
   GALGAS_outletClassMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_outletClassMap::enterElement (const GALGAS_outletClassMap_2D_element & inValue,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) {
+  cMapElement_outletClassMap * p = nullptr ;
+  macroMyNew (p, cMapElement_outletClassMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@outletClassMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6501,6 +6698,15 @@ GALGAS_outletClassMap GALGAS_outletClassMap::extractObject (const GALGAS_object 
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_bindingSpecificationMap::cMapElement_bindingSpecificationMap (const GALGAS_bindingSpecificationMap_2D_element & inValue
+                                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mOutletSuperClassName (inValue.mProperty_mOutletSuperClassName),
+mProperty_mBindingMap (inValue.mProperty_mBindingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_bindingSpecificationMap::cMapElement_bindingSpecificationMap (const GALGAS_lstring & inKey,
                                                                           const GALGAS_lstring & in_mOutletSuperClassName,
                                                                           const GALGAS_outletBindingSpecificationMap & in_mBindingMap
@@ -6572,6 +6778,14 @@ GALGAS_bindingSpecificationMap & GALGAS_bindingSpecificationMap::operator = (con
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_bindingSpecificationMap GALGAS_bindingSpecificationMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_bindingSpecificationMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bindingSpecificationMap GALGAS_bindingSpecificationMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_bindingSpecificationMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -6594,6 +6808,21 @@ GALGAS_bindingSpecificationMap GALGAS_bindingSpecificationMap::getter_overridden
   GALGAS_bindingSpecificationMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_bindingSpecificationMap::enterElement (const GALGAS_bindingSpecificationMap_2D_element & inValue,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  cMapElement_bindingSpecificationMap * p = nullptr ;
+  macroMyNew (p, cMapElement_bindingSpecificationMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@bindingSpecificationMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6860,6 +7089,22 @@ GALGAS_bindingSpecificationMap GALGAS_bindingSpecificationMap::extractObject (co
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_autolayoutViewClassMap::cMapElement_autolayoutViewClassMap (const GALGAS_autolayoutViewClassMap_2D_element & inValue
+                                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mSuperClassName (inValue.mProperty_mSuperClassName),
+mProperty_mHandlesRunAction (inValue.mProperty_mHandlesRunAction),
+mProperty_mHandlesTableValueBinding (inValue.mProperty_mHandlesTableValueBinding),
+mProperty_mHandleEnabledBinding (inValue.mProperty_mHandleEnabledBinding),
+mProperty_mHandleHiddenBinding (inValue.mProperty_mHandleHiddenBinding),
+mProperty_mHandleGraphicControllerBinding (inValue.mProperty_mHandleGraphicControllerBinding),
+mProperty_mUserDefined (inValue.mProperty_mUserDefined),
+mProperty_mParameterList (inValue.mProperty_mParameterList),
+mProperty_mAutoLayoutViewFunctionMap (inValue.mProperty_mAutoLayoutViewFunctionMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_autolayoutViewClassMap::cMapElement_autolayoutViewClassMap (const GALGAS_lstring & inKey,
                                                                         const GALGAS_lstring & in_mSuperClassName,
                                                                         const GALGAS_bool & in_mHandlesRunAction,
@@ -6994,6 +7239,14 @@ GALGAS_autolayoutViewClassMap & GALGAS_autolayoutViewClassMap::operator = (const
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_autolayoutViewClassMap GALGAS_autolayoutViewClassMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_autolayoutViewClassMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_autolayoutViewClassMap GALGAS_autolayoutViewClassMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_autolayoutViewClassMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -7016,6 +7269,21 @@ GALGAS_autolayoutViewClassMap GALGAS_autolayoutViewClassMap::getter_overriddenMa
   GALGAS_autolayoutViewClassMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_autolayoutViewClassMap::enterElement (const GALGAS_autolayoutViewClassMap_2D_element & inValue,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cMapElement_autolayoutViewClassMap * p = nullptr ;
+  macroMyNew (p, cMapElement_autolayoutViewClassMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@autolayoutViewClassMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7576,6 +7844,15 @@ GALGAS_autolayoutViewClassMap GALGAS_autolayoutViewClassMap::extractObject (cons
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_autoLayoutBindingSpecificationMap::cMapElement_autoLayoutBindingSpecificationMap (const GALGAS_autoLayoutBindingSpecificationMap_2D_element & inValue
+                                                                                              COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mOutletSuperClassName (inValue.mProperty_mOutletSuperClassName),
+mProperty_mBindingMap (inValue.mProperty_mBindingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_autoLayoutBindingSpecificationMap::cMapElement_autoLayoutBindingSpecificationMap (const GALGAS_lstring & inKey,
                                                                                               const GALGAS_lstring & in_mOutletSuperClassName,
                                                                                               const GALGAS_autoLayoutViewBindingSpecificationMap & in_mBindingMap
@@ -7647,6 +7924,14 @@ GALGAS_autoLayoutBindingSpecificationMap & GALGAS_autoLayoutBindingSpecification
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_autoLayoutBindingSpecificationMap GALGAS_autoLayoutBindingSpecificationMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutBindingSpecificationMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_autoLayoutBindingSpecificationMap GALGAS_autoLayoutBindingSpecificationMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_autoLayoutBindingSpecificationMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -7669,6 +7954,21 @@ GALGAS_autoLayoutBindingSpecificationMap GALGAS_autoLayoutBindingSpecificationMa
   GALGAS_autoLayoutBindingSpecificationMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutBindingSpecificationMap::enterElement (const GALGAS_autoLayoutBindingSpecificationMap_2D_element & inValue,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) {
+  cMapElement_autoLayoutBindingSpecificationMap * p = nullptr ;
+  macroMyNew (p, cMapElement_autoLayoutBindingSpecificationMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@autoLayoutBindingSpecificationMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8063,6 +8363,14 @@ GALGAS_declarationPrecedenceGraph GALGAS_declarationPrecedenceGraph::class_func_
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_declarationPrecedenceGraph GALGAS_declarationPrecedenceGraph::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_declarationPrecedenceGraph result ;
+  result.makeNewEmptyGraph (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 void GALGAS_declarationPrecedenceGraph::setter_addNode (GALGAS_lstring inKey,
                                                         GALGAS_abstractDeclarationAST inArgument_0,
                                                         Compiler * inCompiler
@@ -8314,6 +8622,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_externSwiftDelegateList GALGAS_externSwiftDelegateList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_externSwiftDelegateList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_externSwiftDelegateList GALGAS_externSwiftDelegateList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_externSwiftDelegateList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_externSwiftDelegateList::enterElement (const GALGAS_externSwiftDelegateList_2D_element & inValue,
+                                                   Compiler * /* inCompiler */
+                                                   COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_externSwiftDelegateList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8732,6 +9059,25 @@ GALGAS_externSwiftFunctionList GALGAS_externSwiftFunctionList::class_func_emptyL
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_externSwiftFunctionList GALGAS_externSwiftFunctionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_externSwiftFunctionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_externSwiftFunctionList::enterElement (const GALGAS_externSwiftFunctionList_2D_element & inValue,
+                                                   Compiler * /* inCompiler */
+                                                   COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_externSwiftFunctionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_externSwiftFunctionList GALGAS_externSwiftFunctionList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                          const GALGAS_lstring & inOperand1
                                                                                          COMMA_LOCATION_ARGS) {
@@ -9109,6 +9455,13 @@ GALGAS_externSwiftFunctionList GALGAS_externSwiftFunctionList::extractObject (co
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_externFunctionMap::cMapElement_externFunctionMap (const GALGAS_externFunctionMap_2D_element & inValue
+                                                              COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_externFunctionMap::cMapElement_externFunctionMap (const GALGAS_lstring & inKey
                                                               COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE) {
@@ -9162,6 +9515,14 @@ GALGAS_externFunctionMap & GALGAS_externFunctionMap::operator = (const GALGAS_ex
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_externFunctionMap GALGAS_externFunctionMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_externFunctionMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_externFunctionMap GALGAS_externFunctionMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_externFunctionMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -9184,6 +9545,21 @@ GALGAS_externFunctionMap GALGAS_externFunctionMap::getter_overriddenMap (Compile
   GALGAS_externFunctionMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_externFunctionMap::enterElement (const GALGAS_externFunctionMap_2D_element & inValue,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
+  cMapElement_externFunctionMap * p = nullptr ;
+  macroMyNew (p, cMapElement_externFunctionMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@externFunctionMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9540,6 +9916,14 @@ GALGAS_enumerationDeclarationAST_2D_weak GALGAS_enumerationDeclarationAST_2D_wea
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_enumConstantMap::cMapElement_enumConstantMap (const GALGAS_enumConstantMap_2D_element & inValue
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mIndex (inValue.mProperty_mIndex) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_enumConstantMap::cMapElement_enumConstantMap (const GALGAS_lstring & inKey,
                                                           const GALGAS_uint & in_mIndex
                                                           COMMA_LOCATION_ARGS) :
@@ -9602,6 +9986,14 @@ GALGAS_enumConstantMap & GALGAS_enumConstantMap::operator = (const GALGAS_enumCo
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_enumConstantMap GALGAS_enumConstantMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_enumConstantMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_enumConstantMap GALGAS_enumConstantMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_enumConstantMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -9624,6 +10016,21 @@ GALGAS_enumConstantMap GALGAS_enumConstantMap::getter_overriddenMap (Compiler * 
   GALGAS_enumConstantMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_enumConstantMap::enterElement (const GALGAS_enumConstantMap_2D_element & inValue,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  cMapElement_enumConstantMap * p = nullptr ;
+  macroMyNew (p, cMapElement_enumConstantMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@enumConstantMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9831,9 +10238,12 @@ GALGAS_enumConstantMap GALGAS_enumConstantMap::extractObject (const GALGAS_objec
 class cSortedListElement_enumFunAssociationSortedList : public cSortedListElement {
   public: GALGAS_enumFunAssociationSortedList_2D_element mObject ;
 
-//--- Constructor
+//--- Constructors
   public: cSortedListElement_enumFunAssociationSortedList (const GALGAS_uint & in_mIndex,
                                                            const GALGAS_string & in_mAssociatedString
+                                                           COMMA_LOCATION_ARGS) ;
+
+  public: cSortedListElement_enumFunAssociationSortedList (const GALGAS_enumFunAssociationSortedList_2D_element & inObject
                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
@@ -9859,6 +10269,15 @@ cSortedListElement_enumFunAssociationSortedList::cSortedListElement_enumFunAssoc
                                                                                                   COMMA_LOCATION_ARGS) :
 cSortedListElement (THERE),
 mObject (in_mIndex, in_mAssociatedString) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cSortedListElement_enumFunAssociationSortedList::
+cSortedListElement_enumFunAssociationSortedList (const GALGAS_enumFunAssociationSortedList_2D_element & inObject
+                                                 COMMA_LOCATION_ARGS) :
+cSortedListElement (THERE),
+mObject (inObject) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9904,6 +10323,19 @@ AC_GALGAS_sortedlist () {
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_enumFunAssociationSortedList::enterElement (const GALGAS_enumFunAssociationSortedList_2D_element & inValue,
+                                                        Compiler * /* inCompiler */
+                                                        COMMA_LOCATION_ARGS) {
+  cSortedListElement * p = nullptr ;
+  macroMyNew (p, cSortedListElement_enumFunAssociationSortedList (inValue COMMA_THERE)) ;
+  capSortedListElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 ComparisonResult cSortedListElement_enumFunAssociationSortedList::compareForSorting (const cSortedListElement * inOperand) const {
   ComparisonResult result = ComparisonResult::operandEqual ;
   const cSortedListElement_enumFunAssociationSortedList * operand = (const cSortedListElement_enumFunAssociationSortedList *) inOperand ;
@@ -9917,6 +10349,14 @@ ComparisonResult cSortedListElement_enumFunAssociationSortedList::compareForSort
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_enumFunAssociationSortedList GALGAS_enumFunAssociationSortedList::class_func_emptySortedList (LOCATION_ARGS) {
+  GALGAS_enumFunAssociationSortedList result ;
+  result.createNewEmptySortedList (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_enumFunAssociationSortedList GALGAS_enumFunAssociationSortedList::init (Compiler * COMMA_LOCATION_ARGS) {
   GALGAS_enumFunAssociationSortedList result ;
   result.createNewEmptySortedList (THERE) ;
   return result ;
@@ -10132,6 +10572,14 @@ GALGAS_enumFunAssociationSortedList GALGAS_enumFunAssociationSortedList::extract
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_enumFuncMap::cMapElement_enumFuncMap (const GALGAS_enumFuncMap_2D_element & inValue
+                                                  COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mAssociationSortedList (inValue.mProperty_mAssociationSortedList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_enumFuncMap::cMapElement_enumFuncMap (const GALGAS_lstring & inKey,
                                                   const GALGAS_enumFunAssociationSortedList & in_mAssociationSortedList
                                                   COMMA_LOCATION_ARGS) :
@@ -10194,6 +10642,14 @@ GALGAS_enumFuncMap & GALGAS_enumFuncMap::operator = (const GALGAS_enumFuncMap & 
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_enumFuncMap GALGAS_enumFuncMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_enumFuncMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_enumFuncMap GALGAS_enumFuncMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_enumFuncMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -10216,6 +10672,21 @@ GALGAS_enumFuncMap GALGAS_enumFuncMap::getter_overriddenMap (Compiler * inCompil
   GALGAS_enumFuncMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_enumFuncMap::enterElement (const GALGAS_enumFuncMap_2D_element & inValue,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+  cMapElement_enumFuncMap * p = nullptr ;
+  macroMyNew (p, cMapElement_enumFuncMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@enumFuncMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11509,6 +11980,25 @@ GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::class_func_empt
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_simpleStoredPropertyList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_simpleStoredPropertyList::enterElement (const GALGAS_simpleStoredPropertyList_2D_element & inValue,
+                                                    Compiler * /* inCompiler */
+                                                    COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_simpleStoredPropertyList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_simpleStoredPropertyList GALGAS_simpleStoredPropertyList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                            const GALGAS_lstring & inOperand1,
                                                                                            const GALGAS_abstractDefaultValue & inOperand2
@@ -12147,6 +12637,25 @@ GALGAS_propertyGenerationList GALGAS_propertyGenerationList::class_func_emptyLis
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_propertyGenerationList GALGAS_propertyGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_propertyGenerationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_propertyGenerationList::enterElement (const GALGAS_propertyGenerationList_2D_element & inValue,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_propertyGenerationList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_propertyGenerationList GALGAS_propertyGenerationList::class_func_listWithValue (const GALGAS_propertyGeneration & inOperand0
                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_propertyGenerationList result ;
@@ -12671,6 +13180,25 @@ GALGAS_entityListForGeneratingEBManagedObjectContext GALGAS_entityListForGenerat
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_entityListForGeneratingEBManagedObjectContext GALGAS_entityListForGeneratingEBManagedObjectContext::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_entityListForGeneratingEBManagedObjectContext (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_entityListForGeneratingEBManagedObjectContext::enterElement (const GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element & inValue,
+                                                                         Compiler * /* inCompiler */
+                                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_entityListForGeneratingEBManagedObjectContext GALGAS_entityListForGeneratingEBManagedObjectContext::class_func_listWithValue (const GALGAS_string & inOperand0,
                                                                                                                                      const GALGAS_lstringlist & inOperand1
                                                                                                                                      COMMA_LOCATION_ARGS) {
@@ -13177,6 +13705,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_outletDeclarationList GALGAS_outletDeclarationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_outletDeclarationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_outletDeclarationList GALGAS_outletDeclarationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_outletDeclarationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_outletDeclarationList::enterElement (const GALGAS_outletDeclarationList_2D_element & inValue,
+                                                 Compiler * /* inCompiler */
+                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_outletDeclarationList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14015,6 +14562,25 @@ GALGAS_arrayControllerBindingListAST GALGAS_arrayControllerBindingListAST::class
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_arrayControllerBindingListAST GALGAS_arrayControllerBindingListAST::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_arrayControllerBindingListAST (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_arrayControllerBindingListAST::enterElement (const GALGAS_arrayControllerBindingListAST_2D_element & inValue,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_arrayControllerBindingListAST (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_arrayControllerBindingListAST GALGAS_arrayControllerBindingListAST::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                      const GALGAS_multipleBindingDescriptor & inOperand1
                                                                                                      COMMA_LOCATION_ARGS) {
@@ -14485,6 +15051,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_astViewDeclarationList GALGAS_astViewDeclarationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_astViewDeclarationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_astViewDeclarationList GALGAS_astViewDeclarationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_astViewDeclarationList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_astViewDeclarationList::enterElement (const GALGAS_astViewDeclarationList_2D_element & inValue,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_astViewDeclarationList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14963,6 +15548,25 @@ GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::class
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_astAutoLayoutOutletLinkerList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_astAutoLayoutOutletLinkerList::enterElement (const GALGAS_astAutoLayoutOutletLinkerList_2D_element & inValue,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_astAutoLayoutOutletLinkerList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                      const GALGAS_lstringlist & inOperand1
                                                                                                      COMMA_LOCATION_ARGS) {
@@ -15333,590 +15937,6 @@ GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::extra
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutOutletLinkerList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::objectCompare (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (void) :
-GALGAS_abstractDeclarationAST_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::operator = (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) :
-GALGAS_abstractDeclarationAST_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::class_func_nil (LOCATION_ARGS) {
-  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::bang_autoLayoutDocumentDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutDocumentDeclarationAST result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_autoLayoutDocumentDeclarationAST) ;
-      result = GALGAS_autoLayoutDocumentDeclarationAST ((cPtr_autoLayoutDocumentDeclarationAST *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutDocumentDeclarationAST-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ("autoLayoutDocumentDeclarationAST-weak",
-                                                                                                & kTypeDescriptor_GALGAS_abstractDeclarationAST_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
-  const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak * p = (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutDocumentDeclarationAST-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Class for element of '@autoLayoutOutletLinkerGenerationList' list
-//
-//--------------------------------------------------------------------------------------------------
-
-class cCollectionElement_autoLayoutOutletLinkerGenerationList : public cCollectionElement {
-  public: GALGAS_autoLayoutOutletLinkerGenerationList_2D_element mObject ;
-
-//--- Class functions
-  public: cCollectionElement_autoLayoutOutletLinkerGenerationList (const GALGAS_string & in_mLinkerName,
-                                                                   const GALGAS__32_stringlist & in_mOutletNameAndTypeNameList
-                                                                   COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_autoLayoutOutletLinkerGenerationList (const GALGAS_autoLayoutOutletLinkerGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_autoLayoutOutletLinkerGenerationList::cCollectionElement_autoLayoutOutletLinkerGenerationList (const GALGAS_string & in_mLinkerName,
-                                                                                                                  const GALGAS__32_stringlist & in_mOutletNameAndTypeNameList
-                                                                                                                  COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mLinkerName, in_mOutletNameAndTypeNameList) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_autoLayoutOutletLinkerGenerationList::cCollectionElement_autoLayoutOutletLinkerGenerationList (const GALGAS_autoLayoutOutletLinkerGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mLinkerName, inElement.mProperty_mOutletNameAndTypeNameList) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cCollectionElement_autoLayoutOutletLinkerGenerationList::isValid (void) const {
-  return true ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement * cCollectionElement_autoLayoutOutletLinkerGenerationList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_autoLayoutOutletLinkerGenerationList (mObject.mProperty_mLinkerName, mObject.mProperty_mOutletNameAndTypeNameList COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cCollectionElement_autoLayoutOutletLinkerGenerationList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mLinkerName" ":") ;
-  mObject.mProperty_mLinkerName.description (ioString, inIndentation) ;
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mOutletNameAndTypeNameList" ":") ;
-  mObject.mProperty_mOutletNameAndTypeNameList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_autoLayoutOutletLinkerGenerationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * operand = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-  return mObject.objectCompare (operand->mObject) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList::GALGAS_autoLayoutOutletLinkerGenerationList (void) :
-AC_GALGAS_list () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList::GALGAS_autoLayoutOutletLinkerGenerationList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  return GALGAS_autoLayoutOutletLinkerGenerationList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::class_func_listWithValue (const GALGAS_string & inOperand0,
-                                                                                                                   const GALGAS__32_stringlist & inOperand1
-                                                                                                                   COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutOutletLinkerGenerationList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GALGAS_autoLayoutOutletLinkerGenerationList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GALGAS_autoLayoutOutletLinkerGenerationList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                             const GALGAS_string & in_mLinkerName,
-                                                                             const GALGAS__32_stringlist & in_mOutletNameAndTypeNameList
-                                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_autoLayoutOutletLinkerGenerationList (in_mLinkerName,
-                                                                          in_mOutletNameAndTypeNameList COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::addAssign_operation (const GALGAS_string & inOperand0,
-                                                                       const GALGAS__32_stringlist & inOperand1
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_autoLayoutOutletLinkerGenerationList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_append (const GALGAS_string inOperand0,
-                                                                 const GALGAS__32_stringlist inOperand1,
-                                                                 Compiler * /* inCompiler */
-                                                                 COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_autoLayoutOutletLinkerGenerationList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_insertAtIndex (const GALGAS_string inOperand0,
-                                                                        const GALGAS__32_stringlist inOperand1,
-                                                                        const GALGAS_uint inInsertionIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    if (inInsertionIndex.isValid () && inOperand0.isValid () && inOperand1.isValid ()) {
-      cCollectionElement * p = nullptr ;
-      macroMyNew (p, cCollectionElement_autoLayoutOutletLinkerGenerationList (inOperand0, inOperand1 COMMA_THERE)) ;
-      capCollectionElement attributes ;
-      attributes.setPointer (p) ;
-      macroDetachSharedObject (p) ;
-      insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-    }else{
-      drop () ;
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_removeAtIndex (GALGAS_string & outOperand0,
-                                                                        GALGAS__32_stringlist & outOperand1,
-                                                                        const GALGAS_uint inRemoveIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    if (inRemoveIndex.isValid ()) {
-      capCollectionElement attributes ;
-      removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-      cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-      if (nullptr == p) {
-        outOperand0.drop () ;
-        outOperand1.drop () ;
-        drop () ;
-      }else{
-        macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-        outOperand0 = p->mObject.mProperty_mLinkerName ;
-        outOperand1 = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-      }
-    }else{
-      outOperand0.drop () ;
-      outOperand1.drop () ;
-      drop () ;    
-    }
-  }else{
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_popFirst (GALGAS_string & outOperand0,
-                                                                   GALGAS__32_stringlist & outOperand1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mLinkerName ;
-    outOperand1 = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_popLast (GALGAS_string & outOperand0,
-                                                                  GALGAS__32_stringlist & outOperand1,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mLinkerName ;
-    outOperand1 = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::method_first (GALGAS_string & outOperand0,
-                                                                GALGAS__32_stringlist & outOperand1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mLinkerName ;
-    outOperand1 = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::method_last (GALGAS_string & outOperand0,
-                                                               GALGAS__32_stringlist & outOperand1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    outOperand0 = p->mObject.mProperty_mLinkerName ;
-    outOperand1 = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::add_operation (const GALGAS_autoLayoutOutletLinkerGenerationList & inOperand,
-                                                                                                        Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_autoLayoutOutletLinkerGenerationList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::getter_subListWithRange (const GALGAS_range & inRange,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutOutletLinkerGenerationList result = GALGAS_autoLayoutOutletLinkerGenerationList::class_func_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::getter_subListFromIndex (const GALGAS_uint & inIndex,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutOutletLinkerGenerationList result = GALGAS_autoLayoutOutletLinkerGenerationList::class_func_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::getter_subListToIndex (const GALGAS_uint & inIndex,
-                                                                                                                Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) const {
-  GALGAS_autoLayoutOutletLinkerGenerationList result = GALGAS_autoLayoutOutletLinkerGenerationList::class_func_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::plusAssign_operation (const GALGAS_autoLayoutOutletLinkerGenerationList inOperand,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_setMLinkerNameAtIndex (GALGAS_string inOperand,
-                                                                                GALGAS_uint inIndex,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mLinkerName = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_string GALGAS_autoLayoutOutletLinkerGenerationList::getter_mLinkerNameAtIndex (const GALGAS_uint & inIndex,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  GALGAS_string result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    result = p->mObject.mProperty_mLinkerName ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_autoLayoutOutletLinkerGenerationList::setter_setMOutletNameAndTypeNameListAtIndex (GALGAS__32_stringlist inOperand,
-                                                                                               GALGAS_uint inIndex,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mOutletNameAndTypeNameList = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS__32_stringlist GALGAS_autoLayoutOutletLinkerGenerationList::getter_mOutletNameAndTypeNameListAtIndex (const GALGAS_uint & inIndex,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (cCollectionElement_autoLayoutOutletLinkerGenerationList *) attributes.ptr () ;
-  GALGAS__32_stringlist result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-    result = p->mObject.mProperty_mOutletNameAndTypeNameList ;
-  }
-  return result ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-cEnumerator_autoLayoutOutletLinkerGenerationList::cEnumerator_autoLayoutOutletLinkerGenerationList (const GALGAS_autoLayoutOutletLinkerGenerationList & inEnumeratedObject,
-                                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList_2D_element cEnumerator_autoLayoutOutletLinkerGenerationList::current (LOCATION_ARGS) const {
-  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-  return p->mObject ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_string cEnumerator_autoLayoutOutletLinkerGenerationList::current_mLinkerName (LOCATION_ARGS) const {
-  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-  return p->mObject.mProperty_mLinkerName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS__32_stringlist cEnumerator_autoLayoutOutletLinkerGenerationList::current_mOutletNameAndTypeNameList (LOCATION_ARGS) const {
-  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
-  return p->mObject.mProperty_mOutletNameAndTypeNameList ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutOutletLinkerGenerationList generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutOutletLinkerGenerationList ("autoLayoutOutletLinkerGenerationList",
-                                                                                            nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_autoLayoutOutletLinkerGenerationList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutOutletLinkerGenerationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_autoLayoutOutletLinkerGenerationList::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_autoLayoutOutletLinkerGenerationList (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutOutletLinkerGenerationList GALGAS_autoLayoutOutletLinkerGenerationList::extractObject (const GALGAS_object & inObject,
-                                                                                                        Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) {
-  GALGAS_autoLayoutOutletLinkerGenerationList result ;
-  const GALGAS_autoLayoutOutletLinkerGenerationList * p = (const GALGAS_autoLayoutOutletLinkerGenerationList *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_autoLayoutOutletLinkerGenerationList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutOutletLinkerGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
