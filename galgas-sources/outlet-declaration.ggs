@@ -9,7 +9,7 @@ list @bindingOptionList {
 
 #·······················································································································
 
-enum @tableValueBinding {
+enum @tableValueBinding %equatable {
   case noTableValueBinding
   case tableValueBinding (@lstring controllerName)
 }

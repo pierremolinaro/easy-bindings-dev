@@ -16,7 +16,7 @@ class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
 
 #·······················································································································
 
-enum @autoLayoutClassParameterType {
+enum @autoLayoutClassParameterType %equatable {
   case typeString
   case typeStringArray
   case typeInt

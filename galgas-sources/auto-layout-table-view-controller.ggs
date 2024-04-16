@@ -292,29 +292,6 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
   var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
   for (editable, propertyName, columnParameterList, sortPropertyName) in self.mTableViewControllerBoundColumnListAST do
-  //------- Run action ? Check action is declared
-#    if columnBindings.mRunActionName.string != "" then
-#      actionMap.searchKey !columnBindings.mRunActionName]
-#    end
-  //------- Simple bindings
-#    ioSemanticContext.mClassMap.searchKey
-#      !.new {!preferencesName () !.nowhere}
-#      ?*
-#      ?let preferencesPropertyMap
-#      ?2*
-#    ]
-#    @regularBindingsGenerationList regularBindingsGenerationList = []
-#    analyzeRegularBinding (
-#      ![] # No root observable property map
-#      !preferencesPropertyMap
-#      !ioSemanticContext
-#      !propertyMap
-#      !columnOutletTypeName
-#      !"<<not used>>"
-#      !columnBindings.mRegularBindingList
-#      !"object."
-#      !?regularBindingsGenerationList
-#    )
   //------- Arguments
     var @autoLayoutClassParameterList formalArgumentList = []
     !?formalArgumentList.append ("title".nowhere , .typeString)

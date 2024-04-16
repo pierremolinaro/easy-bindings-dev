@@ -2,7 +2,7 @@
 #   AST
 //----------------------------------------------------------------------------------------------------------------------
 
-enum @proxyKind {
+enum @proxyKind %equatable {
   case propertyProxy
   case toManyProxy
 }

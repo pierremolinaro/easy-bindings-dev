@@ -90,7 +90,7 @@ syntax extension easyBindings_syntax {
 #   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 //----------------------------------------------------------------------------------------------------------------------
 
-map @enumConstantMap {
+map @enumConstantMap %equatable {
   public var @uint mIndex
   %insertSetter insertKey %errorMessage "there is already a '%K' constant"
   %searchMethod searchKey %errorMessage "the '%K' constant is not defined"
@@ -98,7 +98,7 @@ map @enumConstantMap {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-sortedlist @enumFunAssociationSortedList {
+sortedlist @enumFunAssociationSortedList %equatable {
   public var @uint mIndex
   public var @string mAssociatedString
 }{
@@ -107,7 +107,7 @@ sortedlist @enumFunAssociationSortedList {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-map @enumFuncMap {
+map @enumFuncMap %equatable {
   public var @enumFunAssociationSortedList mAssociationSortedList
   %insertSetter insertKey %errorMessage "there is already a '%K' enum function"
   %searchMethod searchKey %errorMessage "the '%K' enum function is not defined"

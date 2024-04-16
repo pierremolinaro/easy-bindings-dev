@@ -2,7 +2,7 @@
 #   AST   
 //----------------------------------------------------------------------------------------------------------------------
 
-enum @runActionDescriptor {
+enum @runActionDescriptor %equatable {
   case noAction 
   case action (@lstring target  @lstring action)
 }

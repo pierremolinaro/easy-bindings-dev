@@ -23,7 +23,6 @@ class cCollectionElement__32_lstringlist : public cCollectionElement {
   public: cCollectionElement__32_lstringlist (const GALGAS__32_lstringlist_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -76,14 +75,6 @@ void cCollectionElement__32_lstringlist::description (String & ioString, const i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mValue1" ":") ;
   mObject.mProperty_mValue_31_.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement__32_lstringlist::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement__32_lstringlist * operand = (cCollectionElement__32_lstringlist *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement__32_lstringlist) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3035,7 +3026,6 @@ class cCollectionElement_declarationListAST : public cCollectionElement {
   public: cCollectionElement_declarationListAST (const GALGAS_declarationListAST_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -3083,14 +3073,6 @@ void cCollectionElement_declarationListAST::description (String & ioString, cons
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mPropertyDeclaration" ":") ;
   mObject.mProperty_mPropertyDeclaration.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_declarationListAST::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_declarationListAST * operand = (cCollectionElement_declarationListAST *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_declarationListAST) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3465,7 +3447,6 @@ class cCollectionElement_outletClassBindingSpecificationList : public cCollectio
   public: cCollectionElement_outletClassBindingSpecificationList (const GALGAS_outletClassBindingSpecificationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -3528,14 +3509,6 @@ void cCollectionElement_outletClassBindingSpecificationList::description (String
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_outletClassBindingSpecificationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_outletClassBindingSpecificationList * operand = (cCollectionElement_outletClassBindingSpecificationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_outletClassBindingSpecificationList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4090,7 +4063,6 @@ class cCollectionElement_autoLayoutViewClassBindingSpecificationList : public cC
   public: cCollectionElement_autoLayoutViewClassBindingSpecificationList (const GALGAS_autoLayoutViewClassBindingSpecificationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -4153,14 +4125,6 @@ void cCollectionElement_autoLayoutViewClassBindingSpecificationList::description
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mBindingOptionList" ":") ;
   mObject.mProperty_mBindingOptionList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_autoLayoutViewClassBindingSpecificationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_autoLayoutViewClassBindingSpecificationList * operand = (cCollectionElement_autoLayoutViewClassBindingSpecificationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_autoLayoutViewClassBindingSpecificationList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4739,17 +4703,6 @@ void cMapElement_astAutoLayoutViewFunctionMap::description (String & ioString, c
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_astAutoLayoutViewFunctionMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_astAutoLayoutViewFunctionMap * operand = (cMapElement_astAutoLayoutViewFunctionMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mFomalParameterList.objectCompare (operand->mProperty_mFomalParameterList) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_astAutoLayoutViewFunctionMap::GALGAS_astAutoLayoutViewFunctionMap (void) :
 AC_GALGAS_map () {
 }
@@ -5029,7 +4982,6 @@ class cCollectionElement_enumerationFunctionListAST : public cCollectionElement 
   public: cCollectionElement_enumerationFunctionListAST (const GALGAS_enumerationFunctionListAST_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -5087,14 +5039,6 @@ void cCollectionElement_enumerationFunctionListAST::description (String & ioStri
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mAssociationList" ":") ;
   mObject.mProperty_mAssociationList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_enumerationFunctionListAST::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_enumerationFunctionListAST * operand = (cCollectionElement_enumerationFunctionListAST *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_enumerationFunctionListAST) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5634,26 +5578,6 @@ void cMapElement_classMap::description (String & ioString, const int32_t inInden
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_classMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_classMap * operand = (cMapElement_classMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mClassKind.objectCompare (operand->mProperty_mClassKind) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mPropertyMap.objectCompare (operand->mProperty_mPropertyMap) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mActionMap.objectCompare (operand->mProperty_mActionMap) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mPropertyGenerationList.objectCompare (operand->mProperty_mPropertyGenerationList) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_classMap::GALGAS_classMap (void) :
 AC_GALGAS_map () {
 }
@@ -6131,35 +6055,6 @@ void cMapElement_outletClassMap::description (String & ioString, const int32_t i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mUserDefined" ":") ;
   mProperty_mUserDefined.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_outletClassMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_outletClassMap * operand = (cMapElement_outletClassMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSuperClassName.objectCompare (operand->mProperty_mSuperClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesRunAction.objectCompare (operand->mProperty_mHandlesRunAction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesTableValueBinding.objectCompare (operand->mProperty_mHandlesTableValueBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleEnabledBinding.objectCompare (operand->mProperty_mHandleEnabledBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleHiddenBinding.objectCompare (operand->mProperty_mHandleHiddenBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleGraphicControllerBinding.objectCompare (operand->mProperty_mHandleGraphicControllerBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mUserDefined.objectCompare (operand->mProperty_mUserDefined) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6745,20 +6640,6 @@ void cMapElement_bindingSpecificationMap::description (String & ioString, const 
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_bindingSpecificationMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_bindingSpecificationMap * operand = (cMapElement_bindingSpecificationMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mOutletSuperClassName.objectCompare (operand->mProperty_mOutletSuperClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBindingMap.objectCompare (operand->mProperty_mBindingMap) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_bindingSpecificationMap::GALGAS_bindingSpecificationMap (void) :
 AC_GALGAS_map () {
 }
@@ -7181,41 +7062,6 @@ void cMapElement_autolayoutViewClassMap::description (String & ioString, const i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mAutoLayoutViewFunctionMap" ":") ;
   mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_autolayoutViewClassMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_autolayoutViewClassMap * operand = (cMapElement_autolayoutViewClassMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSuperClassName.objectCompare (operand->mProperty_mSuperClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesRunAction.objectCompare (operand->mProperty_mHandlesRunAction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandlesTableValueBinding.objectCompare (operand->mProperty_mHandlesTableValueBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleEnabledBinding.objectCompare (operand->mProperty_mHandleEnabledBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleHiddenBinding.objectCompare (operand->mProperty_mHandleHiddenBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mHandleGraphicControllerBinding.objectCompare (operand->mProperty_mHandleGraphicControllerBinding) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mUserDefined.objectCompare (operand->mProperty_mUserDefined) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mParameterList.objectCompare (operand->mProperty_mParameterList) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mAutoLayoutViewFunctionMap.objectCompare (operand->mProperty_mAutoLayoutViewFunctionMap) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7891,20 +7737,6 @@ void cMapElement_autoLayoutBindingSpecificationMap::description (String & ioStri
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_autoLayoutBindingSpecificationMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_autoLayoutBindingSpecificationMap * operand = (cMapElement_autoLayoutBindingSpecificationMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mOutletSuperClassName.objectCompare (operand->mProperty_mOutletSuperClassName) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBindingMap.objectCompare (operand->mProperty_mBindingMap) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_autoLayoutBindingSpecificationMap::GALGAS_autoLayoutBindingSpecificationMap (void) :
 AC_GALGAS_map () {
 }
@@ -8548,7 +8380,6 @@ class cCollectionElement_externSwiftDelegateList : public cCollectionElement {
   public: cCollectionElement_externSwiftDelegateList (const GALGAS_externSwiftDelegateList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -8596,14 +8427,6 @@ void cCollectionElement_externSwiftDelegateList::description (String & ioString,
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mExternSwiftDelegateName" ":") ;
   mObject.mProperty_mExternSwiftDelegateName.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_externSwiftDelegateList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_externSwiftDelegateList * operand = (cCollectionElement_externSwiftDelegateList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_externSwiftDelegateList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8976,7 +8799,6 @@ class cCollectionElement_externSwiftFunctionList : public cCollectionElement {
   public: cCollectionElement_externSwiftFunctionList (const GALGAS_externSwiftFunctionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -9029,14 +8851,6 @@ void cCollectionElement_externSwiftFunctionList::description (String & ioString,
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mCallerName" ":") ;
   mObject.mProperty_mCallerName.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_externSwiftFunctionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_externSwiftFunctionList * operand = (cCollectionElement_externSwiftFunctionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_externSwiftFunctionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9484,14 +9298,6 @@ cMapElement * cMapElement_externFunctionMap::copy (void) {
 //--------------------------------------------------------------------------------------------------
 
 void cMapElement_externFunctionMap::description (String & /* ioString */, const int32_t /* inIndentation */) const {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_externFunctionMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_externFunctionMap * operand = (cMapElement_externFunctionMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10903,8 +10709,6 @@ acStrongPtr_class (THERE) {
 
 //--------------------------------------------------------------------------------------------------
 
-
-
 ComparisonResult GALGAS_abstractFileGeneration::objectCompare (const GALGAS_abstractFileGeneration & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11892,7 +11696,6 @@ class cCollectionElement_simpleStoredPropertyList : public cCollectionElement {
   public: cCollectionElement_simpleStoredPropertyList (const GALGAS_simpleStoredPropertyList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -11950,14 +11753,6 @@ void cCollectionElement_simpleStoredPropertyList::description (String & ioString
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mDefaultValue" ":") ;
   mObject.mProperty_mDefaultValue.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_simpleStoredPropertyList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_simpleStoredPropertyList * operand = (cCollectionElement_simpleStoredPropertyList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_simpleStoredPropertyList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12559,7 +12354,6 @@ class cCollectionElement_propertyGenerationList : public cCollectionElement {
   public: cCollectionElement_propertyGenerationList (const GALGAS_propertyGenerationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -12607,14 +12401,6 @@ void cCollectionElement_propertyGenerationList::description (String & ioString, 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mProperty" ":") ;
   mObject.mProperty_mProperty.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_propertyGenerationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_propertyGenerationList * operand = (cCollectionElement_propertyGenerationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_propertyGenerationList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13097,7 +12883,6 @@ class cCollectionElement_entityListForGeneratingEBManagedObjectContext : public 
   public: cCollectionElement_entityListForGeneratingEBManagedObjectContext (const GALGAS_entityListForGeneratingEBManagedObjectContext_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -13150,14 +12935,6 @@ void cCollectionElement_entityListForGeneratingEBManagedObjectContext::descripti
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mObsoleteEntityNames" ":") ;
   mObject.mProperty_mObsoleteEntityNames.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_entityListForGeneratingEBManagedObjectContext::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_entityListForGeneratingEBManagedObjectContext * operand = (cCollectionElement_entityListForGeneratingEBManagedObjectContext *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13596,7 +13373,6 @@ class cCollectionElement_outletDeclarationList : public cCollectionElement {
   public: cCollectionElement_outletDeclarationList (const GALGAS_outletDeclarationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -13679,14 +13455,6 @@ void cCollectionElement_outletDeclarationList::description (String & ioString, c
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mGraphicController" ":") ;
   mObject.mProperty_mGraphicController.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_outletDeclarationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_outletDeclarationList * operand = (cCollectionElement_outletDeclarationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_outletDeclarationList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14479,7 +14247,6 @@ class cCollectionElement_arrayControllerBindingListAST : public cCollectionEleme
   public: cCollectionElement_arrayControllerBindingListAST (const GALGAS_arrayControllerBindingListAST_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -14532,14 +14299,6 @@ void cCollectionElement_arrayControllerBindingListAST::description (String & ioS
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mHiddenSelectionViewBindingDescriptor" ":") ;
   mObject.mProperty_mHiddenSelectionViewBindingDescriptor.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_arrayControllerBindingListAST::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_arrayControllerBindingListAST * operand = (cCollectionElement_arrayControllerBindingListAST *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_arrayControllerBindingListAST) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14972,7 +14731,6 @@ class cCollectionElement_astViewDeclarationList : public cCollectionElement {
   public: cCollectionElement_astViewDeclarationList (const GALGAS_astViewDeclarationList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -15025,14 +14783,6 @@ void cCollectionElement_astViewDeclarationList::description (String & ioString, 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mView" ":") ;
   mObject.mProperty_mView.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_astViewDeclarationList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_astViewDeclarationList * operand = (cCollectionElement_astViewDeclarationList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_astViewDeclarationList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15465,7 +15215,6 @@ class cCollectionElement_astAutoLayoutOutletLinkerList : public cCollectionEleme
   public: cCollectionElement_astAutoLayoutOutletLinkerList (const GALGAS_astAutoLayoutOutletLinkerList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -15518,14 +15267,6 @@ void cCollectionElement_astAutoLayoutOutletLinkerList::description (String & ioS
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mOutletNameList" ":") ;
   mObject.mProperty_mOutletNameList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_astAutoLayoutOutletLinkerList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_astAutoLayoutOutletLinkerList * operand = (cCollectionElement_astAutoLayoutOutletLinkerList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_astAutoLayoutOutletLinkerList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15937,6 +15678,116 @@ GALGAS_astAutoLayoutOutletLinkerList GALGAS_astAutoLayoutOutletLinkerList::extra
       result = *p ;
     }else{
       inCompiler->castError ("astAutoLayoutOutletLinkerList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::objectCompare (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (void) :
+GALGAS_abstractDeclarationAST_2D_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST_2D_weak & GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::operator = (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (const GALGAS_autoLayoutDocumentDeclarationAST & inSource) :
+GALGAS_abstractDeclarationAST_2D_weak (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::class_func_nil (LOCATION_ARGS) {
+  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::bang_autoLayoutDocumentDeclarationAST_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GALGAS_autoLayoutDocumentDeclarationAST result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_autoLayoutDocumentDeclarationAST) ;
+      result = GALGAS_autoLayoutDocumentDeclarationAST ((cPtr_autoLayoutDocumentDeclarationAST *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @autoLayoutDocumentDeclarationAST-weak generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ("autoLayoutDocumentDeclarationAST-weak",
+                                                                                                & kTypeDescriptor_GALGAS_abstractDeclarationAST_2D_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2D_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_autoLayoutDocumentDeclarationAST_2D_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutDocumentDeclarationAST_2D_weak GALGAS_autoLayoutDocumentDeclarationAST_2D_weak::extractObject (const GALGAS_object & inObject,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_autoLayoutDocumentDeclarationAST_2D_weak result ;
+  const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak * p = (const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_autoLayoutDocumentDeclarationAST_2D_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("autoLayoutDocumentDeclarationAST-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

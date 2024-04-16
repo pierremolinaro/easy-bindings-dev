@@ -2,7 +2,7 @@
 #   AST   
 //----------------------------------------------------------------------------------------------------------------------
 
-enum @multipleBindingDescriptor {
+enum @multipleBindingDescriptor %equatable {
   case noBinding 
   case binding (@abstractBooleanMultipleBindingExpressionAST expression)
 }

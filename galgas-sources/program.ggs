@@ -17,7 +17,7 @@ struct @semanticContext {
 
 case ."eb"
   %errorMessage "a source text file with the .easyBindings extension"
-  %useGrammar easyBindings_grammar
+  grammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile
 {
   var declarationStruct = @astDeclarationStruct ()
