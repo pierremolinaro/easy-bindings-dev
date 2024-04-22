@@ -553,7 +553,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
       for (name, type, value) in actualParameterList, (formalName, formalType) in formalParameterList do
         if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
           inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
-          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
+          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1*, ?constantMap: let constantMap, ?1*] then
             constantMap.searchKey (constantName, ?*)
           else
             error enumTypeName : "this type name is not an enum"
@@ -881,7 +881,7 @@ override proc @astComputedViewInstruction.generateViewCode(
     for (name, type, value) in self.mParameterList, (formalName, formalType) in formalParameterList do
       if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
         inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
-        if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
+        if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1*, ?constantMap: let constantMap, ?1*] then
           constantMap.searchKey (constantName, ?*)
         else
           error enumTypeName : "this type name is not an enum"

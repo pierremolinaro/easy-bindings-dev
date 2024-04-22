@@ -1749,6 +1749,8 @@ class GALGAS_astDeclarationStruct : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1887,6 +1889,8 @@ class GALGAS_enumForGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1998,6 +2002,8 @@ class GALGAS_enumForGeneration_2D_weak : public GALGAS_abstractFileGeneration_2D
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2089,6 +2095,8 @@ class GALGAS_entityStrongReferenceGraph : public AC_GALGAS_graph {
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
 
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 

@@ -309,7 +309,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         end
         if let [formalType typeEnum ?name: let enumTypeName], let [actualType typeEnum ?name: let constantName] then
           ioSemanticContext.mClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
-          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1* ?constantMap: let constantMap ?1*] then
+          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1*, ?constantMap: let constantMap, ?1*] then
             constantMap.searchKey (constantName, ?*)
           else
             error enumTypeName : "this type name is not an enum"

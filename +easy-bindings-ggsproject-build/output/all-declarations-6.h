@@ -51,6 +51,8 @@ class GALGAS_computedPropertyGeneration_2D_weak : public GALGAS_propertyGenerati
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -325,6 +327,8 @@ class GALGAS_XcodeProjectDescriptor : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 

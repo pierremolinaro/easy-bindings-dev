@@ -69,6 +69,8 @@ class GALGAS_computeRoutineGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -180,6 +182,8 @@ class GALGAS_computeRoutineGeneration_2D_weak : public GALGAS_abstractFileGenera
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -259,6 +263,8 @@ class GALGAS_transientDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -387,6 +393,8 @@ class GALGAS_transientDeclarationAST_2D_weak : public GALGAS_abstractDeclaration
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -461,6 +469,8 @@ class GALGAS_transientPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -588,6 +598,8 @@ class GALGAS_transientPropertyGeneration_2D_weak : public GALGAS_propertyGenerat
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -710,6 +722,8 @@ class GALGAS_transientPropertyGenerationList : public AC_GALGAS_list {
                                                                                                  COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -807,6 +821,8 @@ class GALGAS_transientPropertyGenerationList_2D_element : public AC_GALGAS_root 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -932,6 +948,8 @@ class GALGAS_transientRoutineGeneration : public GALGAS_abstractFileGeneration {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1046,6 +1064,8 @@ class GALGAS_transientRoutineGeneration_2D_weak : public GALGAS_abstractFileGene
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1116,6 +1136,8 @@ class GALGAS_proxyKind : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToManyProxy (LOCATION_ARGS) const ;
 
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_propertyProxy () const ;
@@ -1200,6 +1222,8 @@ class GALGAS_proxyDeclarationAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -1328,6 +1352,8 @@ class GALGAS_proxyDeclarationAST_2D_weak : public GALGAS_abstractDeclarationAST_
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1402,6 +1428,8 @@ class GALGAS_toManyProxyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -1529,6 +1557,8 @@ class GALGAS_toManyProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1651,6 +1681,8 @@ class GALGAS_toManyProxyGenerationList : public AC_GALGAS_list {
                                                                                            COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1749,6 +1781,8 @@ class GALGAS_toManyProxyGenerationList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -1823,6 +1857,8 @@ class GALGAS_atomicProxyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -1950,6 +1986,8 @@ class GALGAS_atomicProxyGeneration_2D_weak : public GALGAS_propertyGeneration_2D
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2072,6 +2110,8 @@ class GALGAS_atomicProxyGenerationList : public AC_GALGAS_list {
                                                                                            COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2170,6 +2210,8 @@ class GALGAS_atomicProxyGenerationList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2252,6 +2294,8 @@ class GALGAS_atomicPropertyDeclarationAST : public GALGAS_abstractDeclarationAST
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -2378,6 +2422,8 @@ class GALGAS_atomicPropertyDeclarationAST_2D_weak : public GALGAS_abstractDeclar
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2460,6 +2506,8 @@ class GALGAS_atomicPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -2599,6 +2647,8 @@ class GALGAS_atomicPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2721,6 +2771,8 @@ class GALGAS_atomicPropertyGenerationList : public AC_GALGAS_list {
                                                                                               COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -2818,6 +2870,8 @@ class GALGAS_atomicPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -2934,6 +2988,8 @@ class GALGAS_toOneRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -3062,6 +3118,8 @@ class GALGAS_toOneRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAST
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3175,6 +3233,8 @@ class GALGAS_propertyMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3253,6 +3313,8 @@ class GALGAS_toOnePropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -3386,6 +3448,8 @@ class GALGAS_toOnePropertyGeneration_2D_weak : public GALGAS_propertyGeneration_
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3508,6 +3572,8 @@ class GALGAS_toOnePropertyGenerationList : public AC_GALGAS_list {
                                                                                              COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3606,6 +3672,8 @@ class GALGAS_toOnePropertyGenerationList_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3688,6 +3756,8 @@ class GALGAS_toManyRelationshipAST : public GALGAS_abstractDeclarationAST {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -3817,6 +3887,8 @@ class GALGAS_toManyRelationshipAST_2D_weak : public GALGAS_abstractDeclarationAS
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -3907,6 +3979,8 @@ class GALGAS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_hasDependance (class GALGAS_string & outOperand0,
@@ -4031,6 +4105,8 @@ class GALGAS_toManyPropertyGeneration : public GALGAS_propertyGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -4173,6 +4249,8 @@ class GALGAS_toManyPropertyGeneration_2D_weak : public GALGAS_propertyGeneration
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -4295,6 +4373,8 @@ class GALGAS_toManyPropertyGenerationList : public AC_GALGAS_list {
                                                                                               COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -4392,6 +4472,8 @@ class GALGAS_toManyPropertyGenerationList_2D_element : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -4553,6 +4635,8 @@ class GALGAS_validationStubRoutineListForGeneration : public AC_GALGAS_list {
                                                                                                         COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -4677,6 +4761,8 @@ class GALGAS_validationStubRoutineListForGeneration_2D_element : public AC_GALGA
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -4754,6 +4840,8 @@ class GALGAS_actionMap_2D_element : public AC_GALGAS_root {
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -4816,6 +4904,8 @@ class GALGAS_actionFileGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -4922,6 +5012,8 @@ class GALGAS_actionFileGeneration_2D_weak : public GALGAS_abstractFileGeneration
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5010,6 +5102,8 @@ class GALGAS_multipleBindingComparisonAST : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNotEqual (LOCATION_ARGS) const ;
 
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_equal () const ;
@@ -5124,6 +5218,8 @@ class GALGAS_abstractBooleanMultipleBindingExpressionAST_2D_weak : public AC_GAL
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5181,6 +5277,8 @@ class GALGAS_literalIntMultipleBindingExpressionAST : public GALGAS_abstractBool
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -5289,6 +5387,8 @@ class GALGAS_literalIntMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5346,6 +5446,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST : public GALGAS_abstractB
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -5454,6 +5556,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_a
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5521,6 +5625,8 @@ class GALGAS_comparisonMultipleBindingExpressionAST : public GALGAS_abstractBool
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -5635,6 +5741,8 @@ class GALGAS_comparisonMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5697,6 +5805,8 @@ class GALGAS_andBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -5808,6 +5918,8 @@ class GALGAS_andBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -5870,6 +5982,8 @@ class GALGAS_orBooleanMultipleBindingExpressionAST : public GALGAS_abstractBoole
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -5981,6 +6095,8 @@ class GALGAS_orBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abstr
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6043,6 +6159,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST : public GALGAS_abstractBool
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6154,6 +6272,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionAST_2D_weak : public GALGAS_abst
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6211,6 +6331,8 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST : public GALGAS_ab
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6319,6 +6441,8 @@ class GALGAS_observablePropertyInMultipleBindingExpressionAST_2D_weak : public G
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6373,6 +6497,8 @@ class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration_2D_weak : pub
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6431,6 +6557,8 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration :
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6531,6 +6659,8 @@ class GALGAS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6588,6 +6718,8 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration : public GALGAS_abstr
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6688,6 +6820,8 @@ class GALGAS_booleanMultipleBindingLiteralIntForGeneration_2D_weak : public GALG
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6745,6 +6879,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration : public GALGAS
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -6845,6 +6981,8 @@ class GALGAS_negateBooleanMultipleBindingExpressionForGeneration_2D_weak : publi
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -6907,6 +7045,8 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration : public GALGAS_abs
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -7010,6 +7150,8 @@ class GALGAS_orBooleanMultipleBindingExpressionForGeneration_2D_weak : public GA
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -7072,6 +7214,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -7175,6 +7319,8 @@ class GALGAS_xorBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -7237,6 +7383,8 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration : public GALGAS_ab
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -7340,6 +7488,8 @@ class GALGAS_andBooleanMultipleBindingExpressionForGeneration_2D_weak : public G
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -7407,6 +7557,8 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration : public GALGAS_ab
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -7513,6 +7665,8 @@ class GALGAS_comparisonMultipleBindingExpressionForGeneration_2D_weak : public G
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -7610,6 +7764,8 @@ class GALGAS_arrayControllerBoundModelAST : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfToManyRelationship (LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_rootToManyRelationship (class GALGAS_lstring & outOperand0) const ;
 
@@ -7701,6 +7857,8 @@ class GALGAS_arrayControllerDeclarationAST : public GALGAS_abstractDeclarationAS
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -7823,6 +7981,8 @@ class GALGAS_arrayControllerDeclarationAST_2D_weak : public GALGAS_abstractDecla
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -7887,6 +8047,8 @@ class GALGAS_arrayControllerPropertyGeneration : public GALGAS_propertyGeneratio
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -8005,6 +8167,8 @@ class GALGAS_arrayControllerPropertyGeneration_2D_weak : public GALGAS_propertyG
 
 //--------------------------------- Getters
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -8073,6 +8237,8 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
   public: VIRTUAL_IN_DEBUG bool optional_entityArray () const ;
@@ -8160,6 +8326,8 @@ class GALGAS_arrayControllerGeneration : public GALGAS_abstractFileGeneration {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -8277,6 +8445,8 @@ class GALGAS_arrayControllerGeneration_2D_weak : public GALGAS_abstractFileGener
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
@@ -8457,6 +8627,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_
                                                                                                                  COMMA_LOCATION_ARGS) const ;
 
 
+//--------------------------------- Read subscripts
+
 //--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
@@ -8593,6 +8765,8 @@ class GALGAS_autoLayoutTableViewControllerBoundColumnListAST_2D_element : public
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+
+//--------------------------------- Read subscripts
 
 //--------------------------------- Optional Methods
 
