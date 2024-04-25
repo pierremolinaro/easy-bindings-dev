@@ -155,7 +155,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         !graphic: graphic,
         !optionKind: self.mOption
       )
-      if not handleOpposite, let [self.mOption hasOpposite ?oppositeName: *] then
+      if not handleOpposite, let * = self.mOption.hasOpposite then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
       !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, [], false)
@@ -197,10 +197,10 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
 
 #·······················································································································
 
-enum @toManyRelationshipOptionGeneration {
+enum @toManyRelationshipOptionGeneration %testGetters {
   case none
   case hasOpposite (@string oppositeName)
-  case hasDependance (@string masterPropertyName @string masterPropertySwiftTypeName)
+  case hasDependance (@string masterPropertyName, @string masterPropertySwiftTypeName)
 }
 
 #·······················································································································

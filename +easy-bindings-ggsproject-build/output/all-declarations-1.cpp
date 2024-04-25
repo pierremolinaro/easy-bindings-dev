@@ -568,6 +568,27 @@ GALGAS_decoratedOutletMap GALGAS_decoratedOutletMap::class_func_emptyMap (LOCATI
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_decoratedOutletMap_2D_element_3F_ GALGAS_decoratedOutletMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_decoratedOutletMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_decoratedOutletMap * p = (cMapElement_decoratedOutletMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_decoratedOutletMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_decoratedOutletMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mOutletTypeName = p->mProperty_mOutletTypeName ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_decoratedOutletMap GALGAS_decoratedOutletMap::class_func_mapWithMapToOverride (const GALGAS_decoratedOutletMap & inMapToOverride
                                                                                       COMMA_LOCATION_ARGS) {
   GALGAS_decoratedOutletMap result ;
@@ -739,21 +760,6 @@ GALGAS_string cEnumerator_decoratedOutletMap::current_mOutletTypeName (LOCATION_
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_decoratedOutletMap::optional_searchKey (const GALGAS_string & inKey,
-                                                    GALGAS_string & outArgument0) const {
-  const cMapElement_decoratedOutletMap * p = (const cMapElement_decoratedOutletMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
-    outArgument0 = p->mProperty_mOutletTypeName ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @decoratedOutletMap generic code implementation
 //
@@ -874,6 +880,28 @@ GALGAS_autoLayoutOutletMap GALGAS_autoLayoutOutletMap::init (Compiler * COMMA_LO
 GALGAS_autoLayoutOutletMap GALGAS_autoLayoutOutletMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_autoLayoutOutletMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutOutletMap_2D_element_3F_ GALGAS_autoLayoutOutletMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutOutletMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_autoLayoutOutletMap * p = (cMapElement_autoLayoutOutletMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_autoLayoutOutletMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_autoLayoutOutletMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mAutoLayoutOutletTypeName = p->mProperty_mAutoLayoutOutletTypeName ;
+      element.mProperty_mOutletIsArray = p->mProperty_mOutletIsArray ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -1089,24 +1117,6 @@ GALGAS_bool cEnumerator_autoLayoutOutletMap::current_mOutletIsArray (LOCATION_AR
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
   return p->mProperty_mOutletIsArray ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutOutletMap::optional_searchKey (const GALGAS_string & inKey,
-                                                     GALGAS_string & outArgument0,
-                                                     GALGAS_bool & outArgument1) const {
-  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
-    outArgument0 = p->mProperty_mAutoLayoutOutletTypeName ;
-    outArgument1 = p->mProperty_mOutletIsArray ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4880,6 +4890,27 @@ GALGAS_autoLayoutConfiguratorMap GALGAS_autoLayoutConfiguratorMap::class_func_em
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_autoLayoutConfiguratorMap_2D_element_3F_ GALGAS_autoLayoutConfiguratorMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutConfiguratorMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_autoLayoutConfiguratorMap * p = (cMapElement_autoLayoutConfiguratorMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_autoLayoutConfiguratorMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_autoLayoutConfiguratorMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mAutoLayoutOutletTypeName = p->mProperty_mAutoLayoutOutletTypeName ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_autoLayoutConfiguratorMap GALGAS_autoLayoutConfiguratorMap::class_func_mapWithMapToOverride (const GALGAS_autoLayoutConfiguratorMap & inMapToOverride
                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutConfiguratorMap result ;
@@ -5048,21 +5079,6 @@ GALGAS_string cEnumerator_autoLayoutConfiguratorMap::current_mAutoLayoutOutletTy
   const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
   return p->mProperty_mAutoLayoutOutletTypeName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutConfiguratorMap::optional_searchKey (const GALGAS_string & inKey,
-                                                           GALGAS_string & outArgument0) const {
-  const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
-    outArgument0 = p->mProperty_mAutoLayoutOutletTypeName ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6893,45 +6909,17 @@ GALGAS_autoLayoutViewClassDeclarationAST_2D_weak GALGAS_autoLayoutViewClassDecla
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum::cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum (const GALGAS_lstring inAssociatedValue0
-                                                                                                                          COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum::description (String & ioString,
-                                                                               const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum * ptr = dynamic_cast<const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_autoLayoutClassParameterType::GALGAS_autoLayoutClassParameterType (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeString (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_typeString ;
+  result.mEnum = Enumeration::enum_typeString ;
   return result ;
 }
 
@@ -6939,7 +6927,7 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeStringArray (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_typeStringArray ;
+  result.mEnum = Enumeration::enum_typeStringArray ;
   return result ;
 }
 
@@ -6947,7 +6935,7 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeInt (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_typeInt ;
+  result.mEnum = Enumeration::enum_typeInt ;
   return result ;
 }
 
@@ -6955,7 +6943,7 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeBool (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_typeBool ;
+  result.mEnum = Enumeration::enum_typeBool ;
   return result ;
 }
 
@@ -6963,7 +6951,7 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeView (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_typeView ;
+  result.mEnum = Enumeration::enum_typeView ;
   return result ;
 }
 
@@ -6971,7 +6959,7 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_menuItem (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_menuItem ;
+  result.mEnum = Enumeration::enum_menuItem ;
   return result ;
 }
 
@@ -6979,99 +6967,99 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_entity (UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  result.mEnum = kEnum_entity ;
+  result.mEnum = Enumeration::enum_entity ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_func_typeEnum (const GALGAS_lstring & inAssociatedValue0
-                                                                                              COMMA_LOCATION_ARGS) {
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_autoLayoutClassParameterType result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_typeEnum ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_typeEnum ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_autoLayoutClassParameterType_2D_typeEnum (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_autoLayoutClassParameterType::method_typeEnum (GALGAS_lstring & outAssociatedValue_name,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_typeEnum) {
+    outAssociatedValue_name.drop () ;
+    String s ;
+    s.appendCString ("method @autoLayoutClassParameterType.typeEnum invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_autoLayoutClassParameterType_2D_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_name = ptr->mProperty_name ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeString (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeString == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeStringArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeStringArray == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeInt (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeInt == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeBool (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeBool == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeView (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeView == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_menuItem (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_menuItem == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_entity (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ GALGAS_autoLayoutClassParameterType::getter_typeEnum (UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ result ;
+  if (mEnum == Enumeration::enum_typeEnum) {
+    const auto ptr = (const GALGAS_autoLayoutClassParameterType_2D_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_autoLayoutClassParameterType_2D_typeEnum (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutClassParameterType::method_typeEnum (GALGAS_lstring & outAssociatedValue0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_typeEnum) {
-    outAssociatedValue0.drop () ;
-    String s ;
-    s.appendCString ("method @autoLayoutClassParameterType typeEnum invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum * ptr = (const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeString () const {
-  const bool ok = mEnum == kEnum_typeString ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeStringArray () const {
-  const bool ok = mEnum == kEnum_typeStringArray ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeInt () const {
-  const bool ok = mEnum == kEnum_typeInt ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeBool () const {
-  const bool ok = mEnum == kEnum_typeBool ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeView () const {
-  const bool ok = mEnum == kEnum_typeView ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_menuItem () const {
-  const bool ok = mEnum == kEnum_menuItem ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_entity () const {
-  const bool ok = mEnum == kEnum_entity ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutClassParameterType::optional_typeEnum (GALGAS_lstring & outAssociatedValue0) const {
-  const bool ok = mEnum == kEnum_typeEnum ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-  return ok ;
+void GALGAS_autoLayoutClassParameterType::getAssociatedValuesFor_typeEnum (GALGAS_lstring & out_name) const {
+  const auto ptr = (const GALGAS_autoLayoutClassParameterType_2D_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
+  out_name = ptr->mProperty_name ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7090,58 +7078,10 @@ static const char * gEnumNameArrayFor_autoLayoutClassParameterType [9] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeString (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeString == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeStringArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeStringArray == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeInt (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeInt == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeBool (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeBool == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeView (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeView == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_menuItem == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isEntity (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_entity == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeEnum (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_typeEnum == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_autoLayoutClassParameterType::description (String & ioString,
                                                        const int32_t inIndentation) const {
   ioString.appendCString ("<enum @autoLayoutClassParameterType: ") ;
-  ioString.appendCString (gEnumNameArrayFor_autoLayoutClassParameterType [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_autoLayoutClassParameterType [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }
@@ -7156,7 +7096,16 @@ ComparisonResult GALGAS_autoLayoutClassParameterType::objectCompare (const GALGA
     }else if (mEnum > inOperand.mEnum) {
       result = ComparisonResult::firstOperandGreaterThanSecond ;
     }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+      switch (mEnum) {
+      case Enumeration::enum_typeEnum: {
+        const auto left = (GALGAS_autoLayoutClassParameterType_2D_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
+        const auto right = (GALGAS_autoLayoutClassParameterType_2D_typeEnum *) inOperand.mAssociatedValues.associatedValuesPointer () ;
+        result = left->objectCompare (*right) ;
+        }break ;
+      default:
+        result = ComparisonResult::operandEqual ;
+        break ;
+      }
     }
   }
   return result ;
@@ -7216,48 +7165,48 @@ GALGAS_string extensionGetter_string (const GALGAS_autoLayoutClassParameterType 
   GALGAS_string result_result ; // Returned variable
   const GALGAS_autoLayoutClassParameterType temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_autoLayoutClassParameterType::kNotBuilt:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::invalid:
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeString:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeString:
     {
       result_result = GALGAS_string ("String") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeStringArray:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeStringArray:
     {
       result_result = GALGAS_string ("String array") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeInt:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeInt:
     {
       result_result = GALGAS_string ("Int") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeBool:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeBool:
     {
       result_result = GALGAS_string ("Bool") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeView:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeView:
     {
       result_result = GALGAS_string ("a view") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_menuItem:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_menuItem:
     {
       result_result = GALGAS_string ("a menu item") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_entity:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_entity:
     {
       result_result = GALGAS_string ("an entity name") ;
     }
     break ;
-  case GALGAS_autoLayoutClassParameterType::kEnum_typeEnum:
+  case GALGAS_autoLayoutClassParameterType::Enumeration::enum_typeEnum:
     {
-      const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum * extractPtr_1553 = (const cEnumAssociatedValues_autoLayoutClassParameterType_typeEnum *) (temp_0.unsafePointer ()) ;
-      const GALGAS_lstring extractedValue_1520_name = extractPtr_1553->mAssociatedValue0 ;
-      result_result = GALGAS_string ("the ").add_operation (extractedValue_1520_name.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GALGAS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
+      GALGAS_lstring extractedValue_1520_name_0 ;
+      temp_0.getAssociatedValuesFor_typeEnum (extractedValue_1520_name_0) ;
+      result_result = GALGAS_string ("the ").add_operation (extractedValue_1520_name_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GALGAS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
     }
     break ;
   }
@@ -8320,6 +8269,28 @@ GALGAS_autoLayoutViewBindingSpecificationMap GALGAS_autoLayoutViewBindingSpecifi
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_autoLayoutViewBindingSpecificationMap_2D_element_3F_ GALGAS_autoLayoutViewBindingSpecificationMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_autoLayoutViewBindingSpecificationMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_autoLayoutViewBindingSpecificationMap * p = (cMapElement_autoLayoutViewBindingSpecificationMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_autoLayoutViewBindingSpecificationMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_autoLayoutViewBindingSpecificationMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mOutletBindingSpecificationModelList = p->mProperty_mOutletBindingSpecificationModelList ;
+      element.mProperty_mControllerBindingOptionList = p->mProperty_mControllerBindingOptionList ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_autoLayoutViewBindingSpecificationMap GALGAS_autoLayoutViewBindingSpecificationMap::class_func_mapWithMapToOverride (const GALGAS_autoLayoutViewBindingSpecificationMap & inMapToOverride
                                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_autoLayoutViewBindingSpecificationMap result ;
@@ -8530,24 +8501,6 @@ GALGAS_controllerBindingOptionDecoratedList cEnumerator_autoLayoutViewBindingSpe
   const cMapElement_autoLayoutViewBindingSpecificationMap * p = (const cMapElement_autoLayoutViewBindingSpecificationMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutViewBindingSpecificationMap) ;
   return p->mProperty_mControllerBindingOptionList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_autoLayoutViewBindingSpecificationMap::optional_searchKey (const GALGAS_string & inKey,
-                                                                       GALGAS_outletBindingSpecificationModelList & outArgument0,
-                                                                       GALGAS_controllerBindingOptionDecoratedList & outArgument1) const {
-  const cMapElement_autoLayoutViewBindingSpecificationMap * p = (const cMapElement_autoLayoutViewBindingSpecificationMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_autoLayoutViewBindingSpecificationMap) ;
-    outArgument0 = p->mProperty_mOutletBindingSpecificationModelList ;
-    outArgument1 = p->mProperty_mControllerBindingOptionList ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12346,83 +12299,73 @@ GALGAS_astDividerInstructionDeclaration_2D_weak GALGAS_astDividerInstructionDecl
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_optionalHiddenBinding_binding::cEnumAssociatedValues_optionalHiddenBinding_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST inAssociatedValue0
-                                                                                                          COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_optionalHiddenBinding_binding::description (String & ioString,
-                                                                       const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_optionalHiddenBinding::GALGAS_optionalHiddenBinding (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_optionalHiddenBinding GALGAS_optionalHiddenBinding::class_func_noBinding (UNUSED_LOCATION_ARGS) {
   GALGAS_optionalHiddenBinding result ;
-  result.mEnum = kEnum_noBinding ;
+  result.mEnum = Enumeration::enum_noBinding ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_optionalHiddenBinding GALGAS_optionalHiddenBinding::class_func_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST & inAssociatedValue0
-                                                                               COMMA_LOCATION_ARGS) {
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_optionalHiddenBinding result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_binding ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_optionalHiddenBinding_binding (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_binding ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_optionalHiddenBinding_2D_binding (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_optionalHiddenBinding::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_hidden,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_binding) {
+    outAssociatedValue_hidden.drop () ;
+    String s ;
+    s.appendCString ("method @optionalHiddenBinding.binding invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_optionalHiddenBinding_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_hidden = ptr->mProperty_hidden ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_optionalHiddenBinding::getter_noBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_optionalHiddenBinding_2D_binding_3F_ GALGAS_optionalHiddenBinding::getter_binding (UNUSED_LOCATION_ARGS) const {
+  GALGAS_optionalHiddenBinding_2D_binding_3F_ result ;
+  if (mEnum == Enumeration::enum_binding) {
+    const auto ptr = (const GALGAS_optionalHiddenBinding_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_optionalHiddenBinding_2D_binding (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_optionalHiddenBinding::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue0,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_binding) {
-    outAssociatedValue0.drop () ;
-    String s ;
-    s.appendCString ("method @optionalHiddenBinding binding invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_optionalHiddenBinding_binding * ptr = (const cEnumAssociatedValues_optionalHiddenBinding_binding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_optionalHiddenBinding::optional_noBinding () const {
-  const bool ok = mEnum == kEnum_noBinding ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_optionalHiddenBinding::optional_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue0) const {
-  const bool ok = mEnum == kEnum_binding ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_optionalHiddenBinding_binding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-  return ok ;
+void GALGAS_optionalHiddenBinding::getAssociatedValuesFor_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & out_hidden) const {
+  const auto ptr = (const GALGAS_optionalHiddenBinding_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+  out_hidden = ptr->mProperty_hidden ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12435,22 +12378,10 @@ static const char * gEnumNameArrayFor_optionalHiddenBinding [3] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_optionalHiddenBinding::getter_isNoBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_noBinding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_optionalHiddenBinding::getter_isBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_binding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_optionalHiddenBinding::description (String & ioString,
                                                 const int32_t inIndentation) const {
   ioString.appendCString ("<enum @optionalHiddenBinding: ") ;
-  ioString.appendCString (gEnumNameArrayFor_optionalHiddenBinding [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_optionalHiddenBinding [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }
@@ -14103,95 +14034,73 @@ GALGAS_astAutoLayoutViewInstructionParameterList GALGAS_astAutoLayoutViewInstruc
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_tableValueBinding_tableValueBinding::cEnumAssociatedValues_tableValueBinding_tableValueBinding (const GALGAS_lstring inAssociatedValue0
-                                                                                                                      COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_tableValueBinding_tableValueBinding::description (String & ioString,
-                                                                             const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cEnumAssociatedValues_tableValueBinding_tableValueBinding::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_tableValueBinding_tableValueBinding * ptr = dynamic_cast<const cEnumAssociatedValues_tableValueBinding_tableValueBinding *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_tableValueBinding::GALGAS_tableValueBinding (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_tableValueBinding GALGAS_tableValueBinding::class_func_noTableValueBinding (UNUSED_LOCATION_ARGS) {
   GALGAS_tableValueBinding result ;
-  result.mEnum = kEnum_noTableValueBinding ;
+  result.mEnum = Enumeration::enum_noTableValueBinding ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_tableValueBinding GALGAS_tableValueBinding::class_func_tableValueBinding (const GALGAS_lstring & inAssociatedValue0
-                                                                                 COMMA_LOCATION_ARGS) {
+                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_tableValueBinding result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_tableValueBinding ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_tableValueBinding_tableValueBinding (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_tableValueBinding ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_tableValueBinding_2D_tableValueBinding (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_tableValueBinding::method_tableValueBinding (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_tableValueBinding) {
+    outAssociatedValue_controllerName.drop () ;
+    String s ;
+    s.appendCString ("method @tableValueBinding.tableValueBinding invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_tableValueBinding_2D_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_controllerName = ptr->mProperty_controllerName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_tableValueBinding::getter_noTableValueBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noTableValueBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_tableValueBinding_2D_tableValueBinding_3F_ GALGAS_tableValueBinding::getter_tableValueBinding (UNUSED_LOCATION_ARGS) const {
+  GALGAS_tableValueBinding_2D_tableValueBinding_3F_ result ;
+  if (mEnum == Enumeration::enum_tableValueBinding) {
+    const auto ptr = (const GALGAS_tableValueBinding_2D_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_tableValueBinding_2D_tableValueBinding (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_tableValueBinding::method_tableValueBinding (GALGAS_lstring & outAssociatedValue0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_tableValueBinding) {
-    outAssociatedValue0.drop () ;
-    String s ;
-    s.appendCString ("method @tableValueBinding tableValueBinding invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_tableValueBinding_tableValueBinding * ptr = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_tableValueBinding::optional_noTableValueBinding () const {
-  const bool ok = mEnum == kEnum_noTableValueBinding ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_tableValueBinding::optional_tableValueBinding (GALGAS_lstring & outAssociatedValue0) const {
-  const bool ok = mEnum == kEnum_tableValueBinding ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_tableValueBinding_tableValueBinding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-  return ok ;
+void GALGAS_tableValueBinding::getAssociatedValuesFor_tableValueBinding (GALGAS_lstring & out_controllerName) const {
+  const auto ptr = (const GALGAS_tableValueBinding_2D_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
+  out_controllerName = ptr->mProperty_controllerName ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14204,22 +14113,10 @@ static const char * gEnumNameArrayFor_tableValueBinding [3] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_tableValueBinding::getter_isNoTableValueBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_noTableValueBinding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_tableValueBinding::getter_isTableValueBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_tableValueBinding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_tableValueBinding::description (String & ioString,
                                             const int32_t inIndentation) const {
   ioString.appendCString ("<enum @tableValueBinding: ") ;
-  ioString.appendCString (gEnumNameArrayFor_tableValueBinding [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_tableValueBinding [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }
@@ -14234,7 +14131,16 @@ ComparisonResult GALGAS_tableValueBinding::objectCompare (const GALGAS_tableValu
     }else if (mEnum > inOperand.mEnum) {
       result = ComparisonResult::firstOperandGreaterThanSecond ;
     }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+      switch (mEnum) {
+      case Enumeration::enum_tableValueBinding: {
+        const auto left = (GALGAS_tableValueBinding_2D_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
+        const auto right = (GALGAS_tableValueBinding_2D_tableValueBinding *) inOperand.mAssociatedValues.associatedValuesPointer () ;
+        result = left->objectCompare (*right) ;
+        }break ;
+      default:
+        result = ComparisonResult::operandEqual ;
+        break ;
+      }
     }
   }
   return result ;
@@ -14284,51 +14190,17 @@ GALGAS_tableValueBinding GALGAS_tableValueBinding::extractObject (const GALGAS_o
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_runActionDescriptor_action::cEnumAssociatedValues_runActionDescriptor_action (const GALGAS_lstring inAssociatedValue0,
-                                                                                                    const GALGAS_lstring inAssociatedValue1
-                                                                                                    COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0),
-mAssociatedValue1 (inAssociatedValue1) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_runActionDescriptor_action::description (String & ioString,
-                                                                    const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cEnumAssociatedValues_runActionDescriptor_action::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_runActionDescriptor_action * ptr = dynamic_cast<const cEnumAssociatedValues_runActionDescriptor_action *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mAssociatedValue1.objectCompare (ptr->mAssociatedValue1) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_runActionDescriptor::GALGAS_runActionDescriptor (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_runActionDescriptor GALGAS_runActionDescriptor::class_func_noAction (UNUSED_LOCATION_ARGS) {
   GALGAS_runActionDescriptor result ;
-  result.mEnum = kEnum_noAction ;
+  result.mEnum = Enumeration::enum_noAction ;
   return result ;
 }
 
@@ -14336,55 +14208,61 @@ GALGAS_runActionDescriptor GALGAS_runActionDescriptor::class_func_noAction (UNUS
 
 GALGAS_runActionDescriptor GALGAS_runActionDescriptor::class_func_action (const GALGAS_lstring & inAssociatedValue0,
                                                                           const GALGAS_lstring & inAssociatedValue1
-                                                                          COMMA_LOCATION_ARGS) {
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_runActionDescriptor result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
-    result.mEnum = kEnum_action ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_runActionDescriptor_action (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_action ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_runActionDescriptor_2D_action (inAssociatedValue0, inAssociatedValue1)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_runActionDescriptor::method_action (GALGAS_lstring & outAssociatedValue_target,
+                                                GALGAS_lstring & outAssociatedValue_action,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_action) {
+    outAssociatedValue_target.drop () ;
+    outAssociatedValue_action.drop () ;
+    String s ;
+    s.appendCString ("method @runActionDescriptor.action invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_runActionDescriptor_2D_action *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_target = ptr->mProperty_target ;
+    outAssociatedValue_action = ptr->mProperty_action ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_runActionDescriptor::getter_noAction (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noAction == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_runActionDescriptor_2D_action_3F_ GALGAS_runActionDescriptor::getter_action (UNUSED_LOCATION_ARGS) const {
+  GALGAS_runActionDescriptor_2D_action_3F_ result ;
+  if (mEnum == Enumeration::enum_action) {
+    const auto ptr = (const GALGAS_runActionDescriptor_2D_action *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_runActionDescriptor_2D_action (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_runActionDescriptor::method_action (GALGAS_lstring & outAssociatedValue0,
-                                                GALGAS_lstring & outAssociatedValue1,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_action) {
-    outAssociatedValue0.drop () ;
-    outAssociatedValue1.drop () ;
-    String s ;
-    s.appendCString ("method @runActionDescriptor action invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_runActionDescriptor_action * ptr = (const cEnumAssociatedValues_runActionDescriptor_action *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-    outAssociatedValue1 = ptr->mAssociatedValue1 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_runActionDescriptor::optional_noAction () const {
-  const bool ok = mEnum == kEnum_noAction ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_runActionDescriptor::optional_action (GALGAS_lstring & outAssociatedValue0,
-                                                  GALGAS_lstring & outAssociatedValue1) const {
-  const bool ok = mEnum == kEnum_action ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_runActionDescriptor_action *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-    outAssociatedValue1 = ptr->mAssociatedValue1 ;
-  }
-  return ok ;
+void GALGAS_runActionDescriptor::getAssociatedValuesFor_action (GALGAS_lstring & out_target,
+                                                                GALGAS_lstring & out_action) const {
+  const auto ptr = (const GALGAS_runActionDescriptor_2D_action *) mAssociatedValues.associatedValuesPointer () ;
+  out_target = ptr->mProperty_target ;
+  out_action = ptr->mProperty_action ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14397,22 +14275,10 @@ static const char * gEnumNameArrayFor_runActionDescriptor [3] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_runActionDescriptor::getter_isNoAction (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_noAction == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_runActionDescriptor::getter_isAction (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_action == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_runActionDescriptor::description (String & ioString,
                                               const int32_t inIndentation) const {
   ioString.appendCString ("<enum @runActionDescriptor: ") ;
-  ioString.appendCString (gEnumNameArrayFor_runActionDescriptor [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_runActionDescriptor [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }
@@ -14427,7 +14293,16 @@ ComparisonResult GALGAS_runActionDescriptor::objectCompare (const GALGAS_runActi
     }else if (mEnum > inOperand.mEnum) {
       result = ComparisonResult::firstOperandGreaterThanSecond ;
     }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+      switch (mEnum) {
+      case Enumeration::enum_action: {
+        const auto left = (GALGAS_runActionDescriptor_2D_action *) mAssociatedValues.associatedValuesPointer () ;
+        const auto right = (GALGAS_runActionDescriptor_2D_action *) inOperand.mAssociatedValues.associatedValuesPointer () ;
+        result = left->objectCompare (*right) ;
+        }break ;
+      default:
+        result = ComparisonResult::operandEqual ;
+        break ;
+      }
     }
   }
   return result ;
@@ -14477,95 +14352,73 @@ GALGAS_runActionDescriptor GALGAS_runActionDescriptor::extractObject (const GALG
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_multipleBindingDescriptor_binding::cEnumAssociatedValues_multipleBindingDescriptor_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST inAssociatedValue0
-                                                                                                                  COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_multipleBindingDescriptor_binding::description (String & ioString,
-                                                                           const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cEnumAssociatedValues_multipleBindingDescriptor_binding::compare (const cEnumAssociatedValues * inOperand) const {
-  const cEnumAssociatedValues_multipleBindingDescriptor_binding * ptr = dynamic_cast<const cEnumAssociatedValues_multipleBindingDescriptor_binding *> (inOperand) ;
-  macroValidPointer (ptr) ;
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mAssociatedValue0.objectCompare (ptr->mAssociatedValue0) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_multipleBindingDescriptor::GALGAS_multipleBindingDescriptor (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_multipleBindingDescriptor GALGAS_multipleBindingDescriptor::class_func_noBinding (UNUSED_LOCATION_ARGS) {
   GALGAS_multipleBindingDescriptor result ;
-  result.mEnum = kEnum_noBinding ;
+  result.mEnum = Enumeration::enum_noBinding ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_multipleBindingDescriptor GALGAS_multipleBindingDescriptor::class_func_binding (const GALGAS_abstractBooleanMultipleBindingExpressionAST & inAssociatedValue0
-                                                                                       COMMA_LOCATION_ARGS) {
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_multipleBindingDescriptor result ;
-  if (inAssociatedValue0.isValid ()) {
-    result.mEnum = kEnum_binding ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_multipleBindingDescriptor_binding (inAssociatedValue0 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_binding ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_multipleBindingDescriptor_2D_binding (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_multipleBindingDescriptor::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_expression,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_binding) {
+    outAssociatedValue_expression.drop () ;
+    String s ;
+    s.appendCString ("method @multipleBindingDescriptor.binding invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_multipleBindingDescriptor_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_expression = ptr->mProperty_expression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingDescriptor::getter_noBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_multipleBindingDescriptor_2D_binding_3F_ GALGAS_multipleBindingDescriptor::getter_binding (UNUSED_LOCATION_ARGS) const {
+  GALGAS_multipleBindingDescriptor_2D_binding_3F_ result ;
+  if (mEnum == Enumeration::enum_binding) {
+    const auto ptr = (const GALGAS_multipleBindingDescriptor_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_multipleBindingDescriptor_2D_binding (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_multipleBindingDescriptor::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue0,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_binding) {
-    outAssociatedValue0.drop () ;
-    String s ;
-    s.appendCString ("method @multipleBindingDescriptor binding invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_multipleBindingDescriptor_binding * ptr = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_multipleBindingDescriptor::optional_noBinding () const {
-  const bool ok = mEnum == kEnum_noBinding ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_multipleBindingDescriptor::optional_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue0) const {
-  const bool ok = mEnum == kEnum_binding ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_multipleBindingDescriptor_binding *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-  }
-  return ok ;
+void GALGAS_multipleBindingDescriptor::getAssociatedValuesFor_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & out_expression) const {
+  const auto ptr = (const GALGAS_multipleBindingDescriptor_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+  out_expression = ptr->mProperty_expression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14578,22 +14431,10 @@ static const char * gEnumNameArrayFor_multipleBindingDescriptor [3] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_multipleBindingDescriptor::getter_isNoBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_noBinding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_multipleBindingDescriptor::getter_isBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_binding == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_multipleBindingDescriptor::description (String & ioString,
                                                     const int32_t inIndentation) const {
   ioString.appendCString ("<enum @multipleBindingDescriptor: ") ;
-  ioString.appendCString (gEnumNameArrayFor_multipleBindingDescriptor [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_multipleBindingDescriptor [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }
@@ -14608,7 +14449,16 @@ ComparisonResult GALGAS_multipleBindingDescriptor::objectCompare (const GALGAS_m
     }else if (mEnum > inOperand.mEnum) {
       result = ComparisonResult::firstOperandGreaterThanSecond ;
     }else{
-      result = mAssociatedValues.objectCompare (inOperand.mAssociatedValues) ;
+      switch (mEnum) {
+      case Enumeration::enum_binding: {
+        const auto left = (GALGAS_multipleBindingDescriptor_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
+        const auto right = (GALGAS_multipleBindingDescriptor_2D_binding *) inOperand.mAssociatedValues.associatedValuesPointer () ;
+        result = left->objectCompare (*right) ;
+        }break ;
+      default:
+        result = ComparisonResult::operandEqual ;
+        break ;
+      }
     }
   }
   return result ;
@@ -14658,36 +14508,17 @@ GALGAS_multipleBindingDescriptor GALGAS_multipleBindingDescriptor::extractObject
 
 //--------------------------------------------------------------------------------------------------
 
-cEnumAssociatedValues_graphicController_defined::cEnumAssociatedValues_graphicController_defined (const GALGAS_lstring inAssociatedValue0,
-                                                                                                  const GALGAS_lstring inAssociatedValue1
-                                                                                                  COMMA_LOCATION_ARGS) :
-cEnumAssociatedValues (THERE),
-mAssociatedValue0 (inAssociatedValue0),
-mAssociatedValue1 (inAssociatedValue1) {
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-void cEnumAssociatedValues_graphicController_defined::description (String & ioString,
-                                                                   const int32_t inIndentation) const {
-  ioString.appendCString ("(\n") ;
-  mAssociatedValue0.description (ioString, inIndentation) ;
-  mAssociatedValue1.description (ioString, inIndentation) ;
-  ioString.appendCString (")") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_graphicController::GALGAS_graphicController (void) :
 mAssociatedValues (),
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_graphicController GALGAS_graphicController::class_func_none (UNUSED_LOCATION_ARGS) {
   GALGAS_graphicController result ;
-  result.mEnum = kEnum_none ;
+  result.mEnum = Enumeration::enum_none ;
   return result ;
 }
 
@@ -14695,55 +14526,61 @@ GALGAS_graphicController GALGAS_graphicController::class_func_none (UNUSED_LOCAT
 
 GALGAS_graphicController GALGAS_graphicController::class_func_defined (const GALGAS_lstring & inAssociatedValue0,
                                                                        const GALGAS_lstring & inAssociatedValue1
-                                                                       COMMA_LOCATION_ARGS) {
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_graphicController result ;
-  if (inAssociatedValue0.isValid () && inAssociatedValue1.isValid ()) {
-    result.mEnum = kEnum_defined ;
-    cEnumAssociatedValues * ptr = nullptr ;
-    macroMyNew (ptr, cEnumAssociatedValues_graphicController_defined (inAssociatedValue0, inAssociatedValue1 COMMA_THERE)) ;
-    result.mAssociatedValues.setPointer (ptr) ;
-    macroDetachSharedObject (ptr) ;
+  result.mEnum = Enumeration::enum_defined ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GALGAS_graphicController_2D_defined (inAssociatedValue0, inAssociatedValue1)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_graphicController::method_defined (GALGAS_lstring & outAssociatedValue_controller,
+                                               GALGAS_lstring & outAssociatedValue_propertyName,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_defined) {
+    outAssociatedValue_controller.drop () ;
+    outAssociatedValue_propertyName.drop () ;
+    String s ;
+    s.appendCString ("method @graphicController.defined invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GALGAS_graphicController_2D_defined *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_controller = ptr->mProperty_controller ;
+    outAssociatedValue_propertyName = ptr->mProperty_propertyName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_graphicController::getter_none (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_graphicController_2D_defined_3F_ GALGAS_graphicController::getter_defined (UNUSED_LOCATION_ARGS) const {
+  GALGAS_graphicController_2D_defined_3F_ result ;
+  if (mEnum == Enumeration::enum_defined) {
+    const auto ptr = (const GALGAS_graphicController_2D_defined *) mAssociatedValues.associatedValuesPointer () ;
+    result = GALGAS_graphicController_2D_defined (*ptr) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_graphicController::method_defined (GALGAS_lstring & outAssociatedValue0,
-                                               GALGAS_lstring & outAssociatedValue1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
-  if (mEnum != kEnum_defined) {
-    outAssociatedValue0.drop () ;
-    outAssociatedValue1.drop () ;
-    String s ;
-    s.appendCString ("method @graphicController defined invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const cEnumAssociatedValues_graphicController_defined * ptr = (const cEnumAssociatedValues_graphicController_defined *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-    outAssociatedValue1 = ptr->mAssociatedValue1 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_graphicController::optional_none () const {
-  const bool ok = mEnum == kEnum_none ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_graphicController::optional_defined (GALGAS_lstring & outAssociatedValue0,
-                                                 GALGAS_lstring & outAssociatedValue1) const {
-  const bool ok = mEnum == kEnum_defined ;
-  if (ok) {
-    const auto * ptr = (const cEnumAssociatedValues_graphicController_defined *) unsafePointer () ;
-    outAssociatedValue0 = ptr->mAssociatedValue0 ;
-    outAssociatedValue1 = ptr->mAssociatedValue1 ;
-  }
-  return ok ;
+void GALGAS_graphicController::getAssociatedValuesFor_defined (GALGAS_lstring & out_controller,
+                                                               GALGAS_lstring & out_propertyName) const {
+  const auto ptr = (const GALGAS_graphicController_2D_defined *) mAssociatedValues.associatedValuesPointer () ;
+  out_controller = ptr->mProperty_controller ;
+  out_propertyName = ptr->mProperty_propertyName ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14756,22 +14593,10 @@ static const char * gEnumNameArrayFor_graphicController [3] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_graphicController::getter_isNone (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_none == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_graphicController::getter_isDefined (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_defined == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_graphicController::description (String & ioString,
                                             const int32_t inIndentation) const {
   ioString.appendCString ("<enum @graphicController: ") ;
-  ioString.appendCString (gEnumNameArrayFor_graphicController [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_graphicController [size_t (mEnum)]) ;
   mAssociatedValues.description (ioString, inIndentation) ;
   ioString.appendCString (">") ;
 }

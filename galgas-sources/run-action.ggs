@@ -4,7 +4,7 @@
 
 enum @runActionDescriptor %equatable {
   case noAction 
-  case action (@lstring target  @lstring action)
+  case action (@lstring target, @lstring action)
 }
 
 //----------------------------------------------------------------------------------------------------------------------

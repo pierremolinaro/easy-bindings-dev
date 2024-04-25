@@ -16,7 +16,7 @@ list @mainXibLineDescriptorList {
 
 enum @mainXibElement {
   case text (@lstring text)
-  case outlet (@lstring outletType @lstring outletName)
+  case outlet (@lstring outletType, @lstring outletName)
 }
 
 //----------------------------------------------------------------------------------------------------------------------

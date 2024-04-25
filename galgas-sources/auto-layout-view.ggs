@@ -116,8 +116,8 @@ list @astAutoLayoutViewFunctionCallList {
 
 enum @astAutoLayoutViewInstructionParameterValue {
   case string (@string value)
-  case menuItem (@string title @runActionDescriptor run @multipleBindingDescriptor enabled)
-  case enumFunc (@lstring enumTypeName @lstring enumFuncName)
+  case menuItem (@string title, @runActionDescriptor run, @multipleBindingDescriptor enabled)
+  case enumFunc (@lstring enumTypeName, @lstring enumFuncName)
   case viewFunc (@astAbstractViewInstructionDeclaration instruction)
   case entity (@lstring entityName)
 }
@@ -551,12 +551,12 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
       : formalParameterList.count .string + " parameter(s) required, " + actualParameterList.count + " provided"
     else
       for (name, type, value) in actualParameterList, (formalName, formalType) in formalParameterList do
-        if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
-          inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
-          if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1*, ?constantMap: let constantMap, ?1*] then
-            constantMap.searchKey (constantName, ?*)
+        if let formalTypeEnum = formalType.typeEnum, let actualTypeEnum = type.typeEnum then
+          inClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
+          if let atomicTypeKind = typeKind.atomic, let atomicEnumType = atomicTypeKind.kind.enumType then
+            atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
-            error enumTypeName : "this type name is not an enum"
+            error formalTypeEnum.name : "this type name is not an enum"
           end
         elsif type != formalType then
           error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
@@ -632,7 +632,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           if not type.isAtomic then
             error enumTypeName : "this type should be an enum type"
           else
-            type.atomic (?kind:let typeKind)
+            type.atomic (?kind:let @typeKind typeKind)
             if typeKind.isEnumType then
               typeKind.enumType (?2*, ?funcMap:let funcMap)
               funcMap.searchKey (funcName, ?*)
@@ -879,12 +879,12 @@ override proc @astComputedViewInstruction.generateViewCode(
     : formalParameterList.count .string + " parameter(s) required, " + self.mParameterList.count + " provided"
   else
     for (name, type, value) in self.mParameterList, (formalName, formalType) in formalParameterList do
-      if let [formalType typeEnum ?name: let enumTypeName], let [type typeEnum ?name: let constantName] then
-        inClassMap.searchKey (enumTypeName, ?let typeKind, ?3*)
-        if let [typeKind atomic ?kind: let classKind], let [classKind enumType ?1*, ?constantMap: let constantMap, ?1*] then
-          constantMap.searchKey (constantName, ?*)
+      if let formalTypeEnum = formalType.typeEnum, let actualTypeEnum = type.typeEnum then
+        inClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
+        if let atomicTypeKind = typeKind.atomic, let enumKind = atomicTypeKind.kind.enumType then
+          enumKind.constantMap.searchKey (actualTypeEnum.name, ?*)
         else
-          error enumTypeName : "this type name is not an enum"
+          error formalTypeEnum.name : "this type name is not an enum"
         end
       elsif type != formalType then
         error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
@@ -1198,7 +1198,7 @@ proc analyzeAutoLayoutBinding(
       ?let @typeKind type,
       ?let @location errorLocation
     )
-    if not type.isBoolType then
+    if not type.boolType then
       error errorLocation : "expression is not boolean"
     end
     if not handlesHiddenBinding then
@@ -1252,7 +1252,7 @@ proc analyzeAutoLayoutEnableBinding(
     if not inHandlesEnabledBinding then
       error errorLocation : "cet outlet n'accepte pas le binding $enabled"
     end
-    if not type.isBoolType then
+    if not type.boolType then
       error errorLocation : "expression is not boolean"
     end
     outEnabledBindingGeneration = .enabled (!binding: enableExpression)
@@ -1465,7 +1465,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
       ?let @typeKind type,
       ?let @location errorLocation
     )
-    if not type.isBoolType then
+    if not type.boolType then
       error errorLocation : "expression is not boolean"
     end
     !?multipleBindingGenerationList.append (
@@ -1546,7 +1546,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
       ?let @typeKind type,
       ?let @location errorLocation
     )
-    if not type.isBoolType then
+    if not type.boolType then
       error errorLocation : "expression is not boolean"
     end
     !?multipleBindingGenerationList.append ("hidden", hiddenExpression)
@@ -1672,7 +1672,7 @@ list @autoLayoutMultipleBindingGenerationList {
 
 enum @autolayoutRunBindingForGeneration {
   case none
-  case run (@string targetName @string actionName @string targetTypeName)
+  case run (@string targetName, @string actionName, @string targetTypeName)
 }
 
 #·······················································································································
