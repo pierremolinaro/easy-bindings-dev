@@ -1120,9 +1120,9 @@ class GALGAS_proxyKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_propertyProxy (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPropertyProxy (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_toManyProxy (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToManyProxy (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -4542,29 +4542,27 @@ class GALGAS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_hasDependance (class GALGAS_string & outArgument0,
-                                                      class GALGAS_string & outArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractHasDependance (class GALGAS_string & outArgument0,
+                                                             class GALGAS_string & outArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_hasOpposite (class GALGAS_string & outArgument0,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractHasOpposite (class GALGAS_string & outArgument0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance_3F_ getter_hasDependance (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite_3F_ getter_hasOpposite (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isHasDependance (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -6009,17 +6007,17 @@ class GALGAS_multipleBindingComparisonAST : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_equal (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEqual (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_greater (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isGreater (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_greaterOrEqual (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isGreaterOrEqual (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_lower (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isLower (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_lowerOrEqual (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isLowerOrEqual (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_notEqual (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNotEqual (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -8603,16 +8601,18 @@ class GALGAS_arrayControllerBoundModelAST : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_rootToManyRelationship (class GALGAS_lstring & outArgument0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractRootToManyRelationship (class GALGAS_lstring & outArgument0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship_3F_ getter_rootToManyRelationship (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship_3F_ getter_getRootToManyRelationship (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_selfToManyRelationship (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootToManyRelationship (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfToManyRelationship (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -9210,9 +9210,9 @@ class GALGAS_arrayControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_entityArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_transientArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts

@@ -457,9 +457,9 @@ class GALGAS_autoLayoutTableViewControllerModelKind : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_entityArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntityArray (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_transientArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientArray (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -6489,21 +6489,25 @@ class GALGAS_mainXibElement : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_outlet (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_lstring & outArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractOutlet (class GALGAS_lstring & outArgument0,
+                                                      class GALGAS_lstring & outArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_text (class GALGAS_lstring & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractText (class GALGAS_lstring & outArgument0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_mainXibElement_2D_outlet_3F_ getter_outlet (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_mainXibElement_2D_outlet_3F_ getter_getOutlet (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_mainXibElement_2D_text_3F_ getter_text (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_mainXibElement_2D_text_3F_ getter_getText (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isOutlet (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isText (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts

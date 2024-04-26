@@ -2763,29 +2763,29 @@ class GALGAS_classKind : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_atomic (class GALGAS_typeKind & outArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractAtomic (class GALGAS_typeKind & outArgument0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_document (class GALGAS_lstring & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractDocument (class GALGAS_lstring & outArgument0,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_entity (class GALGAS_string & outArgument0,
-                                               class GALGAS_bool & outArgument1,
-                                               class GALGAS_bool & outArgument2,
-                                               class GALGAS_bool & outArgument3,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEntity (class GALGAS_string & outArgument0,
+                                                      class GALGAS_bool & outArgument1,
+                                                      class GALGAS_bool & outArgument2,
+                                                      class GALGAS_bool & outArgument3,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_atomic_3F_ getter_atomic (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_atomic_3F_ getter_getAtomic (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_document_3F_ getter_document (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_document_3F_ getter_getDocument (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_entity_3F_ getter_entity (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_classKind_2D_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isAtomic (LOCATION_ARGS) const ;
 
@@ -2794,8 +2794,6 @@ class GALGAS_classKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefs (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_prefs (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -7772,51 +7770,35 @@ class GALGAS_typeKind : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_classType (class GALGAS_string & outArgument0,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractClassType (class GALGAS_string & outArgument0,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_entityType (class GALGAS_string & outArgument0,
-                                                   class GALGAS_bool & outArgument1,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEntityType (class GALGAS_string & outArgument0,
+                                                          class GALGAS_bool & outArgument1,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_enumType (class GALGAS_string & outArgument0,
-                                                 class GALGAS_enumConstantMap & outArgument1,
-                                                 class GALGAS_enumFuncMap & outArgument2,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEnumType (class GALGAS_string & outArgument0,
+                                                        class GALGAS_enumConstantMap & outArgument1,
+                                                        class GALGAS_enumFuncMap & outArgument2,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_transientPropertyExternType (class GALGAS_string & outArgument0,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractTransientPropertyExternType (class GALGAS_string & outArgument0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_bezierPathArrayType (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_classType_3F_ getter_getClassType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_bezierPathType (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_entityType_3F_ getter_getEntityType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_boolType (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_enumType_3F_ getter_getEnumType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_classType_3F_ getter_classType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_colorType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_dataType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_dateType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_doubleType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_entityType_3F_ getter_entityType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_enumType_3F_ getter_enumType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_fontType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_integerType (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_transientPropertyExternType_3F_ getter_getTransientPropertyExternType (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBezierPathArrayType (LOCATION_ARGS) const ;
 
@@ -7847,12 +7829,6 @@ class GALGAS_typeKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_stringType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_typeKind_2D_transientPropertyExternType_3F_ getter_transientPropertyExternType (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_uint_33__32_Type (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -10340,17 +10316,19 @@ class GALGAS_graphicController : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_defined (class GALGAS_lstring & outArgument0,
-                                                class GALGAS_lstring & outArgument1,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractDefined (class GALGAS_lstring & outArgument0,
+                                                       class GALGAS_lstring & outArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_graphicController_2D_defined_3F_ getter_defined (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_graphicController_2D_defined_3F_ getter_getDefined (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDefined (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -10428,16 +10406,18 @@ class GALGAS_multipleBindingDescriptor : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_binding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractBinding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor_2D_binding_3F_ getter_binding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_multipleBindingDescriptor_2D_binding_3F_ getter_getBinding (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_noBinding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBinding (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -10517,17 +10497,19 @@ class GALGAS_runActionDescriptor : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_action (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_lstring & outArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractAction (class GALGAS_lstring & outArgument0,
+                                                      class GALGAS_lstring & outArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_runActionDescriptor_2D_action_3F_ getter_action (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_runActionDescriptor_2D_action_3F_ getter_getAction (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_noAction (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isAction (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoAction (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -10605,16 +10587,18 @@ class GALGAS_tableValueBinding : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_tableValueBinding (class GALGAS_lstring & outArgument0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractTableValueBinding (class GALGAS_lstring & outArgument0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_noTableValueBinding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_tableValueBinding_2D_tableValueBinding_3F_ getter_getTableValueBinding (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_tableValueBinding_2D_tableValueBinding_3F_ getter_tableValueBinding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoTableValueBinding (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTableValueBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts

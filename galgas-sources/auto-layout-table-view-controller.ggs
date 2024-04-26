@@ -307,9 +307,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         if formalName.string != actualName.string then
           error actualName : "required argument name: " + formalName
         end
-        if let formalTypeEnum = formalType.typeEnum, let actualTypeEnum = actualType.typeEnum then
+        if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = actualType.getTypeEnum then
           ioSemanticContext.mClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
-          if let atomicTypeKind = typeKind.atomic, let atomicEnumType = atomicTypeKind.kind.enumType then
+          if let atomicTypeKind = typeKind.getAtomic, let atomicEnumType = atomicTypeKind.kind.getEnumType then
             atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
             error formalTypeEnum.name : "this type name is not an enum"
@@ -317,7 +317,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         elsif actualType != formalType then
           error actualName : "the formal parameter requires " + formalType + ", actual parameter is " + actualType
         end
-        if let actualString = actualParameter.string then
+        if let actualString = actualParameter.getString then
           !?actualParameterList.append (formalName.string, actualString.value)
         else
           error actualName :"parameter value is not string convertible"

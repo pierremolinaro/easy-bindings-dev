@@ -449,15 +449,7 @@ GALGAS_autoLayoutTableViewControllerModelKind GALGAS_autoLayoutTableViewControll
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutTableViewControllerModelKind::getter_entityArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entityArray == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutTableViewControllerModelKind::getter_transientArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_transientArray == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -466,6 +458,18 @@ static const char * gEnumNameArrayFor_autoLayoutTableViewControllerModelKind [3]
   "entityArray",
   "transientArray"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutTableViewControllerModelKind::getter_isEntityArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entityArray == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutTableViewControllerModelKind::getter_isTransientArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_transientArray == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5510,9 +5514,9 @@ GALGAS_classKind GALGAS_classKind::class_func_entity (const GALGAS_string & inAs
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_classKind::method_atomic (GALGAS_typeKind & outAssociatedValue_kind,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) const {
+void GALGAS_classKind::method_extractAtomic (GALGAS_typeKind & outAssociatedValue_kind,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_atomic) {
     outAssociatedValue_kind.drop () ;
     String s ;
@@ -5526,9 +5530,9 @@ void GALGAS_classKind::method_atomic (GALGAS_typeKind & outAssociatedValue_kind,
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_classKind::method_document (GALGAS_lstring & outAssociatedValue_rootEntityName,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) const {
+void GALGAS_classKind::method_extractDocument (GALGAS_lstring & outAssociatedValue_rootEntityName,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_document) {
     outAssociatedValue_rootEntityName.drop () ;
     String s ;
@@ -5542,12 +5546,12 @@ void GALGAS_classKind::method_document (GALGAS_lstring & outAssociatedValue_root
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_classKind::method_entity (GALGAS_string & outAssociatedValue_superEntityName,
-                                      GALGAS_bool & outAssociatedValue_isGraphic,
-                                      GALGAS_bool & outAssociatedValue_isAbstract,
-                                      GALGAS_bool & outAssociatedValue_handlingOpposite,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) const {
+void GALGAS_classKind::method_extractEntity (GALGAS_string & outAssociatedValue_superEntityName,
+                                             GALGAS_bool & outAssociatedValue_isGraphic,
+                                             GALGAS_bool & outAssociatedValue_isAbstract,
+                                             GALGAS_bool & outAssociatedValue_handlingOpposite,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_entity) {
     outAssociatedValue_superEntityName.drop () ;
     outAssociatedValue_isGraphic.drop () ;
@@ -5567,13 +5571,9 @@ void GALGAS_classKind::method_entity (GALGAS_string & outAssociatedValue_superEn
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_classKind::getter_prefs (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_prefs == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind_2D_atomic_3F_ GALGAS_classKind::getter_atomic (UNUSED_LOCATION_ARGS) const {
+GALGAS_classKind_2D_atomic_3F_ GALGAS_classKind::getter_getAtomic (UNUSED_LOCATION_ARGS) const {
   GALGAS_classKind_2D_atomic_3F_ result ;
   if (mEnum == Enumeration::enum_atomic) {
     const auto ptr = (const GALGAS_classKind_2D_atomic *) mAssociatedValues.associatedValuesPointer () ;
@@ -5591,7 +5591,7 @@ void GALGAS_classKind::getAssociatedValuesFor_atomic (GALGAS_typeKind & out_kind
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind_2D_document_3F_ GALGAS_classKind::getter_document (UNUSED_LOCATION_ARGS) const {
+GALGAS_classKind_2D_document_3F_ GALGAS_classKind::getter_getDocument (UNUSED_LOCATION_ARGS) const {
   GALGAS_classKind_2D_document_3F_ result ;
   if (mEnum == Enumeration::enum_document) {
     const auto ptr = (const GALGAS_classKind_2D_document *) mAssociatedValues.associatedValuesPointer () ;
@@ -5609,7 +5609,7 @@ void GALGAS_classKind::getAssociatedValuesFor_document (GALGAS_lstring & out_roo
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_classKind_2D_entity_3F_ GALGAS_classKind::getter_entity (UNUSED_LOCATION_ARGS) const {
+GALGAS_classKind_2D_entity_3F_ GALGAS_classKind::getter_getEntity (UNUSED_LOCATION_ARGS) const {
   GALGAS_classKind_2D_entity_3F_ result ;
   if (mEnum == Enumeration::enum_entity) {
     const auto ptr = (const GALGAS_classKind_2D_entity *) mAssociatedValues.associatedValuesPointer () ;
@@ -6007,9 +6007,9 @@ GALGAS_propertyAccessibility GALGAS_propertyAccessibility::class_func_transient 
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyAccessibility::method_transient (GALGAS_bool & outAssociatedValue_isAbstract,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyAccessibility::method_extractTransient (GALGAS_bool & outAssociatedValue_isAbstract,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_transient) {
     outAssociatedValue_isAbstract.drop () ;
     String s ;
@@ -6023,19 +6023,11 @@ void GALGAS_propertyAccessibility::method_transient (GALGAS_bool & outAssociated
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_propertyAccessibility::getter_stored (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_stored == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_propertyAccessibility::getter_computed (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_computed == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_propertyAccessibility_2D_transient_3F_ GALGAS_propertyAccessibility::getter_transient (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyAccessibility_2D_transient_3F_ GALGAS_propertyAccessibility::getter_getTransient (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyAccessibility_2D_transient_3F_ result ;
   if (mEnum == Enumeration::enum_transient) {
     const auto ptr = (const GALGAS_propertyAccessibility_2D_transient *) mAssociatedValues.associatedValuesPointer () ;
@@ -11332,9 +11324,9 @@ GALGAS_mainXibElement GALGAS_mainXibElement::class_func_outlet (const GALGAS_lst
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_mainXibElement::method_text (GALGAS_lstring & outAssociatedValue_text,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_mainXibElement::method_extractText (GALGAS_lstring & outAssociatedValue_text,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_text) {
     outAssociatedValue_text.drop () ;
     String s ;
@@ -11348,10 +11340,10 @@ void GALGAS_mainXibElement::method_text (GALGAS_lstring & outAssociatedValue_tex
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_mainXibElement::method_outlet (GALGAS_lstring & outAssociatedValue_outletType,
-                                           GALGAS_lstring & outAssociatedValue_outletName,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_mainXibElement::method_extractOutlet (GALGAS_lstring & outAssociatedValue_outletType,
+                                                  GALGAS_lstring & outAssociatedValue_outletName,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_outlet) {
     outAssociatedValue_outletType.drop () ;
     outAssociatedValue_outletName.drop () ;
@@ -11367,7 +11359,7 @@ void GALGAS_mainXibElement::method_outlet (GALGAS_lstring & outAssociatedValue_o
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibElement_2D_text_3F_ GALGAS_mainXibElement::getter_text (UNUSED_LOCATION_ARGS) const {
+GALGAS_mainXibElement_2D_text_3F_ GALGAS_mainXibElement::getter_getText (UNUSED_LOCATION_ARGS) const {
   GALGAS_mainXibElement_2D_text_3F_ result ;
   if (mEnum == Enumeration::enum_text) {
     const auto ptr = (const GALGAS_mainXibElement_2D_text *) mAssociatedValues.associatedValuesPointer () ;
@@ -11385,7 +11377,7 @@ void GALGAS_mainXibElement::getAssociatedValuesFor_text (GALGAS_lstring & out_te
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_mainXibElement_2D_outlet_3F_ GALGAS_mainXibElement::getter_outlet (UNUSED_LOCATION_ARGS) const {
+GALGAS_mainXibElement_2D_outlet_3F_ GALGAS_mainXibElement::getter_getOutlet (UNUSED_LOCATION_ARGS) const {
   GALGAS_mainXibElement_2D_outlet_3F_ result ;
   if (mEnum == Enumeration::enum_outlet) {
     const auto ptr = (const GALGAS_mainXibElement_2D_outlet *) mAssociatedValues.associatedValuesPointer () ;
@@ -11410,6 +11402,18 @@ static const char * gEnumNameArrayFor_mainXibElement [3] = {
   "text",
   "outlet"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_mainXibElement::getter_isText (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_text == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_mainXibElement::getter_isOutlet (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_outlet == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 

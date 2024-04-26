@@ -76,7 +76,7 @@ case ."eb"
       if not type.isAtomic then
         error enumTypeName : "this type should be an enum type"
       else
-        type.atomic (?kind:let typeKind)
+        type.extractAtomic (?kind:let typeKind)
         if not typeKind.isEnumType then
           error enumTypeName : "this type should be an enum type"
         end

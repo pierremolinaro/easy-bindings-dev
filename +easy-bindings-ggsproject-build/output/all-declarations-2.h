@@ -1477,39 +1477,47 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_arrayController (class GALGAS_lstring & outArgument0,
-                                                        class GALGAS_bool & outArgument1,
+  public: VIRTUAL_IN_DEBUG void method_extractArrayController (class GALGAS_lstring & outArgument0,
+                                                               class GALGAS_bool & outArgument1,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractProperty (class GALGAS_typeKind & outArgument0,
+                                                        class GALGAS_propertyAccessibility & outArgument1,
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_property (class GALGAS_typeKind & outArgument0,
-                                                 class GALGAS_propertyAccessibility & outArgument1,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractSelectionController (class GALGAS_string & outArgument0,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_selectionController (class GALGAS_string & outArgument0,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractToMany (class GALGAS_lstring & outArgument0,
+                                                      class GALGAS_propertyAccessibility & outArgument1,
+                                                      class GALGAS_bool & outArgument2,
+                                                      class GALGAS_toManyRelationshipOptionAST & outArgument3,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_toMany (class GALGAS_lstring & outArgument0,
-                                               class GALGAS_propertyAccessibility & outArgument1,
-                                               class GALGAS_bool & outArgument2,
-                                               class GALGAS_toManyRelationshipOptionAST & outArgument3,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_toOne (class GALGAS_lstring & outArgument0,
-                                              class GALGAS_propertyAccessibility & outArgument1,
-                                              class GALGAS_bool & outArgument2,
-                                              class GALGAS_toOneOppositeRelationship & outArgument3,
-                                              class GALGAS_bool & outArgument4,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractToOne (class GALGAS_lstring & outArgument0,
+                                                     class GALGAS_propertyAccessibility & outArgument1,
+                                                     class GALGAS_bool & outArgument2,
+                                                     class GALGAS_toOneOppositeRelationship & outArgument3,
+                                                     class GALGAS_bool & outArgument4,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_arrayController_3F_ getter_arrayController (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_arrayController_3F_ getter_getArrayController (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_property_3F_ getter_getProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_selectionController_3F_ getter_getSelectionController (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_toMany_3F_ getter_getToMany (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_toOne_3F_ getter_getToOne (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isArrayController (LOCATION_ARGS) const ;
 
@@ -1520,14 +1528,6 @@ class GALGAS_propertyKind : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToMany (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isToOne (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_property_3F_ getter_property (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_selectionController_3F_ getter_selectionController (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_toMany_3F_ getter_toMany (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyKind_2D_toOne_3F_ getter_toOne (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -1806,16 +1806,18 @@ class GALGAS_autolayoutEnabledBindingForGeneration : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_enabled (class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEnabled (class GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled_3F_ getter_enabled (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled_3F_ getter_getEnabled (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnabled (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -1895,18 +1897,20 @@ class GALGAS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_run (class GALGAS_string & outArgument0,
-                                            class GALGAS_string & outArgument1,
-                                            class GALGAS_string & outArgument2,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractRun (class GALGAS_string & outArgument0,
+                                                   class GALGAS_string & outArgument1,
+                                                   class GALGAS_string & outArgument2,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_autolayoutRunBindingForGeneration_2D_run_3F_ getter_getRun (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_autolayoutRunBindingForGeneration_2D_run_3F_ getter_run (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRun (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -5076,16 +5080,18 @@ class GALGAS_autoLayoutViewGraphicControllerBindingGeneration : public AC_GALGAS
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_binding (class GALGAS_string & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractBinding (class GALGAS_string & outArgument0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding_3F_ getter_binding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding_3F_ getter_getBinding (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBinding (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -6746,24 +6752,20 @@ class GALGAS_propertyAccessibility : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_transient (class GALGAS_bool & outArgument0,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractTransient (class GALGAS_bool & outArgument0,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_computed (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_propertyAccessibility_2D_transient_3F_ getter_getTransient (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isComputed (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isStored (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTransient (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_stored (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_propertyAccessibility_2D_transient_3F_ getter_transient (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -7156,22 +7158,26 @@ class GALGAS_toManyRelationshipOptionAST : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_hasDependance (class GALGAS_lstring & outArgument0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractHasDependance (class GALGAS_lstring & outArgument0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_hasOpposite (class GALGAS_lstring & outArgument0,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractHasOpposite (class GALGAS_lstring & outArgument0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST_2D_hasDependance_3F_ getter_hasDependance (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST_2D_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST_2D_hasOpposite_3F_ getter_hasOpposite (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toManyRelationshipOptionAST_2D_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isHasDependance (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -7440,22 +7446,26 @@ class GALGAS_toOneOppositeRelationship : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_oppositeIsToMany (class GALGAS_lstring & outArgument0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractOppositeIsToMany (class GALGAS_lstring & outArgument0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_oppositeIsToOne (class GALGAS_lstring & outArgument0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractOppositeIsToOne (class GALGAS_lstring & outArgument0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_none (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany_3F_ getter_getOppositeIsToMany (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany_3F_ getter_oppositeIsToMany (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne_3F_ getter_getOppositeIsToOne (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne_3F_ getter_oppositeIsToOne (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNone (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isOppositeIsToMany (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isOppositeIsToOne (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -7856,149 +7866,191 @@ class GALGAS_observablePropertyAST : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_prefsProperty (class GALGAS_lstring & outArgument0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractPrefsProperty (class GALGAS_lstring & outArgument0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_prefsPropertyWithOption (class GALGAS_lstring & outArgument0,
-                                                                class GALGAS_lstring & outArgument1,
+  public: VIRTUAL_IN_DEBUG void method_extractPrefsPropertyWithOption (class GALGAS_lstring & outArgument0,
+                                                                       class GALGAS_lstring & outArgument1,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractRootProperty (class GALGAS_lstring & outArgument0,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractRootPropertyNone (class GALGAS_lstring & outArgument0,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_rootProperty (class GALGAS_lstring & outArgument0,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractRootPropertyRelationship (class GALGAS_lstring & outArgument0,
+                                                                        class GALGAS_lstring & outArgument1,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_rootPropertyNone (class GALGAS_lstring & outArgument0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractRootPropertyWithOption (class GALGAS_lstring & outArgument0,
+                                                                      class GALGAS_lstring & outArgument1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_rootPropertyRelationship (class GALGAS_lstring & outArgument0,
+  public: VIRTUAL_IN_DEBUG void method_extractSelfControllerAllProperties (class GALGAS_lstring & outArgument0,
+                                                                           class GALGAS_lstring & outArgument1,
+                                                                           class GALGAS_lstring & outArgument2,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSelfControllerOneProperty (class GALGAS_lstring & outArgument0,
+                                                                         class GALGAS_lstring & outArgument1,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSelfControllerProperty (class GALGAS_lstring & outArgument0,
+                                                                      class GALGAS_lstring & outArgument1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSelfControllerSecondaryProperty (class GALGAS_lstring & outArgument0,
+                                                                               class GALGAS_lstring & outArgument1,
+                                                                               class GALGAS_lstring & outArgument2,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSelfProperty (class GALGAS_lstring & outArgument0,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSelfPropertyArray (class GALGAS_lstring & outArgument0,
                                                                  class GALGAS_lstring & outArgument1,
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_rootPropertyWithOption (class GALGAS_lstring & outArgument0,
-                                                               class GALGAS_lstring & outArgument1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractSelfPropertyNone (class GALGAS_lstring & outArgument0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_selfControllerAllProperties (class GALGAS_lstring & outArgument0,
-                                                                    class GALGAS_lstring & outArgument1,
-                                                                    class GALGAS_lstring & outArgument2,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfControllerOneProperty (class GALGAS_lstring & outArgument0,
+  public: VIRTUAL_IN_DEBUG void method_extractSelfPropertyObject (class GALGAS_lstring & outArgument0,
                                                                   class GALGAS_lstring & outArgument1,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_selfControllerProperty (class GALGAS_lstring & outArgument0,
-                                                               class GALGAS_lstring & outArgument1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfControllerSecondaryProperty (class GALGAS_lstring & outArgument0,
-                                                                        class GALGAS_lstring & outArgument1,
-                                                                        class GALGAS_lstring & outArgument2,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfProperty (class GALGAS_lstring & outArgument0,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfPropertyArray (class GALGAS_lstring & outArgument0,
-                                                          class GALGAS_lstring & outArgument1,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfPropertyNone (class GALGAS_lstring & outArgument0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfPropertyObject (class GALGAS_lstring & outArgument0,
-                                                           class GALGAS_lstring & outArgument1,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfPropertyWithOption (class GALGAS_lstring & outArgument0,
-                                                               class GALGAS_lstring & outArgument1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_selfWithoutProperty (class GALGAS_location & outArgument0,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_signatureProperty (class GALGAS_location & outArgument0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_superProperty (class GALGAS_lstring & outArgument0,
-                                                      class GALGAS_lstring & outArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_superPropertyWithDefaultValue (class GALGAS_lstring & outArgument0,
+  public: VIRTUAL_IN_DEBUG void method_extractSelfPropertyWithOption (class GALGAS_lstring & outArgument0,
                                                                       class GALGAS_lstring & outArgument1,
-                                                                      class GALGAS_abstractDefaultValue & outArgument2,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_versionProperty (class GALGAS_location & outArgument0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractSelfWithoutProperty (class GALGAS_location & outArgument0,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_versionShouldChangeProperty (class GALGAS_location & outArgument0,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractSignatureProperty (class GALGAS_location & outArgument0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSuperProperty (class GALGAS_lstring & outArgument0,
+                                                             class GALGAS_lstring & outArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractSuperPropertyWithDefaultValue (class GALGAS_lstring & outArgument0,
+                                                                             class GALGAS_lstring & outArgument1,
+                                                                             class GALGAS_abstractDefaultValue & outArgument2,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractVersionProperty (class GALGAS_location & outArgument0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_extractVersionShouldChangeProperty (class GALGAS_location & outArgument0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_prefsProperty_3F_ getter_prefsProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_prefsProperty_3F_ getter_getPrefsProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_prefsPropertyWithOption_3F_ getter_prefsPropertyWithOption (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_prefsPropertyWithOption_3F_ getter_getPrefsPropertyWithOption (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootProperty_3F_ getter_rootProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootProperty_3F_ getter_getRootProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyNone_3F_ getter_rootPropertyNone (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyNone_3F_ getter_getRootPropertyNone (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyRelationship_3F_ getter_rootPropertyRelationship (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyRelationship_3F_ getter_getRootPropertyRelationship (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyWithOption_3F_ getter_rootPropertyWithOption (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_rootPropertyWithOption_3F_ getter_getRootPropertyWithOption (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerAllProperties_3F_ getter_selfControllerAllProperties (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerAllProperties_3F_ getter_getSelfControllerAllProperties (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerOneProperty_3F_ getter_selfControllerOneProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerOneProperty_3F_ getter_getSelfControllerOneProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerProperty_3F_ getter_selfControllerProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerProperty_3F_ getter_getSelfControllerProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty_3F_ getter_selfControllerSecondaryProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty_3F_ getter_getSelfControllerSecondaryProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfProperty_3F_ getter_selfProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfProperty_3F_ getter_getSelfProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyArray_3F_ getter_selfPropertyArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyArray_3F_ getter_getSelfPropertyArray (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyNone_3F_ getter_selfPropertyNone (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyNone_3F_ getter_getSelfPropertyNone (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyObject_3F_ getter_selfPropertyObject (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyObject_3F_ getter_getSelfPropertyObject (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyWithOption_3F_ getter_selfPropertyWithOption (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfPropertyWithOption_3F_ getter_getSelfPropertyWithOption (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfWithoutProperty_3F_ getter_selfWithoutProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_selfWithoutProperty_3F_ getter_getSelfWithoutProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_signatureProperty_3F_ getter_signatureProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_signatureProperty_3F_ getter_getSignatureProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_superProperty_3F_ getter_superProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_superProperty_3F_ getter_getSuperProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue_3F_ getter_superPropertyWithDefaultValue (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue_3F_ getter_getSuperPropertyWithDefaultValue (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_versionProperty_3F_ getter_versionProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_versionProperty_3F_ getter_getVersionProperty (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_versionShouldChangeProperty_3F_ getter_versionShouldChangeProperty (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_observablePropertyAST_2D_versionShouldChangeProperty_3F_ getter_getVersionShouldChangeProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefsProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPrefsPropertyWithOption (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyNone (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyRelationship (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRootPropertyWithOption (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerAllProperties (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerOneProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfControllerSecondaryProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfPropertyArray (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfPropertyNone (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfPropertyObject (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfPropertyWithOption (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSelfWithoutProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSignatureProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSuperProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSuperPropertyWithDefaultValue (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isVersionProperty (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isVersionShouldChangeProperty (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts

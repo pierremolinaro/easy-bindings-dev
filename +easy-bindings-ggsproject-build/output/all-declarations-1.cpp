@@ -6988,9 +6988,9 @@ GALGAS_autoLayoutClassParameterType GALGAS_autoLayoutClassParameterType::class_f
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutClassParameterType::method_typeEnum (GALGAS_lstring & outAssociatedValue_name,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_autoLayoutClassParameterType::method_extractTypeEnum (GALGAS_lstring & outAssociatedValue_name,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_typeEnum) {
     outAssociatedValue_name.drop () ;
     String s ;
@@ -7004,49 +7004,21 @@ void GALGAS_autoLayoutClassParameterType::method_typeEnum (GALGAS_lstring & outA
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeString (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeString == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeStringArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeStringArray == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeInt (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeInt == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeBool (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeBool == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_typeView (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeView == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_menuItem (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_menuItem == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_entity (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ GALGAS_autoLayoutClassParameterType::getter_typeEnum (UNUSED_LOCATION_ARGS) const {
+GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ GALGAS_autoLayoutClassParameterType::getter_getTypeEnum (UNUSED_LOCATION_ARGS) const {
   GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ result ;
   if (mEnum == Enumeration::enum_typeEnum) {
     const auto ptr = (const GALGAS_autoLayoutClassParameterType_2D_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
@@ -7075,6 +7047,54 @@ static const char * gEnumNameArrayFor_autoLayoutClassParameterType [9] = {
   "entity",
   "typeEnum"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeString (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeString == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeStringArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeStringArray == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeInt (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeInt == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeBool (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeBool == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeView (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeView == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_menuItem == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isEntity (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutClassParameterType::getter_isTypeEnum (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeEnum == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12330,9 +12350,9 @@ GALGAS_optionalHiddenBinding GALGAS_optionalHiddenBinding::class_func_binding (c
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_optionalHiddenBinding::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_hidden,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const {
+void GALGAS_optionalHiddenBinding::method_extractBinding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_hidden,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_binding) {
     outAssociatedValue_hidden.drop () ;
     String s ;
@@ -12346,13 +12366,9 @@ void GALGAS_optionalHiddenBinding::method_binding (GALGAS_abstractBooleanMultipl
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_optionalHiddenBinding::getter_noBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_optionalHiddenBinding_2D_binding_3F_ GALGAS_optionalHiddenBinding::getter_binding (UNUSED_LOCATION_ARGS) const {
+GALGAS_optionalHiddenBinding_2D_binding_3F_ GALGAS_optionalHiddenBinding::getter_getBinding (UNUSED_LOCATION_ARGS) const {
   GALGAS_optionalHiddenBinding_2D_binding_3F_ result ;
   if (mEnum == Enumeration::enum_binding) {
     const auto ptr = (const GALGAS_optionalHiddenBinding_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
@@ -12375,6 +12391,18 @@ static const char * gEnumNameArrayFor_optionalHiddenBinding [3] = {
   "noBinding",
   "binding"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_optionalHiddenBinding::getter_isNoBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_optionalHiddenBinding::getter_isBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_binding == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14065,9 +14093,9 @@ GALGAS_tableValueBinding GALGAS_tableValueBinding::class_func_tableValueBinding 
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_tableValueBinding::method_tableValueBinding (GALGAS_lstring & outAssociatedValue_controllerName,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_tableValueBinding::method_extractTableValueBinding (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_tableValueBinding) {
     outAssociatedValue_controllerName.drop () ;
     String s ;
@@ -14081,13 +14109,9 @@ void GALGAS_tableValueBinding::method_tableValueBinding (GALGAS_lstring & outAss
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_tableValueBinding::getter_noTableValueBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noTableValueBinding == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_tableValueBinding_2D_tableValueBinding_3F_ GALGAS_tableValueBinding::getter_tableValueBinding (UNUSED_LOCATION_ARGS) const {
+GALGAS_tableValueBinding_2D_tableValueBinding_3F_ GALGAS_tableValueBinding::getter_getTableValueBinding (UNUSED_LOCATION_ARGS) const {
   GALGAS_tableValueBinding_2D_tableValueBinding_3F_ result ;
   if (mEnum == Enumeration::enum_tableValueBinding) {
     const auto ptr = (const GALGAS_tableValueBinding_2D_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
@@ -14110,6 +14134,18 @@ static const char * gEnumNameArrayFor_tableValueBinding [3] = {
   "noTableValueBinding",
   "tableValueBinding"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_tableValueBinding::getter_isNoTableValueBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noTableValueBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_tableValueBinding::getter_isTableValueBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_tableValueBinding == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14222,10 +14258,10 @@ GALGAS_runActionDescriptor GALGAS_runActionDescriptor::class_func_action (const 
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_runActionDescriptor::method_action (GALGAS_lstring & outAssociatedValue_target,
-                                                GALGAS_lstring & outAssociatedValue_action,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const {
+void GALGAS_runActionDescriptor::method_extractAction (GALGAS_lstring & outAssociatedValue_target,
+                                                       GALGAS_lstring & outAssociatedValue_action,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_action) {
     outAssociatedValue_target.drop () ;
     outAssociatedValue_action.drop () ;
@@ -14241,13 +14277,9 @@ void GALGAS_runActionDescriptor::method_action (GALGAS_lstring & outAssociatedVa
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_runActionDescriptor::getter_noAction (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noAction == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_runActionDescriptor_2D_action_3F_ GALGAS_runActionDescriptor::getter_action (UNUSED_LOCATION_ARGS) const {
+GALGAS_runActionDescriptor_2D_action_3F_ GALGAS_runActionDescriptor::getter_getAction (UNUSED_LOCATION_ARGS) const {
   GALGAS_runActionDescriptor_2D_action_3F_ result ;
   if (mEnum == Enumeration::enum_action) {
     const auto ptr = (const GALGAS_runActionDescriptor_2D_action *) mAssociatedValues.associatedValuesPointer () ;
@@ -14272,6 +14304,18 @@ static const char * gEnumNameArrayFor_runActionDescriptor [3] = {
   "noAction",
   "action"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_runActionDescriptor::getter_isNoAction (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noAction == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_runActionDescriptor::getter_isAction (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_action == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14383,9 +14427,9 @@ GALGAS_multipleBindingDescriptor GALGAS_multipleBindingDescriptor::class_func_bi
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_multipleBindingDescriptor::method_binding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_expression,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_multipleBindingDescriptor::method_extractBinding (GALGAS_abstractBooleanMultipleBindingExpressionAST & outAssociatedValue_expression,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_binding) {
     outAssociatedValue_expression.drop () ;
     String s ;
@@ -14399,13 +14443,9 @@ void GALGAS_multipleBindingDescriptor::method_binding (GALGAS_abstractBooleanMul
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_multipleBindingDescriptor::getter_noBinding (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_multipleBindingDescriptor_2D_binding_3F_ GALGAS_multipleBindingDescriptor::getter_binding (UNUSED_LOCATION_ARGS) const {
+GALGAS_multipleBindingDescriptor_2D_binding_3F_ GALGAS_multipleBindingDescriptor::getter_getBinding (UNUSED_LOCATION_ARGS) const {
   GALGAS_multipleBindingDescriptor_2D_binding_3F_ result ;
   if (mEnum == Enumeration::enum_binding) {
     const auto ptr = (const GALGAS_multipleBindingDescriptor_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
@@ -14428,6 +14468,18 @@ static const char * gEnumNameArrayFor_multipleBindingDescriptor [3] = {
   "noBinding",
   "binding"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingDescriptor::getter_isNoBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noBinding == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingDescriptor::getter_isBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_binding == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14540,10 +14592,10 @@ GALGAS_graphicController GALGAS_graphicController::class_func_defined (const GAL
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_graphicController::method_defined (GALGAS_lstring & outAssociatedValue_controller,
-                                               GALGAS_lstring & outAssociatedValue_propertyName,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const {
+void GALGAS_graphicController::method_extractDefined (GALGAS_lstring & outAssociatedValue_controller,
+                                                      GALGAS_lstring & outAssociatedValue_propertyName,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_defined) {
     outAssociatedValue_controller.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -14559,13 +14611,9 @@ void GALGAS_graphicController::method_defined (GALGAS_lstring & outAssociatedVal
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_graphicController::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_graphicController_2D_defined_3F_ GALGAS_graphicController::getter_defined (UNUSED_LOCATION_ARGS) const {
+GALGAS_graphicController_2D_defined_3F_ GALGAS_graphicController::getter_getDefined (UNUSED_LOCATION_ARGS) const {
   GALGAS_graphicController_2D_defined_3F_ result ;
   if (mEnum == Enumeration::enum_defined) {
     const auto ptr = (const GALGAS_graphicController_2D_defined *) mAssociatedValues.associatedValuesPointer () ;
@@ -14590,6 +14638,18 @@ static const char * gEnumNameArrayFor_graphicController [3] = {
   "none",
   "defined"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_graphicController::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_graphicController::getter_isDefined (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_defined == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 

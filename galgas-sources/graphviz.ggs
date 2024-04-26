@@ -47,7 +47,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
     !?exploreArray.popLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
     inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
-    entityKind.entity (?superEntityName: let superEntityName, ?3*)
+    entityKind.extractEntity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
         !?reachableEntityNameSet.insert (superEntityName)
@@ -67,7 +67,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
       case arrayController (2*) :
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, *, optionKind) :
-       if accessibility.stored then
+       if accessibility.isStored then
          node += "|<" + propertyName + ">[" + typeName + "] " + propertyName
          switch optionKind
          case none :
@@ -94,7 +94,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
          end
         end
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, *) :
-        if accessibility.stored then
+        if accessibility.isStored then
           node += "|<" + propertyName + ">" + typeName + "? " + propertyName
           switch opposite
           case none :
@@ -158,7 +158,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     !?nodeList.append (entityName)
     !?entityStrongReferenceGraph.addNode (.init (entityName, .nowhere), entityName)
     inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
-    entityKind.entity (?superEntityName: let superEntityName, ?3*)
+    entityKind.extractEntity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
       if not reachableEntityNameSet.hasKey (superEntityName) then
         !?reachableEntityNameSet.insert (superEntityName)
@@ -175,7 +175,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case toMany (@lstring typeName, @propertyAccessibility accessibility, 2*) :
         !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
         !?entityStrongReferenceGraph.addEdge (.init (entityName, .nowhere), .init (typeName, .nowhere))
-        if accessibility.stored then
+        if accessibility.isStored then
           if not reachableEntityNameSet.hasKey (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
@@ -186,7 +186,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
           !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           !?entityStrongReferenceGraph.addEdge (.init (entityName, .nowhere), .init (typeName, .nowhere))
         end
-        if accessibility.stored then
+        if accessibility.isStored then
           switch opposite
           case none :
             if not reachableEntityNameSet.hasKey (typeName) then

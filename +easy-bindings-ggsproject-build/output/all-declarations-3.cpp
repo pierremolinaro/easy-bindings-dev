@@ -2274,15 +2274,7 @@ GALGAS_proxyKind GALGAS_proxyKind::class_func_toManyProxy (UNUSED_LOCATION_ARGS)
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_proxyKind::getter_propertyProxy (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_propertyProxy == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_proxyKind::getter_toManyProxy (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_toManyProxy == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2291,6 +2283,18 @@ static const char * gEnumNameArrayFor_proxyKind [3] = {
   "propertyProxy",
   "toManyProxy"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_proxyKind::getter_isPropertyProxy (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_propertyProxy == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_proxyKind::getter_isToManyProxy (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_toManyProxy == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5089,9 +5093,9 @@ GALGAS_toOneOppositeRelationship GALGAS_toOneOppositeRelationship::class_func_op
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toOneOppositeRelationship::method_oppositeIsToOne (GALGAS_lstring & outAssociatedValue_oppositeRelationshipName,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
+void GALGAS_toOneOppositeRelationship::method_extractOppositeIsToOne (GALGAS_lstring & outAssociatedValue_oppositeRelationshipName,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_oppositeIsToOne) {
     outAssociatedValue_oppositeRelationshipName.drop () ;
     String s ;
@@ -5105,9 +5109,9 @@ void GALGAS_toOneOppositeRelationship::method_oppositeIsToOne (GALGAS_lstring & 
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toOneOppositeRelationship::method_oppositeIsToMany (GALGAS_lstring & outAssociatedValue_oppositeRelationshipName,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
+void GALGAS_toOneOppositeRelationship::method_extractOppositeIsToMany (GALGAS_lstring & outAssociatedValue_oppositeRelationshipName,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_oppositeIsToMany) {
     outAssociatedValue_oppositeRelationshipName.drop () ;
     String s ;
@@ -5121,13 +5125,9 @@ void GALGAS_toOneOppositeRelationship::method_oppositeIsToMany (GALGAS_lstring &
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_toOneOppositeRelationship::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne_3F_ GALGAS_toOneOppositeRelationship::getter_oppositeIsToOne (UNUSED_LOCATION_ARGS) const {
+GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne_3F_ GALGAS_toOneOppositeRelationship::getter_getOppositeIsToOne (UNUSED_LOCATION_ARGS) const {
   GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne_3F_ result ;
   if (mEnum == Enumeration::enum_oppositeIsToOne) {
     const auto ptr = (const GALGAS_toOneOppositeRelationship_2D_oppositeIsToOne *) mAssociatedValues.associatedValuesPointer () ;
@@ -5145,7 +5145,7 @@ void GALGAS_toOneOppositeRelationship::getAssociatedValuesFor_oppositeIsToOne (G
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany_3F_ GALGAS_toOneOppositeRelationship::getter_oppositeIsToMany (UNUSED_LOCATION_ARGS) const {
+GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany_3F_ GALGAS_toOneOppositeRelationship::getter_getOppositeIsToMany (UNUSED_LOCATION_ARGS) const {
   GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany_3F_ result ;
   if (mEnum == Enumeration::enum_oppositeIsToMany) {
     const auto ptr = (const GALGAS_toOneOppositeRelationship_2D_oppositeIsToMany *) mAssociatedValues.associatedValuesPointer () ;
@@ -5169,6 +5169,24 @@ static const char * gEnumNameArrayFor_toOneOppositeRelationship [4] = {
   "oppositeIsToOne",
   "oppositeIsToMany"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isOppositeIsToOne (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_oppositeIsToOne == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toOneOppositeRelationship::getter_isOppositeIsToMany (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_oppositeIsToMany == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6348,9 +6366,9 @@ GALGAS_toManyRelationshipOptionAST GALGAS_toManyRelationshipOptionAST::class_fun
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toManyRelationshipOptionAST::method_hasOpposite (GALGAS_lstring & outAssociatedValue_oppositeName,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyRelationshipOptionAST::method_extractHasOpposite (GALGAS_lstring & outAssociatedValue_oppositeName,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_hasOpposite) {
     outAssociatedValue_oppositeName.drop () ;
     String s ;
@@ -6364,9 +6382,9 @@ void GALGAS_toManyRelationshipOptionAST::method_hasOpposite (GALGAS_lstring & ou
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toManyRelationshipOptionAST::method_hasDependance (GALGAS_lstring & outAssociatedValue_masterPropertyName,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyRelationshipOptionAST::method_extractHasDependance (GALGAS_lstring & outAssociatedValue_masterPropertyName,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_hasDependance) {
     outAssociatedValue_masterPropertyName.drop () ;
     String s ;
@@ -6380,13 +6398,9 @@ void GALGAS_toManyRelationshipOptionAST::method_hasDependance (GALGAS_lstring & 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_toManyRelationshipOptionAST::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyRelationshipOptionAST_2D_hasOpposite_3F_ GALGAS_toManyRelationshipOptionAST::getter_hasOpposite (UNUSED_LOCATION_ARGS) const {
+GALGAS_toManyRelationshipOptionAST_2D_hasOpposite_3F_ GALGAS_toManyRelationshipOptionAST::getter_getHasOpposite (UNUSED_LOCATION_ARGS) const {
   GALGAS_toManyRelationshipOptionAST_2D_hasOpposite_3F_ result ;
   if (mEnum == Enumeration::enum_hasOpposite) {
     const auto ptr = (const GALGAS_toManyRelationshipOptionAST_2D_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
@@ -6404,7 +6418,7 @@ void GALGAS_toManyRelationshipOptionAST::getAssociatedValuesFor_hasOpposite (GAL
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyRelationshipOptionAST_2D_hasDependance_3F_ GALGAS_toManyRelationshipOptionAST::getter_hasDependance (UNUSED_LOCATION_ARGS) const {
+GALGAS_toManyRelationshipOptionAST_2D_hasDependance_3F_ GALGAS_toManyRelationshipOptionAST::getter_getHasDependance (UNUSED_LOCATION_ARGS) const {
   GALGAS_toManyRelationshipOptionAST_2D_hasDependance_3F_ result ;
   if (mEnum == Enumeration::enum_hasDependance) {
     const auto ptr = (const GALGAS_toManyRelationshipOptionAST_2D_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
@@ -6428,6 +6442,24 @@ static const char * gEnumNameArrayFor_toManyRelationshipOptionAST [4] = {
   "hasOpposite",
   "hasDependance"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toManyRelationshipOptionAST::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toManyRelationshipOptionAST::getter_isHasOpposite (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasOpposite == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_toManyRelationshipOptionAST::getter_isHasDependance (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasDependance == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6641,9 +6673,9 @@ GALGAS_toManyRelationshipOptionGeneration GALGAS_toManyRelationshipOptionGenerat
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toManyRelationshipOptionGeneration::method_hasOpposite (GALGAS_string & outAssociatedValue_oppositeName,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyRelationshipOptionGeneration::method_extractHasOpposite (GALGAS_string & outAssociatedValue_oppositeName,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_hasOpposite) {
     outAssociatedValue_oppositeName.drop () ;
     String s ;
@@ -6657,10 +6689,10 @@ void GALGAS_toManyRelationshipOptionGeneration::method_hasOpposite (GALGAS_strin
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_toManyRelationshipOptionGeneration::method_hasDependance (GALGAS_string & outAssociatedValue_masterPropertyName,
-                                                                      GALGAS_string & outAssociatedValue_masterPropertySwiftTypeName,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const {
+void GALGAS_toManyRelationshipOptionGeneration::method_extractHasDependance (GALGAS_string & outAssociatedValue_masterPropertyName,
+                                                                             GALGAS_string & outAssociatedValue_masterPropertySwiftTypeName,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_hasDependance) {
     outAssociatedValue_masterPropertyName.drop () ;
     outAssociatedValue_masterPropertySwiftTypeName.drop () ;
@@ -6676,13 +6708,9 @@ void GALGAS_toManyRelationshipOptionGeneration::method_hasDependance (GALGAS_str
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_toManyRelationshipOptionGeneration::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite_3F_ GALGAS_toManyRelationshipOptionGeneration::getter_hasOpposite (UNUSED_LOCATION_ARGS) const {
+GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite_3F_ GALGAS_toManyRelationshipOptionGeneration::getter_getHasOpposite (UNUSED_LOCATION_ARGS) const {
   GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite_3F_ result ;
   if (mEnum == Enumeration::enum_hasOpposite) {
     const auto ptr = (const GALGAS_toManyRelationshipOptionGeneration_2D_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
@@ -6700,7 +6728,7 @@ void GALGAS_toManyRelationshipOptionGeneration::getAssociatedValuesFor_hasOpposi
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance_3F_ GALGAS_toManyRelationshipOptionGeneration::getter_hasDependance (UNUSED_LOCATION_ARGS) const {
+GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance_3F_ GALGAS_toManyRelationshipOptionGeneration::getter_getHasDependance (UNUSED_LOCATION_ARGS) const {
   GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance_3F_ result ;
   if (mEnum == Enumeration::enum_hasDependance) {
     const auto ptr = (const GALGAS_toManyRelationshipOptionGeneration_2D_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
@@ -8824,39 +8852,15 @@ GALGAS_multipleBindingComparisonAST GALGAS_multipleBindingComparisonAST::class_f
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_equal (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_equal == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_notEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_notEqual == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_lower (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lower == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_lowerOrEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lowerOrEqual == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_greater (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greater == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_greaterOrEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greaterOrEqual == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8869,6 +8873,42 @@ static const char * gEnumNameArrayFor_multipleBindingComparisonAST [7] = {
   "greater",
   "greaterOrEqual"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_equal == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isNotEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_notEqual == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isLower (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lower == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isLowerOrEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lowerOrEqual == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isGreater (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greater == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_multipleBindingComparisonAST::getter_isGreaterOrEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greaterOrEqual == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13473,9 +13513,9 @@ GALGAS_arrayControllerBoundModelAST GALGAS_arrayControllerBoundModelAST::class_f
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_arrayControllerBoundModelAST::method_rootToManyRelationship (GALGAS_lstring & outAssociatedValue_rootEntityName,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_arrayControllerBoundModelAST::method_extractRootToManyRelationship (GALGAS_lstring & outAssociatedValue_rootEntityName,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_rootToManyRelationship) {
     outAssociatedValue_rootEntityName.drop () ;
     String s ;
@@ -13489,7 +13529,7 @@ void GALGAS_arrayControllerBoundModelAST::method_rootToManyRelationship (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship_3F_ GALGAS_arrayControllerBoundModelAST::getter_rootToManyRelationship (UNUSED_LOCATION_ARGS) const {
+GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship_3F_ GALGAS_arrayControllerBoundModelAST::getter_getRootToManyRelationship (UNUSED_LOCATION_ARGS) const {
   GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship_3F_ result ;
   if (mEnum == Enumeration::enum_rootToManyRelationship) {
     const auto ptr = (const GALGAS_arrayControllerBoundModelAST_2D_rootToManyRelationship *) mAssociatedValues.associatedValuesPointer () ;
@@ -13507,10 +13547,6 @@ void GALGAS_arrayControllerBoundModelAST::getAssociatedValuesFor_rootToManyRelat
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_arrayControllerBoundModelAST::getter_selfToManyRelationship (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfToManyRelationship == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 static const char * gEnumNameArrayFor_arrayControllerBoundModelAST [3] = {
@@ -13518,6 +13554,18 @@ static const char * gEnumNameArrayFor_arrayControllerBoundModelAST [3] = {
   "rootToManyRelationship",
   "selfToManyRelationship"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_arrayControllerBoundModelAST::getter_isRootToManyRelationship (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_rootToManyRelationship == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_arrayControllerBoundModelAST::getter_isSelfToManyRelationship (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfToManyRelationship == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14034,15 +14082,7 @@ GALGAS_arrayControllerModelKind GALGAS_arrayControllerModelKind::class_func_tran
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_arrayControllerModelKind::getter_entityArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entityArray == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_arrayControllerModelKind::getter_transientArray (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_transientArray == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14051,6 +14091,18 @@ static const char * gEnumNameArrayFor_arrayControllerModelKind [3] = {
   "entityArray",
   "transientArray"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_arrayControllerModelKind::getter_isEntityArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entityArray == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_arrayControllerModelKind::getter_isTransientArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_transientArray == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 

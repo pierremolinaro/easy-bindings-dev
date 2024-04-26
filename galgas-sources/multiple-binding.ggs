@@ -335,7 +335,7 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
     ?outType,
     ?outErrorLocation
   )
-  if not outType.boolType then
+  if not outType.isBoolType then
     error outErrorLocation : "cannot apply negation: operand is not boolean"
   end
   outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration (expression)
@@ -363,7 +363,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
     ?let outLeftType,
     ?let outLeftLocation
   )
-  if not outLeftType.boolType then
+  if not outLeftType.isBoolType then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   self.mRightBinding.analyzeExpressionForMultipleBinding
@@ -376,7 +376,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
     ?let outRightType,
     ?let outRightLocation
   )
-  if not outRightType.boolType then
+  if not outRightType.isBoolType then
     error outRightLocation : "cannot apply 'or': right operand is not boolean"
   end
   outType = .boolType
@@ -406,7 +406,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outLeftType,
     ?let outLeftLocation
   )
-  if not outLeftType.boolType then
+  if not outLeftType.isBoolType then
     error outLeftLocation : "cannot apply 'or': left operand is not boolean"
   end
   self.mRightBinding.analyzeExpressionForMultipleBinding
@@ -419,7 +419,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType,
     ?let outRightLocation
   )
-  if not outRightType.boolType then
+  if not outRightType.isBoolType then
     error outRightLocation : "cannot apply 'or': right operand is not boolean"
   end
   outType = .boolType
@@ -449,7 +449,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outLeftType,
     ?let outLeftLocation
   )
-  if not outLeftType.boolType then
+  if not outLeftType.isBoolType then
     error outLeftLocation : "cannot apply 'and': left operand is not boolean"
   end
   self.mRightBinding.analyzeExpressionForMultipleBinding
@@ -462,7 +462,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType,
     ?let outRightLocation
   )
-  if not outRightType.boolType then
+  if not outRightType.isBoolType then
     error outRightLocation : "cannot apply 'and': right operand is not boolean"
   end
   outType = .boolType
@@ -502,7 +502,7 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
     ?let outRightType,
     ?let outRightLocation
   )
-  if not (outLeftType.boolType || outLeftType.integerType) then
+  if not (outLeftType.isBoolType || outLeftType.isIntegerType) then
     error outLeftLocation : "cannot compare: left operand is neither boolean nor integer"
   end
   if outRightType != outLeftType then

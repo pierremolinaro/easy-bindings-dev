@@ -4819,28 +4819,30 @@ class GALGAS_autoLayoutClassParameterType : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_typeEnum (class GALGAS_lstring & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractTypeEnum (class GALGAS_lstring & outArgument0,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_entity (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ getter_getTypeEnum (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_menuItem (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_typeBool (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_autoLayoutClassParameterType_2D_typeEnum_3F_ getter_typeEnum (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeBool (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_typeInt (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeEnum (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_typeString (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeInt (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_typeStringArray (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeString (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_typeView (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeStringArray (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTypeView (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -8113,16 +8115,18 @@ class GALGAS_optionalHiddenBinding : public AC_GALGAS_root {
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_binding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractBinding (class GALGAS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_optionalHiddenBinding_2D_binding_3F_ getter_binding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_optionalHiddenBinding_2D_binding_3F_ getter_getBinding (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_noBinding (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBinding (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNoBinding (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -9132,41 +9136,51 @@ class GALGAS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_entity (class GALGAS_lstring & outArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEntity (class GALGAS_lstring & outArgument0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_enumFunc (class GALGAS_lstring & outArgument0,
-                                                 class GALGAS_lstring & outArgument1,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractEnumFunc (class GALGAS_lstring & outArgument0,
+                                                        class GALGAS_lstring & outArgument1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_menuItem (class GALGAS_string & outArgument0,
-                                                 class GALGAS_runActionDescriptor & outArgument1,
-                                                 class GALGAS_multipleBindingDescriptor & outArgument2,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractMenuItem (class GALGAS_string & outArgument0,
+                                                        class GALGAS_runActionDescriptor & outArgument1,
+                                                        class GALGAS_multipleBindingDescriptor & outArgument2,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_string (class GALGAS_string & outArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractString (class GALGAS_string & outArgument0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_viewFunc (class GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG void method_extractViewFunc (class GALGAS_astAbstractViewInstructionDeclaration & outArgument0,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity_3F_ getter_entity (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc_3F_ getter_enumFunc (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc_3F_ getter_getEnumFunc (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem_3F_ getter_menuItem (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem_3F_ getter_getMenuItem (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string_3F_ getter_string (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string_3F_ getter_getString (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc_3F_ getter_viewFunc (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc_3F_ getter_getViewFunc (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEntity (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMenuItem (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isString (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isViewFunc (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts

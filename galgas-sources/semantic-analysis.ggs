@@ -2,7 +2,7 @@
 #   SEMANTIC TYPES                        
 //----------------------------------------------------------------------------------------------------------------------
 
-enum @classKind %testGetters {
+enum @classKind {
   case prefs
   case atomic (@typeKind kind)
   case document (@lstring rootEntityName)
@@ -88,7 +88,7 @@ map @classMap {
 
 #·······················································································································
 
-enum @propertyAccessibility %testGetters {
+enum @propertyAccessibility {
   case stored
   case computed
   case transient (@bool isAbstract)
@@ -96,7 +96,7 @@ enum @propertyAccessibility %testGetters {
 
 #·······················································································································
 
-enum @typeKind %equatable %testGetters {
+enum @typeKind %equatable {
   case boolType 
   case integerType 
   case uint32Type 
@@ -116,7 +116,7 @@ enum @typeKind %equatable %testGetters {
 
 #·······················································································································
 
-enum @propertyKind %testGetters {
+enum @propertyKind {
   case property (@typeKind type, @propertyAccessibility accessibility)
   case toMany (@lstring typeName, @propertyAccessibility accessibility, @bool graphic, @toManyRelationshipOptionAST optionKind)
   case toOne (@lstring typeName,
@@ -142,9 +142,9 @@ map @propertyMap {
 
 func @propertyMap.@element.isAbstract() -> @bool {
   result = false
-  if let prop = self.mKind.property then
+  if let prop = self.mKind.getProperty then
     if prop.accessibility.isTransient then
-      prop.accessibility.transient (?isAbstract: let ab)
+      prop.accessibility.extractTransient (?isAbstract: let ab)
       result = ab
     end
   end

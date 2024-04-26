@@ -205,9 +205,9 @@ GALGAS_astAutoLayoutViewInstructionParameterValue GALGAS_astAutoLayoutViewInstru
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutViewInstructionParameterValue::method_string (GALGAS_string & outAssociatedValue_value,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_astAutoLayoutViewInstructionParameterValue::method_extractString (GALGAS_string & outAssociatedValue_value,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_string) {
     outAssociatedValue_value.drop () ;
     String s ;
@@ -221,11 +221,11 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::method_string (GALGAS_st
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutViewInstructionParameterValue::method_menuItem (GALGAS_string & outAssociatedValue_title,
-                                                                         GALGAS_runActionDescriptor & outAssociatedValue_run,
-                                                                         GALGAS_multipleBindingDescriptor & outAssociatedValue_enabled,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_astAutoLayoutViewInstructionParameterValue::method_extractMenuItem (GALGAS_string & outAssociatedValue_title,
+                                                                                GALGAS_runActionDescriptor & outAssociatedValue_run,
+                                                                                GALGAS_multipleBindingDescriptor & outAssociatedValue_enabled,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_menuItem) {
     outAssociatedValue_title.drop () ;
     outAssociatedValue_run.drop () ;
@@ -243,10 +243,10 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::method_menuItem (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutViewInstructionParameterValue::method_enumFunc (GALGAS_lstring & outAssociatedValue_enumTypeName,
-                                                                         GALGAS_lstring & outAssociatedValue_enumFuncName,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_astAutoLayoutViewInstructionParameterValue::method_extractEnumFunc (GALGAS_lstring & outAssociatedValue_enumTypeName,
+                                                                                GALGAS_lstring & outAssociatedValue_enumFuncName,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_enumFunc) {
     outAssociatedValue_enumTypeName.drop () ;
     outAssociatedValue_enumFuncName.drop () ;
@@ -262,9 +262,9 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::method_enumFunc (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutViewInstructionParameterValue::method_viewFunc (GALGAS_astAbstractViewInstructionDeclaration & outAssociatedValue_instruction,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_astAutoLayoutViewInstructionParameterValue::method_extractViewFunc (GALGAS_astAbstractViewInstructionDeclaration & outAssociatedValue_instruction,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_viewFunc) {
     outAssociatedValue_instruction.drop () ;
     String s ;
@@ -278,9 +278,9 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::method_viewFunc (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_astAutoLayoutViewInstructionParameterValue::method_entity (GALGAS_lstring & outAssociatedValue_entityName,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_astAutoLayoutViewInstructionParameterValue::method_extractEntity (GALGAS_lstring & outAssociatedValue_entityName,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_entity) {
     outAssociatedValue_entityName.drop () ;
     String s ;
@@ -294,7 +294,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::method_entity (GALGAS_ls
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_string (UNUSED_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_getString (UNUSED_LOCATION_ARGS) const {
   GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string_3F_ result ;
   if (mEnum == Enumeration::enum_string) {
     const auto ptr = (const GALGAS_astAutoLayoutViewInstructionParameterValue_2D_string *) mAssociatedValues.associatedValuesPointer () ;
@@ -312,7 +312,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::getAssociatedValuesFor_s
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_menuItem (UNUSED_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_getMenuItem (UNUSED_LOCATION_ARGS) const {
   GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem_3F_ result ;
   if (mEnum == Enumeration::enum_menuItem) {
     const auto ptr = (const GALGAS_astAutoLayoutViewInstructionParameterValue_2D_menuItem *) mAssociatedValues.associatedValuesPointer () ;
@@ -334,7 +334,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::getAssociatedValuesFor_m
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_enumFunc (UNUSED_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_getEnumFunc (UNUSED_LOCATION_ARGS) const {
   GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc_3F_ result ;
   if (mEnum == Enumeration::enum_enumFunc) {
     const auto ptr = (const GALGAS_astAutoLayoutViewInstructionParameterValue_2D_enumFunc *) mAssociatedValues.associatedValuesPointer () ;
@@ -354,7 +354,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::getAssociatedValuesFor_e
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_viewFunc (UNUSED_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_getViewFunc (UNUSED_LOCATION_ARGS) const {
   GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc_3F_ result ;
   if (mEnum == Enumeration::enum_viewFunc) {
     const auto ptr = (const GALGAS_astAutoLayoutViewInstructionParameterValue_2D_viewFunc *) mAssociatedValues.associatedValuesPointer () ;
@@ -372,7 +372,7 @@ void GALGAS_astAutoLayoutViewInstructionParameterValue::getAssociatedValuesFor_v
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_entity (UNUSED_LOCATION_ARGS) const {
+GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity_3F_ GALGAS_astAutoLayoutViewInstructionParameterValue::getter_getEntity (UNUSED_LOCATION_ARGS) const {
   GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity_3F_ result ;
   if (mEnum == Enumeration::enum_entity) {
     const auto ptr = (const GALGAS_astAutoLayoutViewInstructionParameterValue_2D_entity *) mAssociatedValues.associatedValuesPointer () ;
@@ -398,6 +398,36 @@ static const char * gEnumNameArrayFor_astAutoLayoutViewInstructionParameterValue
   "viewFunc",
   "entity"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutViewInstructionParameterValue::getter_isString (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_string == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutViewInstructionParameterValue::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_menuItem == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutViewInstructionParameterValue::getter_isEnumFunc (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_enumFunc == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutViewInstructionParameterValue::getter_isViewFunc (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_viewFunc == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_astAutoLayoutViewInstructionParameterValue::getter_isEntity (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -894,35 +924,35 @@ void extensionMethod_checkViewFunctionCallList (const GALGAS_astAutoLayoutViewFu
       while (enumerator_23551.hasCurrentObject () && enumerator_23595.hasCurrentObject ()) {
         enumGalgasBool test_5 = kBoolTrue ;
         if (kBoolTrue == test_5) {
-          const GALGAS_autoLayoutClassParameterType_2D_typeEnum var_formalTypeEnum_23648 = enumerator_23595.current_mParameterType (HERE).getter_typeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).unwrappedValue () ;
-          if (!enumerator_23595.current_mParameterType (HERE).getter_typeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).isValuated ()) {
+          const GALGAS_autoLayoutClassParameterType_2D_typeEnum var_formalTypeEnum_23648 = enumerator_23595.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).unwrappedValue () ;
+          if (!enumerator_23595.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).isValuated ()) {
             test_5 = kBoolFalse ;
           }
           if (kBoolTrue == test_5) {
-            const GALGAS_autoLayoutClassParameterType_2D_typeEnum var_actualTypeEnum_23690 = enumerator_23551.current_mParameterType (HERE).getter_typeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).unwrappedValue () ;
-            if (!enumerator_23551.current_mParameterType (HERE).getter_typeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).isValuated ()) {
+            const GALGAS_autoLayoutClassParameterType_2D_typeEnum var_actualTypeEnum_23693 = enumerator_23551.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).unwrappedValue () ;
+            if (!enumerator_23551.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 554)).isValuated ()) {
               test_5 = kBoolFalse ;
             }
             if (kBoolTrue == test_5) {
-              GALGAS_classKind var_typeKind_23784 ;
-              GALGAS_propertyMap joker_23794_3 ; // Joker input parameter
-              GALGAS_actionMap joker_23794_2 ; // Joker input parameter
-              GALGAS_propertyGenerationList joker_23794_1 ; // Joker input parameter
-              constinArgument_inClassMap.method_searchKey (var_formalTypeEnum_23648.readProperty_name (), var_typeKind_23784, joker_23794_3, joker_23794_2, joker_23794_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 555)) ;
+              GALGAS_classKind var_typeKind_23790 ;
+              GALGAS_propertyMap joker_23800_3 ; // Joker input parameter
+              GALGAS_actionMap joker_23800_2 ; // Joker input parameter
+              GALGAS_propertyGenerationList joker_23800_1 ; // Joker input parameter
+              constinArgument_inClassMap.method_searchKey (var_formalTypeEnum_23648.readProperty_name (), var_typeKind_23790, joker_23800_3, joker_23800_2, joker_23800_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 555)) ;
               enumGalgasBool test_6 = kBoolTrue ;
               if (kBoolTrue == test_6) {
-                const GALGAS_classKind_2D_atomic var_atomicTypeKind_23816 = var_typeKind_23784.getter_atomic (SOURCE_FILE ("auto-layout-view.ggs", 556)).unwrappedValue () ;
-                if (!var_typeKind_23784.getter_atomic (SOURCE_FILE ("auto-layout-view.ggs", 556)).isValuated ()) {
+                const GALGAS_classKind_2D_atomic var_atomicTypeKind_23822 = var_typeKind_23790.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 556)).unwrappedValue () ;
+                if (!var_typeKind_23790.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 556)).isValuated ()) {
                   test_6 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_6) {
-                  const GALGAS_typeKind_2D_enumType var_atomicEnumType_23854 = var_atomicTypeKind_23816.readProperty_kind ().getter_enumType (SOURCE_FILE ("auto-layout-view.ggs", 556)).unwrappedValue () ;
-                  if (!var_atomicTypeKind_23816.readProperty_kind ().getter_enumType (SOURCE_FILE ("auto-layout-view.ggs", 556)).isValuated ()) {
+                  const GALGAS_typeKind_2D_enumType var_atomicEnumType_23863 = var_atomicTypeKind_23822.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 556)).unwrappedValue () ;
+                  if (!var_atomicTypeKind_23822.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 556)).isValuated ()) {
                     test_6 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_6) {
-                    GALGAS_uint joker_23976 ; // Joker input parameter
-                    var_atomicEnumType_23854.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_23690.readProperty_name (), joker_23976, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 557)) ;
+                    GALGAS_uint joker_23988 ; // Joker input parameter
+                    var_atomicEnumType_23863.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_23693.readProperty_name (), joker_23988, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 557)) ;
                   }
                 }
               }
@@ -956,144 +986,144 @@ void extensionMethod_checkViewFunctionCallList (const GALGAS_astAutoLayoutViewFu
           break ;
         case GALGAS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_viewFunc:
           {
-            GALGAS_astAbstractViewInstructionDeclaration extractedValue_24414_instruction_0 ;
-            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_viewFunc (extractedValue_24414_instruction_0) ;
-            GALGAS_abstractViewInstructionGeneration var_viewInstruction_24936 ;
-            callExtensionMethod_generateViewCode ((cPtr_astAbstractViewInstructionDeclaration *) extractedValue_24414_instruction_0.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_24936, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 569)) ;
+            GALGAS_astAbstractViewInstructionDeclaration extractedValue_24426_instruction_0 ;
+            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_viewFunc (extractedValue_24426_instruction_0) ;
+            GALGAS_abstractViewInstructionGeneration var_viewInstruction_24948 ;
+            callExtensionMethod_generateViewCode ((cPtr_astAbstractViewInstructionDeclaration *) extractedValue_24426_instruction_0.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_24948, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 569)) ;
             {
             var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), GALGAS_string ("self.computeImplicitView_").add_operation (ioArgument_ioImplicitViewFunctionGenerationList.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 584)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 584)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 584)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 584)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 584)) ;
             }
             {
-            ioArgument_ioImplicitViewFunctionGenerationList.setter_append (var_viewInstruction_24936, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 585)) ;
+            ioArgument_ioImplicitViewFunctionGenerationList.setter_append (var_viewInstruction_24948, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 585)) ;
             }
           }
           break ;
         case GALGAS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_string:
           {
-            GALGAS_string extractedValue_25181_stringValue_0 ;
-            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_string (extractedValue_25181_stringValue_0) ;
+            GALGAS_string extractedValue_25193_stringValue_0 ;
+            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_string (extractedValue_25193_stringValue_0) ;
             {
-            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_25181_stringValue_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 587)) ;
+            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_25193_stringValue_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 587)) ;
             }
           }
           break ;
         case GALGAS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_entity:
           {
-            GALGAS_lstring extractedValue_25270_entityName_0 ;
-            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_entity (extractedValue_25270_entityName_0) ;
-            GALGAS_classKind var_classKind_25333 ;
-            GALGAS_propertyMap joker_25344_3 ; // Joker input parameter
-            GALGAS_actionMap joker_25344_2 ; // Joker input parameter
-            GALGAS_propertyGenerationList joker_25344_1 ; // Joker input parameter
-            constinArgument_inClassMap.method_searchKey (extractedValue_25270_entityName_0, var_classKind_25333, joker_25344_3, joker_25344_2, joker_25344_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 589)) ;
+            GALGAS_lstring extractedValue_25282_entityName_0 ;
+            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_entity (extractedValue_25282_entityName_0) ;
+            GALGAS_classKind var_classKind_25345 ;
+            GALGAS_propertyMap joker_25356_3 ; // Joker input parameter
+            GALGAS_actionMap joker_25356_2 ; // Joker input parameter
+            GALGAS_propertyGenerationList joker_25356_1 ; // Joker input parameter
+            constinArgument_inClassMap.method_searchKey (extractedValue_25282_entityName_0, var_classKind_25345, joker_25356_3, joker_25356_2, joker_25356_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 589)) ;
             enumGalgasBool test_12 = kBoolTrue ;
             if (kBoolTrue == test_12) {
-              test_12 = var_classKind_25333.getter_isEntity (SOURCE_FILE ("auto-layout-view.ggs", 590)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 590)).boolEnum () ;
+              test_12 = var_classKind_25345.getter_isEntity (SOURCE_FILE ("auto-layout-view.ggs", 590)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 590)).boolEnum () ;
               if (kBoolTrue == test_12) {
                 TC_Array <FixItDescription> fixItArray13 ;
-                inCompiler->emitSemanticError (extractedValue_25270_entityName_0.readProperty_location (), GALGAS_string ("an entity is required here"), fixItArray13  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 591)) ;
+                inCompiler->emitSemanticError (extractedValue_25282_entityName_0.readProperty_location (), GALGAS_string ("an entity is required here"), fixItArray13  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 591)) ;
               }
             }
             {
-            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_25270_entityName_0.readProperty_string ().add_operation (GALGAS_string (".self"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)) ;
+            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_25282_entityName_0.readProperty_string ().add_operation (GALGAS_string (".self"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 593)) ;
             }
           }
           break ;
         case GALGAS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_menuItem:
           {
-            GALGAS_string extractedValue_25555_title_0 ;
-            GALGAS_runActionDescriptor extractedValue_25562_run_1 ;
-            GALGAS_multipleBindingDescriptor extractedValue_25567_enabledBinding_2 ;
-            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_menuItem (extractedValue_25555_title_0, extractedValue_25562_run_1, extractedValue_25567_enabledBinding_2) ;
-            GALGAS_autolayoutRunBindingForGeneration var_runBindingGeneration_25887 ;
+            GALGAS_string extractedValue_25567_title_0 ;
+            GALGAS_runActionDescriptor extractedValue_25574_run_1 ;
+            GALGAS_multipleBindingDescriptor extractedValue_25579_enabledBinding_2 ;
+            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_menuItem (extractedValue_25567_title_0, extractedValue_25574_run_1, extractedValue_25579_enabledBinding_2) ;
+            GALGAS_autolayoutRunBindingForGeneration var_runBindingGeneration_25899 ;
             {
-            routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_25562_run_1, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 599)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_25887, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 595)) ;
+            routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_25574_run_1, GALGAS_bool (true), constinArgument_inPreferences, GALGAS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 599)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_25899, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 595)) ;
             }
-            GALGAS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_26243 ;
+            GALGAS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_26255 ;
             {
-            routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_25567_enabledBinding_2, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_26243, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 605)) ;
+            routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_25579_enabledBinding_2, GALGAS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_26255, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 605)) ;
             }
-            GALGAS_string var_s_26294 = GALGAS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_25555_title_0.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 615)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 615)) ;
-            switch (var_runBindingGeneration_25887.enumValue ()) {
+            GALGAS_string var_s_26306 = GALGAS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_25567_title_0.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 615)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 615)) ;
+            switch (var_runBindingGeneration_25899.enumValue ()) {
             case GALGAS_autolayoutRunBindingForGeneration::Enumeration::invalid:
               break ;
             case GALGAS_autolayoutRunBindingForGeneration::Enumeration::enum_none:
               {
-                var_s_26294.plusAssign_operation(GALGAS_string (", target: nil, selector: nil"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 618)) ;
+                var_s_26306.plusAssign_operation(GALGAS_string (", target: nil, selector: nil"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 618)) ;
               }
               break ;
             case GALGAS_autolayoutRunBindingForGeneration::Enumeration::enum_run:
               {
-                GALGAS_string extractedValue_26494_targetName_0 ;
-                GALGAS_string extractedValue_26506_actionName_1 ;
-                GALGAS_string extractedValue_26518_runTargetName_2 ;
-                var_runBindingGeneration_25887.getAssociatedValuesFor_run (extractedValue_26494_targetName_0, extractedValue_26506_actionName_1, extractedValue_26518_runTargetName_2) ;
-                var_s_26294.plusAssign_operation(GALGAS_string (", target: ").add_operation (extractedValue_26494_targetName_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string (", selector: #selector ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (extractedValue_26518_runTargetName_2, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (extractedValue_26506_actionName_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string (" (_:))"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)) ;
+                GALGAS_string extractedValue_26506_targetName_0 ;
+                GALGAS_string extractedValue_26518_actionName_1 ;
+                GALGAS_string extractedValue_26530_runTargetName_2 ;
+                var_runBindingGeneration_25899.getAssociatedValuesFor_run (extractedValue_26506_targetName_0, extractedValue_26518_actionName_1, extractedValue_26530_runTargetName_2) ;
+                var_s_26306.plusAssign_operation(GALGAS_string (", target: ").add_operation (extractedValue_26506_targetName_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string (", selector: #selector ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (extractedValue_26530_runTargetName_2, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (extractedValue_26518_actionName_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)).add_operation (GALGAS_string (" (_:))"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)) ;
               }
               break ;
             }
-            switch (var_enabledBindingGeneration_26243.enumValue ()) {
+            switch (var_enabledBindingGeneration_26255.enumValue ()) {
             case GALGAS_autolayoutEnabledBindingForGeneration::Enumeration::invalid:
               break ;
             case GALGAS_autolayoutEnabledBindingForGeneration::Enumeration::enum_none:
               {
-                var_s_26294.plusAssign_operation(GALGAS_string (", enableBinding: .alwaysTrue"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 624)) ;
+                var_s_26306.plusAssign_operation(GALGAS_string (", enableBinding: .alwaysTrue"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 624)) ;
               }
               break ;
             case GALGAS_autolayoutEnabledBindingForGeneration::Enumeration::enum_enabled:
               {
-                GALGAS_abstractBooleanMultipleBindingExpressionForGeneration extractedValue_26803_binding_0 ;
-                var_enabledBindingGeneration_26243.getAssociatedValuesFor_enabled (extractedValue_26803_binding_0) ;
-                var_s_26294.plusAssign_operation(GALGAS_string (", enableBinding: ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) extractedValue_26803_binding_0.ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)) ;
+                GALGAS_abstractBooleanMultipleBindingExpressionForGeneration extractedValue_26815_binding_0 ;
+                var_enabledBindingGeneration_26255.getAssociatedValuesFor_enabled (extractedValue_26815_binding_0) ;
+                var_s_26306.plusAssign_operation(GALGAS_string (", enableBinding: ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) extractedValue_26815_binding_0.ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 626)) ;
               }
               break ;
             }
-            var_s_26294.plusAssign_operation(GALGAS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 628)) ;
+            var_s_26306.plusAssign_operation(GALGAS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 628)) ;
             {
-            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), var_s_26294, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 629)) ;
+            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), var_s_26306, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 629)) ;
             }
           }
           break ;
         case GALGAS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_enumFunc:
           {
-            GALGAS_lstring extractedValue_26977_enumTypeName_0 ;
-            GALGAS_lstring extractedValue_26991_funcName_1 ;
-            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_enumFunc (extractedValue_26977_enumTypeName_0, extractedValue_26991_funcName_1) ;
-            GALGAS_classKind var_type_27071 ;
-            GALGAS_propertyMap joker_27077_3 ; // Joker input parameter
-            GALGAS_actionMap joker_27077_2 ; // Joker input parameter
-            GALGAS_propertyGenerationList joker_27077_1 ; // Joker input parameter
-            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_26977_enumTypeName_0, var_type_27071, joker_27077_3, joker_27077_2, joker_27077_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 631)) ;
+            GALGAS_lstring extractedValue_26989_enumTypeName_0 ;
+            GALGAS_lstring extractedValue_27003_funcName_1 ;
+            enumerator_23551.current_mParameter (HERE).getAssociatedValuesFor_enumFunc (extractedValue_26989_enumTypeName_0, extractedValue_27003_funcName_1) ;
+            GALGAS_classKind var_type_27083 ;
+            GALGAS_propertyMap joker_27089_3 ; // Joker input parameter
+            GALGAS_actionMap joker_27089_2 ; // Joker input parameter
+            GALGAS_propertyGenerationList joker_27089_1 ; // Joker input parameter
+            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_26989_enumTypeName_0, var_type_27083, joker_27089_3, joker_27089_2, joker_27089_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 631)) ;
             enumGalgasBool test_14 = kBoolTrue ;
             if (kBoolTrue == test_14) {
-              test_14 = var_type_27071.getter_isAtomic (SOURCE_FILE ("auto-layout-view.ggs", 632)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 632)).boolEnum () ;
+              test_14 = var_type_27083.getter_isAtomic (SOURCE_FILE ("auto-layout-view.ggs", 632)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 632)).boolEnum () ;
               if (kBoolTrue == test_14) {
                 TC_Array <FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (extractedValue_26977_enumTypeName_0.readProperty_location (), GALGAS_string ("this type should be an enum type"), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 633)) ;
+                inCompiler->emitSemanticError (extractedValue_26989_enumTypeName_0.readProperty_location (), GALGAS_string ("this type should be an enum type"), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 633)) ;
               }
             }
             if (kBoolFalse == test_14) {
-              GALGAS_typeKind var_typeKind_27246 ;
-              var_type_27071.method_atomic (var_typeKind_27246, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 635)) ;
+              GALGAS_typeKind var_typeKind_27265 ;
+              var_type_27083.method_extractAtomic (var_typeKind_27265, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 635)) ;
               enumGalgasBool test_16 = kBoolTrue ;
               if (kBoolTrue == test_16) {
-                test_16 = var_typeKind_27246.getter_isEnumType (SOURCE_FILE ("auto-layout-view.ggs", 636)).boolEnum () ;
+                test_16 = var_typeKind_27265.getter_isEnumType (SOURCE_FILE ("auto-layout-view.ggs", 636)).boolEnum () ;
                 if (kBoolTrue == test_16) {
-                  GALGAS_enumFuncMap var_funcMap_27347 ;
-                  GALGAS_string joker_27329_2 ; // Joker input parameter
-                  GALGAS_enumConstantMap joker_27329_1 ; // Joker input parameter
-                  var_typeKind_27246.method_enumType (joker_27329_2, joker_27329_1, var_funcMap_27347, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 637)) ;
-                  GALGAS_enumFunAssociationSortedList joker_27399 ; // Joker input parameter
-                  var_funcMap_27347.method_searchKey (extractedValue_26991_funcName_1, joker_27399, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 638)) ;
+                  GALGAS_enumFuncMap var_funcMap_27373 ;
+                  GALGAS_string joker_27355_2 ; // Joker input parameter
+                  GALGAS_enumConstantMap joker_27355_1 ; // Joker input parameter
+                  var_typeKind_27265.method_extractEnumType (joker_27355_2, joker_27355_1, var_funcMap_27373, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 637)) ;
+                  GALGAS_enumFunAssociationSortedList joker_27425 ; // Joker input parameter
+                  var_funcMap_27373.method_searchKey (extractedValue_27003_funcName_1, joker_27425, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 638)) ;
                 }
               }
               if (kBoolFalse == test_16) {
                 TC_Array <FixItDescription> fixItArray17 ;
-                inCompiler->emitSemanticError (extractedValue_26977_enumTypeName_0.readProperty_location (), GALGAS_string ("this type should be an enum type"), fixItArray17  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 640)) ;
+                inCompiler->emitSemanticError (extractedValue_26989_enumTypeName_0.readProperty_location (), GALGAS_string ("this type should be an enum type"), fixItArray17  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 640)) ;
               }
             }
             {
-            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_26977_enumTypeName_0.readProperty_string ().add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)).add_operation (extractedValue_26991_funcName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)) ;
+            var_parameterList_23294.setter_append (enumerator_23551.current_mParameterName (HERE).readProperty_string (), extractedValue_26989_enumTypeName_0.readProperty_string ().add_operation (GALGAS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)).add_operation (extractedValue_27003_funcName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)).add_operation (GALGAS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 643)) ;
             }
           }
           break ;
@@ -5977,11 +6007,11 @@ GALGAS_autolayoutRunBindingForGeneration GALGAS_autolayoutRunBindingForGeneratio
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_autolayoutRunBindingForGeneration::method_run (GALGAS_string & outAssociatedValue_targetName,
-                                                           GALGAS_string & outAssociatedValue_actionName,
-                                                           GALGAS_string & outAssociatedValue_targetTypeName,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_autolayoutRunBindingForGeneration::method_extractRun (GALGAS_string & outAssociatedValue_targetName,
+                                                                  GALGAS_string & outAssociatedValue_actionName,
+                                                                  GALGAS_string & outAssociatedValue_targetTypeName,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_run) {
     outAssociatedValue_targetName.drop () ;
     outAssociatedValue_actionName.drop () ;
@@ -5999,13 +6029,9 @@ void GALGAS_autolayoutRunBindingForGeneration::method_run (GALGAS_string & outAs
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autolayoutRunBindingForGeneration::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autolayoutRunBindingForGeneration_2D_run_3F_ GALGAS_autolayoutRunBindingForGeneration::getter_run (UNUSED_LOCATION_ARGS) const {
+GALGAS_autolayoutRunBindingForGeneration_2D_run_3F_ GALGAS_autolayoutRunBindingForGeneration::getter_getRun (UNUSED_LOCATION_ARGS) const {
   GALGAS_autolayoutRunBindingForGeneration_2D_run_3F_ result ;
   if (mEnum == Enumeration::enum_run) {
     const auto ptr = (const GALGAS_autolayoutRunBindingForGeneration_2D_run *) mAssociatedValues.associatedValuesPointer () ;
@@ -6032,6 +6058,18 @@ static const char * gEnumNameArrayFor_autolayoutRunBindingForGeneration [3] = {
   "none",
   "run"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autolayoutRunBindingForGeneration::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autolayoutRunBindingForGeneration::getter_isRun (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_run == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6119,9 +6157,9 @@ GALGAS_autoLayoutViewGraphicControllerBindingGeneration GALGAS_autoLayoutViewGra
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_autoLayoutViewGraphicControllerBindingGeneration::method_binding (GALGAS_string & outAssociatedValue_arrayControllerControllerName,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const {
+void GALGAS_autoLayoutViewGraphicControllerBindingGeneration::method_extractBinding (GALGAS_string & outAssociatedValue_arrayControllerControllerName,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_binding) {
     outAssociatedValue_arrayControllerControllerName.drop () ;
     String s ;
@@ -6135,13 +6173,9 @@ void GALGAS_autoLayoutViewGraphicControllerBindingGeneration::method_binding (GA
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding_3F_ GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_binding (UNUSED_LOCATION_ARGS) const {
+GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding_3F_ GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_getBinding (UNUSED_LOCATION_ARGS) const {
   GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding_3F_ result ;
   if (mEnum == Enumeration::enum_binding) {
     const auto ptr = (const GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2D_binding *) mAssociatedValues.associatedValuesPointer () ;
@@ -6164,6 +6198,18 @@ static const char * gEnumNameArrayFor_autoLayoutViewGraphicControllerBindingGene
   "none",
   "binding"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autoLayoutViewGraphicControllerBindingGeneration::getter_isBinding (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_binding == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6251,9 +6297,9 @@ GALGAS_autolayoutEnabledBindingForGeneration GALGAS_autolayoutEnabledBindingForG
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_autolayoutEnabledBindingForGeneration::method_enabled (GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outAssociatedValue_binding,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
+void GALGAS_autolayoutEnabledBindingForGeneration::method_extractEnabled (GALGAS_abstractBooleanMultipleBindingExpressionForGeneration & outAssociatedValue_binding,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_enabled) {
     outAssociatedValue_binding.drop () ;
     String s ;
@@ -6267,13 +6313,9 @@ void GALGAS_autolayoutEnabledBindingForGeneration::method_enabled (GALGAS_abstra
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_autolayoutEnabledBindingForGeneration::getter_none (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled_3F_ GALGAS_autolayoutEnabledBindingForGeneration::getter_enabled (UNUSED_LOCATION_ARGS) const {
+GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled_3F_ GALGAS_autolayoutEnabledBindingForGeneration::getter_getEnabled (UNUSED_LOCATION_ARGS) const {
   GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled_3F_ result ;
   if (mEnum == Enumeration::enum_enabled) {
     const auto ptr = (const GALGAS_autolayoutEnabledBindingForGeneration_2D_enabled *) mAssociatedValues.associatedValuesPointer () ;
@@ -6296,6 +6338,18 @@ static const char * gEnumNameArrayFor_autolayoutEnabledBindingForGeneration [3] 
   "none",
   "enabled"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autolayoutEnabledBindingForGeneration::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_autolayoutEnabledBindingForGeneration::getter_isEnabled (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_enabled == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6956,19 +7010,19 @@ void extensionMethod_generate (const GALGAS_autoLayoutViewInstructionGenerationF
                                Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
   const GALGAS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
-  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_74391 (temp_0, EnumerationOrder::up) ;
-  while (enumerator_74391.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)).add_operation (enumerator_74391.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)) ;
-    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_74494 (enumerator_74391.current_mParameters (HERE), EnumerationOrder::up) ;
-    while (enumerator_74494.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_74494.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)).add_operation (enumerator_74494.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)) ;
-      if (enumerator_74494.hasNextObject ()) {
+  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_74451 (temp_0, EnumerationOrder::up) ;
+  while (enumerator_74451.hasCurrentObject ()) {
+    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GALGAS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)).add_operation (enumerator_74451.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)).add_operation (GALGAS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1726)) ;
+    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_74554 (enumerator_74451.current_mParameters (HERE), EnumerationOrder::up) ;
+    while (enumerator_74554.hasCurrentObject ()) {
+      ioArgument_ioStr.plusAssign_operation(enumerator_74554.current_mParameterName (HERE).add_operation (GALGAS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)).add_operation (enumerator_74554.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1728)) ;
+      if (enumerator_74554.hasNextObject ()) {
         ioArgument_ioStr.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1729)) ;
       }
-      enumerator_74494.gotoNextObject () ;
+      enumerator_74554.gotoNextObject () ;
     }
     ioArgument_ioStr.plusAssign_operation(GALGAS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1731)) ;
-    enumerator_74391.gotoNextObject () ;
+    enumerator_74451.gotoNextObject () ;
   }
 }
 
@@ -8639,10 +8693,10 @@ GALGAS_propertyKind GALGAS_propertyKind::class_func_selectionController (const G
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyKind::method_property (GALGAS_typeKind & outAssociatedValue_type,
-                                           GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyKind::method_extractProperty (GALGAS_typeKind & outAssociatedValue_type,
+                                                  GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_property) {
     outAssociatedValue_type.drop () ;
     outAssociatedValue_accessibility.drop () ;
@@ -8658,12 +8712,12 @@ void GALGAS_propertyKind::method_property (GALGAS_typeKind & outAssociatedValue_
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyKind::method_toMany (GALGAS_lstring & outAssociatedValue_typeName,
-                                         GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
-                                         GALGAS_bool & outAssociatedValue_graphic,
-                                         GALGAS_toManyRelationshipOptionAST & outAssociatedValue_optionKind,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyKind::method_extractToMany (GALGAS_lstring & outAssociatedValue_typeName,
+                                                GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
+                                                GALGAS_bool & outAssociatedValue_graphic,
+                                                GALGAS_toManyRelationshipOptionAST & outAssociatedValue_optionKind,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_toMany) {
     outAssociatedValue_typeName.drop () ;
     outAssociatedValue_accessibility.drop () ;
@@ -8683,13 +8737,13 @@ void GALGAS_propertyKind::method_toMany (GALGAS_lstring & outAssociatedValue_typ
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue_typeName,
-                                        GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
-                                        GALGAS_bool & outAssociatedValue_graphic,
-                                        GALGAS_toOneOppositeRelationship & outAssociatedValue_opposite,
-                                        GALGAS_bool & outAssociatedValue_weak,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyKind::method_extractToOne (GALGAS_lstring & outAssociatedValue_typeName,
+                                               GALGAS_propertyAccessibility & outAssociatedValue_accessibility,
+                                               GALGAS_bool & outAssociatedValue_graphic,
+                                               GALGAS_toOneOppositeRelationship & outAssociatedValue_opposite,
+                                               GALGAS_bool & outAssociatedValue_weak,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_toOne) {
     outAssociatedValue_typeName.drop () ;
     outAssociatedValue_accessibility.drop () ;
@@ -8711,10 +8765,10 @@ void GALGAS_propertyKind::method_toOne (GALGAS_lstring & outAssociatedValue_type
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyKind::method_arrayController (GALGAS_lstring & outAssociatedValue_typeName,
-                                                  GALGAS_bool & outAssociatedValue_graphic,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyKind::method_extractArrayController (GALGAS_lstring & outAssociatedValue_typeName,
+                                                         GALGAS_bool & outAssociatedValue_graphic,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_arrayController) {
     outAssociatedValue_typeName.drop () ;
     outAssociatedValue_graphic.drop () ;
@@ -8730,9 +8784,9 @@ void GALGAS_propertyKind::method_arrayController (GALGAS_lstring & outAssociated
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_propertyKind::method_selectionController (GALGAS_string & outAssociatedValue_typeName,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const {
+void GALGAS_propertyKind::method_extractSelectionController (GALGAS_string & outAssociatedValue_typeName,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selectionController) {
     outAssociatedValue_typeName.drop () ;
     String s ;
@@ -8746,7 +8800,7 @@ void GALGAS_propertyKind::method_selectionController (GALGAS_string & outAssocia
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyKind_2D_property_3F_ GALGAS_propertyKind::getter_property (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyKind_2D_property_3F_ GALGAS_propertyKind::getter_getProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyKind_2D_property_3F_ result ;
   if (mEnum == Enumeration::enum_property) {
     const auto ptr = (const GALGAS_propertyKind_2D_property *) mAssociatedValues.associatedValuesPointer () ;
@@ -8766,7 +8820,7 @@ void GALGAS_propertyKind::getAssociatedValuesFor_property (GALGAS_typeKind & out
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyKind_2D_toMany_3F_ GALGAS_propertyKind::getter_toMany (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyKind_2D_toMany_3F_ GALGAS_propertyKind::getter_getToMany (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyKind_2D_toMany_3F_ result ;
   if (mEnum == Enumeration::enum_toMany) {
     const auto ptr = (const GALGAS_propertyKind_2D_toMany *) mAssociatedValues.associatedValuesPointer () ;
@@ -8790,7 +8844,7 @@ void GALGAS_propertyKind::getAssociatedValuesFor_toMany (GALGAS_lstring & out_ty
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyKind_2D_toOne_3F_ GALGAS_propertyKind::getter_toOne (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyKind_2D_toOne_3F_ GALGAS_propertyKind::getter_getToOne (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyKind_2D_toOne_3F_ result ;
   if (mEnum == Enumeration::enum_toOne) {
     const auto ptr = (const GALGAS_propertyKind_2D_toOne *) mAssociatedValues.associatedValuesPointer () ;
@@ -8816,7 +8870,7 @@ void GALGAS_propertyKind::getAssociatedValuesFor_toOne (GALGAS_lstring & out_typ
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyKind_2D_arrayController_3F_ GALGAS_propertyKind::getter_arrayController (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyKind_2D_arrayController_3F_ GALGAS_propertyKind::getter_getArrayController (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyKind_2D_arrayController_3F_ result ;
   if (mEnum == Enumeration::enum_arrayController) {
     const auto ptr = (const GALGAS_propertyKind_2D_arrayController *) mAssociatedValues.associatedValuesPointer () ;
@@ -8836,7 +8890,7 @@ void GALGAS_propertyKind::getAssociatedValuesFor_arrayController (GALGAS_lstring
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_propertyKind_2D_selectionController_3F_ GALGAS_propertyKind::getter_selectionController (UNUSED_LOCATION_ARGS) const {
+GALGAS_propertyKind_2D_selectionController_3F_ GALGAS_propertyKind::getter_getSelectionController (UNUSED_LOCATION_ARGS) const {
   GALGAS_propertyKind_2D_selectionController_3F_ result ;
   if (mEnum == Enumeration::enum_selectionController) {
     const auto ptr = (const GALGAS_propertyKind_2D_selectionController *) mAssociatedValues.associatedValuesPointer () ;
@@ -9286,9 +9340,9 @@ GALGAS_observablePropertyAST GALGAS_observablePropertyAST::class_func_superPrope
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_rootProperty (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractRootProperty (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_rootProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
@@ -9302,10 +9356,10 @@ void GALGAS_observablePropertyAST::method_rootProperty (GALGAS_lstring & outAsso
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_rootPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                  GALGAS_lstring & outAssociatedValue_optionName,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractRootPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                         GALGAS_lstring & outAssociatedValue_optionName,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_rootPropertyWithOption) {
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
@@ -9321,10 +9375,10 @@ void GALGAS_observablePropertyAST::method_rootPropertyWithOption (GALGAS_lstring
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_rootPropertyRelationship (GALGAS_lstring & outAssociatedValue_relationshipName,
-                                                                    GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractRootPropertyRelationship (GALGAS_lstring & outAssociatedValue_relationshipName,
+                                                                           GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_rootPropertyRelationship) {
     outAssociatedValue_relationshipName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9340,9 +9394,9 @@ void GALGAS_observablePropertyAST::method_rootPropertyRelationship (GALGAS_lstri
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_rootPropertyNone (GALGAS_lstring & outAssociatedValue_relationshipName,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractRootPropertyNone (GALGAS_lstring & outAssociatedValue_relationshipName,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_rootPropertyNone) {
     outAssociatedValue_relationshipName.drop () ;
     String s ;
@@ -9356,9 +9410,9 @@ void GALGAS_observablePropertyAST::method_rootPropertyNone (GALGAS_lstring & out
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfWithoutProperty (GALGAS_location & outAssociatedValue_issueLocation,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfWithoutProperty (GALGAS_location & outAssociatedValue_issueLocation,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfWithoutProperty) {
     outAssociatedValue_issueLocation.drop () ;
     String s ;
@@ -9372,9 +9426,9 @@ void GALGAS_observablePropertyAST::method_selfWithoutProperty (GALGAS_location &
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfProperty (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfProperty (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
@@ -9388,10 +9442,10 @@ void GALGAS_observablePropertyAST::method_selfProperty (GALGAS_lstring & outAsso
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                  GALGAS_lstring & outAssociatedValue_optionName,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                         GALGAS_lstring & outAssociatedValue_optionName,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfPropertyWithOption) {
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
@@ -9407,10 +9461,10 @@ void GALGAS_observablePropertyAST::method_selfPropertyWithOption (GALGAS_lstring
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfPropertyArray (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                             GALGAS_lstring & outAssociatedValue_elementPropertyName,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfPropertyArray (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                    GALGAS_lstring & outAssociatedValue_elementPropertyName,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfPropertyArray) {
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_elementPropertyName.drop () ;
@@ -9426,10 +9480,10 @@ void GALGAS_observablePropertyAST::method_selfPropertyArray (GALGAS_lstring & ou
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfPropertyObject (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                              GALGAS_lstring & outAssociatedValue_elementPropertyName,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfPropertyObject (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                     GALGAS_lstring & outAssociatedValue_elementPropertyName,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfPropertyObject) {
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_elementPropertyName.drop () ;
@@ -9445,9 +9499,9 @@ void GALGAS_observablePropertyAST::method_selfPropertyObject (GALGAS_lstring & o
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfPropertyNone (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfPropertyNone (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfPropertyNone) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
@@ -9461,9 +9515,9 @@ void GALGAS_observablePropertyAST::method_selfPropertyNone (GALGAS_lstring & out
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_prefsProperty (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractPrefsProperty (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_prefsProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
@@ -9477,10 +9531,10 @@ void GALGAS_observablePropertyAST::method_prefsProperty (GALGAS_lstring & outAss
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_prefsPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                   GALGAS_lstring & outAssociatedValue_optionName,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractPrefsPropertyWithOption (GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                          GALGAS_lstring & outAssociatedValue_optionName,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_prefsPropertyWithOption) {
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
@@ -9496,10 +9550,10 @@ void GALGAS_observablePropertyAST::method_prefsPropertyWithOption (GALGAS_lstrin
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfControllerProperty (GALGAS_lstring & outAssociatedValue_controllerName,
-                                                                  GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfControllerProperty (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                                         GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfControllerProperty) {
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9515,11 +9569,11 @@ void GALGAS_observablePropertyAST::method_selfControllerProperty (GALGAS_lstring
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfControllerSecondaryProperty (GALGAS_lstring & outAssociatedValue_controllerName,
-                                                                           GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                           GALGAS_lstring & outAssociatedValue_secondaryPropertyName,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfControllerSecondaryProperty (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                                                  GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                                  GALGAS_lstring & outAssociatedValue_secondaryPropertyName,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfControllerSecondaryProperty) {
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9537,11 +9591,11 @@ void GALGAS_observablePropertyAST::method_selfControllerSecondaryProperty (GALGA
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfControllerAllProperties (GALGAS_lstring & outAssociatedValue_controllerName,
-                                                                       GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                       GALGAS_lstring & outAssociatedValue_secondaryPropertyName,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfControllerAllProperties (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                                              GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                              GALGAS_lstring & outAssociatedValue_secondaryPropertyName,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfControllerAllProperties) {
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9559,10 +9613,10 @@ void GALGAS_observablePropertyAST::method_selfControllerAllProperties (GALGAS_ls
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_selfControllerOneProperty (GALGAS_lstring & outAssociatedValue_controllerName,
-                                                                     GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSelfControllerOneProperty (GALGAS_lstring & outAssociatedValue_controllerName,
+                                                                            GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_selfControllerOneProperty) {
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9578,9 +9632,9 @@ void GALGAS_observablePropertyAST::method_selfControllerOneProperty (GALGAS_lstr
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_signatureProperty (GALGAS_location & outAssociatedValue_location,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSignatureProperty (GALGAS_location & outAssociatedValue_location,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_signatureProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
@@ -9594,9 +9648,9 @@ void GALGAS_observablePropertyAST::method_signatureProperty (GALGAS_location & o
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_versionProperty (GALGAS_location & outAssociatedValue_location,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractVersionProperty (GALGAS_location & outAssociatedValue_location,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_versionProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
@@ -9610,9 +9664,9 @@ void GALGAS_observablePropertyAST::method_versionProperty (GALGAS_location & out
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_versionShouldChangeProperty (GALGAS_location & outAssociatedValue_location,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractVersionShouldChangeProperty (GALGAS_location & outAssociatedValue_location,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_versionShouldChangeProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
@@ -9626,10 +9680,10 @@ void GALGAS_observablePropertyAST::method_versionShouldChangeProperty (GALGAS_lo
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_superProperty (GALGAS_lstring & outAssociatedValue_superEntityName,
-                                                         GALGAS_lstring & outAssociatedValue_propertyName,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSuperProperty (GALGAS_lstring & outAssociatedValue_superEntityName,
+                                                                GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_superProperty) {
     outAssociatedValue_superEntityName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9645,11 +9699,11 @@ void GALGAS_observablePropertyAST::method_superProperty (GALGAS_lstring & outAss
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_observablePropertyAST::method_superPropertyWithDefaultValue (GALGAS_lstring & outAssociatedValue_superEntityName,
-                                                                         GALGAS_lstring & outAssociatedValue_propertyName,
-                                                                         GALGAS_abstractDefaultValue & outAssociatedValue_defaultValue,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_observablePropertyAST::method_extractSuperPropertyWithDefaultValue (GALGAS_lstring & outAssociatedValue_superEntityName,
+                                                                                GALGAS_lstring & outAssociatedValue_propertyName,
+                                                                                GALGAS_abstractDefaultValue & outAssociatedValue_defaultValue,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_superPropertyWithDefaultValue) {
     outAssociatedValue_superEntityName.drop () ;
     outAssociatedValue_propertyName.drop () ;
@@ -9667,7 +9721,7 @@ void GALGAS_observablePropertyAST::method_superPropertyWithDefaultValue (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_rootProperty_3F_ GALGAS_observablePropertyAST::getter_rootProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_rootProperty_3F_ GALGAS_observablePropertyAST::getter_getRootProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_rootProperty_3F_ result ;
   if (mEnum == Enumeration::enum_rootProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_rootProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9685,7 +9739,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_rootProperty (GALGAS_l
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_rootPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_rootPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_rootPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_getRootPropertyWithOption (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_rootPropertyWithOption_3F_ result ;
   if (mEnum == Enumeration::enum_rootPropertyWithOption) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_rootPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -9705,7 +9759,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_rootPropertyWithOption
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_rootPropertyRelationship_3F_ GALGAS_observablePropertyAST::getter_rootPropertyRelationship (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_rootPropertyRelationship_3F_ GALGAS_observablePropertyAST::getter_getRootPropertyRelationship (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_rootPropertyRelationship_3F_ result ;
   if (mEnum == Enumeration::enum_rootPropertyRelationship) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_rootPropertyRelationship *) mAssociatedValues.associatedValuesPointer () ;
@@ -9725,7 +9779,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_rootPropertyRelationsh
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_rootPropertyNone_3F_ GALGAS_observablePropertyAST::getter_rootPropertyNone (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_rootPropertyNone_3F_ GALGAS_observablePropertyAST::getter_getRootPropertyNone (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_rootPropertyNone_3F_ result ;
   if (mEnum == Enumeration::enum_rootPropertyNone) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_rootPropertyNone *) mAssociatedValues.associatedValuesPointer () ;
@@ -9743,7 +9797,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_rootPropertyNone (GALG
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfWithoutProperty_3F_ GALGAS_observablePropertyAST::getter_selfWithoutProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfWithoutProperty_3F_ GALGAS_observablePropertyAST::getter_getSelfWithoutProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfWithoutProperty_3F_ result ;
   if (mEnum == Enumeration::enum_selfWithoutProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfWithoutProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9761,7 +9815,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfWithoutProperty (G
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfProperty_3F_ GALGAS_observablePropertyAST::getter_selfProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfProperty_3F_ GALGAS_observablePropertyAST::getter_getSelfProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfProperty_3F_ result ;
   if (mEnum == Enumeration::enum_selfProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9779,7 +9833,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfProperty (GALGAS_l
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_selfPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_getSelfPropertyWithOption (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfPropertyWithOption_3F_ result ;
   if (mEnum == Enumeration::enum_selfPropertyWithOption) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -9799,7 +9853,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfPropertyWithOption
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfPropertyArray_3F_ GALGAS_observablePropertyAST::getter_selfPropertyArray (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfPropertyArray_3F_ GALGAS_observablePropertyAST::getter_getSelfPropertyArray (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfPropertyArray_3F_ result ;
   if (mEnum == Enumeration::enum_selfPropertyArray) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfPropertyArray *) mAssociatedValues.associatedValuesPointer () ;
@@ -9819,7 +9873,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfPropertyArray (GAL
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfPropertyObject_3F_ GALGAS_observablePropertyAST::getter_selfPropertyObject (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfPropertyObject_3F_ GALGAS_observablePropertyAST::getter_getSelfPropertyObject (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfPropertyObject_3F_ result ;
   if (mEnum == Enumeration::enum_selfPropertyObject) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfPropertyObject *) mAssociatedValues.associatedValuesPointer () ;
@@ -9839,7 +9893,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfPropertyObject (GA
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfPropertyNone_3F_ GALGAS_observablePropertyAST::getter_selfPropertyNone (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfPropertyNone_3F_ GALGAS_observablePropertyAST::getter_getSelfPropertyNone (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfPropertyNone_3F_ result ;
   if (mEnum == Enumeration::enum_selfPropertyNone) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfPropertyNone *) mAssociatedValues.associatedValuesPointer () ;
@@ -9857,7 +9911,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfPropertyNone (GALG
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_prefsProperty_3F_ GALGAS_observablePropertyAST::getter_prefsProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_prefsProperty_3F_ GALGAS_observablePropertyAST::getter_getPrefsProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_prefsProperty_3F_ result ;
   if (mEnum == Enumeration::enum_prefsProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_prefsProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9875,7 +9929,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_prefsProperty (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_prefsPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_prefsPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_prefsPropertyWithOption_3F_ GALGAS_observablePropertyAST::getter_getPrefsPropertyWithOption (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_prefsPropertyWithOption_3F_ result ;
   if (mEnum == Enumeration::enum_prefsPropertyWithOption) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_prefsPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -9895,7 +9949,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_prefsPropertyWithOptio
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfControllerProperty_3F_ GALGAS_observablePropertyAST::getter_selfControllerProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfControllerProperty_3F_ GALGAS_observablePropertyAST::getter_getSelfControllerProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfControllerProperty_3F_ result ;
   if (mEnum == Enumeration::enum_selfControllerProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfControllerProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9915,7 +9969,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfControllerProperty
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty_3F_ GALGAS_observablePropertyAST::getter_selfControllerSecondaryProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty_3F_ GALGAS_observablePropertyAST::getter_getSelfControllerSecondaryProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty_3F_ result ;
   if (mEnum == Enumeration::enum_selfControllerSecondaryProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfControllerSecondaryProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9937,7 +9991,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfControllerSecondar
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfControllerAllProperties_3F_ GALGAS_observablePropertyAST::getter_selfControllerAllProperties (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfControllerAllProperties_3F_ GALGAS_observablePropertyAST::getter_getSelfControllerAllProperties (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfControllerAllProperties_3F_ result ;
   if (mEnum == Enumeration::enum_selfControllerAllProperties) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfControllerAllProperties *) mAssociatedValues.associatedValuesPointer () ;
@@ -9959,7 +10013,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfControllerAllPrope
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_selfControllerOneProperty_3F_ GALGAS_observablePropertyAST::getter_selfControllerOneProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_selfControllerOneProperty_3F_ GALGAS_observablePropertyAST::getter_getSelfControllerOneProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_selfControllerOneProperty_3F_ result ;
   if (mEnum == Enumeration::enum_selfControllerOneProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_selfControllerOneProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9979,7 +10033,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_selfControllerOnePrope
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_signatureProperty_3F_ GALGAS_observablePropertyAST::getter_signatureProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_signatureProperty_3F_ GALGAS_observablePropertyAST::getter_getSignatureProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_signatureProperty_3F_ result ;
   if (mEnum == Enumeration::enum_signatureProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_signatureProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -9997,7 +10051,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_signatureProperty (GAL
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_versionProperty_3F_ GALGAS_observablePropertyAST::getter_versionProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_versionProperty_3F_ GALGAS_observablePropertyAST::getter_getVersionProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_versionProperty_3F_ result ;
   if (mEnum == Enumeration::enum_versionProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_versionProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -10015,7 +10069,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_versionProperty (GALGA
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_versionShouldChangeProperty_3F_ GALGAS_observablePropertyAST::getter_versionShouldChangeProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_versionShouldChangeProperty_3F_ GALGAS_observablePropertyAST::getter_getVersionShouldChangeProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_versionShouldChangeProperty_3F_ result ;
   if (mEnum == Enumeration::enum_versionShouldChangeProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_versionShouldChangeProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -10033,7 +10087,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_versionShouldChangePro
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_superProperty_3F_ GALGAS_observablePropertyAST::getter_superProperty (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_superProperty_3F_ GALGAS_observablePropertyAST::getter_getSuperProperty (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_superProperty_3F_ result ;
   if (mEnum == Enumeration::enum_superProperty) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_superProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -10053,7 +10107,7 @@ void GALGAS_observablePropertyAST::getAssociatedValuesFor_superProperty (GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue_3F_ GALGAS_observablePropertyAST::getter_superPropertyWithDefaultValue (UNUSED_LOCATION_ARGS) const {
+GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue_3F_ GALGAS_observablePropertyAST::getter_getSuperPropertyWithDefaultValue (UNUSED_LOCATION_ARGS) const {
   GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue_3F_ result ;
   if (mEnum == Enumeration::enum_superPropertyWithDefaultValue) {
     const auto ptr = (const GALGAS_observablePropertyAST_2D_superPropertyWithDefaultValue *) mAssociatedValues.associatedValuesPointer () ;
@@ -10099,6 +10153,132 @@ static const char * gEnumNameArrayFor_observablePropertyAST [22] = {
   "superProperty",
   "superPropertyWithDefaultValue"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isRootProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_rootProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isRootPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_rootPropertyWithOption == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isRootPropertyRelationship (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_rootPropertyRelationship == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isRootPropertyNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_rootPropertyNone == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfWithoutProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfWithoutProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfPropertyWithOption == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfPropertyArray (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfPropertyArray == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfPropertyObject (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfPropertyObject == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfPropertyNone (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfPropertyNone == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isPrefsProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_prefsProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isPrefsPropertyWithOption (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_prefsPropertyWithOption == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfControllerProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfControllerProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfControllerSecondaryProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfControllerSecondaryProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfControllerAllProperties (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfControllerAllProperties == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSelfControllerOneProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_selfControllerOneProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSignatureProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_signatureProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isVersionProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_versionProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isVersionShouldChangeProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_versionShouldChangeProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSuperProperty (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_superProperty == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_observablePropertyAST::getter_isSuperPropertyWithDefaultValue (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_superPropertyWithDefaultValue == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 

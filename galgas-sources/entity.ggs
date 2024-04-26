@@ -294,7 +294,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   var hasSubClass = false
   for classDeclaration in ioSemanticContext.mClassMap while not hasSubClass do
     if classDeclaration.mClassKind.isEntity then
-      classDeclaration.mClassKind.entity (?superEntityName: let superEntityName, ?3*)
+      classDeclaration.mClassKind.extractEntity (?superEntityName: let superEntityName, ?3*)
       hasSubClass = self.mClassName.string == superEntityName
     end 
   end

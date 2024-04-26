@@ -11077,11 +11077,11 @@ GALGAS_typeKind GALGAS_typeKind::class_func_transientPropertyExternType (const G
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue_enumTypeName,
-                                       GALGAS_enumConstantMap & outAssociatedValue_constantMap,
-                                       GALGAS_enumFuncMap & outAssociatedValue_funcMap,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) const {
+void GALGAS_typeKind::method_extractEnumType (GALGAS_string & outAssociatedValue_enumTypeName,
+                                              GALGAS_enumConstantMap & outAssociatedValue_constantMap,
+                                              GALGAS_enumFuncMap & outAssociatedValue_funcMap,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_enumType) {
     outAssociatedValue_enumTypeName.drop () ;
     outAssociatedValue_constantMap.drop () ;
@@ -11099,10 +11099,10 @@ void GALGAS_typeKind::method_enumType (GALGAS_string & outAssociatedValue_enumTy
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue_entityName,
-                                         GALGAS_bool & outAssociatedValue_graphic,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) const {
+void GALGAS_typeKind::method_extractEntityType (GALGAS_string & outAssociatedValue_entityName,
+                                                GALGAS_bool & outAssociatedValue_graphic,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_entityType) {
     outAssociatedValue_entityName.drop () ;
     outAssociatedValue_graphic.drop () ;
@@ -11118,9 +11118,9 @@ void GALGAS_typeKind::method_entityType (GALGAS_string & outAssociatedValue_enti
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_typeKind::method_classType (GALGAS_string & outAssociatedValue_className,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) const {
+void GALGAS_typeKind::method_extractClassType (GALGAS_string & outAssociatedValue_className,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_classType) {
     outAssociatedValue_className.drop () ;
     String s ;
@@ -11134,9 +11134,9 @@ void GALGAS_typeKind::method_classType (GALGAS_string & outAssociatedValue_class
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAssociatedValue_externTypeName,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
+void GALGAS_typeKind::method_extractTransientPropertyExternType (GALGAS_string & outAssociatedValue_externTypeName,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_transientPropertyExternType) {
     outAssociatedValue_externTypeName.drop () ;
     String s ;
@@ -11150,73 +11150,29 @@ void GALGAS_typeKind::method_transientPropertyExternType (GALGAS_string & outAss
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_boolType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_boolType == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_integerType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_integerType == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_uint_33__32_Type (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_uint_33__32_Type == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_doubleType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_doubleType == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_stringType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_stringType == mEnum) ;
-}
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_dataType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_dataType == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_typeKind::getter_dateType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_dateType == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_typeKind::getter_fontType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_fontType == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_typeKind::getter_colorType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_colorType == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_typeKind::getter_bezierPathType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_bezierPathType == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_typeKind::getter_bezierPathArrayType (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_bezierPathArrayType == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_typeKind_2D_enumType_3F_ GALGAS_typeKind::getter_enumType (UNUSED_LOCATION_ARGS) const {
+GALGAS_typeKind_2D_enumType_3F_ GALGAS_typeKind::getter_getEnumType (UNUSED_LOCATION_ARGS) const {
   GALGAS_typeKind_2D_enumType_3F_ result ;
   if (mEnum == Enumeration::enum_enumType) {
     const auto ptr = (const GALGAS_typeKind_2D_enumType *) mAssociatedValues.associatedValuesPointer () ;
@@ -11238,7 +11194,7 @@ void GALGAS_typeKind::getAssociatedValuesFor_enumType (GALGAS_string & out_enumT
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_typeKind_2D_entityType_3F_ GALGAS_typeKind::getter_entityType (UNUSED_LOCATION_ARGS) const {
+GALGAS_typeKind_2D_entityType_3F_ GALGAS_typeKind::getter_getEntityType (UNUSED_LOCATION_ARGS) const {
   GALGAS_typeKind_2D_entityType_3F_ result ;
   if (mEnum == Enumeration::enum_entityType) {
     const auto ptr = (const GALGAS_typeKind_2D_entityType *) mAssociatedValues.associatedValuesPointer () ;
@@ -11258,7 +11214,7 @@ void GALGAS_typeKind::getAssociatedValuesFor_entityType (GALGAS_string & out_ent
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_typeKind_2D_classType_3F_ GALGAS_typeKind::getter_classType (UNUSED_LOCATION_ARGS) const {
+GALGAS_typeKind_2D_classType_3F_ GALGAS_typeKind::getter_getClassType (UNUSED_LOCATION_ARGS) const {
   GALGAS_typeKind_2D_classType_3F_ result ;
   if (mEnum == Enumeration::enum_classType) {
     const auto ptr = (const GALGAS_typeKind_2D_classType *) mAssociatedValues.associatedValuesPointer () ;
@@ -11276,7 +11232,7 @@ void GALGAS_typeKind::getAssociatedValuesFor_classType (GALGAS_string & out_clas
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_typeKind_2D_transientPropertyExternType_3F_ GALGAS_typeKind::getter_transientPropertyExternType (UNUSED_LOCATION_ARGS) const {
+GALGAS_typeKind_2D_transientPropertyExternType_3F_ GALGAS_typeKind::getter_getTransientPropertyExternType (UNUSED_LOCATION_ARGS) const {
   GALGAS_typeKind_2D_transientPropertyExternType_3F_ result ;
   if (mEnum == Enumeration::enum_transientPropertyExternType) {
     const auto ptr = (const GALGAS_typeKind_2D_transientPropertyExternType *) mAssociatedValues.associatedValuesPointer () ;

@@ -10934,7 +10934,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       }
       enumGalgasBool test_12 = kBoolTrue ;
       if (kBoolTrue == test_12) {
-        test_12 = outArgument_graphicController.getter_none (SOURCE_FILE ("outlet-declaration.ggs", 148)).boolEnum () ;
+        test_12 = outArgument_graphicController.getter_isNone (SOURCE_FILE ("outlet-declaration.ggs", 148)).boolEnum () ;
         if (kBoolTrue == test_12) {
           outArgument_graphicController = GALGAS_graphicController::class_func_defined (var_graphicControllerName_5556, var_propertyName_5598  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 149)) ;
         }

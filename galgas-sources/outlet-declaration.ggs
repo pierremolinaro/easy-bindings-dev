@@ -145,7 +145,7 @@ syntax extension easyBindings_syntax {
         $.$
         $identifier$ (?propertyName)
       end
-      if graphicController.none then
+      if graphicController.isNone then
         graphicController = .defined (!controller:graphicControllerName, !propertyName: propertyName)
       else
         error graphicControllerName : "binding already defined"
@@ -345,7 +345,7 @@ proc analyzeOutlets(
       if not handlesEnabledBinding then
         error errorLocation : "cet outlet n'accepte pas le binding $enabled"
       end
-      if not type.boolType then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       !?outMultipleBindingGenerationList.append (
@@ -368,7 +368,7 @@ proc analyzeOutlets(
         ?let @typeKind type,
         ?let @location errorLocation
       )
-      if not type.boolType then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       if not handlesHiddenBinding then

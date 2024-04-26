@@ -155,7 +155,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         !graphic: graphic,
         !optionKind: self.mOption
       )
-      if not handleOpposite, let * = self.mOption.hasOpposite then
+      if not handleOpposite, not self.mOption.isHasOpposite then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
       !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, [], false)
@@ -197,7 +197,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
 
 #·······················································································································
 
-enum @toManyRelationshipOptionGeneration %testGetters {
+enum @toManyRelationshipOptionGeneration {
   case none
   case hasOpposite (@string oppositeName)
   case hasDependance (@string masterPropertyName, @string masterPropertySwiftTypeName)
@@ -230,7 +230,7 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unuse
     result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-    self.mOption.hasDependance (?1*, ?masterPropertySwiftTypeName: let masterPropertyTypeName)
+    self.mOption.extractHasDependance (?1*, ?masterPropertySwiftTypeName: let masterPropertyTypeName)
     result += "  final let " + self.mPropertyName + "_property = TransientArrayOfSuperOf_" + self.mRelationshipType.swiftTypeName
            + " <" + masterPropertyTypeName + "> ()\n\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"

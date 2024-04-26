@@ -225,7 +225,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
         ?let @typeKind type,
         ?let @location errorLocation
       )
-      if not type.boolType then
+      if not type.isBoolType then
         error errorLocation : "expression is not boolean"
       end
       !?multipleBindingGenerationList.append (
