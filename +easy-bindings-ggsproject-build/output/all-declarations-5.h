@@ -1970,8 +1970,43 @@ class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak 
 
   public: GGS_enumForGeneration_2E_weak & operator = (const class GGS_enumForGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_enumForGeneration_2E_weak init_nil (void) {
+    GGS_enumForGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_enumForGeneration bang_enumForGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_enumForGeneration unwrappedValue (void) const {
+    GGS_enumForGeneration result ;
+    if (isValid ()) {
+      const cPtr_enumForGeneration * p = (cPtr_enumForGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_enumForGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 

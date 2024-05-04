@@ -93,7 +93,7 @@ class GGS_propertyKind : public AC_GALGAS_root {
                                                               class GGS_propertyAccessibility & out_accessibility,
                                                               class GGS_bool & out_graphic,
                                                               class GGS_toOneOppositeRelationship & out_opposite,
-                                                              class GGS_bool & out_weak) const ;
+                                                              class GGS_bool & out_isWeak) const ;
   public: VIRTUAL_IN_DEBUG void getAssociatedValuesFor_arrayController (class GGS_lstring & out_typeName,
                                                                         class GGS_bool & out_graphic) const ;
   public: VIRTUAL_IN_DEBUG void getAssociatedValuesFor_selectionController (class GGS_string & out_typeName) const ;
@@ -1054,9 +1054,15 @@ class GGS_classKind_2E_atomic_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_classKind_2E_atomic_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_classKind_2E_atomic_3F_ (const GGS_classKind_2E_atomic & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_classKind_2E_atomic_3F_ (const GGS_classKind_2E_atomic & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_classKind_2E_atomic_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_classKind_2E_atomic unwrappedValue (void) const {
@@ -1162,8 +1168,43 @@ class GGS_abstractViewGeneration_2E_weak : public AC_GALGAS_weak_reference {
 
   public: GGS_abstractViewGeneration_2E_weak & operator = (const class GGS_abstractViewGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_abstractViewGeneration_2E_weak init_nil (void) {
+    GGS_abstractViewGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_abstractViewGeneration bang_abstractViewGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_abstractViewGeneration unwrappedValue (void) const {
+    GGS_abstractViewGeneration result ;
+    if (isValid ()) {
+      const cPtr_abstractViewGeneration * p = (cPtr_abstractViewGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_abstractViewGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1643,8 +1684,43 @@ class GGS_computedHorizontalViewGeneration_2E_weak : public GGS_abstractViewGene
 
   public: GGS_computedHorizontalViewGeneration_2E_weak & operator = (const class GGS_computedHorizontalViewGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_computedHorizontalViewGeneration_2E_weak init_nil (void) {
+    GGS_computedHorizontalViewGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_computedHorizontalViewGeneration bang_computedHorizontalViewGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_computedHorizontalViewGeneration unwrappedValue (void) const {
+    GGS_computedHorizontalViewGeneration result ;
+    if (isValid ()) {
+      const cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_computedHorizontalViewGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1815,8 +1891,43 @@ class GGS_computedVerticalViewGeneration_2E_weak : public GGS_abstractViewGenera
 
   public: GGS_computedVerticalViewGeneration_2E_weak & operator = (const class GGS_computedVerticalViewGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_computedVerticalViewGeneration_2E_weak init_nil (void) {
+    GGS_computedVerticalViewGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_computedVerticalViewGeneration bang_computedVerticalViewGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_computedVerticalViewGeneration unwrappedValue (void) const {
+    GGS_computedVerticalViewGeneration result ;
+    if (isValid ()) {
+      const cPtr_computedVerticalViewGeneration * p = (cPtr_computedVerticalViewGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_computedVerticalViewGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1870,8 +1981,43 @@ class GGS_abstractViewInstructionGeneration_2E_weak : public AC_GALGAS_weak_refe
 
   public: GGS_abstractViewInstructionGeneration_2E_weak & operator = (const class GGS_abstractViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_abstractViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_abstractViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_abstractViewInstructionGeneration bang_abstractViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_abstractViewInstructionGeneration unwrappedValue (void) const {
+    GGS_abstractViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_abstractViewInstructionGeneration * p = (cPtr_abstractViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_abstractViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2302,8 +2448,43 @@ class GGS_hStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 
   public: GGS_hStackViewInstructionGeneration_2E_weak & operator = (const class GGS_hStackViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_hStackViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_hStackViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_hStackViewInstructionGeneration bang_hStackViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_hStackViewInstructionGeneration unwrappedValue (void) const {
+    GGS_hStackViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_hStackViewInstructionGeneration * p = (cPtr_hStackViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_hStackViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2482,8 +2663,43 @@ class GGS_vStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 
   public: GGS_vStackViewInstructionGeneration_2E_weak & operator = (const class GGS_vStackViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_vStackViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_vStackViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_vStackViewInstructionGeneration bang_vStackViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_vStackViewInstructionGeneration unwrappedValue (void) const {
+    GGS_vStackViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_vStackViewInstructionGeneration * p = (cPtr_vStackViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_vStackViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2634,8 +2850,43 @@ class GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak : public GGS_abstract
 
   public: GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak & operator = (const class GGS_autoLayoutSpaceViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_autoLayoutSpaceViewInstructionGeneration bang_autoLayoutSpaceViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_autoLayoutSpaceViewInstructionGeneration unwrappedValue (void) const {
+    GGS_autoLayoutSpaceViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_autoLayoutSpaceViewInstructionGeneration * p = (cPtr_autoLayoutSpaceViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_autoLayoutSpaceViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2793,8 +3044,43 @@ class GGS_autoLayoutSeparatorInstructionGeneration_2E_weak : public GGS_abstract
 
   public: GGS_autoLayoutSeparatorInstructionGeneration_2E_weak & operator = (const class GGS_autoLayoutSeparatorInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_autoLayoutSeparatorInstructionGeneration_2E_weak init_nil (void) {
+    GGS_autoLayoutSeparatorInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_autoLayoutSeparatorInstructionGeneration bang_autoLayoutSeparatorInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_autoLayoutSeparatorInstructionGeneration unwrappedValue (void) const {
+    GGS_autoLayoutSeparatorInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_autoLayoutSeparatorInstructionGeneration * p = (cPtr_autoLayoutSeparatorInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_autoLayoutSeparatorInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2952,8 +3238,43 @@ class GGS_autoLayoutDividerInstructionGeneration_2E_weak : public GGS_abstractVi
 
   public: GGS_autoLayoutDividerInstructionGeneration_2E_weak & operator = (const class GGS_autoLayoutDividerInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_autoLayoutDividerInstructionGeneration_2E_weak init_nil (void) {
+    GGS_autoLayoutDividerInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_autoLayoutDividerInstructionGeneration bang_autoLayoutDividerInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_autoLayoutDividerInstructionGeneration unwrappedValue (void) const {
+    GGS_autoLayoutDividerInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_autoLayoutDividerInstructionGeneration * p = (cPtr_autoLayoutDividerInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_autoLayoutDividerInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3111,8 +3432,43 @@ class GGS_autoLayoutLocalViewInstructionGeneration_2E_weak : public GGS_abstract
 
   public: GGS_autoLayoutLocalViewInstructionGeneration_2E_weak & operator = (const class GGS_autoLayoutLocalViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_autoLayoutLocalViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_autoLayoutLocalViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_autoLayoutLocalViewInstructionGeneration bang_autoLayoutLocalViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_autoLayoutLocalViewInstructionGeneration unwrappedValue (void) const {
+    GGS_autoLayoutLocalViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_autoLayoutLocalViewInstructionGeneration * p = (cPtr_autoLayoutLocalViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_autoLayoutLocalViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3639,9 +3995,15 @@ class GGS_autolayoutRunBindingForGeneration_2E_run_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_autolayoutRunBindingForGeneration_2E_run_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_autolayoutRunBindingForGeneration_2E_run_3F_ (const GGS_autolayoutRunBindingForGeneration_2E_run & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_autolayoutRunBindingForGeneration_2E_run_3F_ (const GGS_autolayoutRunBindingForGeneration_2E_run & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_autolayoutRunBindingForGeneration_2E_run_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_autolayoutRunBindingForGeneration_2E_run unwrappedValue (void) const {
@@ -3876,9 +4238,15 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ : publ
 //--------------------------------- Default constructor
   public: GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ (const GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ (const GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding unwrappedValue (void) const {
@@ -4026,9 +4394,15 @@ class GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ : public AC_GALGA
 //--------------------------------- Default constructor
   public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_autolayoutEnabledBindingForGeneration_2E_enabled unwrappedValue (void) const {
@@ -4363,8 +4737,43 @@ class GGS_autoLayoutComputedViewInstructionGeneration_2E_weak : public GGS_abstr
 
   public: GGS_autoLayoutComputedViewInstructionGeneration_2E_weak & operator = (const class GGS_autoLayoutComputedViewInstructionGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_autoLayoutComputedViewInstructionGeneration_2E_weak init_nil (void) {
+    GGS_autoLayoutComputedViewInstructionGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_autoLayoutComputedViewInstructionGeneration bang_autoLayoutComputedViewInstructionGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_autoLayoutComputedViewInstructionGeneration unwrappedValue (void) const {
+    GGS_autoLayoutComputedViewInstructionGeneration result ;
+    if (isValid ()) {
+      const cPtr_autoLayoutComputedViewInstructionGeneration * p = (cPtr_autoLayoutComputedViewInstructionGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_autoLayoutComputedViewInstructionGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4618,8 +5027,43 @@ class GGS_outletClassDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_
 
   public: GGS_outletClassDeclarationAST_2E_weak & operator = (const class GGS_outletClassDeclarationAST & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_outletClassDeclarationAST_2E_weak init_nil (void) {
+    GGS_outletClassDeclarationAST_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_outletClassDeclarationAST bang_outletClassDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_outletClassDeclarationAST unwrappedValue (void) const {
+    GGS_outletClassDeclarationAST result ;
+    if (isValid ()) {
+      const cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_outletClassDeclarationAST (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4805,9 +5249,15 @@ class GGS_outletBindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_outletBindingSpecificationMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_outletBindingSpecificationMap_2E_element_3F_ (const GGS_outletBindingSpecificationMap_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_outletBindingSpecificationMap_2E_element_3F_ (const GGS_outletBindingSpecificationMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_outletBindingSpecificationMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_outletBindingSpecificationMap_2E_element unwrappedValue (void) const {
@@ -5308,9 +5758,15 @@ class GGS_propertyKind_2E_arrayController_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_propertyKind_2E_arrayController_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_propertyKind_2E_arrayController_3F_ (const GGS_propertyKind_2E_arrayController & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_propertyKind_2E_arrayController_3F_ (const GGS_propertyKind_2E_arrayController & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_propertyKind_2E_arrayController_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_propertyKind_2E_arrayController unwrappedValue (void) const {
@@ -5562,9 +6018,15 @@ class GGS_propertyKind_2E_property_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_propertyKind_2E_property_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_propertyKind_2E_property_3F_ (const GGS_propertyKind_2E_property & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_propertyKind_2E_property_3F_ (const GGS_propertyKind_2E_property & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_propertyKind_2E_property_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_propertyKind_2E_property unwrappedValue (void) const {
@@ -5712,9 +6174,15 @@ class GGS_propertyKind_2E_selectionController_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_propertyKind_2E_selectionController_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_propertyKind_2E_selectionController_3F_ (const GGS_propertyKind_2E_selectionController & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_propertyKind_2E_selectionController_3F_ (const GGS_propertyKind_2E_selectionController & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_propertyKind_2E_selectionController_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_propertyKind_2E_selectionController unwrappedValue (void) const {
@@ -5998,9 +6466,15 @@ class GGS_propertyKind_2E_toMany_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_propertyKind_2E_toMany_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_propertyKind_2E_toMany_3F_ (const GGS_propertyKind_2E_toMany & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_propertyKind_2E_toMany_3F_ (const GGS_propertyKind_2E_toMany & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_propertyKind_2E_toMany_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_propertyKind_2E_toMany unwrappedValue (void) const {
@@ -6187,9 +6661,9 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
     return mProperty_opposite ;
   }
 
-  public: GGS_bool mProperty_weak ;
-  public: inline GGS_bool readProperty_weak (void) const {
-    return mProperty_weak ;
+  public: GGS_bool mProperty_isWeak ;
+  public: inline GGS_bool readProperty_isWeak (void) const {
+    return mProperty_isWeak ;
   }
 
 //--------------------------------- Accessors
@@ -6216,8 +6690,8 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
     mProperty_opposite = inValue ;
   }
 
-  public: inline void setter_setWeak (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_weak = inValue ;
+  public: inline void setter_setIsWeak (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_isWeak = inValue ;
   }
 
 //--------------------------------- Virtual destructor
@@ -6231,7 +6705,7 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
                                      const GGS_propertyAccessibility & in_accessibility,
                                      const GGS_bool & in_graphic,
                                      const GGS_toOneOppositeRelationship & in_opposite,
-                                     const GGS_bool & in_weak) ;
+                                     const GGS_bool & in_isWeak) ;
 
 //-- Start of type generic part
 
@@ -6298,9 +6772,15 @@ class GGS_propertyKind_2E_toOne_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_propertyKind_2E_toOne_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_propertyKind_2E_toOne_3F_ (const GGS_propertyKind_2E_toOne & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_propertyKind_2E_toOne_3F_ (const GGS_propertyKind_2E_toOne & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_propertyKind_2E_toOne_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_propertyKind_2E_toOne unwrappedValue (void) const {
@@ -6847,9 +7327,15 @@ class GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ : public AC_GALGA
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_prefsPropertyWithOption & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_prefsPropertyWithOption & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_prefsPropertyWithOption unwrappedValue (void) const {
@@ -6997,9 +7483,15 @@ class GGS_observablePropertyAST_2E_prefsProperty_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_prefsProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_prefsProperty_3F_ (const GGS_observablePropertyAST_2E_prefsProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_prefsProperty_3F_ (const GGS_observablePropertyAST_2E_prefsProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_prefsProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_prefsProperty unwrappedValue (void) const {
@@ -7147,9 +7639,15 @@ class GGS_observablePropertyAST_2E_rootPropertyNone_3F_ : public AC_GALGAS_root 
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_rootPropertyNone_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_rootPropertyNone_3F_ (const GGS_observablePropertyAST_2E_rootPropertyNone & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_rootPropertyNone_3F_ (const GGS_observablePropertyAST_2E_rootPropertyNone & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_rootPropertyNone_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_rootPropertyNone unwrappedValue (void) const {
@@ -7309,9 +7807,15 @@ class GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ : public AC_GALG
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ (const GGS_observablePropertyAST_2E_rootPropertyRelationship & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ (const GGS_observablePropertyAST_2E_rootPropertyRelationship & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_rootPropertyRelationship unwrappedValue (void) const {
@@ -7471,9 +7975,15 @@ class GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ : public AC_GALGAS
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_rootPropertyWithOption & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_rootPropertyWithOption & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_rootPropertyWithOption unwrappedValue (void) const {
@@ -7621,9 +8131,15 @@ class GGS_observablePropertyAST_2E_rootProperty_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_rootProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_rootProperty_3F_ (const GGS_observablePropertyAST_2E_rootProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_rootProperty_3F_ (const GGS_observablePropertyAST_2E_rootProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_rootProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_rootProperty unwrappedValue (void) const {
@@ -7795,9 +8311,15 @@ class GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ : public AC_G
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (const GGS_observablePropertyAST_2E_selfControllerAllProperties & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (const GGS_observablePropertyAST_2E_selfControllerAllProperties & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfControllerAllProperties unwrappedValue (void) const {
@@ -7957,9 +8479,15 @@ class GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ : public AC_GAL
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerOneProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerOneProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfControllerOneProperty unwrappedValue (void) const {
@@ -8119,9 +8647,15 @@ class GGS_observablePropertyAST_2E_selfControllerProperty_3F_ : public AC_GALGAS
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfControllerProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfControllerProperty unwrappedValue (void) const {
@@ -8293,9 +8827,15 @@ class GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ : public 
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfControllerSecondaryProperty unwrappedValue (void) const {
@@ -8455,9 +8995,15 @@ class GGS_observablePropertyAST_2E_selfPropertyArray_3F_ : public AC_GALGAS_root
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (const GGS_observablePropertyAST_2E_selfPropertyArray & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (const GGS_observablePropertyAST_2E_selfPropertyArray & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfPropertyArray_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfPropertyArray unwrappedValue (void) const {
@@ -8605,9 +9151,15 @@ class GGS_observablePropertyAST_2E_selfPropertyNone_3F_ : public AC_GALGAS_root 
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (const GGS_observablePropertyAST_2E_selfPropertyNone & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (const GGS_observablePropertyAST_2E_selfPropertyNone & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfPropertyNone_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfPropertyNone unwrappedValue (void) const {
@@ -8767,9 +9319,15 @@ class GGS_observablePropertyAST_2E_selfPropertyObject_3F_ : public AC_GALGAS_roo
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (const GGS_observablePropertyAST_2E_selfPropertyObject & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (const GGS_observablePropertyAST_2E_selfPropertyObject & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfPropertyObject_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfPropertyObject unwrappedValue (void) const {
@@ -8929,9 +9487,15 @@ class GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ : public AC_GALGAS
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_selfPropertyWithOption & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_selfPropertyWithOption & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfPropertyWithOption unwrappedValue (void) const {
@@ -9079,9 +9643,15 @@ class GGS_observablePropertyAST_2E_selfProperty_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfProperty_3F_ (const GGS_observablePropertyAST_2E_selfProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfProperty_3F_ (const GGS_observablePropertyAST_2E_selfProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfProperty unwrappedValue (void) const {
@@ -9229,9 +9799,15 @@ class GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ : public AC_GALGAS_ro
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ (const GGS_observablePropertyAST_2E_selfWithoutProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ (const GGS_observablePropertyAST_2E_selfWithoutProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_selfWithoutProperty unwrappedValue (void) const {
@@ -9379,9 +9955,15 @@ class GGS_observablePropertyAST_2E_signatureProperty_3F_ : public AC_GALGAS_root
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_signatureProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_signatureProperty_3F_ (const GGS_observablePropertyAST_2E_signatureProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_signatureProperty_3F_ (const GGS_observablePropertyAST_2E_signatureProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_signatureProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_signatureProperty unwrappedValue (void) const {
@@ -9553,9 +10135,15 @@ class GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ : public AC
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_superPropertyWithDefaultValue unwrappedValue (void) const {
@@ -9715,9 +10303,15 @@ class GGS_observablePropertyAST_2E_superProperty_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_superProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_superProperty_3F_ (const GGS_observablePropertyAST_2E_superProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_superProperty_3F_ (const GGS_observablePropertyAST_2E_superProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_superProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_superProperty unwrappedValue (void) const {
@@ -9865,9 +10459,15 @@ class GGS_observablePropertyAST_2E_versionProperty_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_versionProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_versionProperty_3F_ (const GGS_observablePropertyAST_2E_versionProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_versionProperty_3F_ (const GGS_observablePropertyAST_2E_versionProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_versionProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_versionProperty unwrappedValue (void) const {
@@ -10015,9 +10615,15 @@ class GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ : public AC_G
 //--------------------------------- Default constructor
   public: GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ (const GGS_observablePropertyAST_2E_versionShouldChangeProperty & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ (const GGS_observablePropertyAST_2E_versionShouldChangeProperty & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_observablePropertyAST_2E_versionShouldChangeProperty unwrappedValue (void) const {
@@ -10630,8 +11236,43 @@ class GGS_computedPropertyDeclarationAST_2E_weak : public GGS_abstractDeclaratio
 
   public: GGS_computedPropertyDeclarationAST_2E_weak & operator = (const class GGS_computedPropertyDeclarationAST & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_computedPropertyDeclarationAST_2E_weak init_nil (void) {
+    GGS_computedPropertyDeclarationAST_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_computedPropertyDeclarationAST bang_computedPropertyDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_computedPropertyDeclarationAST unwrappedValue (void) const {
+    GGS_computedPropertyDeclarationAST result ;
+    if (isValid ()) {
+      const cPtr_computedPropertyDeclarationAST * p = (cPtr_computedPropertyDeclarationAST *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_computedPropertyDeclarationAST (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11001,8 +11642,43 @@ class GGS_propertyGeneration_2E_weak : public AC_GALGAS_weak_reference {
 
   public: GGS_propertyGeneration_2E_weak & operator = (const class GGS_propertyGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_propertyGeneration_2E_weak init_nil (void) {
+    GGS_propertyGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_propertyGeneration bang_propertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_propertyGeneration unwrappedValue (void) const {
+    GGS_propertyGeneration result ;
+    if (isValid ()) {
+      const cPtr_propertyGeneration * p = (cPtr_propertyGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_propertyGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11551,8 +12227,43 @@ class GGS_computeRoutineGeneration_2E_weak : public GGS_abstractFileGeneration_2
 
   public: GGS_computeRoutineGeneration_2E_weak & operator = (const class GGS_computeRoutineGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_computeRoutineGeneration_2E_weak init_nil (void) {
+    GGS_computeRoutineGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_computeRoutineGeneration bang_computeRoutineGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_computeRoutineGeneration unwrappedValue (void) const {
+    GGS_computeRoutineGeneration result ;
+    if (isValid ()) {
+      const cPtr_computeRoutineGeneration * p = (cPtr_computeRoutineGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_computeRoutineGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11758,8 +12469,43 @@ class GGS_transientDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E
 
   public: GGS_transientDeclarationAST_2E_weak & operator = (const class GGS_transientDeclarationAST & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_transientDeclarationAST_2E_weak init_nil (void) {
+    GGS_transientDeclarationAST_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_transientDeclarationAST bang_transientDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_transientDeclarationAST unwrappedValue (void) const {
+    GGS_transientDeclarationAST result ;
+    if (isValid ()) {
+      const cPtr_transientDeclarationAST * p = (cPtr_transientDeclarationAST *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_transientDeclarationAST (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11959,8 +12705,43 @@ class GGS_transientPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E
 
   public: GGS_transientPropertyGeneration_2E_weak & operator = (const class GGS_transientPropertyGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_transientPropertyGeneration_2E_weak init_nil (void) {
+    GGS_transientPropertyGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_transientPropertyGeneration bang_transientPropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_transientPropertyGeneration unwrappedValue (void) const {
+    GGS_transientPropertyGeneration result ;
+    if (isValid ()) {
+      const cPtr_transientPropertyGeneration * p = (cPtr_transientPropertyGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_transientPropertyGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 

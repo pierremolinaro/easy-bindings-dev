@@ -1260,20 +1260,20 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext &
                                                            Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_toOneRelationshipAST temp_0 = this ;
-  cMapElement_classMap * objectArray_4148 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 104)) ;
-  if (nullptr != objectArray_4148) {
-    macroValidSharedObject (objectArray_4148, cMapElement_classMap) ;
+  cMapElement_classMap * objectArray_4156 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 104)) ;
+  if (nullptr != objectArray_4156) {
+    macroValidSharedObject (objectArray_4156, cMapElement_classMap) ;
     {
     const GGS_toOneRelationshipAST temp_1 = this ;
     ioArgument_ioGeneration.mProperty_mToOneClassImplementations.setter_insert (temp_1.readProperty_mDestinationEntityName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 107)) ;
     }
-    GGS_classKind var_classKind_4396 ;
+    GGS_classKind var_classKind_4404 ;
     const GGS_toOneRelationshipAST temp_2 = this ;
-    GGS_propertyMap joker_4407_3 ; // Joker input parameter
-    GGS_actionMap joker_4407_2 ; // Joker input parameter
-    GGS_propertyGenerationList joker_4407_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_2.readProperty_mDestinationEntityName (), var_classKind_4396, joker_4407_3, joker_4407_2, joker_4407_1, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 108)) ;
-    switch (var_classKind_4396.enumValue ()) {
+    GGS_propertyMap joker_4415_3 ; // Joker input parameter
+    GGS_actionMap joker_4415_2 ; // Joker input parameter
+    GGS_propertyGenerationList joker_4415_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_2.readProperty_mDestinationEntityName (), var_classKind_4404, joker_4415_3, joker_4415_2, joker_4415_1, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 108)) ;
+    switch (var_classKind_4404.enumValue ()) {
     case GGS_classKind::Enumeration::invalid:
       break ;
     case GGS_classKind::Enumeration::enum_prefs:
@@ -1285,8 +1285,8 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext &
       break ;
     case GGS_classKind::Enumeration::enum_atomic:
       {
-        GGS_typeKind extractedValue_4538__0 ;
-        var_classKind_4396.getAssociatedValuesFor_atomic (extractedValue_4538__0) ;
+        GGS_typeKind extractedValue_4546__0 ;
+        var_classKind_4404.getAssociatedValuesFor_atomic (extractedValue_4546__0) ;
         const GGS_toOneRelationshipAST temp_5 = this ;
         TC_Array <FixItDescription> fixItArray6 ;
         inCompiler->emitSemanticError (temp_5.readProperty_mDestinationEntityName ().readProperty_location (), GGS_string ("an entity is required here"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 113)) ;
@@ -1294,8 +1294,8 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext &
       break ;
     case GGS_classKind::Enumeration::enum_document:
       {
-        GGS_lstring extractedValue_4633__0 ;
-        var_classKind_4396.getAssociatedValuesFor_document (extractedValue_4633__0) ;
+        GGS_lstring extractedValue_4641__0 ;
+        var_classKind_4404.getAssociatedValuesFor_document (extractedValue_4641__0) ;
         const GGS_toOneRelationshipAST temp_7 = this ;
         TC_Array <FixItDescription> fixItArray8 ;
         inCompiler->emitSemanticError (temp_7.readProperty_mDestinationEntityName ().readProperty_location (), GGS_string ("an entity is required here"), fixItArray8  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 115)) ;
@@ -1303,21 +1303,21 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext &
       break ;
     case GGS_classKind::Enumeration::enum_entity:
       {
-        GGS_string extractedValue_4726__0 ;
-        GGS_bool extractedValue_4729_graphic_1 ;
-        GGS_bool extractedValue_4738__2 ;
-        GGS_bool extractedValue_4741_handleOpposite_3 ;
-        var_classKind_4396.getAssociatedValuesFor_entity (extractedValue_4726__0, extractedValue_4729_graphic_1, extractedValue_4738__2, extractedValue_4741_handleOpposite_3) ;
+        GGS_string extractedValue_4734__0 ;
+        GGS_bool extractedValue_4737_graphic_1 ;
+        GGS_bool extractedValue_4746__2 ;
+        GGS_bool extractedValue_4749_handleOpposite_3 ;
+        var_classKind_4404.getAssociatedValuesFor_entity (extractedValue_4734__0, extractedValue_4737_graphic_1, extractedValue_4746__2, extractedValue_4749_handleOpposite_3) ;
         const GGS_toOneRelationshipAST temp_9 = this ;
         const GGS_toOneRelationshipAST temp_10 = this ;
         const GGS_toOneRelationshipAST temp_11 = this ;
-        GGS_propertyKind var_kind_4769 = GGS_propertyKind::class_func_toOne (temp_9.readProperty_mDestinationEntityName (), GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("to-one-relationship.ggs", 119)), extractedValue_4729_graphic_1, temp_10.readProperty_mOpposite (), temp_11.readProperty_mWeak ()  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 117)) ;
+        GGS_propertyKind var_kind_4777 = GGS_propertyKind::class_func_toOne (temp_9.readProperty_mDestinationEntityName (), GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("to-one-relationship.ggs", 119)), extractedValue_4737_graphic_1, temp_10.readProperty_mOpposite (), temp_11.readProperty_mWeak ()  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 117)) ;
         enumGalgasBool test_12 = kBoolTrue ;
         if (kBoolTrue == test_12) {
           const GGS_toOneRelationshipAST temp_13 = this ;
           test_12 = GGS_bool (ComparisonKind::notEqual, temp_13.readProperty_mOpposite ().objectCompare (GGS_toOneOppositeRelationship::class_func_none (SOURCE_FILE ("to-one-relationship.ggs", 124)))).boolEnum () ;
           if (kBoolTrue == test_12) {
-            test_12 = extractedValue_4741_handleOpposite_3.operator_not (SOURCE_FILE ("to-one-relationship.ggs", 124)).boolEnum () ;
+            test_12 = extractedValue_4749_handleOpposite_3.operator_not (SOURCE_FILE ("to-one-relationship.ggs", 124)).boolEnum () ;
             if (kBoolTrue == test_12) {
               const GGS_toOneRelationshipAST temp_14 = this ;
               const GGS_toOneRelationshipAST temp_15 = this ;
@@ -1329,7 +1329,7 @@ void cPtr_toOneRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext &
         {
         const GGS_toOneRelationshipAST temp_17 = this ;
         GGS_actionMap temp_18 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 127)) ;
-        objectArray_4148->mProperty_mPropertyMap.setter_insertKey (temp_17.readProperty_mToOneRelationshipName (), var_kind_4769, temp_18, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 127)) ;
+        objectArray_4156->mProperty_mPropertyMap.setter_insertKey (temp_17.readProperty_mToOneRelationshipName (), var_kind_4777, temp_18, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 127)) ;
         }
       }
       break ;
@@ -1347,16 +1347,16 @@ void cPtr_toOneRelationshipAST::method_thirdAnalysisPhase (GGS_semanticContext &
                                                            Compiler * inCompiler
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_toOneRelationshipAST temp_0 = this ;
-  cMapElement_classMap * objectArray_5588 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 136)) ;
-  if (nullptr != objectArray_5588) {
-    macroValidSharedObject (objectArray_5588, cMapElement_classMap) ;
-    GGS_classKind var_classKind_5753 ;
-    GGS_propertyMap var_destinationEntityPropertyMap_5769 ;
+  cMapElement_classMap * objectArray_5598 = (cMapElement_classMap *) ioArgument_ioSemanticContext.mProperty_mClassMap.readWriteAccessForWithInstructionWithErrorMessage (inCompiler, temp_0.readProperty_mClassName (), kSearchErrorMessage_classMap_searchKey  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 136)) ;
+  if (nullptr != objectArray_5598) {
+    macroValidSharedObject (objectArray_5598, cMapElement_classMap) ;
+    GGS_classKind var_classKind_5763 ;
+    GGS_propertyMap var_destinationEntityPropertyMap_5779 ;
     const GGS_toOneRelationshipAST temp_1 = this ;
-    GGS_actionMap joker_5799_2 ; // Joker input parameter
-    GGS_propertyGenerationList joker_5799_1 ; // Joker input parameter
-    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mDestinationEntityName (), var_classKind_5753, var_destinationEntityPropertyMap_5769, joker_5799_2, joker_5799_1, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 139)) ;
-    switch (var_classKind_5753.enumValue ()) {
+    GGS_actionMap joker_5809_2 ; // Joker input parameter
+    GGS_propertyGenerationList joker_5809_1 ; // Joker input parameter
+    ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mDestinationEntityName (), var_classKind_5763, var_destinationEntityPropertyMap_5779, joker_5809_2, joker_5809_1, inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 139)) ;
+    switch (var_classKind_5763.enumValue ()) {
     case GGS_classKind::Enumeration::invalid:
       break ;
     case GGS_classKind::Enumeration::enum_prefs:
@@ -1367,22 +1367,22 @@ void cPtr_toOneRelationshipAST::method_thirdAnalysisPhase (GGS_semanticContext &
       break ;
     case GGS_classKind::Enumeration::enum_entity:
       {
-        GGS_string extractedValue_5905__0 ;
-        GGS_bool extractedValue_5908_graphic_1 ;
-        GGS_bool extractedValue_5918__2 ;
-        GGS_bool extractedValue_5918__3 ;
-        var_classKind_5753.getAssociatedValuesFor_entity (extractedValue_5905__0, extractedValue_5908_graphic_1, extractedValue_5918__2, extractedValue_5918__3) ;
+        GGS_string extractedValue_5915__0 ;
+        GGS_bool extractedValue_5918_graphic_1 ;
+        GGS_bool extractedValue_5928__2 ;
+        GGS_bool extractedValue_5928__3 ;
+        var_classKind_5763.getAssociatedValuesFor_entity (extractedValue_5915__0, extractedValue_5918_graphic_1, extractedValue_5928__2, extractedValue_5928__3) ;
         const GGS_toOneRelationshipAST temp_2 = this ;
         const GGS_toOneRelationshipAST temp_3 = this ;
         const GGS_toOneRelationshipAST temp_4 = this ;
-        GGS_propertyKind var_kind_5933 = GGS_propertyKind::class_func_toOne (temp_2.readProperty_mDestinationEntityName (), GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("to-one-relationship.ggs", 147)), extractedValue_5908_graphic_1, temp_3.readProperty_mOpposite (), temp_4.readProperty_mWeak ()  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 145)) ;
+        GGS_propertyKind var_kind_5943 = GGS_propertyKind::class_func_toOne (temp_2.readProperty_mDestinationEntityName (), GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("to-one-relationship.ggs", 147)), extractedValue_5918_graphic_1, temp_3.readProperty_mOpposite (), temp_4.readProperty_mWeak ()  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 145)) ;
         {
         const GGS_toOneRelationshipAST temp_5 = this ;
         const GGS_toOneRelationshipAST temp_6 = this ;
         const GGS_toOneRelationshipAST temp_7 = this ;
         const GGS_toOneRelationshipAST temp_8 = this ;
         const GGS_toOneRelationshipAST temp_9 = this ;
-        objectArray_5588->mProperty_mPropertyGenerationList.setter_append (GGS_toOnePropertyGeneration::init_21__21__21__21__21__21__21_ (temp_5.readProperty_mToOneRelationshipName ().readProperty_string (), temp_6.readProperty_mClassName ().readProperty_string (), var_kind_5933, temp_7.readProperty_mOpposite (), var_destinationEntityPropertyMap_5769, temp_8.readProperty_mUsedForSignature (), temp_9.readProperty_mWeak ().operator_not (SOURCE_FILE ("to-one-relationship.ggs", 159)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 153)) ;
+        objectArray_5598->mProperty_mPropertyGenerationList.setter_append (GGS_toOnePropertyGeneration::init_21__21__21__21__21__21__21_ (temp_5.readProperty_mToOneRelationshipName ().readProperty_string (), temp_6.readProperty_mClassName ().readProperty_string (), var_kind_5943, temp_7.readProperty_mOpposite (), var_destinationEntityPropertyMap_5779, temp_8.readProperty_mUsedForSignature (), temp_9.readProperty_mWeak ().operator_not (SOURCE_FILE ("to-one-relationship.ggs", 159)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 153)) ;
         }
       }
       break ;
@@ -1475,16 +1475,16 @@ GGS_string cPtr_toOnePropertyGeneration::getter_configurationCode (const GGS_boo
     break ;
   case GGS_toOneOppositeRelationship::Enumeration::enum_oppositeIsToMany:
     {
-      GGS_lstring extractedValue_9754_oppositeName_0 ;
-      temp_0.readProperty_mOpposite ().getAssociatedValuesFor_oppositeIsToMany (extractedValue_9754_oppositeName_0) ;
+      GGS_lstring extractedValue_9766_oppositeName_0 ;
+      temp_0.readProperty_mOpposite ().getAssociatedValuesFor_oppositeIsToMany (extractedValue_9766_oppositeName_0) ;
       const GGS_toOnePropertyGeneration temp_1 = this ;
-      result_result = GGS_string ("  //--- To one property: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GGS_string (" (has opposite to many relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (extractedValue_9754_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)) ;
+      result_result = GGS_string ("  //--- To one property: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GGS_string (" (has opposite to many relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (extractedValue_9766_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 229)) ;
       const GGS_toOnePropertyGeneration temp_2 = this ;
       result_result.plusAssign_operation(GGS_string ("    self.").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)).add_operation (GGS_string ("_property.undoManager = inUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 230)) ;
       const GGS_toOnePropertyGeneration temp_3 = this ;
       result_result.plusAssign_operation(GGS_string ("    self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 231)).add_operation (GGS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 231)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 231)) ;
-      result_result.plusAssign_operation(GGS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9754_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)).add_operation (GGS_string ("_property.add (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)) ;
-      result_result.plusAssign_operation(GGS_string ("      resetter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9754_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)).add_operation (GGS_string ("_property.remove (me) } }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)) ;
+      result_result.plusAssign_operation(GGS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9766_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)).add_operation (GGS_string ("_property.add (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 232)) ;
+      result_result.plusAssign_operation(GGS_string ("      resetter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_9766_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)).add_operation (GGS_string ("_property.remove (me) } }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 233)) ;
       result_result.plusAssign_operation(GGS_string ("    )\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 234)) ;
     }
     break ;
@@ -1498,16 +1498,16 @@ GGS_string cPtr_toOnePropertyGeneration::getter_configurationCode (const GGS_boo
     break ;
   case GGS_toOneOppositeRelationship::Enumeration::enum_oppositeIsToOne:
     {
-      GGS_lstring extractedValue_10574_oppositeName_0 ;
-      temp_0.readProperty_mOpposite ().getAssociatedValuesFor_oppositeIsToOne (extractedValue_10574_oppositeName_0) ;
+      GGS_lstring extractedValue_10586_oppositeName_0 ;
+      temp_0.readProperty_mOpposite ().getAssociatedValuesFor_oppositeIsToOne (extractedValue_10586_oppositeName_0) ;
       const GGS_toOnePropertyGeneration temp_6 = this ;
-      result_result = GGS_string ("  //--- To one property: ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GGS_string (" (has opposite to one relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (extractedValue_10574_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)) ;
+      result_result = GGS_string ("  //--- To one property: ").add_operation (temp_6.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GGS_string (" (has opposite to one relationship: "), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (extractedValue_10586_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 239)) ;
       const GGS_toOnePropertyGeneration temp_7 = this ;
       result_result.plusAssign_operation(GGS_string ("    self.").add_operation (temp_7.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)).add_operation (GGS_string ("_property.undoManager = inUndoManager\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 240)) ;
       const GGS_toOnePropertyGeneration temp_8 = this ;
       result_result.plusAssign_operation(GGS_string ("    self.").add_operation (temp_8.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 241)).add_operation (GGS_string ("_property.setOppositeRelationShipFunctions (\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 241)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 241)) ;
-      result_result.plusAssign_operation(GGS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_10574_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)).add_operation (GGS_string ("_property.setProp (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)) ;
-      result_result.plusAssign_operation(GGS_string ("      resetter: { inObject in inObject.").add_operation (extractedValue_10574_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)).add_operation (GGS_string ("_property.setProp (nil) }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)) ;
+      result_result.plusAssign_operation(GGS_string ("      setter: { [weak self] inObject in if let me = self { inObject.").add_operation (extractedValue_10586_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)).add_operation (GGS_string ("_property.setProp (me) } },\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 242)) ;
+      result_result.plusAssign_operation(GGS_string ("      resetter: { inObject in inObject.").add_operation (extractedValue_10586_oppositeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)).add_operation (GGS_string ("_property.setProp (nil) }\n"), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 243)) ;
       result_result.plusAssign_operation(GGS_string ("    )\n"), inCompiler  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 244)) ;
     }
     break ;

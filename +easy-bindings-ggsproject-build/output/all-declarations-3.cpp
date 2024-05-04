@@ -877,6 +877,7 @@ GGS_transientRoutineGeneration_2E_weak::GGS_transientRoutineGeneration_2E_weak (
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_transientRoutineGeneration_2E_weak GGS_transientRoutineGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -1102,6 +1103,7 @@ GGS_proxyDeclarationAST_2E_weak & GGS_proxyDeclarationAST_2E_weak::operator = (c
 GGS_proxyDeclarationAST_2E_weak::GGS_proxyDeclarationAST_2E_weak (const GGS_proxyDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1495,6 +1497,7 @@ GGS_toManyProxyGeneration_2E_weak & GGS_toManyProxyGeneration_2E_weak::operator 
 GGS_toManyProxyGeneration_2E_weak::GGS_toManyProxyGeneration_2E_weak (const GGS_toManyProxyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2298,6 +2301,7 @@ GGS_atomicProxyGeneration_2E_weak::GGS_atomicProxyGeneration_2E_weak (const GGS_
 GGS_propertyGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_atomicProxyGeneration_2E_weak GGS_atomicProxyGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2817,6 +2821,7 @@ GGS_atomicPropertyDeclarationAST_2E_weak::GGS_atomicPropertyDeclarationAST_2E_we
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_atomicPropertyDeclarationAST_2E_weak GGS_atomicPropertyDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -3238,6 +3243,7 @@ GGS_atomicPropertyGeneration_2E_weak & GGS_atomicPropertyGeneration_2E_weak::ope
 GGS_atomicPropertyGeneration_2E_weak::GGS_atomicPropertyGeneration_2E_weak (const GGS_atomicPropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3985,6 +3991,7 @@ GGS_toOneRelationshipAST_2E_weak::GGS_toOneRelationshipAST_2E_weak (const GGS_to
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_toOneRelationshipAST_2E_weak GGS_toOneRelationshipAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -4504,6 +4511,7 @@ GGS_toOnePropertyGeneration_2E_weak & GGS_toOnePropertyGeneration_2E_weak::opera
 GGS_toOnePropertyGeneration_2E_weak::GGS_toOnePropertyGeneration_2E_weak (const GGS_toOnePropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5222,6 +5230,7 @@ GGS_toManyRelationshipAST_2E_weak::GGS_toManyRelationshipAST_2E_weak (const GGS_
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipAST_2E_weak GGS_toManyRelationshipAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -5847,6 +5856,7 @@ GGS_toManyPropertyGeneration_2E_weak & GGS_toManyPropertyGeneration_2E_weak::ope
 GGS_toManyPropertyGeneration_2E_weak::GGS_toManyPropertyGeneration_2E_weak (const GGS_toManyPropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7373,6 +7383,7 @@ GGS_actionFileGeneration_2E_weak::GGS_actionFileGeneration_2E_weak (const GGS_ac
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_actionFileGeneration_2E_weak GGS_actionFileGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -7749,6 +7760,7 @@ GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak::GGS_abstractBooleanMult
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -7858,6 +7870,7 @@ GGS_literalIntMultipleBindingExpressionAST_2E_weak & GGS_literalIntMultipleBindi
 GGS_literalIntMultipleBindingExpressionAST_2E_weak::GGS_literalIntMultipleBindingExpressionAST_2E_weak (const GGS_literalIntMultipleBindingExpressionAST & inSource) :
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8144,6 +8157,7 @@ GGS_negateBooleanMultipleBindingExpressionAST_2E_weak & GGS_negateBooleanMultipl
 GGS_negateBooleanMultipleBindingExpressionAST_2E_weak::GGS_negateBooleanMultipleBindingExpressionAST_2E_weak (const GGS_negateBooleanMultipleBindingExpressionAST & inSource) :
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8497,6 +8511,7 @@ GGS_comparisonMultipleBindingExpressionAST_2E_weak::GGS_comparisonMultipleBindin
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_comparisonMultipleBindingExpressionAST_2E_weak GGS_comparisonMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -8815,6 +8830,7 @@ GGS_andBooleanMultipleBindingExpressionAST_2E_weak & GGS_andBooleanMultipleBindi
 GGS_andBooleanMultipleBindingExpressionAST_2E_weak::GGS_andBooleanMultipleBindingExpressionAST_2E_weak (const GGS_andBooleanMultipleBindingExpressionAST & inSource) :
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9135,6 +9151,7 @@ GGS_orBooleanMultipleBindingExpressionAST_2E_weak::GGS_orBooleanMultipleBindingE
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_orBooleanMultipleBindingExpressionAST_2E_weak GGS_orBooleanMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9454,6 +9471,7 @@ GGS_xorBooleanMultipleBindingExpressionAST_2E_weak::GGS_xorBooleanMultipleBindin
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_xorBooleanMultipleBindingExpressionAST_2E_weak GGS_xorBooleanMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9740,6 +9758,7 @@ GGS_observablePropertyInMultipleBindingExpressionAST_2E_weak::GGS_observableProp
 GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyInMultipleBindingExpressionAST_2E_weak GGS_observablePropertyInMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9849,6 +9868,7 @@ GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak & GGS_abstract
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak::GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & inSource) :
 AC_GALGAS_weak_reference (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10136,6 +10156,7 @@ GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2E_weak::G
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2E_weak GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10422,6 +10443,7 @@ GGS_booleanMultipleBindingLiteralIntForGeneration_2E_weak::GGS_booleanMultipleBi
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_booleanMultipleBindingLiteralIntForGeneration_2E_weak GGS_booleanMultipleBindingLiteralIntForGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10707,6 +10729,7 @@ GGS_negateBooleanMultipleBindingExpressionForGeneration_2E_weak & GGS_negateBool
 GGS_negateBooleanMultipleBindingExpressionForGeneration_2E_weak::GGS_negateBooleanMultipleBindingExpressionForGeneration_2E_weak (const GGS_negateBooleanMultipleBindingExpressionForGeneration & inSource) :
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11027,6 +11050,7 @@ GGS_orBooleanMultipleBindingExpressionForGeneration_2E_weak::GGS_orBooleanMultip
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_orBooleanMultipleBindingExpressionForGeneration_2E_weak GGS_orBooleanMultipleBindingExpressionForGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11346,6 +11370,7 @@ GGS_xorBooleanMultipleBindingExpressionForGeneration_2E_weak::GGS_xorBooleanMult
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_xorBooleanMultipleBindingExpressionForGeneration_2E_weak GGS_xorBooleanMultipleBindingExpressionForGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11664,6 +11689,7 @@ GGS_andBooleanMultipleBindingExpressionForGeneration_2E_weak & GGS_andBooleanMul
 GGS_andBooleanMultipleBindingExpressionForGeneration_2E_weak::GGS_andBooleanMultipleBindingExpressionForGeneration_2E_weak (const GGS_andBooleanMultipleBindingExpressionForGeneration & inSource) :
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12017,6 +12043,7 @@ GGS_comparisonMultipleBindingExpressionForGeneration_2E_weak::GGS_comparisonMult
 GGS_abstractBooleanMultipleBindingExpressionForGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_comparisonMultipleBindingExpressionForGeneration_2E_weak GGS_comparisonMultipleBindingExpressionForGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12311,6 +12338,7 @@ GGS_arrayControllerDeclarationAST_2E_weak & GGS_arrayControllerDeclarationAST_2E
 GGS_arrayControllerDeclarationAST_2E_weak::GGS_arrayControllerDeclarationAST_2E_weak (const GGS_arrayControllerDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12639,6 +12667,7 @@ GGS_arrayControllerPropertyGeneration_2E_weak::GGS_arrayControllerPropertyGenera
 GGS_propertyGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_arrayControllerPropertyGeneration_2E_weak GGS_arrayControllerPropertyGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12849,6 +12878,7 @@ GGS_arrayControllerGeneration_2E_weak & GGS_arrayControllerGeneration_2E_weak::o
 GGS_arrayControllerGeneration_2E_weak::GGS_arrayControllerGeneration_2E_weak (const GGS_arrayControllerGeneration & inSource) :
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14034,6 +14064,7 @@ GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak::GGS_autoLayoutTableView
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -14340,6 +14371,7 @@ GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & GGS_autoLayoutTabl
 GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (const GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

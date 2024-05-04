@@ -115,8 +115,43 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 
   public: GGS_computedPropertyGeneration_2E_weak & operator = (const class GGS_computedPropertyGeneration & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_computedPropertyGeneration_2E_weak init_nil (void) {
+    GGS_computedPropertyGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_computedPropertyGeneration bang_computedPropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_computedPropertyGeneration unwrappedValue (void) const {
+    GGS_computedPropertyGeneration result ;
+    if (isValid ()) {
+      const cPtr_computedPropertyGeneration * p = (cPtr_computedPropertyGeneration *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_computedPropertyGeneration (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 

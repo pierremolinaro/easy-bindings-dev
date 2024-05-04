@@ -8044,6 +8044,7 @@ GGS_abstractDeclarationAST_2E_weak::GGS_abstractDeclarationAST_2E_weak (const GG
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractDeclarationAST_2E_weak GGS_abstractDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9467,6 +9468,7 @@ GGS_transientClassDeclarationAST_2E_weak::GGS_transientClassDeclarationAST_2E_we
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_transientClassDeclarationAST_2E_weak GGS_transientClassDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9576,6 +9578,7 @@ GGS_enumerationDeclarationAST_2E_weak & GGS_enumerationDeclarationAST_2E_weak::o
 GGS_enumerationDeclarationAST_2E_weak::GGS_enumerationDeclarationAST_2E_weak (const GGS_enumerationDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10767,6 +10770,7 @@ GGS_abstractFileGeneration_2E_weak::GGS_abstractFileGeneration_2E_weak (const GG
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractFileGeneration_2E_weak GGS_abstractFileGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11413,6 +11417,7 @@ GGS_atomicClassDeclarationAST_2E_weak & GGS_atomicClassDeclarationAST_2E_weak::o
 GGS_atomicClassDeclarationAST_2E_weak::GGS_atomicClassDeclarationAST_2E_weak (const GGS_atomicClassDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12061,6 +12066,7 @@ GGS_entityDeclarationAST_2E_weak::GGS_entityDeclarationAST_2E_weak (const GGS_en
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_entityDeclarationAST_2E_weak GGS_entityDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12579,6 +12585,7 @@ GGS_entityForGeneration_2E_weak & GGS_entityForGeneration_2E_weak::operator = (c
 GGS_entityForGeneration_2E_weak::GGS_entityForGeneration_2E_weak (const GGS_entityForGeneration & inSource) :
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -15438,6 +15445,7 @@ GGS_autoLayoutDocumentDeclarationAST_2E_weak & GGS_autoLayoutDocumentDeclaration
 GGS_autoLayoutDocumentDeclarationAST_2E_weak::GGS_autoLayoutDocumentDeclarationAST_2E_weak (const GGS_autoLayoutDocumentDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

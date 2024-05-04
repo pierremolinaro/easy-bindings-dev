@@ -123,7 +123,7 @@ enum @propertyKind {
               @propertyAccessibility accessibility,
               @bool graphic,
               @toOneOppositeRelationship opposite,
-              @bool weak)
+              @bool isWeak)
   case arrayController (@lstring typeName, @bool graphic)
   case selectionController (@string typeName)
 }

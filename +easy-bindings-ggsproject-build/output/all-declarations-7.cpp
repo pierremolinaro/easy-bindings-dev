@@ -158,6 +158,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_outletBindingSpecificationMap_2E_element_3F_ GGS_outletBindingSpecificationMap_2E_element_3F_::init_nil (void) {
@@ -521,6 +522,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_tableValueBinding_2E_tableValueBinding_3F_ GGS_tableValueBinding_2E_tableValueBinding_3F_::init_nil (void) {
@@ -779,6 +781,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1203,6 +1206,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_decoratedOutletMap_2E_element_3F_ GGS_decoratedOutletMap_2E_element_3F_::init_nil (void) {
@@ -1434,6 +1438,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1677,6 +1682,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_::init_nil (void) {
@@ -1919,6 +1925,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_::init_nil (void) {
@@ -2151,6 +2158,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyNone_3F_ GGS_observablePropertyAST_2E_rootPropertyNone_3F_::init_nil (void) {
@@ -2382,6 +2390,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2625,6 +2634,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::init_nil (void) {
@@ -2866,6 +2876,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3109,6 +3120,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyObject_3F_ GGS_observablePropertyAST_2E_selfPropertyObject_3F_::init_nil (void) {
@@ -3341,6 +3353,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyNone_3F_ GGS_observablePropertyAST_2E_selfPropertyNone_3F_::init_nil (void) {
@@ -3572,6 +3585,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3815,6 +3829,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::init_nil (void) {
@@ -4056,6 +4071,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4309,6 +4325,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::init_nil (void) {
@@ -4561,6 +4578,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::init_nil (void) {
@@ -4803,6 +4821,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::init_nil (void) {
@@ -5044,6 +5063,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5296,6 +5316,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5781,6 +5802,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::init_nil (void) {
@@ -6039,6 +6061,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6400,6 +6423,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_::init_nil (void) {
@@ -6631,6 +6655,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6887,6 +6912,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_runActionDescriptor_2E_action_3F_ GGS_runActionDescriptor_2E_action_3F_::init_nil (void) {
@@ -7135,6 +7161,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7619,6 +7646,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8114,6 +8142,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_classKind_2E_document_3F_ GGS_classKind_2E_document_3F_::init_nil (void) {
@@ -8386,6 +8415,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_classMap_2E_element_3F_ GGS_classMap_2E_element_3F_::init_nil (void) {
@@ -8648,6 +8678,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_toMany_3F_ GGS_propertyKind_2E_toMany_3F_::init_nil (void) {
@@ -8756,7 +8787,7 @@ mProperty_typeName (),
 mProperty_accessibility (),
 mProperty_graphic (),
 mProperty_opposite (),
-mProperty_weak () {
+mProperty_isWeak () {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8770,7 +8801,7 @@ GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::init_21__21__21__21__21_ (c
                                                                                const GGS_propertyAccessibility & in_accessibility,
                                                                                const GGS_bool & in_graphic,
                                                                                const GGS_toOneOppositeRelationship & in_opposite,
-                                                                               const GGS_bool & in_weak,
+                                                                               const GGS_bool & in_isWeak,
                                                                                Compiler * inCompiler
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   GGS_propertyKind_2E_toOne result ;
@@ -8779,7 +8810,7 @@ GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::init_21__21__21__21__21_ (c
   result.mProperty_accessibility = in_accessibility ;
   result.mProperty_graphic = in_graphic ;
   result.mProperty_opposite = in_opposite ;
-  result.mProperty_weak = in_weak ;
+  result.mProperty_isWeak = in_isWeak ;
   return result ;
 }
 
@@ -8799,7 +8830,7 @@ mProperty_typeName (inOperand0),
 mProperty_accessibility (inOperand1),
 mProperty_graphic (inOperand2),
 mProperty_opposite (inOperand3),
-mProperty_weak (inOperand4) {
+mProperty_isWeak (inOperand4) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8808,7 +8839,7 @@ GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::class_func_new (const GGS_l
                                                                      const GGS_propertyAccessibility & in_accessibility,
                                                                      const GGS_bool & in_graphic,
                                                                      const GGS_toOneOppositeRelationship & in_opposite,
-                                                                     const GGS_bool & in_weak,
+                                                                     const GGS_bool & in_isWeak,
                                                                      Compiler * inCompiler
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   GGS_propertyKind_2E_toOne result ;
@@ -8817,14 +8848,14 @@ GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::class_func_new (const GGS_l
   result.mProperty_accessibility = in_accessibility ;
   result.mProperty_graphic = in_graphic ;
   result.mProperty_opposite = in_opposite ;
-  result.mProperty_weak = in_weak ;
+  result.mProperty_isWeak = in_isWeak ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 bool GGS_propertyKind_2E_toOne::isValid (void) const {
-  return mProperty_typeName.isValid () && mProperty_accessibility.isValid () && mProperty_graphic.isValid () && mProperty_opposite.isValid () && mProperty_weak.isValid () ;
+  return mProperty_typeName.isValid () && mProperty_accessibility.isValid () && mProperty_graphic.isValid () && mProperty_opposite.isValid () && mProperty_isWeak.isValid () ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8834,7 +8865,7 @@ void GGS_propertyKind_2E_toOne::drop (void) {
   mProperty_accessibility.drop () ;
   mProperty_graphic.drop () ;
   mProperty_opposite.drop () ;
-  mProperty_weak.drop () ;
+  mProperty_isWeak.drop () ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8853,7 +8884,7 @@ void GGS_propertyKind_2E_toOne::description (String & ioString,
     ioString.appendCString (", ") ;
     mProperty_opposite.description (ioString, inIndentation+1) ;
     ioString.appendCString (", ") ;
-    mProperty_weak.description (ioString, inIndentation+1) ;
+    mProperty_isWeak.description (ioString, inIndentation+1) ;
   }
   ioString.appendCString (">") ;
 }
@@ -8919,6 +8950,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9162,6 +9194,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_arrayController_3F_ GGS_propertyKind_2E_arrayController_3F_::init_nil (void) {
@@ -9282,6 +9315,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9514,6 +9548,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9756,6 +9791,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

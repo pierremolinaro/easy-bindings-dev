@@ -4598,6 +4598,7 @@ GGS_autoLayoutDocumentFileGeneration_2E_weak::GGS_autoLayoutDocumentFileGenerati
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutDocumentFileGeneration_2E_weak GGS_autoLayoutDocumentFileGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -5116,6 +5117,7 @@ GGS_prefsDeclarationAST_2E_weak & GGS_prefsDeclarationAST_2E_weak::operator = (c
 GGS_prefsDeclarationAST_2E_weak::GGS_prefsDeclarationAST_2E_weak (const GGS_prefsDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5668,6 +5670,7 @@ GGS_preferencesForGeneration_2E_weak & GGS_preferencesForGeneration_2E_weak::ope
 GGS_preferencesForGeneration_2E_weak::GGS_preferencesForGeneration_2E_weak (const GGS_preferencesForGeneration & inSource) :
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6251,6 +6254,7 @@ GGS_autoLayoutViewClassDeclarationAST_2E_weak & GGS_autoLayoutViewClassDeclarati
 GGS_autoLayoutViewClassDeclarationAST_2E_weak::GGS_autoLayoutViewClassDeclarationAST_2E_weak (const GGS_autoLayoutViewClassDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9043,6 +9047,7 @@ GGS_astAbstractViewDeclaration_2E_weak::GGS_astAbstractViewDeclaration_2E_weak (
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAbstractViewDeclaration_2E_weak GGS_astAbstractViewDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10508,6 +10513,7 @@ GGS_astComputedHorizontalViewDeclaration_2E_weak::GGS_astComputedHorizontalViewD
 GGS_astAbstractViewDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astComputedHorizontalViewDeclaration_2E_weak GGS_astComputedHorizontalViewDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10830,6 +10836,7 @@ GGS_astComputedVerticalViewDeclaration_2E_weak::GGS_astComputedVerticalViewDecla
 GGS_astAbstractViewDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astComputedVerticalViewDeclaration_2E_weak GGS_astComputedVerticalViewDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11036,6 +11043,7 @@ GGS_astAbstractViewInstructionDeclaration_2E_weak & GGS_astAbstractViewInstructi
 GGS_astAbstractViewInstructionDeclaration_2E_weak::GGS_astAbstractViewInstructionDeclaration_2E_weak (const GGS_astAbstractViewInstructionDeclaration & inSource) :
 AC_GALGAS_weak_reference (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11313,6 +11321,7 @@ GGS_astSeparatorInstructionDeclaration_2E_weak::GGS_astSeparatorInstructionDecla
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astSeparatorInstructionDeclaration_2E_weak GGS_astSeparatorInstructionDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11588,6 +11597,7 @@ GGS_astDividerInstructionDeclaration_2E_weak & GGS_astDividerInstructionDeclarat
 GGS_astDividerInstructionDeclaration_2E_weak::GGS_astDividerInstructionDeclaration_2E_weak (const GGS_astDividerInstructionDeclaration & inSource) :
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12076,6 +12086,7 @@ GGS_astHStackViewInstructionDeclaration_2E_weak::GGS_astHStackViewInstructionDec
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astHStackViewInstructionDeclaration_2E_weak GGS_astHStackViewInstructionDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12421,6 +12432,7 @@ GGS_astVStackViewInstructionDeclaration_2E_weak::GGS_astVStackViewInstructionDec
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astVStackViewInstructionDeclaration_2E_weak GGS_astVStackViewInstructionDeclaration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12674,6 +12686,7 @@ GGS_astSpaceViewInstruction_2E_weak::GGS_astSpaceViewInstruction_2E_weak (const 
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astSpaceViewInstruction_2E_weak GGS_astSpaceViewInstruction_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12783,6 +12796,7 @@ GGS_astLocalViewInstruction_2E_weak & GGS_astLocalViewInstruction_2E_weak::opera
 GGS_astLocalViewInstruction_2E_weak::GGS_astLocalViewInstruction_2E_weak (const GGS_astLocalViewInstruction & inSource) :
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14619,6 +14633,7 @@ GGS_astComputedViewInstruction_2E_weak & GGS_astComputedViewInstruction_2E_weak:
 GGS_astComputedViewInstruction_2E_weak::GGS_astComputedViewInstruction_2E_weak (const GGS_astComputedViewInstruction & inSource) :
 GGS_astAbstractViewInstructionDeclaration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

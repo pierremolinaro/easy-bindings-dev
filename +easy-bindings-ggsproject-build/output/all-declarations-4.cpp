@@ -588,6 +588,7 @@ GGS_autoLayoutTableViewControllerGeneration_2E_weak::GGS_autoLayoutTableViewCont
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutTableViewControllerGeneration_2E_weak GGS_autoLayoutTableViewControllerGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -697,6 +698,7 @@ GGS_selectionControllerDeclarationAST_2E_weak & GGS_selectionControllerDeclarati
 GGS_selectionControllerDeclarationAST_2E_weak::GGS_selectionControllerDeclarationAST_2E_weak (const GGS_selectionControllerDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1027,6 +1029,7 @@ GGS_selectionControllerPropertyGeneration_2E_weak & GGS_selectionControllerPrope
 GGS_selectionControllerPropertyGeneration_2E_weak::GGS_selectionControllerPropertyGeneration_2E_weak (const GGS_selectionControllerPropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1995,6 +1998,7 @@ GGS_abstractDefaultValue_2E_weak::GGS_abstractDefaultValue_2E_weak (const GGS_ab
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractDefaultValue_2E_weak GGS_abstractDefaultValue_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2105,6 +2109,7 @@ GGS_boolAsDefaultValue_2E_weak::GGS_boolAsDefaultValue_2E_weak (const GGS_boolAs
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_boolAsDefaultValue_2E_weak GGS_boolAsDefaultValue_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2214,6 +2219,7 @@ GGS_doubleAsDefaultValue_2E_weak & GGS_doubleAsDefaultValue_2E_weak::operator = 
 GGS_doubleAsDefaultValue_2E_weak::GGS_doubleAsDefaultValue_2E_weak (const GGS_doubleAsDefaultValue & inSource) :
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2534,6 +2540,7 @@ GGS_integerAsDefaultValue_2E_weak::GGS_integerAsDefaultValue_2E_weak (const GGS_
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_integerAsDefaultValue_2E_weak GGS_integerAsDefaultValue_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2643,6 +2650,7 @@ GGS_stringAsDefaultValue_2E_weak & GGS_stringAsDefaultValue_2E_weak::operator = 
 GGS_stringAsDefaultValue_2E_weak::GGS_stringAsDefaultValue_2E_weak (const GGS_stringAsDefaultValue & inSource) :
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2754,6 +2762,7 @@ GGS_identifierAsDefaultValue_2E_weak::GGS_identifierAsDefaultValue_2E_weak (cons
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_identifierAsDefaultValue_2E_weak GGS_identifierAsDefaultValue_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2863,6 +2872,7 @@ GGS_prefsAsDefaultValue_2E_weak & GGS_prefsAsDefaultValue_2E_weak::operator = (c
 GGS_prefsAsDefaultValue_2E_weak::GGS_prefsAsDefaultValue_2E_weak (const GGS_prefsAsDefaultValue & inSource) :
 GGS_abstractDefaultValue_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10633,6 +10643,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_optionalHiddenBinding_2E_binding_3F_ GGS_optionalHiddenBinding_2E_binding_3F_::init_nil (void) {
@@ -10864,6 +10875,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11117,6 +11129,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_::init_nil (void) {
@@ -11348,6 +11361,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12196,6 +12210,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutRunBindingForGeneration_2E_run_3F_ GGS_autolayoutRunBindingForGeneration_2E_run_3F_::init_nil (void) {
@@ -12428,6 +12443,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_::init_nil (void) {
@@ -12659,6 +12675,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14132,6 +14149,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ GGS_observablePropertyAST_2E_selfWithoutProperty_3F_::init_nil (void) {
@@ -14363,6 +14381,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14596,6 +14615,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_versionProperty_3F_ GGS_observablePropertyAST_2E_versionProperty_3F_::init_nil (void) {
@@ -14827,6 +14847,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

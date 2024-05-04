@@ -360,6 +360,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_::init_nil (void) {
@@ -601,6 +602,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1085,6 +1087,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2050,6 +2053,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_classKind_2E_atomic_3F_ GGS_classKind_2E_atomic_3F_::init_nil (void) {
@@ -2311,6 +2315,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2655,6 +2660,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyAccessibility_2E_transient_3F_ GGS_propertyAccessibility_2E_transient_3F_::init_nil (void) {
@@ -2922,6 +2928,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3195,6 +3202,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_typeKind_2E_entityType_3F_ GGS_typeKind_2E_entityType_3F_::init_nil (void) {
@@ -3453,6 +3461,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3713,6 +3722,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_typeKind_2E_transientPropertyExternType_3F_ GGS_typeKind_2E_transientPropertyExternType_3F_::init_nil (void) {
@@ -3972,6 +3982,7 @@ mValue (inSource),
 mState (OptionalState::valuated) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_property_3F_ GGS_propertyKind_2E_property_3F_::init_nil (void) {
@@ -4203,6 +4214,7 @@ AC_GALGAS_root (),
 mValue (inSource),
 mState (OptionalState::valuated) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10223,15 +10235,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
                                                                                              Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
   GGS_bool var_usedForSignature_2139 = GGS_bool (false) ;
-  GGS_bool var_weak_2172 = GGS_bool (false) ;
+  GGS_bool var_isWeak_2172 = GGS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_easyBindings_5F_syntax_71 (inCompiler) == 2) {
-      GGS_lstring var_attributeName_2231 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_attributeName_2233 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.ggs", 50)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2231.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
+        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2233.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
         if (kBoolTrue == test_1) {
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
@@ -10239,7 +10251,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
             if (kBoolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (kFixItRemove, "")) ;
-              inCompiler->emitSemanticError (var_attributeName_2231.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 53)) ;
+              inCompiler->emitSemanticError (var_attributeName_2233.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 53)) ;
             }
           }
           var_usedForSignature_2139 = GGS_bool (true) ;
@@ -10248,54 +10260,54 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
       if (kBoolFalse == test_1) {
         enumGalgasBool test_4 = kBoolTrue ;
         if (kBoolTrue == test_4) {
-          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2231.readProperty_string ().objectCompare (GGS_string ("weak"))).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2233.readProperty_string ().objectCompare (GGS_string ("weak"))).boolEnum () ;
           if (kBoolTrue == test_4) {
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
-              test_5 = var_weak_2172.boolEnum () ;
+              test_5 = var_isWeak_2172.boolEnum () ;
               if (kBoolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (kFixItRemove, "")) ;
-                inCompiler->emitSemanticError (var_attributeName_2231.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 58)) ;
+                inCompiler->emitSemanticError (var_attributeName_2233.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 58)) ;
               }
             }
-            var_weak_2172 = GGS_bool (true) ;
+            var_isWeak_2172 = GGS_bool (true) ;
           }
         }
         if (kBoolFalse == test_4) {
           TC_Array <FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, kFixItReplace, GGS_string ("@signature")) ;
           appendFixItActions (fixItArray7, kFixItReplace, GGS_string ("@weak")) ;
-          inCompiler->emitSemanticError (var_attributeName_2231.readProperty_location (), GGS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 62)) ;
+          inCompiler->emitSemanticError (var_attributeName_2233.readProperty_location (), GGS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 62)) ;
         }
       }
     }else{
       repeatFlag_0 = false ;
     }
   }
-  GGS_lstring var_destinationEntityName_2784 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_destinationEntityName_2790 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 65)) ;
-  GGS_lstring var_relationshipName_2839 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_relationshipName_2845 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 66)) ;
-  GGS_toOneOppositeRelationship var_opposite_2892 ;
+  GGS_toOneOppositeRelationship var_opposite_2898 ;
   switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
   case 1: {
-    var_opposite_2892 = GGS_toOneOppositeRelationship::class_func_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
+    var_opposite_2898 = GGS_toOneOppositeRelationship::class_func_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.ggs", 71)) ;
     switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 73)) ;
-      GGS_lstring var_inverseRelationshipName_3014 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_inverseRelationshipName_3020 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 74)) ;
-      var_opposite_2892 = GGS_toOneOppositeRelationship::class_func_oppositeIsToOne (var_inverseRelationshipName_3014  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
+      var_opposite_2898 = GGS_toOneOppositeRelationship::class_func_oppositeIsToOne (var_inverseRelationshipName_3020  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-one-relationship.ggs", 77)) ;
-      GGS_lstring var_inverseRelationshipName_3181 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_inverseRelationshipName_3187 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 78)) ;
-      var_opposite_2892 = GGS_toOneOppositeRelationship::class_func_oppositeIsToMany (var_inverseRelationshipName_3181  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
+      var_opposite_2898 = GGS_toOneOppositeRelationship::class_func_oppositeIsToMany (var_inverseRelationshipName_3187  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
     } break ;
     default:
       break ;
@@ -10306,7 +10318,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toOneRelationshipAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_2784, var_relationshipName_2839, var_opposite_2892, var_usedForSignature_2139, var_weak_2172, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toOneRelationshipAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_2790, var_relationshipName_2845, var_opposite_2898, var_usedForSignature_2139, var_isWeak_2172, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
   }
 }
 
@@ -13085,6 +13097,7 @@ GGS_enumForGeneration_2E_weak & GGS_enumForGeneration_2E_weak::operator = (const
 GGS_enumForGeneration_2E_weak::GGS_enumForGeneration_2E_weak (const GGS_enumForGeneration & inSource) :
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

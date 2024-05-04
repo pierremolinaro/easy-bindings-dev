@@ -181,8 +181,8 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
              !?exploreArray.append (typeName)
            end
         end
-      case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, weak) :
-        if not weak then
+      case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, isWeak) :
+        if not isWeak then
           !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           !?entityStrongReferenceGraph.addEdge (.init (entityName, .nowhere), .init (typeName, .nowhere))
         end

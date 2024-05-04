@@ -44,7 +44,7 @@ syntax extension easyBindings_syntax {
   rule <toOne_relationship> (let @lstring inCurrentEntity, ?!@astDeclarationStruct ioDeclarationAST) {
     $toOne$
     var usedForSignature = false
-    var weak = false
+    var isWeak = false
     repeat
     while
       $@attribute$ (?let attributeName)
@@ -54,10 +54,10 @@ syntax extension easyBindings_syntax {
         end
         usedForSignature = true
       elsif attributeName.string == "weak" then
-        if weak then
+        if isWeak then
           error attributeName : "duplicated attribute" fixit ( %remove )
         end
-        weak = true
+        isWeak = true
       else
         error attributeName : "unknow attribute" fixit ( %replaceBy "@signature", %replaceBy "@weak" )
       end
@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
       relationshipName,
       opposite,
       usedForSignature,
-      weak
+      isWeak
     )
     )
   }
@@ -119,7 +119,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
         !accessibility: .stored,
         !graphic: graphic,
         !opposite: self.mOpposite,
-        !weak: self.mWeak
+        !isWeak: self.mWeak
       )
       if self.mOpposite != .none, not handleOpposite then
         error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
@@ -147,7 +147,7 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
         !accessibility: .stored,
         !graphic: graphic,
         !opposite: self.mOpposite,
-        !weak: self.mWeak
+        !isWeak: self.mWeak
       )
     //-- Code Generation
       !?mPropertyGenerationList.append (@toOnePropertyGeneration (

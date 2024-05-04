@@ -576,6 +576,7 @@ GGS_abstractViewGeneration_2E_weak::GGS_abstractViewGeneration_2E_weak (const GG
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractViewGeneration_2E_weak GGS_abstractViewGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -1568,6 +1569,7 @@ GGS_computedHorizontalViewGeneration_2E_weak::GGS_computedHorizontalViewGenerati
 GGS_abstractViewGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_computedHorizontalViewGeneration_2E_weak GGS_computedHorizontalViewGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -1890,6 +1892,7 @@ GGS_computedVerticalViewGeneration_2E_weak::GGS_computedVerticalViewGeneration_2
 GGS_abstractViewGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_computedVerticalViewGeneration_2E_weak GGS_computedVerticalViewGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -1999,6 +2002,7 @@ GGS_abstractViewInstructionGeneration_2E_weak & GGS_abstractViewInstructionGener
 GGS_abstractViewInstructionGeneration_2E_weak::GGS_abstractViewInstructionGeneration_2E_weak (const GGS_abstractViewInstructionGeneration & inSource) :
 AC_GALGAS_weak_reference (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -2583,6 +2587,7 @@ GGS_hStackViewInstructionGeneration_2E_weak::GGS_hStackViewInstructionGeneration
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_hStackViewInstructionGeneration_2E_weak GGS_hStackViewInstructionGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -2928,6 +2933,7 @@ GGS_vStackViewInstructionGeneration_2E_weak::GGS_vStackViewInstructionGeneration
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_vStackViewInstructionGeneration_2E_weak GGS_vStackViewInstructionGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -3180,6 +3186,7 @@ GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak & GGS_autoLayoutSpaceViewIn
 GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak::GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak (const GGS_autoLayoutSpaceViewInstructionGeneration & inSource) :
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3457,6 +3464,7 @@ GGS_autoLayoutSeparatorInstructionGeneration_2E_weak::GGS_autoLayoutSeparatorIns
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutSeparatorInstructionGeneration_2E_weak GGS_autoLayoutSeparatorInstructionGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -3733,6 +3741,7 @@ GGS_autoLayoutDividerInstructionGeneration_2E_weak::GGS_autoLayoutDividerInstruc
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutDividerInstructionGeneration_2E_weak GGS_autoLayoutDividerInstructionGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -4008,6 +4017,7 @@ GGS_autoLayoutLocalViewInstructionGeneration_2E_weak & GGS_autoLayoutLocalViewIn
 GGS_autoLayoutLocalViewInstructionGeneration_2E_weak::GGS_autoLayoutLocalViewInstructionGeneration_2E_weak (const GGS_autoLayoutLocalViewInstructionGeneration & inSource) :
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6137,6 +6147,7 @@ GGS_autoLayoutComputedViewInstructionGeneration_2E_weak::GGS_autoLayoutComputedV
 GGS_abstractViewInstructionGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutComputedViewInstructionGeneration_2E_weak GGS_autoLayoutComputedViewInstructionGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -6312,6 +6323,7 @@ GGS_outletClassDeclarationAST_2E_weak & GGS_outletClassDeclarationAST_2E_weak::o
 GGS_outletClassDeclarationAST_2E_weak::GGS_outletClassDeclarationAST_2E_weak (const GGS_outletClassDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7926,7 +7938,7 @@ void GGS_propertyKind::method_extractToOne (GGS_lstring & outAssociatedValue_typ
                                             GGS_propertyAccessibility & outAssociatedValue_accessibility,
                                             GGS_bool & outAssociatedValue_graphic,
                                             GGS_toOneOppositeRelationship & outAssociatedValue_opposite,
-                                            GGS_bool & outAssociatedValue_weak,
+                                            GGS_bool & outAssociatedValue_isWeak,
                                             Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) const {
   if (mEnum != Enumeration::enum_toOne) {
@@ -7934,7 +7946,7 @@ void GGS_propertyKind::method_extractToOne (GGS_lstring & outAssociatedValue_typ
     outAssociatedValue_accessibility.drop () ;
     outAssociatedValue_graphic.drop () ;
     outAssociatedValue_opposite.drop () ;
-    outAssociatedValue_weak.drop () ;
+    outAssociatedValue_isWeak.drop () ;
     String s ;
     s.appendCString ("method @propertyKind.toOne invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
@@ -7944,7 +7956,7 @@ void GGS_propertyKind::method_extractToOne (GGS_lstring & outAssociatedValue_typ
     outAssociatedValue_accessibility = ptr->mProperty_accessibility ;
     outAssociatedValue_graphic = ptr->mProperty_graphic ;
     outAssociatedValue_opposite = ptr->mProperty_opposite ;
-    outAssociatedValue_weak = ptr->mProperty_weak ;
+    outAssociatedValue_isWeak = ptr->mProperty_isWeak ;
   }
 }
 
@@ -8044,13 +8056,13 @@ void GGS_propertyKind::getAssociatedValuesFor_toOne (GGS_lstring & out_typeName,
                                                      GGS_propertyAccessibility & out_accessibility,
                                                      GGS_bool & out_graphic,
                                                      GGS_toOneOppositeRelationship & out_opposite,
-                                                     GGS_bool & out_weak) const {
+                                                     GGS_bool & out_isWeak) const {
   const auto ptr = (const GGS_propertyKind_2E_toOne *) mAssociatedValues.associatedValuesPointer () ;
   out_typeName = ptr->mProperty_typeName ;
   out_accessibility = ptr->mProperty_accessibility ;
   out_graphic = ptr->mProperty_graphic ;
   out_opposite = ptr->mProperty_opposite ;
-  out_weak = ptr->mProperty_weak ;
+  out_isWeak = ptr->mProperty_isWeak ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11945,6 +11957,7 @@ GGS_computedPropertyDeclarationAST_2E_weak::GGS_computedPropertyDeclarationAST_2
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_computedPropertyDeclarationAST_2E_weak GGS_computedPropertyDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12780,6 +12793,7 @@ GGS_propertyGeneration_2E_weak::GGS_propertyGeneration_2E_weak (const GGS_proper
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyGeneration_2E_weak GGS_propertyGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -13574,6 +13588,7 @@ GGS_computeRoutineGeneration_2E_weak::GGS_computeRoutineGeneration_2E_weak (cons
 GGS_abstractFileGeneration_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_computeRoutineGeneration_2E_weak GGS_computeRoutineGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -13683,6 +13698,7 @@ GGS_transientDeclarationAST_2E_weak & GGS_transientDeclarationAST_2E_weak::opera
 GGS_transientDeclarationAST_2E_weak::GGS_transientDeclarationAST_2E_weak (const GGS_transientDeclarationAST & inSource) :
 GGS_abstractDeclarationAST_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14076,6 +14092,7 @@ GGS_transientPropertyGeneration_2E_weak & GGS_transientPropertyGeneration_2E_wea
 GGS_transientPropertyGeneration_2E_weak::GGS_transientPropertyGeneration_2E_weak (const GGS_transientPropertyGeneration & inSource) :
 GGS_propertyGeneration_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
