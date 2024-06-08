@@ -155,7 +155,8 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
         !graphic: graphic,
         !optionKind: self.mOption
       )
-      if not handleOpposite, not self.mOption.isHasOpposite then
+//      if not handleOpposite, not self.mOption.isHasOpposite then
+      if not handleOpposite, self.mOption.isHasOpposite then
         error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
       !?mPropertyMap.insertKey (self.mToManyRelationshipName, kind, [], false)
