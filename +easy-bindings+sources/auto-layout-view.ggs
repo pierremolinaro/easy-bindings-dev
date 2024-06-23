@@ -197,7 +197,7 @@ syntax extension easyBindings_syntax {
    
   #·····················································································································
  
-  rule <view_instruction_list> (?horizontal: @bool inHorizontal,
+  rule <view_instruction_list> (?horizontal: let @bool inHorizontal,
                                 ?!@stringset ioStackViewInstances,
                                 ?!@astNewStackViewDeclarationList ioNewStackViewDeclarationList,
                                 ?!@astViewInstructionList ioInstructionList) {
