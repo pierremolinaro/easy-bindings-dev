@@ -114,26 +114,22 @@ end
 
   override init () {
     super.init ()
-    g_%!preferencesName ()% = self ;
-  //--- Read from preferences
+    DispatchQueue.main.async {
+      g_%!preferencesName ()% = self
+    //--- Read from preferences
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !true]
 end
-%  //--- Notify application will terminate
-    /* NotificationCenter.default.addObserver (self,
-      selector:#selector(Preferences.applicationWillTerminateAction(_:)),
-      name:NSApplication.willTerminateNotification,
-      object:nil
-    ) */
-  //--- Extern functions
+%    //--- Extern functions
 %
   for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
     if mCallerName.string == "init" then
-      %    self.%!mExternSwiftFunctionName.string% ()\n%
+      %      self.%!mExternSwiftFunctionName.string% ()\n%
     end
   end
-%  }
+%    }
+  }
 
 %
 if [MAIN_XIB_DESCRIPTOR_LIST count] > 0 then
@@ -150,53 +146,55 @@ end
   //································································································
 
   override func awakeFromNib () {
+    DispatchQueue.main.async {
 %
 ![MAIN_XIB_DESCRIPTOR_LIST generateCode]
 for (lkey mOutletTypeName) in OUTLET_MAP do
-%    checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
+%      checkOutletConnection (self.%!lkey.string%, "%!lkey.string%", %!mOutletTypeName%.self, #file, #line)\n%
 end
-%  //--------------------------- Install bindings
+%    //--------------------------- Install bindings
 %
 for (mOutletName mBindingName mBoundObjectList mBindingOptionsString) in REGULAR_BINDINGS_GENERATION_LIST do
-  %    %!mOutletName%?.bind_%!mBindingName% (%
+  %      self.%!mOutletName%?.bind_%!mBindingName% (%
   for (mBoundObjectString mKind) in mBoundObjectList
     do !mBoundObjectString
     between %, %
   end
   !mBindingOptionsString%)\n%
 end
-%  //--------------------------- Install multiple bindings
+%    //--------------------------- Install multiple bindings
 %
 for (mOutletName mBindingName mBoundObjectExpression) in MULTIPLE_BINDING_GENERATION_LIST do
-  %    do{\n%
-  %      let controller = MultipleBindingController_%!mBindingName% (\n%
-  %        computeFunction: %![mBoundObjectExpression expressionString]%,\n%
-  %        outlet: self.%!mOutletName%\n%
-  %      )\n%
-  %      self.mController_%!mOutletName%_%!mBindingName% = controller\n%
-  %    }\n%
+  %      do{\n%
+  %        let controller = MultipleBindingController_%!mBindingName% (\n%
+  %          computeFunction: %![mBoundObjectExpression expressionString]%,\n%
+  %          outlet: self.%!mOutletName%\n%
+  %        )\n%
+  %        self.mController_%!mOutletName%_%!mBindingName% = controller\n%
+  %      }\n%
 end
-%  //--------------------------- Array controller
+%    //--------------------------- Array controller
 %
 for (mTableValueBindingOutletName mTableValueBindingControllerName) in TABLE_VALUE_BINDING_GENERATION_LIST do
-  %    preferences_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
+  %      preferences_%!mTableValueBindingControllerName%.bind_tableView (self.%!mTableValueBindingOutletName%)\n%
 end
 for (mEBViewOutletName mArrayControllerControllerName) in EB_VIEW_GRAPHIC_CONTROLLER_BINDING_GENERATION_LIST do
-  %    preferences_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
+  %      preferences_%!mArrayControllerControllerName%.bind_ebView (self.%!mEBViewOutletName%)\n%
 end
-%  //--------------------------- Set targets / actions
+%    //--------------------------- Set targets / actions
 %for (mOutletName mTargetName mActionName mTargetTypeName) in TARGET_ACTION_LIST do
-%    self.%!mOutletName%?.target = %!mTargetName%\n%
-%    self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
+%      self.%!mOutletName%?.target = %!mTargetName%\n%
+%      self.%!mOutletName%?.action = #selector (%!mTargetTypeName%.%!mActionName% (_:))\n%
 end
-%  //--------------------------- Extern functions
+%    //--------------------------- Extern functions
 %
   for (mExternSwiftFunctionName mCallerName) in EXTERN_SWIFT_FUNCTION_LIST do
     if mCallerName.string == "awakeFromNib" then
-      %    self.%!mExternSwiftFunctionName.string% ()\n%
+      %      self.%!mExternSwiftFunctionName.string% ()\n%
     end
   end
-%  }
+%    }
+  }
 
   //································································································
 

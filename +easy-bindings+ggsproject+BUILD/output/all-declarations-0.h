@@ -315,108 +315,108 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
 
 
 //--- Terminal symbols enumeration
-  public: enum {kToken_,
-   kToken_identifier /* 1 */ ,
-   kToken_Identifier /* 2 */ ,
-   kToken__40_attribute /* 3 */ ,
-   kToken_bindingName /* 4 */ ,
-   kToken_controllerName /* 5 */ ,
-   kToken_viewName /* 6 */ ,
-   kToken_literal_5F_integer /* 7 */ ,
-   kToken_literal_5F_double /* 8 */ ,
-   kToken_literal_5F_string /* 9 */ ,
-   kToken_comment /* 10 */ ,
-   kToken_abstract /* 11 */ ,
-   kToken_action /* 12 */ ,
-   kToken_all /* 13 */ ,
-   kToken_arrayController /* 14 */ ,
-   kToken_autolayout /* 15 */ ,
-   kToken_autoLayoutDocument /* 16 */ ,
-   kToken_binding /* 17 */ ,
-   kToken_calledBy /* 18 */ ,
-   kToken_class /* 19 */ ,
-   kToken_classForSwift /* 20 */ ,
-   kToken_column /* 21 */ ,
-   kToken_computed /* 22 */ ,
-   kToken_configurator /* 23 */ ,
-   kToken_default /* 24 */ ,
-   kToken_dependsFrom /* 25 */ ,
-   kToken_divider /* 26 */ ,
-   kToken_enum /* 27 */ ,
-   kToken_editableColumn /* 28 */ ,
-   kToken_entity /* 29 */ ,
-   kToken_extern /* 30 */ ,
-   kToken_externDelegate /* 31 */ ,
-   kToken_externFunc /* 32 */ ,
-   kToken_func /* 33 */ ,
-   kToken_graphic /* 34 */ ,
-   kToken_graphviz /* 35 */ ,
-   kToken_handlingOpposite /* 36 */ ,
-   kToken_hStack /* 37 */ ,
-   kToken_include /* 38 */ ,
-   kToken_inverse /* 39 */ ,
-   kToken_linker /* 40 */ ,
-   kToken_mainxib /* 41 */ ,
-   kToken_menuItem /* 42 */ ,
-   kToken_no /* 43 */ ,
-   kToken_newView /* 44 */ ,
-   kToken_none /* 45 */ ,
-   kToken_one /* 46 */ ,
-   kToken_outlet /* 47 */ ,
-   kToken_outletArray /* 48 */ ,
-   kToken_override /* 49 */ ,
-   kToken_prefs /* 50 */ ,
-   kToken_property /* 51 */ ,
-   kToken_proxy /* 52 */ ,
-   kToken_root /* 53 */ ,
-   kToken_selectionController /* 54 */ ,
-   kToken_self /* 55 */ ,
-   kToken_separator /* 56 */ ,
-   kToken_signature /* 57 */ ,
-   kToken_sortkey /* 58 */ ,
-   kToken_space /* 59 */ ,
-   kToken_stackView /* 60 */ ,
-   kToken_struct /* 61 */ ,
-   kToken_super /* 62 */ ,
-   kToken_tableViewController /* 63 */ ,
-   kToken_toMany /* 64 */ ,
-   kToken_toOne /* 65 */ ,
-   kToken_transient /* 66 */ ,
-   kToken_typeView /* 67 */ ,
-   kToken_version /* 68 */ ,
-   kToken_vStack /* 69 */ ,
-   kToken_versionShouldChange /* 70 */ ,
-   kToken_view /* 71 */ ,
-   kToken_weak /* 72 */ ,
-   kToken_xcodeproject /* 73 */ ,
-   kToken_yes /* 74 */ ,
-   kToken_enabled /* 75 */ ,
-   kToken_graphicController /* 76 */ ,
-   kToken_hidden /* 77 */ ,
-   kToken_tableValue /* 78 */ ,
-   kToken_run /* 79 */ ,
-   kToken__3A_ /* 80 */ ,
-   kToken__2C_ /* 81 */ ,
-   kToken__3B_ /* 82 */ ,
-   kToken__21_ /* 83 */ ,
-   kToken__5B_ /* 84 */ ,
-   kToken__5D_ /* 85 */ ,
-   kToken__7B_ /* 86 */ ,
-   kToken__7D_ /* 87 */ ,
-   kToken__28_ /* 88 */ ,
-   kToken__29_ /* 89 */ ,
-   kToken__2E_ /* 90 */ ,
-   kToken__7C_ /* 91 */ ,
-   kToken__26_ /* 92 */ ,
-   kToken__3C_ /* 93 */ ,
-   kToken__3E_ /* 94 */ ,
-   kToken__3C__3D_ /* 95 */ ,
-   kToken__3E__3D_ /* 96 */ ,
-   kToken__21__3D_ /* 97 */ ,
-   kToken__3D__3D_ /* 98 */ ,
-   kToken__5E_ /* 99 */ ,
-   kToken__2D_ /* 100 */ ,
-   kToken__3D_ /* 101 */ } ;
+  public: const static int32_t kToken_ = 0 ;
+  public: static const int32_t kToken_identifier = 1 ;
+  public: static const int32_t kToken_Identifier = 2 ;
+  public: static const int32_t kToken__40_attribute = 3 ;
+  public: static const int32_t kToken_bindingName = 4 ;
+  public: static const int32_t kToken_controllerName = 5 ;
+  public: static const int32_t kToken_viewName = 6 ;
+  public: static const int32_t kToken_literal_5F_integer = 7 ;
+  public: static const int32_t kToken_literal_5F_double = 8 ;
+  public: static const int32_t kToken_literal_5F_string = 9 ;
+  public: static const int32_t kToken_comment = 10 ;
+  public: static const int32_t kToken_abstract = 11 ;
+  public: static const int32_t kToken_action = 12 ;
+  public: static const int32_t kToken_all = 13 ;
+  public: static const int32_t kToken_arrayController = 14 ;
+  public: static const int32_t kToken_autolayout = 15 ;
+  public: static const int32_t kToken_autoLayoutDocument = 16 ;
+  public: static const int32_t kToken_binding = 17 ;
+  public: static const int32_t kToken_calledBy = 18 ;
+  public: static const int32_t kToken_class = 19 ;
+  public: static const int32_t kToken_classForSwift = 20 ;
+  public: static const int32_t kToken_column = 21 ;
+  public: static const int32_t kToken_computed = 22 ;
+  public: static const int32_t kToken_configurator = 23 ;
+  public: static const int32_t kToken_default = 24 ;
+  public: static const int32_t kToken_dependsFrom = 25 ;
+  public: static const int32_t kToken_divider = 26 ;
+  public: static const int32_t kToken_enum = 27 ;
+  public: static const int32_t kToken_editableColumn = 28 ;
+  public: static const int32_t kToken_entity = 29 ;
+  public: static const int32_t kToken_extern = 30 ;
+  public: static const int32_t kToken_externDelegate = 31 ;
+  public: static const int32_t kToken_externFunc = 32 ;
+  public: static const int32_t kToken_func = 33 ;
+  public: static const int32_t kToken_graphic = 34 ;
+  public: static const int32_t kToken_graphviz = 35 ;
+  public: static const int32_t kToken_handlingOpposite = 36 ;
+  public: static const int32_t kToken_hStack = 37 ;
+  public: static const int32_t kToken_include = 38 ;
+  public: static const int32_t kToken_inverse = 39 ;
+  public: static const int32_t kToken_linker = 40 ;
+  public: static const int32_t kToken_mainxib = 41 ;
+  public: static const int32_t kToken_menuItem = 42 ;
+  public: static const int32_t kToken_no = 43 ;
+  public: static const int32_t kToken_newView = 44 ;
+  public: static const int32_t kToken_none = 45 ;
+  public: static const int32_t kToken_one = 46 ;
+  public: static const int32_t kToken_outlet = 47 ;
+  public: static const int32_t kToken_outletArray = 48 ;
+  public: static const int32_t kToken_override = 49 ;
+  public: static const int32_t kToken_prefs = 50 ;
+  public: static const int32_t kToken_property = 51 ;
+  public: static const int32_t kToken_proxy = 52 ;
+  public: static const int32_t kToken_root = 53 ;
+  public: static const int32_t kToken_selectionController = 54 ;
+  public: static const int32_t kToken_self = 55 ;
+  public: static const int32_t kToken_separator = 56 ;
+  public: static const int32_t kToken_signature = 57 ;
+  public: static const int32_t kToken_sortkey = 58 ;
+  public: static const int32_t kToken_space = 59 ;
+  public: static const int32_t kToken_stackView = 60 ;
+  public: static const int32_t kToken_struct = 61 ;
+  public: static const int32_t kToken_super = 62 ;
+  public: static const int32_t kToken_tableViewController = 63 ;
+  public: static const int32_t kToken_toMany = 64 ;
+  public: static const int32_t kToken_toOne = 65 ;
+  public: static const int32_t kToken_transient = 66 ;
+  public: static const int32_t kToken_typeView = 67 ;
+  public: static const int32_t kToken_version = 68 ;
+  public: static const int32_t kToken_vStack = 69 ;
+  public: static const int32_t kToken_versionShouldChange = 70 ;
+  public: static const int32_t kToken_view = 71 ;
+  public: static const int32_t kToken_weak = 72 ;
+  public: static const int32_t kToken_xcodeproject = 73 ;
+  public: static const int32_t kToken_yes = 74 ;
+  public: static const int32_t kToken_enabled = 75 ;
+  public: static const int32_t kToken_graphicController = 76 ;
+  public: static const int32_t kToken_hidden = 77 ;
+  public: static const int32_t kToken_tableValue = 78 ;
+  public: static const int32_t kToken_run = 79 ;
+  public: static const int32_t kToken__3A_ = 80 ;
+  public: static const int32_t kToken__2C_ = 81 ;
+  public: static const int32_t kToken__3B_ = 82 ;
+  public: static const int32_t kToken__21_ = 83 ;
+  public: static const int32_t kToken__5B_ = 84 ;
+  public: static const int32_t kToken__5D_ = 85 ;
+  public: static const int32_t kToken__7B_ = 86 ;
+  public: static const int32_t kToken__7D_ = 87 ;
+  public: static const int32_t kToken__28_ = 88 ;
+  public: static const int32_t kToken__29_ = 89 ;
+  public: static const int32_t kToken__2E_ = 90 ;
+  public: static const int32_t kToken__7C_ = 91 ;
+  public: static const int32_t kToken__26_ = 92 ;
+  public: static const int32_t kToken__3C_ = 93 ;
+  public: static const int32_t kToken__3E_ = 94 ;
+  public: static const int32_t kToken__3C__3D_ = 95 ;
+  public: static const int32_t kToken__3E__3D_ = 96 ;
+  public: static const int32_t kToken__21__3D_ = 97 ;
+  public: static const int32_t kToken__3D__3D_ = 98 ;
+  public: static const int32_t kToken__5E_ = 99 ;
+  public: static const int32_t kToken__2D_ = 100 ;
+  public: static const int32_t kToken__3D_ = 101 ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public: static int32_t search_into_lowerCaseKeyWordList (const String & inSearchedString) ;
