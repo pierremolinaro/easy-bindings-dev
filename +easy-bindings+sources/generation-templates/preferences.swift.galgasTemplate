@@ -114,7 +114,7 @@ end
 
   override init () {
     super.init ()
-    DispatchQueue.main.async {
+ //   DispatchQueue.main.async {
       g_%!preferencesName ()% = self
     //--- Read from preferences
 %
@@ -128,7 +128,7 @@ end
       %      self.%!mExternSwiftFunctionName.string% ()\n%
     end
   end
-%    }
+%//    }
   }
 
 %
