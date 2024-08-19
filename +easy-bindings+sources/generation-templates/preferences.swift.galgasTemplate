@@ -6,11 +6,7 @@ import AppKit
 
 //--------------------------------------------------------------------------------------------------
 
-@MainActor var g_%!preferencesName ()% : %!preferencesName ()%? = nil
-
-//--------------------------------------------------------------------------------------------------
-
-@objc(%!preferencesName ()%) final class %!preferencesName ()% : %!preferencesName ()%_SuperClass, NSWindowDelegate {
+class %!preferencesName ()% : %!preferencesName ()%_SuperClass, NSWindowDelegate {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -74,7 +70,7 @@ for (lkey autoLayoutOutletTypeName outletIsArray) in AUTO_LAYOUT_OUTLET_MAP do
 end
 %
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  //    Outlets (EX)
+  //    Outlets
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 %
@@ -115,7 +111,7 @@ end
   override init () {
     super.init ()
  //   DispatchQueue.main.async {
-      g_%!preferencesName ()% = self
+      // g_%!preferencesName ()% = self
     //--- Read from preferences
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
@@ -194,6 +190,7 @@ end
     end
   end
 %    }
+    super.awakeFromNib ()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

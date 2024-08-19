@@ -146,7 +146,7 @@ if [SORTED_COLUMNS count] > 0 then
   //    sorted array observer
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  @MainActor private var mSortedArrayValuesObserver = EBOutletEvent ()
+  private var mSortedArrayValuesObserver = EBOutletEvent ()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -1695,21 +1695,21 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("> { return EBReferenceSet (self.selectedArray_property.propval.values) }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedIndexesSet : Set <Int> {\n    let selectedObjectSet = self.selectedSet\n    var result = Set <Int> ()\n    var idx = 0\n    if let model = self.mModel {\n      for object in model.propval.values {\n        if selectedObjectSet.contains (object) {\n          result.insert (idx)\n        }\n        idx += 1\n      }\n    }\n    return result\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func setSelection (_ inObjects : [") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString ("]) {\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    sorted array observer\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @MainActor private var mSortedArrayValuesObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @MainActor override init () {\n    super.init ()\n    self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
-  GGS_uint index_6464_ (0) ;
+  result.appendString ("]) {\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    sorted array observer\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mSortedArrayValuesObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @MainActor override init () {\n    super.init ()\n    self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
+  GGS_uint index_6453_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6464 (in_BOUND_5F_COLUMNS, EnumerationOrder::up) ;
-    while (enumerator_6464.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6453 (in_BOUND_5F_COLUMNS, EnumerationOrder::up) ;
+    while (enumerator_6453.hasCurrentObject ()) {
       result.appendString ("  //--- Observe '") ;
-      result.appendString (enumerator_6464.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6453.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("' column\n    self.sortedArray_property.toMany_") ;
-      result.appendString (enumerator_6464.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6453.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
-      const enumGalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6464.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6464.current_mSortPropertyName (HERE).objectCompare (enumerator_6464.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
+      const enumGalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (enumerator_6453.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
       switch (test_2) {
       case kBoolTrue : {
         result.appendString ("     self.sortedArray_property.toMany_") ;
-        result.appendString (enumerator_6464.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_6453.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
         } break ;
       case kBoolFalse : {
@@ -1717,27 +1717,27 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
       default :
         break ;
       }
-      index_6464_.increment () ;
-      enumerator_6464.gotoNextObject () ;
+      index_6453_.increment () ;
+      enumerator_6453.gotoNextObject () ;
     }
   }
   result.appendString ("  //---\n    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in\n       for tableView in self\?.mTableViewArray \?\? [] {\n        tableView.sortAndReloadData ()\n      }\n    }\n    noteObjectAllocation (self)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    bind_tableView\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mTableViewArray = [AutoLayoutTableView] ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func bind_tableView (_ inTableView : AutoLayoutTableView) {\n    inTableView.configure (\n      allowsEmptySelection: allowsEmptySelection,\n      allowsMultipleSelection: allowsMultipleSelection,\n      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n      delegate: self\n    )\n") ;
-  GGS_uint index_8064_ (0) ;
+  GGS_uint index_8053_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8064 (in_BOUND_5F_COLUMNS, EnumerationOrder::up) ;
-    while (enumerator_8064.hasCurrentObject ()) {
+    cEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8053 (in_BOUND_5F_COLUMNS, EnumerationOrder::up) ;
+    while (enumerator_8053.hasCurrentObject ()) {
       result.appendString ("  //--- Configure '") ;
-      result.appendString (enumerator_8064.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("' column\n    inTableView.addColumn_") ;
-      result.appendString (enumerator_8064.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8053.current_mColumnObjectTypeName (HERE).stringValue ()) ;
       result.appendString (" (\n      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0].") ;
-      result.appendString (enumerator_8064.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString (" },\n      valueSetterDelegate: ") ;
-      const enumGalgasBool test_3 = enumerator_8064.current_mEditable (HERE).boolEnum () ;
+      const enumGalgasBool test_3 = enumerator_8053.current_mEditable (HERE).boolEnum () ;
       switch (test_3) {
       case kBoolTrue : {
         result.appendString ("{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].") ;
-        result.appendString (enumerator_8064.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
         result.appendString (" = inNewValue }") ;
         } break ;
       case kBoolFalse : {
@@ -1747,7 +1747,7 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         break ;
       }
       result.appendString (",\n      sortDelegate: ") ;
-      const enumGalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8064.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+      const enumGalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8053.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       switch (test_4) {
       case kBoolTrue : {
         result.appendString ("{ [weak self] (ascending) in\n        self\?.mSortDescriptorArray.append ({ (_ left : ") ;
@@ -1755,11 +1755,11 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         result.appendString (", _ right : ") ;
         result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
         result.appendString (") in return compare_") ;
-        result.appendString (enumerator_8064.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8053.current_mColumnObjectTypeName (HERE).stringValue ()) ;
         result.appendString ("_properties (left.") ;
-        result.appendString (enumerator_8064.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8053.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_property, ascending, right.") ;
-        result.appendString (enumerator_8064.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8053.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_property) })\n      }") ;
         } break ;
       case kBoolFalse : {
@@ -1769,24 +1769,24 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         break ;
       }
       result.appendString (",\n") ;
-      GGS_uint index_8919_ (0) ;
-      if (enumerator_8064.current_mActualParameterList (HERE).isValid ()) {
-        cEnumerator__32_stringlist enumerator_8919 (enumerator_8064.current_mActualParameterList (HERE), EnumerationOrder::up) ;
-        while (enumerator_8919.hasCurrentObject ()) {
+      GGS_uint index_8908_ (0) ;
+      if (enumerator_8053.current_mActualParameterList (HERE).isValid ()) {
+        cEnumerator__32_stringlist enumerator_8908 (enumerator_8053.current_mActualParameterList (HERE), EnumerationOrder::up) ;
+        while (enumerator_8908.hasCurrentObject ()) {
           result.appendString ("      ") ;
-          result.appendString (enumerator_8919.current_mValue_30_ (HERE).stringValue ()) ;
+          result.appendString (enumerator_8908.current_mValue_30_ (HERE).stringValue ()) ;
           result.appendString (": ") ;
-          result.appendString (enumerator_8919.current_mValue_31_ (HERE).stringValue ()) ;
-          if (enumerator_8919.hasNextObject ()) {
+          result.appendString (enumerator_8908.current_mValue_31_ (HERE).stringValue ()) ;
+          if (enumerator_8908.hasNextObject ()) {
             result.appendString (",\n") ;
           }
-          index_8919_.increment () ;
-          enumerator_8919.gotoNextObject () ;
+          index_8908_.increment () ;
+          enumerator_8908.gotoNextObject () ;
         }
       }
       result.appendString ("\n    )\n") ;
-      index_8064_.increment () ;
-      enumerator_8064.gotoNextObject () ;
+      index_8053_.increment () ;
+      enumerator_8053.gotoNextObject () ;
     }
   }
   result.appendString ("  //---\n    self.mTableViewArray.append (inTableView)\n    inTableView.sortAndReloadData ()\n  }\n\n") ;
