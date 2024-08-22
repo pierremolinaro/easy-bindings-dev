@@ -9,23 +9,9 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstringlist mActionDeclarationList
   public let @arrayControllerBindingListAST mArrayControllerBindingListAST
   public let @astViewDeclarationList mViewDeclarationList
-#  public let @astAutoLayoutToolbarItemList mAutoLayoutToolbarItemList
   public let @string mCustomSuperClassName # Empty String if no custom superclass
   public let @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
-
-#·······················································································································
-
-#enum @astAutoLayoutToolbarItem {
-#  case view (@lstring title @astComputedViewInstruction instruction)
-#  case space
-#}
-
-#·······················································································································
-
-#list @astAutoLayoutToolbarItemList {
-#  public var @astAutoLayoutToolbarItem mItem
-#}
 
 #·······················································································································
 
@@ -324,19 +310,6 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @string mCustomSuperClassName # Empty String if no custom superclass
   public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
-
-#·······················································································································
-
-#enum @autoLayoutToolbarItemGeneration {
-#  case view (@string title @abstractViewInstructionGeneration instruction)
-#  case space
-#}
-
-#·······················································································································
-
-#list @autoLayoutToolbarItemGenerationList {
-#  public var @autoLayoutToolbarItemGeneration mItem
-#}
 
 #·······················································································································
 

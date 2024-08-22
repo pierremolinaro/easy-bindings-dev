@@ -4706,6 +4706,19 @@ class GGS_string callExtensionGetter_expressionString (const class cPtr_abstract
 
 //--------------------------------------------------------------------------------------------------
 //
+//Abstract extension getter '@abstractViewInstructionGeneration generateViewInstruction'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_generateViewInstruction (const class cPtr_abstractViewInstructionGeneration * inObject,
+                                                              const class GGS_bool constin_inPreferences,
+                                                              const class GGS_string constin_inName,
+                                                              const class GGS_string constin_inIndentation,
+                                                              class Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @autoLayoutViewInstructionGenerationFuncCallList list
 //
 //--------------------------------------------------------------------------------------------------
@@ -8941,19 +8954,6 @@ class GGS_string callExtensionGetter_generateViewBuilder (const class cPtr_abstr
                                                           const class GGS_string constin_inViewName,
                                                           class Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension getter '@abstractViewInstructionGeneration generateViewInstruction'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string callExtensionGetter_generateViewInstruction (const class cPtr_abstractViewInstructionGeneration * inObject,
-                                                              const class GGS_bool constin_inPreferences,
-                                                              const class GGS_string constin_inName,
-                                                              const class GGS_string constin_inIndentation,
-                                                              class Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

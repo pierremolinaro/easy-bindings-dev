@@ -566,8 +566,8 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
         end
         switch value
         case viewFunc (instruction) :
-          instruction.generateViewCode 
-            (inViewDeclarationMap,
+          instruction.generateViewCode ( 
+            inViewDeclarationMap,
             !prefs: inPreferences,
             inRootObservablePropertyMap,
             inPreferencesPropertyMap,
@@ -581,8 +581,14 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             !?ioOutletMap,
             ?let @abstractViewInstructionGeneration viewInstruction
           )
-          !?parameterList.append (name, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count + " ()")
-          !?ioImplicitViewFunctionGenerationList.append (viewInstruction)
+          let viewInstructionString = viewInstruction.generateViewInstruction (
+            !prefs: inPreferences,
+            name,
+            "" // Indentation
+          )
+          !?parameterList.append (name, "{ () -> NSView in " + viewInstructionString + " ; return " + name + " } ()")
+//          !?parameterList.append (name, "self.computeImplicitView_" + ioImplicitViewFunctionGenerationList.count + " ()")
+//          !?ioImplicitViewFunctionGenerationList.append (viewInstruction)
         case string (stringValue) :
           !?parameterList.append (name, stringValue)
         case entity (entityName) :
@@ -596,7 +602,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
             run,
             !handlesRunAction: true,
             inPreferences,
-            "".nowhere , # mAutoLayoutViewClassName # inTypeName
+            "".nowhere ,
             inActionMap,
             inObservablePropertyMap,
             inReceiverSwiftTypeName,
