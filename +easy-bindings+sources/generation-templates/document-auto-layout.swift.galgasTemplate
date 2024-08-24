@@ -112,7 +112,7 @@ end
      %)\n%
      end
 %  //--- Assign main view to window
-    self.windowForSheet?.contentView = AutoLayoutWindowContentView (view: mainView)
+    self.windowForSheet?.setContentView (mainView)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
