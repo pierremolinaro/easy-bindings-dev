@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 list @simpleStoredPropertyList {
   public var @lstring mPropertyTypeName
@@ -8,7 +8,7 @@ list @simpleStoredPropertyList {
   public var @abstractDefaultValue mDefaultValue
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
@@ -19,7 +19,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public let @bool mGenerateDirectAccess
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
@@ -29,19 +29,19 @@ override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarati
   self.mDefaultValue.enterDefaultValuePrecedence (node, !?ioGraph)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <simple_stored_declaration>(
     let @lstring inClassName,
@@ -112,13 +112,13 @@ syntax extension easyBindings_syntax {
     )
   }
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -160,9 +160,9 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION                       
+//------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
   public let @bool mGenerateResetMethod
@@ -174,19 +174,19 @@ class @atomicPropertyGeneration : @propertyGeneration {
   public let @bool mInPreferences
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @atomicPropertyGenerationList {
   public var @atomicPropertyGeneration mProperty
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.prefKeyDefinitionCode() -> @string {
   result = "@MainActor let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
@@ -195,7 +195,7 @@ override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
@@ -251,7 +251,7 @@ override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @
   result += "  }\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.propertyDeclarationCode (
    let @bool unused inPreferences,
@@ -288,7 +288,7 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.initCode() -> @string {
   result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + self.mType.swiftTypeName
@@ -296,10 +296,10 @@ override func @atomicPropertyGeneration.initCode() -> @string {
   result += self.mPropertyName + "\")\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result = ""
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

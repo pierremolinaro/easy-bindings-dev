@@ -1,13 +1,13 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST
+//------------------------------------------------------------------------------------------------
 
 enum @proxyKind %equatable {
   case propertyProxy
   case toManyProxy
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 class @proxyDeclarationAST : @abstractDeclarationAST {
   public var @proxyKind mProxyKind
@@ -17,7 +17,7 @@ class @proxyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mProxyName, self.mProxyName.location)
@@ -26,19 +26,19 @@ override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecede
   !?ioGraph.addEdge (node, self.mProxyTypeName)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @proxyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mProxyName, self.mProxyName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <controller_declaration>(
             let @lstring inCurrentEntity,
@@ -73,13 +73,13 @@ syntax extension easyBindings_syntax {
     )
   }
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @proxyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -113,7 +113,7 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct ioGeneration) {
@@ -186,9 +186,9 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION (toMany proxy)
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION (toMany proxy)
+//------------------------------------------------------------------------------------------------
 
 class @toManyProxyGeneration : @propertyGeneration {
   public var @proxyKind mProxyKind
@@ -197,13 +197,13 @@ class @toManyProxyGeneration : @propertyGeneration {
   public var @string mObservedPropertyName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @toManyProxyGenerationList {
   public var @toManyProxyGeneration mProperty
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
@@ -212,19 +212,19 @@ override func @toManyProxyGeneration.declarationInSelectionControllerCode() -> @
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.initCode() -> @string {
   result = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.bindPropertyInSelectionController() -> @string {
   result = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.propertyDeclarationCode(
    let @bool unused inPreferences,
@@ -253,7 +253,7 @@ override func @toManyProxyGeneration.propertyDeclarationCode(
   result += "  }\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- ToMany proxy: " + self.mPropertyName + "\n"
@@ -271,9 +271,9 @@ override func @toManyProxyGeneration.configurationCode (let @bool unused inPrefe
   result += "    }\n"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION (atomic proxy)
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION (atomic proxy)
+//------------------------------------------------------------------------------------------------
 
 class @atomicProxyGeneration : @propertyGeneration {
   public var @proxyKind mProxyKind
@@ -282,13 +282,13 @@ class @atomicProxyGeneration : @propertyGeneration {
   public var @string mObservedPropertyName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @atomicProxyGenerationList {
   public var @atomicProxyGeneration mProperty
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
@@ -297,13 +297,13 @@ override func @atomicProxyGeneration.declarationInSelectionControllerCode() -> @
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.initCode() -> @string {
   result = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
@@ -359,7 +359,7 @@ override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @st
   result += "  }\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.propertyDeclarationCode(
    let @bool unused inPreferences,
@@ -383,7 +383,7 @@ override func @atomicProxyGeneration.propertyDeclarationCode(
   result += "  }\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- Atomic proxy property: " + self.mPropertyName + "\n"
@@ -412,4 +412,4 @@ override func @atomicProxyGeneration.configurationCode (let @bool unused inPrefe
   result += "_property.startsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

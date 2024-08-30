@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 class @selectionControllerDeclarationAST : @abstractDeclarationAST {
   public let @lstring mSelectionControllerName
@@ -9,7 +9,7 @@ class @selectionControllerDeclarationAST : @abstractDeclarationAST {
   public let @lstring mSelectionEntityName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (
@@ -20,19 +20,19 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
   !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @selectionControllerDeclarationAST.nodeKey () -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mSelectionControllerName, self.mSelectionControllerName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <controller_declaration> (let @lstring inCurrentEntity,
                                  let @lstring unused inRootEntity,
@@ -56,13 +56,13 @@ syntax extension easyBindings_syntax {
     )
   }
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                                      ?!@generationStruct unused ioGeneration) {
@@ -96,7 +96,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -152,9 +152,9 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION                       
+//------------------------------------------------------------------------------------------------
 
 class @selectionControllerPropertyGeneration : @propertyGeneration {
   public let @string mOwnerName
@@ -162,7 +162,7 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
   public let @string mModelControllerPropertyName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
    let @bool unused inPreferences,
@@ -174,7 +174,7 @@ override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
   result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @selectionControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
@@ -182,22 +182,22 @@ override func @selectionControllerPropertyGeneration.configurationCode (let @boo
     + "." + self.mModelControllerPropertyName + "_property)\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @selectionControllerPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @selectionControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
   result  = "    //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION TYPES                      
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION TYPES                      
+//------------------------------------------------------------------------------------------------
 
 list @selectionControllerForGeneration {
   public var @string mOwnerName # document name, prefs name, ...
@@ -210,7 +210,7 @@ list @selectionControllerForGeneration {
   public var @propertyGenerationList mPropertyGenerationList
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 private filewrapper selectionControllerGenerationTemplate in "generation-templates/controllers" {
 }{
@@ -232,9 +232,9 @@ private filewrapper selectionControllerGenerationTemplate in "generation-templat
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION                            
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION                            
+//------------------------------------------------------------------------------------------------
 
 proc generateSelectionControllers(
   let @selectionControllerForGeneration inArrayControllerListForGeneration,
@@ -279,4 +279,4 @@ proc generateSelectionControllers(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

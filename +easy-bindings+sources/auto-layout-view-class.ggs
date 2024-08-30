@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 //   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
   public var @bool mUserDefined
@@ -14,7 +14,7 @@ class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
   public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 enum @autoLayoutClassParameterType %equatable {
   case typeString
@@ -27,7 +27,7 @@ enum @autoLayoutClassParameterType %equatable {
   case typeEnum (@lstring name)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 func @autoLayoutClassParameterType.string() -> @string {
   switch self
@@ -42,14 +42,14 @@ func @autoLayoutClassParameterType.string() -> @string {
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @autoLayoutClassParameterList {
   public var @lstring mParameterName
   public var @autoLayoutClassParameterType mParameterType
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 map @astAutoLayoutViewFunctionMap {
   public var @autoLayoutClassParameterList mFomalParameterList
@@ -57,7 +57,7 @@ map @astAutoLayoutViewFunctionMap {
   %searchMethod searchKey %errorMessage "there is no '%K' function"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutViewClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
@@ -66,19 +66,19 @@ override proc @autoLayoutViewClassDeclarationAST.enterInPrecedenceGraph (?!@decl
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @autoLayoutViewClassDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $vStack$
@@ -100,7 +100,7 @@ syntax extension easyBindings_syntax {
     !?ioDeclarationAST.mAutoLayoutHStackFunctionMap.insertKey (mangledName, parameterList)
   }
   
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     let @bool userDefined
@@ -221,13 +221,13 @@ syntax extension easyBindings_syntax {
     outMangledName = .init (mangledName, inFunctionName.location)
   }
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -236,7 +236,7 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
   if self.mSuperClassName.string == "" then
     !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
       self.mClassName,
-      "".nowhere ,  # No super class
+      "".nowhere,  // No super class
       self.mHasRunAction,
       self.mHandlesTableValueBinding,
       self.mHasEnabled,
@@ -247,8 +247,8 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
       self.mAutoLayoutViewFunctionMap
     )
   else
-    ioSemanticContext.mAutolayoutViewClassMap.searchKey
-      (self.mSuperClassName,
+    ioSemanticContext.mAutolayoutViewClassMap.searchKey (
+      self.mSuperClassName,
       ?*,
       ?let hasRunAction,
       ?let handlesTableValueBinding,
@@ -288,9 +288,9 @@ override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#  SEMANTIC TYPE                          
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//  SEMANTIC TYPE                          
+//------------------------------------------------------------------------------------------------
 
 map @autolayoutViewClassMap {
   public var @lstring mSuperClassName
@@ -306,4 +306,4 @@ map @autolayoutViewClassMap {
   %searchMethod searchKey %errorMessage "there is no '%K' outlet class"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

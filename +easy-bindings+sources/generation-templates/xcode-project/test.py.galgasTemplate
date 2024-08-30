@@ -6,14 +6,14 @@ import subprocess, os, sys, atexit
 import atomac, sys, time, inspect
 
 //-----------------------------------------------------------------------------*
-#   GET SOURCE LINE NUMBER                                                     *
+//   GET SOURCE LINE NUMBER                                                     *
 //-----------------------------------------------------------------------------*
 
 def lineno():
   return inspect.currentframe().f_back.f_lineno
 
 //-----------------------------------------------------------------------------*
-#   LAUNCH APPLICATION                                                         *
+//   LAUNCH APPLICATION                                                         *
 //-----------------------------------------------------------------------------*
 
 def launchApplication ():
@@ -24,7 +24,7 @@ def launchApplication ():
   return application
 
 //-----------------------------------------------------------------------------*
-#   QUIT APPLICATION                                                           *
+//   QUIT APPLICATION                                                           *
 //-----------------------------------------------------------------------------*
 
 def quitApplication ():
@@ -32,7 +32,7 @@ def quitApplication ():
   time.sleep (0.5)
 
 //-----------------------------------------------------------------------------*
-#   PREFERENCES WINDOW                                                         *
+//   PREFERENCES WINDOW                                                         *
 //-----------------------------------------------------------------------------*
 
 def setUpPreferencesWindow (application) :
@@ -45,7 +45,7 @@ for (mValue) in OUTLET_IDENTIFIER_LIST do
 end
 %
 //-----------------------------------------------------------------------------*
-#   CHECK TEXT FIELD VALUE                                                     *
+//   CHECK TEXT FIELD VALUE                                                     *
 //-----------------------------------------------------------------------------*
 
 def checkTextFieldValue (textField, expectedValue, line):
@@ -54,7 +54,7 @@ def checkTextFieldValue (textField, expectedValue, line):
     sys.exit (1)
 
 //-----------------------------------------------------------------------------*
-#   SET TEXT FIELD                                                             *
+//   SET TEXT FIELD                                                             *
 //-----------------------------------------------------------------------------*
 
 def setTextFieldValue (textField, value):
@@ -64,7 +64,7 @@ def setTextFieldValue (textField, value):
   time.sleep (0.5)
 
 //-----------------------------------------------------------------------------*
-#   MAIN                                                                       *
+//   MAIN                                                                       *
 //-----------------------------------------------------------------------------*
 
 application = launchApplication ()

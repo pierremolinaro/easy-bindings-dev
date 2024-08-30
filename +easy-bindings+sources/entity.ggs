@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 class @entityDeclarationAST : @abstractDeclarationAST {
   public let @bool mIsAbstract
@@ -15,7 +15,7 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   public let @lstringlist mGraphicOptionArray
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
@@ -24,19 +24,19 @@ override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPreced
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @entityDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <entity_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     let @bool isAbstract
@@ -149,13 +149,13 @@ syntax extension easyBindings_syntax {
     end
  }
  
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
@@ -174,7 +174,7 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
   )
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct unused ioGeneration) {
@@ -195,14 +195,14 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
     )
   //-- Merge properties
     var newPropertyMap = inheritedPropertyMap
-#    for (lkey 3*) in inheritedPropertyMap do
-#        message "  inherit '" + lkey + "'\n"
-#    end
+//    for (lkey 3*) in inheritedPropertyMap do
+//        message "  inherit '" + lkey + "'\n"
+//    end
     for (lkey, kind, actionMap, isOverriding) in propertyMap do
       if isOverriding then
         inheritedPropertyMap.searchKey (lkey, ?3*)
       else
-#        message "  insert '" + lkey + "'\n"
+//        message "  insert '" + lkey + "'\n"
         !?newPropertyMap.insertKey (lkey, kind, actionMap, false)
       end
     end
@@ -215,7 +215,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
@@ -320,9 +320,9 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION
+//------------------------------------------------------------------------------------------------
 
 class @entityForGeneration : @abstractFileGeneration {
   public let @string mEntityName
@@ -339,14 +339,14 @@ class @entityForGeneration : @abstractFileGeneration {
   public let @bool mCannotBeDeleted_option
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @entityListForGeneratingEBManagedObjectContext {
   public var @string mEntityName
   public var @lstringlist mObsoleteEntityNames
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
     let @generationStruct inGenerationStruct,
@@ -476,7 +476,7 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
   )
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 proc generateEBManagedObjectContext(
   let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
@@ -495,7 +495,7 @@ proc generateEBManagedObjectContext(
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 private filewrapper entityGenerationTemplate in "generation-templates" {
 }{
@@ -570,4 +570,4 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

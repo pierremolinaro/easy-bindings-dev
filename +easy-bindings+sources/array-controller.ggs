@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST
+//------------------------------------------------------------------------------------------------
 
 class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   public var @lstring mControllerName
@@ -8,21 +8,21 @@ class @arrayControllerDeclarationAST : @abstractDeclarationAST {
   public var @lstring mToManyPropertyName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @arrayControllerBindingListAST {
   public var @lstring mControllerName
   public var @multipleBindingDescriptor mHiddenSelectionViewBindingDescriptor
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 enum @arrayControllerBoundModelAST {
   case rootToManyRelationship (@lstring rootEntityName)
   case selfToManyRelationship
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
@@ -38,19 +38,19 @@ override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarat
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @arrayControllerDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <controller_declaration>(
             let @lstring inCurrentEntity,
@@ -93,13 +93,13 @@ syntax extension easyBindings_syntax {
     )
   }
   
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -165,9 +165,9 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SECOND ANALYSIS PHASE
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SECOND ANALYSIS PHASE
+//------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -239,16 +239,16 @@ override proc @arrayControllerDeclarationAST.thirdAnalysisPhase(
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION                       
+//------------------------------------------------------------------------------------------------
 
 class @arrayControllerPropertyGeneration : @propertyGeneration {
   public var @string mModelString
   public var @string mOwnerName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @arrayControllerPropertyGeneration.propertyDeclarationCode (let @bool inPreferences,
                                                             let @bool unused inGenerationDirectAccess,
@@ -266,36 +266,36 @@ override func @arrayControllerPropertyGeneration.propertyDeclarationCode (let @b
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @arrayControllerPropertyGeneration.initCode() -> @string {
   result = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @arrayControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.undoManager)\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @arrayControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
   result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
   result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION TYPES
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION TYPES
+//------------------------------------------------------------------------------------------------
 
 enum @arrayControllerModelKind {
   case entityArray
   case transientArray
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
 
 class @arrayControllerGeneration : @abstractFileGeneration {
   public var @string mOwnerName # document name, prefs name, ...
@@ -306,7 +306,7 @@ class @arrayControllerGeneration : @abstractFileGeneration {
   public var @bool mElementTypeIsGraphic
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 private filewrapper arrayControllerGenerationTemplate in "generation-templates/controllers" {
 }{
@@ -321,9 +321,9 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION
+//------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCode(
     let @string inOutputDirectory,
@@ -345,4 +345,4 @@ override proc @arrayControllerGeneration.generateCode(
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

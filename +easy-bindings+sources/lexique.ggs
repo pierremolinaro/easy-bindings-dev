@@ -234,7 +234,6 @@ rule '"' {
    while "\\n" :
      enterCharacterIntoString (!?tokenString !'\n')
    while "\\\"" :
-//     enterCharacterIntoString (!?tokenString !'\\')
      enterCharacterIntoString (!?tokenString !'"')
    while ' ' | '!' | '#'-> '\uFFFD' :
      enterCharacterIntoString (!?tokenString !*)

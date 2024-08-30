@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 class @computedPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mRootEntityName
@@ -10,7 +10,7 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
 #  @bool mIsOverriding
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
@@ -69,32 +69,32 @@ override proc @computedPropertyDeclarationAST.enterInPrecedenceGraph (?!@declara
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mComputedPropertyName, self.mComputedPropertyName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <transient_declaration>(
             let @lstring inCurrentEntity,
             let @lstring inRootEntity,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
-#    @bool isOverriding
-#    select
-#      isOverriding = false
-#    or
-#      $override$
-#      isOverriding = true
-#    end
+//    @bool isOverriding
+//    select
+//      isOverriding = false
+//    or
+//      $override$
+//      isOverriding = true
+//    end
     $computed$
     $Identifier$ (?let transientTypeName)
     $identifier$ (?let @lstring transientName)
@@ -113,15 +113,15 @@ syntax extension easyBindings_syntax {
       transientTypeName,
       transientName,
       dependanceList
-#      !isOverriding
+//      !isOverriding
     )
     )
   }
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -149,9 +149,9 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SECOND ANALYSIS PHASE
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SECOND ANALYSIS PHASE
+//------------------------------------------------------------------------------------------------
 
 override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -251,9 +251,9 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CODE GENERATION                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CODE GENERATION                       
+//------------------------------------------------------------------------------------------------
 
 class @computedPropertyGeneration : @propertyGeneration {
   public var @string mClassName
@@ -262,13 +262,13 @@ class @computedPropertyGeneration : @propertyGeneration {
   public var @bool mGenerate
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @computedPropertyGenerationList {
   public var @computedPropertyGeneration mProperty
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
@@ -277,13 +277,13 @@ override func @computedPropertyGeneration.declarationInSelectionControllerCode()
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.bindPropertyInSelectionController () -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
@@ -339,7 +339,7 @@ override func @computedPropertyGeneration.bindPropertyInSelectionController () -
   result += "  }\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inPreferences,
                                                                    let @bool unused inGenerationDirectAccess,
@@ -364,7 +364,7 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
@@ -394,9 +394,9 @@ override func @computedPropertyGeneration.configurationCode (let @bool inPrefere
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#    COMPUTE ROUTINE GENERATION         
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//    COMPUTE ROUTINE GENERATION         
+//------------------------------------------------------------------------------------------------
 
 class @computeRoutineGeneration : @abstractFileGeneration {
   public var @string mOwnerName
@@ -405,7 +405,7 @@ class @computeRoutineGeneration : @abstractFileGeneration {
   public var @transientDependencyListForGeneration mDependencyList
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @computeRoutineGeneration.generateCode(
     let @string inOutputDirectory,
@@ -442,7 +442,7 @@ override proc @computeRoutineGeneration.generateCode(
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 private filewrapper computedPropertyManager in "generation-templates" {
 }{
@@ -454,4 +454,4 @@ private filewrapper computedPropertyManager in "generation-templates" {
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

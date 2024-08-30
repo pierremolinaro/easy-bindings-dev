@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 enum @toManyRelationshipOptionAST {
   case none
@@ -8,7 +8,7 @@ enum @toManyRelationshipOptionAST {
   case hasDependance (@lstring masterPropertyName)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 class @toManyRelationshipAST : @abstractDeclarationAST {
   public let @lstring mDestinationEntityName
@@ -20,7 +20,7 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
   public let @bool mGenerateDirectRead
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
@@ -36,19 +36,19 @@ override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrece
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyRelationshipAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <toMany_relationship>(
             let @lstring inCurrentEntity,
@@ -126,13 +126,13 @@ syntax extension easyBindings_syntax {
     )
   }
   
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
 override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
@@ -196,7 +196,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 enum @toManyRelationshipOptionGeneration {
   case none
@@ -204,7 +204,7 @@ enum @toManyRelationshipOptionGeneration {
   case hasDependance (@string masterPropertyName, @string masterPropertySwiftTypeName)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 class @toManyPropertyGeneration : @propertyGeneration {
   public let @bool mGenerateDirectAccess
@@ -216,13 +216,13 @@ class @toManyPropertyGeneration : @propertyGeneration {
   public let @bool mUsedForSignature
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 list @toManyPropertyGenerationList {
   public var @toManyPropertyGeneration mProperty
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unused inPreferences,
                                                             let @bool unused inGenerationDirectAccess,
@@ -275,19 +275,19 @@ override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unuse
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.initCode () -> @string {
   result = ""
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.prefKeyDefinitionCode() -> @string {
   result = "fileprivate let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
@@ -308,7 +308,7 @@ override func @toManyPropertyGeneration.configurationCode (let @bool inPreferenc
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() -> @string {
   if self.mOption.isHasDependance then
@@ -329,25 +329,25 @@ override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() ->
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 #override func @toManyPropertyGeneration.saveIntoDictionaryCode() -> @string {
 #  if [self.mOption isHasDependance] then
-#    result = ""
+//    result = ""
 #  elsif self.mCustomStore then
-#    result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-#    result += "    customStore_" + [self.mRelationshipType.swiftTypeName () + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: &ioDictionary)\n"
+//    result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
+//    result += "    customStore_" + [self.mRelationshipType.swiftTypeName () + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: &ioDictionary)\n"
 #  else
-#    result  = "  //--- To many property: " + self.mPropertyName + "\n"
-#    result += "    self.store (\n"
-#    result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval.values,\n"
-#    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-#    result += "      intoDictionary: &ioDictionary\n"
-#    result += "    )\n"
+//    result  = "  //--- To many property: " + self.mPropertyName + "\n"
+//    result += "    self.store (\n"
+//    result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval.values,\n"
+//    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
+//    result += "      intoDictionary: &ioDictionary\n"
+//    result += "    )\n"
 #  end
 #}
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   if self.mCustomStore then
@@ -363,7 +363,7 @@ override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation(
   end
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
   if self.mOption.isHasDependance then
@@ -374,4 +374,4 @@ override func @toManyPropertyGeneration.resetToManyRelationships() -> @string {
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------

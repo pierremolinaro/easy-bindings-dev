@@ -1,6 +1,6 @@
-//----------------------------------------------------------------------------------------------------------------------
-#   AST   
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   AST   
+//------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
   public var @outletDeclarationList mOutletDeclarationList = []
@@ -12,37 +12,37 @@ struct @prefDeclaration {
   public var @astViewDeclarationList mViewDeclarationList = []
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 class @prefsDeclarationAST : @abstractDeclarationAST {
   public let @prefDeclaration mDeclaration
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @prefsDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override func @prefsDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 func %once preferencesName() -> @string outResult {
   outResult = "Preferences"
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   SYNTAX
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   SYNTAX
+//------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <preferences_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $prefs$
@@ -81,18 +81,17 @@ syntax extension easyBindings_syntax {
     $}$
   }
 
-  #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//------------------------------------------------------------------------------------------------
 
-override proc @prefsDeclarationAST.firstAnalysisPhase(
+override proc @prefsDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct ioGeneration)
-{
+       ?!@generationStruct ioGeneration) {
   buildActionMap (self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
     .init (preferencesName (), .here),
@@ -111,9 +110,9 @@ override proc @prefsDeclarationAST.firstAnalysisPhase(
   ioGeneration.mMainXibDescriptorList = self.mDeclaration.mMainXibDescriptorList
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   THIRD ANALYSIS PHASE
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   THIRD ANALYSIS PHASE
+//------------------------------------------------------------------------------------------------
 
 override proc @prefsDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -167,14 +166,14 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutOutletMap autoLayoutOutletMap = []
   for (viewName, viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
-    viewDeclaration.checkView
-      (viewName,
+    viewDeclaration.checkView (
+      viewName,
       viewDeclarationMap,
       !prefs: true,
-      [], # rootPropertyMap
+      [], // rootPropertyMap
       preferencesPropertyMap,
       ioSemanticContext,
-      [], # documentPropertyMap
+      [], // documentPropertyMap
       actionMap,
       self.mClassName,
       ioSemanticContext.mClassMap,
@@ -189,27 +188,28 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
   end
 //-- Code generation
-  !?ioGeneration.mFileGenerationList.append (@preferencesForGeneration (
-    propertyGenerationList,
-    ioGeneration.mMainXibDescriptorList,
-    regularBindingsGenerationList,
-    multipleBindingGenerationList,
-    actionBindingListForGeneration,
-    outletMap,
-    self.mDeclaration.mExternSwiftFunctionList,
-    tableViewBindingGenerationList,
-    ebViewGraphicControllerBindingGenerationList,
-    viewGenerationList,
-    implicitViewFunctionGenerationList,
-    configuratorMap,
-    autoLayoutOutletMap
-  )
+  !?ioGeneration.mFileGenerationList.append (
+    @preferencesForGeneration (
+      propertyGenerationList,
+      ioGeneration.mMainXibDescriptorList,
+      regularBindingsGenerationList,
+      multipleBindingGenerationList,
+      actionBindingListForGeneration,
+      outletMap,
+      self.mDeclaration.mExternSwiftFunctionList,
+      tableViewBindingGenerationList,
+      ebViewGraphicControllerBindingGenerationList,
+      viewGenerationList,
+      implicitViewFunctionGenerationList,
+      configuratorMap,
+      autoLayoutOutletMap
+    )
   )
 }
 
-//----------------------------------------------------------------------------------------------------------------------
-#   GENERATION                            
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
+//   GENERATION                            
+//------------------------------------------------------------------------------------------------
 
 class @preferencesForGeneration : @abstractFileGeneration {
   public let @propertyGenerationList mPropertyListForGeneration
@@ -227,7 +227,7 @@ class @preferencesForGeneration : @abstractFileGeneration {
   public let @autoLayoutOutletMap mAutoLayoutOutletMap
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 private filewrapper prefsGenerationTemplate in "generation-templates" {
 }{
@@ -248,7 +248,7 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
   )
 }
 
-#·······················································································································
+//------------------------------------------------------------------------------------------------
 
 override proc @preferencesForGeneration.generateCode(
     let @string inOutputDirectory,
@@ -303,4 +303,4 @@ override proc @preferencesForGeneration.generateCode(
   end
 }
 
-//----------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------
