@@ -37,6 +37,46 @@ abstract class @astAbstractViewInstructionDeclaration {
 
 class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @bool horizontal %initArgLabel
+
+  override proc generateViewCode (let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
+                                  ?prefs: let @bool unused inPreferences,
+                                  let @propertyMap unused inRootObservablePropertyMap,
+                                  let @propertyMap unused inPreferencesPropertyMap,
+                                  let @semanticContext unused inSemanticContext,
+                                  let @propertyMap unused inObservablePropertyMap,
+                                  let @actionMap unused inActionMap,
+                                  let @string unused inReceiverSwiftTypeName,
+                                  let @classMap unused inClassMap,
+                                  ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList,
+                                  ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap,
+                                  ?!@autoLayoutOutletMap unused ioOutletMap,
+                                  !@abstractViewInstructionGeneration outInstruction) {
+    outInstruction = @autoLayoutSeparatorInstructionGeneration (!horizontal: self.horizontal)
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class @astGutterInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  public let @bool horizontal %initArgLabel
+
+  override proc generateViewCode (let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
+                                  ?prefs: let @bool unused inPreferences,
+                                  let @propertyMap unused inRootObservablePropertyMap,
+                                  let @propertyMap unused inPreferencesPropertyMap,
+                                  let @semanticContext unused inSemanticContext,
+                                  let @propertyMap unused inObservablePropertyMap,
+                                  let @actionMap unused inActionMap,
+                                  let @string unused inReceiverSwiftTypeName,
+                                  let @classMap unused inClassMap,
+                                  ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList,
+                                  ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap,
+                                  ?!@autoLayoutOutletMap unused ioOutletMap,
+                                  !@abstractViewInstructionGeneration outInstruction) {
+    outInstruction = @autoLayoutGutterInstructionGeneration (!horizontal: self.horizontal)
+  }
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -154,11 +194,42 @@ syntax extension easyBindings_syntax {
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
     var @stringset stackViewInstances = []
     var instructionList = @astViewInstructionList []
-    <view_instruction_list> (!horizontal: false, !?stackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
+    <view_instruction_list> (
+      !horizontal: false,
+      !?stackViewInstances,
+      !?astNewStackViewDeclarationList,
+      !?instructionList
+    )
+//    var instructionList = @astViewInstructionList [] // §
+//    repeat
+//      <view_instruction_list> (
+//        !horizontal: false,
+//        !?stackViewInstances,
+//        !?astNewStackViewDeclarationList,
+//        !?instructionList
+//      )
+//    while
+//      $row$
+//      ${$
+//      var rowInstructionList = @astViewInstructionList []
+//      <view_instruction_list> (
+//        !horizontal: false,
+//        !?stackViewInstances,
+//        !?astNewStackViewDeclarationList,
+//        !?rowInstructionList
+//      )
+//      $}$
+//      let instruction = @astRowInstructionDeclaration (rowInstructionList)
+//      !?instructionList.append (instruction)
+//    end
     $}$
     !?ioViewDeclarationList.append (
       !viewName,
-      !@astComputedVerticalViewDeclaration (functionCallList, instructionList, astNewStackViewDeclarationList)
+      !@astComputedVerticalViewDeclaration (
+        functionCallList,
+        instructionList,
+        astNewStackViewDeclarationList
+      )
     )
   }
  
@@ -197,7 +268,7 @@ syntax extension easyBindings_syntax {
    
   #·····················································································································
  
-  rule <view_instruction_list> (?horizontal: let @bool inHorizontal,
+  rule <view_instruction_list> (?horizontal: let @bool inHorizontal, // §§
                                 ?!@stringset ioStackViewInstances,
                                 ?!@astNewStackViewDeclarationList ioNewStackViewDeclarationList,
                                 ?!@astViewInstructionList ioInstructionList) {
@@ -214,6 +285,9 @@ syntax extension easyBindings_syntax {
     while
       $separator$
       !?ioInstructionList.append (@astSeparatorInstructionDeclaration (!horizontal: inHorizontal))
+    while
+      $gutter$
+      !?ioInstructionList.append (@astGutterInstructionDeclaration (!horizontal: inHorizontal))
     while
       $divider$
       !?ioInstructionList.append (@astDividerInstructionDeclaration (!horizontal: inHorizontal))
@@ -438,9 +512,40 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
-    var instructionList = @astViewInstructionList []
-    <view_instruction_list> (!horizontal: false, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
-    outInstruction = @astVStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
+    var instructionList = @astViewInstructionList [] // §
+    <view_instruction_list> (
+      !horizontal: false,
+      !?ioStackViewInstances,
+      !?astNewStackViewDeclarationList,
+      !?instructionList
+    )
+//    repeat
+//      <view_instruction_list> (
+//        !horizontal: false,
+//        !?ioStackViewInstances,
+//        !?astNewStackViewDeclarationList,
+//        !?instructionList
+//      )
+//    while
+//      $row$
+//      ${$
+//      var rowInstructionList = @astViewInstructionList []
+//      <view_instruction_list> (
+//        !horizontal: false,
+//        !?ioStackViewInstances,
+//        !?astNewStackViewDeclarationList,
+//        !?rowInstructionList
+//      )
+//      $}$
+//      let instruction = @astRowInstructionDeclaration (rowInstructionList)
+//      !?instructionList.append (instruction)
+//    end
+    outInstruction = @astVStackViewInstructionDeclaration (
+      functionCallList,
+      instructionList,
+      optionalHiddenBinding,
+      astNewStackViewDeclarationList
+    )
     $}$
   }
   
@@ -461,8 +566,18 @@ syntax extension easyBindings_syntax {
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
     var instructionList = @astViewInstructionList []
-    <view_instruction_list> (!horizontal: true, !?ioStackViewInstances, !?astNewStackViewDeclarationList, !?instructionList)
-    outInstruction = @astHStackViewInstructionDeclaration (functionCallList, instructionList, optionalHiddenBinding, astNewStackViewDeclarationList)
+    <view_instruction_list> (
+      !horizontal: true,
+      !?ioStackViewInstances,
+      !?astNewStackViewDeclarationList, 
+      !?instructionList
+    )
+    outInstruction = @astHStackViewInstructionDeclaration (
+      functionCallList,
+      instructionList,
+      optionalHiddenBinding,
+      astNewStackViewDeclarationList
+    )
     $}$
   }
   
@@ -798,25 +913,6 @@ override proc @astSpaceViewInstruction.generateViewCode(
                                 ?!@autoLayoutOutletMap unused ioOutletMap,
                                 !@abstractViewInstructionGeneration outInstruction) {
   outInstruction = @autoLayoutSpaceViewInstructionGeneration.init
-}
-
-#·······················································································································
-
-override proc @astSeparatorInstructionDeclaration.generateViewCode(
-                                let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
-                                ?prefs: let @bool unused inPreferences,
-                                let @propertyMap unused inRootObservablePropertyMap,
-                                let @propertyMap unused inPreferencesPropertyMap,
-                                let @semanticContext unused inSemanticContext,
-                                let @propertyMap unused inObservablePropertyMap,
-                                let @actionMap unused inActionMap,
-                                let @string unused inReceiverSwiftTypeName,
-                                let @classMap unused inClassMap,
-                                ?!@implicitViewFunctionGenerationList unused ioImplicitViewFunctionGenerationList,
-                                ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap,
-                                ?!@autoLayoutOutletMap unused ioOutletMap,
-                                !@abstractViewInstructionGeneration outInstruction) {
-  outInstruction = @autoLayoutSeparatorInstructionGeneration (!horizontal: self.horizontal)
 }
 
 #·······················································································································
@@ -1441,8 +1537,8 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
   var @autoLayoutViewInstructionGenerationList instructionList = []
-  self.mFunctionCallList.checkViewFunctionCallList
-     (inSemanticContext.mAutoLayoutHStackFunctionMap,
+  self.mFunctionCallList.checkViewFunctionCallList (
+     inSemanticContext.mAutoLayoutHStackFunctionMap,
      inViewDeclarationMap,
      inPreferences,
      inRootObservablePropertyMap,
@@ -1522,8 +1618,8 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
   var @autoLayoutViewInstructionGenerationList instructionList = []
-  self.mFunctionCallList.checkViewFunctionCallList
-     (inSemanticContext.mAutoLayoutVStackFunctionMap,
+  self.mFunctionCallList.checkViewFunctionCallList (
+     inSemanticContext.mAutoLayoutVStackFunctionMap,
      inViewDeclarationMap,
      inPreferences,
      inRootObservablePropertyMap,
@@ -1558,8 +1654,8 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
     !?multipleBindingGenerationList.append ("hidden", hiddenExpression)
   end
   for (instruction) in self.mInstructionList do
-   instruction.generateViewCode
-      (inViewDeclarationMap,
+   instruction.generateViewCode (
+      inViewDeclarationMap,
       !prefs: inPreferences,
       inRootObservablePropertyMap,
       inPreferencesPropertyMap,
@@ -1645,6 +1741,34 @@ class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGenera
 
 class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
   public let @bool horizontal %initArgLabel
+
+  override func generateViewInstruction (?prefs: let @bool unused inPreferences,
+                                         let @string inName,
+                                         let @string inIndentation) -> @string {
+    if self.horizontal then
+      result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView.VerticalSeparator ()\n"
+    else
+      result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView.HorizontalSeparator ()\n"
+    end
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+class @autoLayoutGutterInstructionGeneration : @abstractViewInstructionGeneration {
+  public let @bool horizontal %initArgLabel
+
+  override func generateViewInstruction (?prefs: let @bool unused inPreferences,
+                                         let @string inName,
+                                         let @string inIndentation) -> @string {
+    if self.horizontal then
+      result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView.GutterSeparator ()\n"
+    else
+      result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView.GutterSeparator ()\n"
+    end
+  }
+
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1805,19 +1929,6 @@ override func @autoLayoutSpaceViewInstructionGeneration.generateViewInstruction 
 
 #·······················································································································
 
-override func @autoLayoutSeparatorInstructionGeneration.generateViewInstruction (
-                         ?prefs: let @bool unused inPreferences,
-                         let @string inName,
-                         let @string inIndentation) -> @string {
-  if self.horizontal then
-    result = inIndentation + "let " + inName + " = AutoLayoutHorizontalStackView.VerticalSeparator ()\n"
-  else
-    result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView.HorizontalSeparator ()\n"
-  end
-}
-
-#·······················································································································
-
 override func @autoLayoutDividerInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences,
                          let @string inName,
@@ -1907,14 +2018,31 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
-  result += inIndentation + "do{\n"
-  let indentation = inIndentation + "  "
-  for (instruction) in self.mInstructionList do (index)
-     let name = inName + "_" + index
-     result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
-     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
-  end
-  result += inIndentation + "}\n"
+//  if self.mInstructionList.count == 3,
+//     self.mInstructionList.mInstructionAtIndex (1) is @autoLayoutGutterInstructionGeneration then
+//    let leftName  = inName + "_0"
+//    let rightName = inName + "_2"
+//    result += self.mInstructionList.mInstructionAtIndex (0).generateViewInstruction (
+//      !prefs: inPreferences,
+//      leftName,
+//      inIndentation
+//    )
+//    result += self.mInstructionList.mInstructionAtIndex (2).generateViewInstruction (
+//      !prefs: inPreferences,
+//      rightName,
+//      inIndentation
+//    )
+//    result += inIndentation + "_ = " + inName + ".append (left: " + leftName + ", right: " + rightName + ")\n"
+//  else
+    result += inIndentation + "do{\n"
+    let indentation = inIndentation + "  "
+    for (instruction) in self.mInstructionList do (index)
+       let name = inName + "_" + index
+       result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
+       result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
+    end
+    result += inIndentation + "}\n"
+//  end
 }
 
 #·······················································································································

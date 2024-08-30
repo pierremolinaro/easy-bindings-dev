@@ -9,6 +9,57 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Overriding extension method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_comparisonMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                              const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                              const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                              const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                              const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_21121 ;
+  GGS_typeKind var_outLeftType_21146 ;
+  GGS_location var_outLeftLocation_21168 ;
+  const GGS_comparisonMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_21121, var_outLeftType_21146, var_outLeftLocation_21168, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 485)) ;
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_21469 ;
+  GGS_typeKind var_outRightType_21495 ;
+  GGS_location var_outRightLocation_21518 ;
+  const GGS_comparisonMultipleBindingExpressionAST temp_1 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_1.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_21469, var_outRightType_21495, var_outRightLocation_21518, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 495)) ;
+  enumGalgasBool test_2 = kBoolTrue ;
+  if (kBoolTrue == test_2) {
+    GGS_bool test_3 = var_outLeftType_21146.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 505)) ;
+    if (kBoolTrue != test_3.boolEnum ()) {
+      test_3 = var_outLeftType_21146.getter_isIntegerType (SOURCE_FILE ("multiple-binding.ggs", 505)) ;
+    }
+    test_2 = test_3.operator_not (SOURCE_FILE ("multiple-binding.ggs", 505)).boolEnum () ;
+    if (kBoolTrue == test_2) {
+      TC_Array <FixItDescription> fixItArray4 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_21168, GGS_string ("cannot compare: left operand is neither boolean nor integer"), fixItArray4  COMMA_SOURCE_FILE ("multiple-binding.ggs", 506)) ;
+    }
+  }
+  enumGalgasBool test_5 = kBoolTrue ;
+  if (kBoolTrue == test_5) {
+    test_5 = GGS_bool (ComparisonKind::notEqual, var_outRightType_21495.objectCompare (var_outLeftType_21146)).boolEnum () ;
+    if (kBoolTrue == test_5) {
+      TC_Array <FixItDescription> fixItArray6 ;
+      inCompiler->emitSemanticError (var_outRightLocation_21518, GGS_string ("cannot compare: right operand type is different than left operand type"), fixItArray6  COMMA_SOURCE_FILE ("multiple-binding.ggs", 509)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.ggs", 511)) ;
+  outArgument_outErrorLocation = var_outRightLocation_21518 ;
+  const GGS_comparisonMultipleBindingExpressionAST temp_7 = this ;
+  outArgument_outEnableExpression = GGS_comparisonMultipleBindingExpressionForGeneration::init_21__21__21_ (var_leftExpression_21121, temp_7.readProperty_mOperator (), var_rightExpression_21469, inCompiler COMMA_HERE) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
 //Overriding extension getter '@booleanMultipleBindingLiteralIntForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------

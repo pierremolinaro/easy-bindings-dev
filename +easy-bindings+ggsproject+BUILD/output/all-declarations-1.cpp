@@ -14627,9 +14627,9 @@ GGS_string extensionGetter_string (const GGS_autoLayoutClassParameterType & inOb
     break ;
   case GGS_autoLayoutClassParameterType::Enumeration::enum_typeEnum:
     {
-      GGS_lstring extractedValue_1520_name_0 ;
-      temp_0.getAssociatedValuesFor_typeEnum (extractedValue_1520_name_0) ;
-      result_result = GGS_string ("the ").add_operation (extractedValue_1520_name_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GGS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
+      GGS_lstring extractedValue_1521_name_0 ;
+      temp_0.getAssociatedValuesFor_typeEnum (extractedValue_1521_name_0) ;
+      result_result = GGS_string ("the ").add_operation (extractedValue_1521_name_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GGS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
     }
     break ;
   }

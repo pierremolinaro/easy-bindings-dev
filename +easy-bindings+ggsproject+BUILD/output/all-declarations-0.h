@@ -351,72 +351,73 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   public: static const int32_t kToken_func = 33 ;
   public: static const int32_t kToken_graphic = 34 ;
   public: static const int32_t kToken_graphviz = 35 ;
-  public: static const int32_t kToken_handlingOpposite = 36 ;
-  public: static const int32_t kToken_hStack = 37 ;
-  public: static const int32_t kToken_include = 38 ;
-  public: static const int32_t kToken_inverse = 39 ;
-  public: static const int32_t kToken_linker = 40 ;
-  public: static const int32_t kToken_mainxib = 41 ;
-  public: static const int32_t kToken_menuItem = 42 ;
-  public: static const int32_t kToken_no = 43 ;
-  public: static const int32_t kToken_newView = 44 ;
-  public: static const int32_t kToken_none = 45 ;
-  public: static const int32_t kToken_one = 46 ;
-  public: static const int32_t kToken_outlet = 47 ;
-  public: static const int32_t kToken_outletArray = 48 ;
-  public: static const int32_t kToken_override = 49 ;
-  public: static const int32_t kToken_prefs = 50 ;
-  public: static const int32_t kToken_property = 51 ;
-  public: static const int32_t kToken_proxy = 52 ;
-  public: static const int32_t kToken_root = 53 ;
-  public: static const int32_t kToken_selectionController = 54 ;
-  public: static const int32_t kToken_self = 55 ;
-  public: static const int32_t kToken_separator = 56 ;
-  public: static const int32_t kToken_signature = 57 ;
-  public: static const int32_t kToken_sortkey = 58 ;
-  public: static const int32_t kToken_space = 59 ;
-  public: static const int32_t kToken_stackView = 60 ;
-  public: static const int32_t kToken_struct = 61 ;
-  public: static const int32_t kToken_super = 62 ;
-  public: static const int32_t kToken_tableViewController = 63 ;
-  public: static const int32_t kToken_toMany = 64 ;
-  public: static const int32_t kToken_toOne = 65 ;
-  public: static const int32_t kToken_transient = 66 ;
-  public: static const int32_t kToken_typeView = 67 ;
-  public: static const int32_t kToken_version = 68 ;
-  public: static const int32_t kToken_vStack = 69 ;
-  public: static const int32_t kToken_versionShouldChange = 70 ;
-  public: static const int32_t kToken_view = 71 ;
-  public: static const int32_t kToken_weak = 72 ;
-  public: static const int32_t kToken_xcodeproject = 73 ;
-  public: static const int32_t kToken_yes = 74 ;
-  public: static const int32_t kToken_enabled = 75 ;
-  public: static const int32_t kToken_graphicController = 76 ;
-  public: static const int32_t kToken_hidden = 77 ;
-  public: static const int32_t kToken_tableValue = 78 ;
-  public: static const int32_t kToken_run = 79 ;
-  public: static const int32_t kToken__3A_ = 80 ;
-  public: static const int32_t kToken__2C_ = 81 ;
-  public: static const int32_t kToken__3B_ = 82 ;
-  public: static const int32_t kToken__21_ = 83 ;
-  public: static const int32_t kToken__5B_ = 84 ;
-  public: static const int32_t kToken__5D_ = 85 ;
-  public: static const int32_t kToken__7B_ = 86 ;
-  public: static const int32_t kToken__7D_ = 87 ;
-  public: static const int32_t kToken__28_ = 88 ;
-  public: static const int32_t kToken__29_ = 89 ;
-  public: static const int32_t kToken__2E_ = 90 ;
-  public: static const int32_t kToken__7C_ = 91 ;
-  public: static const int32_t kToken__26_ = 92 ;
-  public: static const int32_t kToken__3C_ = 93 ;
-  public: static const int32_t kToken__3E_ = 94 ;
-  public: static const int32_t kToken__3C__3D_ = 95 ;
-  public: static const int32_t kToken__3E__3D_ = 96 ;
-  public: static const int32_t kToken__21__3D_ = 97 ;
-  public: static const int32_t kToken__3D__3D_ = 98 ;
-  public: static const int32_t kToken__5E_ = 99 ;
-  public: static const int32_t kToken__2D_ = 100 ;
-  public: static const int32_t kToken__3D_ = 101 ;
+  public: static const int32_t kToken_gutter = 36 ;
+  public: static const int32_t kToken_handlingOpposite = 37 ;
+  public: static const int32_t kToken_hStack = 38 ;
+  public: static const int32_t kToken_include = 39 ;
+  public: static const int32_t kToken_inverse = 40 ;
+  public: static const int32_t kToken_linker = 41 ;
+  public: static const int32_t kToken_mainxib = 42 ;
+  public: static const int32_t kToken_menuItem = 43 ;
+  public: static const int32_t kToken_no = 44 ;
+  public: static const int32_t kToken_newView = 45 ;
+  public: static const int32_t kToken_none = 46 ;
+  public: static const int32_t kToken_one = 47 ;
+  public: static const int32_t kToken_outlet = 48 ;
+  public: static const int32_t kToken_outletArray = 49 ;
+  public: static const int32_t kToken_override = 50 ;
+  public: static const int32_t kToken_prefs = 51 ;
+  public: static const int32_t kToken_property = 52 ;
+  public: static const int32_t kToken_proxy = 53 ;
+  public: static const int32_t kToken_root = 54 ;
+  public: static const int32_t kToken_selectionController = 55 ;
+  public: static const int32_t kToken_self = 56 ;
+  public: static const int32_t kToken_separator = 57 ;
+  public: static const int32_t kToken_signature = 58 ;
+  public: static const int32_t kToken_sortkey = 59 ;
+  public: static const int32_t kToken_space = 60 ;
+  public: static const int32_t kToken_stackView = 61 ;
+  public: static const int32_t kToken_struct = 62 ;
+  public: static const int32_t kToken_super = 63 ;
+  public: static const int32_t kToken_tableViewController = 64 ;
+  public: static const int32_t kToken_toMany = 65 ;
+  public: static const int32_t kToken_toOne = 66 ;
+  public: static const int32_t kToken_transient = 67 ;
+  public: static const int32_t kToken_typeView = 68 ;
+  public: static const int32_t kToken_version = 69 ;
+  public: static const int32_t kToken_vStack = 70 ;
+  public: static const int32_t kToken_versionShouldChange = 71 ;
+  public: static const int32_t kToken_view = 72 ;
+  public: static const int32_t kToken_weak = 73 ;
+  public: static const int32_t kToken_xcodeproject = 74 ;
+  public: static const int32_t kToken_yes = 75 ;
+  public: static const int32_t kToken_enabled = 76 ;
+  public: static const int32_t kToken_graphicController = 77 ;
+  public: static const int32_t kToken_hidden = 78 ;
+  public: static const int32_t kToken_tableValue = 79 ;
+  public: static const int32_t kToken_run = 80 ;
+  public: static const int32_t kToken__3A_ = 81 ;
+  public: static const int32_t kToken__2C_ = 82 ;
+  public: static const int32_t kToken__3B_ = 83 ;
+  public: static const int32_t kToken__21_ = 84 ;
+  public: static const int32_t kToken__5B_ = 85 ;
+  public: static const int32_t kToken__5D_ = 86 ;
+  public: static const int32_t kToken__7B_ = 87 ;
+  public: static const int32_t kToken__7D_ = 88 ;
+  public: static const int32_t kToken__28_ = 89 ;
+  public: static const int32_t kToken__29_ = 90 ;
+  public: static const int32_t kToken__2E_ = 91 ;
+  public: static const int32_t kToken__7C_ = 92 ;
+  public: static const int32_t kToken__26_ = 93 ;
+  public: static const int32_t kToken__3C_ = 94 ;
+  public: static const int32_t kToken__3E_ = 95 ;
+  public: static const int32_t kToken__3C__3D_ = 96 ;
+  public: static const int32_t kToken__3E__3D_ = 97 ;
+  public: static const int32_t kToken__21__3D_ = 98 ;
+  public: static const int32_t kToken__3D__3D_ = 99 ;
+  public: static const int32_t kToken__5E_ = 100 ;
+  public: static const int32_t kToken__2D_ = 101 ;
+  public: static const int32_t kToken__3D_ = 102 ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public: static int32_t search_into_lowerCaseKeyWordList (const String & inSearchedString) ;
@@ -450,7 +451,7 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   protected: virtual String getMessageForTerminal (const int32_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int32_t terminalVocabularyCount (void) const override { return 101 ; }
+  public: virtual int32_t terminalVocabularyCount (void) const override { return 102 ; }
 
 //--- Get Token String
   public: virtual String getCurrentTokenString (const cToken * inTokenPtr) const override ;
@@ -3992,6 +3993,122 @@ class cPtr_astDividerInstructionDeclaration : public cPtr_astAbstractViewInstruc
   public: cPtr_astDividerInstructionDeclaration (const GGS_bool & in_horizontal,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @astGutterInstructionDeclaration reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_astGutterInstructionDeclaration : public GGS_astAbstractViewInstructionDeclaration {
+//--------------------------------- Default constructor
+  public: GGS_astGutterInstructionDeclaration (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_astGutterInstructionDeclaration (const class cPtr_astGutterInstructionDeclaration * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_bool readProperty_horizontal (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_astGutterInstructionDeclaration init_21_horizontal (const class GGS_bool & inOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_astGutterInstructionDeclaration extractObject (const GGS_object & inObject,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_astGutterInstructionDeclaration class_func_new (const class GGS_bool & inOperand0,
+                                                                           class Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_astGutterInstructionDeclaration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GGS_astGutterInstructionDeclaration class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astGutterInstructionDeclaration ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @astGutterInstructionDeclaration class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_astGutterInstructionDeclaration : public cPtr_astAbstractViewInstructionDeclaration {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void astGutterInstructionDeclaration_init_21_horizontal (const class GGS_bool & inOperand0,
+                                                                   Compiler * inCompiler) ;
+
+
+//--- Extension method generateViewCode
+  public: virtual void method_generateViewCode (const class GGS_autoLayoutViewDeclarationMap arg_inViewDeclarationMap,
+           const class GGS_bool arg_inPreferences,
+           const class GGS_propertyMap arg_inRootObservablePropertyMap,
+           const class GGS_propertyMap arg_inPreferencesPropertyMap,
+           const class GGS_semanticContext arg_inSemanticContext,
+           const class GGS_propertyMap arg_inObservablePropertyMap,
+           const class GGS_actionMap arg_inActionMap,
+           const class GGS_string arg_inReceiverSwiftTypeName,
+           const class GGS_classMap arg_inClassMap,
+           class GGS_implicitViewFunctionGenerationList & arg_ioImplicitViewFunctionGenerationList,
+           class GGS_autoLayoutConfiguratorMap & arg_ioConfiguratorMap,
+           class GGS_autoLayoutOutletMap & arg_ioOutletMap,
+           class GGS_abstractViewInstructionGeneration & arg_outInstruction,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_bool mProperty_horizontal ;
+
+
+//--- Default constructor
+  public: cPtr_astGutterInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_astGutterInstructionDeclaration (const GGS_bool & in_horizontal,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
   public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
