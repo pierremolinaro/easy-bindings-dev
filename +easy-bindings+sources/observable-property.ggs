@@ -479,7 +479,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case selectionController (*) :
       error relationshipName : "an array controller does not accept 'all'" spoil (outKind)
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + kind.swiftTypeName + "_" + propertyName + "]"
+    outSwiftTypeStringForTransientFunctionArgument = "[any " + kind.swiftTypeName + "_" + propertyName + "]"
   case selfProperty (@lstring propertyName) :
     inBoundModelPropertyMap.searchKey
       (propertyName,
@@ -553,7 +553,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     case selectionController (*) :
       error propertyName : "a selection controller accepts no option" spoil (outKind)
     end
-    outSwiftTypeStringForTransientFunctionArgument = "[" + kind.swiftTypeName
+    outSwiftTypeStringForTransientFunctionArgument = "[any " + kind.swiftTypeName
        + "_" + elementPropertyName + "]"
   case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) : # self.xxx.one.xxx
     inBoundModelPropertyMap.searchKey
@@ -731,7 +731,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
           ?2*
         )
         observablePropertyMap.searchKey (secondaryPropertyName, ?outKind,?2*)
-        outSwiftTypeStringForTransientFunctionArgument = "[" + typeName + "_" + secondaryPropertyName + "]"
+        outSwiftTypeStringForTransientFunctionArgument = "[any " + typeName + "_" + secondaryPropertyName + "]"
       case selectionController (entityName) :
         inSemanticContext.mClassMap.searchKey (
           .init (entityName, controllerName.location),
@@ -740,7 +740,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
           ?2*
         )
         observablePropertyMap.searchKey (secondaryPropertyName, ?outKind, ?2*)
-         outSwiftTypeStringForTransientFunctionArgument = "[" + entityName + "_" + secondaryPropertyName + "]"
+         outSwiftTypeStringForTransientFunctionArgument = "[any " + entityName + "_" + secondaryPropertyName + "]"
      end
     end
   case superProperty (*, @lstring propertyName) :

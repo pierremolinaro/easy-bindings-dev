@@ -4229,64 +4229,64 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
         }
         break ;
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[").add_operation (extensionGetter_swiftTypeName (var_kind_19887, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (extractedValue_19784_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[any ").add_operation (extensionGetter_swiftTypeName (var_kind_19887, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (extractedValue_19784_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 482)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfProperty:
     {
-      GGS_lstring extractedValue_20798_propertyName_0 ;
-      temp_0.getAssociatedValuesFor_selfProperty (extractedValue_20798_propertyName_0) ;
-      GGS_actionMap joker_20895_2 ; // Joker input parameter
-      GGS_bool joker_20895_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_20798_propertyName_0, outArgument_outKind, joker_20895_2, joker_20895_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 484)) ;
+      GGS_lstring extractedValue_20802_propertyName_0 ;
+      temp_0.getAssociatedValuesFor_selfProperty (extractedValue_20802_propertyName_0) ;
+      GGS_actionMap joker_20899_2 ; // Joker input parameter
+      GGS_bool joker_20899_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_20802_propertyName_0, outArgument_outKind, joker_20899_2, joker_20899_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 484)) ;
       switch (outArgument_outKind.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_20944__0 ;
-          GGS_propertyAccessibility extractedValue_20944__1 ;
-          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_20944__0, extractedValue_20944__1) ;
+          GGS_typeKind extractedValue_20948__0 ;
+          GGS_propertyAccessibility extractedValue_20948__1 ;
+          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_20948__0, extractedValue_20948__1) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 491)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_21044__0 ;
-          GGS_propertyAccessibility extractedValue_21044__1 ;
-          GGS_bool extractedValue_21044__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_21044__3 ;
-          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_21044__0, extractedValue_21044__1, extractedValue_21044__2, extractedValue_21044__3) ;
+          GGS_lstring extractedValue_21048__0 ;
+          GGS_propertyAccessibility extractedValue_21048__1 ;
+          GGS_bool extractedValue_21048__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_21048__3 ;
+          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_21048__0, extractedValue_21048__1, extractedValue_21048__2, extractedValue_21048__3) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[AnyObject]") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_21135__0 ;
-          GGS_propertyAccessibility extractedValue_21135__1 ;
-          GGS_bool extractedValue_21135__2 ;
-          GGS_toOneOppositeRelationship extractedValue_21135__3 ;
-          GGS_bool extractedValue_21135__4 ;
-          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_21135__0, extractedValue_21135__1, extractedValue_21135__2, extractedValue_21135__3, extractedValue_21135__4) ;
+          GGS_lstring extractedValue_21139__0 ;
+          GGS_propertyAccessibility extractedValue_21139__1 ;
+          GGS_bool extractedValue_21139__2 ;
+          GGS_toOneOppositeRelationship extractedValue_21139__3 ;
+          GGS_bool extractedValue_21139__4 ;
+          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_21139__0, extractedValue_21139__1, extractedValue_21139__2, extractedValue_21139__3, extractedValue_21139__4) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("AnyObject\?") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_21235__0 ;
-          GGS_bool extractedValue_21235__1 ;
-          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_21235__0, extractedValue_21235__1) ;
+          GGS_lstring extractedValue_21239__0 ;
+          GGS_bool extractedValue_21239__1 ;
+          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_21239__0, extractedValue_21239__1) ;
           TC_Array <FixItDescription> fixItArray17 ;
-          inCompiler->emitSemanticError (extractedValue_20798_propertyName_0.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray17  COMMA_SOURCE_FILE ("observable-property.ggs", 497)) ;
+          inCompiler->emitSemanticError (extractedValue_20802_propertyName_0.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray17  COMMA_SOURCE_FILE ("observable-property.ggs", 497)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_21393__0 ;
-          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_21393__0) ;
+          GGS_string extractedValue_21397__0 ;
+          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_21397__0) ;
           TC_Array <FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (extractedValue_20798_propertyName_0.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray18  COMMA_SOURCE_FILE ("observable-property.ggs", 499)) ;
+          inCompiler->emitSemanticError (extractedValue_20802_propertyName_0.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray18  COMMA_SOURCE_FILE ("observable-property.ggs", 499)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;
@@ -4295,76 +4295,76 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfWithoutProperty:
     {
-      GGS_location extractedValue_21560__0 ;
-      temp_0.getAssociatedValuesFor_selfWithoutProperty (extractedValue_21560__0) ;
+      GGS_location extractedValue_21564__0 ;
+      temp_0.getAssociatedValuesFor_selfWithoutProperty (extractedValue_21564__0) ;
       outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("Int") ;
       outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 503)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 503))  COMMA_SOURCE_FILE ("observable-property.ggs", 503)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyWithOption:
     {
-      GGS_lstring extractedValue_21759_propertyName_0 ;
-      GGS_lstring extractedValue_21782_optionName_1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_21759_propertyName_0, extractedValue_21782_optionName_1) ;
-      GGS_propertyKind var_kind_21866 ;
-      GGS_actionMap joker_21878_2 ; // Joker input parameter
-      GGS_bool joker_21878_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_21759_propertyName_0, var_kind_21866, joker_21878_2, joker_21878_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 505)) ;
-      switch (var_kind_21866.enumValue ()) {
+      GGS_lstring extractedValue_21763_propertyName_0 ;
+      GGS_lstring extractedValue_21786_optionName_1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_21763_propertyName_0, extractedValue_21786_optionName_1) ;
+      GGS_propertyKind var_kind_21870 ;
+      GGS_actionMap joker_21882_2 ; // Joker input parameter
+      GGS_bool joker_21882_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_21763_propertyName_0, var_kind_21870, joker_21882_2, joker_21882_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 505)) ;
+      switch (var_kind_21870.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_21924__0 ;
-          GGS_propertyAccessibility extractedValue_21924__1 ;
-          var_kind_21866.getAssociatedValuesFor_property (extractedValue_21924__0, extractedValue_21924__1) ;
+          GGS_typeKind extractedValue_21928__0 ;
+          GGS_propertyAccessibility extractedValue_21928__1 ;
+          var_kind_21870.getAssociatedValuesFor_property (extractedValue_21928__0, extractedValue_21928__1) ;
           TC_Array <FixItDescription> fixItArray19 ;
-          inCompiler->emitSemanticError (extractedValue_21759_propertyName_0.readProperty_location (), GGS_string ("an atomic property accepts no option"), fixItArray19  COMMA_SOURCE_FILE ("observable-property.ggs", 512)) ;
+          inCompiler->emitSemanticError (extractedValue_21763_propertyName_0.readProperty_location (), GGS_string ("an atomic property accepts no option"), fixItArray19  COMMA_SOURCE_FILE ("observable-property.ggs", 512)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_22029__0 ;
-          GGS_propertyAccessibility extractedValue_22029__1 ;
-          GGS_bool extractedValue_22029__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_22029__3 ;
-          var_kind_21866.getAssociatedValuesFor_toMany (extractedValue_22029__0, extractedValue_22029__1, extractedValue_22029__2, extractedValue_22029__3) ;
+          GGS_lstring extractedValue_22033__0 ;
+          GGS_propertyAccessibility extractedValue_22033__1 ;
+          GGS_bool extractedValue_22033__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_22033__3 ;
+          var_kind_21870.getAssociatedValuesFor_toMany (extractedValue_22033__0, extractedValue_22033__1, extractedValue_22033__2, extractedValue_22033__3) ;
           enumGalgasBool test_20 = kBoolTrue ;
           if (kBoolTrue == test_20) {
-            test_20 = GGS_bool (ComparisonKind::equal, extractedValue_21782_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
+            test_20 = GGS_bool (ComparisonKind::equal, extractedValue_21786_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
             if (kBoolTrue == test_20) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 515)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 515))  COMMA_SOURCE_FILE ("observable-property.ggs", 515)) ;
             }
           }
           if (kBoolFalse == test_20) {
             TC_Array <FixItDescription> fixItArray21 ;
-            inCompiler->emitSemanticError (extractedValue_21782_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count')"), fixItArray21  COMMA_SOURCE_FILE ("observable-property.ggs", 517)) ;
+            inCompiler->emitSemanticError (extractedValue_21786_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count')"), fixItArray21  COMMA_SOURCE_FILE ("observable-property.ggs", 517)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
           }
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_22295__0 ;
-          GGS_propertyAccessibility extractedValue_22295__1 ;
-          GGS_bool extractedValue_22295__2 ;
-          GGS_toOneOppositeRelationship extractedValue_22295__3 ;
-          GGS_bool extractedValue_22295__4 ;
-          var_kind_21866.getAssociatedValuesFor_toOne (extractedValue_22295__0, extractedValue_22295__1, extractedValue_22295__2, extractedValue_22295__3, extractedValue_22295__4) ;
+          GGS_lstring extractedValue_22299__0 ;
+          GGS_propertyAccessibility extractedValue_22299__1 ;
+          GGS_bool extractedValue_22299__2 ;
+          GGS_toOneOppositeRelationship extractedValue_22299__3 ;
+          GGS_bool extractedValue_22299__4 ;
+          var_kind_21870.getAssociatedValuesFor_toOne (extractedValue_22299__0, extractedValue_22299__1, extractedValue_22299__2, extractedValue_22299__3, extractedValue_22299__4) ;
           TC_Array <FixItDescription> fixItArray22 ;
-          inCompiler->emitSemanticError (extractedValue_21759_propertyName_0.readProperty_location (), GGS_string ("a toOne property accepts no option"), fixItArray22  COMMA_SOURCE_FILE ("observable-property.ggs", 520)) ;
+          inCompiler->emitSemanticError (extractedValue_21763_propertyName_0.readProperty_location (), GGS_string ("a toOne property accepts no option"), fixItArray22  COMMA_SOURCE_FILE ("observable-property.ggs", 520)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_22407__0 ;
-          GGS_bool extractedValue_22407__1 ;
-          var_kind_21866.getAssociatedValuesFor_arrayController (extractedValue_22407__0, extractedValue_22407__1) ;
+          GGS_lstring extractedValue_22411__0 ;
+          GGS_bool extractedValue_22411__1 ;
+          var_kind_21870.getAssociatedValuesFor_arrayController (extractedValue_22411__0, extractedValue_22411__1) ;
           enumGalgasBool test_23 = kBoolTrue ;
           if (kBoolTrue == test_23) {
-            test_23 = GGS_bool (ComparisonKind::equal, extractedValue_21782_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
+            test_23 = GGS_bool (ComparisonKind::equal, extractedValue_21786_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
             if (kBoolTrue == test_23) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 523)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 523))  COMMA_SOURCE_FILE ("observable-property.ggs", 523)) ;
             }
@@ -4372,14 +4372,14 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           if (kBoolFalse == test_23) {
             enumGalgasBool test_24 = kBoolTrue ;
             if (kBoolTrue == test_24) {
-              test_24 = GGS_bool (ComparisonKind::equal, extractedValue_21782_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
+              test_24 = GGS_bool (ComparisonKind::equal, extractedValue_21786_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
               if (kBoolTrue == test_24) {
                 outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 525)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 525))  COMMA_SOURCE_FILE ("observable-property.ggs", 525)) ;
               }
             }
             if (kBoolFalse == test_24) {
               TC_Array <FixItDescription> fixItArray25 ;
-              inCompiler->emitSemanticError (extractedValue_21782_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray25  COMMA_SOURCE_FILE ("observable-property.ggs", 527)) ;
+              inCompiler->emitSemanticError (extractedValue_21786_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray25  COMMA_SOURCE_FILE ("observable-property.ggs", 527)) ;
               outArgument_outKind.drop () ; // Release error dropped variable
             }
           }
@@ -4387,10 +4387,10 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_22837__0 ;
-          var_kind_21866.getAssociatedValuesFor_selectionController (extractedValue_22837__0) ;
+          GGS_string extractedValue_22841__0 ;
+          var_kind_21870.getAssociatedValuesFor_selectionController (extractedValue_22841__0) ;
           TC_Array <FixItDescription> fixItArray26 ;
-          inCompiler->emitSemanticError (extractedValue_21759_propertyName_0.readProperty_location (), GGS_string ("a selection controller accepts no option"), fixItArray26  COMMA_SOURCE_FILE ("observable-property.ggs", 530)) ;
+          inCompiler->emitSemanticError (extractedValue_21763_propertyName_0.readProperty_location (), GGS_string ("a selection controller accepts no option"), fixItArray26  COMMA_SOURCE_FILE ("observable-property.ggs", 530)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
@@ -4400,147 +4400,147 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyArray:
     {
-      GGS_lstring extractedValue_23046_propertyName_0 ;
-      GGS_lstring extractedValue_23069_elementPropertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyArray (extractedValue_23046_propertyName_0, extractedValue_23069_elementPropertyName_1) ;
-      GGS_propertyKind var_kind_23181 ;
-      GGS_actionMap joker_23193_2 ; // Joker input parameter
-      GGS_bool joker_23193_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_23046_propertyName_0, var_kind_23181, joker_23193_2, joker_23193_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 534)) ;
-      switch (var_kind_23181.enumValue ()) {
+      GGS_lstring extractedValue_23050_propertyName_0 ;
+      GGS_lstring extractedValue_23073_elementPropertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyArray (extractedValue_23050_propertyName_0, extractedValue_23073_elementPropertyName_1) ;
+      GGS_propertyKind var_kind_23185 ;
+      GGS_actionMap joker_23197_2 ; // Joker input parameter
+      GGS_bool joker_23197_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_23050_propertyName_0, var_kind_23185, joker_23197_2, joker_23197_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 534)) ;
+      switch (var_kind_23185.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_23239__0 ;
-          GGS_propertyAccessibility extractedValue_23239__1 ;
-          var_kind_23181.getAssociatedValuesFor_property (extractedValue_23239__0, extractedValue_23239__1) ;
+          GGS_typeKind extractedValue_23243__0 ;
+          GGS_propertyAccessibility extractedValue_23243__1 ;
+          var_kind_23185.getAssociatedValuesFor_property (extractedValue_23243__0, extractedValue_23243__1) ;
           TC_Array <FixItDescription> fixItArray27 ;
-          inCompiler->emitSemanticError (extractedValue_23046_propertyName_0.readProperty_location (), GGS_string ("an atomic property accepts no option"), fixItArray27  COMMA_SOURCE_FILE ("observable-property.ggs", 541)) ;
+          inCompiler->emitSemanticError (extractedValue_23050_propertyName_0.readProperty_location (), GGS_string ("an atomic property accepts no option"), fixItArray27  COMMA_SOURCE_FILE ("observable-property.ggs", 541)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_23343_typeName_0 ;
-          GGS_propertyAccessibility extractedValue_23354__1 ;
-          GGS_bool extractedValue_23354__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_23354__3 ;
-          var_kind_23181.getAssociatedValuesFor_toMany (extractedValue_23343_typeName_0, extractedValue_23354__1, extractedValue_23354__2, extractedValue_23354__3) ;
-          GGS_propertyMap var_observablePropertyMap_23423 ;
-          GGS_classKind joker_23414 ; // Joker input parameter
-          GGS_actionMap joker_23446_2 ; // Joker input parameter
-          GGS_propertyGenerationList joker_23446_1 ; // Joker input parameter
-          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_23343_typeName_0, joker_23414, var_observablePropertyMap_23423, joker_23446_2, joker_23446_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 543)) ;
-          GGS_actionMap joker_23545_2 ; // Joker input parameter
-          GGS_bool joker_23545_1 ; // Joker input parameter
-          var_observablePropertyMap_23423.method_searchKey (extractedValue_23069_elementPropertyName_1, outArgument_outKind, joker_23545_2, joker_23545_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 544)) ;
+          GGS_lstring extractedValue_23347_typeName_0 ;
+          GGS_propertyAccessibility extractedValue_23358__1 ;
+          GGS_bool extractedValue_23358__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_23358__3 ;
+          var_kind_23185.getAssociatedValuesFor_toMany (extractedValue_23347_typeName_0, extractedValue_23358__1, extractedValue_23358__2, extractedValue_23358__3) ;
+          GGS_propertyMap var_observablePropertyMap_23427 ;
+          GGS_classKind joker_23418 ; // Joker input parameter
+          GGS_actionMap joker_23450_2 ; // Joker input parameter
+          GGS_propertyGenerationList joker_23450_1 ; // Joker input parameter
+          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_23347_typeName_0, joker_23418, var_observablePropertyMap_23427, joker_23450_2, joker_23450_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 543)) ;
+          GGS_actionMap joker_23549_2 ; // Joker input parameter
+          GGS_bool joker_23549_1 ; // Joker input parameter
+          var_observablePropertyMap_23427.method_searchKey (extractedValue_23073_elementPropertyName_1, outArgument_outKind, joker_23549_2, joker_23549_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 544)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_23574__0 ;
-          GGS_propertyAccessibility extractedValue_23574__1 ;
-          GGS_bool extractedValue_23574__2 ;
-          GGS_toOneOppositeRelationship extractedValue_23574__3 ;
-          GGS_bool extractedValue_23574__4 ;
-          var_kind_23181.getAssociatedValuesFor_toOne (extractedValue_23574__0, extractedValue_23574__1, extractedValue_23574__2, extractedValue_23574__3, extractedValue_23574__4) ;
+          GGS_lstring extractedValue_23578__0 ;
+          GGS_propertyAccessibility extractedValue_23578__1 ;
+          GGS_bool extractedValue_23578__2 ;
+          GGS_toOneOppositeRelationship extractedValue_23578__3 ;
+          GGS_bool extractedValue_23578__4 ;
+          var_kind_23185.getAssociatedValuesFor_toOne (extractedValue_23578__0, extractedValue_23578__1, extractedValue_23578__2, extractedValue_23578__3, extractedValue_23578__4) ;
           TC_Array <FixItDescription> fixItArray28 ;
-          inCompiler->emitSemanticError (extractedValue_23046_propertyName_0.readProperty_location (), GGS_string ("a toOne property accepts no option"), fixItArray28  COMMA_SOURCE_FILE ("observable-property.ggs", 550)) ;
+          inCompiler->emitSemanticError (extractedValue_23050_propertyName_0.readProperty_location (), GGS_string ("a toOne property accepts no option"), fixItArray28  COMMA_SOURCE_FILE ("observable-property.ggs", 550)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_23686__0 ;
-          GGS_bool extractedValue_23686__1 ;
-          var_kind_23181.getAssociatedValuesFor_arrayController (extractedValue_23686__0, extractedValue_23686__1) ;
+          GGS_lstring extractedValue_23690__0 ;
+          GGS_bool extractedValue_23690__1 ;
+          var_kind_23185.getAssociatedValuesFor_arrayController (extractedValue_23690__0, extractedValue_23690__1) ;
           TC_Array <FixItDescription> fixItArray29 ;
-          inCompiler->emitSemanticError (extractedValue_23046_propertyName_0.readProperty_location (), GGS_string ("an array controller accepts no option"), fixItArray29  COMMA_SOURCE_FILE ("observable-property.ggs", 552)) ;
+          inCompiler->emitSemanticError (extractedValue_23050_propertyName_0.readProperty_location (), GGS_string ("an array controller accepts no option"), fixItArray29  COMMA_SOURCE_FILE ("observable-property.ggs", 552)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_23804__0 ;
-          var_kind_23181.getAssociatedValuesFor_selectionController (extractedValue_23804__0) ;
+          GGS_string extractedValue_23808__0 ;
+          var_kind_23185.getAssociatedValuesFor_selectionController (extractedValue_23808__0) ;
           TC_Array <FixItDescription> fixItArray30 ;
-          inCompiler->emitSemanticError (extractedValue_23046_propertyName_0.readProperty_location (), GGS_string ("a selection controller accepts no option"), fixItArray30  COMMA_SOURCE_FILE ("observable-property.ggs", 554)) ;
+          inCompiler->emitSemanticError (extractedValue_23050_propertyName_0.readProperty_location (), GGS_string ("a selection controller accepts no option"), fixItArray30  COMMA_SOURCE_FILE ("observable-property.ggs", 554)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       }
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[").add_operation (extensionGetter_swiftTypeName (var_kind_23181, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)).add_operation (extractedValue_23069_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 557)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 557)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[any ").add_operation (extensionGetter_swiftTypeName (var_kind_23185, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 556)).add_operation (extractedValue_23073_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 557)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 557)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyObject:
     {
-      GGS_lstring extractedValue_24058_propertyName_0 ;
-      GGS_lstring extractedValue_24081_elementPropertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyObject (extractedValue_24058_propertyName_0, extractedValue_24081_elementPropertyName_1) ;
-      GGS_propertyKind var_kind_24193 ;
-      GGS_actionMap joker_24205_2 ; // Joker input parameter
-      GGS_bool joker_24205_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_24058_propertyName_0, var_kind_24193, joker_24205_2, joker_24205_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 559)) ;
-      switch (var_kind_24193.enumValue ()) {
+      GGS_lstring extractedValue_24066_propertyName_0 ;
+      GGS_lstring extractedValue_24089_elementPropertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyObject (extractedValue_24066_propertyName_0, extractedValue_24089_elementPropertyName_1) ;
+      GGS_propertyKind var_kind_24201 ;
+      GGS_actionMap joker_24213_2 ; // Joker input parameter
+      GGS_bool joker_24213_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_24066_propertyName_0, var_kind_24201, joker_24213_2, joker_24213_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 559)) ;
+      switch (var_kind_24201.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_24251__0 ;
-          GGS_propertyAccessibility extractedValue_24251__1 ;
-          var_kind_24193.getAssociatedValuesFor_property (extractedValue_24251__0, extractedValue_24251__1) ;
+          GGS_typeKind extractedValue_24259__0 ;
+          GGS_propertyAccessibility extractedValue_24259__1 ;
+          var_kind_24201.getAssociatedValuesFor_property (extractedValue_24259__0, extractedValue_24259__1) ;
           TC_Array <FixItDescription> fixItArray31 ;
-          inCompiler->emitSemanticError (extractedValue_24058_propertyName_0.readProperty_location (), GGS_string ("an atomic property does not accept 'one'"), fixItArray31  COMMA_SOURCE_FILE ("observable-property.ggs", 566)) ;
+          inCompiler->emitSemanticError (extractedValue_24066_propertyName_0.readProperty_location (), GGS_string ("an atomic property does not accept 'one'"), fixItArray31  COMMA_SOURCE_FILE ("observable-property.ggs", 566)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_24360__0 ;
-          GGS_propertyAccessibility extractedValue_24360__1 ;
-          GGS_bool extractedValue_24360__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_24360__3 ;
-          var_kind_24193.getAssociatedValuesFor_toMany (extractedValue_24360__0, extractedValue_24360__1, extractedValue_24360__2, extractedValue_24360__3) ;
+          GGS_lstring extractedValue_24368__0 ;
+          GGS_propertyAccessibility extractedValue_24368__1 ;
+          GGS_bool extractedValue_24368__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_24368__3 ;
+          var_kind_24201.getAssociatedValuesFor_toMany (extractedValue_24368__0, extractedValue_24368__1, extractedValue_24368__2, extractedValue_24368__3) ;
           TC_Array <FixItDescription> fixItArray32 ;
-          inCompiler->emitSemanticError (extractedValue_24058_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept 'one'"), fixItArray32  COMMA_SOURCE_FILE ("observable-property.ggs", 568)) ;
+          inCompiler->emitSemanticError (extractedValue_24066_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept 'one'"), fixItArray32  COMMA_SOURCE_FILE ("observable-property.ggs", 568)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_24465_typeName_0 ;
-          GGS_propertyAccessibility extractedValue_24476__1 ;
-          GGS_bool extractedValue_24476__2 ;
-          GGS_toOneOppositeRelationship extractedValue_24476__3 ;
-          GGS_bool extractedValue_24476__4 ;
-          var_kind_24193.getAssociatedValuesFor_toOne (extractedValue_24465_typeName_0, extractedValue_24476__1, extractedValue_24476__2, extractedValue_24476__3, extractedValue_24476__4) ;
-          GGS_propertyMap var_observablePropertyMap_24545 ;
-          GGS_classKind joker_24536 ; // Joker input parameter
-          GGS_actionMap joker_24568_2 ; // Joker input parameter
-          GGS_propertyGenerationList joker_24568_1 ; // Joker input parameter
-          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_24465_typeName_0, joker_24536, var_observablePropertyMap_24545, joker_24568_2, joker_24568_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 570)) ;
-          GGS_actionMap joker_24667_2 ; // Joker input parameter
-          GGS_bool joker_24667_1 ; // Joker input parameter
-          var_observablePropertyMap_24545.method_searchKey (extractedValue_24081_elementPropertyName_1, outArgument_outKind, joker_24667_2, joker_24667_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 571)) ;
+          GGS_lstring extractedValue_24473_typeName_0 ;
+          GGS_propertyAccessibility extractedValue_24484__1 ;
+          GGS_bool extractedValue_24484__2 ;
+          GGS_toOneOppositeRelationship extractedValue_24484__3 ;
+          GGS_bool extractedValue_24484__4 ;
+          var_kind_24201.getAssociatedValuesFor_toOne (extractedValue_24473_typeName_0, extractedValue_24484__1, extractedValue_24484__2, extractedValue_24484__3, extractedValue_24484__4) ;
+          GGS_propertyMap var_observablePropertyMap_24553 ;
+          GGS_classKind joker_24544 ; // Joker input parameter
+          GGS_actionMap joker_24576_2 ; // Joker input parameter
+          GGS_propertyGenerationList joker_24576_1 ; // Joker input parameter
+          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_24473_typeName_0, joker_24544, var_observablePropertyMap_24553, joker_24576_2, joker_24576_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 570)) ;
+          GGS_actionMap joker_24675_2 ; // Joker input parameter
+          GGS_bool joker_24675_1 ; // Joker input parameter
+          var_observablePropertyMap_24553.method_searchKey (extractedValue_24089_elementPropertyName_1, outArgument_outKind, joker_24675_2, joker_24675_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 571)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_24706__0 ;
-          GGS_bool extractedValue_24706__1 ;
-          var_kind_24193.getAssociatedValuesFor_arrayController (extractedValue_24706__0, extractedValue_24706__1) ;
+          GGS_lstring extractedValue_24714__0 ;
+          GGS_bool extractedValue_24714__1 ;
+          var_kind_24201.getAssociatedValuesFor_arrayController (extractedValue_24714__0, extractedValue_24714__1) ;
           TC_Array <FixItDescription> fixItArray33 ;
-          inCompiler->emitSemanticError (extractedValue_24058_propertyName_0.readProperty_location (), GGS_string ("an array controller does not accept 'one'"), fixItArray33  COMMA_SOURCE_FILE ("observable-property.ggs", 577)) ;
+          inCompiler->emitSemanticError (extractedValue_24066_propertyName_0.readProperty_location (), GGS_string ("an array controller does not accept 'one'"), fixItArray33  COMMA_SOURCE_FILE ("observable-property.ggs", 577)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_24828__0 ;
-          var_kind_24193.getAssociatedValuesFor_selectionController (extractedValue_24828__0) ;
+          GGS_string extractedValue_24836__0 ;
+          var_kind_24201.getAssociatedValuesFor_selectionController (extractedValue_24836__0) ;
           TC_Array <FixItDescription> fixItArray34 ;
-          inCompiler->emitSemanticError (extractedValue_24058_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept 'one'"), fixItArray34  COMMA_SOURCE_FILE ("observable-property.ggs", 579)) ;
+          inCompiler->emitSemanticError (extractedValue_24066_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept 'one'"), fixItArray34  COMMA_SOURCE_FILE ("observable-property.ggs", 579)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
@@ -4550,64 +4550,64 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyNone:
     {
-      GGS_lstring extractedValue_25046_propertyName_0 ;
-      temp_0.getAssociatedValuesFor_selfPropertyNone (extractedValue_25046_propertyName_0) ;
-      GGS_propertyKind var_kind_25148 ;
-      GGS_actionMap joker_25160_2 ; // Joker input parameter
-      GGS_bool joker_25160_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_25046_propertyName_0, var_kind_25148, joker_25160_2, joker_25160_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 583)) ;
-      switch (var_kind_25148.enumValue ()) {
+      GGS_lstring extractedValue_25054_propertyName_0 ;
+      temp_0.getAssociatedValuesFor_selfPropertyNone (extractedValue_25054_propertyName_0) ;
+      GGS_propertyKind var_kind_25156 ;
+      GGS_actionMap joker_25168_2 ; // Joker input parameter
+      GGS_bool joker_25168_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_25054_propertyName_0, var_kind_25156, joker_25168_2, joker_25168_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 583)) ;
+      switch (var_kind_25156.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_25206__0 ;
-          GGS_propertyAccessibility extractedValue_25206__1 ;
-          var_kind_25148.getAssociatedValuesFor_property (extractedValue_25206__0, extractedValue_25206__1) ;
+          GGS_typeKind extractedValue_25214__0 ;
+          GGS_propertyAccessibility extractedValue_25214__1 ;
+          var_kind_25156.getAssociatedValuesFor_property (extractedValue_25214__0, extractedValue_25214__1) ;
           TC_Array <FixItDescription> fixItArray35 ;
-          inCompiler->emitSemanticError (extractedValue_25046_propertyName_0.readProperty_location (), GGS_string ("an atomic property does not accept 'none'"), fixItArray35  COMMA_SOURCE_FILE ("observable-property.ggs", 590)) ;
+          inCompiler->emitSemanticError (extractedValue_25054_propertyName_0.readProperty_location (), GGS_string ("an atomic property does not accept 'none'"), fixItArray35  COMMA_SOURCE_FILE ("observable-property.ggs", 590)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_25316__0 ;
-          GGS_propertyAccessibility extractedValue_25316__1 ;
-          GGS_bool extractedValue_25316__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_25316__3 ;
-          var_kind_25148.getAssociatedValuesFor_toMany (extractedValue_25316__0, extractedValue_25316__1, extractedValue_25316__2, extractedValue_25316__3) ;
+          GGS_lstring extractedValue_25324__0 ;
+          GGS_propertyAccessibility extractedValue_25324__1 ;
+          GGS_bool extractedValue_25324__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_25324__3 ;
+          var_kind_25156.getAssociatedValuesFor_toMany (extractedValue_25324__0, extractedValue_25324__1, extractedValue_25324__2, extractedValue_25324__3) ;
           TC_Array <FixItDescription> fixItArray36 ;
-          inCompiler->emitSemanticError (extractedValue_25046_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept 'none'"), fixItArray36  COMMA_SOURCE_FILE ("observable-property.ggs", 592)) ;
+          inCompiler->emitSemanticError (extractedValue_25054_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept 'none'"), fixItArray36  COMMA_SOURCE_FILE ("observable-property.ggs", 592)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_25423__0 ;
-          GGS_propertyAccessibility extractedValue_25423__1 ;
-          GGS_bool extractedValue_25423__2 ;
-          GGS_toOneOppositeRelationship extractedValue_25423__3 ;
-          GGS_bool extractedValue_25423__4 ;
-          var_kind_25148.getAssociatedValuesFor_toOne (extractedValue_25423__0, extractedValue_25423__1, extractedValue_25423__2, extractedValue_25423__3, extractedValue_25423__4) ;
+          GGS_lstring extractedValue_25431__0 ;
+          GGS_propertyAccessibility extractedValue_25431__1 ;
+          GGS_bool extractedValue_25431__2 ;
+          GGS_toOneOppositeRelationship extractedValue_25431__3 ;
+          GGS_bool extractedValue_25431__4 ;
+          var_kind_25156.getAssociatedValuesFor_toOne (extractedValue_25431__0, extractedValue_25431__1, extractedValue_25431__2, extractedValue_25431__3, extractedValue_25431__4) ;
           outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 594)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 594))  COMMA_SOURCE_FILE ("observable-property.ggs", 594)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_25549__0 ;
-          GGS_bool extractedValue_25549__1 ;
-          var_kind_25148.getAssociatedValuesFor_arrayController (extractedValue_25549__0, extractedValue_25549__1) ;
+          GGS_lstring extractedValue_25557__0 ;
+          GGS_bool extractedValue_25557__1 ;
+          var_kind_25156.getAssociatedValuesFor_arrayController (extractedValue_25557__0, extractedValue_25557__1) ;
           TC_Array <FixItDescription> fixItArray37 ;
-          inCompiler->emitSemanticError (extractedValue_25046_propertyName_0.readProperty_location (), GGS_string ("an array controller does not accept 'none'"), fixItArray37  COMMA_SOURCE_FILE ("observable-property.ggs", 596)) ;
+          inCompiler->emitSemanticError (extractedValue_25054_propertyName_0.readProperty_location (), GGS_string ("an array controller does not accept 'none'"), fixItArray37  COMMA_SOURCE_FILE ("observable-property.ggs", 596)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_25672__0 ;
-          var_kind_25148.getAssociatedValuesFor_selectionController (extractedValue_25672__0) ;
+          GGS_string extractedValue_25680__0 ;
+          var_kind_25156.getAssociatedValuesFor_selectionController (extractedValue_25680__0) ;
           TC_Array <FixItDescription> fixItArray38 ;
-          inCompiler->emitSemanticError (extractedValue_25046_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept 'none'"), fixItArray38  COMMA_SOURCE_FILE ("observable-property.ggs", 598)) ;
+          inCompiler->emitSemanticError (extractedValue_25054_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept 'none'"), fixItArray38  COMMA_SOURCE_FILE ("observable-property.ggs", 598)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
@@ -4617,79 +4617,79 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsProperty:
     {
-      GGS_lstring extractedValue_25882_propertyName_0 ;
-      temp_0.getAssociatedValuesFor_prefsProperty (extractedValue_25882_propertyName_0) ;
-      GGS_propertyMap var_observablePropertyMap_25988 ;
-      GGS_classKind joker_25979 ; // Joker input parameter
-      GGS_actionMap joker_26011_2 ; // Joker input parameter
-      GGS_propertyGenerationList joker_26011_1 ; // Joker input parameter
-      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 602)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 602)), inCompiler COMMA_HERE), joker_25979, var_observablePropertyMap_25988, joker_26011_2, joker_26011_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 602)) ;
-      GGS_actionMap joker_26095_2 ; // Joker input parameter
-      GGS_bool joker_26095_1 ; // Joker input parameter
-      var_observablePropertyMap_25988.method_searchKey (extractedValue_25882_propertyName_0, outArgument_outKind, joker_26095_2, joker_26095_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 603)) ;
+      GGS_lstring extractedValue_25890_propertyName_0 ;
+      temp_0.getAssociatedValuesFor_prefsProperty (extractedValue_25890_propertyName_0) ;
+      GGS_propertyMap var_observablePropertyMap_25996 ;
+      GGS_classKind joker_25987 ; // Joker input parameter
+      GGS_actionMap joker_26019_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_26019_1 ; // Joker input parameter
+      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 602)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 602)), inCompiler COMMA_HERE), joker_25987, var_observablePropertyMap_25996, joker_26019_2, joker_26019_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 602)) ;
+      GGS_actionMap joker_26103_2 ; // Joker input parameter
+      GGS_bool joker_26103_1 ; // Joker input parameter
+      var_observablePropertyMap_25996.method_searchKey (extractedValue_25890_propertyName_0, outArgument_outKind, joker_26103_2, joker_26103_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 603)) ;
       outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 608)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsPropertyWithOption:
     {
-      GGS_lstring extractedValue_26221_propertyName_0 ;
-      GGS_lstring extractedValue_26244_optionName_1 ;
-      temp_0.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_26221_propertyName_0, extractedValue_26244_optionName_1) ;
-      GGS_propertyMap var_observablePropertyMap_26348 ;
-      GGS_classKind joker_26339 ; // Joker input parameter
-      GGS_actionMap joker_26371_2 ; // Joker input parameter
-      GGS_propertyGenerationList joker_26371_1 ; // Joker input parameter
-      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 610)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 610)), inCompiler COMMA_HERE), joker_26339, var_observablePropertyMap_26348, joker_26371_2, joker_26371_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 610)) ;
-      GGS_propertyKind var_kind_26444 ;
-      GGS_actionMap joker_26456_2 ; // Joker input parameter
-      GGS_bool joker_26456_1 ; // Joker input parameter
-      var_observablePropertyMap_26348.method_searchKey (extractedValue_26221_propertyName_0, var_kind_26444, joker_26456_2, joker_26456_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 611)) ;
-      switch (var_kind_26444.enumValue ()) {
+      GGS_lstring extractedValue_26229_propertyName_0 ;
+      GGS_lstring extractedValue_26252_optionName_1 ;
+      temp_0.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_26229_propertyName_0, extractedValue_26252_optionName_1) ;
+      GGS_propertyMap var_observablePropertyMap_26356 ;
+      GGS_classKind joker_26347 ; // Joker input parameter
+      GGS_actionMap joker_26379_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_26379_1 ; // Joker input parameter
+      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 610)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 610)), inCompiler COMMA_HERE), joker_26347, var_observablePropertyMap_26356, joker_26379_2, joker_26379_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 610)) ;
+      GGS_propertyKind var_kind_26452 ;
+      GGS_actionMap joker_26464_2 ; // Joker input parameter
+      GGS_bool joker_26464_1 ; // Joker input parameter
+      var_observablePropertyMap_26356.method_searchKey (extractedValue_26229_propertyName_0, var_kind_26452, joker_26464_2, joker_26464_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 611)) ;
+      switch (var_kind_26452.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_26502__0 ;
-          GGS_propertyAccessibility extractedValue_26502__1 ;
-          var_kind_26444.getAssociatedValuesFor_property (extractedValue_26502__0, extractedValue_26502__1) ;
+          GGS_typeKind extractedValue_26510__0 ;
+          GGS_propertyAccessibility extractedValue_26510__1 ;
+          var_kind_26452.getAssociatedValuesFor_property (extractedValue_26510__0, extractedValue_26510__1) ;
           TC_Array <FixItDescription> fixItArray39 ;
-          inCompiler->emitSemanticError (extractedValue_26221_propertyName_0.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray39  COMMA_SOURCE_FILE ("observable-property.ggs", 618)) ;
+          inCompiler->emitSemanticError (extractedValue_26229_propertyName_0.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray39  COMMA_SOURCE_FILE ("observable-property.ggs", 618)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_26608__0 ;
-          GGS_propertyAccessibility extractedValue_26608__1 ;
-          GGS_bool extractedValue_26608__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_26608__3 ;
-          var_kind_26444.getAssociatedValuesFor_toMany (extractedValue_26608__0, extractedValue_26608__1, extractedValue_26608__2, extractedValue_26608__3) ;
+          GGS_lstring extractedValue_26616__0 ;
+          GGS_propertyAccessibility extractedValue_26616__1 ;
+          GGS_bool extractedValue_26616__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_26616__3 ;
+          var_kind_26452.getAssociatedValuesFor_toMany (extractedValue_26616__0, extractedValue_26616__1, extractedValue_26616__2, extractedValue_26616__3) ;
           TC_Array <FixItDescription> fixItArray40 ;
-          inCompiler->emitSemanticError (extractedValue_26221_propertyName_0.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray40  COMMA_SOURCE_FILE ("observable-property.ggs", 620)) ;
+          inCompiler->emitSemanticError (extractedValue_26229_propertyName_0.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray40  COMMA_SOURCE_FILE ("observable-property.ggs", 620)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_26720__0 ;
-          GGS_propertyAccessibility extractedValue_26720__1 ;
-          GGS_bool extractedValue_26720__2 ;
-          GGS_toOneOppositeRelationship extractedValue_26720__3 ;
-          GGS_bool extractedValue_26720__4 ;
-          var_kind_26444.getAssociatedValuesFor_toOne (extractedValue_26720__0, extractedValue_26720__1, extractedValue_26720__2, extractedValue_26720__3, extractedValue_26720__4) ;
+          GGS_lstring extractedValue_26728__0 ;
+          GGS_propertyAccessibility extractedValue_26728__1 ;
+          GGS_bool extractedValue_26728__2 ;
+          GGS_toOneOppositeRelationship extractedValue_26728__3 ;
+          GGS_bool extractedValue_26728__4 ;
+          var_kind_26452.getAssociatedValuesFor_toOne (extractedValue_26728__0, extractedValue_26728__1, extractedValue_26728__2, extractedValue_26728__3, extractedValue_26728__4) ;
           TC_Array <FixItDescription> fixItArray41 ;
-          inCompiler->emitSemanticError (extractedValue_26221_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray41  COMMA_SOURCE_FILE ("observable-property.ggs", 622)) ;
+          inCompiler->emitSemanticError (extractedValue_26229_propertyName_0.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray41  COMMA_SOURCE_FILE ("observable-property.ggs", 622)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_26841__0 ;
-          GGS_bool extractedValue_26841__1 ;
-          var_kind_26444.getAssociatedValuesFor_arrayController (extractedValue_26841__0, extractedValue_26841__1) ;
+          GGS_lstring extractedValue_26849__0 ;
+          GGS_bool extractedValue_26849__1 ;
+          var_kind_26452.getAssociatedValuesFor_arrayController (extractedValue_26849__0, extractedValue_26849__1) ;
           enumGalgasBool test_42 = kBoolTrue ;
           if (kBoolTrue == test_42) {
-            test_42 = GGS_bool (ComparisonKind::equal, extractedValue_26244_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
+            test_42 = GGS_bool (ComparisonKind::equal, extractedValue_26252_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
             if (kBoolTrue == test_42) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 625)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 625))  COMMA_SOURCE_FILE ("observable-property.ggs", 625)) ;
             }
@@ -4697,14 +4697,14 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           if (kBoolFalse == test_42) {
             enumGalgasBool test_43 = kBoolTrue ;
             if (kBoolTrue == test_43) {
-              test_43 = GGS_bool (ComparisonKind::equal, extractedValue_26244_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
+              test_43 = GGS_bool (ComparisonKind::equal, extractedValue_26252_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
               if (kBoolTrue == test_43) {
                 outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 627)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 627))  COMMA_SOURCE_FILE ("observable-property.ggs", 627)) ;
               }
             }
             if (kBoolFalse == test_43) {
               TC_Array <FixItDescription> fixItArray44 ;
-              inCompiler->emitSemanticError (extractedValue_26244_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray44  COMMA_SOURCE_FILE ("observable-property.ggs", 629)) ;
+              inCompiler->emitSemanticError (extractedValue_26252_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray44  COMMA_SOURCE_FILE ("observable-property.ggs", 629)) ;
               outArgument_outKind.drop () ; // Release error dropped variable
             }
           }
@@ -4712,10 +4712,10 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_27271__0 ;
-          var_kind_26444.getAssociatedValuesFor_selectionController (extractedValue_27271__0) ;
+          GGS_string extractedValue_27279__0 ;
+          var_kind_26452.getAssociatedValuesFor_selectionController (extractedValue_27279__0) ;
           TC_Array <FixItDescription> fixItArray45 ;
-          inCompiler->emitSemanticError (extractedValue_26221_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept any option"), fixItArray45  COMMA_SOURCE_FILE ("observable-property.ggs", 632)) ;
+          inCompiler->emitSemanticError (extractedValue_26229_propertyName_0.readProperty_location (), GGS_string ("a selection controller does not accept any option"), fixItArray45  COMMA_SOURCE_FILE ("observable-property.ggs", 632)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
@@ -4725,88 +4725,88 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerProperty:
     {
-      GGS_lstring extractedValue_27494_controllerName_0 ;
-      GGS_lstring extractedValue_27519_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfControllerProperty (extractedValue_27494_controllerName_0, extractedValue_27519_propertyName_1) ;
-      GGS_propertyKind var_propertyKind_27621 ;
-      GGS_actionMap joker_27641_2 ; // Joker input parameter
-      GGS_bool joker_27641_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_27494_controllerName_0, var_propertyKind_27621, joker_27641_2, joker_27641_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 636)) ;
-      switch (var_propertyKind_27621.enumValue ()) {
+      GGS_lstring extractedValue_27502_controllerName_0 ;
+      GGS_lstring extractedValue_27527_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfControllerProperty (extractedValue_27502_controllerName_0, extractedValue_27527_propertyName_1) ;
+      GGS_propertyKind var_propertyKind_27629 ;
+      GGS_actionMap joker_27649_2 ; // Joker input parameter
+      GGS_bool joker_27649_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_27502_controllerName_0, var_propertyKind_27629, joker_27649_2, joker_27649_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 636)) ;
+      switch (var_propertyKind_27629.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_27695__0 ;
-          GGS_propertyAccessibility extractedValue_27695__1 ;
-          var_propertyKind_27621.getAssociatedValuesFor_property (extractedValue_27695__0, extractedValue_27695__1) ;
+          GGS_typeKind extractedValue_27703__0 ;
+          GGS_propertyAccessibility extractedValue_27703__1 ;
+          var_propertyKind_27629.getAssociatedValuesFor_property (extractedValue_27703__0, extractedValue_27703__1) ;
           TC_Array <FixItDescription> fixItArray46 ;
-          inCompiler->emitSemanticError (extractedValue_27519_propertyName_1.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray46  COMMA_SOURCE_FILE ("observable-property.ggs", 643)) ;
+          inCompiler->emitSemanticError (extractedValue_27527_propertyName_1.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray46  COMMA_SOURCE_FILE ("observable-property.ggs", 643)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_27801__0 ;
-          GGS_propertyAccessibility extractedValue_27801__1 ;
-          GGS_bool extractedValue_27801__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_27801__3 ;
-          var_propertyKind_27621.getAssociatedValuesFor_toMany (extractedValue_27801__0, extractedValue_27801__1, extractedValue_27801__2, extractedValue_27801__3) ;
+          GGS_lstring extractedValue_27809__0 ;
+          GGS_propertyAccessibility extractedValue_27809__1 ;
+          GGS_bool extractedValue_27809__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_27809__3 ;
+          var_propertyKind_27629.getAssociatedValuesFor_toMany (extractedValue_27809__0, extractedValue_27809__1, extractedValue_27809__2, extractedValue_27809__3) ;
           TC_Array <FixItDescription> fixItArray47 ;
-          inCompiler->emitSemanticError (extractedValue_27519_propertyName_1.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray47  COMMA_SOURCE_FILE ("observable-property.ggs", 645)) ;
+          inCompiler->emitSemanticError (extractedValue_27527_propertyName_1.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray47  COMMA_SOURCE_FILE ("observable-property.ggs", 645)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_27913__0 ;
-          GGS_propertyAccessibility extractedValue_27913__1 ;
-          GGS_bool extractedValue_27913__2 ;
-          GGS_toOneOppositeRelationship extractedValue_27913__3 ;
-          GGS_bool extractedValue_27913__4 ;
-          var_propertyKind_27621.getAssociatedValuesFor_toOne (extractedValue_27913__0, extractedValue_27913__1, extractedValue_27913__2, extractedValue_27913__3, extractedValue_27913__4) ;
+          GGS_lstring extractedValue_27921__0 ;
+          GGS_propertyAccessibility extractedValue_27921__1 ;
+          GGS_bool extractedValue_27921__2 ;
+          GGS_toOneOppositeRelationship extractedValue_27921__3 ;
+          GGS_bool extractedValue_27921__4 ;
+          var_propertyKind_27629.getAssociatedValuesFor_toOne (extractedValue_27921__0, extractedValue_27921__1, extractedValue_27921__2, extractedValue_27921__3, extractedValue_27921__4) ;
           TC_Array <FixItDescription> fixItArray48 ;
-          inCompiler->emitSemanticError (extractedValue_27519_propertyName_1.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray48  COMMA_SOURCE_FILE ("observable-property.ggs", 647)) ;
+          inCompiler->emitSemanticError (extractedValue_27527_propertyName_1.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray48  COMMA_SOURCE_FILE ("observable-property.ggs", 647)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_28033_typeName_0 ;
-          GGS_bool extractedValue_28043_graphic_1 ;
-          var_propertyKind_27621.getAssociatedValuesFor_arrayController (extractedValue_28033_typeName_0, extractedValue_28043_graphic_1) ;
+          GGS_lstring extractedValue_28041_typeName_0 ;
+          GGS_bool extractedValue_28051_graphic_1 ;
+          var_propertyKind_27629.getAssociatedValuesFor_arrayController (extractedValue_28041_typeName_0, extractedValue_28051_graphic_1) ;
           enumGalgasBool test_49 = kBoolTrue ;
           if (kBoolTrue == test_49) {
-            GGS_bool test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27519_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
+            GGS_bool test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27527_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
             if (kBoolTrue != test_50.boolEnum ()) {
-              test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27519_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
+              test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27527_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
             }
             test_49 = test_50.boolEnum () ;
             if (kBoolTrue == test_49) {
-              outArgument_outKind = GGS_propertyKind::class_func_toMany (extractedValue_28033_typeName_0, GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 652)), extractedValue_28043_graphic_1, GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("observable-property.ggs", 654))  COMMA_SOURCE_FILE ("observable-property.ggs", 650)) ;
+              outArgument_outKind = GGS_propertyKind::class_func_toMany (extractedValue_28041_typeName_0, GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 652)), extractedValue_28051_graphic_1, GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("observable-property.ggs", 654))  COMMA_SOURCE_FILE ("observable-property.ggs", 650)) ;
             }
           }
           if (kBoolFalse == test_49) {
             TC_Array <FixItDescription> fixItArray51 ;
             appendFixItActions (fixItArray51, kFixItReplace, GGS_string ("sortedArray")) ;
             appendFixItActions (fixItArray51, kFixItReplace, GGS_string ("selectedArray")) ;
-            inCompiler->emitSemanticError (extractedValue_27519_propertyName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'sortedArray' or 'selectedArray')"), fixItArray51  COMMA_SOURCE_FILE ("observable-property.ggs", 657)) ;
+            inCompiler->emitSemanticError (extractedValue_27527_propertyName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'sortedArray' or 'selectedArray')"), fixItArray51  COMMA_SOURCE_FILE ("observable-property.ggs", 657)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
           }
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_28589_entityName_0 ;
-          var_propertyKind_27621.getAssociatedValuesFor_selectionController (extractedValue_28589_entityName_0) ;
-          GGS_propertyMap var_observablePropertyMap_28727 ;
-          GGS_classKind joker_28710 ; // Joker input parameter
-          GGS_actionMap joker_28758_2 ; // Joker input parameter
-          GGS_propertyGenerationList joker_28758_1 ; // Joker input parameter
-          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_28589_entityName_0, extractedValue_27494_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_28710, var_observablePropertyMap_28727, joker_28758_2, joker_28758_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 663)) ;
-          GGS_actionMap joker_28833_2 ; // Joker input parameter
-          GGS_bool joker_28833_1 ; // Joker input parameter
-          var_observablePropertyMap_28727.method_searchKey (extractedValue_27519_propertyName_1, outArgument_outKind, joker_28833_2, joker_28833_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 669)) ;
+          GGS_string extractedValue_28597_entityName_0 ;
+          var_propertyKind_27629.getAssociatedValuesFor_selectionController (extractedValue_28597_entityName_0) ;
+          GGS_propertyMap var_observablePropertyMap_28735 ;
+          GGS_classKind joker_28718 ; // Joker input parameter
+          GGS_actionMap joker_28766_2 ; // Joker input parameter
+          GGS_propertyGenerationList joker_28766_1 ; // Joker input parameter
+          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_28597_entityName_0, extractedValue_27502_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_28718, var_observablePropertyMap_28735, joker_28766_2, joker_28766_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 663)) ;
+          GGS_actionMap joker_28841_2 ; // Joker input parameter
+          GGS_bool joker_28841_1 ; // Joker input parameter
+          var_observablePropertyMap_28735.method_searchKey (extractedValue_27527_propertyName_1, outArgument_outKind, joker_28841_2, joker_28841_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 669)) ;
         }
         break ;
       }
@@ -4815,19 +4815,19 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerSecondaryProperty:
     {
-      GGS_lstring extractedValue_28970_controllerName_0 ;
-      GGS_lstring extractedValue_28995_propertyName_1 ;
-      GGS_lstring extractedValue_29018_secondaryPropertyName_2 ;
-      temp_0.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_28970_controllerName_0, extractedValue_28995_propertyName_1, extractedValue_29018_secondaryPropertyName_2) ;
-      GGS_propertyKind joker_29098_3 ; // Joker input parameter
-      GGS_actionMap joker_29098_2 ; // Joker input parameter
-      GGS_bool joker_29098_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_28970_controllerName_0, joker_29098_3, joker_29098_2, joker_29098_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 673)) ;
+      GGS_lstring extractedValue_28978_controllerName_0 ;
+      GGS_lstring extractedValue_29003_propertyName_1 ;
+      GGS_lstring extractedValue_29026_secondaryPropertyName_2 ;
+      temp_0.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_28978_controllerName_0, extractedValue_29003_propertyName_1, extractedValue_29026_secondaryPropertyName_2) ;
+      GGS_propertyKind joker_29106_3 ; // Joker input parameter
+      GGS_actionMap joker_29106_2 ; // Joker input parameter
+      GGS_bool joker_29106_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_28978_controllerName_0, joker_29106_3, joker_29106_2, joker_29106_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 673)) ;
       enumGalgasBool test_52 = kBoolTrue ;
       if (kBoolTrue == test_52) {
-        GGS_bool test_53 = GGS_bool (ComparisonKind::equal, extractedValue_28995_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
+        GGS_bool test_53 = GGS_bool (ComparisonKind::equal, extractedValue_29003_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
         if (kBoolTrue == test_53.boolEnum ()) {
-          test_53 = GGS_bool (ComparisonKind::equal, extractedValue_29018_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
+          test_53 = GGS_bool (ComparisonKind::equal, extractedValue_29026_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
         }
         test_52 = test_53.boolEnum () ;
         if (kBoolTrue == test_52) {
@@ -4837,9 +4837,9 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
       if (kBoolFalse == test_52) {
         enumGalgasBool test_54 = kBoolTrue ;
         if (kBoolTrue == test_54) {
-          GGS_bool test_55 = GGS_bool (ComparisonKind::equal, extractedValue_28995_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
+          GGS_bool test_55 = GGS_bool (ComparisonKind::equal, extractedValue_29003_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
           if (kBoolTrue == test_55.boolEnum ()) {
-            test_55 = GGS_bool (ComparisonKind::equal, extractedValue_29018_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
+            test_55 = GGS_bool (ComparisonKind::equal, extractedValue_29026_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
           }
           test_54 = test_55.boolEnum () ;
           if (kBoolTrue == test_54) {
@@ -4850,7 +4850,7 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           TC_Array <FixItDescription> fixItArray56 ;
           appendFixItActions (fixItArray56, kFixItReplace, GGS_string ("sortedArray")) ;
           appendFixItActions (fixItArray56, kFixItReplace, GGS_string ("selectedArray")) ;
-          inCompiler->emitSemanticError (extractedValue_28995_propertyName_1.readProperty_location (), GGS_string ("unknown option"), fixItArray56  COMMA_SOURCE_FILE ("observable-property.ggs", 679)) ;
+          inCompiler->emitSemanticError (extractedValue_29003_propertyName_1.readProperty_location (), GGS_string ("unknown option"), fixItArray56  COMMA_SOURCE_FILE ("observable-property.ggs", 679)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
         }
       }
@@ -4859,171 +4859,171 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerOneProperty:
     {
-      GGS_lstring extractedValue_29752_controllerName_0 ;
-      GGS_lstring extractedValue_29777_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_29752_controllerName_0, extractedValue_29777_propertyName_1) ;
-      GGS_propertyKind var_propertyKind_29867 ;
-      GGS_actionMap joker_29881_2 ; // Joker input parameter
-      GGS_bool joker_29881_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_29752_controllerName_0, var_propertyKind_29867, joker_29881_2, joker_29881_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 683)) ;
-      GGS_string var_controllerTypeName_29902 = GGS_string::makeEmptyString () ;
-      switch (var_propertyKind_29867.enumValue ()) {
+      GGS_lstring extractedValue_29760_controllerName_0 ;
+      GGS_lstring extractedValue_29785_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_29760_controllerName_0, extractedValue_29785_propertyName_1) ;
+      GGS_propertyKind var_propertyKind_29875 ;
+      GGS_actionMap joker_29889_2 ; // Joker input parameter
+      GGS_bool joker_29889_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_29760_controllerName_0, var_propertyKind_29875, joker_29889_2, joker_29889_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 683)) ;
+      GGS_string var_controllerTypeName_29910 = GGS_string::makeEmptyString () ;
+      switch (var_propertyKind_29875.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_29977__0 ;
-          GGS_bool extractedValue_29977__1 ;
-          var_propertyKind_29867.getAssociatedValuesFor_arrayController (extractedValue_29977__0, extractedValue_29977__1) ;
+          GGS_lstring extractedValue_29985__0 ;
+          GGS_bool extractedValue_29985__1 ;
+          var_propertyKind_29875.getAssociatedValuesFor_arrayController (extractedValue_29985__0, extractedValue_29985__1) ;
           TC_Array <FixItDescription> fixItArray57 ;
-          inCompiler->emitSemanticError (extractedValue_29752_controllerName_0.readProperty_location (), GGS_string ("an array controller does not support 'one'"), fixItArray57  COMMA_SOURCE_FILE ("observable-property.ggs", 687)) ;
+          inCompiler->emitSemanticError (extractedValue_29760_controllerName_0.readProperty_location (), GGS_string ("an array controller does not support 'one'"), fixItArray57  COMMA_SOURCE_FILE ("observable-property.ggs", 687)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_30086__0 ;
-          var_propertyKind_29867.getAssociatedValuesFor_selectionController (extractedValue_30086__0) ;
+          GGS_string extractedValue_30094__0 ;
+          var_propertyKind_29875.getAssociatedValuesFor_selectionController (extractedValue_30094__0) ;
           TC_Array <FixItDescription> fixItArray58 ;
-          inCompiler->emitSemanticError (extractedValue_29752_controllerName_0.readProperty_location (), GGS_string ("a selection controller does not support 'one'"), fixItArray58  COMMA_SOURCE_FILE ("observable-property.ggs", 689)) ;
+          inCompiler->emitSemanticError (extractedValue_29760_controllerName_0.readProperty_location (), GGS_string ("a selection controller does not support 'one'"), fixItArray58  COMMA_SOURCE_FILE ("observable-property.ggs", 689)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_30188__0 ;
-          GGS_propertyAccessibility extractedValue_30188__1 ;
-          var_propertyKind_29867.getAssociatedValuesFor_property (extractedValue_30188__0, extractedValue_30188__1) ;
+          GGS_typeKind extractedValue_30196__0 ;
+          GGS_propertyAccessibility extractedValue_30196__1 ;
+          var_propertyKind_29875.getAssociatedValuesFor_property (extractedValue_30196__0, extractedValue_30196__1) ;
           TC_Array <FixItDescription> fixItArray59 ;
-          inCompiler->emitSemanticError (extractedValue_29752_controllerName_0.readProperty_location (), GGS_string ("a property does not support 'one'"), fixItArray59  COMMA_SOURCE_FILE ("observable-property.ggs", 691)) ;
+          inCompiler->emitSemanticError (extractedValue_29760_controllerName_0.readProperty_location (), GGS_string ("a property does not support 'one'"), fixItArray59  COMMA_SOURCE_FILE ("observable-property.ggs", 691)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_30276__0 ;
-          GGS_propertyAccessibility extractedValue_30276__1 ;
-          GGS_bool extractedValue_30276__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_30276__3 ;
-          var_propertyKind_29867.getAssociatedValuesFor_toMany (extractedValue_30276__0, extractedValue_30276__1, extractedValue_30276__2, extractedValue_30276__3) ;
+          GGS_lstring extractedValue_30284__0 ;
+          GGS_propertyAccessibility extractedValue_30284__1 ;
+          GGS_bool extractedValue_30284__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_30284__3 ;
+          var_propertyKind_29875.getAssociatedValuesFor_toMany (extractedValue_30284__0, extractedValue_30284__1, extractedValue_30284__2, extractedValue_30284__3) ;
           TC_Array <FixItDescription> fixItArray60 ;
-          inCompiler->emitSemanticError (extractedValue_29752_controllerName_0.readProperty_location (), GGS_string ("a toMany relationship does not support 'one'"), fixItArray60  COMMA_SOURCE_FILE ("observable-property.ggs", 693)) ;
+          inCompiler->emitSemanticError (extractedValue_29760_controllerName_0.readProperty_location (), GGS_string ("a toMany relationship does not support 'one'"), fixItArray60  COMMA_SOURCE_FILE ("observable-property.ggs", 693)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_30374__0 ;
-          GGS_propertyAccessibility extractedValue_30374__1 ;
-          GGS_bool extractedValue_30374__2 ;
-          GGS_toOneOppositeRelationship extractedValue_30374__3 ;
-          GGS_bool extractedValue_30374__4 ;
-          var_propertyKind_29867.getAssociatedValuesFor_toOne (extractedValue_30374__0, extractedValue_30374__1, extractedValue_30374__2, extractedValue_30374__3, extractedValue_30374__4) ;
+          GGS_lstring extractedValue_30382__0 ;
+          GGS_propertyAccessibility extractedValue_30382__1 ;
+          GGS_bool extractedValue_30382__2 ;
+          GGS_toOneOppositeRelationship extractedValue_30382__3 ;
+          GGS_bool extractedValue_30382__4 ;
+          var_propertyKind_29875.getAssociatedValuesFor_toOne (extractedValue_30382__0, extractedValue_30382__1, extractedValue_30382__2, extractedValue_30382__3, extractedValue_30382__4) ;
           TC_Array <FixItDescription> fixItArray61 ;
-          inCompiler->emitSemanticError (extractedValue_29752_controllerName_0.readProperty_location (), GGS_string ("a toOne relationship does not support 'one'"), fixItArray61  COMMA_SOURCE_FILE ("observable-property.ggs", 695)) ;
+          inCompiler->emitSemanticError (extractedValue_29760_controllerName_0.readProperty_location (), GGS_string ("a toOne relationship does not support 'one'"), fixItArray61  COMMA_SOURCE_FILE ("observable-property.ggs", 695)) ;
         }
         break ;
       }
-      GGS_propertyMap var_observablePropertyMap_30586 ;
-      GGS_classKind joker_30571 ; // Joker input parameter
-      GGS_actionMap joker_30615_2 ; // Joker input parameter
-      GGS_propertyGenerationList joker_30615_1 ; // Joker input parameter
-      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (var_controllerTypeName_29902, extractedValue_29752_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_30571, var_observablePropertyMap_30586, joker_30615_2, joker_30615_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 697)) ;
-      GGS_actionMap joker_30685_2 ; // Joker input parameter
-      GGS_bool joker_30685_1 ; // Joker input parameter
-      var_observablePropertyMap_30586.method_searchKey (extractedValue_29777_propertyName_1, outArgument_outKind, joker_30685_2, joker_30685_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 703)) ;
-      outArgument_outSwiftTypeStringForTransientFunctionArgument = var_controllerTypeName_29902.add_operation (GGS_string ("\?<<8>>"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 704)) ;
+      GGS_propertyMap var_observablePropertyMap_30594 ;
+      GGS_classKind joker_30579 ; // Joker input parameter
+      GGS_actionMap joker_30623_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_30623_1 ; // Joker input parameter
+      constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (var_controllerTypeName_29910, extractedValue_29760_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_30579, var_observablePropertyMap_30594, joker_30623_2, joker_30623_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 697)) ;
+      GGS_actionMap joker_30693_2 ; // Joker input parameter
+      GGS_bool joker_30693_1 ; // Joker input parameter
+      var_observablePropertyMap_30594.method_searchKey (extractedValue_29785_propertyName_1, outArgument_outKind, joker_30693_2, joker_30693_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 703)) ;
+      outArgument_outSwiftTypeStringForTransientFunctionArgument = var_controllerTypeName_29910.add_operation (GGS_string ("\?<<8>>"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 704)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerAllProperties:
     {
-      GGS_lstring extractedValue_30818_controllerName_0 ;
-      GGS_lstring extractedValue_30843_propertyName_1 ;
-      GGS_lstring extractedValue_30866_secondaryPropertyName_2 ;
-      temp_0.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_30818_controllerName_0, extractedValue_30843_propertyName_1, extractedValue_30866_secondaryPropertyName_2) ;
-      GGS_propertyKind var_propertyKind_30965 ;
-      GGS_actionMap joker_30979_2 ; // Joker input parameter
-      GGS_bool joker_30979_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_30818_controllerName_0, var_propertyKind_30965, joker_30979_2, joker_30979_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 706)) ;
+      GGS_lstring extractedValue_30826_controllerName_0 ;
+      GGS_lstring extractedValue_30851_propertyName_1 ;
+      GGS_lstring extractedValue_30874_secondaryPropertyName_2 ;
+      temp_0.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_30826_controllerName_0, extractedValue_30851_propertyName_1, extractedValue_30874_secondaryPropertyName_2) ;
+      GGS_propertyKind var_propertyKind_30973 ;
+      GGS_actionMap joker_30987_2 ; // Joker input parameter
+      GGS_bool joker_30987_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_30826_controllerName_0, var_propertyKind_30973, joker_30987_2, joker_30987_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 706)) ;
       enumGalgasBool test_62 = kBoolTrue ;
       if (kBoolTrue == test_62) {
-        test_62 = GGS_bool (ComparisonKind::notEqual, extractedValue_30843_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))).boolEnum () ;
+        test_62 = GGS_bool (ComparisonKind::notEqual, extractedValue_30851_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))).boolEnum () ;
         if (kBoolTrue == test_62) {
           TC_Array <FixItDescription> fixItArray63 ;
           appendFixItActions (fixItArray63, kFixItReplace, GGS_string ("selectedArray")) ;
-          inCompiler->emitSemanticError (extractedValue_30843_propertyName_1.readProperty_location (), GGS_string ("unknown property"), fixItArray63  COMMA_SOURCE_FILE ("observable-property.ggs", 708)) ;
+          inCompiler->emitSemanticError (extractedValue_30851_propertyName_1.readProperty_location (), GGS_string ("unknown property"), fixItArray63  COMMA_SOURCE_FILE ("observable-property.ggs", 708)) ;
           outArgument_outKind.drop () ; // Release error dropped variable
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
       }
       if (kBoolFalse == test_62) {
         outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 712)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 712))  COMMA_SOURCE_FILE ("observable-property.ggs", 712)) ;
-        switch (var_propertyKind_30965.enumValue ()) {
+        switch (var_propertyKind_30973.enumValue ()) {
         case GGS_propertyKind::Enumeration::invalid:
           break ;
         case GGS_propertyKind::Enumeration::enum_property:
           {
-            GGS_typeKind extractedValue_31352__0 ;
-            GGS_propertyAccessibility extractedValue_31352__1 ;
-            var_propertyKind_30965.getAssociatedValuesFor_property (extractedValue_31352__0, extractedValue_31352__1) ;
+            GGS_typeKind extractedValue_31360__0 ;
+            GGS_propertyAccessibility extractedValue_31360__1 ;
+            var_propertyKind_30973.getAssociatedValuesFor_property (extractedValue_31360__0, extractedValue_31360__1) ;
             TC_Array <FixItDescription> fixItArray64 ;
-            inCompiler->emitSemanticError (extractedValue_30843_propertyName_1.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray64  COMMA_SOURCE_FILE ("observable-property.ggs", 715)) ;
+            inCompiler->emitSemanticError (extractedValue_30851_propertyName_1.readProperty_location (), GGS_string ("a property does not accept any option"), fixItArray64  COMMA_SOURCE_FILE ("observable-property.ggs", 715)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
             outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
           }
           break ;
         case GGS_propertyKind::Enumeration::enum_toMany:
           {
-            GGS_lstring extractedValue_31530__0 ;
-            GGS_propertyAccessibility extractedValue_31530__1 ;
-            GGS_bool extractedValue_31530__2 ;
-            GGS_toManyRelationshipOptionAST extractedValue_31530__3 ;
-            var_propertyKind_30965.getAssociatedValuesFor_toMany (extractedValue_31530__0, extractedValue_31530__1, extractedValue_31530__2, extractedValue_31530__3) ;
+            GGS_lstring extractedValue_31538__0 ;
+            GGS_propertyAccessibility extractedValue_31538__1 ;
+            GGS_bool extractedValue_31538__2 ;
+            GGS_toManyRelationshipOptionAST extractedValue_31538__3 ;
+            var_propertyKind_30973.getAssociatedValuesFor_toMany (extractedValue_31538__0, extractedValue_31538__1, extractedValue_31538__2, extractedValue_31538__3) ;
             TC_Array <FixItDescription> fixItArray65 ;
-            inCompiler->emitSemanticError (extractedValue_30843_propertyName_1.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray65  COMMA_SOURCE_FILE ("observable-property.ggs", 719)) ;
+            inCompiler->emitSemanticError (extractedValue_30851_propertyName_1.readProperty_location (), GGS_string ("a toMany property does not accept any option"), fixItArray65  COMMA_SOURCE_FILE ("observable-property.ggs", 719)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
             outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
           }
           break ;
         case GGS_propertyKind::Enumeration::enum_toOne:
           {
-            GGS_lstring extractedValue_31713__0 ;
-            GGS_propertyAccessibility extractedValue_31713__1 ;
-            GGS_bool extractedValue_31713__2 ;
-            GGS_toOneOppositeRelationship extractedValue_31713__3 ;
-            GGS_bool extractedValue_31713__4 ;
-            var_propertyKind_30965.getAssociatedValuesFor_toOne (extractedValue_31713__0, extractedValue_31713__1, extractedValue_31713__2, extractedValue_31713__3, extractedValue_31713__4) ;
+            GGS_lstring extractedValue_31721__0 ;
+            GGS_propertyAccessibility extractedValue_31721__1 ;
+            GGS_bool extractedValue_31721__2 ;
+            GGS_toOneOppositeRelationship extractedValue_31721__3 ;
+            GGS_bool extractedValue_31721__4 ;
+            var_propertyKind_30973.getAssociatedValuesFor_toOne (extractedValue_31721__0, extractedValue_31721__1, extractedValue_31721__2, extractedValue_31721__3, extractedValue_31721__4) ;
             TC_Array <FixItDescription> fixItArray66 ;
-            inCompiler->emitSemanticError (extractedValue_30843_propertyName_1.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray66  COMMA_SOURCE_FILE ("observable-property.ggs", 723)) ;
+            inCompiler->emitSemanticError (extractedValue_30851_propertyName_1.readProperty_location (), GGS_string ("a toOne property does not accept any option"), fixItArray66  COMMA_SOURCE_FILE ("observable-property.ggs", 723)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
             outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
           }
           break ;
         case GGS_propertyKind::Enumeration::enum_arrayController:
           {
-            GGS_lstring extractedValue_31905_typeName_0 ;
-            GGS_bool extractedValue_31915__1 ;
-            var_propertyKind_30965.getAssociatedValuesFor_arrayController (extractedValue_31905_typeName_0, extractedValue_31915__1) ;
-            GGS_propertyMap var_observablePropertyMap_32051 ;
-            GGS_classKind joker_32032 ; // Joker input parameter
-            GGS_actionMap joker_32084_2 ; // Joker input parameter
-            GGS_propertyGenerationList joker_32084_1 ; // Joker input parameter
-            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_31905_typeName_0.readProperty_string (), extractedValue_30818_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_32032, var_observablePropertyMap_32051, joker_32084_2, joker_32084_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 727)) ;
-            GGS_actionMap joker_32171_2 ; // Joker input parameter
-            GGS_bool joker_32171_1 ; // Joker input parameter
-            var_observablePropertyMap_32051.method_searchKey (extractedValue_30866_secondaryPropertyName_2, outArgument_outKind, joker_32171_2, joker_32171_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 733)) ;
-            outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[").add_operation (extractedValue_31905_typeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (extractedValue_30866_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)) ;
+            GGS_lstring extractedValue_31913_typeName_0 ;
+            GGS_bool extractedValue_31923__1 ;
+            var_propertyKind_30973.getAssociatedValuesFor_arrayController (extractedValue_31913_typeName_0, extractedValue_31923__1) ;
+            GGS_propertyMap var_observablePropertyMap_32059 ;
+            GGS_classKind joker_32040 ; // Joker input parameter
+            GGS_actionMap joker_32092_2 ; // Joker input parameter
+            GGS_propertyGenerationList joker_32092_1 ; // Joker input parameter
+            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_31913_typeName_0.readProperty_string (), extractedValue_30826_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_32040, var_observablePropertyMap_32059, joker_32092_2, joker_32092_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 727)) ;
+            GGS_actionMap joker_32179_2 ; // Joker input parameter
+            GGS_bool joker_32179_1 ; // Joker input parameter
+            var_observablePropertyMap_32059.method_searchKey (extractedValue_30874_secondaryPropertyName_2, outArgument_outKind, joker_32179_2, joker_32179_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 733)) ;
+            outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[any ").add_operation (extractedValue_31913_typeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (extractedValue_30874_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 734)) ;
           }
           break ;
         case GGS_propertyKind::Enumeration::enum_selectionController:
           {
-            GGS_string extractedValue_32316_entityName_0 ;
-            var_propertyKind_30965.getAssociatedValuesFor_selectionController (extractedValue_32316_entityName_0) ;
-            GGS_propertyMap var_observablePropertyMap_32462 ;
-            GGS_classKind joker_32443 ; // Joker input parameter
-            GGS_actionMap joker_32495_2 ; // Joker input parameter
-            GGS_propertyGenerationList joker_32495_1 ; // Joker input parameter
-            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_32316_entityName_0, extractedValue_30818_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_32443, var_observablePropertyMap_32462, joker_32495_2, joker_32495_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 736)) ;
-            GGS_actionMap joker_32583_2 ; // Joker input parameter
-            GGS_bool joker_32583_1 ; // Joker input parameter
-            var_observablePropertyMap_32462.method_searchKey (extractedValue_30866_secondaryPropertyName_2, outArgument_outKind, joker_32583_2, joker_32583_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 742)) ;
-            outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[").add_operation (extractedValue_32316_entityName_0, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (extractedValue_30866_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)) ;
+            GGS_string extractedValue_32328_entityName_0 ;
+            var_propertyKind_30973.getAssociatedValuesFor_selectionController (extractedValue_32328_entityName_0) ;
+            GGS_propertyMap var_observablePropertyMap_32474 ;
+            GGS_classKind joker_32455 ; // Joker input parameter
+            GGS_actionMap joker_32507_2 ; // Joker input parameter
+            GGS_propertyGenerationList joker_32507_1 ; // Joker input parameter
+            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (extractedValue_32328_entityName_0, extractedValue_30826_controllerName_0.readProperty_location (), inCompiler COMMA_HERE), joker_32455, var_observablePropertyMap_32474, joker_32507_2, joker_32507_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 736)) ;
+            GGS_actionMap joker_32595_2 ; // Joker input parameter
+            GGS_bool joker_32595_1 ; // Joker input parameter
+            var_observablePropertyMap_32474.method_searchKey (extractedValue_30874_secondaryPropertyName_2, outArgument_outKind, joker_32595_2, joker_32595_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 742)) ;
+            outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[any ").add_operation (extractedValue_32328_entityName_0, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (extractedValue_30874_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 743)) ;
           }
           break ;
         }
@@ -5032,60 +5032,60 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superProperty:
     {
-      GGS_lstring extractedValue_32738__0 ;
-      GGS_lstring extractedValue_32750_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_superProperty (extractedValue_32738__0, extractedValue_32750_propertyName_1) ;
-      GGS_actionMap joker_32847_2 ; // Joker input parameter
-      GGS_bool joker_32847_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_32750_propertyName_1, outArgument_outKind, joker_32847_2, joker_32847_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 747)) ;
+      GGS_lstring extractedValue_32754__0 ;
+      GGS_lstring extractedValue_32766_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_superProperty (extractedValue_32754__0, extractedValue_32766_propertyName_1) ;
+      GGS_actionMap joker_32863_2 ; // Joker input parameter
+      GGS_bool joker_32863_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_32766_propertyName_1, outArgument_outKind, joker_32863_2, joker_32863_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 747)) ;
       switch (outArgument_outKind.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_32896__0 ;
-          GGS_propertyAccessibility extractedValue_32896__1 ;
-          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_32896__0, extractedValue_32896__1) ;
+          GGS_typeKind extractedValue_32912__0 ;
+          GGS_propertyAccessibility extractedValue_32912__1 ;
+          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_32912__0, extractedValue_32912__1) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 754)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_32996__0 ;
-          GGS_propertyAccessibility extractedValue_32996__1 ;
-          GGS_bool extractedValue_32996__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_32996__3 ;
-          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_32996__0, extractedValue_32996__1, extractedValue_32996__2, extractedValue_32996__3) ;
+          GGS_lstring extractedValue_33012__0 ;
+          GGS_propertyAccessibility extractedValue_33012__1 ;
+          GGS_bool extractedValue_33012__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_33012__3 ;
+          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_33012__0, extractedValue_33012__1, extractedValue_33012__2, extractedValue_33012__3) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[AnyObject]") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_33087__0 ;
-          GGS_propertyAccessibility extractedValue_33087__1 ;
-          GGS_bool extractedValue_33087__2 ;
-          GGS_toOneOppositeRelationship extractedValue_33087__3 ;
-          GGS_bool extractedValue_33087__4 ;
-          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_33087__0, extractedValue_33087__1, extractedValue_33087__2, extractedValue_33087__3, extractedValue_33087__4) ;
+          GGS_lstring extractedValue_33103__0 ;
+          GGS_propertyAccessibility extractedValue_33103__1 ;
+          GGS_bool extractedValue_33103__2 ;
+          GGS_toOneOppositeRelationship extractedValue_33103__3 ;
+          GGS_bool extractedValue_33103__4 ;
+          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_33103__0, extractedValue_33103__1, extractedValue_33103__2, extractedValue_33103__3, extractedValue_33103__4) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("AnyObject\?") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_33187__0 ;
-          GGS_bool extractedValue_33187__1 ;
-          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_33187__0, extractedValue_33187__1) ;
+          GGS_lstring extractedValue_33203__0 ;
+          GGS_bool extractedValue_33203__1 ;
+          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_33203__0, extractedValue_33203__1) ;
           TC_Array <FixItDescription> fixItArray67 ;
-          inCompiler->emitSemanticError (extractedValue_32750_propertyName_1.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray67  COMMA_SOURCE_FILE ("observable-property.ggs", 760)) ;
+          inCompiler->emitSemanticError (extractedValue_32766_propertyName_1.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray67  COMMA_SOURCE_FILE ("observable-property.ggs", 760)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_33345__0 ;
-          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_33345__0) ;
+          GGS_string extractedValue_33361__0 ;
+          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_33361__0) ;
           TC_Array <FixItDescription> fixItArray68 ;
-          inCompiler->emitSemanticError (extractedValue_32750_propertyName_1.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray68  COMMA_SOURCE_FILE ("observable-property.ggs", 762)) ;
+          inCompiler->emitSemanticError (extractedValue_32766_propertyName_1.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray68  COMMA_SOURCE_FILE ("observable-property.ggs", 762)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;
@@ -5094,69 +5094,69 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superPropertyWithDefaultValue:
     {
-      GGS_lstring extractedValue_33522__0 ;
-      GGS_lstring extractedValue_33534_propertyName_1 ;
-      GGS_abstractDefaultValue extractedValue_33548_defaultValue_2 ;
-      temp_0.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_33522__0, extractedValue_33534_propertyName_1, extractedValue_33548_defaultValue_2) ;
-      GGS_actionMap joker_33645_2 ; // Joker input parameter
-      GGS_bool joker_33645_1 ; // Joker input parameter
-      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_33534_propertyName_1, outArgument_outKind, joker_33645_2, joker_33645_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 765)) ;
+      GGS_lstring extractedValue_33538__0 ;
+      GGS_lstring extractedValue_33550_propertyName_1 ;
+      GGS_abstractDefaultValue extractedValue_33564_defaultValue_2 ;
+      temp_0.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_33538__0, extractedValue_33550_propertyName_1, extractedValue_33564_defaultValue_2) ;
+      GGS_actionMap joker_33661_2 ; // Joker input parameter
+      GGS_bool joker_33661_1 ; // Joker input parameter
+      constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_33550_propertyName_1, outArgument_outKind, joker_33661_2, joker_33661_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 765)) ;
       switch (outArgument_outKind.enumValue ()) {
       case GGS_propertyKind::Enumeration::invalid:
         break ;
       case GGS_propertyKind::Enumeration::enum_property:
         {
-          GGS_typeKind extractedValue_33693_propertyType_0 ;
-          GGS_propertyAccessibility extractedValue_33707__1 ;
-          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_33693_propertyType_0, extractedValue_33707__1) ;
+          GGS_typeKind extractedValue_33709_propertyType_0 ;
+          GGS_propertyAccessibility extractedValue_33723__1 ;
+          outArgument_outKind.getAssociatedValuesFor_property (extractedValue_33709_propertyType_0, extractedValue_33723__1) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = extensionGetter_swiftTypeName (outArgument_outKind, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 772)) ;
-          GGS_propertyMap var_preferencesPropertyMap_33881 ;
-          GGS_classKind joker_33872 ; // Joker input parameter
-          GGS_actionMap joker_33905_2 ; // Joker input parameter
-          GGS_propertyGenerationList joker_33905_1 ; // Joker input parameter
-          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 773)), inCompiler COMMA_HERE), joker_33872, var_preferencesPropertyMap_33881, joker_33905_2, joker_33905_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)) ;
+          GGS_propertyMap var_preferencesPropertyMap_33897 ;
+          GGS_classKind joker_33888 ; // Joker input parameter
+          GGS_actionMap joker_33921_2 ; // Joker input parameter
+          GGS_propertyGenerationList joker_33921_1 ; // Joker input parameter
+          constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 773)), inCompiler COMMA_HERE), joker_33888, var_preferencesPropertyMap_33897, joker_33921_2, joker_33921_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)) ;
           GGS_typeKindList temp_69 = GGS_typeKindList::init (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
-          temp_69.enterElement (GGS_typeKindList_2E_element::init_21_ (extractedValue_33693_propertyType_0, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
-          callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) extractedValue_33548_defaultValue_2.ptr (), temp_69, var_preferencesPropertyMap_33881, outArgument_outDefaultValue, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 774)) ;
+          temp_69.enterElement (GGS_typeKindList_2E_element::init_21_ (extractedValue_33709_propertyType_0, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
+          callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) extractedValue_33564_defaultValue_2.ptr (), temp_69, var_preferencesPropertyMap_33897, outArgument_outDefaultValue, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 774)) ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toMany:
         {
-          GGS_lstring extractedValue_34070__0 ;
-          GGS_propertyAccessibility extractedValue_34070__1 ;
-          GGS_bool extractedValue_34070__2 ;
-          GGS_toManyRelationshipOptionAST extractedValue_34070__3 ;
-          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_34070__0, extractedValue_34070__1, extractedValue_34070__2, extractedValue_34070__3) ;
+          GGS_lstring extractedValue_34086__0 ;
+          GGS_propertyAccessibility extractedValue_34086__1 ;
+          GGS_bool extractedValue_34086__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_34086__3 ;
+          outArgument_outKind.getAssociatedValuesFor_toMany (extractedValue_34086__0, extractedValue_34086__1, extractedValue_34086__2, extractedValue_34086__3) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("[AnyObject]") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_toOne:
         {
-          GGS_lstring extractedValue_34161__0 ;
-          GGS_propertyAccessibility extractedValue_34161__1 ;
-          GGS_bool extractedValue_34161__2 ;
-          GGS_toOneOppositeRelationship extractedValue_34161__3 ;
-          GGS_bool extractedValue_34161__4 ;
-          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_34161__0, extractedValue_34161__1, extractedValue_34161__2, extractedValue_34161__3, extractedValue_34161__4) ;
+          GGS_lstring extractedValue_34177__0 ;
+          GGS_propertyAccessibility extractedValue_34177__1 ;
+          GGS_bool extractedValue_34177__2 ;
+          GGS_toOneOppositeRelationship extractedValue_34177__3 ;
+          GGS_bool extractedValue_34177__4 ;
+          outArgument_outKind.getAssociatedValuesFor_toOne (extractedValue_34177__0, extractedValue_34177__1, extractedValue_34177__2, extractedValue_34177__3, extractedValue_34177__4) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument = GGS_string ("AnyObject\?") ;
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_arrayController:
         {
-          GGS_lstring extractedValue_34261__0 ;
-          GGS_bool extractedValue_34261__1 ;
-          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_34261__0, extractedValue_34261__1) ;
+          GGS_lstring extractedValue_34277__0 ;
+          GGS_bool extractedValue_34277__1 ;
+          outArgument_outKind.getAssociatedValuesFor_arrayController (extractedValue_34277__0, extractedValue_34277__1) ;
           TC_Array <FixItDescription> fixItArray70 ;
-          inCompiler->emitSemanticError (extractedValue_33534_propertyName_1.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray70  COMMA_SOURCE_FILE ("observable-property.ggs", 784)) ;
+          inCompiler->emitSemanticError (extractedValue_33550_propertyName_1.readProperty_location (), GGS_string ("an array controller cannot be observed"), fixItArray70  COMMA_SOURCE_FILE ("observable-property.ggs", 784)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_propertyKind::Enumeration::enum_selectionController:
         {
-          GGS_string extractedValue_34419__0 ;
-          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_34419__0) ;
+          GGS_string extractedValue_34435__0 ;
+          outArgument_outKind.getAssociatedValuesFor_selectionController (extractedValue_34435__0) ;
           TC_Array <FixItDescription> fixItArray71 ;
-          inCompiler->emitSemanticError (extractedValue_33534_propertyName_1.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray71  COMMA_SOURCE_FILE ("observable-property.ggs", 786)) ;
+          inCompiler->emitSemanticError (extractedValue_33550_propertyName_1.readProperty_location (), GGS_string ("a selection controller cannot be observed"), fixItArray71  COMMA_SOURCE_FILE ("observable-property.ggs", 786)) ;
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
         break ;

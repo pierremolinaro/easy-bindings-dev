@@ -587,11 +587,11 @@ func @observablePropertyAST.generateRemoveObserverCall() -> @string outResult {
 //------------------------------------------------------------------------------------------------
 
 class @transientRoutineGeneration : @abstractFileGeneration {
-  public var @string mOwnerName
-  public var @string mTransientName
-  public var @typeKind mTransientType
-  public var @string mGeneratedFunctionNamePrefix
-  public var @transientDependencyListForGeneration mDependencyList
+  private var @string mOwnerName
+  private var @string mTransientName
+  private var @typeKind mTransientType
+  private var @string mGeneratedFunctionNamePrefix
+  private var @transientDependencyListForGeneration mDependencyList
 }
 
 //------------------------------------------------------------------------------------------------

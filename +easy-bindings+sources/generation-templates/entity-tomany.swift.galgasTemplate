@@ -73,7 +73,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {
     let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
@@ -90,7 +90,7 @@ for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {
     self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
@@ -105,7 +105,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {
     let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
@@ -122,7 +122,7 @@ for (mProperty) in TO_MANY_PROXY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {
     self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
@@ -137,7 +137,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {
     let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
@@ -154,7 +154,7 @@ for (mProperty) in PROXY_LIST_FOR_GENERATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {
     self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
@@ -169,7 +169,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {
     let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
@@ -186,7 +186,7 @@ for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {
     self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
@@ -201,7 +201,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {
     let relay : EBObservedObserver
     if let r = self.mObserversOf_%!mProperty.mPropertyName% {
       relay = r
@@ -218,7 +218,7 @@ for (mProperty) in COMPUTED_PROPERTY_LIST_FOR_IMPLEMENTATION do
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : EBObserverProtocol) {
+  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {
     self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)
   }
 
@@ -724,29 +724,35 @@ else
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override final var selection : EBSelection < [%!ENTITY_NAME%] > { return .single (self.mInternalArrayValue.values) }
+  override final var selection : EBSelection < [%!ENTITY_NAME%] > {
+    return .single (self.mInternalArrayValue.values)
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func setProp (_ inValue : EBReferenceArray <%!ENTITY_NAME%>) { self.mInternalArrayValue = inValue }
+  override func setProp (_ inValue : EBReferenceArray <%!ENTITY_NAME%>) {
+    self.mInternalArrayValue = inValue
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final override var propval : EBReferenceArray <%!ENTITY_NAME%> { return self.mInternalArrayValue }
+  final override var propval : EBReferenceArray <%!ENTITY_NAME%> {
+    return self.mInternalArrayValue
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func remove (_ object : %!ENTITY_NAME%) {
-    if let idx = self.mInternalArrayValue.firstIndex (of: object) {
+  final func remove (_ inObject : %!ENTITY_NAME%) {
+    if let idx = self.mInternalArrayValue.firstIndex (of: inObject) {
       self.mInternalArrayValue.remove (at: idx)
     }
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func add (_ object : %!ENTITY_NAME%) {
-    if !self.internalSetValue.contains (object) {
-      self.mInternalArrayValue.append (object)
+  final func add (_ inObject : %!ENTITY_NAME%) {
+    if !self.internalSetValue.contains (inObject) {
+      self.mInternalArrayValue.append (inObject)
     }
   }
 
@@ -754,7 +760,7 @@ else
   //   signature
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private weak final var mSignatureObserver : EBSignatureObserverProtocol? = nil // SOULD BE WEAK
+  private weak final var mSignatureObserver : (any EBSignatureObserverProtocol)? = nil // SOULD BE WEAK
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -762,10 +768,10 @@ else
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func setSignatureObserver (observer : EBSignatureObserverProtocol?) {
+  final func setSignatureObserver (observer inObserver : (any EBSignatureObserverProtocol)?) {
     self.mSignatureObserver?.clearSignatureCache ()
-    self.mSignatureObserver = observer
-    observer?.clearSignatureCache ()
+    self.mSignatureObserver = inObserver
+    inObserver?.clearSignatureCache ()
     self.clearSignatureCache ()
  }
 
