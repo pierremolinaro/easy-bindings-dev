@@ -1057,28 +1057,28 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
       enumerator_3737.gotoNextObject () ;
     }
   }
-  result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Undo Manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mUndoManager = EBUndoManager ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var undoManager : UndoManager { return self.mUndoManager }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // The preferences window should register this object as delegate (do it in Interface Builder)\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager\? {\n    return self.undoManager\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Init\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override init () {\n    super.init ()\n //   DispatchQueue.main.async {\n      // g_") ;
+  result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Undo Manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mUndoManager = UndoManager ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var undoManager : UndoManager { return self.mUndoManager }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // The preferences window should register this object as delegate\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @objc func windowWillReturnUndoManager (_ window: NSWindow) -> UndoManager\? {\n    return self.undoManager\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Init\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override init () {\n    super.init ()\n //   DispatchQueue.main.async {\n      // g_") ;
   result.appendString (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 114)).stringValue ()) ;
   result.appendString (" = self\n    //--- Read from preferences\n") ;
-  GGS_uint index_5112_ (0) ;
+  GGS_uint index_5081_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_5112 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
-    while (enumerator_5112.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5112.current_mProperty (HERE).ptr (), GGS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 118)).stringValue ()) ;
-      index_5112_.increment () ;
-      enumerator_5112.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_5081 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
+    while (enumerator_5081.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_configurationCode ((const cPtr_propertyGeneration *) enumerator_5081.current_mProperty (HERE).ptr (), GGS_bool (true), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 118)).stringValue ()) ;
+      index_5081_.increment () ;
+      enumerator_5081.gotoNextObject () ;
     }
   }
   result.appendString ("    //--- Extern functions\n") ;
-  GGS_uint index_5263_ (0) ;
+  GGS_uint index_5232_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_5263 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_5263.hasCurrentObject ()) {
-      const enumGalgasBool test_1 = GGS_bool (ComparisonKind::equal, enumerator_5263.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("init"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_5232 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_5232.hasCurrentObject ()) {
+      const enumGalgasBool test_1 = GGS_bool (ComparisonKind::equal, enumerator_5232.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("init"))).boolEnum () ;
       switch (test_1) {
       case kBoolTrue : {
         result.appendString ("      self.") ;
-        result.appendString (enumerator_5263.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_5232.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case kBoolFalse : {
@@ -1086,8 +1086,8 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
       default :
         break ;
       }
-      index_5263_.increment () ;
-      enumerator_5263.gotoNextObject () ;
+      index_5232_.increment () ;
+      enumerator_5232.gotoNextObject () ;
     }
   }
   result.appendString ("//    }\n  }\n\n") ;
@@ -1103,126 +1103,126 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    awakeFromNib\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func awakeFromNib () {\n    DispatchQueue.main.async {\n") ;
   result.appendString (extensionGetter_generateCode (in_MAIN_5F_XIB_5F_DESCRIPTOR_5F_LIST, inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 147)).stringValue ()) ;
-  GGS_uint index_6028_ (0) ;
+  GGS_uint index_5997_ (0) ;
   if (in_OUTLET_5F_MAP.isValid ()) {
-    cEnumerator_decoratedOutletMap enumerator_6028 (in_OUTLET_5F_MAP, EnumerationOrder::up) ;
-    while (enumerator_6028.hasCurrentObject ()) {
+    cEnumerator_decoratedOutletMap enumerator_5997 (in_OUTLET_5F_MAP, EnumerationOrder::up) ;
+    while (enumerator_5997.hasCurrentObject ()) {
       result.appendString ("      checkOutletConnection (self.") ;
-      result.appendString (enumerator_6028.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_5997.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString (", \"") ;
-      result.appendString (enumerator_6028.current_lkey (HERE).readProperty_string ().stringValue ()) ;
+      result.appendString (enumerator_5997.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString ("\", ") ;
-      result.appendString (enumerator_6028.current_mOutletTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_5997.current_mOutletTypeName (HERE).stringValue ()) ;
       result.appendString (".self, #file, #line)\n") ;
-      index_6028_.increment () ;
-      enumerator_6028.gotoNextObject () ;
+      index_5997_.increment () ;
+      enumerator_5997.gotoNextObject () ;
     }
   }
   result.appendString ("    //--------------------------- Install bindings\n") ;
-  GGS_uint index_6306_ (0) ;
+  GGS_uint index_6275_ (0) ;
   if (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_regularBindingsGenerationList enumerator_6306 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_6306.hasCurrentObject ()) {
+    cEnumerator_regularBindingsGenerationList enumerator_6275 (in_REGULAR_5F_BINDINGS_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_6275.hasCurrentObject ()) {
       result.appendString ("      self.") ;
-      result.appendString (enumerator_6306.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6275.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.bind_") ;
-      result.appendString (enumerator_6306.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6275.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" (") ;
-      GGS_uint index_6420_ (0) ;
-      if (enumerator_6306.current_mBoundObjectList (HERE).isValid ()) {
-        cEnumerator_boundObjectList enumerator_6420 (enumerator_6306.current_mBoundObjectList (HERE), EnumerationOrder::up) ;
-        while (enumerator_6420.hasCurrentObject ()) {
-          result.appendString (enumerator_6420.current_mBoundObjectString (HERE).stringValue ()) ;
-          if (enumerator_6420.hasNextObject ()) {
+      GGS_uint index_6389_ (0) ;
+      if (enumerator_6275.current_mBoundObjectList (HERE).isValid ()) {
+        cEnumerator_boundObjectList enumerator_6389 (enumerator_6275.current_mBoundObjectList (HERE), EnumerationOrder::up) ;
+        while (enumerator_6389.hasCurrentObject ()) {
+          result.appendString (enumerator_6389.current_mBoundObjectString (HERE).stringValue ()) ;
+          if (enumerator_6389.hasNextObject ()) {
             result.appendString (", ") ;
           }
-          index_6420_.increment () ;
-          enumerator_6420.gotoNextObject () ;
+          index_6389_.increment () ;
+          enumerator_6389.gotoNextObject () ;
         }
       }
-      result.appendString (enumerator_6306.current_mBindingOptionsString (HERE).stringValue ()) ;
+      result.appendString (enumerator_6275.current_mBindingOptionsString (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_6306_.increment () ;
-      enumerator_6306.gotoNextObject () ;
+      index_6275_.increment () ;
+      enumerator_6275.gotoNextObject () ;
     }
   }
   result.appendString ("    //--------------------------- Install multiple bindings\n") ;
-  GGS_uint index_6653_ (0) ;
+  GGS_uint index_6622_ (0) ;
   if (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_multipleBindingGenerationList enumerator_6653 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_6653.hasCurrentObject ()) {
+    cEnumerator_multipleBindingGenerationList enumerator_6622 (in_MULTIPLE_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_6622.hasCurrentObject ()) {
       result.appendString ("      do{\n        let controller = MultipleBindingController_") ;
-      result.appendString (enumerator_6653.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6622.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" (\n          computeFunction: ") ;
-      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6653.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 166)).stringValue ()) ;
+      result.appendString (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) enumerator_6622.current_mBoundObjectExpression (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 166)).stringValue ()) ;
       result.appendString (",\n          outlet: self.") ;
-      result.appendString (enumerator_6653.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6622.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\n        )\n        self.mController_") ;
-      result.appendString (enumerator_6653.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6622.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("_") ;
-      result.appendString (enumerator_6653.current_mBindingName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6622.current_mBindingName (HERE).stringValue ()) ;
       result.appendString (" = controller\n      }\n") ;
-      index_6653_.increment () ;
-      enumerator_6653.gotoNextObject () ;
+      index_6622_.increment () ;
+      enumerator_6622.gotoNextObject () ;
     }
   }
   result.appendString ("    //--------------------------- Array controller\n") ;
-  GGS_uint index_7140_ (0) ;
+  GGS_uint index_7109_ (0) ;
   if (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_tableViewBindingGenerationList enumerator_7140 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_7140.hasCurrentObject ()) {
+    cEnumerator_tableViewBindingGenerationList enumerator_7109 (in_TABLE_5F_VALUE_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_7109.hasCurrentObject ()) {
       result.appendString ("      preferences_") ;
-      result.appendString (enumerator_7140.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7109.current_mTableValueBindingControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_tableView (self.") ;
-      result.appendString (enumerator_7140.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7109.current_mTableValueBindingOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_7140_.increment () ;
-      enumerator_7140.gotoNextObject () ;
+      index_7109_.increment () ;
+      enumerator_7109.gotoNextObject () ;
     }
   }
-  GGS_uint index_7370_ (0) ;
+  GGS_uint index_7339_ (0) ;
   if (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST.isValid ()) {
-    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_7370 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_7370.hasCurrentObject ()) {
+    cEnumerator_ebViewGraphicControllerBindingGenerationList enumerator_7339 (in_EB_5F_VIEW_5F_GRAPHIC_5F_CONTROLLER_5F_BINDING_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_7339.hasCurrentObject ()) {
       result.appendString ("      preferences_") ;
-      result.appendString (enumerator_7370.current_mArrayControllerControllerName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7339.current_mArrayControllerControllerName (HERE).stringValue ()) ;
       result.appendString (".bind_ebView (self.") ;
-      result.appendString (enumerator_7370.current_mEBViewOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7339.current_mEBViewOutletName (HERE).stringValue ()) ;
       result.appendString (")\n") ;
-      index_7370_.increment () ;
-      enumerator_7370.gotoNextObject () ;
+      index_7339_.increment () ;
+      enumerator_7339.gotoNextObject () ;
     }
   }
   result.appendString ("    //--------------------------- Set targets / actions\n") ;
-  GGS_uint index_7613_ (0) ;
+  GGS_uint index_7582_ (0) ;
   if (in_TARGET_5F_ACTION_5F_LIST.isValid ()) {
-    cEnumerator_actionBindingListForGeneration enumerator_7613 (in_TARGET_5F_ACTION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_7613.hasCurrentObject ()) {
+    cEnumerator_actionBindingListForGeneration enumerator_7582 (in_TARGET_5F_ACTION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_7582.hasCurrentObject ()) {
       result.appendString ("      self.") ;
-      result.appendString (enumerator_7613.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7582.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.target = ") ;
-      result.appendString (enumerator_7613.current_mTargetName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7582.current_mTargetName (HERE).stringValue ()) ;
       result.appendString ("\n      self.") ;
-      result.appendString (enumerator_7613.current_mOutletName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7582.current_mOutletName (HERE).stringValue ()) ;
       result.appendString ("\?.action = #selector (") ;
-      result.appendString (enumerator_7613.current_mTargetTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7582.current_mTargetTypeName (HERE).stringValue ()) ;
       result.appendString (".") ;
-      result.appendString (enumerator_7613.current_mActionName (HERE).stringValue ()) ;
+      result.appendString (enumerator_7582.current_mActionName (HERE).stringValue ()) ;
       result.appendString (" (_:))\n") ;
-      index_7613_.increment () ;
-      enumerator_7613.gotoNextObject () ;
+      index_7582_.increment () ;
+      enumerator_7582.gotoNextObject () ;
     }
   }
   result.appendString ("    //--------------------------- Extern functions\n") ;
-  GGS_uint index_7895_ (0) ;
+  GGS_uint index_7864_ (0) ;
   if (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST.isValid ()) {
-    cEnumerator_externSwiftFunctionList enumerator_7895 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, EnumerationOrder::up) ;
-    while (enumerator_7895.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = GGS_bool (ComparisonKind::equal, enumerator_7895.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("awakeFromNib"))).boolEnum () ;
+    cEnumerator_externSwiftFunctionList enumerator_7864 (in_EXTERN_5F_SWIFT_5F_FUNCTION_5F_LIST, EnumerationOrder::up) ;
+    while (enumerator_7864.hasCurrentObject ()) {
+      const enumGalgasBool test_3 = GGS_bool (ComparisonKind::equal, enumerator_7864.current_mCallerName (HERE).readProperty_string ().objectCompare (GGS_string ("awakeFromNib"))).boolEnum () ;
       switch (test_3) {
       case kBoolTrue : {
         result.appendString ("      self.") ;
-        result.appendString (enumerator_7895.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
+        result.appendString (enumerator_7864.current_mExternSwiftFunctionName (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
       case kBoolFalse : {
@@ -1230,28 +1230,28 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
       default :
         break ;
       }
-      index_7895_.increment () ;
-      enumerator_7895.gotoNextObject () ;
+      index_7864_.increment () ;
+      enumerator_7864.gotoNextObject () ;
     }
   }
   result.appendString ("    }\n    super.awakeFromNib ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  GGS_uint index_8314_ (0) ;
+  GGS_uint index_8283_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_8314 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
-    while (enumerator_8314.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_8314.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 203)).stringValue ()) ;
-      index_8314_.increment () ;
-      enumerator_8314.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8283 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
+    while (enumerator_8283.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_prefKeyDefinitionCode ((const cPtr_propertyGeneration *) enumerator_8283.current_mProperty (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 203)).stringValue ()) ;
+      index_8283_.increment () ;
+      enumerator_8283.gotoNextObject () ;
     }
   }
   result.appendString ("\n") ;
-  GGS_uint index_8410_ (0) ;
+  GGS_uint index_8379_ (0) ;
   if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-    cEnumerator_propertyGenerationList enumerator_8410 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
-    while (enumerator_8410.hasCurrentObject ()) {
-      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_8410.current_mProperty (HERE).ptr (), GGS_bool (true), GGS_bool (true), GGS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 208)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 208)).stringValue ()) ;
-      index_8410_.increment () ;
-      enumerator_8410.gotoNextObject () ;
+    cEnumerator_propertyGenerationList enumerator_8379 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
+    while (enumerator_8379.hasCurrentObject ()) {
+      result.appendString (callExtensionGetter_propertyDeclarationCode ((const cPtr_propertyGeneration *) enumerator_8379.current_mProperty (HERE).ptr (), GGS_bool (true), GGS_bool (true), GGS_stringset::class_func_emptySet (SOURCE_FILE ("preferences.swift.galgasTemplate", 208)), inCompiler COMMA_SOURCE_FILE ("preferences.swift.galgasTemplate", 208)).stringValue ()) ;
+      index_8379_.increment () ;
+      enumerator_8379.gotoNextObject () ;
     }
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
