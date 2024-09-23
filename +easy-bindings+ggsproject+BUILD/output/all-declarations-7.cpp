@@ -15286,9 +15286,13 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     default :
       break ;
     }
-    result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <") ;
+    result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final class MyPrivateUndoer : NSObject { // For Swift 6\n    let mOldValue : EBReferenceArray <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-    result.appendString (">) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { (inSelfObject) in\n      // DispatchQueue.main.async {\n        inSelfObject.mInternalArrayValue = inOldValue\n      // }\n    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model did change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Update observers\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
+    result.appendString (">\n\n    init (_ inOldValue : EBReferenceArray <") ;
+    result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
+    result.appendString (">) {\n      self.mOldValue = inOldValue\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @objc private final func myPerformUndo (_ inObject : MyPrivateUndoer) {  // For Swift 6\n    self.mInternalArrayValue = inObject.mOldValue\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <") ;
+    result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
+    result.appendString (">) {\n  //--- Register old value in undo manager\n     self.undoManager\?.registerUndo (  // For Swift 6\n      withTarget: self,\n      selector: #selector (Self.myPerformUndo (_:)),\n      object: MyPrivateUndoer (inOldValue)\n    )\n//    self.undoManager\?.registerUndo (withTarget: self) { (inSelfObject) in\n//      // DispatchQueue.main.async {\n//        inSelfObject.mInternalArrayValue = inOldValue\n//      // }\n//    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model did change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Update observers\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (">,\n                                 addedSet inAddedSet : EBReferenceSet <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
@@ -15330,9 +15334,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    ") ;
-  result.appendString (GGS_string ("Preferences array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 815)).stringValue ()) ;
+  result.appendString (GGS_string ("Preferences array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 836)).stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_8 = in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 818)).boolEnum () ;
+  const enumGalgasBool test_8 = in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 839)).boolEnum () ;
   switch (test_8) {
   case kBoolTrue : {
     result.appendString ("// PreferencesArrayOf_") ;
@@ -15351,15 +15355,15 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString ("\") as! ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("\n        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])\n        objectArray.append (object)\n      }\n      self.setProp (objectArray)\n    }\n") ;
-    GGS_uint index_33905_ (0) ;
+    GGS_uint index_34672_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
-      cEnumerator_atomicPropertyGenerationList enumerator_33905 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
-      while (enumerator_33905.hasCurrentObject ()) {
+      cEnumerator_atomicPropertyGenerationList enumerator_34672 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
+      while (enumerator_34672.hasCurrentObject ()) {
         result.appendString ("    toMany_") ;
-        result.appendString (enumerator_33905.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
+        result.appendString (enumerator_34672.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_StartsBeingObserved (by: self.mObserverForWritingPreferences)\n") ;
-        index_33905_.increment () ;
-        enumerator_33905.gotoNextObject () ;
+        index_34672_.increment () ;
+        enumerator_34672.gotoNextObject () ;
       }
     }
     result.appendString ("    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
@@ -15678,9 +15682,13 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
   default :
     break ;
   }
-  result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
+  result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final class MyPrivateUndoer : NSObject { // For Swift 6\n    let mOldValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
-  result.appendString ("\?) {\n  //--- Register old value in undo manager\n    self.undoManager\?.registerUndo (withTarget: self) { $0.mWeakInternalValue = inOldValue }\n  //---\n    if let object = inOldValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: nil)\n      }\n") ;
+  result.appendString ("\?\n\n    init (_ inOldValue : ") ;
+  result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
+  result.appendString ("\?) {\n      self.mOldValue = inOldValue\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @objc private final func myPerformUndo (_ inObject : MyPrivateUndoer) {  // For Swift 6\n    self.mWeakInternalValue = inObject.mOldValue\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
+  result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
+  result.appendString ("\?) {\n  //--- Register old value in undo manager\n     self.undoManager\?.registerUndo (  // For Swift 6\n      withTarget: self,\n      selector: #selector (Self.myPerformUndo (_:)),\n      object: MyPrivateUndoer (inOldValue)\n    )\n//    self.undoManager\?.registerUndo (withTarget: self) { $0.mWeakInternalValue = inOldValue }\n  //---\n    if let object = inOldValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: nil)\n      }\n") ;
   const enumGalgasBool test_3 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
   switch (test_3) {
   case kBoolTrue : {
