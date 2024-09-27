@@ -7506,6 +7506,12 @@ class cPtr_abstractViewInstructionGeneration : public acStrongPtr_class {
   public: void abstractViewInstructionGeneration_init (Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,

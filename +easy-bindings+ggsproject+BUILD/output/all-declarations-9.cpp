@@ -9,6 +9,459 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Routine 'buildActionMap?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_buildActionMap_3F__21_ (const GGS_lstringlist constinArgument_inActionDeclarationList,
+                                     GGS_actionMap & outArgument_outActionMap,
+                                     Compiler * inCompiler
+                                     COMMA_UNUSED_LOCATION_ARGS) {
+  outArgument_outActionMap.drop () ; // Release 'out' argument
+  GGS_actionMap temp_0 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 46)) ;
+  outArgument_outActionMap = temp_0 ;
+  cEnumerator_lstringlist enumerator_1740 (constinArgument_inActionDeclarationList, EnumerationOrder::up) ;
+  while (enumerator_1740.hasCurrentObject ()) {
+    {
+    outArgument_outActionMap.setter_insertKey (enumerator_1740.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 48)) ;
+    }
+    enumerator_1740.gotoNextObject () ;
+  }
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@actionFileGeneration generateCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_actionFileGeneration::method_generateCode (const GGS_string constinArgument_inOutputDirectory,
+                                                     const GGS_generationStruct /* constinArgument_inGenerationStruct */,
+                                                     GGS_stringset & ioArgument_ioGeneratedFileSet,
+                                                     Compiler * inCompiler
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_actionFileGeneration temp_0 = this ;
+  const GGS_actionFileGeneration temp_1 = this ;
+  GGS_string var_s_2468 = GGS_string (filewrapperTemplate_actionGenerationTemplate_actionGeneration (inCompiler, temp_0.readProperty_mClassName (), temp_1.readProperty_mActionName () COMMA_SOURCE_FILE ("run-action.ggs", 67))) ;
+  const GGS_actionFileGeneration temp_2 = this ;
+  const GGS_actionFileGeneration temp_3 = this ;
+  GGS_string var_fileName_2580 = GGS_string ("action-").add_operation (temp_2.readProperty_mClassName (), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (temp_3.readProperty_mActionName (), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)) ;
+  {
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_2580, inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 72)) ;
+  }
+  {
+  GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_2580, GGS_string ("//"), GGS_string::makeEmptyString (), GGS_string ("\n\n"), var_s_2468, GGS_string ("    ENTER USER CODE HERE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("run-action.ggs", 81)), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 81)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 81)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 73)) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'actionGenerationTemplate'
+//
+//--------------------------------------------------------------------------------------------------
+
+//--- All files of 'controllers' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_3 [1] = {
+  nullptr
+} ;
+
+//--- All sub-directories of 'controllers' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_3 [1] = {
+  nullptr
+} ;
+
+//--- Directory 'controllers'
+
+const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate (
+  "controllers",
+  0,
+  gWrapperAllFiles_actionGenerationTemplate_3,
+  0,
+  gWrapperAllDirectories_actionGenerationTemplate_3
+) ;
+
+//--- All files of 'standard-properties' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_1 [1] = {
+  nullptr
+} ;
+
+//--- All sub-directories of 'standard-properties' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_1 [1] = {
+  nullptr
+} ;
+
+//--- Directory 'standard-properties'
+
+const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate (
+  "standard-properties",
+  0,
+  gWrapperAllFiles_actionGenerationTemplate_1,
+  0,
+  gWrapperAllDirectories_actionGenerationTemplate_1
+) ;
+
+//--- All files of 'xcode-project' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_2 [1] = {
+  nullptr
+} ;
+
+//--- All sub-directories of 'xcode-project' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_2 [1] = {
+  nullptr
+} ;
+
+//--- Directory 'xcode-project'
+
+const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate (
+  "xcode-project",
+  0,
+  gWrapperAllFiles_actionGenerationTemplate_2,
+  0,
+  gWrapperAllDirectories_actionGenerationTemplate_2
+) ;
+
+//--- All files of '' directory
+
+static const cRegularFileWrapper * gWrapperAllFiles_actionGenerationTemplate_0 [1] = {
+  nullptr
+} ;
+
+//--- All sub-directories of '' directory
+
+static const cDirectoryWrapper * gWrapperAllDirectories_actionGenerationTemplate_0 [4] = {
+  & gWrapperDirectory_3_actionGenerationTemplate,
+  & gWrapperDirectory_1_actionGenerationTemplate,
+  & gWrapperDirectory_2_actionGenerationTemplate,
+  nullptr
+} ;
+
+//--- Directory ''
+
+const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate (
+  "",
+  0,
+  gWrapperAllFiles_actionGenerationTemplate_0,
+  3,
+  gWrapperAllDirectories_actionGenerationTemplate_0
+) ;
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'actionGenerationTemplate actionGeneration'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (Compiler * /* inCompiler */,
+                                                                          const GGS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                          const GGS_string & in_ACTION_5F_NAME
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  String result ;
+  result.appendString ("//--------------------------------------------------------------------------------------------------\n//  THIS FILE IS REGENERATED BY EASY BINDINGS, ONLY MODIFY IT WITHIN USER ZONES\n//--------------------------------------------------------------------------------------------------\n\nimport AppKit\n\n//--------------------------------------------------------------------------------------------------\n\nextension ") ;
+  result.appendString (in_EXTENDED_5F_CLASS_5F_NAME.stringValue ()) ;
+  result.appendString (" {\n  @objc func ") ;
+  result.appendString (in_ACTION_5F_NAME.stringValue ()) ;
+  result.appendString (" (_ inSender : NSObject\?) {\n") ;
+  return GGS_string (result) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_literalIntMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool /* constinArgument_inPreferences */,
+                                                                                              const GGS_propertyMap /* constinArgument_inRootObservablePropertyMap */,
+                                                                                              const GGS_semanticContext /* constinArgument_inSemanticContext */,
+                                                                                              const GGS_propertyMap /* constinArgument_inCurrentObservablePropertyMap */,
+                                                                                              const GGS_propertyMap /* constinArgument_inPreferencesObservablePropertyMap */,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_literalIntMultipleBindingExpressionAST temp_0 = this ;
+  outArgument_outEnableExpression = GGS_booleanMultipleBindingLiteralIntForGeneration::init_21_ (temp_0.readProperty_mValue ().readProperty_uint (), inCompiler COMMA_HERE) ;
+  outArgument_outType = GGS_typeKind::class_func_integerType (SOURCE_FILE ("multiple-binding.ggs", 274)) ;
+  const GGS_literalIntMultipleBindingExpressionAST temp_1 = this ;
+  outArgument_outErrorLocation = temp_1.readProperty_mValue ().readProperty_location () ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                                        const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                        const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                                        const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                                        const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                                        GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                                        GGS_typeKind & outArgument_outType,
+                                                                                                        GGS_location & outArgument_outErrorLocation,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_propertyKind var_kind_12399 ;
+  GGS_string var_swiftTypeStringForTransientFunctionArgument_12429 ;
+  GGS_string var_defaultValueAsString_12498 ;
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_0 = this ;
+  GGS_propertyMap temp_1 ;
+  const enumGalgasBool test_2 = constinArgument_inPreferences.boolEnum () ;
+  if (kBoolTrue == test_2) {
+    temp_1 = constinArgument_inPreferencesObservablePropertyMap ;
+  }else if (kBoolFalse == test_2) {
+    temp_1 = constinArgument_inCurrentObservablePropertyMap ;
+  }
+  extensionMethod_analyzeObservableProperty (temp_0.readProperty_mProperty (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, temp_1, var_kind_12399, var_swiftTypeStringForTransientFunctionArgument_12429, var_defaultValueAsString_12498, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 290)) ;
+  switch (var_kind_12399.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_12554_type_0 ;
+      GGS_propertyAccessibility extractedValue_12560__1 ;
+      var_kind_12399.getAssociatedValuesFor_property (extractedValue_12554_type_0, extractedValue_12560__1) ;
+      outArgument_outType = extractedValue_12554_type_0 ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_12600__0 ;
+      GGS_propertyAccessibility extractedValue_12600__1 ;
+      GGS_bool extractedValue_12600__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_12600__3 ;
+      var_kind_12399.getAssociatedValuesFor_toMany (extractedValue_12600__0, extractedValue_12600__1, extractedValue_12600__2, extractedValue_12600__3) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_3 = this ;
+      TC_Array <FixItDescription> fixItArray4 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_3.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 302)), GGS_string ("only an atomic property can be observed"), fixItArray4  COMMA_SOURCE_FILE ("multiple-binding.ggs", 302)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_12714__0 ;
+      GGS_propertyAccessibility extractedValue_12714__1 ;
+      GGS_bool extractedValue_12714__2 ;
+      GGS_toOneOppositeRelationship extractedValue_12714__3 ;
+      GGS_bool extractedValue_12714__4 ;
+      var_kind_12399.getAssociatedValuesFor_toOne (extractedValue_12714__0, extractedValue_12714__1, extractedValue_12714__2, extractedValue_12714__3, extractedValue_12714__4) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_5 = this ;
+      TC_Array <FixItDescription> fixItArray6 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_5.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 304)), GGS_string ("only an atomic property can be observed"), fixItArray6  COMMA_SOURCE_FILE ("multiple-binding.ggs", 304)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_12838__0 ;
+      GGS_bool extractedValue_12838__1 ;
+      var_kind_12399.getAssociatedValuesFor_arrayController (extractedValue_12838__0, extractedValue_12838__1) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_7 = this ;
+      TC_Array <FixItDescription> fixItArray8 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_7.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 306)), GGS_string ("only an atomic property can be observed"), fixItArray8  COMMA_SOURCE_FILE ("multiple-binding.ggs", 306)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_12965__0 ;
+      var_kind_12399.getAssociatedValuesFor_selectionController (extractedValue_12965__0) ;
+      const GGS_observablePropertyInMultipleBindingExpressionAST temp_9 = this ;
+      TC_Array <FixItDescription> fixItArray10 ;
+      inCompiler->emitSemanticError (extensionGetter_location (temp_9.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 308)), GGS_string ("only an atomic property can be observed"), fixItArray10  COMMA_SOURCE_FILE ("multiple-binding.ggs", 308)) ;
+      outArgument_outType.drop () ; // Release error dropped variable
+    }
+    break ;
+  }
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_11 = this ;
+  GGS_string temp_12 ;
+  const enumGalgasBool test_13 = constinArgument_inPreferences.boolEnum () ;
+  if (kBoolTrue == test_13) {
+    temp_12 = GGS_string ("preferences_") ;
+  }else if (kBoolFalse == test_13) {
+    temp_12 = GGS_string ("self.") ;
+  }
+  outArgument_outEnableExpression = GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::init_21_ (extensionGetter_modelStringForSelf (temp_11.readProperty_mProperty (), temp_12, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 311)), inCompiler COMMA_HERE) ;
+  const GGS_observablePropertyInMultipleBindingExpressionAST temp_14 = this ;
+  outArgument_outErrorLocation = extensionGetter_location (temp_14.readProperty_mProperty (), inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 313)) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_negateBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                                 const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                                 const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                                 const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                                 const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                                 GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                                 GGS_typeKind & outArgument_outType,
+                                                                                                 GGS_location & outArgument_outErrorLocation,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_expression_14144 ;
+  const GGS_negateBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_expression_14144, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 328)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = outArgument_outType.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 338)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 338)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      TC_Array <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (outArgument_outErrorLocation, GGS_string ("cannot apply negation: operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 339)) ;
+    }
+  }
+  outArgument_outEnableExpression = GGS_negateBooleanMultipleBindingExpressionForGeneration::init_21_ (var_expression_14144, inCompiler COMMA_HERE) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                             const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                             const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                             const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                             const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                             GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                             GGS_typeKind & outArgument_outType,
+                                                                                             GGS_location & outArgument_outErrorLocation,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_15240 ;
+  GGS_typeKind var_outLeftType_15265 ;
+  GGS_location var_outLeftLocation_15287 ;
+  const GGS_orBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_15240, var_outLeftType_15265, var_outLeftLocation_15287, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 356)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = var_outLeftType_15265.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 366)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 366)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      TC_Array <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_15287, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 367)) ;
+    }
+  }
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_15708 ;
+  GGS_typeKind var_outRightType_15734 ;
+  GGS_location var_outRightLocation_15757 ;
+  const GGS_orBooleanMultipleBindingExpressionAST temp_3 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_15708, var_outRightType_15734, var_outRightLocation_15757, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 369)) ;
+  enumGalgasBool test_4 = kBoolTrue ;
+  if (kBoolTrue == test_4) {
+    test_4 = var_outRightType_15734.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 379)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 379)).boolEnum () ;
+    if (kBoolTrue == test_4) {
+      TC_Array <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (var_outRightLocation_15757, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 380)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.ggs", 382)) ;
+  outArgument_outErrorLocation = var_outRightLocation_15757 ;
+  outArgument_outEnableExpression = GGS_orBooleanMultipleBindingExpressionForGeneration::init_21__21_ (var_leftExpression_15240, var_rightExpression_15708, inCompiler COMMA_HERE) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                              const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                              const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                              const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                              const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_16907 ;
+  GGS_typeKind var_outLeftType_16932 ;
+  GGS_location var_outLeftLocation_16954 ;
+  const GGS_xorBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_16907, var_outLeftType_16932, var_outLeftLocation_16954, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 399)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = var_outLeftType_16932.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 409)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 409)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      TC_Array <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_16954, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 410)) ;
+    }
+  }
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_17375 ;
+  GGS_typeKind var_outRightType_17401 ;
+  GGS_location var_outRightLocation_17424 ;
+  const GGS_xorBooleanMultipleBindingExpressionAST temp_3 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_17375, var_outRightType_17401, var_outRightLocation_17424, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 412)) ;
+  enumGalgasBool test_4 = kBoolTrue ;
+  if (kBoolTrue == test_4) {
+    test_4 = var_outRightType_17401.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 422)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 422)).boolEnum () ;
+    if (kBoolTrue == test_4) {
+      TC_Array <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (var_outRightLocation_17424, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 423)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.ggs", 425)) ;
+  outArgument_outErrorLocation = var_outRightLocation_17424 ;
+  outArgument_outEnableExpression = GGS_xorBooleanMultipleBindingExpressionForGeneration::init_21__21_ (var_leftExpression_16907, var_rightExpression_17375, inCompiler COMMA_HERE) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_andBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
+                                                                                              const GGS_propertyMap constinArgument_inRootObservablePropertyMap,
+                                                                                              const GGS_semanticContext constinArgument_inSemanticContext,
+                                                                                              const GGS_propertyMap constinArgument_inCurrentObservablePropertyMap,
+                                                                                              const GGS_propertyMap constinArgument_inPreferencesObservablePropertyMap,
+                                                                                              GGS_abstractBooleanMultipleBindingExpressionForGeneration & outArgument_outEnableExpression,
+                                                                                              GGS_typeKind & outArgument_outType,
+                                                                                              GGS_location & outArgument_outErrorLocation,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_leftExpression_18575 ;
+  GGS_typeKind var_outLeftType_18600 ;
+  GGS_location var_outLeftLocation_18622 ;
+  const GGS_andBooleanMultipleBindingExpressionAST temp_0 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_18575, var_outLeftType_18600, var_outLeftLocation_18622, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 442)) ;
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    test_1 = var_outLeftType_18600.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 452)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 452)).boolEnum () ;
+    if (kBoolTrue == test_1) {
+      TC_Array <FixItDescription> fixItArray2 ;
+      inCompiler->emitSemanticError (var_outLeftLocation_18622, GGS_string ("cannot apply 'and': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 453)) ;
+    }
+  }
+  GGS_abstractBooleanMultipleBindingExpressionForGeneration var_rightExpression_19044 ;
+  GGS_typeKind var_outRightType_19070 ;
+  GGS_location var_outRightLocation_19093 ;
+  const GGS_andBooleanMultipleBindingExpressionAST temp_3 = this ;
+  callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_19044, var_outRightType_19070, var_outRightLocation_19093, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 455)) ;
+  enumGalgasBool test_4 = kBoolTrue ;
+  if (kBoolTrue == test_4) {
+    test_4 = var_outRightType_19070.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 465)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 465)).boolEnum () ;
+    if (kBoolTrue == test_4) {
+      TC_Array <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (var_outRightLocation_19093, GGS_string ("cannot apply 'and': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 466)) ;
+    }
+  }
+  outArgument_outType = GGS_typeKind::class_func_boolType (SOURCE_FILE ("multiple-binding.ggs", 468)) ;
+  outArgument_outErrorLocation = var_outRightLocation_19093 ;
+  outArgument_outEnableExpression = GGS_andBooleanMultipleBindingExpressionForGeneration::init_21__21_ (var_leftExpression_18575, var_rightExpression_19044, inCompiler COMMA_HERE) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
 //Overriding extension method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //
 //--------------------------------------------------------------------------------------------------

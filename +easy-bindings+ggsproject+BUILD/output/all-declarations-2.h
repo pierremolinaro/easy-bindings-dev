@@ -6165,6 +6165,19 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalVie
 
 //--------------------------------------------------------------------------------------------------
 //
+//Abstract extension getter '@abstractViewInstructionGeneration generateAppendViewInstruction'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_generateAppendViewInstruction (const class cPtr_abstractViewInstructionGeneration * inObject,
+                                                                    const class GGS_bool constin_inPreferences,
+                                                                    const class GGS_string constin_inReceiverViewName,
+                                                                    const class GGS_string constin_inIndentation,
+                                                                    class Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @abstractViewInstructionGeneration_2E_weak weak reference class
 //
 //--------------------------------------------------------------------------------------------------
@@ -6595,6 +6608,12 @@ class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                                      Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
@@ -6812,6 +6831,12 @@ class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstruction
                                                                      Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
@@ -7009,6 +7034,12 @@ class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewIn
   public: void autoLayoutSpaceViewInstructionGeneration_init (Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
@@ -7200,6 +7231,12 @@ class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewIn
   public: void autoLayoutSeparatorInstructionGeneration_init_21_horizontal (const class GGS_bool & inOperand0,
                                                                             Compiler * inCompiler) ;
 
+
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
@@ -7397,6 +7434,12 @@ class cPtr_autoLayoutGutterInstructionGeneration : public cPtr_abstractViewInstr
                                                                          Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
@@ -7593,6 +7636,12 @@ class cPtr_autoLayoutDividerInstructionGeneration : public cPtr_abstractViewInst
                                                                           Compiler * inCompiler) ;
 
 
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
+
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
@@ -7788,6 +7837,12 @@ class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewIn
   public: void autoLayoutLocalViewInstructionGeneration_init_21_ (const class GGS_string & inOperand0,
                                                                   Compiler * inCompiler) ;
 
+
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
@@ -9075,6 +9130,12 @@ class cPtr_autoLayoutComputedViewInstructionGeneration : public cPtr_abstractVie
                                                                                                              const class GGS_bool & inOperand10,
                                                                                                              Compiler * inCompiler) ;
 
+
+//--- Extension getter generateAppendViewInstruction
+  public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
+           const class GGS_string inReceiverViewName,
+           const class GGS_string inIndentation,
+           Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
