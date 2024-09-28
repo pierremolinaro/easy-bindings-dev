@@ -1756,7 +1756,7 @@ class @autoLayoutGutterInstructionGeneration : @abstractViewInstructionGeneratio
 //      result += "AutoLayoutVerticalStackView.GutterSeparator"
 //    end
 //    result += "())\n"
-    result = inIndentation + inReceiverViewName + ".appendGutter ()\n"
+    result = inIndentation + "_ = " + inReceiverViewName + ".appendGutter ()\n"
   }
 
 }
@@ -2073,7 +2073,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateAppendViewIns
     result += indentation + "self.configure_" + self.mConfiguratorName + " (" + name + ") // Configurator\n"
   end
   result += indentation + "_ = " + inReceiverViewName + " .appendView (" + name + ")\n"
-  result += "}\n"
+  result += inIndentation +  "}\n"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -2090,14 +2090,15 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
-    result += inIndentation + "do{\n"
-    let indentation = inIndentation + "  "
-    for (instruction) in self.mInstructionList do (index)
-       let name = inName + "_" + index
-       result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
-       result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
+//    result += inIndentation + "do{\n"
+//    let indentation = inIndentation + "  "
+    for (instruction) in self.mInstructionList do // (index)
+//       let name = inName + "_" + index
+       result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+//       result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
+//       result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
     end
-    result += inIndentation + "}\n"
+//    result += inIndentation + "}\n"
 }
 
 //------------------------------------------------------------------------------------------------

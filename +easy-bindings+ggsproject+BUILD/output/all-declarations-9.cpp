@@ -9,29 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'buildActionMap?!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_buildActionMap_3F__21_ (const GGS_lstringlist constinArgument_inActionDeclarationList,
-                                     GGS_actionMap & outArgument_outActionMap,
-                                     Compiler * inCompiler
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  outArgument_outActionMap.drop () ; // Release 'out' argument
-  GGS_actionMap temp_0 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 46)) ;
-  outArgument_outActionMap = temp_0 ;
-  cEnumerator_lstringlist enumerator_1740 (constinArgument_inActionDeclarationList, EnumerationOrder::up) ;
-  while (enumerator_1740.hasCurrentObject ()) {
-    {
-    outArgument_outActionMap.setter_insertKey (enumerator_1740.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 48)) ;
-    }
-    enumerator_1740.gotoNextObject () ;
-  }
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@actionFileGeneration generateCode'
 //
 //--------------------------------------------------------------------------------------------------
