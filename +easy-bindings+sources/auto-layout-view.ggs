@@ -1719,13 +1719,7 @@ class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGenera
   override func generateAppendViewInstruction (?prefs: let @bool unused inPreferences,
                                                ?receiverView: let @string inReceiverViewName,
                                                let @string inIndentation) -> @string {
-    result = inIndentation + "_ = " + inReceiverViewName + ".appendView ("
-    if self.horizontal then
-      result += "AutoLayoutHorizontalStackView.VerticalSeparator"
-    else
-      result += "AutoLayoutVerticalStackView.HorizontalSeparator"
-    end
-    result += "())\n"
+    result = inIndentation + "_ = " + inReceiverViewName + ".appendSeparator ()\n"
   }
 
 
@@ -1875,9 +1869,6 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
   end
   for (instruction) in self.mInstructionList do // (index)
     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "hStackView", "    ")
-//    let name = "view_" + index
-//    result += instruction.generateViewInstruction (!prefs: inPreferences, name, "    ")
-//    result += "    _ = hStackView.appendView (" + name + ")\n"
   end
   result += "    return hStackView\n"
   result += "  }\n\n"
@@ -1895,9 +1886,6 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
   end
   for (instruction) in self.mInstructionList do // (index)
     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
-//    let name = "view_" + index
-//    result += instruction.generateViewInstruction (!prefs: inPreferences, name, "    ")
-//    result += "    _ = vStackView.appendView (" + name + ")\n"
   end
   result += "    return vStackView\n"
   result += "  }\n\n"
@@ -1937,13 +1925,6 @@ override func @autoLayoutDividerInstructionGeneration.generateViewInstruction (
 override func @autoLayoutDividerInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool unused inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
                                              let @string inIndentation) -> @string {
-//  result = inIndentation + "_ = " + inReceiverViewName + ".appendView ("
-//  if self.horizontal then
-//    result += "AutoLayoutHorizontalStackView.VerticalDivider"
-//  else
-//    result += "AutoLayoutVerticalStackView.HorizontalDivider"
-//  end
-//  result += "())\n"
   result = inIndentation + "_ = " + inReceiverViewName + ".appendDivider ()\n"
 }
 
@@ -2090,15 +2071,9 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
-//    result += inIndentation + "do{\n"
-//    let indentation = inIndentation + "  "
-    for (instruction) in self.mInstructionList do // (index)
-//       let name = inName + "_" + index
-       result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
-//       result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
-//       result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
-    end
-//    result += inIndentation + "}\n"
+  for (instruction) in self.mInstructionList do
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -2142,14 +2117,14 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
-  result += inIndentation + "do{\n"
-  let indentation = inIndentation + "  "
-  for (instruction) in self.mInstructionList do (index)
-     let name = inName + "_" + index
-     result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
-     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
+//  result += inIndentation + "do{\n"
+//  let indentation = inIndentation + "  "
+  for (instruction) in self.mInstructionList do // (index)
+//     let name = inName + "_" + index
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
+//     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
-  result += inIndentation + "}\n"
+//  result += inIndentation + "}\n"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -2168,15 +2143,9 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += indentation + "let " + instance + " = self." + type + " ()\n"
   end
-//  result += indentation + "do{\n"
-//  let indentation = indentation + "  "
   for (instruction) in self.mInstructionList do // (index)
-//     let name = inName + "_" + index
-//     result += instruction.generateViewInstruction (!prefs: inPreferences, name, indentation)
      result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
-//     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
-//  result += indentation + "}\n"
   result += indentation + "_ = " + inReceiverViewName + ".appendView (" + name + ")\n"
   result += inIndentation + "}\n"
 }

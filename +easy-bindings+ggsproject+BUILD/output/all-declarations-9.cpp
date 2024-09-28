@@ -9,30 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension method '@actionFileGeneration generateCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_actionFileGeneration::method_generateCode (const GGS_string constinArgument_inOutputDirectory,
-                                                     const GGS_generationStruct /* constinArgument_inGenerationStruct */,
-                                                     GGS_stringset & ioArgument_ioGeneratedFileSet,
-                                                     Compiler * inCompiler
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  const GGS_actionFileGeneration temp_0 = this ;
-  const GGS_actionFileGeneration temp_1 = this ;
-  GGS_string var_s_2468 = GGS_string (filewrapperTemplate_actionGenerationTemplate_actionGeneration (inCompiler, temp_0.readProperty_mClassName (), temp_1.readProperty_mActionName () COMMA_SOURCE_FILE ("run-action.ggs", 67))) ;
-  const GGS_actionFileGeneration temp_2 = this ;
-  const GGS_actionFileGeneration temp_3 = this ;
-  GGS_string var_fileName_2580 = GGS_string ("action-").add_operation (temp_2.readProperty_mClassName (), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (temp_3.readProperty_mActionName (), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 71)) ;
-  {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_2580, inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 72)) ;
-  }
-  {
-  GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_2580, GGS_string ("//"), GGS_string::makeEmptyString (), GGS_string ("\n\n"), var_s_2468, GGS_string ("    ENTER USER CODE HERE\n"), GGS_string ("  }\n}\n\n//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (45)), GGS_uint (uint32_t (98U))  COMMA_SOURCE_FILE ("run-action.ggs", 81)), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 81)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 81)), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 73)) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'actionGenerationTemplate'
 //
 //--------------------------------------------------------------------------------------------------
