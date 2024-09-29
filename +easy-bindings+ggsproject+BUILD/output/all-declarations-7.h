@@ -137,9 +137,20 @@ extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
 GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class Compiler * inCompiler,
                                                                              const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
                                                                              const class GGS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST,
-                                                                             const class GGS_enumFuncMap & in_FUNCTION_5F_MAP,
                                                                              const class GGS_bool & in_CASE_5F_ITERABLE
                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'enumGenerationTemplate enumEBExtensionGenerationInSwift'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (class Compiler * inCompiler,
+                                                                                        const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
+                                                                                        const class GGS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST,
+                                                                                        const class GGS_enumFuncMap & in_FUNCTION_5F_MAP
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

@@ -180,8 +180,12 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
   template enumGenerationInSwift : "enum.swift.galgasTemplate" (
     @string ENUM_TYPE_NAME,
     @lstringlist CONSTANT_ORDERED_LIST,
-    @enumFuncMap FUNCTION_MAP,
     @bool CASE_ITERABLE
+  )
+  template enumEBExtensionGenerationInSwift : "enum.ebExtension.swift.galgasTemplate" (
+    @string ENUM_TYPE_NAME,
+    @lstringlist CONSTANT_ORDERED_LIST,
+    @enumFuncMap FUNCTION_MAP
   )
 }
 
@@ -192,18 +196,29 @@ override proc @enumForGeneration.generateCode(
     let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
   if self.mEnumConstantList.count > 0 then # Empty list is the generic type "Enum"
-    let s = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
+    let sA = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
       self.mEnumName,
       self.mEnumConstantList,
-      self.mEnumFuncMap,
       self.mCaseIterable
     ]
-    let fileName = "enum-" + self.mEnumName + ".swift"
-    !?ioGeneratedFileSet.insert (fileName)
+    let fileNameA = "enum-" + self.mEnumName + ".swift"
+    !?ioGeneratedFileSet.insert (fileNameA)
     @string.generateFile (
       inOutputDirectory,
-      fileName,
-      s
+      fileNameA,
+      sA
+    )
+    let sB = filewrapper [enumGenerationTemplate.enumEBExtensionGenerationInSwift:
+      self.mEnumName,
+      self.mEnumConstantList,
+      self.mEnumFuncMap
+    ]
+    let fileNameB = "enum-" + self.mEnumName + "-ebExtension.swift"
+    !?ioGeneratedFileSet.insert (fileNameB)
+    @string.generateFile (
+      inOutputDirectory,
+      fileNameB,
+      sB
     )
   end
 }
