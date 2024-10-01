@@ -1924,11 +1924,13 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
 override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                                    let @string inViewName) -> @string {
   result =  "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
-  result += "    let vStackView = AutoLayoutVerticalStackView ("
+  result += "    let vStackView = "
   if self.mHasVerticalScroller then
-    result += "verticalScroller: true"
+    result += "AutoLayoutVerticalStackViewWithScrollBar"
+  else
+    result += "AutoLayoutVerticalStackView"
   end
-  result += ")\n"
+  result += " ()\n"
   if self.mConfiguratorName.string != "" then
     result += "    self.configure_" + self.mConfiguratorName + " (vStackView)\n"
   end
@@ -2157,11 +2159,13 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences,
                          let @string inName,
                          let @string inIndentation) -> @string {
-  result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ("
+  result = inIndentation + "let " + inName + " = "
   if self.mHasVerticalScroller then
-    result += "verticalScroller: true"
+    result += "AutoLayoutVerticalStackViewWithScrollBar"
+  else
+    result += "AutoLayoutVerticalStackView"
   end
-  result += ")\n"
+  result += " ()\n"
   if self.mConfiguratorName.string != "" then
     result += "    self.configure_" + self.mConfiguratorName + " (" + inName + ")\n"
   end
@@ -2185,11 +2189,13 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
   result = inIndentation + "do{\n"
   let indentation = inIndentation + "  "
   let name = inReceiverViewName + "_view"
-  result += indentation + "let " + name + " = AutoLayoutVerticalStackView ("
+  result += indentation + "let " + name + " = "
   if self.mHasVerticalScroller then
-    result += "verticalScroller: true"
+    result += "AutoLayoutVerticalStackViewWithScrollBar"
+  else
+    result += "AutoLayoutVerticalStackView"
   end
-  result += ")\n"
+  result += " ()\n"
   self.mFuncCallList.generate (indentation, !?result)
   for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += indentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
