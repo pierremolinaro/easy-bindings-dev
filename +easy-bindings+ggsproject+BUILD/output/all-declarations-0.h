@@ -389,35 +389,36 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   public: static const int32_t kToken_versionShouldChange = 71 ;
   public: static const int32_t kToken_view = 72 ;
   public: static const int32_t kToken_weak = 73 ;
-  public: static const int32_t kToken_xcodeproject = 74 ;
-  public: static const int32_t kToken_yes = 75 ;
-  public: static const int32_t kToken_enabled = 76 ;
-  public: static const int32_t kToken_graphicController = 77 ;
-  public: static const int32_t kToken_hidden = 78 ;
-  public: static const int32_t kToken_tableValue = 79 ;
-  public: static const int32_t kToken_run = 80 ;
-  public: static const int32_t kToken__3A_ = 81 ;
-  public: static const int32_t kToken__2C_ = 82 ;
-  public: static const int32_t kToken__3B_ = 83 ;
-  public: static const int32_t kToken__21_ = 84 ;
-  public: static const int32_t kToken__5B_ = 85 ;
-  public: static const int32_t kToken__5D_ = 86 ;
-  public: static const int32_t kToken__7B_ = 87 ;
-  public: static const int32_t kToken__7D_ = 88 ;
-  public: static const int32_t kToken__28_ = 89 ;
-  public: static const int32_t kToken__29_ = 90 ;
-  public: static const int32_t kToken__2E_ = 91 ;
-  public: static const int32_t kToken__7C_ = 92 ;
-  public: static const int32_t kToken__26_ = 93 ;
-  public: static const int32_t kToken__3C_ = 94 ;
-  public: static const int32_t kToken__3E_ = 95 ;
-  public: static const int32_t kToken__3C__3D_ = 96 ;
-  public: static const int32_t kToken__3E__3D_ = 97 ;
-  public: static const int32_t kToken__21__3D_ = 98 ;
-  public: static const int32_t kToken__3D__3D_ = 99 ;
-  public: static const int32_t kToken__5E_ = 100 ;
-  public: static const int32_t kToken__2D_ = 101 ;
-  public: static const int32_t kToken__3D_ = 102 ;
+  public: static const int32_t kToken_withVScroller = 74 ;
+  public: static const int32_t kToken_xcodeproject = 75 ;
+  public: static const int32_t kToken_yes = 76 ;
+  public: static const int32_t kToken_enabled = 77 ;
+  public: static const int32_t kToken_graphicController = 78 ;
+  public: static const int32_t kToken_hidden = 79 ;
+  public: static const int32_t kToken_tableValue = 80 ;
+  public: static const int32_t kToken_run = 81 ;
+  public: static const int32_t kToken__3A_ = 82 ;
+  public: static const int32_t kToken__2C_ = 83 ;
+  public: static const int32_t kToken__3B_ = 84 ;
+  public: static const int32_t kToken__21_ = 85 ;
+  public: static const int32_t kToken__5B_ = 86 ;
+  public: static const int32_t kToken__5D_ = 87 ;
+  public: static const int32_t kToken__7B_ = 88 ;
+  public: static const int32_t kToken__7D_ = 89 ;
+  public: static const int32_t kToken__28_ = 90 ;
+  public: static const int32_t kToken__29_ = 91 ;
+  public: static const int32_t kToken__2E_ = 92 ;
+  public: static const int32_t kToken__7C_ = 93 ;
+  public: static const int32_t kToken__26_ = 94 ;
+  public: static const int32_t kToken__3C_ = 95 ;
+  public: static const int32_t kToken__3E_ = 96 ;
+  public: static const int32_t kToken__3C__3D_ = 97 ;
+  public: static const int32_t kToken__3E__3D_ = 98 ;
+  public: static const int32_t kToken__21__3D_ = 99 ;
+  public: static const int32_t kToken__3D__3D_ = 100 ;
+  public: static const int32_t kToken__5E_ = 101 ;
+  public: static const int32_t kToken__2D_ = 102 ;
+  public: static const int32_t kToken__3D_ = 103 ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public: static int32_t search_into_lowerCaseKeyWordList (const String & inSearchedString) ;
@@ -451,7 +452,7 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   protected: virtual String getMessageForTerminal (const int32_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int32_t terminalVocabularyCount (void) const override { return 102 ; }
+  public: virtual int32_t terminalVocabularyCount (void) const override { return 103 ; }
 
 //--- Get Token String
   public: virtual String getCurrentTokenString (const cToken * inTokenPtr) const override ;
@@ -1381,6 +1382,14 @@ class cParser_easyBindings_5F_syntax {
   protected: virtual int32_t select_easyBindings_5F_syntax_92 (Lexique_easyBindings_5F_lexique *) = 0 ;
 
   protected: virtual int32_t select_easyBindings_5F_syntax_93 (Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_easyBindings_5F_syntax_94 (Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_easyBindings_5F_syntax_95 (Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_easyBindings_5F_syntax_96 (Lexique_easyBindings_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_easyBindings_5F_syntax_97 (Lexique_easyBindings_5F_lexique *) = 0 ;
 
 
 } ;
@@ -2855,6 +2864,10 @@ class GGS_astComputedVerticalViewDeclaration : public GGS_astAbstractViewDeclara
   public: GGS_astComputedVerticalViewDeclaration (const class cPtr_astComputedVerticalViewDeclaration * inSourcePtr) ;
 
 //--------------------------------- Property access
+  public: class GGS_bool readProperty_mHasVerticalScroller (void) const ;
+
+  public: class GGS_lstring readProperty_mConfiguratorName (void) const ;
+
   public: class GGS_astAutoLayoutViewFunctionCallList readProperty_mFunctionCallList (void) const ;
 
   public: class GGS_astViewInstructionList readProperty_mInstructionList (void) const ;
@@ -2864,11 +2877,13 @@ class GGS_astComputedVerticalViewDeclaration : public GGS_astAbstractViewDeclara
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_astComputedVerticalViewDeclaration init_21__21__21_ (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                          const class GGS_astViewInstructionList & inOperand1,
-                                                                          const class GGS_astNewStackViewDeclarationList & inOperand2,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GGS_astComputedVerticalViewDeclaration init_21__21__21__21__21_ (const class GGS_bool & inOperand0,
+                                                                                  const class GGS_lstring & inOperand1,
+                                                                                  const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                                  const class GGS_astViewInstructionList & inOperand3,
+                                                                                  const class GGS_astNewStackViewDeclarationList & inOperand4,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2879,9 +2894,11 @@ class GGS_astComputedVerticalViewDeclaration : public GGS_astAbstractViewDeclara
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_astComputedVerticalViewDeclaration class_func_new (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                              const class GGS_astViewInstructionList & inOperand1,
-                                                                              const class GGS_astNewStackViewDeclarationList & inOperand2,
+  public: static class GGS_astComputedVerticalViewDeclaration class_func_new (const class GGS_bool & inOperand0,
+                                                                              const class GGS_lstring & inOperand1,
+                                                                              const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                              const class GGS_astViewInstructionList & inOperand3,
+                                                                              const class GGS_astNewStackViewDeclarationList & inOperand4,
                                                                               class Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
@@ -2920,10 +2937,12 @@ class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDecla
   #endif
 
 //--------------------------------- Initializers
-  public: void astComputedVerticalViewDeclaration_init_21__21__21_ (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                    const class GGS_astViewInstructionList & inOperand1,
-                                                                    const class GGS_astNewStackViewDeclarationList & inOperand2,
-                                                                    Compiler * inCompiler) ;
+  public: void astComputedVerticalViewDeclaration_init_21__21__21__21__21_ (const class GGS_bool & inOperand0,
+                                                                            const class GGS_lstring & inOperand1,
+                                                                            const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                            const class GGS_astViewInstructionList & inOperand3,
+                                                                            const class GGS_astNewStackViewDeclarationList & inOperand4,
+                                                                            Compiler * inCompiler) ;
 
 
 //--- Extension method checkView
@@ -2944,6 +2963,8 @@ class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDecla
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
+  public: GGS_bool mProperty_mHasVerticalScroller ;
+  public: GGS_lstring mProperty_mConfiguratorName ;
   public: GGS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GGS_astViewInstructionList mProperty_mInstructionList ;
   public: GGS_astNewStackViewDeclarationList mProperty_mNewStackViewDeclarationList ;
@@ -2953,7 +2974,9 @@ class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDecla
   public: cPtr_astComputedVerticalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_astComputedVerticalViewDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+  public: cPtr_astComputedVerticalViewDeclaration (const GGS_bool & in_mHasVerticalScroller,
+                                                   const GGS_lstring & in_mConfiguratorName,
+                                                   const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
                                                    const GGS_astViewInstructionList & in_mInstructionList,
                                                    const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
                                                    Compiler * inCompiler
@@ -4700,6 +4723,10 @@ class GGS_astVStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
   public: GGS_astVStackViewInstructionDeclaration (const class cPtr_astVStackViewInstructionDeclaration * inSourcePtr) ;
 
 //--------------------------------- Property access
+  public: class GGS_bool readProperty_mHasVerticalScroller (void) const ;
+
+  public: class GGS_lstring readProperty_mConfiguratorName (void) const ;
+
   public: class GGS_astAutoLayoutViewFunctionCallList readProperty_mFunctionCallList (void) const ;
 
   public: class GGS_astViewInstructionList readProperty_mInstructionList (void) const ;
@@ -4711,12 +4738,14 @@ class GGS_astVStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_astVStackViewInstructionDeclaration init_21__21__21__21_ (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                               const class GGS_astViewInstructionList & inOperand1,
-                                                                               const class GGS_optionalHiddenBinding & inOperand2,
-                                                                               const class GGS_astNewStackViewDeclarationList & inOperand3,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GGS_astVStackViewInstructionDeclaration init_21__21__21__21__21__21_ (const class GGS_bool & inOperand0,
+                                                                                       const class GGS_lstring & inOperand1,
+                                                                                       const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                                       const class GGS_astViewInstructionList & inOperand3,
+                                                                                       const class GGS_optionalHiddenBinding & inOperand4,
+                                                                                       const class GGS_astNewStackViewDeclarationList & inOperand5,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4727,10 +4756,12 @@ class GGS_astVStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_astVStackViewInstructionDeclaration class_func_new (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                               const class GGS_astViewInstructionList & inOperand1,
-                                                                               const class GGS_optionalHiddenBinding & inOperand2,
-                                                                               const class GGS_astNewStackViewDeclarationList & inOperand3,
+  public: static class GGS_astVStackViewInstructionDeclaration class_func_new (const class GGS_bool & inOperand0,
+                                                                               const class GGS_lstring & inOperand1,
+                                                                               const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                               const class GGS_astViewInstructionList & inOperand3,
+                                                                               const class GGS_optionalHiddenBinding & inOperand4,
+                                                                               const class GGS_astNewStackViewDeclarationList & inOperand5,
                                                                                class Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
@@ -4769,11 +4800,13 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   #endif
 
 //--------------------------------- Initializers
-  public: void astVStackViewInstructionDeclaration_init_21__21__21__21_ (const class GGS_astAutoLayoutViewFunctionCallList & inOperand0,
-                                                                         const class GGS_astViewInstructionList & inOperand1,
-                                                                         const class GGS_optionalHiddenBinding & inOperand2,
-                                                                         const class GGS_astNewStackViewDeclarationList & inOperand3,
-                                                                         Compiler * inCompiler) ;
+  public: void astVStackViewInstructionDeclaration_init_21__21__21__21__21__21_ (const class GGS_bool & inOperand0,
+                                                                                 const class GGS_lstring & inOperand1,
+                                                                                 const class GGS_astAutoLayoutViewFunctionCallList & inOperand2,
+                                                                                 const class GGS_astViewInstructionList & inOperand3,
+                                                                                 const class GGS_optionalHiddenBinding & inOperand4,
+                                                                                 const class GGS_astNewStackViewDeclarationList & inOperand5,
+                                                                                 Compiler * inCompiler) ;
 
 
 //--- Extension method generateViewCode
@@ -4793,6 +4826,8 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Properties
+  public: GGS_bool mProperty_mHasVerticalScroller ;
+  public: GGS_lstring mProperty_mConfiguratorName ;
   public: GGS_astAutoLayoutViewFunctionCallList mProperty_mFunctionCallList ;
   public: GGS_astViewInstructionList mProperty_mInstructionList ;
   public: GGS_optionalHiddenBinding mProperty_mOptionalHiddenBinding ;
@@ -4803,7 +4838,9 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
   public: cPtr_astVStackViewInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_astVStackViewInstructionDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+  public: cPtr_astVStackViewInstructionDeclaration (const GGS_bool & in_mHasVerticalScroller,
+                                                    const GGS_lstring & in_mConfiguratorName,
+                                                    const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
                                                     const GGS_astViewInstructionList & in_mInstructionList,
                                                     const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
                                                     const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
@@ -12078,6 +12115,14 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
   public: virtual int32_t select_easyBindings_5F_syntax_92 (Lexique_easyBindings_5F_lexique *) ;
 
   public: virtual int32_t select_easyBindings_5F_syntax_93 (Lexique_easyBindings_5F_lexique *) ;
+
+  public: virtual int32_t select_easyBindings_5F_syntax_94 (Lexique_easyBindings_5F_lexique *) ;
+
+  public: virtual int32_t select_easyBindings_5F_syntax_95 (Lexique_easyBindings_5F_lexique *) ;
+
+  public: virtual int32_t select_easyBindings_5F_syntax_96 (Lexique_easyBindings_5F_lexique *) ;
+
+  public: virtual int32_t select_easyBindings_5F_syntax_97 (Lexique_easyBindings_5F_lexique *) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------

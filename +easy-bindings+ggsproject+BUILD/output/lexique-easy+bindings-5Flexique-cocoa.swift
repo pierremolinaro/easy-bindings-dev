@@ -174,37 +174,38 @@ let easyBindings_lexique_1_vStack : UInt16 = 70
 let easyBindings_lexique_1_versionShouldChange : UInt16 = 71
 let easyBindings_lexique_1_view : UInt16 = 72
 let easyBindings_lexique_1_weak : UInt16 = 73
-let easyBindings_lexique_1_xcodeproject : UInt16 = 74
-let easyBindings_lexique_1_yes : UInt16 = 75
-let easyBindings_lexique_1_enabled : UInt16 = 76
-let easyBindings_lexique_1_graphicController : UInt16 = 77
-let easyBindings_lexique_1_hidden : UInt16 = 78
-let easyBindings_lexique_1_tableValue : UInt16 = 79
-let easyBindings_lexique_1_run : UInt16 = 80
-let easyBindings_lexique_1__3A_ : UInt16 = 81
-let easyBindings_lexique_1__2C_ : UInt16 = 82
-let easyBindings_lexique_1__3B_ : UInt16 = 83
-let easyBindings_lexique_1__21_ : UInt16 = 84
-let easyBindings_lexique_1__5B_ : UInt16 = 85
-let easyBindings_lexique_1__5D_ : UInt16 = 86
-let easyBindings_lexique_1__7B_ : UInt16 = 87
-let easyBindings_lexique_1__7D_ : UInt16 = 88
-let easyBindings_lexique_1__28_ : UInt16 = 89
-let easyBindings_lexique_1__29_ : UInt16 = 90
-let easyBindings_lexique_1__2E_ : UInt16 = 91
-let easyBindings_lexique_1__7C_ : UInt16 = 92
-let easyBindings_lexique_1__26_ : UInt16 = 93
-let easyBindings_lexique_1__3C_ : UInt16 = 94
-let easyBindings_lexique_1__3E_ : UInt16 = 95
-let easyBindings_lexique_1__3C__3D_ : UInt16 = 96
-let easyBindings_lexique_1__3E__3D_ : UInt16 = 97
-let easyBindings_lexique_1__21__3D_ : UInt16 = 98
-let easyBindings_lexique_1__3D__3D_ : UInt16 = 99
-let easyBindings_lexique_1__5E_ : UInt16 = 100
-let easyBindings_lexique_1__2D_ : UInt16 = 101
-let easyBindings_lexique_1__3D_ : UInt16 = 102
-let easyBindings_lexique_2_ERROR : UInt16 = 103
-let easyBindings_lexique_2_TEMPLATE : UInt16 = 104
+let easyBindings_lexique_1_withVScroller : UInt16 = 74
+let easyBindings_lexique_1_xcodeproject : UInt16 = 75
+let easyBindings_lexique_1_yes : UInt16 = 76
+let easyBindings_lexique_1_enabled : UInt16 = 77
+let easyBindings_lexique_1_graphicController : UInt16 = 78
+let easyBindings_lexique_1_hidden : UInt16 = 79
+let easyBindings_lexique_1_tableValue : UInt16 = 80
+let easyBindings_lexique_1_run : UInt16 = 81
+let easyBindings_lexique_1__3A_ : UInt16 = 82
+let easyBindings_lexique_1__2C_ : UInt16 = 83
+let easyBindings_lexique_1__3B_ : UInt16 = 84
+let easyBindings_lexique_1__21_ : UInt16 = 85
+let easyBindings_lexique_1__5B_ : UInt16 = 86
+let easyBindings_lexique_1__5D_ : UInt16 = 87
+let easyBindings_lexique_1__7B_ : UInt16 = 88
+let easyBindings_lexique_1__7D_ : UInt16 = 89
+let easyBindings_lexique_1__28_ : UInt16 = 90
+let easyBindings_lexique_1__29_ : UInt16 = 91
+let easyBindings_lexique_1__2E_ : UInt16 = 92
+let easyBindings_lexique_1__7C_ : UInt16 = 93
+let easyBindings_lexique_1__26_ : UInt16 = 94
+let easyBindings_lexique_1__3C_ : UInt16 = 95
+let easyBindings_lexique_1__3E_ : UInt16 = 96
+let easyBindings_lexique_1__3C__3D_ : UInt16 = 97
+let easyBindings_lexique_1__3E__3D_ : UInt16 = 98
+let easyBindings_lexique_1__21__3D_ : UInt16 = 99
+let easyBindings_lexique_1__3D__3D_ : UInt16 = 100
+let easyBindings_lexique_1__5E_ : UInt16 = 101
+let easyBindings_lexique_1__2D_ : UInt16 = 102
+let easyBindings_lexique_1__3D_ : UInt16 = 103
+let easyBindings_lexique_2_ERROR : UInt16 = 104
+let easyBindings_lexique_2_TEMPLATE : UInt16 = 105
 
 //--------------------------------------------------------------------------------------------------
 
@@ -287,7 +288,7 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func terminalVocabularyCount () -> Int {
-    return 102
+    return 103
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -394,37 +395,38 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       1, // 71 : easyBindings_lexique_1_versionShouldChange
       1, // 72 : easyBindings_lexique_1_view
       1, // 73 : easyBindings_lexique_1_weak
-      1, // 74 : easyBindings_lexique_1_xcodeproject
-      1, // 75 : easyBindings_lexique_1_yes
-      6, // 76 : easyBindings_lexique_1_enabled
-      6, // 77 : easyBindings_lexique_1_graphicController
-      6, // 78 : easyBindings_lexique_1_hidden
-      6, // 79 : easyBindings_lexique_1_tableValue
-      6, // 80 : easyBindings_lexique_1_run
-      12, // 81 : easyBindings_lexique_1__3A_
-      12, // 82 : easyBindings_lexique_1__2C_
-      12, // 83 : easyBindings_lexique_1__3B_
-      12, // 84 : easyBindings_lexique_1__21_
-      12, // 85 : easyBindings_lexique_1__5B_
-      12, // 86 : easyBindings_lexique_1__5D_
-      12, // 87 : easyBindings_lexique_1__7B_
-      12, // 88 : easyBindings_lexique_1__7D_
-      12, // 89 : easyBindings_lexique_1__28_
-      12, // 90 : easyBindings_lexique_1__29_
-      12, // 91 : easyBindings_lexique_1__2E_
-      12, // 92 : easyBindings_lexique_1__7C_
-      12, // 93 : easyBindings_lexique_1__26_
-      12, // 94 : easyBindings_lexique_1__3C_
-      12, // 95 : easyBindings_lexique_1__3E_
-      12, // 96 : easyBindings_lexique_1__3C__3D_
-      12, // 97 : easyBindings_lexique_1__3E__3D_
-      12, // 98 : easyBindings_lexique_1__21__3D_
-      12, // 99 : easyBindings_lexique_1__3D__3D_
-      12, // 100 : easyBindings_lexique_1__5E_
-      12, // 101 : easyBindings_lexique_1__2D_
-      12, // 102 : easyBindings_lexique_1__3D_
-      14, // 103 : easyBindings_lexique_2_ERROR
-      15  // 104 : easyBindings_lexique_2_TEMPLATE
+      1, // 74 : easyBindings_lexique_1_withVScroller
+      1, // 75 : easyBindings_lexique_1_xcodeproject
+      1, // 76 : easyBindings_lexique_1_yes
+      6, // 77 : easyBindings_lexique_1_enabled
+      6, // 78 : easyBindings_lexique_1_graphicController
+      6, // 79 : easyBindings_lexique_1_hidden
+      6, // 80 : easyBindings_lexique_1_tableValue
+      6, // 81 : easyBindings_lexique_1_run
+      12, // 82 : easyBindings_lexique_1__3A_
+      12, // 83 : easyBindings_lexique_1__2C_
+      12, // 84 : easyBindings_lexique_1__3B_
+      12, // 85 : easyBindings_lexique_1__21_
+      12, // 86 : easyBindings_lexique_1__5B_
+      12, // 87 : easyBindings_lexique_1__5D_
+      12, // 88 : easyBindings_lexique_1__7B_
+      12, // 89 : easyBindings_lexique_1__7D_
+      12, // 90 : easyBindings_lexique_1__28_
+      12, // 91 : easyBindings_lexique_1__29_
+      12, // 92 : easyBindings_lexique_1__2E_
+      12, // 93 : easyBindings_lexique_1__7C_
+      12, // 94 : easyBindings_lexique_1__26_
+      12, // 95 : easyBindings_lexique_1__3C_
+      12, // 96 : easyBindings_lexique_1__3E_
+      12, // 97 : easyBindings_lexique_1__3C__3D_
+      12, // 98 : easyBindings_lexique_1__3E__3D_
+      12, // 99 : easyBindings_lexique_1__21__3D_
+      12, // 100 : easyBindings_lexique_1__3D__3D_
+      12, // 101 : easyBindings_lexique_1__5E_
+      12, // 102 : easyBindings_lexique_1__2D_
+      12, // 103 : easyBindings_lexique_1__3D_
+      14, // 104 : easyBindings_lexique_2_ERROR
+      15  // 105 : easyBindings_lexique_2_TEMPLATE
     ]
     return kTerminalSymbolStyles [Int (inTokenIndex)]
   }
@@ -507,37 +509,38 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       true, // 71 : easyBindings_lexique_1_versionShouldChange
       true, // 72 : easyBindings_lexique_1_view
       true, // 73 : easyBindings_lexique_1_weak
-      true, // 74 : easyBindings_lexique_1_xcodeproject
-      true, // 75 : easyBindings_lexique_1_yes
-      true, // 76 : easyBindings_lexique_1_enabled
-      true, // 77 : easyBindings_lexique_1_graphicController
-      true, // 78 : easyBindings_lexique_1_hidden
-      true, // 79 : easyBindings_lexique_1_tableValue
-      true, // 80 : easyBindings_lexique_1_run
-      true, // 81 : easyBindings_lexique_1__3A_
-      true, // 82 : easyBindings_lexique_1__2C_
-      true, // 83 : easyBindings_lexique_1__3B_
-      true, // 84 : easyBindings_lexique_1__21_
-      true, // 85 : easyBindings_lexique_1__5B_
-      true, // 86 : easyBindings_lexique_1__5D_
-      true, // 87 : easyBindings_lexique_1__7B_
-      true, // 88 : easyBindings_lexique_1__7D_
-      true, // 89 : easyBindings_lexique_1__28_
-      true, // 90 : easyBindings_lexique_1__29_
-      true, // 91 : easyBindings_lexique_1__2E_
-      true, // 92 : easyBindings_lexique_1__7C_
-      true, // 93 : easyBindings_lexique_1__26_
-      true, // 94 : easyBindings_lexique_1__3C_
-      true, // 95 : easyBindings_lexique_1__3E_
-      true, // 96 : easyBindings_lexique_1__3C__3D_
-      true, // 97 : easyBindings_lexique_1__3E__3D_
-      true, // 98 : easyBindings_lexique_1__21__3D_
-      true, // 99 : easyBindings_lexique_1__3D__3D_
-      true, // 100 : easyBindings_lexique_1__5E_
-      true, // 101 : easyBindings_lexique_1__2D_
-      true, // 102 : easyBindings_lexique_1__3D_
-      false, // 103 : easyBindings_lexique_2_ERROR
-      false  // 104 : easyBindings_lexique_2_TEMPLATE
+      true, // 74 : easyBindings_lexique_1_withVScroller
+      true, // 75 : easyBindings_lexique_1_xcodeproject
+      true, // 76 : easyBindings_lexique_1_yes
+      true, // 77 : easyBindings_lexique_1_enabled
+      true, // 78 : easyBindings_lexique_1_graphicController
+      true, // 79 : easyBindings_lexique_1_hidden
+      true, // 80 : easyBindings_lexique_1_tableValue
+      true, // 81 : easyBindings_lexique_1_run
+      true, // 82 : easyBindings_lexique_1__3A_
+      true, // 83 : easyBindings_lexique_1__2C_
+      true, // 84 : easyBindings_lexique_1__3B_
+      true, // 85 : easyBindings_lexique_1__21_
+      true, // 86 : easyBindings_lexique_1__5B_
+      true, // 87 : easyBindings_lexique_1__5D_
+      true, // 88 : easyBindings_lexique_1__7B_
+      true, // 89 : easyBindings_lexique_1__7D_
+      true, // 90 : easyBindings_lexique_1__28_
+      true, // 91 : easyBindings_lexique_1__29_
+      true, // 92 : easyBindings_lexique_1__2E_
+      true, // 93 : easyBindings_lexique_1__7C_
+      true, // 94 : easyBindings_lexique_1__26_
+      true, // 95 : easyBindings_lexique_1__3C_
+      true, // 96 : easyBindings_lexique_1__3E_
+      true, // 97 : easyBindings_lexique_1__3C__3D_
+      true, // 98 : easyBindings_lexique_1__3E__3D_
+      true, // 99 : easyBindings_lexique_1__21__3D_
+      true, // 100 : easyBindings_lexique_1__3D__3D_
+      true, // 101 : easyBindings_lexique_1__5E_
+      true, // 102 : easyBindings_lexique_1__2D_
+      true, // 103 : easyBindings_lexique_1__3D_
+      false, // 104 : easyBindings_lexique_2_ERROR
+      false  // 105 : easyBindings_lexique_2_TEMPLATE
     ]
     return kTerminalAtomicSelection [Int (inTokenIndex)]
   }
@@ -863,6 +866,7 @@ fileprivate func search_into_easyBindings_5F_lexique_lowerCaseKeyWordList (_ inS
     "configurator" : easyBindings_lexique_1_configurator,
     "xcodeproject" : easyBindings_lexique_1_xcodeproject,
     "classForSwift" : easyBindings_lexique_1_classForSwift,
+    "withVScroller" : easyBindings_lexique_1_withVScroller,
     "editableColumn" : easyBindings_lexique_1_editableColumn,
     "externDelegate" : easyBindings_lexique_1_externDelegate,
     "arrayController" : easyBindings_lexique_1_arrayController,

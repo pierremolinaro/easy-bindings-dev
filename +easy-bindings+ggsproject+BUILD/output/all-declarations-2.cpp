@@ -2986,220 +2986,6 @@ GGS_astComputedHorizontalViewDeclaration_2E_weak GGS_astComputedHorizontalViewDe
 }
 
 //--------------------------------------------------------------------------------------------------
-// @astComputedVerticalViewDeclaration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_astComputedVerticalViewDeclaration::objectCompare (const GGS_astComputedVerticalViewDeclaration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration::GGS_astComputedVerticalViewDeclaration (void) :
-GGS_astAbstractViewDeclaration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::
-init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                  const GGS_astViewInstructionList & in_mInstructionList,
-                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                  Compiler * inCompiler
-                  COMMA_LOCATION_ARGS) {
-  cPtr_astComputedVerticalViewDeclaration * object = nullptr ;
-  macroMyNew (object, cPtr_astComputedVerticalViewDeclaration (inCompiler COMMA_THERE)) ;
-  object->astComputedVerticalViewDeclaration_init_21__21__21_ (in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
-  const GGS_astComputedVerticalViewDeclaration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_astComputedVerticalViewDeclaration::
-astComputedVerticalViewDeclaration_init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                     const GGS_astViewInstructionList & in_mInstructionList,
-                                                     const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                     Compiler * /* inCompiler */) {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration::GGS_astComputedVerticalViewDeclaration (const cPtr_astComputedVerticalViewDeclaration * inSourcePtr) :
-GGS_astAbstractViewDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedVerticalViewDeclaration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::class_func_new (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                               const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                               const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_astComputedVerticalViewDeclaration result ;
-  macroMyNew (result.mObjectPtr, cPtr_astComputedVerticalViewDeclaration (in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionCallList GGS_astComputedVerticalViewDeclaration::readProperty_mFunctionCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewFunctionCallList () ;
-  }else{
-    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astViewInstructionList GGS_astComputedVerticalViewDeclaration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astViewInstructionList () ;
-  }else{
-    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_astComputedVerticalViewDeclaration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @astComputedVerticalViewDeclaration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astComputedVerticalViewDeclaration::cPtr_astComputedVerticalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astComputedVerticalViewDeclaration::cPtr_astComputedVerticalViewDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                  const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_astComputedVerticalViewDeclaration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
-}
-
-void cPtr_astComputedVerticalViewDeclaration::description (String & ioString,
-                                                           const int32_t inIndentation) const {
-  ioString.appendCString ("[@astComputedVerticalViewDeclaration:") ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_astComputedVerticalViewDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_astComputedVerticalViewDeclaration (mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astComputedVerticalViewDeclaration::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @astComputedVerticalViewDeclaration generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ("astComputedVerticalViewDeclaration",
-                                                                                          & kTypeDescriptor_GALGAS_astAbstractViewDeclaration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_astComputedVerticalViewDeclaration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_astComputedVerticalViewDeclaration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_astComputedVerticalViewDeclaration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::extractObject (const GGS_object & inObject,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) {
-  GGS_astComputedVerticalViewDeclaration result ;
-  const GGS_astComputedVerticalViewDeclaration * p = (const GGS_astComputedVerticalViewDeclaration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_astComputedVerticalViewDeclaration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astComputedVerticalViewDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 
 ComparisonResult GGS_astComputedVerticalViewDeclaration_2E_weak::objectCompare (const GGS_astComputedVerticalViewDeclaration_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -4838,243 +4624,6 @@ GGS_astHStackViewInstructionDeclaration_2E_weak GGS_astHStackViewInstructionDecl
       result = *p ;
     }else{
       inCompiler->castError ("astHStackViewInstructionDeclaration.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @astVStackViewInstructionDeclaration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_astVStackViewInstructionDeclaration::objectCompare (const GGS_astVStackViewInstructionDeclaration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration::GGS_astVStackViewInstructionDeclaration (void) :
-GGS_astAbstractViewInstructionDeclaration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::
-init_21__21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                      const GGS_astViewInstructionList & in_mInstructionList,
-                      const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
-                      const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
-                      Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) {
-  cPtr_astVStackViewInstructionDeclaration * object = nullptr ;
-  macroMyNew (object, cPtr_astVStackViewInstructionDeclaration (inCompiler COMMA_THERE)) ;
-  object->astVStackViewInstructionDeclaration_init_21__21__21__21_ (in_mFunctionCallList, in_mInstructionList, in_mOptionalHiddenBinding, in_mAstNewStackViewDeclarationList, inCompiler) ;
-  const GGS_astVStackViewInstructionDeclaration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_astVStackViewInstructionDeclaration::
-astVStackViewInstructionDeclaration_init_21__21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                          const GGS_astViewInstructionList & in_mInstructionList,
-                                                          const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
-                                                          const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
-                                                          Compiler * /* inCompiler */) {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
-  mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration::GGS_astVStackViewInstructionDeclaration (const cPtr_astVStackViewInstructionDeclaration * inSourcePtr) :
-GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_astVStackViewInstructionDeclaration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::class_func_new (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                                 const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                                 const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
-                                                                                                 const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_astVStackViewInstructionDeclaration result ;
-  macroMyNew (result.mObjectPtr, cPtr_astVStackViewInstructionDeclaration (in_mFunctionCallList, in_mInstructionList, in_mOptionalHiddenBinding, in_mAstNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionCallList GGS_astVStackViewInstructionDeclaration::readProperty_mFunctionCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewFunctionCallList () ;
-  }else{
-    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
-    return p->mProperty_mFunctionCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astViewInstructionList GGS_astVStackViewInstructionDeclaration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astViewInstructionList () ;
-  }else{
-    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_optionalHiddenBinding GGS_astVStackViewInstructionDeclaration::readProperty_mOptionalHiddenBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_optionalHiddenBinding () ;
-  }else{
-    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
-    return p->mProperty_mOptionalHiddenBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_astVStackViewInstructionDeclaration::readProperty_mAstNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
-    return p->mProperty_mAstNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @astVStackViewInstructionDeclaration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astVStackViewInstructionDeclaration::cPtr_astVStackViewInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mOptionalHiddenBinding (),
-mProperty_mAstNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_astVStackViewInstructionDeclaration::cPtr_astVStackViewInstructionDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                    const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                    const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
-                                                                                    const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) :
-cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
-mProperty_mFunctionCallList (),
-mProperty_mInstructionList (),
-mProperty_mOptionalHiddenBinding (),
-mProperty_mAstNewStackViewDeclarationList () {
-  mProperty_mFunctionCallList = in_mFunctionCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
-  mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_astVStackViewInstructionDeclaration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
-}
-
-void cPtr_astVStackViewInstructionDeclaration::description (String & ioString,
-                                                            const int32_t inIndentation) const {
-  ioString.appendCString ("[@astVStackViewInstructionDeclaration:") ;
-  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOptionalHiddenBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mAstNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_astVStackViewInstructionDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_astVStackViewInstructionDeclaration (mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mOptionalHiddenBinding, mProperty_mAstNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_astVStackViewInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
-    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
-    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mOptionalHiddenBinding.printNonNullClassInstanceProperties ("mOptionalHiddenBinding") ;
-    mProperty_mAstNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mAstNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @astVStackViewInstructionDeclaration generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ("astVStackViewInstructionDeclaration",
-                                                                                           & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_astVStackViewInstructionDeclaration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_astVStackViewInstructionDeclaration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_astVStackViewInstructionDeclaration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::extractObject (const GGS_object & inObject,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  GGS_astVStackViewInstructionDeclaration result ;
-  const GGS_astVStackViewInstructionDeclaration * p = (const GGS_astVStackViewInstructionDeclaration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_astVStackViewInstructionDeclaration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astVStackViewInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -8168,71 +7717,71 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
                                                 Compiler * inCompiler
                                                 COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outFuncCallList.drop () ; // Release 'out' argument
-  GGS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = GGS_autoLayoutViewInstructionGenerationFuncCallList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 612)) ;
+  GGS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = GGS_autoLayoutViewInstructionGenerationFuncCallList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 652)) ;
   outArgument_outFuncCallList = temp_0 ;
   const GGS_astAutoLayoutViewFunctionCallList temp_1 = inObject ;
-  cEnumerator_astAutoLayoutViewFunctionCallList enumerator_25038 (temp_1, EnumerationOrder::up) ;
-  while (enumerator_25038.hasCurrentObject ()) {
-    GGS_string var_mangleName_25078 = enumerator_25038.current_mFunctionName (HERE).readProperty_string ().add_operation (GGS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 614)) ;
-    cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_25142 (enumerator_25038.current_mParameterList (HERE), EnumerationOrder::up) ;
-    while (enumerator_25142.hasCurrentObject ()) {
-      var_mangleName_25078.plusAssign_operation(enumerator_25142.current_mParameterName (HERE).readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 616)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 616)) ;
-      enumerator_25142.gotoNextObject () ;
+  cEnumerator_astAutoLayoutViewFunctionCallList enumerator_25954 (temp_1, EnumerationOrder::up) ;
+  while (enumerator_25954.hasCurrentObject ()) {
+    GGS_string var_mangleName_25994 = enumerator_25954.current_mFunctionName (HERE).readProperty_string ().add_operation (GGS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 654)) ;
+    cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_26058 (enumerator_25954.current_mParameterList (HERE), EnumerationOrder::up) ;
+    while (enumerator_26058.hasCurrentObject ()) {
+      var_mangleName_25994.plusAssign_operation(enumerator_26058.current_mParameterName (HERE).readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 656)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 656)) ;
+      enumerator_26058.gotoNextObject () ;
     }
-    var_mangleName_25078.plusAssign_operation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 618)) ;
-    GGS_autoLayoutClassParameterList var_formalParameterList_25325 ;
-    constinArgument_inFunctionMap.method_searchKey (GGS_lstring::init_21__21_ (var_mangleName_25078, enumerator_25038.current_mFunctionName (HERE).readProperty_location (), inCompiler COMMA_HERE), var_formalParameterList_25325, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 619)) ;
-    GGS_autoLayoutViewInstructionGenerationParameterList temp_2 = GGS_autoLayoutViewInstructionGenerationParameterList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 620)) ;
-    GGS_autoLayoutViewInstructionGenerationParameterList var_parameterList_25404 = temp_2 ;
+    var_mangleName_25994.plusAssign_operation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 658)) ;
+    GGS_autoLayoutClassParameterList var_formalParameterList_26241 ;
+    constinArgument_inFunctionMap.method_searchKey (GGS_lstring::init_21__21_ (var_mangleName_25994, enumerator_25954.current_mFunctionName (HERE).readProperty_location (), inCompiler COMMA_HERE), var_formalParameterList_26241, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 659)) ;
+    GGS_autoLayoutViewInstructionGenerationParameterList temp_2 = GGS_autoLayoutViewInstructionGenerationParameterList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 660)) ;
+    GGS_autoLayoutViewInstructionGenerationParameterList var_parameterList_26320 = temp_2 ;
     enumGalgasBool test_3 = kBoolTrue ;
     if (kBoolTrue == test_3) {
-      test_3 = GGS_bool (ComparisonKind::notEqual, var_formalParameterList_25325.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 621)).objectCompare (enumerator_25038.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 621)))).boolEnum () ;
+      test_3 = GGS_bool (ComparisonKind::notEqual, var_formalParameterList_26241.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 661)).objectCompare (enumerator_25954.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 661)))).boolEnum () ;
       if (kBoolTrue == test_3) {
         TC_Array <FixItDescription> fixItArray4 ;
-        inCompiler->emitSemanticError (enumerator_25038.current_mFunctionName (HERE).readProperty_location (), var_formalParameterList_25325.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 623)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 623)).add_operation (GGS_string (" parameter(s) required, "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 623)).add_operation (enumerator_25038.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 623)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 623)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 623)).add_operation (GGS_string (" provided"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 623)), fixItArray4  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 622)) ;
+        inCompiler->emitSemanticError (enumerator_25954.current_mFunctionName (HERE).readProperty_location (), var_formalParameterList_26241.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 663)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 663)).add_operation (GGS_string (" parameter(s) required, "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 663)).add_operation (enumerator_25954.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 663)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 663)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 663)).add_operation (GGS_string (" provided"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 663)), fixItArray4  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 662)) ;
       }
     }
     if (kBoolFalse == test_3) {
-      cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_25661 (enumerator_25038.current_mParameterList (HERE), EnumerationOrder::up) ;
-      cEnumerator_autoLayoutClassParameterList enumerator_25705 (var_formalParameterList_25325, EnumerationOrder::up) ;
-      while (enumerator_25661.hasCurrentObject () && enumerator_25705.hasCurrentObject ()) {
+      cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_26577 (enumerator_25954.current_mParameterList (HERE), EnumerationOrder::up) ;
+      cEnumerator_autoLayoutClassParameterList enumerator_26621 (var_formalParameterList_26241, EnumerationOrder::up) ;
+      while (enumerator_26577.hasCurrentObject () && enumerator_26621.hasCurrentObject ()) {
         enumGalgasBool test_5 = kBoolTrue ;
         if (kBoolTrue == test_5) {
-          const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_25758 = enumerator_25705.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 626)).unwrappedValue () ;
-          if (!enumerator_25705.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 626)).isValuated ()) {
+          const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_26674 = enumerator_26621.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 666)).unwrappedValue () ;
+          if (!enumerator_26621.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 666)).isValuated ()) {
             test_5 = kBoolFalse ;
           }
           if (kBoolTrue == test_5) {
-            const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_25803 = enumerator_25661.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 626)).unwrappedValue () ;
-            if (!enumerator_25661.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 626)).isValuated ()) {
+            const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_26719 = enumerator_26577.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 666)).unwrappedValue () ;
+            if (!enumerator_26577.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 666)).isValuated ()) {
               test_5 = kBoolFalse ;
             }
             if (kBoolTrue == test_5) {
-              GGS_classKind var_typeKind_25900 ;
-              GGS_propertyMap joker_25910_3 ; // Joker input parameter
-              GGS_actionMap joker_25910_2 ; // Joker input parameter
-              GGS_propertyGenerationList joker_25910_1 ; // Joker input parameter
-              constinArgument_inClassMap.method_searchKey (var_formalTypeEnum_25758.readProperty_name (), var_typeKind_25900, joker_25910_3, joker_25910_2, joker_25910_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 627)) ;
+              GGS_classKind var_typeKind_26816 ;
+              GGS_propertyMap joker_26826_3 ; // Joker input parameter
+              GGS_actionMap joker_26826_2 ; // Joker input parameter
+              GGS_propertyGenerationList joker_26826_1 ; // Joker input parameter
+              constinArgument_inClassMap.method_searchKey (var_formalTypeEnum_26674.readProperty_name (), var_typeKind_26816, joker_26826_3, joker_26826_2, joker_26826_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 667)) ;
               enumGalgasBool test_6 = kBoolTrue ;
               if (kBoolTrue == test_6) {
-                const GGS_classKind_2E_atomic var_atomicTypeKind_25932 = var_typeKind_25900.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 628)).unwrappedValue () ;
-                if (!var_typeKind_25900.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 628)).isValuated ()) {
+                const GGS_classKind_2E_atomic var_atomicTypeKind_26848 = var_typeKind_26816.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 668)).unwrappedValue () ;
+                if (!var_typeKind_26816.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 668)).isValuated ()) {
                   test_6 = kBoolFalse ;
                 }
                 if (kBoolTrue == test_6) {
-                  const GGS_typeKind_2E_enumType var_atomicEnumType_25973 = var_atomicTypeKind_25932.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 628)).unwrappedValue () ;
-                  if (!var_atomicTypeKind_25932.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 628)).isValuated ()) {
+                  const GGS_typeKind_2E_enumType var_atomicEnumType_26889 = var_atomicTypeKind_26848.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 668)).unwrappedValue () ;
+                  if (!var_atomicTypeKind_26848.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 668)).isValuated ()) {
                     test_6 = kBoolFalse ;
                   }
                   if (kBoolTrue == test_6) {
-                    GGS_uint joker_26098 ; // Joker input parameter
-                    var_atomicEnumType_25973.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_25803.readProperty_name (), joker_26098, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 629)) ;
+                    GGS_uint joker_27014 ; // Joker input parameter
+                    var_atomicEnumType_26889.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_26719.readProperty_name (), joker_27014, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 669)) ;
                   }
                 }
               }
               if (kBoolFalse == test_6) {
                 TC_Array <FixItDescription> fixItArray7 ;
-                inCompiler->emitSemanticError (var_formalTypeEnum_25758.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray7  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 631)) ;
+                inCompiler->emitSemanticError (var_formalTypeEnum_26674.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray7  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 671)) ;
               }
             }
           }
@@ -8240,174 +7789,174 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
         if (kBoolFalse == test_5) {
           enumGalgasBool test_8 = kBoolTrue ;
           if (kBoolTrue == test_8) {
-            test_8 = GGS_bool (ComparisonKind::notEqual, enumerator_25661.current_mParameterType (HERE).objectCompare (enumerator_25705.current_mParameterType (HERE))).boolEnum () ;
+            test_8 = GGS_bool (ComparisonKind::notEqual, enumerator_26577.current_mParameterType (HERE).objectCompare (enumerator_26621.current_mParameterType (HERE))).boolEnum () ;
             if (kBoolTrue == test_8) {
               TC_Array <FixItDescription> fixItArray9 ;
-              inCompiler->emitSemanticError (enumerator_25661.current_mParameterName (HERE).readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_25705.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)).add_operation (extensionGetter_string (enumerator_25661.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)), fixItArray9  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 634)) ;
+              inCompiler->emitSemanticError (enumerator_26577.current_mParameterName (HERE).readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_26621.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)).add_operation (extensionGetter_string (enumerator_26577.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)), fixItArray9  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 674)) ;
             }
           }
         }
         enumGalgasBool test_10 = kBoolTrue ;
         if (kBoolTrue == test_10) {
-          test_10 = GGS_bool (ComparisonKind::notEqual, enumerator_25661.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_25705.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
+          test_10 = GGS_bool (ComparisonKind::notEqual, enumerator_26577.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_26621.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
           if (kBoolTrue == test_10) {
             TC_Array <FixItDescription> fixItArray11 ;
-            inCompiler->emitSemanticError (enumerator_25661.current_mParameterName (HERE).readProperty_location (), GGS_string ("the parameter name should be '").add_operation (enumerator_25705.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 637)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 637)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 637)) ;
+            inCompiler->emitSemanticError (enumerator_26577.current_mParameterName (HERE).readProperty_location (), GGS_string ("the parameter name should be '").add_operation (enumerator_26621.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 677)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 677)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 677)) ;
           }
         }
-        switch (enumerator_25661.current_mParameter (HERE).enumValue ()) {
+        switch (enumerator_26577.current_mParameter (HERE).enumValue ()) {
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::invalid:
           break ;
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_viewFunc:
           {
-            GGS_astAbstractViewInstructionDeclaration extractedValue_26536_instruction_0 ;
-            enumerator_25661.current_mParameter (HERE).getAssociatedValuesFor_viewFunc (extractedValue_26536_instruction_0) ;
-            GGS_abstractViewInstructionGeneration var_viewInstruction_27059 ;
-            callExtensionMethod_generateViewCode ((cPtr_astAbstractViewInstructionDeclaration *) extractedValue_26536_instruction_0.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_27059, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 641)) ;
-            GGS_string var_viewInstructionString_27101 = callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) var_viewInstruction_27059.ptr (), constinArgument_inPreferences, enumerator_25661.current_mParameterName (HERE).readProperty_string (), GGS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 656)) ;
+            GGS_astAbstractViewInstructionDeclaration extractedValue_27452_instruction_0 ;
+            enumerator_26577.current_mParameter (HERE).getAssociatedValuesFor_viewFunc (extractedValue_27452_instruction_0) ;
+            GGS_abstractViewInstructionGeneration var_viewInstruction_27975 ;
+            callExtensionMethod_generateViewCode ((cPtr_astAbstractViewInstructionDeclaration *) extractedValue_27452_instruction_0.ptr (), constinArgument_inViewDeclarationMap, constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inPreferencesPropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inActionMap, constinArgument_inReceiverSwiftTypeName, constinArgument_inClassMap, ioArgument_ioImplicitViewFunctionGenerationList, ioArgument_ioConfiguratorMap, ioArgument_ioOutletMap, var_viewInstruction_27975, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 681)) ;
+            GGS_string var_viewInstructionString_28017 = callExtensionGetter_generateViewInstruction ((const cPtr_abstractViewInstructionGeneration *) var_viewInstruction_27975.ptr (), constinArgument_inPreferences, enumerator_26577.current_mParameterName (HERE).readProperty_string (), GGS_string::makeEmptyString (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)) ;
             {
-            var_parameterList_25404.setter_append (enumerator_25661.current_mParameterName (HERE).readProperty_string (), GGS_string ("{ () -> NSView in ").add_operation (var_viewInstructionString_27101, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)).add_operation (GGS_string (" ; return "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)).add_operation (enumerator_25661.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)).add_operation (GGS_string (" } ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)) ;
+            var_parameterList_26320.setter_append (enumerator_26577.current_mParameterName (HERE).readProperty_string (), GGS_string ("{ () -> NSView in ").add_operation (var_viewInstructionString_28017, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 701)).add_operation (GGS_string (" ; return "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 701)).add_operation (enumerator_26577.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 701)).add_operation (GGS_string (" } ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 701)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 701)) ;
             }
           }
           break ;
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_string:
           {
-            GGS_string extractedValue_27401_stringValue_0 ;
-            enumerator_25661.current_mParameter (HERE).getAssociatedValuesFor_string (extractedValue_27401_stringValue_0) ;
+            GGS_string extractedValue_28317_stringValue_0 ;
+            enumerator_26577.current_mParameter (HERE).getAssociatedValuesFor_string (extractedValue_28317_stringValue_0) ;
             {
-            var_parameterList_25404.setter_append (enumerator_25661.current_mParameterName (HERE).readProperty_string (), extractedValue_27401_stringValue_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 663)) ;
+            var_parameterList_26320.setter_append (enumerator_26577.current_mParameterName (HERE).readProperty_string (), extractedValue_28317_stringValue_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 703)) ;
             }
           }
           break ;
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_entity:
           {
-            GGS_lstring extractedValue_27490_entityName_0 ;
-            enumerator_25661.current_mParameter (HERE).getAssociatedValuesFor_entity (extractedValue_27490_entityName_0) ;
-            GGS_classKind var_classKind_27553 ;
-            GGS_propertyMap joker_27564_3 ; // Joker input parameter
-            GGS_actionMap joker_27564_2 ; // Joker input parameter
-            GGS_propertyGenerationList joker_27564_1 ; // Joker input parameter
-            constinArgument_inClassMap.method_searchKey (extractedValue_27490_entityName_0, var_classKind_27553, joker_27564_3, joker_27564_2, joker_27564_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 665)) ;
+            GGS_lstring extractedValue_28406_entityName_0 ;
+            enumerator_26577.current_mParameter (HERE).getAssociatedValuesFor_entity (extractedValue_28406_entityName_0) ;
+            GGS_classKind var_classKind_28469 ;
+            GGS_propertyMap joker_28480_3 ; // Joker input parameter
+            GGS_actionMap joker_28480_2 ; // Joker input parameter
+            GGS_propertyGenerationList joker_28480_1 ; // Joker input parameter
+            constinArgument_inClassMap.method_searchKey (extractedValue_28406_entityName_0, var_classKind_28469, joker_28480_3, joker_28480_2, joker_28480_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 705)) ;
             enumGalgasBool test_12 = kBoolTrue ;
             if (kBoolTrue == test_12) {
-              test_12 = var_classKind_27553.getter_isEntity (SOURCE_FILE ("auto-layout-view.ggs", 666)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 666)).boolEnum () ;
+              test_12 = var_classKind_28469.getter_isEntity (SOURCE_FILE ("auto-layout-view.ggs", 706)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 706)).boolEnum () ;
               if (kBoolTrue == test_12) {
                 TC_Array <FixItDescription> fixItArray13 ;
-                inCompiler->emitSemanticError (extractedValue_27490_entityName_0.readProperty_location (), GGS_string ("an entity is required here"), fixItArray13  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 667)) ;
+                inCompiler->emitSemanticError (extractedValue_28406_entityName_0.readProperty_location (), GGS_string ("an entity is required here"), fixItArray13  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 707)) ;
               }
             }
             {
-            var_parameterList_25404.setter_append (enumerator_25661.current_mParameterName (HERE).readProperty_string (), extractedValue_27490_entityName_0.readProperty_string ().add_operation (GGS_string (".self"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 669)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 669)) ;
+            var_parameterList_26320.setter_append (enumerator_26577.current_mParameterName (HERE).readProperty_string (), extractedValue_28406_entityName_0.readProperty_string ().add_operation (GGS_string (".self"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 709)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 709)) ;
             }
           }
           break ;
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_menuItem:
           {
-            GGS_string extractedValue_27775_title_0 ;
-            GGS_runActionDescriptor extractedValue_27782_run_1 ;
-            GGS_multipleBindingDescriptor extractedValue_27787_enabledBinding_2 ;
-            enumerator_25661.current_mParameter (HERE).getAssociatedValuesFor_menuItem (extractedValue_27775_title_0, extractedValue_27782_run_1, extractedValue_27787_enabledBinding_2) ;
-            GGS_autolayoutRunBindingForGeneration var_runBindingGeneration_28067 ;
+            GGS_string extractedValue_28691_title_0 ;
+            GGS_runActionDescriptor extractedValue_28698_run_1 ;
+            GGS_multipleBindingDescriptor extractedValue_28703_enabledBinding_2 ;
+            enumerator_26577.current_mParameter (HERE).getAssociatedValuesFor_menuItem (extractedValue_28691_title_0, extractedValue_28698_run_1, extractedValue_28703_enabledBinding_2) ;
+            GGS_autolayoutRunBindingForGeneration var_runBindingGeneration_28983 ;
             {
-            routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_27782_run_1, GGS_bool (true), constinArgument_inPreferences, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 675)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_28067, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 671)) ;
+            routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (extractedValue_28698_run_1, GGS_bool (true), constinArgument_inPreferences, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view.ggs", 715)), constinArgument_inActionMap, constinArgument_inObservablePropertyMap, constinArgument_inReceiverSwiftTypeName, var_runBindingGeneration_28983, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 711)) ;
             }
-            GGS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_28423 ;
+            GGS_autolayoutEnabledBindingForGeneration var_enabledBindingGeneration_29339 ;
             {
-            routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_27787_enabledBinding_2, GGS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_28423, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 681)) ;
+            routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_prefs_3F__3F__3F__3F_prefsMap_21_ (extractedValue_28703_enabledBinding_2, GGS_bool (true), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inObservablePropertyMap, constinArgument_inPreferencesPropertyMap, var_enabledBindingGeneration_29339, inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 721)) ;
             }
-            GGS_string var_s_28474 = GGS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_27775_title_0.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 691)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 691)) ;
-            switch (var_runBindingGeneration_28067.enumValue ()) {
+            GGS_string var_s_29390 = GGS_string ("AutoLayoutMenuItemDescriptor (title: ").add_operation (extractedValue_28691_title_0.getter_utf_38_Representation (SOURCE_FILE ("auto-layout-view.ggs", 731)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 731)) ;
+            switch (var_runBindingGeneration_28983.enumValue ()) {
             case GGS_autolayoutRunBindingForGeneration::Enumeration::invalid:
               break ;
             case GGS_autolayoutRunBindingForGeneration::Enumeration::enum_none:
               {
-                var_s_28474.plusAssign_operation(GGS_string (", target: nil, selector: nil"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 694)) ;
+                var_s_29390.plusAssign_operation(GGS_string (", target: nil, selector: nil"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 734)) ;
               }
               break ;
             case GGS_autolayoutRunBindingForGeneration::Enumeration::enum_run:
               {
-                GGS_string extractedValue_28674_targetName_0 ;
-                GGS_string extractedValue_28686_actionName_1 ;
-                GGS_string extractedValue_28698_runTargetName_2 ;
-                var_runBindingGeneration_28067.getAssociatedValuesFor_run (extractedValue_28674_targetName_0, extractedValue_28686_actionName_1, extractedValue_28698_runTargetName_2) ;
-                var_s_28474.plusAssign_operation(GGS_string (", target: ").add_operation (extractedValue_28674_targetName_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)).add_operation (GGS_string (", selector: #selector ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)).add_operation (extractedValue_28698_runTargetName_2, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)).add_operation (extractedValue_28686_actionName_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)).add_operation (GGS_string (" (_:))"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 696)) ;
+                GGS_string extractedValue_29590_targetName_0 ;
+                GGS_string extractedValue_29602_actionName_1 ;
+                GGS_string extractedValue_29614_runTargetName_2 ;
+                var_runBindingGeneration_28983.getAssociatedValuesFor_run (extractedValue_29590_targetName_0, extractedValue_29602_actionName_1, extractedValue_29614_runTargetName_2) ;
+                var_s_29390.plusAssign_operation(GGS_string (", target: ").add_operation (extractedValue_29590_targetName_0, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)).add_operation (GGS_string (", selector: #selector ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)).add_operation (extractedValue_29614_runTargetName_2, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)).add_operation (extractedValue_29602_actionName_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)).add_operation (GGS_string (" (_:))"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 736)) ;
               }
               break ;
             }
-            switch (var_enabledBindingGeneration_28423.enumValue ()) {
+            switch (var_enabledBindingGeneration_29339.enumValue ()) {
             case GGS_autolayoutEnabledBindingForGeneration::Enumeration::invalid:
               break ;
             case GGS_autolayoutEnabledBindingForGeneration::Enumeration::enum_none:
               {
-                var_s_28474.plusAssign_operation(GGS_string (", enableBinding: .alwaysTrue"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 700)) ;
+                var_s_29390.plusAssign_operation(GGS_string (", enableBinding: .alwaysTrue"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 740)) ;
               }
               break ;
             case GGS_autolayoutEnabledBindingForGeneration::Enumeration::enum_enabled:
               {
-                GGS_abstractBooleanMultipleBindingExpressionForGeneration extractedValue_28983_binding_0 ;
-                var_enabledBindingGeneration_28423.getAssociatedValuesFor_enabled (extractedValue_28983_binding_0) ;
-                var_s_28474.plusAssign_operation(GGS_string (", enableBinding: ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) extractedValue_28983_binding_0.ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 702)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 702)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 702)) ;
+                GGS_abstractBooleanMultipleBindingExpressionForGeneration extractedValue_29899_binding_0 ;
+                var_enabledBindingGeneration_29339.getAssociatedValuesFor_enabled (extractedValue_29899_binding_0) ;
+                var_s_29390.plusAssign_operation(GGS_string (", enableBinding: ").add_operation (callExtensionGetter_expressionString ((const cPtr_abstractBooleanMultipleBindingExpressionForGeneration *) extractedValue_29899_binding_0.ptr (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 742)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 742)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 742)) ;
               }
               break ;
             }
-            var_s_28474.plusAssign_operation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 704)) ;
+            var_s_29390.plusAssign_operation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 744)) ;
             {
-            var_parameterList_25404.setter_append (enumerator_25661.current_mParameterName (HERE).readProperty_string (), var_s_28474, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 705)) ;
+            var_parameterList_26320.setter_append (enumerator_26577.current_mParameterName (HERE).readProperty_string (), var_s_29390, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 745)) ;
             }
           }
           break ;
         case GGS_astAutoLayoutViewInstructionParameterValue::Enumeration::enum_enumFunc:
           {
-            GGS_lstring extractedValue_29157_enumTypeName_0 ;
-            GGS_lstring extractedValue_29171_funcName_1 ;
-            enumerator_25661.current_mParameter (HERE).getAssociatedValuesFor_enumFunc (extractedValue_29157_enumTypeName_0, extractedValue_29171_funcName_1) ;
-            GGS_classKind var_type_29251 ;
-            GGS_propertyMap joker_29257_3 ; // Joker input parameter
-            GGS_actionMap joker_29257_2 ; // Joker input parameter
-            GGS_propertyGenerationList joker_29257_1 ; // Joker input parameter
-            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_29157_enumTypeName_0, var_type_29251, joker_29257_3, joker_29257_2, joker_29257_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 707)) ;
+            GGS_lstring extractedValue_30073_enumTypeName_0 ;
+            GGS_lstring extractedValue_30087_funcName_1 ;
+            enumerator_26577.current_mParameter (HERE).getAssociatedValuesFor_enumFunc (extractedValue_30073_enumTypeName_0, extractedValue_30087_funcName_1) ;
+            GGS_classKind var_type_30167 ;
+            GGS_propertyMap joker_30173_3 ; // Joker input parameter
+            GGS_actionMap joker_30173_2 ; // Joker input parameter
+            GGS_propertyGenerationList joker_30173_1 ; // Joker input parameter
+            constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_30073_enumTypeName_0, var_type_30167, joker_30173_3, joker_30173_2, joker_30173_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 747)) ;
             enumGalgasBool test_14 = kBoolTrue ;
             if (kBoolTrue == test_14) {
-              test_14 = var_type_29251.getter_isAtomic (SOURCE_FILE ("auto-layout-view.ggs", 708)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 708)).boolEnum () ;
+              test_14 = var_type_30167.getter_isAtomic (SOURCE_FILE ("auto-layout-view.ggs", 748)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 748)).boolEnum () ;
               if (kBoolTrue == test_14) {
                 TC_Array <FixItDescription> fixItArray15 ;
-                inCompiler->emitSemanticError (extractedValue_29157_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 709)) ;
+                inCompiler->emitSemanticError (extractedValue_30073_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 749)) ;
               }
             }
             if (kBoolFalse == test_14) {
-              GGS_typeKind var_typeKind_29433 ;
-              var_type_29251.method_extractAtomic (var_typeKind_29433, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 711)) ;
+              GGS_typeKind var_typeKind_30349 ;
+              var_type_30167.method_extractAtomic (var_typeKind_30349, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 751)) ;
               enumGalgasBool test_16 = kBoolTrue ;
               if (kBoolTrue == test_16) {
-                test_16 = var_typeKind_29433.getter_isEnumType (SOURCE_FILE ("auto-layout-view.ggs", 712)).boolEnum () ;
+                test_16 = var_typeKind_30349.getter_isEnumType (SOURCE_FILE ("auto-layout-view.ggs", 752)).boolEnum () ;
                 if (kBoolTrue == test_16) {
-                  GGS_enumFuncMap var_funcMap_29541 ;
-                  GGS_string joker_29523_2 ; // Joker input parameter
-                  GGS_enumConstantMap joker_29523_1 ; // Joker input parameter
-                  var_typeKind_29433.method_extractEnumType (joker_29523_2, joker_29523_1, var_funcMap_29541, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 713)) ;
-                  GGS_enumFunAssociationSortedList joker_29593 ; // Joker input parameter
-                  var_funcMap_29541.method_searchKey (extractedValue_29171_funcName_1, joker_29593, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 714)) ;
+                  GGS_enumFuncMap var_funcMap_30457 ;
+                  GGS_string joker_30439_2 ; // Joker input parameter
+                  GGS_enumConstantMap joker_30439_1 ; // Joker input parameter
+                  var_typeKind_30349.method_extractEnumType (joker_30439_2, joker_30439_1, var_funcMap_30457, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 753)) ;
+                  GGS_enumFunAssociationSortedList joker_30509 ; // Joker input parameter
+                  var_funcMap_30457.method_searchKey (extractedValue_30087_funcName_1, joker_30509, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 754)) ;
                 }
               }
               if (kBoolFalse == test_16) {
                 TC_Array <FixItDescription> fixItArray17 ;
-                inCompiler->emitSemanticError (extractedValue_29157_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray17  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 716)) ;
+                inCompiler->emitSemanticError (extractedValue_30073_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray17  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 756)) ;
               }
             }
             {
-            var_parameterList_25404.setter_append (enumerator_25661.current_mParameterName (HERE).readProperty_string (), extractedValue_29157_enumTypeName_0.readProperty_string ().add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 719)).add_operation (extractedValue_29171_funcName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 719)).add_operation (GGS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 719)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 719)) ;
+            var_parameterList_26320.setter_append (enumerator_26577.current_mParameterName (HERE).readProperty_string (), extractedValue_30073_enumTypeName_0.readProperty_string ().add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 759)).add_operation (extractedValue_30087_funcName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 759)).add_operation (GGS_string (" ()"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 759)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 759)) ;
             }
           }
           break ;
         }
-        enumerator_25661.gotoNextObject () ;
-        enumerator_25705.gotoNextObject () ;
+        enumerator_26577.gotoNextObject () ;
+        enumerator_26621.gotoNextObject () ;
       }
     }
     {
-    outArgument_outFuncCallList.setter_append (enumerator_25038.current_mFunctionName (HERE).readProperty_string (), var_parameterList_25404, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 723)) ;
+    outArgument_outFuncCallList.setter_append (enumerator_25954.current_mFunctionName (HERE).readProperty_string (), var_parameterList_26320, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 763)) ;
     }
-    enumerator_25038.gotoNextObject () ;
+    enumerator_25954.gotoNextObject () ;
   }
 }
 
@@ -9642,220 +9191,6 @@ GGS_computedHorizontalViewGeneration_2E_weak GGS_computedHorizontalViewGeneratio
 }
 
 //--------------------------------------------------------------------------------------------------
-// @computedVerticalViewGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_computedVerticalViewGeneration::objectCompare (const GGS_computedVerticalViewGeneration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration::GGS_computedVerticalViewGeneration (void) :
-GGS_abstractViewGeneration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration GGS_computedVerticalViewGeneration::
-init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                  const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                  Compiler * inCompiler
-                  COMMA_LOCATION_ARGS) {
-  cPtr_computedVerticalViewGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_computedVerticalViewGeneration (inCompiler COMMA_THERE)) ;
-  object->computedVerticalViewGeneration_init_21__21__21_ (in_mFuncCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
-  const GGS_computedVerticalViewGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_computedVerticalViewGeneration::
-computedVerticalViewGeneration_init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                 const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                 const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                 Compiler * /* inCompiler */) {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration::GGS_computedVerticalViewGeneration (const cPtr_computedVerticalViewGeneration * inSourcePtr) :
-GGS_abstractViewGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_computedVerticalViewGeneration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration GGS_computedVerticalViewGeneration::class_func_new (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                       const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                       const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_computedVerticalViewGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_computedVerticalViewGeneration (in_mFuncCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_computedVerticalViewGeneration::readProperty_mFuncCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
-  }else{
-    cPtr_computedVerticalViewGeneration * p = (cPtr_computedVerticalViewGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_computedVerticalViewGeneration) ;
-    return p->mProperty_mFuncCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationList GGS_computedVerticalViewGeneration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationList () ;
-  }else{
-    cPtr_computedVerticalViewGeneration * p = (cPtr_computedVerticalViewGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_computedVerticalViewGeneration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_computedVerticalViewGeneration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_computedVerticalViewGeneration * p = (cPtr_computedVerticalViewGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_computedVerticalViewGeneration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @computedVerticalViewGeneration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_computedVerticalViewGeneration::cPtr_computedVerticalViewGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractViewGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_computedVerticalViewGeneration::cPtr_computedVerticalViewGeneration (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                          const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                          const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_abstractViewGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mNewStackViewDeclarationList () {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_computedVerticalViewGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_computedVerticalViewGeneration ;
-}
-
-void cPtr_computedVerticalViewGeneration::description (String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString.appendCString ("[@computedVerticalViewGeneration:") ;
-  mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_computedVerticalViewGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_computedVerticalViewGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_computedVerticalViewGeneration::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractViewGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mFuncCallList.printNonNullClassInstanceProperties ("mFuncCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @computedVerticalViewGeneration generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalViewGeneration ("computedVerticalViewGeneration",
-                                                                                      & kTypeDescriptor_GALGAS_abstractViewGeneration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_computedVerticalViewGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_computedVerticalViewGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_computedVerticalViewGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_computedVerticalViewGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration GGS_computedVerticalViewGeneration::extractObject (const GGS_object & inObject,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
-  GGS_computedVerticalViewGeneration result ;
-  const GGS_computedVerticalViewGeneration * p = (const GGS_computedVerticalViewGeneration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_computedVerticalViewGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("computedVerticalViewGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 
 ComparisonResult GGS_computedVerticalViewGeneration_2E_weak::objectCompare (const GGS_computedVerticalViewGeneration_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -10694,243 +10029,6 @@ GGS_hStackViewInstructionGeneration_2E_weak GGS_hStackViewInstructionGeneration_
       result = *p ;
     }else{
       inCompiler->castError ("hStackViewInstructionGeneration.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @vStackViewInstructionGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_vStackViewInstructionGeneration::objectCompare (const GGS_vStackViewInstructionGeneration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration::GGS_vStackViewInstructionGeneration (void) :
-GGS_abstractViewInstructionGeneration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration GGS_vStackViewInstructionGeneration::
-init_21__21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                      const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                      const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                      Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) {
-  cPtr_vStackViewInstructionGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_vStackViewInstructionGeneration (inCompiler COMMA_THERE)) ;
-  object->vStackViewInstructionGeneration_init_21__21__21__21_ (in_mFuncCallList, in_mInstructionList, in_mMultipleBindingGenerationList, in_mNewStackViewDeclarationList, inCompiler) ;
-  const GGS_vStackViewInstructionGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_vStackViewInstructionGeneration::
-vStackViewInstructionGeneration_init_21__21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                      const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                      const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                      Compiler * /* inCompiler */) {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration::GGS_vStackViewInstructionGeneration (const cPtr_vStackViewInstructionGeneration * inSourcePtr) :
-GGS_abstractViewInstructionGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_vStackViewInstructionGeneration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration GGS_vStackViewInstructionGeneration::class_func_new (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                         const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                         const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                         const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_vStackViewInstructionGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_vStackViewInstructionGeneration (in_mFuncCallList, in_mInstructionList, in_mMultipleBindingGenerationList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_vStackViewInstructionGeneration::readProperty_mFuncCallList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
-  }else{
-    cPtr_vStackViewInstructionGeneration * p = (cPtr_vStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_vStackViewInstructionGeneration) ;
-    return p->mProperty_mFuncCallList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewInstructionGenerationList GGS_vStackViewInstructionGeneration::readProperty_mInstructionList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutViewInstructionGenerationList () ;
-  }else{
-    cPtr_vStackViewInstructionGeneration * p = (cPtr_vStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_vStackViewInstructionGeneration) ;
-    return p->mProperty_mInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutMultipleBindingGenerationList GGS_vStackViewInstructionGeneration::readProperty_mMultipleBindingGenerationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutMultipleBindingGenerationList () ;
-  }else{
-    cPtr_vStackViewInstructionGeneration * p = (cPtr_vStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_vStackViewInstructionGeneration) ;
-    return p->mProperty_mMultipleBindingGenerationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astNewStackViewDeclarationList GGS_vStackViewInstructionGeneration::readProperty_mNewStackViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astNewStackViewDeclarationList () ;
-  }else{
-    cPtr_vStackViewInstructionGeneration * p = (cPtr_vStackViewInstructionGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_vStackViewInstructionGeneration) ;
-    return p->mProperty_mNewStackViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @vStackViewInstructionGeneration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_vStackViewInstructionGeneration::cPtr_vStackViewInstructionGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mNewStackViewDeclarationList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_vStackViewInstructionGeneration::cPtr_vStackViewInstructionGeneration (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                            const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                            const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                            const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) :
-cPtr_abstractViewInstructionGeneration (inCompiler COMMA_THERE),
-mProperty_mFuncCallList (),
-mProperty_mInstructionList (),
-mProperty_mMultipleBindingGenerationList (),
-mProperty_mNewStackViewDeclarationList () {
-  mProperty_mFuncCallList = in_mFuncCallList ;
-  mProperty_mInstructionList = in_mInstructionList ;
-  mProperty_mMultipleBindingGenerationList = in_mMultipleBindingGenerationList ;
-  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_vStackViewInstructionGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_vStackViewInstructionGeneration ;
-}
-
-void cPtr_vStackViewInstructionGeneration::description (String & ioString,
-                                                        const int32_t inIndentation) const {
-  ioString.appendCString ("[@vStackViewInstructionGeneration:") ;
-  mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mMultipleBindingGenerationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_vStackViewInstructionGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_vStackViewInstructionGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mMultipleBindingGenerationList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_vStackViewInstructionGeneration::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractViewInstructionGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mFuncCallList.printNonNullClassInstanceProperties ("mFuncCallList") ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mMultipleBindingGenerationList.printNonNullClassInstanceProperties ("mMultipleBindingGenerationList") ;
-    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @vStackViewInstructionGeneration generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructionGeneration ("vStackViewInstructionGeneration",
-                                                                                       & kTypeDescriptor_GALGAS_abstractViewInstructionGeneration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_vStackViewInstructionGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_vStackViewInstructionGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_vStackViewInstructionGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_vStackViewInstructionGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration GGS_vStackViewInstructionGeneration::extractObject (const GGS_object & inObject,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
-  GGS_vStackViewInstructionGeneration result ;
-  const GGS_vStackViewInstructionGeneration * p = (const GGS_vStackViewInstructionGeneration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_vStackViewInstructionGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("vStackViewInstructionGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
@@ -14554,19 +13652,19 @@ void extensionMethod_generate (const GGS_autoLayoutViewInstructionGenerationFunc
                                Compiler * inCompiler
                                COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
-  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_77194 (temp_0, EnumerationOrder::up) ;
-  while (enumerator_77194.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GGS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1840)).add_operation (enumerator_77194.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1840)).add_operation (GGS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1840)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1840)) ;
-    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_77297 (enumerator_77194.current_mParameters (HERE), EnumerationOrder::up) ;
-    while (enumerator_77297.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_77297.current_mParameterName (HERE).add_operation (GGS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1842)).add_operation (enumerator_77297.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1842)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1842)) ;
-      if (enumerator_77297.hasNextObject ()) {
-        ioArgument_ioStr.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1843)) ;
+  cEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_78122 (temp_0, EnumerationOrder::up) ;
+  while (enumerator_78122.hasCurrentObject ()) {
+    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GGS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1885)).add_operation (enumerator_78122.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1885)).add_operation (GGS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1885)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1885)) ;
+    cEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_78225 (enumerator_78122.current_mParameters (HERE), EnumerationOrder::up) ;
+    while (enumerator_78225.hasCurrentObject ()) {
+      ioArgument_ioStr.plusAssign_operation(enumerator_78225.current_mParameterName (HERE).add_operation (GGS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1887)).add_operation (enumerator_78225.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1887)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1887)) ;
+      if (enumerator_78225.hasNextObject ()) {
+        ioArgument_ioStr.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1888)) ;
       }
-      enumerator_77297.gotoNextObject () ;
+      enumerator_78225.gotoNextObject () ;
     }
-    ioArgument_ioStr.plusAssign_operation(GGS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1845)) ;
-    enumerator_77194.gotoNextObject () ;
+    ioArgument_ioStr.plusAssign_operation(GGS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1890)) ;
+    enumerator_78122.gotoNextObject () ;
   }
 }
 
@@ -15055,6 +14153,1047 @@ GGS_outletBindingSpecificationMap GGS_outletBindingSpecificationMap::extractObje
       result = *p ;
     }else{
       inCompiler->castError ("outletBindingSpecificationMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Class for element of '@bindingOptionList' list
+//
+//--------------------------------------------------------------------------------------------------
+
+class cCollectionElement_bindingOptionList : public cCollectionElement {
+  public: GGS_bindingOptionList_2E_element mObject ;
+
+//--- Class functions
+  public: cCollectionElement_bindingOptionList (const GGS_lstring & in_mOptionName,
+                                                const GGS_abstractDefaultValue & in_mOptionValue
+                                                COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_bindingOptionList (const GGS_bindingOptionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_bindingOptionList::cCollectionElement_bindingOptionList (const GGS_lstring & in_mOptionName,
+                                                                            const GGS_abstractDefaultValue & in_mOptionValue
+                                                                            COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mOptionName, in_mOptionValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_bindingOptionList::cCollectionElement_bindingOptionList (const GGS_bindingOptionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mOptionName, inElement.mProperty_mOptionValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cCollectionElement_bindingOptionList::isValid (void) const {
+  return true ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement * cCollectionElement_bindingOptionList::copy (void) {
+  cCollectionElement * result = nullptr ;
+  macroMyNew (result, cCollectionElement_bindingOptionList (mObject.mProperty_mOptionName, mObject.mProperty_mOptionValue COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cCollectionElement_bindingOptionList::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mOptionName" ":") ;
+  mObject.mProperty_mOptionName.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mOptionValue" ":") ;
+  mObject.mProperty_mOptionValue.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList::GGS_bindingOptionList (void) :
+AC_GALGAS_list () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList::GGS_bindingOptionList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
+  return GGS_bindingOptionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GGS_bindingOptionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::enterElement (const GGS_bindingOptionList_2E_element & inValue,
+                                          Compiler * /* inCompiler */
+                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_bindingOptionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::class_func_listWithValue (const GGS_lstring & inOperand0,
+                                                                       const GGS_abstractDefaultValue & inOperand1
+                                                                       COMMA_LOCATION_ARGS) {
+  GGS_bindingOptionList result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GGS_bindingOptionList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GGS_bindingOptionList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                       const GGS_lstring & in_mOptionName,
+                                                       const GGS_abstractDefaultValue & in_mOptionValue
+                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement_bindingOptionList * p = nullptr ;
+  macroMyNew (p, cCollectionElement_bindingOptionList (in_mOptionName,
+                                                       in_mOptionValue COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::addAssign_operation (const GGS_lstring & inOperand0,
+                                                 const GGS_abstractDefaultValue & inOperand1
+                                                 COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_bindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_append (const GGS_lstring inOperand0,
+                                           const GGS_abstractDefaultValue inOperand1,
+                                           Compiler * /* inCompiler */
+                                           COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_bindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_insertAtIndex (const GGS_lstring inOperand0,
+                                                  const GGS_abstractDefaultValue inOperand1,
+                                                  const GGS_uint inInsertionIndex,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_bindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_removeAtIndex (GGS_lstring & outOperand0,
+                                                  GGS_abstractDefaultValue & outOperand1,
+                                                  const GGS_uint inRemoveIndex,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  outOperand0.drop () ;
+  outOperand1.drop () ;
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+    if (nullptr == p) {
+      drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+      outOperand0 = p->mObject.mProperty_mOptionName ;
+      outOperand1 = p->mObject.mProperty_mOptionValue ;
+    }
+  }else{
+    drop () ;    
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_popFirst (GGS_lstring & outOperand0,
+                                             GGS_abstractDefaultValue & outOperand1,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    outOperand0 = p->mObject.mProperty_mOptionName ;
+    outOperand1 = p->mObject.mProperty_mOptionValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_popLast (GGS_lstring & outOperand0,
+                                            GGS_abstractDefaultValue & outOperand1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    outOperand0 = p->mObject.mProperty_mOptionName ;
+    outOperand1 = p->mObject.mProperty_mOptionValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::method_first (GGS_lstring & outOperand0,
+                                          GGS_abstractDefaultValue & outOperand1,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    outOperand0 = p->mObject.mProperty_mOptionName ;
+    outOperand1 = p->mObject.mProperty_mOptionValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::method_last (GGS_lstring & outOperand0,
+                                         GGS_abstractDefaultValue & outOperand1,
+                                         Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    outOperand0 = p->mObject.mProperty_mOptionName ;
+    outOperand1 = p->mObject.mProperty_mOptionValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::add_operation (const GGS_bindingOptionList & inOperand,
+                                                            Compiler * /* inCompiler */
+                                                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_bindingOptionList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::getter_subListWithRange (const GGS_range & inRange,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  GGS_bindingOptionList result = GGS_bindingOptionList::class_func_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::getter_subListFromIndex (const GGS_uint & inIndex,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const {
+  GGS_bindingOptionList result = GGS_bindingOptionList::class_func_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::getter_subListToIndex (const GGS_uint & inIndex,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const {
+  GGS_bindingOptionList result = GGS_bindingOptionList::class_func_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::plusAssign_operation (const GGS_bindingOptionList inOperand,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_setMOptionNameAtIndex (GGS_lstring inOperand,
+                                                          GGS_uint inIndex,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mOptionName = inOperand ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_bindingOptionList::getter_mOptionNameAtIndex (const GGS_uint & inIndex,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  GGS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    result = p->mObject.mProperty_mOptionName ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_bindingOptionList::setter_setMOptionValueAtIndex (GGS_abstractDefaultValue inOperand,
+                                                           GGS_uint inIndex,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mOptionValue = inOperand ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue GGS_bindingOptionList::getter_mOptionValueAtIndex (const GGS_uint & inIndex,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_bindingOptionList * p = (cCollectionElement_bindingOptionList *) attributes.ptr () ;
+  GGS_abstractDefaultValue result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+    result = p->mObject.mProperty_mOptionValue ;
+  }
+  return result ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+cEnumerator_bindingOptionList::cEnumerator_bindingOptionList (const GGS_bindingOptionList & inEnumeratedObject,
+                                                              const EnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList_2E_element cEnumerator_bindingOptionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_bindingOptionList * p = (const cCollectionElement_bindingOptionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring cEnumerator_bindingOptionList::current_mOptionName (LOCATION_ARGS) const {
+  const cCollectionElement_bindingOptionList * p = (const cCollectionElement_bindingOptionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+  return p->mObject.mProperty_mOptionName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue cEnumerator_bindingOptionList::current_mOptionValue (LOCATION_ARGS) const {
+  const cCollectionElement_bindingOptionList * p = (const cCollectionElement_bindingOptionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_bindingOptionList) ;
+  return p->mObject.mProperty_mOptionValue ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @bindingOptionList generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList ("bindingOptionList",
+                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_bindingOptionList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_bindingOptionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_bindingOptionList::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_bindingOptionList (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bindingOptionList GGS_bindingOptionList::extractObject (const GGS_object & inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  GGS_bindingOptionList result ;
+  const GGS_bindingOptionList * p = (const GGS_bindingOptionList *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_bindingOptionList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("bindingOptionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @abstractDefaultValue reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_abstractDefaultValue::objectCompare (const GGS_abstractDefaultValue & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue::GGS_abstractDefaultValue (void) :
+AC_GALGAS_reference_class () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue::GGS_abstractDefaultValue (const cPtr_abstractDefaultValue * inSourcePtr) :
+AC_GALGAS_reference_class (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_abstractDefaultValue) ;
+}
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @abstractDefaultValue class
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_abstractDefaultValue::cPtr_abstractDefaultValue (Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_abstractDefaultValue::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @abstractDefaultValue generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValue ("abstractDefaultValue",
+                                                                            nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_abstractDefaultValue::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_abstractDefaultValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_abstractDefaultValue::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_abstractDefaultValue (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue GGS_abstractDefaultValue::extractObject (const GGS_object & inObject,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  GGS_abstractDefaultValue result ;
+  const GGS_abstractDefaultValue * p = (const GGS_abstractDefaultValue *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_abstractDefaultValue *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("abstractDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Class for element of '@outletBindingModelList' list
+//
+//--------------------------------------------------------------------------------------------------
+
+class cCollectionElement_outletBindingModelList : public cCollectionElement {
+  public: GGS_outletBindingModelList_2E_element mObject ;
+
+//--- Class functions
+  public: cCollectionElement_outletBindingModelList (const GGS_propertyKind & in_mKind,
+                                                     const GGS_location & in_mErrorLocation
+                                                     COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_outletBindingModelList (const GGS_outletBindingModelList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_outletBindingModelList::cCollectionElement_outletBindingModelList (const GGS_propertyKind & in_mKind,
+                                                                                      const GGS_location & in_mErrorLocation
+                                                                                      COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mKind, in_mErrorLocation) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_outletBindingModelList::cCollectionElement_outletBindingModelList (const GGS_outletBindingModelList_2E_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mKind, inElement.mProperty_mErrorLocation) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cCollectionElement_outletBindingModelList::isValid (void) const {
+  return true ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement * cCollectionElement_outletBindingModelList::copy (void) {
+  cCollectionElement * result = nullptr ;
+  macroMyNew (result, cCollectionElement_outletBindingModelList (mObject.mProperty_mKind, mObject.mProperty_mErrorLocation COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cCollectionElement_outletBindingModelList::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mKind" ":") ;
+  mObject.mProperty_mKind.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mErrorLocation" ":") ;
+  mObject.mProperty_mErrorLocation.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList::GGS_outletBindingModelList (void) :
+AC_GALGAS_list () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList::GGS_outletBindingModelList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
+  return GGS_outletBindingModelList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GGS_outletBindingModelList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::enterElement (const GGS_outletBindingModelList_2E_element & inValue,
+                                               Compiler * /* inCompiler */
+                                               COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_outletBindingModelList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::class_func_listWithValue (const GGS_propertyKind & inOperand0,
+                                                                                 const GGS_location & inOperand1
+                                                                                 COMMA_LOCATION_ARGS) {
+  GGS_outletBindingModelList result ;
+  if (inOperand0.isValid () && inOperand1.isValid ()) {
+    result = GGS_outletBindingModelList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GGS_outletBindingModelList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                            const GGS_propertyKind & in_mKind,
+                                                            const GGS_location & in_mErrorLocation
+                                                            COMMA_LOCATION_ARGS) {
+  cCollectionElement_outletBindingModelList * p = nullptr ;
+  macroMyNew (p, cCollectionElement_outletBindingModelList (in_mKind,
+                                                            in_mErrorLocation COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::addAssign_operation (const GGS_propertyKind & inOperand0,
+                                                      const GGS_location & inOperand1
+                                                      COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_outletBindingModelList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_append (const GGS_propertyKind inOperand0,
+                                                const GGS_location inOperand1,
+                                                Compiler * /* inCompiler */
+                                                COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_outletBindingModelList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_insertAtIndex (const GGS_propertyKind inOperand0,
+                                                       const GGS_location inOperand1,
+                                                       const GGS_uint inInsertionIndex,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_outletBindingModelList (inOperand0, inOperand1 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_removeAtIndex (GGS_propertyKind & outOperand0,
+                                                       GGS_location & outOperand1,
+                                                       const GGS_uint inRemoveIndex,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  outOperand0.drop () ;
+  outOperand1.drop () ;
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+    if (nullptr == p) {
+      drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+      outOperand0 = p->mObject.mProperty_mKind ;
+      outOperand1 = p->mObject.mProperty_mErrorLocation ;
+    }
+  }else{
+    drop () ;    
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_popFirst (GGS_propertyKind & outOperand0,
+                                                  GGS_location & outOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    outOperand0 = p->mObject.mProperty_mKind ;
+    outOperand1 = p->mObject.mProperty_mErrorLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_popLast (GGS_propertyKind & outOperand0,
+                                                 GGS_location & outOperand1,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    outOperand0 = p->mObject.mProperty_mKind ;
+    outOperand1 = p->mObject.mProperty_mErrorLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::method_first (GGS_propertyKind & outOperand0,
+                                               GGS_location & outOperand1,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    outOperand0 = p->mObject.mProperty_mKind ;
+    outOperand1 = p->mObject.mProperty_mErrorLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::method_last (GGS_propertyKind & outOperand0,
+                                              GGS_location & outOperand1,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    outOperand0 = p->mObject.mProperty_mKind ;
+    outOperand1 = p->mObject.mProperty_mErrorLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::add_operation (const GGS_outletBindingModelList & inOperand,
+                                                                      Compiler * /* inCompiler */
+                                                                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_outletBindingModelList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::getter_subListWithRange (const GGS_range & inRange,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GGS_outletBindingModelList result = GGS_outletBindingModelList::class_func_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::getter_subListFromIndex (const GGS_uint & inIndex,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const {
+  GGS_outletBindingModelList result = GGS_outletBindingModelList::class_func_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::getter_subListToIndex (const GGS_uint & inIndex,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const {
+  GGS_outletBindingModelList result = GGS_outletBindingModelList::class_func_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::plusAssign_operation (const GGS_outletBindingModelList inOperand,
+                                                       Compiler * /* inCompiler */
+                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_setMKindAtIndex (GGS_propertyKind inOperand,
+                                                         GGS_uint inIndex,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mKind = inOperand ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_propertyKind GGS_outletBindingModelList::getter_mKindAtIndex (const GGS_uint & inIndex,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  GGS_propertyKind result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    result = p->mObject.mProperty_mKind ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_outletBindingModelList::setter_setMErrorLocationAtIndex (GGS_location inOperand,
+                                                                  GGS_uint inIndex,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mErrorLocation = inOperand ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_outletBindingModelList::getter_mErrorLocationAtIndex (const GGS_uint & inIndex,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_outletBindingModelList * p = (cCollectionElement_outletBindingModelList *) attributes.ptr () ;
+  GGS_location result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+    result = p->mObject.mProperty_mErrorLocation ;
+  }
+  return result ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+cEnumerator_outletBindingModelList::cEnumerator_outletBindingModelList (const GGS_outletBindingModelList & inEnumeratedObject,
+                                                                        const EnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList_2E_element cEnumerator_outletBindingModelList::current (LOCATION_ARGS) const {
+  const cCollectionElement_outletBindingModelList * p = (const cCollectionElement_outletBindingModelList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_propertyKind cEnumerator_outletBindingModelList::current_mKind (LOCATION_ARGS) const {
+  const cCollectionElement_outletBindingModelList * p = (const cCollectionElement_outletBindingModelList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+  return p->mObject.mProperty_mKind ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location cEnumerator_outletBindingModelList::current_mErrorLocation (LOCATION_ARGS) const {
+  const cCollectionElement_outletBindingModelList * p = (const cCollectionElement_outletBindingModelList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletBindingModelList) ;
+  return p->mObject.mProperty_mErrorLocation ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @outletBindingModelList generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingModelList ("outletBindingModelList",
+                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_outletBindingModelList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_outletBindingModelList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_outletBindingModelList::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_outletBindingModelList (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletBindingModelList GGS_outletBindingModelList::extractObject (const GGS_object & inObject,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GGS_outletBindingModelList result ;
+  const GGS_outletBindingModelList * p = (const GGS_outletBindingModelList *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_outletBindingModelList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("outletBindingModelList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

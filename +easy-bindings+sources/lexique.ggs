@@ -58,7 +58,6 @@ list lowerCaseKeyWordList style keywordsStyle %errorMessage "the '%K' keyword"{
   "property",
   "proxy",
   "root",
-//  "row",
   "selectionController",
   "self",
   "separator",
@@ -78,6 +77,7 @@ list lowerCaseKeyWordList style keywordsStyle %errorMessage "the '%K' keyword"{
   "versionShouldChange",
   "view",
   "weak",
+  "withVScroller",
   "xcodeproject",
   "yes"
 }

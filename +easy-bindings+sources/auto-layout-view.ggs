@@ -16,6 +16,8 @@ class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
 //------------------------------------------------------------------------------------------------
 
 class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
+  public let @bool mHasVerticalScroller
+  public let @lstring mConfiguratorName
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
   public let @astViewInstructionList mInstructionList
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
@@ -104,6 +106,8 @@ class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
 //------------------------------------------------------------------------------------------------
 
 class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
+  public let @bool mHasVerticalScroller
+  public let @lstring mConfiguratorName
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
   public let @astViewInstructionList mInstructionList
   public let @optionalHiddenBinding mOptionalHiddenBinding
@@ -188,6 +192,22 @@ syntax extension easyBindings_syntax {
     $stackView$
     $viewName$ (?let viewName)
     $vStack$
+    let @bool hasVerticalScroller
+    select
+      hasVerticalScroller = false
+    or
+      $withVScroller$
+      hasVerticalScroller = true
+    end
+    let @lstring configuratorName
+    select
+      configuratorName = "".nowhere
+    or
+      $[$
+      $configurator$
+      $identifier$ (?configuratorName)
+      $]$
+    end
     var unusedSet = @stringset ()
     <auto_layout_func_call_list> (!?unusedSet, ?let functionCallList)
     ${$
@@ -204,6 +224,8 @@ syntax extension easyBindings_syntax {
     !?ioViewDeclarationList.append (
       !viewName,
       !@astComputedVerticalViewDeclaration (
+        hasVerticalScroller,
+        configuratorName,
         functionCallList,
         instructionList,
         astNewStackViewDeclarationList
@@ -479,6 +501,22 @@ syntax extension easyBindings_syntax {
   rule <view_instruction> (?!@stringset ioStackViewInstances,
                            !@astAbstractViewInstructionDeclaration outInstruction) {
     $vStack$
+    let @bool hasVerticalScroller
+    select
+      hasVerticalScroller = false
+    or
+      $withVScroller$
+      hasVerticalScroller = true
+    end
+    let @lstring configuratorName
+    select
+      configuratorName = "".nowhere
+    or
+      $[$
+      $configurator$
+      $identifier$ (?configuratorName)
+      $]$
+    end
     <auto_layout_func_call_list> (!?ioStackViewInstances, ?let functionCallList)
     let @optionalHiddenBinding optionalHiddenBinding
     select
@@ -498,6 +536,8 @@ syntax extension easyBindings_syntax {
       !?instructionList
     )
     outInstruction = @astVStackViewInstructionDeclaration (
+      hasVerticalScroller,
+      configuratorName,
       functionCallList,
       instructionList,
       optionalHiddenBinding,
@@ -831,7 +871,13 @@ override proc @astComputedVerticalViewDeclaration.checkView(
     )
     !?instructionList.append (generatedInstruction)
   end
-  outGeneration = @computedVerticalViewGeneration (funcCallList, instructionList, self.mNewStackViewDeclarationList)
+  outGeneration = @computedVerticalViewGeneration (
+    self.mHasVerticalScroller,
+    self.mConfiguratorName,
+    funcCallList,
+    instructionList,
+    self.mNewStackViewDeclarationList
+  )
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1627,6 +1673,8 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
     !?instructionList.append (generatedInstruction)
   end
   outInstruction = @vStackViewInstructionGeneration (
+    self.mHasVerticalScroller,
+    self.mConfiguratorName,
     funcCallList,
     instructionList,
     multipleBindingGenerationList,
@@ -1652,6 +1700,8 @@ class @computedHorizontalViewGeneration : @abstractViewGeneration {
 //------------------------------------------------------------------------------------------------
 
 class @computedVerticalViewGeneration : @abstractViewGeneration {
+  public let @bool mHasVerticalScroller
+  public let @lstring mConfiguratorName
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   public let @autoLayoutViewInstructionGenerationList mInstructionList
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
@@ -1690,6 +1740,8 @@ class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
 //------------------------------------------------------------------------------------------------
 
 class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
+  public let @bool mHasVerticalScroller
+  public let @lstring mConfiguratorName
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
   public let @autoLayoutViewInstructionGenerationList mInstructionList
   public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
@@ -1743,13 +1795,6 @@ class @autoLayoutGutterInstructionGeneration : @abstractViewInstructionGeneratio
   override func generateAppendViewInstruction (?prefs: let @bool unused inPreferences,
                                                ?receiverView: let @string inReceiverViewName,
                                                let @string inIndentation) -> @string {
-//    result = inIndentation + "_ = " + inReceiverViewName + ".appendView ("
-//    if self.horizontal then
-//      result += "AutoLayoutHorizontalStackView.GutterSeparator"
-//    else
-//      result += "AutoLayoutVerticalStackView.GutterSeparator"
-//    end
-//    result += "())\n"
     result = inIndentation + "_ = " + inReceiverViewName + ".appendGutter ()\n"
   }
 
@@ -1878,13 +1923,20 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
 
 override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                                    let @string inViewName) -> @string {
-  result = "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
-  result += "    let vStackView = AutoLayoutVerticalStackView ()\n"
+  result =  "  final func " + inViewName + " () -> AutoLayoutVerticalStackView {\n"
+  result += "    let vStackView = AutoLayoutVerticalStackView ("
+  if self.mHasVerticalScroller then
+    result += "verticalScroller: true"
+  end
+  result += ")\n"
+  if self.mConfiguratorName.string != "" then
+    result += "    self.configure_" + self.mConfiguratorName + " (vStackView)\n"
+  end
   self.mFuncCallList.generate ("    ", !?result)
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += "    let " + instance + " = self." + type + " ()\n"
   end
-  for (instruction) in self.mInstructionList do // (index)
+  for (instruction) in self.mInstructionList do
     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: "vStackView", "    ")
   end
   result += "    return vStackView\n"
@@ -2092,13 +2144,9 @@ override func @hStackViewInstructionGeneration.generateAppendViewInstruction (?p
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += indentation + "let " + instance + " = self." + type + " ()\n"
   end
-//    result += indentation + "do{\n"
-    for (instruction) in self.mInstructionList do // (index)
-//       let name = name + "_" + index
-       result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
-//       result += indentation + "_ = " + name + ".appendView (" + name + ")\n"
-    end
-//    result += indentation + "}\n"
+  for (instruction) in self.mInstructionList do
+     result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
+  end
   result += indentation + "_ = " + inReceiverViewName + " .appendView (" + name + ")\n"
   result += inIndentation + "}\n"
 }
@@ -2109,7 +2157,14 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences,
                          let @string inName,
                          let @string inIndentation) -> @string {
-  result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ()\n"
+  result = inIndentation + "let " + inName + " = AutoLayoutVerticalStackView ("
+  if self.mHasVerticalScroller then
+    result += "verticalScroller: true"
+  end
+  result += ")\n"
+  if self.mConfiguratorName.string != "" then
+    result += "    self.configure_" + self.mConfiguratorName + " (" + inName + ")\n"
+  end
   self.mFuncCallList.generate (inIndentation, !?result)
   for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += inIndentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
@@ -2117,14 +2172,9 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   for (instance, type) in self.mNewStackViewDeclarationList do
     result += inIndentation + "let " + instance + " = self." + type + " ()\n"
   end
-//  result += inIndentation + "do{\n"
-//  let indentation = inIndentation + "  "
-  for (instruction) in self.mInstructionList do // (index)
-//     let name = inName + "_" + index
+  for (instruction) in self.mInstructionList do
      result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: inName, inIndentation)
-//     result += indentation + "_ = " + inName + ".appendView (" + name + ")\n"
   end
-//  result += inIndentation + "}\n"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -2135,7 +2185,11 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
   result = inIndentation + "do{\n"
   let indentation = inIndentation + "  "
   let name = inReceiverViewName + "_view"
-  result += indentation + "let " + name + " = AutoLayoutVerticalStackView ()\n"
+  result += indentation + "let " + name + " = AutoLayoutVerticalStackView ("
+  if self.mHasVerticalScroller then
+    result += "verticalScroller: true"
+  end
+  result += ")\n"
   self.mFuncCallList.generate (indentation, !?result)
   for (bindingName, binding) in self.mMultipleBindingGenerationList do 
     result += indentation + "  .bind_" + bindingName + " (" + binding.expressionString + ")\n"
@@ -2147,6 +2201,9 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
      result += instruction.generateAppendViewInstruction (!prefs: inPreferences, !receiverView: name, indentation)
   end
   result += indentation + "_ = " + inReceiverViewName + ".appendView (" + name + ")\n"
+  if self.mConfiguratorName.string != "" then
+    result += indentation + "self.configure_" + self.mConfiguratorName + " (" + name + ")\n"
+  end
   result += inIndentation + "}\n"
 }
 
