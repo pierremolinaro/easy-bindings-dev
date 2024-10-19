@@ -9,8 +9,9 @@ import AppKit
 //--------------------------------------------------------------------------------------------------
 
 %if not TRANSIENT then
-%typealias EBReadWriteProperty_%!TYPE%   = EBObservableMutableProperty <%!TYPE%>
-typealias EBComputedProperty_%!TYPE%    = EBComputedProperty <%!TYPE%>
-typealias EBStoredProperty_%!TYPE%      = EBStoredProperty <%!TYPE%>
+%typealias EBReadWriteProperty_%!TYPE% = EBObservableMutableProperty <%!TYPE%>
+typealias EBComputedProperty_%!TYPE%   = EBComputedProperty <%!TYPE%>
+typealias EBStoredProperty_%!TYPE%     = EBStoredProperty <%!TYPE%>
+typealias EBStandAloneProperty_%!TYPE% = EBStandAloneProperty <%!TYPE%>
 %end%
 //--------------------------------------------------------------------------------------------------

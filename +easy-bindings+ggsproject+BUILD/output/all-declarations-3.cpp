@@ -9703,19 +9703,20 @@ GGS_propertyGeneration () {
 //--- Synthetized initializer ----------------------------------------------------------------------
 
 GGS_atomicPropertyGeneration GGS_atomicPropertyGeneration::
-init_21__21__21__21__21__21__21__21_ (const GGS_string & in_mPropertyName,
-                                      const GGS_bool & in_mGenerateResetMethod,
-                                      const GGS_bool & in_mGenerateDirectRead,
-                                      const GGS_bool & in_mGenerateDirectAccess,
-                                      const GGS_typeKind & in_mType,
-                                      const GGS_bool & in_mIsProxy,
-                                      const GGS_string & in_mDefaultValueInSwift,
-                                      const GGS_bool & in_mInPreferences,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) {
+init_21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone_21__21__21__21_ (const GGS_string & in_mPropertyName,
+                                                                                                             const GGS_bool & in_generateResetMethod,
+                                                                                                             const GGS_bool & in_generateDirectRead,
+                                                                                                             const GGS_bool & in_generateDirectAccess,
+                                                                                                             const GGS_bool & in_standalone,
+                                                                                                             const GGS_typeKind & in_mType,
+                                                                                                             const GGS_bool & in_mIsProxy,
+                                                                                                             const GGS_string & in_mDefaultValueInSwift,
+                                                                                                             const GGS_bool & in_mInPreferences,
+                                                                                                             Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) {
   cPtr_atomicPropertyGeneration * object = nullptr ;
   macroMyNew (object, cPtr_atomicPropertyGeneration (inCompiler COMMA_THERE)) ;
-  object->atomicPropertyGeneration_init_21__21__21__21__21__21__21__21_ (in_mPropertyName, in_mGenerateResetMethod, in_mGenerateDirectRead, in_mGenerateDirectAccess, in_mType, in_mIsProxy, in_mDefaultValueInSwift, in_mInPreferences, inCompiler) ;
+  object->atomicPropertyGeneration_init_21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone_21__21__21__21_ (in_mPropertyName, in_generateResetMethod, in_generateDirectRead, in_generateDirectAccess, in_standalone, in_mType, in_mIsProxy, in_mDefaultValueInSwift, in_mInPreferences, inCompiler) ;
   const GGS_atomicPropertyGeneration result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
@@ -9724,19 +9725,21 @@ init_21__21__21__21__21__21__21__21_ (const GGS_string & in_mPropertyName,
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicPropertyGeneration::
-atomicPropertyGeneration_init_21__21__21__21__21__21__21__21_ (const GGS_string & in_mPropertyName,
-                                                               const GGS_bool & in_mGenerateResetMethod,
-                                                               const GGS_bool & in_mGenerateDirectRead,
-                                                               const GGS_bool & in_mGenerateDirectAccess,
-                                                               const GGS_typeKind & in_mType,
-                                                               const GGS_bool & in_mIsProxy,
-                                                               const GGS_string & in_mDefaultValueInSwift,
-                                                               const GGS_bool & in_mInPreferences,
-                                                               Compiler * /* inCompiler */) {
+atomicPropertyGeneration_init_21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone_21__21__21__21_ (const GGS_string & in_mPropertyName,
+                                                                                                                                      const GGS_bool & in_generateResetMethod,
+                                                                                                                                      const GGS_bool & in_generateDirectRead,
+                                                                                                                                      const GGS_bool & in_generateDirectAccess,
+                                                                                                                                      const GGS_bool & in_standalone,
+                                                                                                                                      const GGS_typeKind & in_mType,
+                                                                                                                                      const GGS_bool & in_mIsProxy,
+                                                                                                                                      const GGS_string & in_mDefaultValueInSwift,
+                                                                                                                                      const GGS_bool & in_mInPreferences,
+                                                                                                                                      Compiler * /* inCompiler */) {
   mProperty_mPropertyName = in_mPropertyName ;
-  mProperty_mGenerateResetMethod = in_mGenerateResetMethod ;
-  mProperty_mGenerateDirectRead = in_mGenerateDirectRead ;
-  mProperty_mGenerateDirectAccess = in_mGenerateDirectAccess ;
+  mProperty_generateResetMethod = in_generateResetMethod ;
+  mProperty_generateDirectRead = in_generateDirectRead ;
+  mProperty_generateDirectAccess = in_generateDirectAccess ;
+  mProperty_standalone = in_standalone ;
   mProperty_mType = in_mType ;
   mProperty_mIsProxy = in_mIsProxy ;
   mProperty_mDefaultValueInSwift = in_mDefaultValueInSwift ;
@@ -9752,9 +9755,10 @@ GGS_propertyGeneration (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_atomicPropertyGeneration GGS_atomicPropertyGeneration::class_func_new (const GGS_string & in_mPropertyName,
-                                                                           const GGS_bool & in_mGenerateResetMethod,
-                                                                           const GGS_bool & in_mGenerateDirectRead,
-                                                                           const GGS_bool & in_mGenerateDirectAccess,
+                                                                           const GGS_bool & in_generateResetMethod,
+                                                                           const GGS_bool & in_generateDirectRead,
+                                                                           const GGS_bool & in_generateDirectAccess,
+                                                                           const GGS_bool & in_standalone,
                                                                            const GGS_typeKind & in_mType,
                                                                            const GGS_bool & in_mIsProxy,
                                                                            const GGS_string & in_mDefaultValueInSwift,
@@ -9762,43 +9766,55 @@ GGS_atomicPropertyGeneration GGS_atomicPropertyGeneration::class_func_new (const
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
   GGS_atomicPropertyGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (in_mPropertyName, in_mGenerateResetMethod, in_mGenerateDirectRead, in_mGenerateDirectAccess, in_mType, in_mIsProxy, in_mDefaultValueInSwift, in_mInPreferences,  inCompiler COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_atomicPropertyGeneration (in_mPropertyName, in_generateResetMethod, in_generateDirectRead, in_generateDirectAccess, in_standalone, in_mType, in_mIsProxy, in_mDefaultValueInSwift, in_mInPreferences,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyGeneration::readProperty_mGenerateResetMethod (void) const {
+GGS_bool GGS_atomicPropertyGeneration::readProperty_generateResetMethod (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
-    return p->mProperty_mGenerateResetMethod ;
+    return p->mProperty_generateResetMethod ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyGeneration::readProperty_mGenerateDirectRead (void) const {
+GGS_bool GGS_atomicPropertyGeneration::readProperty_generateDirectRead (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
-    return p->mProperty_mGenerateDirectRead ;
+    return p->mProperty_generateDirectRead ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyGeneration::readProperty_mGenerateDirectAccess (void) const {
+GGS_bool GGS_atomicPropertyGeneration::readProperty_generateDirectAccess (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
-    return p->mProperty_mGenerateDirectAccess ;
+    return p->mProperty_generateDirectAccess ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_atomicPropertyGeneration::readProperty_standalone (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_atomicPropertyGeneration * p = (cPtr_atomicPropertyGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyGeneration) ;
+    return p->mProperty_standalone ;
   }
 }
 
@@ -9856,9 +9872,10 @@ GGS_bool GGS_atomicPropertyGeneration::readProperty_mInPreferences (void) const 
 
 cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (inCompiler COMMA_THERE),
-mProperty_mGenerateResetMethod (),
-mProperty_mGenerateDirectRead (),
-mProperty_mGenerateDirectAccess (),
+mProperty_generateResetMethod (),
+mProperty_generateDirectRead (),
+mProperty_generateDirectAccess (),
+mProperty_standalone (),
 mProperty_mType (),
 mProperty_mIsProxy (),
 mProperty_mDefaultValueInSwift (),
@@ -9868,9 +9885,10 @@ mProperty_mInPreferences () {
 //--------------------------------------------------------------------------------------------------
 
 cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GGS_string & in_mPropertyName,
-                                                              const GGS_bool & in_mGenerateResetMethod,
-                                                              const GGS_bool & in_mGenerateDirectRead,
-                                                              const GGS_bool & in_mGenerateDirectAccess,
+                                                              const GGS_bool & in_generateResetMethod,
+                                                              const GGS_bool & in_generateDirectRead,
+                                                              const GGS_bool & in_generateDirectAccess,
+                                                              const GGS_bool & in_standalone,
                                                               const GGS_typeKind & in_mType,
                                                               const GGS_bool & in_mIsProxy,
                                                               const GGS_string & in_mDefaultValueInSwift,
@@ -9878,17 +9896,19 @@ cPtr_atomicPropertyGeneration::cPtr_atomicPropertyGeneration (const GGS_string &
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) :
 cPtr_propertyGeneration (in_mPropertyName, inCompiler COMMA_THERE),
-mProperty_mGenerateResetMethod (),
-mProperty_mGenerateDirectRead (),
-mProperty_mGenerateDirectAccess (),
+mProperty_generateResetMethod (),
+mProperty_generateDirectRead (),
+mProperty_generateDirectAccess (),
+mProperty_standalone (),
 mProperty_mType (),
 mProperty_mIsProxy (),
 mProperty_mDefaultValueInSwift (),
 mProperty_mInPreferences () {
   mProperty_mPropertyName = in_mPropertyName ;
-  mProperty_mGenerateResetMethod = in_mGenerateResetMethod ;
-  mProperty_mGenerateDirectRead = in_mGenerateDirectRead ;
-  mProperty_mGenerateDirectAccess = in_mGenerateDirectAccess ;
+  mProperty_generateResetMethod = in_generateResetMethod ;
+  mProperty_generateDirectRead = in_generateDirectRead ;
+  mProperty_generateDirectAccess = in_generateDirectAccess ;
+  mProperty_standalone = in_standalone ;
   mProperty_mType = in_mType ;
   mProperty_mIsProxy = in_mIsProxy ;
   mProperty_mDefaultValueInSwift = in_mDefaultValueInSwift ;
@@ -9906,11 +9926,13 @@ void cPtr_atomicPropertyGeneration::description (String & ioString,
   ioString.appendCString ("[@atomicPropertyGeneration:") ;
   mProperty_mPropertyName.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
+  mProperty_generateResetMethod.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
+  mProperty_generateDirectRead.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
+  mProperty_generateDirectAccess.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_standalone.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
   mProperty_mType.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
@@ -9926,7 +9948,7 @@ void cPtr_atomicPropertyGeneration::description (String & ioString,
 
 acPtr_class * cPtr_atomicPropertyGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectRead, mProperty_mGenerateDirectAccess, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences, inCompiler COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyGeneration (mProperty_mPropertyName, mProperty_generateResetMethod, mProperty_generateDirectRead, mProperty_generateDirectAccess, mProperty_standalone, mProperty_mType, mProperty_mIsProxy, mProperty_mDefaultValueInSwift, mProperty_mInPreferences, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -9936,9 +9958,10 @@ acPtr_class * cPtr_atomicPropertyGeneration::duplicate (Compiler * inCompiler CO
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_atomicPropertyGeneration::printNonNullClassInstanceProperties (void) const {
     cPtr_propertyGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
-    mProperty_mGenerateDirectRead.printNonNullClassInstanceProperties ("mGenerateDirectRead") ;
-    mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
+    mProperty_generateResetMethod.printNonNullClassInstanceProperties ("generateResetMethod") ;
+    mProperty_generateDirectRead.printNonNullClassInstanceProperties ("generateDirectRead") ;
+    mProperty_generateDirectAccess.printNonNullClassInstanceProperties ("generateDirectAccess") ;
+    mProperty_standalone.printNonNullClassInstanceProperties ("standalone") ;
     mProperty_mType.printNonNullClassInstanceProperties ("mType") ;
     mProperty_mIsProxy.printNonNullClassInstanceProperties ("mIsProxy") ;
     mProperty_mDefaultValueInSwift.printNonNullClassInstanceProperties ("mDefaultValueInSwift") ;
@@ -14612,117 +14635,6 @@ GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak GGS_abstractBooleanMulti
       result = *p ;
     }else{
       inCompiler->castError ("abstractBooleanMultipleBindingExpressionAST.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_literalIntMultipleBindingExpressionAST_2E_weak::objectCompare (const GGS_literalIntMultipleBindingExpressionAST_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST_2E_weak::GGS_literalIntMultipleBindingExpressionAST_2E_weak (void) :
-GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST_2E_weak & GGS_literalIntMultipleBindingExpressionAST_2E_weak::operator = (const GGS_literalIntMultipleBindingExpressionAST & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST_2E_weak::GGS_literalIntMultipleBindingExpressionAST_2E_weak (const GGS_literalIntMultipleBindingExpressionAST & inSource) :
-GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST_2E_weak GGS_literalIntMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_literalIntMultipleBindingExpressionAST_2E_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST GGS_literalIntMultipleBindingExpressionAST_2E_weak::bang_literalIntMultipleBindingExpressionAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_literalIntMultipleBindingExpressionAST result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_literalIntMultipleBindingExpressionAST) ;
-      result = GGS_literalIntMultipleBindingExpressionAST ((cPtr_literalIntMultipleBindingExpressionAST *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @literalIntMultipleBindingExpressionAST.weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST_2E_weak ("literalIntMultipleBindingExpressionAST.weak",
-                                                                                                      & kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionAST_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_literalIntMultipleBindingExpressionAST_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_literalIntMultipleBindingExpressionAST_2E_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_literalIntMultipleBindingExpressionAST_2E_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_literalIntMultipleBindingExpressionAST_2E_weak GGS_literalIntMultipleBindingExpressionAST_2E_weak::extractObject (const GGS_object & inObject,
-                                                                                                                      Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) {
-  GGS_literalIntMultipleBindingExpressionAST_2E_weak result ;
-  const GGS_literalIntMultipleBindingExpressionAST_2E_weak * p = (const GGS_literalIntMultipleBindingExpressionAST_2E_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_literalIntMultipleBindingExpressionAST_2E_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("literalIntMultipleBindingExpressionAST.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

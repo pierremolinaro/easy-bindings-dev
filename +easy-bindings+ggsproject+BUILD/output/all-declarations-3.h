@@ -7850,11 +7850,13 @@ class GGS_atomicPropertyGeneration : public GGS_propertyGeneration {
   public: GGS_atomicPropertyGeneration (const class cPtr_atomicPropertyGeneration * inSourcePtr) ;
 
 //--------------------------------- Property access
-  public: class GGS_bool readProperty_mGenerateResetMethod (void) const ;
+  public: class GGS_bool readProperty_generateResetMethod (void) const ;
 
-  public: class GGS_bool readProperty_mGenerateDirectRead (void) const ;
+  public: class GGS_bool readProperty_generateDirectRead (void) const ;
 
-  public: class GGS_bool readProperty_mGenerateDirectAccess (void) const ;
+  public: class GGS_bool readProperty_generateDirectAccess (void) const ;
+
+  public: class GGS_bool readProperty_standalone (void) const ;
 
   public: class GGS_typeKind readProperty_mType (void) const ;
 
@@ -7867,16 +7869,17 @@ class GGS_atomicPropertyGeneration : public GGS_propertyGeneration {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_atomicPropertyGeneration init_21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                                    const class GGS_bool & inOperand1,
-                                                                                    const class GGS_bool & inOperand2,
-                                                                                    const class GGS_bool & inOperand3,
-                                                                                    const class GGS_typeKind & inOperand4,
-                                                                                    const class GGS_bool & inOperand5,
-                                                                                    const class GGS_string & inOperand6,
-                                                                                    const class GGS_bool & inOperand7,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GGS_atomicPropertyGeneration init_21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone_21__21__21__21_ (const class GGS_string & inOperand0,
+                                                                                                                                                           const class GGS_bool & inOperand1,
+                                                                                                                                                           const class GGS_bool & inOperand2,
+                                                                                                                                                           const class GGS_bool & inOperand3,
+                                                                                                                                                           const class GGS_bool & inOperand4,
+                                                                                                                                                           const class GGS_typeKind & inOperand5,
+                                                                                                                                                           const class GGS_bool & inOperand6,
+                                                                                                                                                           const class GGS_string & inOperand7,
+                                                                                                                                                           const class GGS_bool & inOperand8,
+                                                                                                                                                           Compiler * inCompiler
+                                                                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7891,10 +7894,11 @@ class GGS_atomicPropertyGeneration : public GGS_propertyGeneration {
                                                                     const class GGS_bool & inOperand1,
                                                                     const class GGS_bool & inOperand2,
                                                                     const class GGS_bool & inOperand3,
-                                                                    const class GGS_typeKind & inOperand4,
-                                                                    const class GGS_bool & inOperand5,
-                                                                    const class GGS_string & inOperand6,
-                                                                    const class GGS_bool & inOperand7,
+                                                                    const class GGS_bool & inOperand4,
+                                                                    const class GGS_typeKind & inOperand5,
+                                                                    const class GGS_bool & inOperand6,
+                                                                    const class GGS_string & inOperand7,
+                                                                    const class GGS_bool & inOperand8,
                                                                     class Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
@@ -7933,15 +7937,16 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
   #endif
 
 //--------------------------------- Initializers
-  public: void atomicPropertyGeneration_init_21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                              const class GGS_bool & inOperand1,
-                                                                              const class GGS_bool & inOperand2,
-                                                                              const class GGS_bool & inOperand3,
-                                                                              const class GGS_typeKind & inOperand4,
-                                                                              const class GGS_bool & inOperand5,
-                                                                              const class GGS_string & inOperand6,
-                                                                              const class GGS_bool & inOperand7,
-                                                                              Compiler * inCompiler) ;
+  public: void atomicPropertyGeneration_init_21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone_21__21__21__21_ (const class GGS_string & inOperand0,
+                                                                                                                                                     const class GGS_bool & inOperand1,
+                                                                                                                                                     const class GGS_bool & inOperand2,
+                                                                                                                                                     const class GGS_bool & inOperand3,
+                                                                                                                                                     const class GGS_bool & inOperand4,
+                                                                                                                                                     const class GGS_typeKind & inOperand5,
+                                                                                                                                                     const class GGS_bool & inOperand6,
+                                                                                                                                                     const class GGS_string & inOperand7,
+                                                                                                                                                     const class GGS_bool & inOperand8,
+                                                                                                                                                     Compiler * inCompiler) ;
 
 
 //--- Extension getter bindPropertyInSelectionController
@@ -7967,9 +7972,10 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
-  public: GGS_bool mProperty_mGenerateResetMethod ;
-  public: GGS_bool mProperty_mGenerateDirectRead ;
-  public: GGS_bool mProperty_mGenerateDirectAccess ;
+  public: GGS_bool mProperty_generateResetMethod ;
+  public: GGS_bool mProperty_generateDirectRead ;
+  public: GGS_bool mProperty_generateDirectAccess ;
+  public: GGS_bool mProperty_standalone ;
   public: GGS_typeKind mProperty_mType ;
   public: GGS_bool mProperty_mIsProxy ;
   public: GGS_string mProperty_mDefaultValueInSwift ;
@@ -7981,9 +7987,10 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
 
 //--- Constructor
   public: cPtr_atomicPropertyGeneration (const GGS_string & in_mPropertyName,
-                                         const GGS_bool & in_mGenerateResetMethod,
-                                         const GGS_bool & in_mGenerateDirectRead,
-                                         const GGS_bool & in_mGenerateDirectAccess,
+                                         const GGS_bool & in_generateResetMethod,
+                                         const GGS_bool & in_generateDirectRead,
+                                         const GGS_bool & in_generateDirectAccess,
+                                         const GGS_bool & in_standalone,
                                          const GGS_typeKind & in_mType,
                                          const GGS_bool & in_mIsProxy,
                                          const GGS_string & in_mDefaultValueInSwift,
@@ -11428,94 +11435,4 @@ class GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak : public AC_GALGAS
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionAST_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @literalIntMultipleBindingExpressionAST_2E_weak weak reference class
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_literalIntMultipleBindingExpressionAST_2E_weak : public GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_literalIntMultipleBindingExpressionAST_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_literalIntMultipleBindingExpressionAST_2E_weak (const class GGS_literalIntMultipleBindingExpressionAST & inSource) ;
-
-  public: GGS_literalIntMultipleBindingExpressionAST_2E_weak & operator = (const class GGS_literalIntMultipleBindingExpressionAST & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_literalIntMultipleBindingExpressionAST_2E_weak init_nil (void) {
-    GGS_literalIntMultipleBindingExpressionAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_literalIntMultipleBindingExpressionAST bang_literalIntMultipleBindingExpressionAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_literalIntMultipleBindingExpressionAST unwrappedValue (void) const {
-    GGS_literalIntMultipleBindingExpressionAST result ;
-    if (isValid ()) {
-      const cPtr_literalIntMultipleBindingExpressionAST * p = (cPtr_literalIntMultipleBindingExpressionAST *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_literalIntMultipleBindingExpressionAST (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_literalIntMultipleBindingExpressionAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_literalIntMultipleBindingExpressionAST_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_literalIntMultipleBindingExpressionAST_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GGS_literalIntMultipleBindingExpressionAST_2E_weak class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST_2E_weak ;
 

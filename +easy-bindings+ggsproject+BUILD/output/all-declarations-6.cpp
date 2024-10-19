@@ -8434,18 +8434,19 @@ GGS_abstractDeclarationAST () {
 //--- Synthetized initializer ----------------------------------------------------------------------
 
 GGS_atomicPropertyDeclarationAST GGS_atomicPropertyDeclarationAST::
-init_21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                  const GGS_lstring & in_mPropertyTypeName,
-                                  const GGS_lstring & in_mPropertyName,
-                                  const GGS_abstractDefaultValue & in_mDefaultValue,
-                                  const GGS_bool & in_mGenerateResetMethod,
-                                  const GGS_bool & in_mGenerateDirectRead,
-                                  const GGS_bool & in_mGenerateDirectAccess,
-                                  Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) {
+init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (const GGS_lstring & in_mClassName,
+                                                                                                         const GGS_lstring & in_mPropertyTypeName,
+                                                                                                         const GGS_lstring & in_mPropertyName,
+                                                                                                         const GGS_abstractDefaultValue & in_mDefaultValue,
+                                                                                                         const GGS_bool & in_generateResetMethod,
+                                                                                                         const GGS_bool & in_generateDirectRead,
+                                                                                                         const GGS_bool & in_generateDirectAccess,
+                                                                                                         const GGS_bool & in_standalone,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) {
   cPtr_atomicPropertyDeclarationAST * object = nullptr ;
   macroMyNew (object, cPtr_atomicPropertyDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->atomicPropertyDeclarationAST_init_21__21__21__21__21__21__21_ (in_mClassName, in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue, in_mGenerateResetMethod, in_mGenerateDirectRead, in_mGenerateDirectAccess, inCompiler) ;
+  object->atomicPropertyDeclarationAST_init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (in_mClassName, in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue, in_generateResetMethod, in_generateDirectRead, in_generateDirectAccess, in_standalone, inCompiler) ;
   const GGS_atomicPropertyDeclarationAST result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
@@ -8454,21 +8455,23 @@ init_21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicPropertyDeclarationAST::
-atomicPropertyDeclarationAST_init_21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                                               const GGS_lstring & in_mPropertyTypeName,
-                                                               const GGS_lstring & in_mPropertyName,
-                                                               const GGS_abstractDefaultValue & in_mDefaultValue,
-                                                               const GGS_bool & in_mGenerateResetMethod,
-                                                               const GGS_bool & in_mGenerateDirectRead,
-                                                               const GGS_bool & in_mGenerateDirectAccess,
-                                                               Compiler * /* inCompiler */) {
+atomicPropertyDeclarationAST_init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (const GGS_lstring & in_mClassName,
+                                                                                                                                      const GGS_lstring & in_mPropertyTypeName,
+                                                                                                                                      const GGS_lstring & in_mPropertyName,
+                                                                                                                                      const GGS_abstractDefaultValue & in_mDefaultValue,
+                                                                                                                                      const GGS_bool & in_generateResetMethod,
+                                                                                                                                      const GGS_bool & in_generateDirectRead,
+                                                                                                                                      const GGS_bool & in_generateDirectAccess,
+                                                                                                                                      const GGS_bool & in_standalone,
+                                                                                                                                      Compiler * /* inCompiler */) {
   mProperty_mClassName = in_mClassName ;
   mProperty_mPropertyTypeName = in_mPropertyTypeName ;
   mProperty_mPropertyName = in_mPropertyName ;
   mProperty_mDefaultValue = in_mDefaultValue ;
-  mProperty_mGenerateResetMethod = in_mGenerateResetMethod ;
-  mProperty_mGenerateDirectRead = in_mGenerateDirectRead ;
-  mProperty_mGenerateDirectAccess = in_mGenerateDirectAccess ;
+  mProperty_generateResetMethod = in_generateResetMethod ;
+  mProperty_generateDirectRead = in_generateDirectRead ;
+  mProperty_generateDirectAccess = in_generateDirectAccess ;
+  mProperty_standalone = in_standalone ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8483,13 +8486,14 @@ GGS_atomicPropertyDeclarationAST GGS_atomicPropertyDeclarationAST::class_func_ne
                                                                                    const GGS_lstring & in_mPropertyTypeName,
                                                                                    const GGS_lstring & in_mPropertyName,
                                                                                    const GGS_abstractDefaultValue & in_mDefaultValue,
-                                                                                   const GGS_bool & in_mGenerateResetMethod,
-                                                                                   const GGS_bool & in_mGenerateDirectRead,
-                                                                                   const GGS_bool & in_mGenerateDirectAccess,
+                                                                                   const GGS_bool & in_generateResetMethod,
+                                                                                   const GGS_bool & in_generateDirectRead,
+                                                                                   const GGS_bool & in_generateDirectAccess,
+                                                                                   const GGS_bool & in_standalone,
                                                                                    Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) {
   GGS_atomicPropertyDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (in_mClassName, in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue, in_mGenerateResetMethod, in_mGenerateDirectRead, in_mGenerateDirectAccess,  inCompiler COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_atomicPropertyDeclarationAST (in_mClassName, in_mPropertyTypeName, in_mPropertyName, in_mDefaultValue, in_generateResetMethod, in_generateDirectRead, in_generateDirectAccess, in_standalone,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -8561,47 +8565,59 @@ void GGS_atomicPropertyDeclarationAST::setProperty_mDefaultValue (const GGS_abst
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_mGenerateResetMethod (void) const {
+GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_generateResetMethod (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    return p->mProperty_mGenerateResetMethod ;
+    return p->mProperty_generateResetMethod ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicPropertyDeclarationAST::setProperty_mGenerateResetMethod (const GGS_bool & inValue) {
+void GGS_atomicPropertyDeclarationAST::setProperty_generateResetMethod (const GGS_bool & inValue) {
   if (nullptr != mObjectPtr) {
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    p->mProperty_mGenerateResetMethod = inValue ;
+    p->mProperty_generateResetMethod = inValue ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectRead (void) const {
+GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_generateDirectRead (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    return p->mProperty_mGenerateDirectRead ;
+    return p->mProperty_generateDirectRead ;
   }
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_mGenerateDirectAccess (void) const {
+GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_generateDirectAccess (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
   }else{
     cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
-    return p->mProperty_mGenerateDirectAccess ;
+    return p->mProperty_generateDirectAccess ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_atomicPropertyDeclarationAST::readProperty_standalone (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_atomicPropertyDeclarationAST * p = (cPtr_atomicPropertyDeclarationAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_atomicPropertyDeclarationAST) ;
+    return p->mProperty_standalone ;
   }
 }
 
@@ -8614,9 +8630,10 @@ cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
 mProperty_mPropertyTypeName (),
 mProperty_mPropertyName (),
 mProperty_mDefaultValue (),
-mProperty_mGenerateResetMethod (),
-mProperty_mGenerateDirectRead (),
-mProperty_mGenerateDirectAccess () {
+mProperty_generateResetMethod (),
+mProperty_generateDirectRead (),
+mProperty_generateDirectAccess (),
+mProperty_standalone () {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8625,25 +8642,28 @@ cPtr_atomicPropertyDeclarationAST::cPtr_atomicPropertyDeclarationAST (const GGS_
                                                                       const GGS_lstring & in_mPropertyTypeName,
                                                                       const GGS_lstring & in_mPropertyName,
                                                                       const GGS_abstractDefaultValue & in_mDefaultValue,
-                                                                      const GGS_bool & in_mGenerateResetMethod,
-                                                                      const GGS_bool & in_mGenerateDirectRead,
-                                                                      const GGS_bool & in_mGenerateDirectAccess,
+                                                                      const GGS_bool & in_generateResetMethod,
+                                                                      const GGS_bool & in_generateDirectRead,
+                                                                      const GGS_bool & in_generateDirectAccess,
+                                                                      const GGS_bool & in_standalone,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) :
 cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
 mProperty_mPropertyTypeName (),
 mProperty_mPropertyName (),
 mProperty_mDefaultValue (),
-mProperty_mGenerateResetMethod (),
-mProperty_mGenerateDirectRead (),
-mProperty_mGenerateDirectAccess () {
+mProperty_generateResetMethod (),
+mProperty_generateDirectRead (),
+mProperty_generateDirectAccess (),
+mProperty_standalone () {
   mProperty_mClassName = in_mClassName ;
   mProperty_mPropertyTypeName = in_mPropertyTypeName ;
   mProperty_mPropertyName = in_mPropertyName ;
   mProperty_mDefaultValue = in_mDefaultValue ;
-  mProperty_mGenerateResetMethod = in_mGenerateResetMethod ;
-  mProperty_mGenerateDirectRead = in_mGenerateDirectRead ;
-  mProperty_mGenerateDirectAccess = in_mGenerateDirectAccess ;
+  mProperty_generateResetMethod = in_generateResetMethod ;
+  mProperty_generateDirectRead = in_generateDirectRead ;
+  mProperty_generateDirectAccess = in_generateDirectAccess ;
+  mProperty_standalone = in_standalone ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8663,11 +8683,13 @@ void cPtr_atomicPropertyDeclarationAST::description (String & ioString,
   ioString.appendCString (", ") ;
   mProperty_mDefaultValue.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateResetMethod.description (ioString, inIndentation+1) ;
+  mProperty_generateResetMethod.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateDirectRead.description (ioString, inIndentation+1) ;
+  mProperty_generateDirectRead.description (ioString, inIndentation+1) ;
   ioString.appendCString (", ") ;
-  mProperty_mGenerateDirectAccess.description (ioString, inIndentation+1) ;
+  mProperty_generateDirectAccess.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_standalone.description (ioString, inIndentation+1) ;
   ioString.appendCString ("]") ;
 }
 
@@ -8675,7 +8697,7 @@ void cPtr_atomicPropertyDeclarationAST::description (String & ioString,
 
 acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_mGenerateResetMethod, mProperty_mGenerateDirectRead, mProperty_mGenerateDirectAccess, inCompiler COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_atomicPropertyDeclarationAST (mProperty_mClassName, mProperty_mPropertyTypeName, mProperty_mPropertyName, mProperty_mDefaultValue, mProperty_generateResetMethod, mProperty_generateDirectRead, mProperty_generateDirectAccess, mProperty_standalone, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
@@ -8688,9 +8710,10 @@ acPtr_class * cPtr_atomicPropertyDeclarationAST::duplicate (Compiler * inCompile
     mProperty_mPropertyTypeName.printNonNullClassInstanceProperties ("mPropertyTypeName") ;
     mProperty_mPropertyName.printNonNullClassInstanceProperties ("mPropertyName") ;
     mProperty_mDefaultValue.printNonNullClassInstanceProperties ("mDefaultValue") ;
-    mProperty_mGenerateResetMethod.printNonNullClassInstanceProperties ("mGenerateResetMethod") ;
-    mProperty_mGenerateDirectRead.printNonNullClassInstanceProperties ("mGenerateDirectRead") ;
-    mProperty_mGenerateDirectAccess.printNonNullClassInstanceProperties ("mGenerateDirectAccess") ;
+    mProperty_generateResetMethod.printNonNullClassInstanceProperties ("generateResetMethod") ;
+    mProperty_generateDirectRead.printNonNullClassInstanceProperties ("generateDirectRead") ;
+    mProperty_generateDirectAccess.printNonNullClassInstanceProperties ("generateDirectAccess") ;
+    mProperty_standalone.printNonNullClassInstanceProperties ("standalone") ;
   }
 #endif
 

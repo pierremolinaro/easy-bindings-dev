@@ -92,8 +92,9 @@ end
 
 //--------------------------------------------------------------------------------------------------
 
-typealias EBReadWriteProperty_%!ENUM_TYPE_NAME% = EBEnumReadWriteProperty <%!ENUM_TYPE_NAME%>
-typealias EBStoredProperty_%!ENUM_TYPE_NAME% = EBEnumStoredProperty <%!ENUM_TYPE_NAME%>
-typealias EBComputedProperty_%!ENUM_TYPE_NAME% = EBEnumGenericComputedProperty <%!ENUM_TYPE_NAME%>
+typealias EBReadWriteProperty_%!ENUM_TYPE_NAME%  = EBEnumReadWriteProperty <%!ENUM_TYPE_NAME%>
+typealias EBStoredProperty_%!ENUM_TYPE_NAME%     = EBEnumStoredProperty <%!ENUM_TYPE_NAME%>
+typealias EBStandAloneProperty_%!ENUM_TYPE_NAME% = EBEnumStandAloneProperty <%!ENUM_TYPE_NAME%>
+typealias EBComputedProperty_%!ENUM_TYPE_NAME%   = EBEnumGenericComputedProperty <%!ENUM_TYPE_NAME%>
 
 //--------------------------------------------------------------------------------------------------

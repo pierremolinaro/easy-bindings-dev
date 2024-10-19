@@ -377,48 +377,49 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   public: static const int32_t kToken_sortkey = 59 ;
   public: static const int32_t kToken_space = 60 ;
   public: static const int32_t kToken_stackView = 61 ;
-  public: static const int32_t kToken_struct = 62 ;
-  public: static const int32_t kToken_super = 63 ;
-  public: static const int32_t kToken_tableViewController = 64 ;
-  public: static const int32_t kToken_toMany = 65 ;
-  public: static const int32_t kToken_toOne = 66 ;
-  public: static const int32_t kToken_transient = 67 ;
-  public: static const int32_t kToken_typeView = 68 ;
-  public: static const int32_t kToken_version = 69 ;
-  public: static const int32_t kToken_vStack = 70 ;
-  public: static const int32_t kToken_versionShouldChange = 71 ;
-  public: static const int32_t kToken_view = 72 ;
-  public: static const int32_t kToken_weak = 73 ;
-  public: static const int32_t kToken_withVScroller = 74 ;
-  public: static const int32_t kToken_xcodeproject = 75 ;
-  public: static const int32_t kToken_yes = 76 ;
-  public: static const int32_t kToken_enabled = 77 ;
-  public: static const int32_t kToken_graphicController = 78 ;
-  public: static const int32_t kToken_hidden = 79 ;
-  public: static const int32_t kToken_tableValue = 80 ;
-  public: static const int32_t kToken_run = 81 ;
-  public: static const int32_t kToken__3A_ = 82 ;
-  public: static const int32_t kToken__2C_ = 83 ;
-  public: static const int32_t kToken__3B_ = 84 ;
-  public: static const int32_t kToken__21_ = 85 ;
-  public: static const int32_t kToken__5B_ = 86 ;
-  public: static const int32_t kToken__5D_ = 87 ;
-  public: static const int32_t kToken__7B_ = 88 ;
-  public: static const int32_t kToken__7D_ = 89 ;
-  public: static const int32_t kToken__28_ = 90 ;
-  public: static const int32_t kToken__29_ = 91 ;
-  public: static const int32_t kToken__2E_ = 92 ;
-  public: static const int32_t kToken__7C_ = 93 ;
-  public: static const int32_t kToken__26_ = 94 ;
-  public: static const int32_t kToken__3C_ = 95 ;
-  public: static const int32_t kToken__3E_ = 96 ;
-  public: static const int32_t kToken__3C__3D_ = 97 ;
-  public: static const int32_t kToken__3E__3D_ = 98 ;
-  public: static const int32_t kToken__21__3D_ = 99 ;
-  public: static const int32_t kToken__3D__3D_ = 100 ;
-  public: static const int32_t kToken__5E_ = 101 ;
-  public: static const int32_t kToken__2D_ = 102 ;
-  public: static const int32_t kToken__3D_ = 103 ;
+  public: static const int32_t kToken_standalone = 62 ;
+  public: static const int32_t kToken_struct = 63 ;
+  public: static const int32_t kToken_super = 64 ;
+  public: static const int32_t kToken_tableViewController = 65 ;
+  public: static const int32_t kToken_toMany = 66 ;
+  public: static const int32_t kToken_toOne = 67 ;
+  public: static const int32_t kToken_transient = 68 ;
+  public: static const int32_t kToken_typeView = 69 ;
+  public: static const int32_t kToken_version = 70 ;
+  public: static const int32_t kToken_vStack = 71 ;
+  public: static const int32_t kToken_versionShouldChange = 72 ;
+  public: static const int32_t kToken_view = 73 ;
+  public: static const int32_t kToken_weak = 74 ;
+  public: static const int32_t kToken_withVScroller = 75 ;
+  public: static const int32_t kToken_xcodeproject = 76 ;
+  public: static const int32_t kToken_yes = 77 ;
+  public: static const int32_t kToken_enabled = 78 ;
+  public: static const int32_t kToken_graphicController = 79 ;
+  public: static const int32_t kToken_hidden = 80 ;
+  public: static const int32_t kToken_tableValue = 81 ;
+  public: static const int32_t kToken_run = 82 ;
+  public: static const int32_t kToken__3A_ = 83 ;
+  public: static const int32_t kToken__2C_ = 84 ;
+  public: static const int32_t kToken__3B_ = 85 ;
+  public: static const int32_t kToken__21_ = 86 ;
+  public: static const int32_t kToken__5B_ = 87 ;
+  public: static const int32_t kToken__5D_ = 88 ;
+  public: static const int32_t kToken__7B_ = 89 ;
+  public: static const int32_t kToken__7D_ = 90 ;
+  public: static const int32_t kToken__28_ = 91 ;
+  public: static const int32_t kToken__29_ = 92 ;
+  public: static const int32_t kToken__2E_ = 93 ;
+  public: static const int32_t kToken__7C_ = 94 ;
+  public: static const int32_t kToken__26_ = 95 ;
+  public: static const int32_t kToken__3C_ = 96 ;
+  public: static const int32_t kToken__3E_ = 97 ;
+  public: static const int32_t kToken__3C__3D_ = 98 ;
+  public: static const int32_t kToken__3E__3D_ = 99 ;
+  public: static const int32_t kToken__21__3D_ = 100 ;
+  public: static const int32_t kToken__3D__3D_ = 101 ;
+  public: static const int32_t kToken__5E_ = 102 ;
+  public: static const int32_t kToken__2D_ = 103 ;
+  public: static const int32_t kToken__3D_ = 104 ;
 
 //--- Key words table 'lowerCaseKeyWordList'
   public: static int32_t search_into_lowerCaseKeyWordList (const String & inSearchedString) ;
@@ -452,7 +453,7 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   protected: virtual String getMessageForTerminal (const int32_t inTerminalSymbol) const override ;
 
 //--- Get terminal count
-  public: virtual int32_t terminalVocabularyCount (void) const override { return 103 ; }
+  public: virtual int32_t terminalVocabularyCount (void) const override { return 104 ; }
 
 //--- Get Token String
   public: virtual String getCurrentTokenString (const cToken * inTokenPtr) const override ;
@@ -1054,57 +1055,60 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i34_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_ (const GGS_lstring constinArgument0,
+  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i35_ (const GGS_lstring constinArgument0,
+                                                                                    GGS_simpleStoredPropertyList & ioArgument1,
+                                                                                    GGS_stringset & ioArgument2,
+                                                                                    GGS_astDeclarationStruct & ioArgument3,
+                                                                                    Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i35_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i35_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i36_ (const GGS_lstring constinArgument0,
                                                                           GGS_astDeclarationStruct & ioArgument1,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i36_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i35_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i36_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_ (const GGS_lstring constinArgument0,
+  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i37_ (const GGS_lstring constinArgument0,
                                                                            GGS_stringset & ioArgument1,
                                                                            GGS_astDeclarationStruct & ioArgument2,
                                                                            Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i37_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i36_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i37_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i37_ (GGS_lstringlist & ioArgument0,
+  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i38_ (GGS_lstringlist & ioArgument0,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i37_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i38_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i37_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i38_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i39_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i39_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i38_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i39_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i40_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i40_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i39_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i40_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i41_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i41_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i40_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
-                                                                                  Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i41_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i41_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i42_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                   Lexique_easyBindings_5F_lexique * inLexique) ;
@@ -1127,22 +1131,19 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i44_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_ (GGS_bindingOptionList & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i45_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
+                                                                                  Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i45_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i45_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i46_ (GGS_bindingOptionList & outArgument0,
                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i46_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i45_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i46_ (const GGS_lstring constinArgument0,
-                                                                              const GGS_lstring constinArgument1,
-                                                                              GGS_arrayControllerBindingListAST & ioArgument2,
-                                                                              GGS_astDeclarationStruct & ioArgument3,
-                                                                              Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i46_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
-
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i46_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i46_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i47_ (const GGS_lstring constinArgument0,
                                                                               const GGS_lstring constinArgument1,
@@ -1164,33 +1165,43 @@ class cParser_easyBindings_5F_syntax {
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i48_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i49_ (GGS_abstractDefaultValue & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i49_ (const GGS_lstring constinArgument0,
+                                                                              const GGS_lstring constinArgument1,
+                                                                              GGS_arrayControllerBindingListAST & ioArgument2,
+                                                                              GGS_astDeclarationStruct & ioArgument3,
+                                                                              Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i49_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i49_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+
+  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i50_ (GGS_abstractDefaultValue & outArgument0,
                                                                       Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i49_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i50_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i49_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i50_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i50_ (GGS_lstring & ioArgument0,
+  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i51_ (GGS_lstring & ioArgument0,
                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i50_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i51_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i50_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i51_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i51_ (GGS_mainXibDescriptorList & ioArgument0,
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i52_ (GGS_mainXibDescriptorList & ioArgument0,
                                                                 Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i51_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i52_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i51_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i52_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_ (GGS_mainXibLineDescriptorList & outArgument0,
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i53_ (GGS_mainXibLineDescriptorList & outArgument0,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i53_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i52_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
+  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i53_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
 
 
@@ -4883,25 +4894,28 @@ class GGS_atomicPropertyDeclarationAST : public GGS_abstractDeclarationAST {
   public: class GGS_abstractDefaultValue readProperty_mDefaultValue (void) const ;
   public: void setProperty_mDefaultValue (const GGS_abstractDefaultValue & inValue) ;
 
-  public: class GGS_bool readProperty_mGenerateResetMethod (void) const ;
-  public: void setProperty_mGenerateResetMethod (const GGS_bool & inValue) ;
+  public: class GGS_bool readProperty_generateResetMethod (void) const ;
+  public: void setProperty_generateResetMethod (const GGS_bool & inValue) ;
 
-  public: class GGS_bool readProperty_mGenerateDirectRead (void) const ;
+  public: class GGS_bool readProperty_generateDirectRead (void) const ;
 
-  public: class GGS_bool readProperty_mGenerateDirectAccess (void) const ;
+  public: class GGS_bool readProperty_generateDirectAccess (void) const ;
+
+  public: class GGS_bool readProperty_standalone (void) const ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_atomicPropertyDeclarationAST init_21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
-                                                                                    const class GGS_lstring & inOperand1,
-                                                                                    const class GGS_lstring & inOperand2,
-                                                                                    const class GGS_abstractDefaultValue & inOperand3,
-                                                                                    const class GGS_bool & inOperand4,
-                                                                                    const class GGS_bool & inOperand5,
-                                                                                    const class GGS_bool & inOperand6,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GGS_atomicPropertyDeclarationAST init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (const class GGS_lstring & inOperand0,
+                                                                                                                                                           const class GGS_lstring & inOperand1,
+                                                                                                                                                           const class GGS_lstring & inOperand2,
+                                                                                                                                                           const class GGS_abstractDefaultValue & inOperand3,
+                                                                                                                                                           const class GGS_bool & inOperand4,
+                                                                                                                                                           const class GGS_bool & inOperand5,
+                                                                                                                                                           const class GGS_bool & inOperand6,
+                                                                                                                                                           const class GGS_bool & inOperand7,
+                                                                                                                                                           Compiler * inCompiler
+                                                                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4919,6 +4933,7 @@ class GGS_atomicPropertyDeclarationAST : public GGS_abstractDeclarationAST {
                                                                         const class GGS_bool & inOperand4,
                                                                         const class GGS_bool & inOperand5,
                                                                         const class GGS_bool & inOperand6,
+                                                                        const class GGS_bool & inOperand7,
                                                                         class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -4957,14 +4972,15 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
   #endif
 
 //--------------------------------- Initializers
-  public: void atomicPropertyDeclarationAST_init_21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
-                                                                              const class GGS_lstring & inOperand1,
-                                                                              const class GGS_lstring & inOperand2,
-                                                                              const class GGS_abstractDefaultValue & inOperand3,
-                                                                              const class GGS_bool & inOperand4,
-                                                                              const class GGS_bool & inOperand5,
-                                                                              const class GGS_bool & inOperand6,
-                                                                              Compiler * inCompiler) ;
+  public: void atomicPropertyDeclarationAST_init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (const class GGS_lstring & inOperand0,
+                                                                                                                                                     const class GGS_lstring & inOperand1,
+                                                                                                                                                     const class GGS_lstring & inOperand2,
+                                                                                                                                                     const class GGS_abstractDefaultValue & inOperand3,
+                                                                                                                                                     const class GGS_bool & inOperand4,
+                                                                                                                                                     const class GGS_bool & inOperand5,
+                                                                                                                                                     const class GGS_bool & inOperand6,
+                                                                                                                                                     const class GGS_bool & inOperand7,
+                                                                                                                                                     Compiler * inCompiler) ;
 
 
 //--- Extension getter nodeKey
@@ -4983,9 +4999,10 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
   public: GGS_lstring mProperty_mPropertyTypeName ;
   public: GGS_lstring mProperty_mPropertyName ;
   public: GGS_abstractDefaultValue mProperty_mDefaultValue ;
-  public: GGS_bool mProperty_mGenerateResetMethod ;
-  public: GGS_bool mProperty_mGenerateDirectRead ;
-  public: GGS_bool mProperty_mGenerateDirectAccess ;
+  public: GGS_bool mProperty_generateResetMethod ;
+  public: GGS_bool mProperty_generateDirectRead ;
+  public: GGS_bool mProperty_generateDirectAccess ;
+  public: GGS_bool mProperty_standalone ;
 
 
 //--- Default constructor
@@ -4996,9 +5013,10 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                              const GGS_lstring & in_mPropertyTypeName,
                                              const GGS_lstring & in_mPropertyName,
                                              const GGS_abstractDefaultValue & in_mDefaultValue,
-                                             const GGS_bool & in_mGenerateResetMethod,
-                                             const GGS_bool & in_mGenerateDirectRead,
-                                             const GGS_bool & in_mGenerateDirectAccess,
+                                             const GGS_bool & in_generateResetMethod,
+                                             const GGS_bool & in_generateDirectRead,
+                                             const GGS_bool & in_generateDirectAccess,
+                                             const GGS_bool & in_standalone,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 

@@ -14,9 +14,10 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-  public var @bool mGenerateResetMethod
-  public let @bool mGenerateDirectRead
-  public let @bool mGenerateDirectAccess
+  public var @bool generateResetMethod %initArgLabel
+  public let @bool generateDirectRead %initArgLabel
+  public let @bool generateDirectAccess %initArgLabel
+  public let @bool standalone %initArgLabel
 }
 
 //------------------------------------------------------------------------------------------------
@@ -43,12 +44,10 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <simple_stored_declaration>(
-    let @lstring inClassName,
-    ?!@simpleStoredPropertyList ioAttributeList,
-    ?!@stringset ioSignatureList,
-    ?!@astDeclarationStruct ioDeclarationAST)
-  {
+  rule <simple_stored_declaration> (let @lstring inClassName,
+                                    ?!@simpleStoredPropertyList ioAttributeList,
+                                    ?!@stringset ioSignatureList,
+                                    ?!@astDeclarationStruct ioDeclarationAST) {
     $property$
     var usedForSignature = false
     var generateResetMethod = false
@@ -95,15 +94,49 @@ syntax extension easyBindings_syntax {
     $default$
     <explicit_value> (?let @abstractDefaultValue defaultValue)
     $;$
-    !?ioDeclarationAST.mUnifiedDeclarationList.append (@atomicPropertyDeclarationAST.init(
-      inClassName,
-      attributeTypeName,
-      attributeName,
-      defaultValue,
-      generateResetMethod,
-      generateDirectRead,
-      generateDirectAccess
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (
+      @atomicPropertyDeclarationAST (
+        inClassName,
+        attributeTypeName,
+        attributeName,
+        defaultValue,
+        !generateResetMethod: generateResetMethod,
+        !generateDirectRead: generateDirectRead,
+        !generateDirectAccess: generateDirectAccess,
+        !standalone: false
+      )
     )
+    !?ioAttributeList.append (
+      !attributeTypeName,
+      !attributeName,
+      !defaultValue
+    )
+  }
+
+ // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  
+  rule <simple_stored_declaration> (let @lstring inClassName,
+                                    ?!@simpleStoredPropertyList ioAttributeList,
+                                    ?!@stringset unused ioSignatureList,
+                                    ?!@astDeclarationStruct ioDeclarationAST) {
+    $standalone$
+    $property$
+    $Identifier$ (?let @lstring attributeTypeName)
+    $identifier$ (?let @lstring attributeName)
+    $default$
+    <explicit_value> (?let @abstractDefaultValue defaultValue)
+    $;$
+    !?ioDeclarationAST.mUnifiedDeclarationList.append (
+      @atomicPropertyDeclarationAST (
+        inClassName,
+        attributeTypeName,
+        attributeName,
+        defaultValue,
+        !generateResetMethod: false,
+        !generateDirectRead: true,
+        !generateDirectAccess: true,
+        !standalone: true
+      )
     )
     !?ioAttributeList.append (
       !attributeTypeName,
@@ -143,9 +176,10 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     //-- Code Generation
       !?mPropertyGenerationList.append (@atomicPropertyGeneration (
         self.mPropertyName.string,
-        self.mGenerateResetMethod,
-        self.mGenerateDirectRead,
-        self.mGenerateDirectAccess,
+        !generateResetMethod: self.generateResetMethod,
+        !generateDirectRead: self.generateDirectRead,
+        !generateDirectAccess: self.generateDirectAccess,
+        !standalone: self.standalone,
         kind,
         false,
         swiftDefaultValueAsString,
@@ -165,13 +199,14 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
 //------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
-  public let @bool mGenerateResetMethod
-  public let @bool mGenerateDirectRead
-  public let @bool mGenerateDirectAccess
+  private let @bool generateResetMethod %initArgLabel
+  private let @bool generateDirectRead %initArgLabel
+  private let @bool generateDirectAccess %initArgLabel
+  private let @bool standalone %initArgLabel
   public let @typeKind mType
-  public let @bool mIsProxy
-  public let @string mDefaultValueInSwift
-  public let @bool mInPreferences
+  private let @bool mIsProxy
+  private let @string mDefaultValueInSwift
+  private let @bool mInPreferences
 }
 
 //------------------------------------------------------------------------------------------------
@@ -268,19 +303,23 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
     result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
     result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-    result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + self.mType.swiftTypeName + "\n\n"
-    if self.mGenerateResetMethod then
+    if self.standalone then
+      result += "  final let " + self.mPropertyName + "_property : EBStandAloneProperty_" + self.mType.swiftTypeName + "\n\n"
+    else
+      result += "  final let " + self.mPropertyName + "_property : EBStoredProperty_" + self.mType.swiftTypeName + "\n\n"
+    end
+    if self.generateResetMethod then
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
       result += "  final func reset_" + self.mPropertyName + "_toDefaultValue () {\n"
       result += "    self." + self.mPropertyName + "_property.setProp (" + self.mDefaultValueInSwift + ")\n"
       result += "  }\n\n"
     end
-    let generateAccess = inGenerationDirectAccess || self.mGenerateDirectRead || self.mGenerateDirectAccess
+    let generateAccess = inGenerationDirectAccess || self.generateDirectRead || self.generateDirectAccess
     if generateAccess then
       result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + self.mType.swiftTypeName + " {\n"
       result += "    get { return self." + self.mPropertyName + "_property.propval }\n"
-      if self.mGenerateDirectAccess then
+      if self.generateDirectAccess then
         result += "    set { self." + self.mPropertyName + "_property.setProp (newValue) }\n"
       end
       result += "  }\n\n"
@@ -290,10 +329,15 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
 
 //------------------------------------------------------------------------------------------------
 
-override func @atomicPropertyGeneration.initCode() -> @string {
-  result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + self.mType.swiftTypeName
-  result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager, key: \"" 
-  result += self.mPropertyName + "\")\n"
+override func @atomicPropertyGeneration.initCode () -> @string {
+  if self.standalone then
+    result  = "    self." + self.mPropertyName + "_property = EBStandAloneProperty_" + self.mType.swiftTypeName
+    result += " (defaultValue: " + self.mDefaultValueInSwift + ")\n"
+  else
+    result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + self.mType.swiftTypeName
+    result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager, key: \"" 
+    result += self.mPropertyName + "\")\n"
+  end
 }
 
 //------------------------------------------------------------------------------------------------

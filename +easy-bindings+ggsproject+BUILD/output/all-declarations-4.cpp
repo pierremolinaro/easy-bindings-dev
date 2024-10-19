@@ -8,6 +8,117 @@
 #include "all-declarations-4.h"
 
 //--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_literalIntMultipleBindingExpressionAST_2E_weak::objectCompare (const GGS_literalIntMultipleBindingExpressionAST_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST_2E_weak::GGS_literalIntMultipleBindingExpressionAST_2E_weak (void) :
+GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST_2E_weak & GGS_literalIntMultipleBindingExpressionAST_2E_weak::operator = (const GGS_literalIntMultipleBindingExpressionAST & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST_2E_weak::GGS_literalIntMultipleBindingExpressionAST_2E_weak (const GGS_literalIntMultipleBindingExpressionAST & inSource) :
+GGS_abstractBooleanMultipleBindingExpressionAST_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST_2E_weak GGS_literalIntMultipleBindingExpressionAST_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_literalIntMultipleBindingExpressionAST_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST GGS_literalIntMultipleBindingExpressionAST_2E_weak::bang_literalIntMultipleBindingExpressionAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_literalIntMultipleBindingExpressionAST result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_literalIntMultipleBindingExpressionAST) ;
+      result = GGS_literalIntMultipleBindingExpressionAST ((cPtr_literalIntMultipleBindingExpressionAST *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @literalIntMultipleBindingExpressionAST.weak generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST_2E_weak ("literalIntMultipleBindingExpressionAST.weak",
+                                                                                                      & kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionAST_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_literalIntMultipleBindingExpressionAST_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_literalIntMultipleBindingExpressionAST_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_literalIntMultipleBindingExpressionAST_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literalIntMultipleBindingExpressionAST_2E_weak GGS_literalIntMultipleBindingExpressionAST_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                      Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_literalIntMultipleBindingExpressionAST_2E_weak result ;
+  const GGS_literalIntMultipleBindingExpressionAST_2E_weak * p = (const GGS_literalIntMultipleBindingExpressionAST_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_literalIntMultipleBindingExpressionAST_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("literalIntMultipleBindingExpressionAST.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
 // @negateBooleanMultipleBindingExpressionAST reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -11026,46 +11137,46 @@ GGS_string extensionGetter_typeName (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_2466_type_0 ;
-      GGS_propertyAccessibility extractedValue_2472__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_2466_type_0, extractedValue_2472__1) ;
-      result_result = extensionGetter_typeName (extractedValue_2466_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 90)) ;
+      GGS_typeKind extractedValue_2467_type_0 ;
+      GGS_propertyAccessibility extractedValue_2473__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_2467_type_0, extractedValue_2473__1) ;
+      result_result = extensionGetter_typeName (extractedValue_2467_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 90)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_2519_typeName_0 ;
-      GGS_propertyAccessibility extractedValue_2530__1 ;
-      GGS_bool extractedValue_2530__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_2530__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_2519_typeName_0, extractedValue_2530__1, extractedValue_2530__2, extractedValue_2530__3) ;
-      result_result = extractedValue_2519_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_2520_typeName_0 ;
+      GGS_propertyAccessibility extractedValue_2531__1 ;
+      GGS_bool extractedValue_2531__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_2531__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_2520_typeName_0, extractedValue_2531__1, extractedValue_2531__2, extractedValue_2531__3) ;
+      result_result = extractedValue_2520_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_2571_typeName_0 ;
-      GGS_propertyAccessibility extractedValue_2582__1 ;
-      GGS_bool extractedValue_2582__2 ;
-      GGS_toOneOppositeRelationship extractedValue_2582__3 ;
-      GGS_bool extractedValue_2582__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_2571_typeName_0, extractedValue_2582__1, extractedValue_2582__2, extractedValue_2582__3, extractedValue_2582__4) ;
-      result_result = extractedValue_2571_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_2572_typeName_0 ;
+      GGS_propertyAccessibility extractedValue_2583__1 ;
+      GGS_bool extractedValue_2583__2 ;
+      GGS_toOneOppositeRelationship extractedValue_2583__3 ;
+      GGS_bool extractedValue_2583__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_2572_typeName_0, extractedValue_2583__1, extractedValue_2583__2, extractedValue_2583__3, extractedValue_2583__4) ;
+      result_result = extractedValue_2572_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_2633_typeName_0 ;
-      GGS_bool extractedValue_2643__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_2633_typeName_0, extractedValue_2643__1) ;
-      result_result = extractedValue_2633_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_2634_typeName_0 ;
+      GGS_bool extractedValue_2644__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_2634_typeName_0, extractedValue_2644__1) ;
+      result_result = extractedValue_2634_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_2698_typeName_0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_2698_typeName_0) ;
-      result_result = extractedValue_2698_typeName_0 ;
+      GGS_string extractedValue_2699_typeName_0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_2699_typeName_0) ;
+      result_result = extractedValue_2699_typeName_0 ;
     }
     break ;
   }
@@ -11092,46 +11203,46 @@ GGS_string extensionGetter_swiftTypeName (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_2920_type_0 ;
-      GGS_propertyAccessibility extractedValue_2926__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_2920_type_0, extractedValue_2926__1) ;
-      result_result = extensionGetter_swiftTypeName (extractedValue_2920_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 107)) ;
+      GGS_typeKind extractedValue_2922_type_0 ;
+      GGS_propertyAccessibility extractedValue_2928__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_2922_type_0, extractedValue_2928__1) ;
+      result_result = extensionGetter_swiftTypeName (extractedValue_2922_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 107)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_2978_typeName_0 ;
-      GGS_propertyAccessibility extractedValue_2989__1 ;
-      GGS_bool extractedValue_2989__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_2989__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_2978_typeName_0, extractedValue_2989__1, extractedValue_2989__2, extractedValue_2989__3) ;
-      result_result = extractedValue_2978_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_2980_typeName_0 ;
+      GGS_propertyAccessibility extractedValue_2991__1 ;
+      GGS_bool extractedValue_2991__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_2991__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_2980_typeName_0, extractedValue_2991__1, extractedValue_2991__2, extractedValue_2991__3) ;
+      result_result = extractedValue_2980_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_3030_typeName_0 ;
-      GGS_propertyAccessibility extractedValue_3041__1 ;
-      GGS_bool extractedValue_3041__2 ;
-      GGS_toOneOppositeRelationship extractedValue_3041__3 ;
-      GGS_bool extractedValue_3041__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_3030_typeName_0, extractedValue_3041__1, extractedValue_3041__2, extractedValue_3041__3, extractedValue_3041__4) ;
-      result_result = extractedValue_3030_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_3032_typeName_0 ;
+      GGS_propertyAccessibility extractedValue_3043__1 ;
+      GGS_bool extractedValue_3043__2 ;
+      GGS_toOneOppositeRelationship extractedValue_3043__3 ;
+      GGS_bool extractedValue_3043__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_3032_typeName_0, extractedValue_3043__1, extractedValue_3043__2, extractedValue_3043__3, extractedValue_3043__4) ;
+      result_result = extractedValue_3032_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_3092_typeName_0 ;
-      GGS_bool extractedValue_3102__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_3092_typeName_0, extractedValue_3102__1) ;
-      result_result = extractedValue_3092_typeName_0.readProperty_string () ;
+      GGS_lstring extractedValue_3094_typeName_0 ;
+      GGS_bool extractedValue_3104__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_3094_typeName_0, extractedValue_3104__1) ;
+      result_result = extractedValue_3094_typeName_0.readProperty_string () ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_3157_typeName_0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_3157_typeName_0) ;
-      result_result = extractedValue_3157_typeName_0 ;
+      GGS_string extractedValue_3159_typeName_0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_3159_typeName_0) ;
+      result_result = extractedValue_3159_typeName_0 ;
     }
     break ;
   }
@@ -11213,33 +11324,33 @@ GGS_string extensionGetter_swiftTypeName (const GGS_typeKind & inObject,
     break ;
   case GGS_typeKind::Enumeration::enum_entityType:
     {
-      GGS_string extractedValue_3858_entityName_0 ;
-      GGS_bool extractedValue_3870__1 ;
-      temp_0.getAssociatedValuesFor_entityType (extractedValue_3858_entityName_0, extractedValue_3870__1) ;
-      result_outResult = extractedValue_3858_entityName_0 ;
+      GGS_string extractedValue_3860_entityName_0 ;
+      GGS_bool extractedValue_3872__1 ;
+      temp_0.getAssociatedValuesFor_entityType (extractedValue_3860_entityName_0, extractedValue_3872__1) ;
+      result_outResult = extractedValue_3860_entityName_0 ;
     }
     break ;
   case GGS_typeKind::Enumeration::enum_enumType:
     {
-      GGS_string extractedValue_3923_enumTypeName_0 ;
-      GGS_enumConstantMap extractedValue_3938__1 ;
-      GGS_enumFuncMap extractedValue_3938__2 ;
-      temp_0.getAssociatedValuesFor_enumType (extractedValue_3923_enumTypeName_0, extractedValue_3938__1, extractedValue_3938__2) ;
-      result_outResult = extractedValue_3923_enumTypeName_0 ;
+      GGS_string extractedValue_3925_enumTypeName_0 ;
+      GGS_enumConstantMap extractedValue_3940__1 ;
+      GGS_enumFuncMap extractedValue_3940__2 ;
+      temp_0.getAssociatedValuesFor_enumType (extractedValue_3925_enumTypeName_0, extractedValue_3940__1, extractedValue_3940__2) ;
+      result_outResult = extractedValue_3925_enumTypeName_0 ;
     }
     break ;
   case GGS_typeKind::Enumeration::enum_classType:
     {
-      GGS_string extractedValue_3994_classTypeName_0 ;
-      temp_0.getAssociatedValuesFor_classType (extractedValue_3994_classTypeName_0) ;
-      result_outResult = extractedValue_3994_classTypeName_0 ;
+      GGS_string extractedValue_3996_classTypeName_0 ;
+      temp_0.getAssociatedValuesFor_classType (extractedValue_3996_classTypeName_0) ;
+      result_outResult = extractedValue_3996_classTypeName_0 ;
     }
     break ;
   case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
     {
-      GGS_string extractedValue_4081_classTypeName_0 ;
-      temp_0.getAssociatedValuesFor_transientPropertyExternType (extractedValue_4081_classTypeName_0) ;
-      result_outResult = extractedValue_4081_classTypeName_0 ;
+      GGS_string extractedValue_4083_classTypeName_0 ;
+      temp_0.getAssociatedValuesFor_transientPropertyExternType (extractedValue_4083_classTypeName_0) ;
+      result_outResult = extractedValue_4083_classTypeName_0 ;
     }
     break ;
   }
@@ -11266,45 +11377,45 @@ GGS_bool extensionGetter_isTransient (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_4308__0 ;
-      GGS_propertyAccessibility extractedValue_4311_accessibility_1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_4308__0, extractedValue_4311_accessibility_1) ;
-      result_result = extractedValue_4311_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
+      GGS_typeKind extractedValue_4310__0 ;
+      GGS_propertyAccessibility extractedValue_4313_accessibility_1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_4310__0, extractedValue_4313_accessibility_1) ;
+      result_result = extractedValue_4313_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_4378__0 ;
-      GGS_propertyAccessibility extractedValue_4381_accessibility_1 ;
-      GGS_bool extractedValue_4397__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_4397__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_4378__0, extractedValue_4381_accessibility_1, extractedValue_4397__2, extractedValue_4397__3) ;
-      result_result = extractedValue_4381_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
+      GGS_lstring extractedValue_4380__0 ;
+      GGS_propertyAccessibility extractedValue_4383_accessibility_1 ;
+      GGS_bool extractedValue_4399__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_4399__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_4380__0, extractedValue_4383_accessibility_1, extractedValue_4399__2, extractedValue_4399__3) ;
+      result_result = extractedValue_4383_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_4451__0 ;
-      GGS_propertyAccessibility extractedValue_4454_accessibility_1 ;
-      GGS_bool extractedValue_4470__2 ;
-      GGS_toOneOppositeRelationship extractedValue_4470__3 ;
-      GGS_bool extractedValue_4470__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_4451__0, extractedValue_4454_accessibility_1, extractedValue_4470__2, extractedValue_4470__3, extractedValue_4470__4) ;
-      result_result = extractedValue_4454_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
+      GGS_lstring extractedValue_4453__0 ;
+      GGS_propertyAccessibility extractedValue_4456_accessibility_1 ;
+      GGS_bool extractedValue_4472__2 ;
+      GGS_toOneOppositeRelationship extractedValue_4472__3 ;
+      GGS_bool extractedValue_4472__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_4453__0, extractedValue_4456_accessibility_1, extractedValue_4472__2, extractedValue_4472__3, extractedValue_4472__4) ;
+      result_result = extractedValue_4456_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_4535__0 ;
-      GGS_bool extractedValue_4535__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4535__0, extractedValue_4535__1) ;
+      GGS_lstring extractedValue_4537__0 ;
+      GGS_bool extractedValue_4537__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4537__0, extractedValue_4537__1) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_4583__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4583__0) ;
+      GGS_string extractedValue_4585__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4585__0) ;
       result_result = GGS_bool (false) ;
     }
     break ;
@@ -11332,45 +11443,45 @@ GGS_bool extensionGetter_isComparable (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_4788_type_0 ;
-      GGS_propertyAccessibility extractedValue_4794__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_4788_type_0, extractedValue_4794__1) ;
-      result_result = extensionGetter_isComparable (extractedValue_4788_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
+      GGS_typeKind extractedValue_4790_type_0 ;
+      GGS_propertyAccessibility extractedValue_4796__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_4790_type_0, extractedValue_4796__1) ;
+      result_result = extensionGetter_isComparable (extractedValue_4790_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_4842__0 ;
-      GGS_propertyAccessibility extractedValue_4842__1 ;
-      GGS_bool extractedValue_4842__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_4842__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_4842__0, extractedValue_4842__1, extractedValue_4842__2, extractedValue_4842__3) ;
+      GGS_lstring extractedValue_4844__0 ;
+      GGS_propertyAccessibility extractedValue_4844__1 ;
+      GGS_bool extractedValue_4844__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_4844__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_4844__0, extractedValue_4844__1, extractedValue_4844__2, extractedValue_4844__3) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_4877__0 ;
-      GGS_propertyAccessibility extractedValue_4877__1 ;
-      GGS_bool extractedValue_4877__2 ;
-      GGS_toOneOppositeRelationship extractedValue_4877__3 ;
-      GGS_bool extractedValue_4877__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_4877__0, extractedValue_4877__1, extractedValue_4877__2, extractedValue_4877__3, extractedValue_4877__4) ;
+      GGS_lstring extractedValue_4879__0 ;
+      GGS_propertyAccessibility extractedValue_4879__1 ;
+      GGS_bool extractedValue_4879__2 ;
+      GGS_toOneOppositeRelationship extractedValue_4879__3 ;
+      GGS_bool extractedValue_4879__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_4879__0, extractedValue_4879__1, extractedValue_4879__2, extractedValue_4879__3, extractedValue_4879__4) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_4922__0 ;
-      GGS_bool extractedValue_4922__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4922__0, extractedValue_4922__1) ;
+      GGS_lstring extractedValue_4924__0 ;
+      GGS_bool extractedValue_4924__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4924__0, extractedValue_4924__1) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_4970__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4970__0) ;
+      GGS_string extractedValue_4972__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4972__0) ;
       result_result = GGS_bool (false) ;
     }
     break ;
@@ -11398,45 +11509,45 @@ GGS_bool extensionGetter_isEntityType (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_5176__0 ;
-      GGS_propertyAccessibility extractedValue_5176__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_5176__0, extractedValue_5176__1) ;
+      GGS_typeKind extractedValue_5178__0 ;
+      GGS_propertyAccessibility extractedValue_5178__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_5178__0, extractedValue_5178__1) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_5212__0 ;
-      GGS_propertyAccessibility extractedValue_5212__1 ;
-      GGS_bool extractedValue_5212__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_5212__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_5212__0, extractedValue_5212__1, extractedValue_5212__2, extractedValue_5212__3) ;
+      GGS_lstring extractedValue_5214__0 ;
+      GGS_propertyAccessibility extractedValue_5214__1 ;
+      GGS_bool extractedValue_5214__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_5214__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_5214__0, extractedValue_5214__1, extractedValue_5214__2, extractedValue_5214__3) ;
       result_result = GGS_bool (true) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_5246__0 ;
-      GGS_propertyAccessibility extractedValue_5246__1 ;
-      GGS_bool extractedValue_5246__2 ;
-      GGS_toOneOppositeRelationship extractedValue_5246__3 ;
-      GGS_bool extractedValue_5246__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_5246__0, extractedValue_5246__1, extractedValue_5246__2, extractedValue_5246__3, extractedValue_5246__4) ;
+      GGS_lstring extractedValue_5248__0 ;
+      GGS_propertyAccessibility extractedValue_5248__1 ;
+      GGS_bool extractedValue_5248__2 ;
+      GGS_toOneOppositeRelationship extractedValue_5248__3 ;
+      GGS_bool extractedValue_5248__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_5248__0, extractedValue_5248__1, extractedValue_5248__2, extractedValue_5248__3, extractedValue_5248__4) ;
       result_result = GGS_bool (true) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_5290__0 ;
-      GGS_bool extractedValue_5290__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5290__0, extractedValue_5290__1) ;
+      GGS_lstring extractedValue_5292__0 ;
+      GGS_bool extractedValue_5292__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5292__0, extractedValue_5292__1) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_5338__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5338__0) ;
+      GGS_string extractedValue_5340__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5340__0) ;
       result_result = GGS_bool (false) ;
     }
     break ;
@@ -11464,45 +11575,45 @@ GGS_bool extensionGetter_isEnumType (const GGS_propertyKind & inObject,
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_5541_type_0 ;
-      GGS_propertyAccessibility extractedValue_5547__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_5541_type_0, extractedValue_5547__1) ;
-      result_result = extractedValue_5541_type_0.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
+      GGS_typeKind extractedValue_5543_type_0 ;
+      GGS_propertyAccessibility extractedValue_5549__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_5543_type_0, extractedValue_5549__1) ;
+      result_result = extractedValue_5543_type_0.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_5593__0 ;
-      GGS_propertyAccessibility extractedValue_5593__1 ;
-      GGS_bool extractedValue_5593__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_5593__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_5593__0, extractedValue_5593__1, extractedValue_5593__2, extractedValue_5593__3) ;
+      GGS_lstring extractedValue_5595__0 ;
+      GGS_propertyAccessibility extractedValue_5595__1 ;
+      GGS_bool extractedValue_5595__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_5595__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_5595__0, extractedValue_5595__1, extractedValue_5595__2, extractedValue_5595__3) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_5628__0 ;
-      GGS_propertyAccessibility extractedValue_5628__1 ;
-      GGS_bool extractedValue_5628__2 ;
-      GGS_toOneOppositeRelationship extractedValue_5628__3 ;
-      GGS_bool extractedValue_5628__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_5628__0, extractedValue_5628__1, extractedValue_5628__2, extractedValue_5628__3, extractedValue_5628__4) ;
+      GGS_lstring extractedValue_5630__0 ;
+      GGS_propertyAccessibility extractedValue_5630__1 ;
+      GGS_bool extractedValue_5630__2 ;
+      GGS_toOneOppositeRelationship extractedValue_5630__3 ;
+      GGS_bool extractedValue_5630__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_5630__0, extractedValue_5630__1, extractedValue_5630__2, extractedValue_5630__3, extractedValue_5630__4) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_5673__0 ;
-      GGS_bool extractedValue_5673__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5673__0, extractedValue_5673__1) ;
+      GGS_lstring extractedValue_5675__0 ;
+      GGS_bool extractedValue_5675__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5675__0, extractedValue_5675__1) ;
       result_result = GGS_bool (false) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_5721__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5721__0) ;
+      GGS_string extractedValue_5723__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5723__0) ;
       result_result = GGS_bool (false) ;
     }
     break ;

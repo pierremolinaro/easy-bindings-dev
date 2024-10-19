@@ -9,6 +9,33 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Routine 'generateValidationRoutineStubs??&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_generateValidationRoutineStubs_3F__3F__26_ (const GGS_string constinArgument_inOutputDirectory,
+                                                         const GGS_validationStubRoutineListForGeneration constinArgument_inValidationStubRoutineListForGeneration,
+                                                         GGS_stringset & ioArgument_ioGeneratedFileSet,
+                                                         Compiler * inCompiler
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  cEnumerator_validationStubRoutineListForGeneration enumerator_1212 (constinArgument_inValidationStubRoutineListForGeneration, EnumerationOrder::up) ;
+  while (enumerator_1212.hasCurrentObject ()) {
+    GGS_string var_s_1283 = GGS_string (filewrapperTemplate_validationStubExtension_actionGeneration (inCompiler, enumerator_1212.current_mObjectTypeName (HERE), enumerator_1212.current_mModelName (HERE), enumerator_1212.current_mModelTypeName (HERE) COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 33))) ;
+    GGS_string var_fileName_1418 = GGS_string ("validation-").add_operation (enumerator_1212.current_mObjectTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 38)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 38)).add_operation (enumerator_1212.current_mModelName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 38)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 38)) ;
+    {
+    ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_1418, inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 39)) ;
+    }
+    GGS_string var_defaultUserZone_32__1542 = GGS_string ("    var result : EBValidationResult <").add_operation (enumerator_1212.current_mModelTypeName (HERE), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 41)).add_operation (GGS_string (">\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 41)).add_operation (GGS_string ("    let validates = false // Add your validation condition here\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 41)).add_operation (GGS_string ("    if validates {\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 42)).add_operation (GGS_string ("      result = .ok (proposedValue)\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 43)).add_operation (GGS_string ("    }else{\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 44)).add_operation (GGS_string ("      result = .rejectWithAlert (\"Rejected in \\(#file), line \\(#line)\")\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 45)).add_operation (GGS_string ("    }\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 46)).add_operation (GGS_string ("    return result\n"), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 47)) ;
+    {
+    GGS_string::class_method_generateFileWithPattern (constinArgument_inOutputDirectory, var_fileName_1418, GGS_string ("//"), GGS_string::makeEmptyString (), GGS_string ("\n\n"), var_s_1283, var_defaultUserZone_32__1542, GGS_string ("  }\n},\n\n//---------------------------------------------------------------------------------------------------------------------*\n"), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("property-validation-stub-routine.ggs", 49)) ;
+    }
+    enumerator_1212.gotoNextObject () ;
+  }
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
 //Routine 'buildActionMap?!'
 //
 //--------------------------------------------------------------------------------------------------
@@ -4144,15 +4171,19 @@ GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (Compiler *
   case kBoolTrue : {
     result.appendString ("typealias EBReadWriteProperty_") ;
     result.appendString (in_TYPE.stringValue ()) ;
-    result.appendString ("   = EBObservableMutableProperty <") ;
+    result.appendString (" = EBObservableMutableProperty <") ;
     result.appendString (in_TYPE.stringValue ()) ;
     result.appendString (">\ntypealias EBComputedProperty_") ;
     result.appendString (in_TYPE.stringValue ()) ;
-    result.appendString ("    = EBComputedProperty <") ;
+    result.appendString ("   = EBComputedProperty <") ;
     result.appendString (in_TYPE.stringValue ()) ;
     result.appendString (">\ntypealias EBStoredProperty_") ;
     result.appendString (in_TYPE.stringValue ()) ;
-    result.appendString ("      = EBStoredProperty <") ;
+    result.appendString ("     = EBStoredProperty <") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString (">\ntypealias EBStandAloneProperty_") ;
+    result.appendString (in_TYPE.stringValue ()) ;
+    result.appendString (" = EBStandAloneProperty <") ;
     result.appendString (in_TYPE.stringValue ()) ;
     result.appendString (">\n") ;
     } break ;
@@ -4207,6 +4238,10 @@ GGS_string filewrapperTemplate_standard_5F_properties_classProperty (Compiler * 
     result.appendString (">\ntypealias EBStoredProperty_") ;
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString ("      = EBStoredProperty <") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString (">\ntypealias EBStandAloneProperty_") ;
+    result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
+    result.appendString ("  = EBStandAloneProperty <") ;
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString (">\n") ;
     } break ;

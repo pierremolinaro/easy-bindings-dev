@@ -10,6 +10,18 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Routine 'generateValidationRoutineStubs??&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_generateValidationRoutineStubs_3F__3F__26_ (const class GGS_string constinArgument0,
+                                                         const class GGS_validationStubRoutineListForGeneration constinArgument1,
+                                                         class GGS_stringset & ioArgument2,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'actionGenerationTemplate'
 //
 //--------------------------------------------------------------------------------------------------

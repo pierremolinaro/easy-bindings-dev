@@ -84,7 +84,7 @@ list @typeKindList {
 
 //------------------------------------------------------------------------------------------------
 
-func @propertyKind.typeName() -> @string {
+func @propertyKind.typeName () -> @string {
   switch self
   case property (type, *) :
     result = type.typeName
@@ -101,7 +101,7 @@ func @propertyKind.typeName() -> @string {
 
 //------------------------------------------------------------------------------------------------
 
-func @propertyKind.swiftTypeName() -> @string {
+func @propertyKind.swiftTypeName () -> @string {
   switch self
   case property (type, *) :
     result = type.swiftTypeName

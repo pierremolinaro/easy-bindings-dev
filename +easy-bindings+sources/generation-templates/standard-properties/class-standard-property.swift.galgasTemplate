@@ -18,5 +18,6 @@ if not TRANSIENT then
   %typealias EBReadWriteProperty_%!CLASS_NAME%   = EBObservableMutableProperty <%!CLASS_NAME%>\n%
   %typealias EBComputedProperty_%!CLASS_NAME%    = EBComputedProperty <%!CLASS_NAME%>\n%
   %typealias EBStoredProperty_%!CLASS_NAME%      = EBStoredProperty <%!CLASS_NAME%>\n%
+  %typealias EBStandAloneProperty_%!CLASS_NAME%  = EBStandAloneProperty <%!CLASS_NAME%>\n%
 end
 %

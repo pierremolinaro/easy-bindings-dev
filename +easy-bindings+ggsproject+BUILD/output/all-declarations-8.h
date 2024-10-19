@@ -362,15 +362,3 @@ GGS_string filewrapperTemplate_validationStubExtension_actionGeneration (class C
                                                                          const class GGS_string & in_MODEL_5F_TYPE_5F_NAME
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'generateValidationRoutineStubs??&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_generateValidationRoutineStubs_3F__3F__26_ (const class GGS_string constinArgument0,
-                                                         const class GGS_validationStubRoutineListForGeneration constinArgument1,
-                                                         class GGS_stringset & ioArgument2,
-                                                         class Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
