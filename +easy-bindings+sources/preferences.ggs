@@ -32,7 +32,7 @@ override func @prefsDeclarationAST.nodeKey() -> @lstring {
 
 //------------------------------------------------------------------------------------------------
 
-func %once preferencesName() -> @string outResult {
+func %once preferencesName () -> @string outResult {
   outResult = "Preferences"
 }
 
@@ -89,9 +89,8 @@ syntax extension easyBindings_syntax {
 //   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
 //------------------------------------------------------------------------------------------------
 
-override proc @prefsDeclarationAST.firstAnalysisPhase (
-       ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct ioGeneration) {
+override proc @prefsDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
+                                                       ?!@generationStruct ioGeneration) {
   buildActionMap (self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
     .init (preferencesName (), .here),

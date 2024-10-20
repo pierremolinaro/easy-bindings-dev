@@ -297,8 +297,15 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
     result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "//   Atomic property: " + self.mPropertyName + "\n"
     result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
-    result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBPreferenceProperty <" + self.mType.swiftTypeName
-    result += "> (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_" + self.mPropertyName  + ")\n\n"
+    if self.standalone then
+      result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBStandAloneProperty_"
+      result += self.mType.swiftTypeName + " (" + self.mDefaultValueInSwift + ")\n\n"
+    else
+      result += "@MainActor let preferences_" + self.mPropertyName
+      result += "_property = EBPreferenceProperty <" + self.mType.swiftTypeName
+      result += "> (defaultValue: " + self.mDefaultValueInSwift + ", prefKey: Preferences_"
+      result += self.mPropertyName  + ")\n\n"
+    end
   else
     result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
     result += "  //   Atomic property: " + self.mPropertyName + "\n"
@@ -332,7 +339,7 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
 override func @atomicPropertyGeneration.initCode () -> @string {
   if self.standalone then
     result  = "    self." + self.mPropertyName + "_property = EBStandAloneProperty_" + self.mType.swiftTypeName
-    result += " (defaultValue: " + self.mDefaultValueInSwift + ")\n"
+    result += " (" + self.mDefaultValueInSwift + ")\n"
   else
     result  = "    self." + self.mPropertyName + "_property = EBStoredProperty_" + self.mType.swiftTypeName
     result += " (defaultValue: " + self.mDefaultValueInSwift + ", undoManager: inUndoManager, key: \"" 
@@ -343,7 +350,7 @@ override func @atomicPropertyGeneration.initCode () -> @string {
 //------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
-  result = ""
+  result  = ""
 }
 
 //------------------------------------------------------------------------------------------------

@@ -6,6 +6,10 @@ import AppKit
 
 //--------------------------------------------------------------------------------------------------
 
+@MainActor var g%!preferencesName ()% : %!preferencesName ()%? = nil
+
+//--------------------------------------------------------------------------------------------------
+
 class %!preferencesName ()% : %!preferencesName ()%_SuperClass, NSWindowDelegate {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -110,9 +114,8 @@ end
 
   override init () {
     super.init ()
- //   DispatchQueue.main.async {
-      // g_%!preferencesName ()% = self
-    //--- Read from preferences
+    g%!preferencesName ()% = self
+  //--- Read from preferences
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
   ![mProperty configurationCode !true]

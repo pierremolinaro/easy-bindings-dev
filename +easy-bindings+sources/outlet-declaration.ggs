@@ -97,11 +97,15 @@ syntax extension easyBindings_syntax {
       select
         runTargetName = @lstring ("self", .here)
       or
+        $prefs$
+        runTargetName = @lstring ("prefs", .here)
+        $.$
+      or
         $controllerName$ (?runTargetName)
         $.$
       end
       $identifier$ (?let @lstring runActionName)
-      runActionDescriptor = .action (!target:runTargetName, !action:runActionName)
+      runActionDescriptor = .action (!target: runTargetName, !action:runActionName)
   //-- Enabled
     while
       $enabled$

@@ -4590,6 +4590,7 @@ void extensionMethod_checkViewFunctionCallList (const class GGS_astAutoLayoutVie
                                                 const class GGS_astAutoLayoutViewFunctionMap constin_inFunctionMap,
                                                 const class GGS_autoLayoutViewDeclarationMap constin_inViewDeclarationMap,
                                                 const class GGS_bool constin_inPreferences,
+                                                const class GGS_actionMap constin_inPreferencesActionMap,
                                                 const class GGS_propertyMap constin_inRootObservablePropertyMap,
                                                 const class GGS_propertyMap constin_inPreferencesPropertyMap,
                                                 const class GGS_semanticContext constin_inSemanticContext,
@@ -5331,20 +5332,21 @@ void routine_analyzeAutoLayoutEnableBinding_3F__3F_handlesEnabledBinding_3F_pref
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyzeAutoLayoutRunBinding??handlesRunAction?????!'
+//Routine 'analyzeAutoLayoutRunBinding??handlesRunAction??????!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__21_ (const class GGS_runActionDescriptor constinArgument0,
-                                                                                          const class GGS_bool constinArgument1,
-                                                                                          const class GGS_bool constinArgument2,
-                                                                                          const class GGS_lstring constinArgument3,
-                                                                                          const class GGS_actionMap constinArgument4,
-                                                                                          const class GGS_propertyMap constinArgument5,
-                                                                                          const class GGS_string constinArgument6,
-                                                                                          class GGS_autolayoutRunBindingForGeneration & outArgument7,
-                                                                                          class Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
+void routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F__3F__3F__21_ (const class GGS_runActionDescriptor constinArgument0,
+                                                                                              const class GGS_bool constinArgument1,
+                                                                                              const class GGS_bool constinArgument2,
+                                                                                              const class GGS_lstring constinArgument3,
+                                                                                              const class GGS_actionMap constinArgument4,
+                                                                                              const class GGS_propertyMap constinArgument5,
+                                                                                              const class GGS_string constinArgument6,
+                                                                                              const class GGS_actionMap constinArgument7,
+                                                                                              class GGS_autolayoutRunBindingForGeneration & outArgument8,
+                                                                                              class Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //

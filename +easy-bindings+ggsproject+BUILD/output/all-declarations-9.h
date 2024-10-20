@@ -10,6 +10,38 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Filewrapper 'validationStubExtension'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_1_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_2_validationStubExtension ;
+extern const cDirectoryWrapper gWrapperDirectory_3_validationStubExtension ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'validationStubExtension actionGeneration'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_validationStubExtension_actionGeneration (class Compiler * inCompiler,
+                                                                         const class GGS_string & in_OBJECT_5F_TYPE_5F_NAME,
+                                                                         const class GGS_string & in_MODEL_5F_NAME,
+                                                                         const class GGS_string & in_MODEL_5F_TYPE_5F_NAME
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Routine 'generateValidationRoutineStubs??&'
 //
 //--------------------------------------------------------------------------------------------------
