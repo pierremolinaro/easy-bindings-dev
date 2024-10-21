@@ -235,7 +235,6 @@ override func @toManyProxyGeneration.propertyDeclarationCode(
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  var " + self.mPropertyName + "_modelDidChangeController : EBObservablePropertyController? = nil\n"
-  result += "  // var " + self.mPropertyName + "_boundObjectDidChangeController : EBObservablePropertyController? = nil\n"
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
   result += "  var " + self.mPropertyName + " : EBReferenceArray <" + self.mToManyTypeName + "> {\n"
