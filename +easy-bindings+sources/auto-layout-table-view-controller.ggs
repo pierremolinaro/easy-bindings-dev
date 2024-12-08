@@ -34,9 +34,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.enterInPrecedenceGrap
   !?ioGraph.addNode (node, self)
   !?ioGraph.addEdge (node, self.mClassName)
   if not self.mIsRoot then
-    !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, @(self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   elsif self.mRootEntityName.string != "" then
-    !?ioGraph.addEdge (node, .init (self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (node, @(self.mRootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 
@@ -101,7 +101,7 @@ syntax extension easyBindings_syntax {
         end
         $identifier$ (?let propertyName)
         var unusedSet = @stringset ()
-        <view_actual_parameter_list> (!?unusedSet, ?let columnParameterListAST) #§
+        <view_actual_parameter_list> (!?unusedSet, ?let columnParameterListAST) //§
         let @lstring sortPropertyName
         select
           sortPropertyName = "".nowhere
@@ -145,7 +145,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     %errorMessage searchKey
   do
-    let @actionMap controllerActions = [.init ("add".nowhere), .init ("remove".nowhere)]
+    let @actionMap controllerActions = [@("add".nowhere), @("remove".nowhere)]
     if self.mIsRoot then
       ioSemanticContext.mClassMap.searchKey (self.mRootEntityName, ?*, ?let rootProperties, ?2*)
       rootProperties.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
@@ -210,14 +210,14 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   ioSemanticContext.mClassMap.searchKey (
-    .init (preferencesName (), .nowhere),
+    @(preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
   )
 //----------------------------------------------------------- Check array controller attributes
   let attributes = @stringset ["allowsEmptySelection", "allowsMultipleSelection"]
-  let allowedTypes = @typeKindList [.init (.boolType)]
+  let allowedTypes = @typeKindList [@(.boolType)]
   var @stringset definedAttributes = []
   var @2stringlist attributeListForGeneration = []
   for (name, value) in self.mTableViewControllerAttributListAST do
@@ -350,8 +350,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
       !editable,
       !sortPropertyName.string,
       !propertyName.string,
-      !propertyKind.swiftTypeName , # columnOutletTypeName.string
-      !"", # columnBindings.mRunActionName.string
+      !propertyKind.swiftTypeName , // columnOutletTypeName.string
+      !"", // columnBindings.mRunActionName.string
       !actualParameterList
     )
   //-- Outlet class is needed ?
@@ -446,7 +446,7 @@ enum @autoLayoutTableViewControllerModelKind {
 //------------------------------------------------------------------------------------------------
 
 class @autoLayoutTableViewControllerGeneration : @abstractFileGeneration {
-  public let @string mOwnerName # document name, prefs name, ...
+  public let @string mOwnerName // document name, prefs name, ...
   public let @lstring mControllerName
   public let @string mModelString
   public let @autoLayoutTableViewControllerBoundColumnListForGeneration mTableViewControllerBoundColumnListForGeneration
@@ -465,7 +465,7 @@ list @autoLayoutTableViewControllerBoundColumnListForGeneration {
   public let @string mSortPropertyName
   public let @string mDisplayedPropertyName
   public let @string mColumnObjectTypeName
-  public let @string mRunAction # Empty string if no action
+  public let @string mRunAction // Empty string if no action
   public let @2stringlist mActualParameterList
 }
 

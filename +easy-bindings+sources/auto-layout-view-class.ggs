@@ -89,7 +89,7 @@ syntax extension easyBindings_syntax {
     !?ioDeclarationAST.mAutoLayoutVStackFunctionMap.insertKey (mangledName, parameterList)
   }
   
- #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <autolayout_class_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $hStack$
@@ -175,7 +175,7 @@ syntax extension easyBindings_syntax {
     )
  }
 
- #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <autolayout_formal_parameter_list> (let @lstring inFunctionName,
                                           !@autoLayoutClassParameterList ioParameterList,
@@ -218,7 +218,7 @@ syntax extension easyBindings_syntax {
     end
     $)$
     mangledName += ")"
-    outMangledName = .init (mangledName, inFunctionName.location)
+    outMangledName = @(mangledName, inFunctionName.location)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

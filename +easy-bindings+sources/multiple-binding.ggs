@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
     while
       $&$
       <booleanMultipleBindingComparison> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @andBooleanMultipleBindingExpressionAST.init  (outBinding, binding)
+      outBinding = @andBooleanMultipleBindingExpressionAST (outBinding, binding)
     end
   }
   
@@ -132,11 +132,11 @@ syntax extension easyBindings_syntax {
     while
       $|$
       <booleanMultipleBindingOperand> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @orBooleanMultipleBindingExpressionAST.init  (outBinding, binding)
+      outBinding = @orBooleanMultipleBindingExpressionAST  (outBinding, binding)
     while
       $^$
       <booleanMultipleBindingOperand> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-      outBinding = @xorBooleanMultipleBindingExpressionAST.init  (outBinding, binding)
+      outBinding = @xorBooleanMultipleBindingExpressionAST  (outBinding, binding)
     end
   }
   
@@ -146,7 +146,7 @@ syntax extension easyBindings_syntax {
     !@abstractBooleanMultipleBindingExpressionAST outBinding)
   {
     <observable_property> (?let @observablePropertyAST observablePropertyAST)
-    outBinding = @observablePropertyInMultipleBindingExpressionAST.init  (observablePropertyAST)
+    outBinding = @observablePropertyInMultipleBindingExpressionAST  (observablePropertyAST)
   }
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -156,7 +156,7 @@ syntax extension easyBindings_syntax {
   {
     $!$
     <booleanMultipleBindingOperand> (?let @abstractBooleanMultipleBindingExpressionAST binding)
-    outBinding = @negateBooleanMultipleBindingExpressionAST.init  (binding)
+    outBinding = @negateBooleanMultipleBindingExpressionAST  (binding)
   }
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -526,7 +526,6 @@ abstract func @abstractBooleanMultipleBindingExpressionForGeneration.expressionS
 override func @booleanMultipleBindingLiteralIntForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".literalInt (" + self.mValue.string + ")"
-#  outExpressionString = "MultipleBindingLiteralInt (" + [self.mValue.string () + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -534,7 +533,6 @@ override func @booleanMultipleBindingLiteralIntForGeneration.expressionString()
 override func @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".prop (" + self.mObservedModelString + ")"
-#  outExpressionString = ".MultipleBindingProp (" + self.mObservedModelString + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -542,7 +540,6 @@ override func @observablePropertyAsBooleanMultipleBindingExpressionForGeneration
 override func @negateBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".not (" + self.mBinding.expressionString + ")"
-#  outExpressionString = "MultipleBindingNot (" + [self.mBinding expressionString] + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -550,7 +547,6 @@ override func @negateBooleanMultipleBindingExpressionForGeneration.expressionStr
 override func @orBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .or, " + self.mRightBinding.expressionString + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .or, " + self.mRightBinding.expressionString () + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -558,7 +554,6 @@ override func @orBooleanMultipleBindingExpressionForGeneration.expressionString(
 override func @xorBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .xor, " + self.mRightBinding.expressionString + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .xor, " + self.mRightBinding.expressionString () + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -566,7 +561,6 @@ override func @xorBooleanMultipleBindingExpressionForGeneration.expressionString
 override func @andBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .and, " + self.mRightBinding.expressionString + ")"
-#  outExpressionString = "MultipleBindingBoolOp (" + self.mLeftBinding.expressionString () +  ", .and, " + self.mRightBinding.expressionString () + ")"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -574,7 +568,6 @@ override func @andBooleanMultipleBindingExpressionForGeneration.expressionString
 override func @comparisonMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".intcmp (" + self.mLeftBinding.expressionString + ", "
-#  outExpressionString = "MultipleBindingIntCmp (" + self.mLeftBinding.expressionString () + ", "
   switch self.mOperator
   case equal : outExpressionString += ".eq"
   case notEqual : outExpressionString += ".ne"

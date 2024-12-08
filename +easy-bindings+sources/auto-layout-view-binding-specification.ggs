@@ -35,7 +35,7 @@ syntax extension easyBindings_syntax {
         $Identifier$ (?modelTypeName)
       or
         $enum$
-        modelTypeName = .init ("enum", .here)
+        modelTypeName = @("enum", .here)
       end
       !?outletClassBindingSpecificationModelList.append (modelTypeName, modelShouldBeWritableProperty)
     while
@@ -68,7 +68,7 @@ syntax extension easyBindings_syntax {
 }
 
 //------------------------------------------------------------------------------------------------
-#  SEMANTICS
+//  SEMANTICS
 //------------------------------------------------------------------------------------------------
 
 map @autoLayoutBindingSpecificationMap {
@@ -99,7 +99,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         !?outletBindingSpecificationModelList.append (
-          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []), # Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []), // Any enum type
           !mModelShouldBeWritableProperty
         )
       else

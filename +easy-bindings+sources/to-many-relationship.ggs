@@ -331,24 +331,6 @@ override func @toManyPropertyGeneration.setupRelationshipFromDictionaryCode() ->
 
 //------------------------------------------------------------------------------------------------
 
-#override func @toManyPropertyGeneration.saveIntoDictionaryCode() -> @string {
-#  if [self.mOption isHasDependance] then
-//    result = ""
-#  elsif self.mCustomStore then
-//    result  = "  //--- To many property: " + self.mPropertyName + " (Custom store)\n"
-//    result += "    customStore_" + [self.mRelationshipType.swiftTypeName () + "_" + self.mPropertyName + " (self." + self.mPropertyName + "_property.propval.values, intoDictionary: &ioDictionary)\n"
-#  else
-//    result  = "  //--- To many property: " + self.mPropertyName + "\n"
-//    result += "    self.store (\n"
-//    result += "      managedObjectArray: self." + self.mPropertyName + "_property.propval.values,\n"
-//    result += "      relationshipName: \"" + self.mPropertyName + "\",\n"
-//    result += "      intoDictionary: &ioDictionary\n"
-//    result += "    )\n"
-#  end
-#}
-
-//------------------------------------------------------------------------------------------------
-
 override func @toManyPropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
   if self.mCustomStore then
     result  = "  //--- To many property: " + self.mPropertyName + " (custom store)\n"

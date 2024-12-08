@@ -3,7 +3,7 @@
 //------------------------------------------------------------------------------------------------
 
 class @transientClassDeclarationAST : @abstractDeclarationAST {
-  public var @bool mIsClass # Is false, struct
+  public var @bool mIsClass // Is false, struct
 }
 
 //------------------------------------------------------------------------------------------------

@@ -161,7 +161,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
   do
     ioSemanticContext.mClassMap.searchKey (self.mPropertyTypeName, ?let classKind, ?3*)
     ioSemanticContext.mClassMap.searchKey (
-      .init (preferencesName (), .nowhere),
+      @(preferencesName (), .nowhere),
       ?*,
       ?let preferencesPropertyMap,
       ?2*
@@ -172,7 +172,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     case atomic (kind) :
       !?mPropertyMap.insertKey (self.mPropertyName, .property (!type: kind, !accessibility: .stored), [], false)
     //-- Analyze default value
-      self.mDefaultValue.analyzeDefaultValueType ([.init (kind)], preferencesPropertyMap, ?let @string swiftDefaultValueAsString)
+      self.mDefaultValue.analyzeDefaultValueType ([@(kind)], preferencesPropertyMap, ?let @string swiftDefaultValueAsString)
     //-- Code Generation
       !?mPropertyGenerationList.append (@atomicPropertyGeneration (
         self.mPropertyName.string,

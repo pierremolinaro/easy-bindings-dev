@@ -36,10 +36,10 @@ syntax extension easyBindings_syntax {
       select
         $Identifier$ (?let @lstring outletType)
         $identifier$ (?let @lstring outletName)
-        !?ioElementList.append ([.init (.outlet (!outletType:outletType, !outletName:outletName))])
+        !?ioElementList.append ([@(.outlet (!outletType:outletType, !outletName:outletName))])
       or
         $literal_string$ (?let @lstring s)
-        !?ioElementList.append ([.init (.text (!text:s))])
+        !?ioElementList.append ([@(.text (!text:s))])
       or
         ${$
         <main_xib_line> (?let @mainXibLineDescriptorList lineDescription)
@@ -148,17 +148,17 @@ proc generateTestFile(
       outlet_identifier_list
     ]
     let header = "#!/usr/bin/python3\n"
-      "# coding=utf-8\n\n"
-      "# https://pypi.python.org/pypi/atomac\n"
-      "# https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n\n"
+      "// coding=utf-8\n\n"
+      "// https://pypi.python.org/pypi/atomac\n"
+      "// https://github.com/pyatom/pyatom/blob/master/atomac/AXClasses.py\n\n"
     @string.generateFileWithPattern (
       !startPath:inOutputDirectory,
       !fileName:"test.py",
       !lineComment:"#",
       !header:header,
-      !defaultUserZone1:"", # Defaut user zone1
+      !defaultUserZone1:"", // Default user zone1
       !generatedZone2:s,
-      !defaultUserZone2:"//    ENTER USER CODE HERE\n", # Defaut user zone2
+      !defaultUserZone2:"//    ENTER USER CODE HERE\n", // Default user zone2
       !generatedZone3:"\nquitApplication ()\n\n//---------------------------------------------------------------------------*\n",
       !makeExecutable:true
     )

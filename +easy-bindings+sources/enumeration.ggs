@@ -195,7 +195,7 @@ override proc @enumForGeneration.generateCode(
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
     ?!@stringset ioGeneratedFileSet) {
-  if self.mEnumConstantList.count > 0 then # Empty list is the generic type "Enum"
+  if self.mEnumConstantList.count > 0 then // Empty list is the generic type "Enum"
     let sA = filewrapper [enumGenerationTemplate.enumGenerationInSwift:
       self.mEnumName,
       self.mEnumConstantList,

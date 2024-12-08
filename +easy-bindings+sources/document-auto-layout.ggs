@@ -9,7 +9,7 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstringlist mActionDeclarationList
   public let @arrayControllerBindingListAST mArrayControllerBindingListAST
   public let @astViewDeclarationList mViewDeclarationList
-  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @string mCustomSuperClassName // Empty String if no custom superclass
   public let @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
@@ -155,14 +155,14 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@generationStruct ioGeneration)
 {
   ioSemanticContext.mClassMap.searchKey (
-    .init (preferencesName (), .nowhere),
+    @(preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?2*
   )
 //-- Get document property map
   ioSemanticContext.mClassMap.searchKey (
-    .init (self.mClassName, .nowhere),
+    @(self.mClassName, .nowhere),
     ?*,
     ?let documentPropertyMap,
     ?let documentActionMap,
@@ -281,7 +281,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     viewGenerationList,
     implicitViewFunctionGenerationList,
     configuratorMap,
-    self.mCustomSuperClassName, # Empty String if no custom superclass
+    self.mCustomSuperClassName, // Empty String if no custom superclass
     outletLinkerGenerationList
   )
   )
@@ -304,10 +304,10 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
   public let @viewGenerationList mViewDeclarationList
-#  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
+//  public let @autoLayoutToolbarItemGenerationList mAutoLayoutToolbarItemGenerationList
   public let @implicitViewFunctionGenerationList mImplicitViewFunctionGenerationList
   public let @autoLayoutConfiguratorMap mConfiguratorMap
-  public let @string mCustomSuperClassName # Empty String if no custom superclass
+  public let @string mCustomSuperClassName // Empty String if no custom superclass
   public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
 
@@ -359,9 +359,9 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       !fileName: fileName,
       !lineComment:"//",
       !header:header,
-      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !defaultUserZone1:"\n\n", // Defaut user zone1
       !generatedZone2:s,
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", // Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n",
       !makeExecutable:false
     )
@@ -384,9 +384,9 @@ override proc @autoLayoutDocumentFileGeneration.generateCode(
       !fileName: fileName,
       !lineComment:"//",
       !header:header,
-      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !defaultUserZone1:"\n\n", // Defaut user zone1
       !generatedZone2:s,
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", // Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n",
       !makeExecutable:false
     )

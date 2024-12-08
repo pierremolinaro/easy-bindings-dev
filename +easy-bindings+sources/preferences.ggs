@@ -93,7 +93,7 @@ override proc @prefsDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSema
                                                        ?!@generationStruct ioGeneration) {
   buildActionMap (self.mDeclaration.mActionDeclarationList, ?let @actionMap actionMap)
   !?ioSemanticContext.mClassMap.insertKey (
-    .init (preferencesName (), .here),
+    @(preferencesName (), .here),
     .prefs,
     [],
     actionMap,
@@ -132,7 +132,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   end
 //-- Get preference property map
   ioSemanticContext.mClassMap.searchKey (
-    .init (preferencesName (), .nowhere),
+    @(preferencesName (), .nowhere),
     ?*,
     ?let preferencesPropertyMap,
     ?let actionMap,
@@ -141,9 +141,9 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 //-- Analyze outlets and bindings
   analyzeOutlets (
     true,
-    [], # No root entity
+    [], // No root entity
     preferencesPropertyMap,
-    "", # No root entity
+    "", // No root entity
     ioSemanticContext,
     self.mDeclaration.mOutletDeclarationList,
     preferencesPropertyMap,
@@ -293,9 +293,9 @@ override proc @preferencesForGeneration.generateCode(
       !fileName: fileName,
       !lineComment:"//",
       !header:header,
-      !defaultUserZone1:"\n\n", # Defaut user zone1
+      !defaultUserZone1:"\n\n", // Defaut user zone1
       !generatedZone2:s,
-      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", # Defaut user zone2
+      !defaultUserZone2:"INSERT CONFIGURATION CODE\n", // Defaut user zone2
       !generatedZone3:"  }\n}\n\n//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n",
       !makeExecutable:false
     )

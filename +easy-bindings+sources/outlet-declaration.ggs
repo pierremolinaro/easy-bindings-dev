@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------------------------
-#  AST    
+//  AST    
 //------------------------------------------------------------------------------------------------
 
 list @bindingOptionList {
@@ -35,7 +35,7 @@ list @outletDeclarationList {
 }
 
 //------------------------------------------------------------------------------------------------
-#  SYNTAX 
+//  SYNTAX 
 //------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
@@ -162,7 +162,7 @@ syntax extension easyBindings_syntax {
 }
 
 //------------------------------------------------------------------------------------------------
-#  SEMANTICS                              
+//  SEMANTICS                              
 //------------------------------------------------------------------------------------------------
 
 list @outletBindingModelList {
@@ -316,7 +316,7 @@ proc analyzeOutlets(
           !action.string,
           !inReceiverSwiftTypeName
         )
-      else # It is a controller
+      else // It is a controller
         inObservablePropertyMap.searchKey
           (target,
           ?*,
@@ -426,7 +426,7 @@ proc analyzeRegularBinding(
         ?let @string unused defaultValueAsString
       )
       switch kind
-      case property (2*) : # Ok
+      case property (2*) : // Ok
       case toMany (4*) :
         error mObservableProperty.location :"a toMany property cannot be bound"
       case toOne (5*) :
@@ -477,7 +477,7 @@ proc analyzeRegularBinding(
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
-        if required_mModelType.isEnumType && found_mKind.isEnumType then # Ok
+        if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
         elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
           error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName
         end
@@ -503,7 +503,7 @@ proc analyzeRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         binding_mOptionValue.analyzeDefaultValueType (
-          [.init (controller_mOptionType)],
+          [@(controller_mOptionType)],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )

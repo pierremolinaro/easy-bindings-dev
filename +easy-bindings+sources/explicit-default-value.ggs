@@ -53,10 +53,10 @@ syntax extension easyBindings_syntax {
    rule <explicit_value> (!@abstractDefaultValue outDefaultValue) {
     select
       $yes$
-      outDefaultValue = @boolAsDefaultValue (.init (true, .here))
+      outDefaultValue = @boolAsDefaultValue (@(true, .here))
     or
       $no$
-      outDefaultValue = @boolAsDefaultValue (.init (false, .here))
+      outDefaultValue = @boolAsDefaultValue (@(false, .here))
     or
       $literal_integer$ (?let @luint integerValue)
       outDefaultValue = @integerAsDefaultValue (integerValue, false)

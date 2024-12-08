@@ -17,7 +17,7 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
     self.mSelectionControllerName.location
   )
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, .init (self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
+  !?ioGraph.addEdge (node, @(self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
 }
 
 //------------------------------------------------------------------------------------------------
@@ -200,7 +200,7 @@ override func @selectionControllerPropertyGeneration.populateExplorerWindowCode(
 //------------------------------------------------------------------------------------------------
 
 list @selectionControllerForGeneration {
-  public var @string mOwnerName # document name, prefs name, ...
+  public var @string mOwnerName // document name, prefs name, ...
   public var @string mSelectionControllerName
   public var @string mBoundControllerName
   public var @string mBoundControllerPropertyName

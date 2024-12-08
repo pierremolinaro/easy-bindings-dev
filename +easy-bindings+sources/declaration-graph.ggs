@@ -64,7 +64,7 @@ proc sortProperties(
       !@declarationListAST outSortedDeclarationListAST)
 {
 //----------------------- Enter declarations in graph
-  var @declarationPrecedenceGraph declarationPrecedenceGraph = .init
+  var @declarationPrecedenceGraph declarationPrecedenceGraph = @()
   for (declaration) in inDeclarationListAST do
     declaration.enterInPrecedenceGraph (!?declarationPrecedenceGraph)
   end

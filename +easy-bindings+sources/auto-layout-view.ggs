@@ -144,8 +144,8 @@ class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   public let @multipleBindingDescriptor mHiddenBindingDescriptor
   public let @graphicController mGraphicController
   public let @regularBindingList mRegularBindingList
-  public let @lstring mConfiguratorName # Empty string if no configurator
-  public let @lstring mOutletName # Empty string if no configurator
+  public let @lstring mConfiguratorName // Empty string if no configurator
+  public let @lstring mOutletName // Empty string if no configurator
   public let @bool mOutletIsArray
 }
 
@@ -312,7 +312,7 @@ syntax extension easyBindings_syntax {
     outInstruction = @astSpaceViewInstruction ()
   }
   
- #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  
   rule <view_instruction> (?!@stringset ioStackViewInstances,
                            !@astAbstractViewInstructionDeclaration outInstruction) {
@@ -402,7 +402,7 @@ syntax extension easyBindings_syntax {
     )
   }
   
- #·····················································································································
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  
   rule <view_actual_parameter_list> (?!@stringset ioStackViewInstances,
                                      !@astAutoLayoutViewInstructionParameterList outParameterList) {
@@ -657,7 +657,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
       mangleName += parameterName.string + ":"
     end
     mangleName += ")"
-    inFunctionMap.searchKey (.init (mangleName, functionName.location), ?let formalParameterList)
+    inFunctionMap.searchKey (@(mangleName, functionName.location), ?let formalParameterList)
     var @autoLayoutViewInstructionGenerationParameterList parameterList = []
     if formalParameterList.count != actualParameterList.count then
       error functionName 
@@ -919,7 +919,7 @@ override proc @astSpaceViewInstruction.generateViewCode(
                                 ?!@autoLayoutConfiguratorMap unused ioConfiguratorMap,
                                 ?!@autoLayoutOutletMap unused ioOutletMap,
                                 !@abstractViewInstructionGeneration outInstruction) {
-  outInstruction = @autoLayoutSpaceViewInstructionGeneration.init
+  outInstruction = @autoLayoutSpaceViewInstructionGeneration ()
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1034,7 +1034,7 @@ override proc @astComputedViewInstruction.generateViewCode(
           run,
           !handlesRunAction: true,
           inPreferences,
-          "".nowhere , # mAutoLayoutViewClassName # inTypeName
+          "".nowhere , // mAutoLayoutViewClassName // inTypeName
           inActionMap,
           inObservablePropertyMap,
           inReceiverSwiftTypeName,
@@ -1177,7 +1177,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
   !@autoLayoutViewGraphicControllerBindingGeneration outEBViewGraphicControllerBindingGeneration) {
   outRegularBindingsGenerationList = []
   outMultipleBindingGenerationList = []
-  outTableViewBindingGeneration = "" # Empty String means no binding
+  outTableViewBindingGeneration = "" // Empty String means no binding
   inSemanticContext.mAutolayoutViewClassMap.searchKey
     (inTypeName,
     ?*,
@@ -1405,7 +1405,7 @@ proc analyzeAutoLayoutRunBinding (let @runActionDescriptor inRunActionDescriptor
         !actionName: action.string,
         !targetTypeName: preferencesName ()
       )
-    else # It is a controller
+    else // It is a controller
       inObservablePropertyMap.searchKey
         (target,
         ?*,
@@ -1449,7 +1449,7 @@ proc analyzeAutoLayoutRegularBinding(
         ?let @string unused defaultValueAsString
       )
       switch kind
-      case property (2*) : # Ok
+      case property (2*) : // Ok
       case toMany (4*) :
         error mObservableProperty.location :"a toMany property cannot be bound"
       case toOne (5*) :
@@ -1497,7 +1497,7 @@ proc analyzeAutoLayoutRegularBinding(
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
           error found_mErrorLocation : "the model is transient and the binding requires an writable model"
         end
-        if required_mModelType.isEnumType && found_mKind.isEnumType then # Ok
+        if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
         elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
           error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName
         end
@@ -1522,7 +1522,7 @@ proc analyzeAutoLayoutRegularBinding(
           error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
         end
         binding_mOptionValue.analyzeDefaultValueType (
-          [.init (controller_mOptionType)],
+          [@(controller_mOptionType)],
           inPreferencesPropertyMap,
           ?let @string optionValueAsString
         )
@@ -1878,10 +1878,10 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   public let @autoLayoutRegularBindingsGenerationList mRegularBindingsGenerationList
   public let @autoLayoutMultipleBindingGenerationList mMultipleBindingGenerationList
   public let @autolayoutRunBindingForGeneration mRunBindingGeneration
-  public let @string mTableViewBindingGeneration # Bound controller name; empty string means no binding
+  public let @string mTableViewBindingGeneration // Bound controller name; empty string means no binding
   public let @autoLayoutViewGraphicControllerBindingGeneration mEBViewGraphicControllerBindingGeneration
-  public let @string mConfiguratorName # Empty string if no configurator
-  public let @string mOutletName # Empty string if no configurator
+  public let @string mConfiguratorName // Empty string if no configurator
+  public let @string mOutletName // Empty string if no configurator
   public let @bool mOutletIsArray
 }
 

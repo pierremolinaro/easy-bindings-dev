@@ -43,15 +43,7 @@ abstract func @propertyGeneration.initCode() -> @string
 
 //------------------------------------------------------------------------------------------------
 
-#func @propertyGeneration.setupAtomicPropertyFromDictionaryCode() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
 func @propertyGeneration.setupRelationshipFromDictionaryCode() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
-#func @propertyGeneration.saveIntoDictionaryCode() -> @string { result = "" }
 
 //------------------------------------------------------------------------------------------------
 
@@ -60,10 +52,6 @@ func @propertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string { 
 //------------------------------------------------------------------------------------------------
 
 func @propertyGeneration.populateExplorerWindowCode() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
-#func @propertyGeneration.clearObjectExplorerCode() -> @string { result = "" }
 
 //------------------------------------------------------------------------------------------------
 

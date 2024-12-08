@@ -246,7 +246,7 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
       if isGraphic & not self.mIsGraphicEntity then
         error self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
       end
-      if isAbstract & not self.mIsAbstract then # Check all abstract properties are defined
+      if isAbstract & not self.mIsAbstract then // Check all abstract properties are defined
         for superProperty in superPropertyMap do
           if superProperty.isAbstract then
             if propertyMap.hasKey (superProperty.lkey.string) then
