@@ -13,8 +13,7 @@ func enterOptions () -> [SWIFT_CommandLineOption] {
     identifier: "outputDeclarationDependencyGraph",
     commandChar: "g",
     commandString: "output-declaration-graph",
-    comment: "Output a declaration dependancy graph graphviz file",
-    defaultValue: ""
+    comment: "Output a declaration dependancy graph graphviz file"
   ))
   array.append (SWIFT_CommandLineOption (
     domainName: "galgas_cli_options",
@@ -22,8 +21,7 @@ func enterOptions () -> [SWIFT_CommandLineOption] {
     identifier: "quiet_output",
     commandChar: "q",
     commandString: "quiet",
-    comment: "Quiet output",
-    defaultValue: ""
+    comment: "Quiet output"
   ))
   return array
 }

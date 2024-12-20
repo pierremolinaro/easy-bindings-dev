@@ -4,84 +4,85 @@
 //--- END OF USER ZONE 1
 
 import AppKit
+import MyAutoLayoutKit
 
 //--------------------------------------------------------------------------------------------------
 //   LEXIQUE easyBindings_lexique
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gFont_easyBindings_lexique = EBGenericPreferenceProperty <NSFont> (
+@MainActor fileprivate let gFont_easyBindings_lexique = EBPreferenceProperty <NSFont> (
   defaultValue: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular),
   prefKey: "FontFor_" + easyBindings_lexique_lexiqueIdentifier ()
 )
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gLineHeight_easyBindings_lexique = EBGenericPreferenceProperty <Int> (
+@MainActor fileprivate let gLineHeight_easyBindings_lexique = EBPreferenceProperty <Int> (
   defaultValue: 12,
   prefKey: "LineHeightFor_" + easyBindings_lexique_lexiqueIdentifier ()
 )
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gColors_easyBindings_lexique : [EBGenericPreferenceProperty <NSColor>] = [
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-keywordsStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-idfStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-IdfStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-attributeStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-bindingNameStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-reservedBindingNameStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-controllerNameStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-viewNameStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-integerStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-floatStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-stringStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-commentStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .red, prefKey: "ColorFor_easyBindings_lexique_lexical_error"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .gray, prefKey: "ColorFor_easyBindings_lexique_template")
+@MainActor fileprivate let gColors_easyBindings_lexique : [EBPreferenceProperty <NSColor>] = [
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-keywordsStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-idfStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-IdfStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-attributeStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-bindingNameStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-reservedBindingNameStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-controllerNameStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-viewNameStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-integerStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-floatStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-stringStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-delimitersStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_easyBindings_lexique-commentStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .red, prefKey: "ColorFor_easyBindings_lexique_lexical_error"),
+  EBPreferenceProperty <NSColor> (defaultValue: .gray, prefKey: "ColorFor_easyBindings_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gBoldStyle_easyBindings_lexique : [EBGenericPreferenceProperty <Bool>] = [
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-keywordsStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-idfStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-IdfStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-attributeStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-bindingNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-reservedBindingNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-controllerNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-viewNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-integerStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-floatStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-stringStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-commentStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: true, prefKey: "BoldFor_easyBindings_lexique_lexical_error"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique_template")
+@MainActor fileprivate let gBoldStyle_easyBindings_lexique : [EBPreferenceProperty <Bool>] = [
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-keywordsStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-idfStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-IdfStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-attributeStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-bindingNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-reservedBindingNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-controllerNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-viewNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-integerStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-floatStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-stringStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-delimitersStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique-commentStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: true, prefKey: "BoldFor_easyBindings_lexique_lexical_error"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_easyBindings_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gItalicStyle_easyBindings_lexique : [EBGenericPreferenceProperty <Bool>] = [
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-keywordsStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-idfStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-IdfStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-attributeStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-bindingNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-reservedBindingNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-controllerNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-viewNameStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-integerStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-floatStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-stringStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-commentStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique_lexical_error"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique_template")
+@MainActor fileprivate let gItalicStyle_easyBindings_lexique : [EBPreferenceProperty <Bool>] = [
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-keywordsStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-idfStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-IdfStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-attributeStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-bindingNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-reservedBindingNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-controllerNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-viewNameStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-integerStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-floatStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-stringStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-delimitersStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique-commentStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique_lexical_error"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_easyBindings_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
@@ -294,27 +295,27 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var font : EBGenericPreferenceProperty <NSFont> { return gFont_easyBindings_lexique }
+  var font : EBPreferenceProperty <NSFont> { return gFont_easyBindings_lexique }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var lineHeight : EBGenericPreferenceProperty <Int> { return gLineHeight_easyBindings_lexique }
+  var lineHeight : EBPreferenceProperty <Int> { return gLineHeight_easyBindings_lexique }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func color (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <NSColor> {
+  func color (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <NSColor> {
     return gColors_easyBindings_lexique [Int (inStyleIndex)]
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func bold (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <Bool> {
+  func bold (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gBoldStyle_easyBindings_lexique [Int (inStyleIndex)]
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func italic (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <Bool> {
+  func italic (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gItalicStyle_easyBindings_lexique [Int (inStyleIndex)]
   }
 
@@ -779,6 +780,7 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
