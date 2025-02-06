@@ -150,7 +150,8 @@ static const UInt16 * gPopUpData_0_easyBindings_5F_lexique [1] = {
 
 OC_Lexique * tokenizerForExtension (const NSString * inExtension) {
   OC_Lexique * result = nil ;
-  if ([inExtension isEqualToString:@"eb"]) {
+  NSString * uppercasedExtension = [inExtension uppercaseString] ;
+  if ([uppercasedExtension isEqualToString:@"EB"]) {
     result = [OC_Tokenizer_0_easyBindings_lexique new] ;
   }
   return result ;
