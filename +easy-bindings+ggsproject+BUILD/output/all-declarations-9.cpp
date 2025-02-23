@@ -9,6 +9,41 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Overriding extension getter '@toManyPropertyGeneration objectAccessibilityCodeForSaveOperation'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string cPtr_toManyPropertyGeneration::getter_objectAccessibilityCodeForSaveOperation (Compiler * inCompiler
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_string result_result ; // Returned variable
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
+    const GGS_toManyPropertyGeneration temp_1 = this ;
+    test_0 = temp_1.readProperty_mCustomStore ().boolEnum () ;
+    if (GalgasBool::boolTrue == test_0) {
+      const GGS_toManyPropertyGeneration temp_2 = this ;
+      result_result = GGS_string ("  //--- To many property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 336)).add_operation (GGS_string (" (custom store)\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 336)) ;
+      const GGS_toManyPropertyGeneration temp_3 = this ;
+      result_result.plusAssign_operation(GGS_string ("    /* for managedObject in self.").add_operation (temp_3.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 337)).add_operation (GGS_string ("_property.propval.values {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 337)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 337)) ;
+      result_result.plusAssign_operation(GGS_string ("      ioObjectArray.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 338)) ;
+      result_result.plusAssign_operation(GGS_string ("    } */\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 339)) ;
+    }
+  }
+  if (GalgasBool::boolFalse == test_0) {
+    const GGS_toManyPropertyGeneration temp_4 = this ;
+    result_result = GGS_string ("  //--- To many property: ").add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 341)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 341)) ;
+    const GGS_toManyPropertyGeneration temp_5 = this ;
+    result_result.plusAssign_operation(GGS_string ("    for managedObject in self.").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 342)).add_operation (GGS_string (".values {\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 342)), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 342)) ;
+    result_result.plusAssign_operation(GGS_string ("      ioObjectArray.append (managedObject)\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 343)) ;
+    result_result.plusAssign_operation(GGS_string ("    }\n"), inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 344)) ;
+  }
+//---
+  return result_result ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
 //Overriding extension getter '@toManyPropertyGeneration resetToManyRelationships'
 //
 //--------------------------------------------------------------------------------------------------
@@ -16,15 +51,15 @@
 GGS_string cPtr_toManyPropertyGeneration::getter_resetToManyRelationships (Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_string result_result ; // Returned variable
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     const GGS_toManyPropertyGeneration temp_1 = this ;
     test_0 = temp_1.readProperty_mOption ().getter_isHasDependance (SOURCE_FILE ("to-many-relationship.ggs", 351)).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       result_result = GGS_string::makeEmptyString () ;
     }
   }
-  if (kBoolFalse == test_0) {
+  if (GalgasBool::boolFalse == test_0) {
     const GGS_toManyPropertyGeneration temp_2 = this ;
     result_result = GGS_string ("  //--- To many property: ").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 354)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 354)) ;
     const GGS_toManyPropertyGeneration temp_3 = this ;
@@ -398,10 +433,10 @@ void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpres
   GGS_string var_defaultValueAsString_12472 ;
   const GGS_observablePropertyInMultipleBindingExpressionAST temp_0 = this ;
   GGS_propertyMap temp_1 ;
-  const enumGalgasBool test_2 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_2) {
+  const GalgasBool test_2 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_2) {
     temp_1 = constinArgument_inPreferencesObservablePropertyMap ;
-  }else if (kBoolFalse == test_2) {
+  }else if (GalgasBool::boolFalse == test_2) {
     temp_1 = constinArgument_inCurrentObservablePropertyMap ;
   }
   extensionMethod_analyzeObservableProperty (temp_0.readProperty_mProperty (), constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, temp_1, var_kind_12373, var_swiftTypeStringForTransientFunctionArgument_12403, var_defaultValueAsString_12472, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 290)) ;
@@ -467,10 +502,10 @@ void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpres
   }
   const GGS_observablePropertyInMultipleBindingExpressionAST temp_11 = this ;
   GGS_string temp_12 ;
-  const enumGalgasBool test_13 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_13) {
+  const GalgasBool test_13 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_13) {
     temp_12 = GGS_string ("preferences_") ;
-  }else if (kBoolFalse == test_13) {
+  }else if (GalgasBool::boolFalse == test_13) {
     temp_12 = GGS_string ("self.") ;
   }
   outArgument_outEnableExpression = GGS_observablePropertyAsBooleanMultipleBindingExpressionForGeneration::init_21_ (extensionGetter_modelStringForSelf (temp_11.readProperty_mProperty (), temp_12, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 311)), inCompiler COMMA_HERE) ;
@@ -496,10 +531,10 @@ void cPtr_negateBooleanMultipleBindingExpressionAST::method_analyzeExpressionFor
   GGS_abstractBooleanMultipleBindingExpressionForGeneration var_expression_14118 ;
   const GGS_negateBooleanMultipleBindingExpressionAST temp_0 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_expression_14118, outArgument_outType, outArgument_outErrorLocation, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 328)) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = outArgument_outType.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 338)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 338)).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       TC_Array <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (outArgument_outErrorLocation, GGS_string ("cannot apply negation: operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 339)) ;
     }
@@ -527,10 +562,10 @@ void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMult
   GGS_location var_outLeftLocation_15261 ;
   const GGS_orBooleanMultipleBindingExpressionAST temp_0 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_15214, var_outLeftType_15239, var_outLeftLocation_15261, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 356)) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = var_outLeftType_15239.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 366)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 366)).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       TC_Array <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (var_outLeftLocation_15261, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 367)) ;
     }
@@ -540,10 +575,10 @@ void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMult
   GGS_location var_outRightLocation_15731 ;
   const GGS_orBooleanMultipleBindingExpressionAST temp_3 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_15682, var_outRightType_15708, var_outRightLocation_15731, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 369)) ;
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
     test_4 = var_outRightType_15708.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 379)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 379)).boolEnum () ;
-    if (kBoolTrue == test_4) {
+    if (GalgasBool::boolTrue == test_4) {
       TC_Array <FixItDescription> fixItArray5 ;
       inCompiler->emitSemanticError (var_outRightLocation_15731, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 380)) ;
     }
@@ -573,10 +608,10 @@ void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
   GGS_location var_outLeftLocation_16928 ;
   const GGS_xorBooleanMultipleBindingExpressionAST temp_0 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_16881, var_outLeftType_16906, var_outLeftLocation_16928, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 399)) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = var_outLeftType_16906.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 409)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 409)).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       TC_Array <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (var_outLeftLocation_16928, GGS_string ("cannot apply 'or': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 410)) ;
     }
@@ -586,10 +621,10 @@ void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
   GGS_location var_outRightLocation_17398 ;
   const GGS_xorBooleanMultipleBindingExpressionAST temp_3 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_17349, var_outRightType_17375, var_outRightLocation_17398, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 412)) ;
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
     test_4 = var_outRightType_17375.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 422)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 422)).boolEnum () ;
-    if (kBoolTrue == test_4) {
+    if (GalgasBool::boolTrue == test_4) {
       TC_Array <FixItDescription> fixItArray5 ;
       inCompiler->emitSemanticError (var_outRightLocation_17398, GGS_string ("cannot apply 'or': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 423)) ;
     }
@@ -619,10 +654,10 @@ void cPtr_andBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
   GGS_location var_outLeftLocation_18596 ;
   const GGS_andBooleanMultipleBindingExpressionAST temp_0 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_0.readProperty_mLeftBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_leftExpression_18549, var_outLeftType_18574, var_outLeftLocation_18596, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 442)) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = var_outLeftType_18574.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 452)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 452)).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       TC_Array <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (var_outLeftLocation_18596, GGS_string ("cannot apply 'and': left operand is not boolean"), fixItArray2  COMMA_SOURCE_FILE ("multiple-binding.ggs", 453)) ;
     }
@@ -632,10 +667,10 @@ void cPtr_andBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
   GGS_location var_outRightLocation_19067 ;
   const GGS_andBooleanMultipleBindingExpressionAST temp_3 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_3.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_19018, var_outRightType_19044, var_outRightLocation_19067, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 455)) ;
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
     test_4 = var_outRightType_19044.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 465)).operator_not (SOURCE_FILE ("multiple-binding.ggs", 465)).boolEnum () ;
-    if (kBoolTrue == test_4) {
+    if (GalgasBool::boolTrue == test_4) {
       TC_Array <FixItDescription> fixItArray5 ;
       inCompiler->emitSemanticError (var_outRightLocation_19067, GGS_string ("cannot apply 'and': right operand is not boolean"), fixItArray5  COMMA_SOURCE_FILE ("multiple-binding.ggs", 466)) ;
     }
@@ -670,22 +705,22 @@ void cPtr_comparisonMultipleBindingExpressionAST::method_analyzeExpressionForMul
   GGS_location var_outRightLocation_20616 ;
   const GGS_comparisonMultipleBindingExpressionAST temp_1 = this ;
   callExtensionMethod_analyzeExpressionForMultipleBinding ((cPtr_abstractBooleanMultipleBindingExpressionAST *) temp_1.readProperty_mRightBinding ().ptr (), constinArgument_inPreferences, constinArgument_inRootObservablePropertyMap, constinArgument_inSemanticContext, constinArgument_inCurrentObservablePropertyMap, constinArgument_inPreferencesObservablePropertyMap, var_rightExpression_20567, var_outRightType_20593, var_outRightLocation_20616, inCompiler COMMA_SOURCE_FILE ("multiple-binding.ggs", 495)) ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     GGS_bool test_3 = var_outLeftType_20244.getter_isBoolType (SOURCE_FILE ("multiple-binding.ggs", 505)) ;
-    if (kBoolTrue != test_3.boolEnum ()) {
+    if (GalgasBool::boolTrue != test_3.boolEnum ()) {
       test_3 = var_outLeftType_20244.getter_isIntegerType (SOURCE_FILE ("multiple-binding.ggs", 505)) ;
     }
     test_2 = test_3.operator_not (SOURCE_FILE ("multiple-binding.ggs", 505)).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       TC_Array <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (var_outLeftLocation_20266, GGS_string ("cannot compare: left operand is neither boolean nor integer"), fixItArray4  COMMA_SOURCE_FILE ("multiple-binding.ggs", 506)) ;
     }
   }
-  enumGalgasBool test_5 = kBoolTrue ;
-  if (kBoolTrue == test_5) {
+  GalgasBool test_5 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_5) {
     test_5 = GGS_bool (ComparisonKind::notEqual, var_outRightType_20593.objectCompare (var_outLeftType_20244)).boolEnum () ;
-    if (kBoolTrue == test_5) {
+    if (GalgasBool::boolTrue == test_5) {
       TC_Array <FixItDescription> fixItArray6 ;
       inCompiler->emitSemanticError (var_outRightLocation_20616, GGS_string ("cannot compare: right operand type is different than left operand type"), fixItArray6  COMMA_SOURCE_FILE ("multiple-binding.ggs", 509)) ;
     }
@@ -876,10 +911,10 @@ void cPtr_arrayControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_decl
     {
       GGS_lstring extractedValue_1345_rootEntityName_0 ;
       temp_5.readProperty_mModel ().getAssociatedValuesFor_rootToManyRelationship (extractedValue_1345_rootEntityName_0) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
+      GalgasBool test_6 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_6) {
         test_6 = GGS_bool (ComparisonKind::notEqual, extractedValue_1345_rootEntityName_0.readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-        if (kBoolTrue == test_6) {
+        if (GalgasBool::boolTrue == test_6) {
           {
           const GGS_arrayControllerDeclarationAST temp_7 = this ;
           const GGS_arrayControllerDeclarationAST temp_8 = this ;
@@ -1166,10 +1201,10 @@ void cPtr_arrayControllerDeclarationAST::method_thirdAnalysisPhase (GGS_semantic
       var_elementTypeName_7588 = extractedValue_7816_typeName_0.readProperty_string () ;
       var_graphic_7566 = extractedValue_7841_isGraphic_2 ;
       GGS_arrayControllerModelKind temp_5 ;
-      const enumGalgasBool test_6 = extractedValue_7826_accessibility_1.getter_isTransient (SOURCE_FILE ("array-controller.ggs", 210)).boolEnum () ;
-      if (kBoolTrue == test_6) {
+      const GalgasBool test_6 = extractedValue_7826_accessibility_1.getter_isTransient (SOURCE_FILE ("array-controller.ggs", 210)).boolEnum () ;
+      if (GalgasBool::boolTrue == test_6) {
         temp_5 = GGS_arrayControllerModelKind::class_func_transientArray (SOURCE_FILE ("array-controller.ggs", 211)) ;
-      }else if (kBoolFalse == test_6) {
+      }else if (GalgasBool::boolFalse == test_6) {
         temp_5 = GGS_arrayControllerModelKind::class_func_entityArray (SOURCE_FILE ("array-controller.ggs", 212)) ;
       }
       var_arrayControllerModelKind_7529 = temp_5 ;
@@ -1243,10 +1278,10 @@ GGS_string cPtr_arrayControllerPropertyGeneration::getter_propertyDeclarationCod
                                                                                    Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_string result_result ; // Returned variable
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = constinArgument_inPreferences.boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       result_result = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (183)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("array-controller.ggs", 257)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 257)) ;
       const GGS_arrayControllerPropertyGeneration temp_1 = this ;
       result_result.plusAssign_operation(GGS_string ("//   Array controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 258)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 258)) ;
@@ -1257,7 +1292,7 @@ GGS_string cPtr_arrayControllerPropertyGeneration::getter_propertyDeclarationCod
       result_result.plusAssign_operation(GGS_string ("@MainAction let preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GGS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)).add_operation (GGS_string (" ()\n\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 260)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 260)) ;
     }
   }
-  if (kBoolFalse == test_0) {
+  if (GalgasBool::boolFalse == test_0) {
     result_result = GGS_string ("  //").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (183)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("array-controller.ggs", 262)), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 262)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 262)) ;
     const GGS_arrayControllerPropertyGeneration temp_5 = this ;
     result_result.plusAssign_operation(GGS_string ("  //   Array controller: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 263)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 263)), inCompiler  COMMA_SOURCE_FILE ("array-controller.ggs", 263)) ;
@@ -1377,14 +1412,14 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   result.appendString ("_") ;
   result.appendString (in_ARRAY_5F_CONTROLLER_5F_NAME.stringValue ()) ;
   result.appendString (" : EBReadOnlyAbstractGenericRelationshipProperty") ;
-  const enumGalgasBool test_0 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_0 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString (", EBGraphicViewControllerProtocol") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString (", HiddenEBProtocol {\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    Undo manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private weak var mUndoManager : UndoManager\? = nil // SHOULD BE WEAK\n  var undoManager : UndoManager\? { return self.mUndoManager }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private weak var mModel : ") ;
@@ -1394,14 +1429,14 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   result.appendString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedSet : EBReferenceSet <") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("> {\n    set {\n") ;
-  const enumGalgasBool test_1 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_1 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("    //--- Add observers to newly selected set\n      for object in newValue.subtracting (self.mPrivateSelectedSet).values {\n        object.selectionDisplay_property.startsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n    //--- Remove observers to deselected set\n      let deselectedSet = self.mPrivateSelectedSet.subtracting (newValue)\n      for object in deselectedSet.values {\n        object.selectionDisplay_property.stopsBeingObserved (by: self.mObjectSelectionObserver)\n      }\n      if deselectedSet.count > 0 {\n        self.mObjectSelectionObserver.observedObjectDidChange () // Required, as removing observer does not post event\n      }\n    //---\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("      self.mPrivateSelectedSet = newValue\n    }\n    get {\n      return self.selectedArray_property.propset\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mPrivateSelectedSet = EBReferenceSet <") ;
@@ -1413,38 +1448,38 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   result.appendString (" { return self.mInternalSelectedArrayProperty }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArray : EBReferenceArray <") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("> { return self.selectedArray_property.propval }\n\n") ;
-  const enumGalgasBool test_2 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_2 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_2) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Init\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override init () {\n    super.init ()\n   //--- Selection observers\n    self.canBringForward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringForward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canBringToFront_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canBringToFront)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canBringToFront_property)\n  //---\n    self.canSendBackward_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendBackward)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendBackward_property)\n  //---\n    self.canSendToBack_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canSendToBack)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canSendToBack_property)\n  //---\n    self.canFlipHorizontally_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipHorizontally)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipHorizontally_property)\n  //---\n    self.canFlipVertically_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canFlipVertically)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canFlipVertically_property)\n  //---\n    self.canRotate90_property.mReadModelFunction = { [weak self] in\n      if let me = self {\n        return .single (me.canRotate90)\n      }else{\n        return .empty\n      }\n    }\n    self.selectedArray_property.startsBeingObserved (by: self.canRotate90_property)\n  }\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var objectCount : Int {\n    if let n = self.mModel\?.propval.count {\n      return n\n    }else{\n      return 0\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func bind_model (_ inModel : ") ;
   result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    inModel.attachClient (self)\n") ;
-  const enumGalgasBool test_3 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_3 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_3) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("    self.startObservingObjectShape ()\n    self.startObservingSelectionShape ()\n    self.inspectorViewManagerStartsObservingSelection ()\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func unbind_model () {\n") ;
-  const enumGalgasBool test_4 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_4 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_4) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("    self.stopObservingObjectShape ()\n    self.stopObservingSelectionShape ()\n    self.inspectorViewManagerStopsObservingSelection ()\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("    self.mModel\?.detachClient (self)\n    self.selectedSet = EBReferenceSet ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChange () {\n    super.notifyModelDidChange ()\n    let currentSelectedSet = self.selectedSet\n    let objectArray = self.objectArray\n    let newSelectedSet = currentSelectedSet.intersection (objectArray.values)\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (newSelectedSet.values)))\n  }\n\n   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n   var objectArray : EBReferenceArray <") ;
@@ -1452,14 +1487,14 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   result.appendString ("> {\n     if let values = self.mModel\?.propval {\n       return values\n     }else{\n       return EBReferenceArray ()\n     }\n   }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   SELECTION\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedIndexesSet : Set <Int> {\n    var result = Set <Int> ()\n    var idx = 0\n    for object in self.objectArray.values {\n      if self.selectedArray_property.propset.contains (object) {\n        result.insert (idx)\n      }\n      idx += 1\n    }\n    return result\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func setSelection (_ inObjects : [") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("]) {\n    self.selectedSet = EBReferenceSet (inObjects)\n  }\n") ;
-  const enumGalgasBool test_5 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_5 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_5) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  Graphic view interface\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedGraphicObjectSet : EBReferenceSet <EBGraphicManagedObject> {\n    var result = EBReferenceSet <EBGraphicManagedObject> (minimumCapacity: self.selectedArray_property.propval.count)\n    for object in self.selectedArray_property.propval.values {\n      result.insert (object)\n    }\n    return result\n  }\n\n   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n   var graphicObjectArray : [EBGraphicManagedObject] {\n     if let v = self.mModel\?.propval {\n       return v.values\n     }else{\n       return []\n     }\n   }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // Compute selection shape\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mObjectSelectionObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func startObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StartsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = { [weak self] in self\?.computeSelectionShape () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func computeSelectionShape () {\n    var selectionDisplayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if !self.selectedArray_property.propset.contains (object) {\n        selectionDisplayArray.append (EBShape ())\n      }else if let shape = object.selectionDisplay {\n        selectionDisplayArray.append (shape)\n      }else{\n        selectionDisplayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateSelectionShape (selectionDisplayArray)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func stopObservingSelectionShape () {\n    self.mModel\?.toMany_selectionDisplay_StopsBeingObserved (by: self.mObjectSelectionObserver)\n    self.mObjectSelectionObserver.mEventCallBack = nil\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // Compute object shape\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mObjectDisplayObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func startObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StartsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = { [weak self] in self\?.updateObjectDisplay () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func stopObservingObjectShape () {\n    self.mModel\?.toMany_objectDisplay_StopsBeingObserved (by: self.mObjectDisplayObserver)\n    self.mObjectDisplayObserver.mEventCallBack = nil\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func updateObjectDisplay () {\n    var displayArray = [EBShape] ()\n    for object in self.objectArray.values {\n      if let shape = object.objectDisplay {\n        displayArray.append (shape)\n      }else{\n        displayArray.append (EBShape ())\n      }\n    }\n    for view in self.mEBGraphicViews {\n      view.updateObjectDisplay (displayArray)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func alignmentPointSetArray () -> [Set<CanariPoint>] {\n    var result = [Set<CanariPoint>] ()\n    for object in self.objectArray.values {\n      result.append (object.alignmentPoints ())\n    }\n    return result\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // EBGraphicViews\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mEBGraphicViews = Set <EBGraphicView> ()\n  private var mPasteboardTypes = Set <NSPasteboard.PasteboardType> ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func addPasteBoardType (_ inType : NSPasteboard.PasteboardType) {\n    if !self.mPasteboardTypes.contains (inType) {\n      self.mPasteboardTypes.insert (inType)\n      for ebView in self.mEBGraphicViews {\n        ebView.register (draggedTypes: [inType])\n      }\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func boundViews () -> [EBGraphicView] {\n    return Array (self.mEBGraphicViews)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func setBackgroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mBackgroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func setForegroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {\n     for ebView in self.mEBGraphicViews {\n       ebView.mForegroundImageAffineTransform = inAffineTransform\n     }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func bind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.register (draggedTypes: Array (self.mPasteboardTypes))\n      self.mEBGraphicViews.insert (ebView)\n      ebView.set (controller: self)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  /* final func unbind_ebView (_ inEBView : EBGraphicView\?) {\n    if let ebView = inEBView {\n      ebView.updateObjectDisplay ([])\n      ebView.updateSelectionShape ([])\n      self.mEBGraphicViews.remove (ebView)\n    }\n  } */\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func selectedObjectIndexSet () -> NSIndexSet {\n    let modelObjects = self.objectArray\n    let selectedObjects = self.selectedArray_property.propset\n    let indexSet = NSMutableIndexSet ()\n    for object in selectedObjects.values {\n      if let index = modelObjects.firstIndex (of: object) {\n        indexSet.add (index)\n      }\n    }\n    return indexSet\n  }\n\n") ;
@@ -1488,9 +1523,9 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
     }
     break ;
   }
-  const enumGalgasBool test_6 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
+  const GalgasBool test_6 = in_ELEMENT_5F_TYPE_5F_IS_5F_GRAPHIC.boolEnum () ;
   switch (test_6) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  DOCUMENT  \n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final weak var mDocument : EBAutoLayoutManagedDocument\? = nil\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func set (document inDocument : EBAutoLayoutManagedDocument) {\n    self.mDocument = inDocument\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  SELECTION OPERATIONS\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func sortedIndexArrayOfSelectedObjects () -> [Int] {\n    var result = [Int] ()\n    let objects = self.objectArray\n    for object in self.selectedArray_property.propset.values {\n      let idx = objects.firstIndex (of: object)!\n      result.append (idx)\n    }\n    return result.sorted ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func canCut (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if (inPasteboardType == nil) || (self.selectedArray_property.propset.count == 0) {\n      return false\n    }else{\n      for object in self.selectedArray_property.propset.values {\n        if !object.canCopyAndPaste () || !object.canBeDeleted () {\n          return false\n        }\n      }\n      return true\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func cutSelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, pasteOffset : CanariPoint) {\n    self.copySelectedObjectsIntoPasteboard (inPasteboardType, pasteOffset: pasteOffset)\n    self.deleteSelectedObjects ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func canCopy (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    return self.canCut (inPasteboardType)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func copySelectedObjectsIntoPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?,\n                                          pasteOffset : CanariPoint) {\n    if let pasteboardType = inPasteboardType {\n    //--- Declare pasteboard types\n      let pb = NSPasteboard.general\n      pb.declareTypes ([pasteboardType, .pdf], owner: self)\n    //--- Build PDF representation\n      let indexArray = self.sortedIndexArrayOfSelectedObjects ()\n      let objects = self.objectArray\n      var shape = EBShape ()\n      for idx in indexArray {\n        let object = objects [idx]\n        if let s = object.objectDisplay {\n          shape.add (s)\n        }\n      }\n      let pdfData = buildPDFimageData (frame: shape.boundingBox, shape: shape)\n      pb.setData (pdfData, forType: .pdf)\n   //--- Build private representation\n      var objectDictionaryArray = [[String : Any]] ()\n      var objectAdditionalDictionaryArray = [[String : Any]] ()\n      for idx in indexArray {\n        let object = objects [idx]\n        var dict = [String : Any] ()\n        object.savePropertiesIntoDictionary (&dict)\n        objectDictionaryArray.append (dict)\n        var additionalDict = [String : Any] ()\n        object.saveIntoAdditionalDictionary (&additionalDict)\n        objectAdditionalDictionaryArray.append (additionalDict)\n      }\n    //--- Copy private representation\n      let dataDictionary : [String : Any] = [\n        OBJECT_DICTIONARY_KEY : objectDictionaryArray,\n        OBJECT_ADDITIONAL_DICTIONARY_KEY : objectAdditionalDictionaryArray,\n        X_KEY : pasteOffset.x,\n        Y_KEY : pasteOffset.y\n      ]\n      pb.setPropertyList (dataDictionary, forType: pasteboardType)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func canPaste (_ inPasteboardType : NSPasteboard.PasteboardType\?) -> Bool {\n    if let pasteboardType = inPasteboardType {\n      let pb = NSPasteboard.general\n      return pb.availableType (from: [pasteboardType]) != nil\n    }else{\n      return false\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n   func pasteFromPasteboard (_ inPasteboardType : NSPasteboard.PasteboardType\?, _ inWindow : NSWindow) {\n    let pb = NSPasteboard.general\n    if let pasteboardType = inPasteboardType,\n           pb.availableType (from: [pasteboardType]) != nil,\n           let dataDictionary = pb.propertyList (forType: pasteboardType) as\? [String : Any],\n           let dictionaryArray = dataDictionary [OBJECT_DICTIONARY_KEY] as\? [[String : Any]],\n           let additionalDictionaryArray = dataDictionary [OBJECT_ADDITIONAL_DICTIONARY_KEY] as\? [[String : Any]],\n           let X = dataDictionary [X_KEY] as\? Int,\n           let Y = dataDictionary [Y_KEY] as\? Int {\n      var newObjects = [") ;
     result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
     result.appendString ("] ()\n      var userSet = EBReferenceSet <EBManagedObject> ()\n      var idx = -1\n      var errorMessage = \"\"\n      for dictionary in dictionaryArray {\n        idx += 1\n        if let object = makeManagedObjectFromDictionary (self.undoManager, dictionary) as\? ") ;
@@ -1503,9 +1538,9 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
     result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
     result.appendString ("] ()\n    for index in inIndexes {\n      let newSelectedObject = objects [index]\n      selectedObjects.append (newSelectedObject)\n    }\n    self.selectedSet = EBReferenceSet (selectedObjects)\n  }\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // MARK: -\n  //  INSPECTOR\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mInspectorReceivingView : NSView\? = nil\n  private var mCurrentAttachedView : NSView\? = nil\n  private var mInspectorDictionary = [ObjectIdentifier : NSView] ()\n  private var mInspectorObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func register (inspectorReceivingView : NSView\?) {\n    self.mInspectorReceivingView = inspectorReceivingView\n    self.updateInspectorViews ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func register (inspectorView : NSView\?, for inEntity : EBGraphicManagedObject.Type) {\n    self.mInspectorDictionary [ObjectIdentifier (inEntity)] = inspectorView\n    self.updateInspectorViews ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func inspectorViewManagerStartsObservingSelection () {\n    self.selectedArray_property.startsBeingObserved (by: self.mInspectorObserver)\n    self.mInspectorObserver.mEventCallBack = { [weak self] in self\?.updateInspectorViews () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func inspectorViewManagerStopsObservingSelection () {\n    self.mInspectorObserver.mEventCallBack = nil\n    self.selectedArray_property.stopsBeingObserved (by: self.mInspectorObserver)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func updateInspectorViews () {\n    if let inspectorView = self.mInspectorReceivingView {\n    //--- Remove current attached view\n      self.mCurrentAttachedView\?.removeFromSuperview ()\n    //--- Add the new attached view\n      if self.mViewIsHidden {\n        self.mCurrentAttachedView = nil\n      }else if self.selectedArray.count == 0 {\n        let tf = self.textField (\"Empty Selection\", inspectorView.frame)\n        inspectorView.addSubview (tf)\n        self.mCurrentAttachedView = tf\n      }else{\n        var selectionTypes = Set <ObjectIdentifier> ()\n        for object in self.selectedArray.values {\n          let T = ObjectIdentifier (type (of: object))\n          selectionTypes.insert (T)\n        }\n        if selectionTypes.count > 1 {\n          let tf = self.textField (\"Multiple Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }else if let selectionInspectorView = self.mInspectorDictionary [selectionTypes.first!] {\n          selectionInspectorView.autoresizingMask = [.width, .minYMargin]\n          selectionInspectorView.frame = inspectorView.frame\n          inspectorView.addSubview (selectionInspectorView)\n          self.mCurrentAttachedView = selectionInspectorView\n        }else{\n          let tf = self.textField (\"No Inspector for this Selection\", inspectorView.frame)\n          inspectorView.addSubview (tf)\n          self.mCurrentAttachedView = tf\n        }\n      }\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func textField (_ inString : String, _ inspectorFrame : NSRect) -> NSTextField {\n    let textHeight : CGFloat = 30.0\n    let r = NSRect (\n      x: 0.0,\n      y: inspectorFrame.origin.y + (inspectorFrame.size.height - textHeight) / 2.0,\n      width: inspectorFrame.size.width,\n      height: textHeight\n    )\n    let tf = NSTextField (frame: r)\n    tf.alignment = .center\n    tf.isBezeled = false\n    tf.isBordered = false\n    tf.drawsBackground = false\n    tf.isEnabled = true\n    tf.isEditable = false\n    tf.autoresizingMask = [.width, .minYMargin, .maxYMargin]\n    tf.stringValue = inString\n    tf.font = NSFont.boldSystemFont (ofSize: NSFont.systemFontSize * 1.25)\n    tf.textColor = NSColor.lightGray\n    return tf\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mViewIsHidden = false {\n    didSet { self.updateInspectorViews () }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var isHidden : Bool {\n    get { return self.mViewIsHidden }\n    set { self.mViewIsHidden = newValue }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
@@ -1557,11 +1592,11 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
   ioArgument_ioGraph.setter_addEdge (var_node_1449, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 35)) ;
   }
-  enumGalgasBool test_5 = kBoolTrue ;
-  if (kBoolTrue == test_5) {
+  GalgasBool test_5 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_5) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_6 = this ;
     test_5 = temp_6.readProperty_mIsRoot ().operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 36)).boolEnum () ;
-    if (kBoolTrue == test_5) {
+    if (GalgasBool::boolTrue == test_5) {
       {
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_7 = this ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_8 = this ;
@@ -1570,12 +1605,12 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
       }
     }
   }
-  if (kBoolFalse == test_5) {
-    enumGalgasBool test_10 = kBoolTrue ;
-    if (kBoolTrue == test_10) {
+  if (GalgasBool::boolFalse == test_5) {
+    GalgasBool test_10 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_10) {
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_11 = this ;
       test_10 = GGS_bool (ComparisonKind::notEqual, temp_11.readProperty_mRootEntityName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_10) {
+      if (GalgasBool::boolTrue == test_10) {
         {
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_12 = this ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
@@ -1622,11 +1657,11 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
     temp_1.enterElement (GGS_actionMap_2E_element::init_21_ (GGS_string ("add").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)) ;
     temp_1.enterElement (GGS_actionMap_2E_element::init_21_ (GGS_string ("remove").getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 148)) ;
     GGS_actionMap var_controllerActions_5316 = temp_1 ;
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
+    GalgasBool test_2 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_2) {
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_3 = this ;
       test_2 = temp_3.readProperty_mIsRoot ().boolEnum () ;
-      if (kBoolTrue == test_2) {
+      if (GalgasBool::boolTrue == test_2) {
         GGS_propertyMap var_rootProperties_5477 ;
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
         GGS_classKind joker_5468 ; // Joker input parameter
@@ -1706,7 +1741,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
         }
       }
     }
-    if (kBoolFalse == test_2) {
+    if (GalgasBool::boolFalse == test_2) {
       GGS_propertyKind var_classKind_6611 ;
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_18 = this ;
       GGS_actionMap joker_6622_2 ; // Joker input parameter
@@ -1810,24 +1845,24 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_4 = this ;
   cEnumerator_autoLayoutTableViewControllerAttributListAST enumerator_8449 (temp_4.readProperty_mTableViewControllerAttributListAST (), EnumerationOrder::up) ;
   while (enumerator_8449.hasCurrentObject ()) {
-    enumGalgasBool test_5 = kBoolTrue ;
-    if (kBoolTrue == test_5) {
+    GalgasBool test_5 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_5) {
       test_5 = var_attributes_8219.getter_hasKey (enumerator_8449.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 224)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 224)).boolEnum () ;
-      if (kBoolTrue == test_5) {
+      if (GalgasBool::boolTrue == test_5) {
         TC_Array <FixItDescription> fixItArray6 ;
         inCompiler->emitSemanticError (enumerator_8449.current_mAttributeName (HERE).readProperty_location (), GGS_string ("unknown attribute"), fixItArray6  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 225)) ;
       }
     }
-    if (kBoolFalse == test_5) {
-      enumGalgasBool test_7 = kBoolTrue ;
-      if (kBoolTrue == test_7) {
+    if (GalgasBool::boolFalse == test_5) {
+      GalgasBool test_7 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_7) {
         test_7 = var_definedAttributes_8362.getter_hasKey (enumerator_8449.current_mAttributeName (HERE).readProperty_string () COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 226)).boolEnum () ;
-        if (kBoolTrue == test_7) {
+        if (GalgasBool::boolTrue == test_7) {
           TC_Array <FixItDescription> fixItArray8 ;
           inCompiler->emitSemanticError (enumerator_8449.current_mAttributeName (HERE).readProperty_location (), GGS_string ("attribute multiply defined"), fixItArray8  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 227)) ;
         }
       }
-      if (kBoolFalse == test_7) {
+      if (GalgasBool::boolFalse == test_7) {
         {
         var_definedAttributes_8362.setter_insert (enumerator_8449.current_mAttributeName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 229)) ;
         }
@@ -1842,10 +1877,10 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
   }
   cEnumerator_stringset enumerator_8935 (var_attributes_8219, EnumerationOrder::up) ;
   while (enumerator_8935.hasCurrentObject ()) {
-    enumGalgasBool test_9 = kBoolTrue ;
-    if (kBoolTrue == test_9) {
+    GalgasBool test_9 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_9) {
       test_9 = var_definedAttributes_8362.getter_hasKey (enumerator_8935.current (HERE) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 235)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 235)).boolEnum () ;
-      if (kBoolTrue == test_9) {
+      if (GalgasBool::boolTrue == test_9) {
         const GGS_autoLayoutTableViewControllerDeclarationAST temp_10 = this ;
         TC_Array <FixItDescription> fixItArray11 ;
         inCompiler->emitSemanticError (temp_10.readProperty_mControllerName ().readProperty_location (), GGS_string ("attribute '").add_operation (enumerator_8935.current (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 236)).add_operation (GGS_string ("' not defined"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 236)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 236)) ;
@@ -1854,11 +1889,11 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
     enumerator_8935.gotoNextObject () ;
   }
   GGS_propertyMap var_boundModelPropertyMap_9106 ;
-  enumGalgasBool test_12 = kBoolTrue ;
-  if (kBoolTrue == test_12) {
+  GalgasBool test_12 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_12) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_13 = this ;
     test_12 = temp_13.readProperty_mIsRoot ().boolEnum () ;
-    if (kBoolTrue == test_12) {
+    if (GalgasBool::boolTrue == test_12) {
       const GGS_autoLayoutTableViewControllerDeclarationAST temp_14 = this ;
       GGS_classKind joker_9230 ; // Joker input parameter
       GGS_actionMap joker_9272_2 ; // Joker input parameter
@@ -1866,7 +1901,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_14.readProperty_mRootEntityName (), joker_9230, var_boundModelPropertyMap_9106, joker_9272_2, joker_9272_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 242)) ;
     }
   }
-  if (kBoolFalse == test_12) {
+  if (GalgasBool::boolFalse == test_12) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_15 = this ;
     GGS_classKind joker_9364 ; // Joker input parameter
     GGS_actionMap joker_9406_2 ; // Joker input parameter
@@ -1909,10 +1944,10 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
       var_elementTypeName_9772 = extractedValue_10013_typeName_0.readProperty_string () ;
       var_graphic_9750 = extractedValue_10038_isGraphic_2 ;
       GGS_autoLayoutTableViewControllerModelKind temp_19 ;
-      const enumGalgasBool test_20 = extractedValue_10023_accessibility_1.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 274)).boolEnum () ;
-      if (kBoolTrue == test_20) {
+      const GalgasBool test_20 = extractedValue_10023_accessibility_1.getter_isTransient (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 274)).boolEnum () ;
+      if (GalgasBool::boolTrue == test_20) {
         temp_19 = GGS_autoLayoutTableViewControllerModelKind::class_func_transientArray (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 275)) ;
-      }else if (kBoolFalse == test_20) {
+      }else if (GalgasBool::boolFalse == test_20) {
         temp_19 = GGS_autoLayoutTableViewControllerModelKind::class_func_entityArray (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 276)) ;
       }
       var_arrayControllerModelKind_9713 = temp_19 ;
@@ -1993,90 +2028,90 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
     }
     GGS__32_stringlist temp_31 = GGS__32_stringlist::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 302)) ;
     GGS__32_stringlist var_actualParameterList_11730 = temp_31 ;
-    enumGalgasBool test_32 = kBoolTrue ;
-    if (kBoolTrue == test_32) {
+    GalgasBool test_32 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_32) {
       test_32 = GGS_bool (ComparisonKind::notEqual, var_formalArgumentList_11280.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 303)).objectCompare (enumerator_11152.current_mColumnParameterListAST (HERE).getter_count (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 303)))).boolEnum () ;
-      if (kBoolTrue == test_32) {
+      if (GalgasBool::boolTrue == test_32) {
         TC_Array <FixItDescription> fixItArray33 ;
         inCompiler->emitSemanticError (enumerator_11152.current_mPropertyName (HERE).readProperty_location (), enumerator_11152.current_mColumnParameterListAST (HERE).getter_count (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)).add_operation (GGS_string (" parameter(s), "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)).add_operation (var_formalArgumentList_11280.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)).getter_string (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)).add_operation (GGS_string (" required"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)), fixItArray33  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 304)) ;
       }
     }
-    if (kBoolFalse == test_32) {
+    if (GalgasBool::boolFalse == test_32) {
       cEnumerator_autoLayoutClassParameterList enumerator_11975 (var_formalArgumentList_11280, EnumerationOrder::up) ;
       cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_12035 (enumerator_11152.current_mColumnParameterListAST (HERE), EnumerationOrder::up) ;
       while (enumerator_11975.hasCurrentObject () && enumerator_12035.hasCurrentObject ()) {
-        enumGalgasBool test_34 = kBoolTrue ;
-        if (kBoolTrue == test_34) {
+        GalgasBool test_34 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_34) {
           test_34 = GGS_bool (ComparisonKind::notEqual, enumerator_11975.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_12035.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
-          if (kBoolTrue == test_34) {
+          if (GalgasBool::boolTrue == test_34) {
             TC_Array <FixItDescription> fixItArray35 ;
             inCompiler->emitSemanticError (enumerator_12035.current_mParameterName (HERE).readProperty_location (), GGS_string ("required argument name: ").add_operation (enumerator_11975.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 308)), fixItArray35  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 308)) ;
           }
         }
-        enumGalgasBool test_36 = kBoolTrue ;
-        if (kBoolTrue == test_36) {
+        GalgasBool test_36 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_36) {
           const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_12229 = enumerator_11975.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 310)).unwrappedValue () ;
           if (!enumerator_11975.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 310)).isValuated ()) {
-            test_36 = kBoolFalse ;
+            test_36 = GalgasBool::boolFalse ;
           }
-          if (kBoolTrue == test_36) {
+          if (GalgasBool::boolTrue == test_36) {
             const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_12274 = enumerator_12035.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 310)).unwrappedValue () ;
             if (!enumerator_12035.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 310)).isValuated ()) {
-              test_36 = kBoolFalse ;
+              test_36 = GalgasBool::boolFalse ;
             }
-            if (kBoolTrue == test_36) {
+            if (GalgasBool::boolTrue == test_36) {
               GGS_classKind var_typeKind_12394 ;
               GGS_propertyMap joker_12404_3 ; // Joker input parameter
               GGS_actionMap joker_12404_2 ; // Joker input parameter
               GGS_propertyGenerationList joker_12404_1 ; // Joker input parameter
               ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (var_formalTypeEnum_12229.readProperty_name (), var_typeKind_12394, joker_12404_3, joker_12404_2, joker_12404_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 311)) ;
-              enumGalgasBool test_37 = kBoolTrue ;
-              if (kBoolTrue == test_37) {
+              GalgasBool test_37 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_37) {
                 const GGS_classKind_2E_atomic var_atomicTypeKind_12426 = var_typeKind_12394.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 312)).unwrappedValue () ;
                 if (!var_typeKind_12394.getter_getAtomic (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 312)).isValuated ()) {
-                  test_37 = kBoolFalse ;
+                  test_37 = GalgasBool::boolFalse ;
                 }
-                if (kBoolTrue == test_37) {
+                if (GalgasBool::boolTrue == test_37) {
                   const GGS_typeKind_2E_enumType var_atomicEnumType_12467 = var_atomicTypeKind_12426.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 312)).unwrappedValue () ;
                   if (!var_atomicTypeKind_12426.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 312)).isValuated ()) {
-                    test_37 = kBoolFalse ;
+                    test_37 = GalgasBool::boolFalse ;
                   }
-                  if (kBoolTrue == test_37) {
+                  if (GalgasBool::boolTrue == test_37) {
                     GGS_uint joker_12592 ; // Joker input parameter
                     var_atomicEnumType_12467.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_12274.readProperty_name (), joker_12592, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 313)) ;
                   }
                 }
               }
-              if (kBoolFalse == test_37) {
+              if (GalgasBool::boolFalse == test_37) {
                 TC_Array <FixItDescription> fixItArray38 ;
                 inCompiler->emitSemanticError (var_formalTypeEnum_12229.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray38  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 315)) ;
               }
             }
           }
         }
-        if (kBoolFalse == test_36) {
-          enumGalgasBool test_39 = kBoolTrue ;
-          if (kBoolTrue == test_39) {
+        if (GalgasBool::boolFalse == test_36) {
+          GalgasBool test_39 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_39) {
             test_39 = GGS_bool (ComparisonKind::notEqual, enumerator_12035.current_mParameterType (HERE).objectCompare (enumerator_11975.current_mParameterType (HERE))).boolEnum () ;
-            if (kBoolTrue == test_39) {
+            if (GalgasBool::boolTrue == test_39) {
               TC_Array <FixItDescription> fixItArray40 ;
               inCompiler->emitSemanticError (enumerator_12035.current_mParameterName (HERE).readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_11975.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)).add_operation (extensionGetter_string (enumerator_12035.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)), fixItArray40  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 318)) ;
             }
           }
         }
-        enumGalgasBool test_41 = kBoolTrue ;
-        if (kBoolTrue == test_41) {
+        GalgasBool test_41 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_41) {
           const GGS_astAutoLayoutViewInstructionParameterValue_2E_string var_actualString_12883 = enumerator_12035.current_mParameter (HERE).getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 320)).unwrappedValue () ;
           if (!enumerator_12035.current_mParameter (HERE).getter_getString (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 320)).isValuated ()) {
-            test_41 = kBoolFalse ;
+            test_41 = GalgasBool::boolFalse ;
           }
-          if (kBoolTrue == test_41) {
+          if (GalgasBool::boolTrue == test_41) {
             {
             var_actualParameterList_11730.setter_append (enumerator_11975.current_mParameterName (HERE).readProperty_string (), var_actualString_12883.readProperty_value (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 321)) ;
             }
           }
         }
-        if (kBoolFalse == test_41) {
+        if (GalgasBool::boolFalse == test_41) {
           TC_Array <FixItDescription> fixItArray42 ;
           inCompiler->emitSemanticError (enumerator_12035.current_mParameterName (HERE).readProperty_location (), GGS_string ("parameter value is not string convertible"), fixItArray42  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 323)) ;
         }
@@ -2084,18 +2119,18 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
         enumerator_12035.gotoNextObject () ;
       }
     }
-    enumGalgasBool test_43 = kBoolTrue ;
-    if (kBoolTrue == test_43) {
+    GalgasBool test_43 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_43) {
       test_43 = GGS_bool (ComparisonKind::notEqual, enumerator_11152.current_mSortPropertyName (HERE).readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_43) {
+      if (GalgasBool::boolTrue == test_43) {
         GGS_propertyKind var_sortPropertyKind_13249 ;
         GGS_actionMap joker_13275_2 ; // Joker input parameter
         GGS_bool joker_13275_1 ; // Joker input parameter
         var_propertyMap_9655.method_searchKey (enumerator_11152.current_mSortPropertyName (HERE), var_sortPropertyKind_13249, joker_13275_2, joker_13275_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 329)) ;
-        enumGalgasBool test_44 = kBoolTrue ;
-        if (kBoolTrue == test_44) {
+        GalgasBool test_44 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_44) {
           test_44 = extensionGetter_isComparable (var_sortPropertyKind_13249, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 334)).operator_not (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 334)).boolEnum () ;
-          if (kBoolTrue == test_44) {
+          if (GalgasBool::boolTrue == test_44) {
             TC_Array <FixItDescription> fixItArray45 ;
             inCompiler->emitSemanticError (enumerator_11152.current_mSortPropertyName (HERE).readProperty_location (), GGS_string ("this property is not comparable"), fixItArray45  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 335)) ;
           }
@@ -2116,11 +2151,11 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
   }
   const GGS_autoLayoutTableViewControllerDeclarationAST temp_46 = this ;
   GGS_string temp_47 ;
-  const enumGalgasBool test_48 = temp_46.readProperty_mIsRoot ().boolEnum () ;
-  if (kBoolTrue == test_48) {
+  const GalgasBool test_48 = temp_46.readProperty_mIsRoot ().boolEnum () ;
+  if (GalgasBool::boolTrue == test_48) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_49 = this ;
     temp_47 = GGS_string ("self.rootObject.").add_operation (temp_49.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 364)).add_operation (GGS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 364)) ;
-  }else if (kBoolFalse == test_48) {
+  }else if (GalgasBool::boolFalse == test_48) {
     const GGS_autoLayoutTableViewControllerDeclarationAST temp_50 = this ;
     temp_47 = GGS_string ("self.").add_operation (temp_50.readProperty_mToManyPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 365)).add_operation (GGS_string ("_property"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 365)) ;
   }
@@ -2149,10 +2184,10 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_property
                                                                                                  Compiler * inCompiler
                                                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_string result_result ; // Returned variable
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = constinArgument_inPreferences.boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       result_result = GGS_string ("//").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (183)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 403)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 403)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 403)) ;
       const GGS_autoLayoutTableViewControllerPropertyGeneration temp_1 = this ;
       result_result.plusAssign_operation(GGS_string ("//   Table View controller: ").add_operation (temp_1.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 404)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 404)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 404)) ;
@@ -2163,7 +2198,7 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_property
       result_result.plusAssign_operation(GGS_string ("@MainActor let preferences_").add_operation (temp_2.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)).add_operation (GGS_string (" = Controller_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)).add_operation (temp_3.readProperty_mOwnerName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)).add_operation (temp_4.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)).add_operation (GGS_string (" ()\n\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 406)) ;
     }
   }
-  if (kBoolFalse == test_0) {
+  if (GalgasBool::boolFalse == test_0) {
     result_result = GGS_string ("  //").add_operation (GGS_string::class_func_stringWithSequenceOfCharacters (GGS_char (TO_UNICODE (183)), GGS_uint (uint32_t (96U))  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 408)), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 408)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 408)) ;
     const GGS_autoLayoutTableViewControllerPropertyGeneration temp_5 = this ;
     result_result.plusAssign_operation(GGS_string ("  //   Array controller: ").add_operation (temp_5.readProperty_mPropertyName (), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 409)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 409)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 409)) ;
@@ -2189,10 +2224,10 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_configur
                                                                                            COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_string result_result ; // Returned variable
   GGS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
+  const GalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_1) {
     temp_0 = GGS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
+  }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("self.") ;
   }
   GGS_string var_prefix_16697 = temp_0 ;
@@ -2323,15 +2358,15 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
   result.appendString ("> {\n    if let objects = self.mModel\?.propval {\n      return objects\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func bind_model (_ inModel : ") ;
   result.appendString (in_MODEL_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (", _ inUndoManager : UndoManager\?) {\n    self.mModel = inModel\n    self.mUndoManager = inUndoManager\n    self.sortedArray_property.setDataProvider (\n      inModel,\n") ;
-  const enumGalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 62)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+  const GalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 62)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("      sortCallback: { [weak self] (left, right) in self\?.isOrderedBefore (left, right) \?\? true },\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("      sortCallback: nil,\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("      addSortObserversCallback: { (observer) in\n") ;
@@ -2359,18 +2394,18 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
     }
   }
   result.appendString ("      }\n    )\n  }\n\n") ;
-  const enumGalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 81)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+  const GalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, in_SORTED_5F_COLUMNS.getter_count (SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 81)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func isOrderedBefore (_ left : ") ;
     result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
     result.appendString (", _ right : ") ;
     result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
     result.appendString (") -> Bool {\n    var order = ComparisonResult.orderedSame\n    for sortDescriptor in self.mSortDescriptorArray.reversed () {\n      order = sortDescriptor (left, right)\n      if order != .orderedSame {\n        break // Exit from for loop\n      }\n    }\n    return order == .orderedAscending\n  }\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  /* final func unbind_model () {\n    self.sortedArray_property.resetDataProvider ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  } */\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Selected Array\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
@@ -2393,16 +2428,16 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
       result.appendString ("' column\n    self.sortedArray_property.toMany_") ;
       result.appendString (enumerator_6453.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
-      const enumGalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (enumerator_6453.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
+      const GalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (enumerator_6453.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
       switch (test_2) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("     self.sortedArray_property.toMany_") ;
         result.appendString (enumerator_6453.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_6453_.increment () ;
@@ -2421,23 +2456,23 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
       result.appendString (" (\n      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0].") ;
       result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString (" },\n      valueSetterDelegate: ") ;
-      const enumGalgasBool test_3 = enumerator_8053.current_mEditable (HERE).boolEnum () ;
+      const GalgasBool test_3 = enumerator_8053.current_mEditable (HERE).boolEnum () ;
       switch (test_3) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].") ;
         result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
         result.appendString (" = inNewValue }") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         result.appendString ("nil") ;
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       result.appendString (",\n      sortDelegate: ") ;
-      const enumGalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8053.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+      const GalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8053.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       switch (test_4) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("{ [weak self] (ascending) in\n        self\?.mSortDescriptorArray.append ({ (_ left : ") ;
         result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
         result.appendString (", _ right : ") ;
@@ -2450,10 +2485,10 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         result.appendString (enumerator_8053.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_property) })\n      }") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         result.appendString ("nil") ;
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       result.appendString (",\n") ;
@@ -2691,11 +2726,11 @@ void cPtr_selectionControllerDeclarationAST::method_firstAnalysisPhase (GGS_sema
         GGS_lstring extractedValue_3646__0 ;
         GGS_bool extractedValue_3646__1 ;
         var_propertyKind_3155.getAssociatedValuesFor_arrayController (extractedValue_3646__0, extractedValue_3646__1) ;
-        enumGalgasBool test_10 = kBoolTrue ;
-        if (kBoolTrue == test_10) {
+        GalgasBool test_10 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_10) {
           const GGS_selectionControllerDeclarationAST temp_11 = this ;
           test_10 = GGS_bool (ComparisonKind::notEqual, temp_11.readProperty_mModelControllerPropertyName ().readProperty_string ().objectCompare (GGS_string ("selectedArray"))).boolEnum () ;
-          if (kBoolTrue == test_10) {
+          if (GalgasBool::boolTrue == test_10) {
             const GGS_selectionControllerDeclarationAST temp_12 = this ;
             TC_Array <FixItDescription> fixItArray13 ;
             inCompiler->emitSemanticError (temp_12.readProperty_mModelControllerPropertyName ().readProperty_location (), GGS_string ("'selectedArray' is required here"), fixItArray13  COMMA_SOURCE_FILE ("selection-controller.ggs", 84)) ;
@@ -2774,11 +2809,11 @@ void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_sem
       {
       ioArgument_ioGeneration.mProperty_mToManyClassImplementations.setter_insert (extractedValue_4851_typeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 129)) ;
       }
-      enumGalgasBool test_8 = kBoolTrue ;
-      if (kBoolTrue == test_8) {
+      GalgasBool test_8 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_8) {
         const GGS_selectionControllerDeclarationAST temp_9 = this ;
         test_8 = GGS_bool (ComparisonKind::notEqual, extractedValue_4851_typeName_0.readProperty_string ().objectCompare (temp_9.readProperty_mSelectionEntityName ().readProperty_string ())).boolEnum () ;
-        if (kBoolTrue == test_8) {
+        if (GalgasBool::boolTrue == test_8) {
           {
           const GGS_selectionControllerDeclarationAST temp_10 = this ;
           ioArgument_ioGeneration.mProperty_mToManyClassImplementations.setter_insert (temp_10.readProperty_mSelectionEntityName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 131)) ;
@@ -2805,11 +2840,11 @@ void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_sem
           }
           if (loop_5836) {
             variant_5836 -- ;
-            enumGalgasBool test_13 = kBoolTrue ;
-            if (kBoolTrue == test_13) {
+            GalgasBool test_13 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_13) {
               const GGS_selectionControllerDeclarationAST temp_14 = this ;
               test_13 = GGS_bool (ComparisonKind::notEqual, extractedValue_4851_typeName_0.readProperty_string ().objectCompare (temp_14.readProperty_mSelectionEntityName ().readProperty_string ())).boolEnum () ;
-              if (kBoolTrue == test_13) {
+              if (GalgasBool::boolTrue == test_13) {
                 switch (var_superClassKind_4587.enumValue ()) {
                 case GGS_classKind::Enumeration::invalid:
                   break ;
@@ -2840,10 +2875,10 @@ void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_sem
                     GGS_bool extractedValue_6243__3 ;
                     var_superClassKind_4587.getAssociatedValuesFor_entity (extractedValue_6222_superOfSuperEntity_0, extractedValue_6243__1, extractedValue_6243__2, extractedValue_6243__3) ;
                     var_testedTypeName_5781 = extractedValue_6222_superOfSuperEntity_0 ;
-                    enumGalgasBool test_15 = kBoolTrue ;
-                    if (kBoolTrue == test_15) {
+                    GalgasBool test_15 = GalgasBool::boolTrue ;
+                    if (GalgasBool::boolTrue == test_15) {
                       test_15 = GGS_bool (ComparisonKind::equal, var_testedTypeName_5781.objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-                      if (kBoolTrue == test_15) {
+                      if (GalgasBool::boolTrue == test_15) {
                         const GGS_selectionControllerDeclarationAST temp_16 = this ;
                         TC_Array <FixItDescription> fixItArray17 ;
                         inCompiler->emitSemanticError (temp_16.readProperty_mSelectionEntityName ().readProperty_location (), GGS_string ("This entity is not descendant of ").add_operation (extractedValue_4851_typeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 147)), fixItArray17  COMMA_SOURCE_FILE ("selection-controller.ggs", 147)) ;
@@ -2999,32 +3034,32 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Selection observable property: ") ;
       result.appendString (enumerator_1030.current_lkey (HERE).readProperty_string ().stringValue ()) ;
       result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n") ;
-      const enumGalgasBool test_0 = extensionGetter_isEntityType (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).boolEnum () ;
+      const GalgasBool test_0 = extensionGetter_isEntityType (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 29)).boolEnum () ;
       switch (test_0) {
-      case kBoolTrue : {
-        const enumGalgasBool test_1 = extensionGetter_isTransient (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 30)).boolEnum () ;
+      case GalgasBool::boolTrue : {
+        const GalgasBool test_1 = extensionGetter_isTransient (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 30)).boolEnum () ;
         switch (test_1) {
-        case kBoolTrue : {
+        case GalgasBool::boolTrue : {
           result.appendString ("  var ") ;
           result.appendString (enumerator_1030.current_lkey (HERE).readProperty_string ().stringValue ()) ;
           result.appendString ("_property = EBTransientProperty <") ;
           result.appendString (extensionGetter_swiftTypeName (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 31)).stringValue ()) ;
           result.appendString ("> ()\n\n") ;
           } break ;
-        case kBoolFalse : {
+        case GalgasBool::boolFalse : {
           result.appendString ("  var ") ;
           result.appendString (enumerator_1030.current_lkey (HERE).readProperty_string ().stringValue ()) ;
           result.appendString ("_property = EBComputedProperty_") ;
           result.appendString (extensionGetter_swiftTypeName (enumerator_1030.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 33)).stringValue ()) ;
           result.appendString (" ()\n\n") ;
           } break ;
-        default :
+        case GalgasBool::boolNotValid :
           break ;
         }
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_1030_.increment () ;
@@ -3040,16 +3075,16 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_2181 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, EnumerationOrder::up) ;
     while (enumerator_2181.hasCurrentObject ()) {
-      const enumGalgasBool test_2 = extensionGetter_isEntityType (enumerator_2181.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
+      const GalgasBool test_2 = extensionGetter_isEntityType (enumerator_2181.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
       switch (test_2) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("    self.bind_property_") ;
         result.appendString (enumerator_2181.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" (model: model)\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_2181_.increment () ;
@@ -3061,24 +3096,24 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_2644 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, EnumerationOrder::up) ;
     while (enumerator_2644.hasCurrentObject ()) {
-      const enumGalgasBool test_3 = extensionGetter_isEntityType (enumerator_2644.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).boolEnum () ;
+      const GalgasBool test_3 = extensionGetter_isEntityType (enumerator_2644.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 61)).boolEnum () ;
       switch (test_3) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("  //--- ") ;
         result.appendString (enumerator_2644.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString ("\n    self.") ;
         result.appendString (enumerator_2644.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString ("_property.mReadModelFunction = nil \n") ;
-        const enumGalgasBool test_4 = extensionGetter_isTransient (enumerator_2644.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
+        const GalgasBool test_4 = extensionGetter_isTransient (enumerator_2644.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
         switch (test_4) {
-        case kBoolTrue : {
+        case GalgasBool::boolTrue : {
           result.appendString ("    self.") ;
           result.appendString (enumerator_2644.current_lkey (HERE).readProperty_string ().stringValue ()) ;
           result.appendString ("_property.mWriteModelFunction = nil \n") ;
           } break ;
-        case kBoolFalse : {
+        case GalgasBool::boolFalse : {
           } break ;
-        default :
+        case GalgasBool::boolNotValid :
           break ;
         }
         result.appendString ("    self.mModel\?.toMany_") ;
@@ -3087,9 +3122,9 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
         result.appendString (enumerator_2644.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString ("_property)\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_2644_.increment () ;
@@ -3101,9 +3136,9 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
   if (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP.isValid ()) {
     cEnumerator_propertyMap enumerator_3143 (in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP, EnumerationOrder::up) ;
     while (enumerator_3143.hasCurrentObject ()) {
-      const enumGalgasBool test_5 = extensionGetter_isEntityType (enumerator_3143.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).boolEnum () ;
+      const GalgasBool test_5 = extensionGetter_isEntityType (enumerator_3143.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 75)).boolEnum () ;
       switch (test_5) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -···················*\n\n  private final func bind_property_") ;
         result.appendString (enumerator_3143.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString (" (model : ReadOnlyArrayOf_") ;
@@ -3119,9 +3154,9 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
         result.appendString ("> ()\n          var isMultipleSelection = false\n          for object in v {\n            switch object.") ;
         result.appendString (enumerator_3143.current_lkey (HERE).readProperty_string ().stringValue ()) ;
         result.appendString ("_property.selection {\n            case .empty :\n              return .empty\n            case .multiple :\n              isMultipleSelection = true\n            case .single (let vProp) :\n              s.insert (vProp)\n            }\n          }\n          if isMultipleSelection {\n            return .multiple\n          }else if s.count == 0 {\n            return .empty\n          }else if s.count == 1 {\n            return .single (s.first!)\n          }else{\n            return .multiple\n          }\n        }\n      }else{\n        return .empty\n      }\n    }\n") ;
-        const enumGalgasBool test_6 = extensionGetter_isTransient (enumerator_3143.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).boolEnum () ;
+        const GalgasBool test_6 = extensionGetter_isTransient (enumerator_3143.current_mKind (HERE), inCompiler COMMA_SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).operator_not (SOURCE_FILE ("base-selection-controller.swift.galgasTemplate", 113)).boolEnum () ;
         switch (test_6) {
-        case kBoolTrue : {
+        case GalgasBool::boolTrue : {
           result.appendString ("    self.") ;
           result.appendString (enumerator_3143.current_lkey (HERE).readProperty_string ().stringValue ()) ;
           result.appendString ("_property.mWriteModelFunction = { [weak self] (inValue : ") ;
@@ -3130,16 +3165,16 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelecti
           result.appendString (enumerator_3143.current_lkey (HERE).readProperty_string ().stringValue ()) ;
           result.appendString ("_property.setProp (inValue)\n          }\n        }\n      }\n    }\n") ;
           } break ;
-        case kBoolFalse : {
+        case GalgasBool::boolFalse : {
           } break ;
-        default :
+        case GalgasBool::boolNotValid :
           break ;
         }
         result.appendString ("  }\n\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_3143_.increment () ;
@@ -3196,16 +3231,16 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSele
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_2048 (in_PROPERTY_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
     while (enumerator_2048.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 46)).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 47)).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
+      const GalgasBool test_0 = GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 46)).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 47)).operator_or (GGS_bool (enumerator_2048.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 48)).boolEnum () ;
       switch (test_0) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("    self.bind_property_") ;
         result.appendString (enumerator_2048.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString (" ()\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_2048_.increment () ;
@@ -3217,24 +3252,24 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSele
   if (in_PROPERTY_5F_GENERATION_5F_LIST.isValid ()) {
     cEnumerator_propertyGenerationList enumerator_2712 (in_PROPERTY_5F_GENERATION_5F_LIST, EnumerationOrder::up) ;
     while (enumerator_2712.hasCurrentObject ()) {
-      const enumGalgasBool test_1 = GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 63)).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
+      const GalgasBool test_1 = GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 63)).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 64)).boolEnum () ;
       switch (test_1) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("  //--- ") ;
         result.appendString (enumerator_2712.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("\n    self.") ;
         result.appendString (enumerator_2712.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property.mReadModelFunction = nil \n") ;
-        const enumGalgasBool test_2 = GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 68)).boolEnum () ;
+        const GalgasBool test_2 = GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_2712.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_computedPropertyGeneration) COMMA_SOURCE_FILE ("derived-selection-controller.swift.galgasTemplate", 68)).boolEnum () ;
         switch (test_2) {
-        case kBoolTrue : {
+        case GalgasBool::boolTrue : {
           result.appendString ("    self.") ;
           result.appendString (enumerator_2712.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
           result.appendString ("_property.mWriteModelFunction = nil \n") ;
           } break ;
-        case kBoolFalse : {
+        case GalgasBool::boolFalse : {
           } break ;
-        default :
+        case GalgasBool::boolNotValid :
           break ;
         }
         result.appendString ("    self.selectedArray_property.toMany_") ;
@@ -3243,9 +3278,9 @@ GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSele
         result.appendString (enumerator_2712.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
         result.appendString ("_property)\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_2712_.increment () ;
@@ -3279,10 +3314,10 @@ void routine_generateSelectionControllers_3F__3F__26_ (const GGS_selectionContro
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   cEnumerator_selectionControllerForGeneration enumerator_10702 (constinArgument_inArrayControllerListForGeneration, EnumerationOrder::up) ;
   while (enumerator_10702.hasCurrentObject ()) {
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
+    GalgasBool test_0 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_0) {
       test_0 = GGS_bool (ComparisonKind::equal, enumerator_10702.current_mBaseTypeName (HERE).objectCompare (enumerator_10702.current_mSelectionTypeName (HERE))).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      if (GalgasBool::boolTrue == test_0) {
         GGS_string var_s_10823 = GGS_string (filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (inCompiler, enumerator_10702.current_mOwnerName (HERE), enumerator_10702.current_mSelectionControllerName (HERE), enumerator_10702.current_mBaseTypeName (HERE), enumerator_10702.current_mSelectionObservablePropertyMap (HERE) COMMA_SOURCE_FILE ("selection-controller.ggs", 245))) ;
         GGS_string var_fileName_11048 = GGS_string ("selectionController-").add_operation (enumerator_10702.current_mOwnerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 251)).add_operation (GGS_string ("-"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 251)).add_operation (enumerator_10702.current_mSelectionControllerName (HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 251)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 251)) ;
         {
@@ -3293,7 +3328,7 @@ void routine_generateSelectionControllers_3F__3F__26_ (const GGS_selectionContro
         }
       }
     }
-    if (kBoolFalse == test_0) {
+    if (GalgasBool::boolFalse == test_0) {
       GGS_bool var_hasAtomicStoredProperties_11294 = GGS_bool (false) ;
       cEnumerator_propertyGenerationList enumerator_11339 (enumerator_10702.current_mPropertyGenerationList (HERE), EnumerationOrder::up) ;
       bool bool_1 = var_hasAtomicStoredProperties_11294.operator_not (SOURCE_FILE ("selection-controller.ggs", 260)).isValidAndTrue () ;
@@ -3344,10 +3379,10 @@ void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKind
         {
           const GGS_boolAsDefaultValue temp_1 = this ;
           GGS_string temp_2 ;
-          const enumGalgasBool test_3 = temp_1.readProperty_mValue ().readProperty_bool ().boolEnum () ;
-          if (kBoolTrue == test_3) {
+          const GalgasBool test_3 = temp_1.readProperty_mValue ().readProperty_bool ().boolEnum () ;
+          if (GalgasBool::boolTrue == test_3) {
             temp_2 = GGS_string ("true") ;
-          }else if (kBoolFalse == test_3) {
+          }else if (GalgasBool::boolFalse == test_3) {
             temp_2 = GGS_string ("false") ;
           }
           outArgument_outSwiftDefaultValueAsString = temp_2 ;
@@ -3380,10 +3415,10 @@ void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKind
       }
     }
   }
-  enumGalgasBool test_4 = kBoolTrue ;
-  if (kBoolTrue == test_4) {
+  GalgasBool test_4 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_4) {
     test_4 = var_found_3875.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 126)).boolEnum () ;
-    if (kBoolTrue == test_4) {
+    if (GalgasBool::boolTrue == test_4) {
       const GGS_boolAsDefaultValue temp_5 = this ;
       TC_Array <FixItDescription> fixItArray6 ;
       inCompiler->emitSemanticError (temp_5.readProperty_mValue ().readProperty_location (), GGS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 127)) ;
@@ -3414,10 +3449,10 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
         {
           const GGS_integerAsDefaultValue temp_1 = this ;
           GGS_string temp_2 ;
-          const enumGalgasBool test_3 = temp_1.readProperty_mNegative ().boolEnum () ;
-          if (kBoolTrue == test_3) {
+          const GalgasBool test_3 = temp_1.readProperty_mNegative ().boolEnum () ;
+          if (GalgasBool::boolTrue == test_3) {
             temp_2 = GGS_string ("-") ;
-          }else if (kBoolFalse == test_3) {
+          }else if (GalgasBool::boolFalse == test_3) {
             temp_2 = GGS_string::makeEmptyString () ;
           }
           const GGS_integerAsDefaultValue temp_4 = this ;
@@ -3427,11 +3462,11 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
         break ;
       case GGS_typeKind::Enumeration::enum_uint_33__32_Type:
         {
-          enumGalgasBool test_5 = kBoolTrue ;
-          if (kBoolTrue == test_5) {
+          GalgasBool test_5 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_5) {
             const GGS_integerAsDefaultValue temp_6 = this ;
             test_5 = temp_6.readProperty_mNegative ().boolEnum () ;
-            if (kBoolTrue == test_5) {
+            if (GalgasBool::boolTrue == test_5) {
               const GGS_integerAsDefaultValue temp_7 = this ;
               TC_Array <FixItDescription> fixItArray8 ;
               inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("Uint32 value should be ≥ 0"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 148)) ;
@@ -3473,10 +3508,10 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
       }
     }
   }
-  enumGalgasBool test_11 = kBoolTrue ;
-  if (kBoolTrue == test_11) {
+  GalgasBool test_11 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_11) {
     test_11 = var_found_4847.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 162)).boolEnum () ;
-    if (kBoolTrue == test_11) {
+    if (GalgasBool::boolTrue == test_11) {
       const GGS_integerAsDefaultValue temp_12 = this ;
       TC_Array <FixItDescription> fixItArray13 ;
       inCompiler->emitSemanticError (temp_12.readProperty_mValue ().readProperty_location (), GGS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 163)) ;
@@ -3536,10 +3571,10 @@ void cPtr_doubleAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
       }
     }
   }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     test_2 = var_found_6145.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 190)).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       const GGS_doubleAsDefaultValue temp_3 = this ;
       TC_Array <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (temp_3.readProperty_mValue ().readProperty_location (), GGS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 191)) ;
@@ -3599,10 +3634,10 @@ void cPtr_stringAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
       }
     }
   }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     test_2 = var_found_7108.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 218)).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       const GGS_stringAsDefaultValue temp_3 = this ;
       TC_Array <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (temp_3.readProperty_mValue ().readProperty_location (), GGS_string ("only a string attribute can be initialized by a string constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 219)) ;
@@ -3903,29 +3938,29 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
       case GGS_typeKind::Enumeration::enum_dateType:
         {
           var_found_9828 = GGS_bool (true) ;
-          enumGalgasBool test_1 = kBoolTrue ;
-          if (kBoolTrue == test_1) {
+          GalgasBool test_1 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_1) {
             const GGS_identifierAsDefaultValue temp_2 = this ;
             test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.ggs", 291)).getter_hasKey (temp_2.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.ggs", 291)).boolEnum () ;
-            if (kBoolTrue == test_1) {
-              enumGalgasBool test_3 = kBoolTrue ;
-              if (kBoolTrue == test_3) {
+            if (GalgasBool::boolTrue == test_1) {
+              GalgasBool test_3 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_3) {
                 const GGS_identifierAsDefaultValue temp_4 = this ;
                 test_3 = GGS_bool (ComparisonKind::equal, temp_4.readProperty_mValue ().readProperty_string ().objectCompare (GGS_string ("now"))).boolEnum () ;
-                if (kBoolTrue == test_3) {
+                if (GalgasBool::boolTrue == test_3) {
                   outArgument_outSwiftDefaultValueAsString = GGS_string ("Date ()") ;
                 }
               }
-              if (kBoolFalse == test_3) {
-                enumGalgasBool test_5 = kBoolTrue ;
-                if (kBoolTrue == test_5) {
+              if (GalgasBool::boolFalse == test_3) {
+                GalgasBool test_5 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_5) {
                   const GGS_identifierAsDefaultValue temp_6 = this ;
                   test_5 = GGS_bool (ComparisonKind::equal, temp_6.readProperty_mValue ().readProperty_string ().objectCompare (GGS_string ("distantPast"))).boolEnum () ;
-                  if (kBoolTrue == test_5) {
+                  if (GalgasBool::boolTrue == test_5) {
                     outArgument_outSwiftDefaultValueAsString = GGS_string ("Date.distantPast") ;
                   }
                 }
-                if (kBoolFalse == test_5) {
+                if (GalgasBool::boolFalse == test_5) {
                   const GGS_identifierAsDefaultValue temp_7 = this ;
                   TC_Array <FixItDescription> fixItArray8 ;
                   inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 297)) ;
@@ -3933,7 +3968,7 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
               }
             }
           }
-          if (kBoolFalse == test_1) {
+          if (GalgasBool::boolFalse == test_1) {
             const GGS_identifierAsDefaultValue temp_9 = this ;
             TC_Array <FixItDescription> fixItArray10 ;
             inCompiler->emitSemanticError (temp_9.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 300)) ;
@@ -3943,15 +3978,15 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
       case GGS_typeKind::Enumeration::enum_bezierPathType:
         {
           var_found_9828 = GGS_bool (true) ;
-          enumGalgasBool test_11 = kBoolTrue ;
-          if (kBoolTrue == test_11) {
+          GalgasBool test_11 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_11) {
             const GGS_identifierAsDefaultValue temp_12 = this ;
             test_11 = GGS_bool (ComparisonKind::equal, temp_12.readProperty_mValue ().readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-            if (kBoolTrue == test_11) {
+            if (GalgasBool::boolTrue == test_11) {
               outArgument_outSwiftDefaultValueAsString = GGS_string ("NSBezierPath ()") ;
             }
           }
-          if (kBoolFalse == test_11) {
+          if (GalgasBool::boolFalse == test_11) {
             const GGS_identifierAsDefaultValue temp_13 = this ;
             TC_Array <FixItDescription> fixItArray14 ;
             inCompiler->emitSemanticError (temp_13.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default NSBezierPath"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 307)) ;
@@ -3961,15 +3996,15 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
       case GGS_typeKind::Enumeration::enum_bezierPathArrayType:
         {
           var_found_9828 = GGS_bool (true) ;
-          enumGalgasBool test_15 = kBoolTrue ;
-          if (kBoolTrue == test_15) {
+          GalgasBool test_15 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_15) {
             const GGS_identifierAsDefaultValue temp_16 = this ;
             test_15 = GGS_bool (ComparisonKind::equal, temp_16.readProperty_mValue ().readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-            if (kBoolTrue == test_15) {
+            if (GalgasBool::boolTrue == test_15) {
               outArgument_outSwiftDefaultValueAsString = GGS_string ("BezierPathArray ()") ;
             }
           }
-          if (kBoolFalse == test_15) {
+          if (GalgasBool::boolFalse == test_15) {
             const GGS_identifierAsDefaultValue temp_17 = this ;
             TC_Array <FixItDescription> fixItArray18 ;
             inCompiler->emitSemanticError (temp_17.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default BezierPathArray"), fixItArray18  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 314)) ;
@@ -3983,16 +4018,16 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
           GGS_enumFuncMap extractedValue_10970__2 ;
           enumerator_9849.current_mType (HERE).getAssociatedValuesFor_enumType (extractedValue_10926_enumTypeName_0, extractedValue_10957_constantMap_1, extractedValue_10970__2) ;
           var_found_9828 = GGS_bool (true) ;
-          enumGalgasBool test_19 = kBoolTrue ;
-          if (kBoolTrue == test_19) {
+          GalgasBool test_19 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_19) {
             const GGS_identifierAsDefaultValue temp_20 = this ;
             test_19 = extractedValue_10957_constantMap_1.getter_hasKey (temp_20.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.ggs", 318)).boolEnum () ;
-            if (kBoolTrue == test_19) {
+            if (GalgasBool::boolTrue == test_19) {
               const GGS_identifierAsDefaultValue temp_21 = this ;
               outArgument_outSwiftDefaultValueAsString = extractedValue_10926_enumTypeName_0.add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.ggs", 319)).add_operation (temp_21.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.ggs", 319)) ;
             }
           }
-          if (kBoolFalse == test_19) {
+          if (GalgasBool::boolFalse == test_19) {
             const GGS_identifierAsDefaultValue temp_22 = this ;
             const GGS_identifierAsDefaultValue temp_23 = this ;
             TC_Array <FixItDescription> fixItArray24 ;
@@ -4030,15 +4065,15 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
       case GGS_typeKind::Enumeration::enum_dataType:
         {
           var_found_9828 = GGS_bool (true) ;
-          enumGalgasBool test_31 = kBoolTrue ;
-          if (kBoolTrue == test_31) {
+          GalgasBool test_31 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_31) {
             const GGS_identifierAsDefaultValue temp_32 = this ;
             test_31 = GGS_bool (ComparisonKind::equal, temp_32.readProperty_mValue ().readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-            if (kBoolTrue == test_31) {
+            if (GalgasBool::boolTrue == test_31) {
               outArgument_outSwiftDefaultValueAsString = GGS_string ("Data ()") ;
             }
           }
-          if (kBoolFalse == test_31) {
+          if (GalgasBool::boolFalse == test_31) {
             const GGS_identifierAsDefaultValue temp_33 = this ;
             TC_Array <FixItDescription> fixItArray34 ;
             inCompiler->emitSemanticError (temp_33.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default Data"), fixItArray34  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 336)) ;
@@ -4082,17 +4117,17 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
         break ;
       case GGS_typeKind::Enumeration::enum_colorType:
         {
-          enumGalgasBool test_45 = kBoolTrue ;
-          if (kBoolTrue == test_45) {
+          GalgasBool test_45 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_45) {
             const GGS_identifierAsDefaultValue temp_46 = this ;
             test_45 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.ggs", 349)).getter_hasKey (temp_46.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.ggs", 349)).boolEnum () ;
-            if (kBoolTrue == test_45) {
+            if (GalgasBool::boolTrue == test_45) {
               const GGS_identifierAsDefaultValue temp_47 = this ;
               outArgument_outSwiftDefaultValueAsString = GGS_string ("NSColor.").add_operation (temp_47.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.ggs", 350)) ;
               var_found_9828 = GGS_bool (true) ;
             }
           }
-          if (kBoolFalse == test_45) {
+          if (GalgasBool::boolFalse == test_45) {
             const GGS_identifierAsDefaultValue temp_48 = this ;
             TC_Array <FixItDescription> fixItArray49 ;
             inCompiler->emitSemanticError (temp_48.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined color"), fixItArray49  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 353)) ;
@@ -4115,10 +4150,10 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
       }
     }
   }
-  enumGalgasBool test_52 = kBoolTrue ;
-  if (kBoolTrue == test_52) {
+  GalgasBool test_52 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_52) {
     test_52 = var_found_9828.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 359)).boolEnum () ;
-    if (kBoolTrue == test_52) {
+    if (GalgasBool::boolTrue == test_52) {
       const GGS_identifierAsDefaultValue temp_53 = this ;
       TC_Array <FixItDescription> fixItArray54 ;
       inCompiler->emitSemanticError (temp_53.readProperty_mValue ().readProperty_location (), GGS_string ("unknow type for this identifier"), fixItArray54  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 360)) ;
@@ -4161,10 +4196,10 @@ void cPtr_prefsAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKin
           }
         }
       }
-      enumGalgasBool test_2 = kBoolTrue ;
-      if (kBoolTrue == test_2) {
+      GalgasBool test_2 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_2) {
         test_2 = var_found_13021.operator_not (SOURCE_FILE ("explicit-default-value.ggs", 379)).boolEnum () ;
-        if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_2) {
           const GGS_prefsAsDefaultValue temp_3 = this ;
           TC_Array <FixItDescription> fixItArray4 ;
           inCompiler->emitSemanticError (temp_3.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("the atomic property type is not compatible"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.ggs", 380)) ;
@@ -4323,9 +4358,9 @@ GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (Compiler *
   result.appendString ("//--------------------------------------------------------------------------------------------------\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//--------------------------------------------------------------------------------------------------\n\nimport AppKit\n\n//--------------------------------------------------------------------------------------------------\n//   Scalar property ") ;
   result.appendString (in_TYPE.stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 11)).boolEnum () ;
+  const GalgasBool test_0 = in_TRANSIENT.operator_not (SOURCE_FILE ("scalar-standard-property.swift.galgasTemplate", 11)).boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("typealias EBReadWriteProperty_") ;
     result.appendString (in_TYPE.stringValue ()) ;
     result.appendString (" = EBObservableMutableProperty <") ;
@@ -4344,9 +4379,9 @@ GGS_string filewrapperTemplate_standard_5F_properties_scalarProperty (Compiler *
     result.appendString (in_TYPE.stringValue ()) ;
     result.appendString (">\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n") ;
@@ -4365,25 +4400,25 @@ GGS_string filewrapperTemplate_standard_5F_properties_classProperty (Compiler * 
                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
   result.appendString ("//--------------------------------------------------------------------------------------------------\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//--------------------------------------------------------------------------------------------------\n\nimport AppKit\n\n//--------------------------------------------------------------------------------------------------\n") ;
-  const enumGalgasBool test_0 = in_TRANSIENT.boolEnum () ;
+  const GalgasBool test_0 = in_TRANSIENT.boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("//   Transient property class ") ;
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString ("\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("//   Property class ") ;
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString ("\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_1 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 17)).boolEnum () ;
+  const GalgasBool test_1 = in_TRANSIENT.operator_not (SOURCE_FILE ("class-standard-property.swift.galgasTemplate", 17)).boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("typealias EBReadWriteProperty_") ;
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString ("   = EBObservableMutableProperty <") ;
@@ -4402,9 +4437,9 @@ GGS_string filewrapperTemplate_standard_5F_properties_classProperty (Compiler * 
     result.appendString (in_CLASS_5F_NAME.stringValue ()) ;
     result.appendString (">\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n") ;
@@ -4456,16 +4491,16 @@ void routine_generateStandardProperties_3F__3F__3F__26_ (const GGS_string consti
   }
   cEnumerator_transientExternTypeList enumerator_5734 (constinArgument_inTransientPropertyExternTypeList, EnumerationOrder::up) ;
   while (enumerator_5734.hasCurrentObject ()) {
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
+    GalgasBool test_0 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_0) {
       test_0 = enumerator_5734.current_mIsClass (HERE).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      if (GalgasBool::boolTrue == test_0) {
         {
         routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_5734.current_mTypeName (HERE), GGS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 147)) ;
         }
       }
     }
-    if (kBoolFalse == test_0) {
+    if (GalgasBool::boolFalse == test_0) {
       {
       routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, enumerator_5734.current_mTypeName (HERE), GGS_bool (true), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 149)) ;
       }
@@ -4543,10 +4578,10 @@ void routine_generateXcodeProject_3F__3F__3F__3F_ (const GGS_string constinArgum
                                                    const GGS_string constinArgument_projectName,
                                                    Compiler * inCompiler
                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, constinArgument_inXcodeProjectString.objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       {
       routine_generateXcodeProjectInternal_3F__3F__3F__3F_ (constinArgument_inOutputDirectory, constinArgument_inXcodeProjectString, constinArgument_inGeneratedFileSet, constinArgument_projectName, inCompiler  COMMA_SOURCE_FILE ("xcode-project.ggs", 39)) ;
       }
@@ -5053,9 +5088,9 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (Comp
   if (in_TOOL_5F_TARGET_5F_LIST.isValid ()) {
     cEnumerator_XCodeToolTargetList enumerator_5295 (in_TOOL_5F_TARGET_5F_LIST, EnumerationOrder::up) ;
     while (enumerator_5295.hasCurrentObject ()) {
-      const enumGalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, enumerator_5295.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+      const GalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, enumerator_5295.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 139)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
       switch (test_0) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("  ") ;
         result.appendString (enumerator_5295.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
         result.appendString (" = {\n    isa = PBXFrameworksBuildPhase;\n    buildActionMask = 2147483647;\n    files = (\n") ;
@@ -5072,9 +5107,9 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (Comp
         }
         result.appendString ("    );\n    runOnlyForDeploymentPostprocessing = 0;\n  };\n\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       index_5295_.increment () ;
@@ -5162,16 +5197,16 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (Comp
       result.appendString (" ;\n    buildPhases = (\n      ") ;
       result.appendString (enumerator_7300.current_mBuildPhaseRef (HERE).stringValue ()) ;
       result.appendString (" ,\n") ;
-      const enumGalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, enumerator_7300.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+      const GalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, enumerator_7300.current_mFrameworksFileRefList (HERE).getter_count (SOURCE_FILE ("project.pbxproj.galgasTemplate", 200)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
       switch (test_1) {
-      case kBoolTrue : {
+      case GalgasBool::boolTrue : {
         result.appendString ("      ") ;
         result.appendString (enumerator_7300.current_mFrameworkBuildPhaseRef (HERE).stringValue ()) ;
         result.appendString (" , /* Frameworks */\n") ;
         } break ;
-      case kBoolFalse : {
+      case GalgasBool::boolFalse : {
         } break ;
-      default :
+      case GalgasBool::boolNotValid :
         break ;
       }
       result.appendString ("    );\n    buildRules = (\n    );\n    dependencies = (\n    );\n    name = ") ;
@@ -5462,14 +5497,14 @@ void routine_generateTestFile_3F__3F__3F__3F_ (const GGS_string constinArgument_
                                                const GGS_string constinArgument_inOutputDirectory,
                                                Compiler * inCompiler
                                                COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     GGS_bool test_1 = GGS_bool (ComparisonKind::greaterThan, constinArgument_inMainXibDescriptorList.getter_count (SOURCE_FILE ("main-xib.ggs", 134)).objectCompare (GGS_uint (uint32_t (0U)))) ;
-    if (kBoolTrue == test_1.boolEnum ()) {
+    if (GalgasBool::boolTrue == test_1.boolEnum ()) {
       test_1 = GGS_bool (ComparisonKind::notEqual, constinArgument_inBundleIdentifier.objectCompare (GGS_string::makeEmptyString ())) ;
     }
     test_0 = test_1.boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       GGS_stringlist temp_2 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 135)) ;
       GGS_stringlist var_outlet_5F_identifier_5F_list_5083 = temp_2 ;
       cEnumerator_mainXibDescriptorList enumerator_5120 (constinArgument_inMainXibDescriptorList, EnumerationOrder::up) ;
@@ -5679,19 +5714,19 @@ static void routine_programRule_5F__30_ (const GGS_lstring constinArgument_inSou
       }
     }
   }
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = GGS_bool (ComparisonKind::equal, GGS_uint::class_func_errorCount (SOURCE_FILE ("program.ggs", 48)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       {
       routine_buildBindingSpecificationMap_26__3F_ (var_semanticContext_2086, var_declarationStruct_1070.readProperty_mBindingSpecificationListMap (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 49)) ;
       }
     }
   }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     test_2 = GGS_bool (ComparisonKind::equal, GGS_uint::class_func_errorCount (SOURCE_FILE ("program.ggs", 54)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       {
       routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (var_semanticContext_2086, var_declarationStruct_1070.readProperty_mAutoLayoutBindingSpecificationList (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 55)) ;
       }
@@ -5730,10 +5765,10 @@ static void routine_programRule_5F__30_ (const GGS_lstring constinArgument_inSou
       }
     }
   }
-  enumGalgasBool test_6 = kBoolTrue ;
-  if (kBoolTrue == test_6) {
+  GalgasBool test_6 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_6) {
     test_6 = GGS_bool (ComparisonKind::equal, GGS_uint::class_func_errorCount (SOURCE_FILE ("program.ggs", 73)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_6) {
+    if (GalgasBool::boolTrue == test_6) {
       cEnumerator_enumerationFunctionListAST enumerator_3849 (var_semanticContext_2086.readProperty_mEnumerationFunctionListAST (), EnumerationOrder::up) ;
       while (enumerator_3849.hasCurrentObject ()) {
         GGS_classKind var_type_3964 ;
@@ -5741,21 +5776,21 @@ static void routine_programRule_5F__30_ (const GGS_lstring constinArgument_inSou
         GGS_actionMap joker_3970_2 ; // Joker input parameter
         GGS_propertyGenerationList joker_3970_1 ; // Joker input parameter
         var_semanticContext_2086.readProperty_mClassMap ().method_searchKey (enumerator_3849.current_mEnumName (HERE), var_type_3964, joker_3970_3, joker_3970_2, joker_3970_1, inCompiler COMMA_SOURCE_FILE ("program.ggs", 75)) ;
-        enumGalgasBool test_7 = kBoolTrue ;
-        if (kBoolTrue == test_7) {
+        GalgasBool test_7 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_7) {
           test_7 = var_type_3964.getter_isAtomic (SOURCE_FILE ("program.ggs", 76)).operator_not (SOURCE_FILE ("program.ggs", 76)).boolEnum () ;
-          if (kBoolTrue == test_7) {
+          if (GalgasBool::boolTrue == test_7) {
             TC_Array <FixItDescription> fixItArray8 ;
             inCompiler->emitSemanticError (enumerator_3849.current_mEnumName (HERE).readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray8  COMMA_SOURCE_FILE ("program.ggs", 77)) ;
           }
         }
-        if (kBoolFalse == test_7) {
+        if (GalgasBool::boolFalse == test_7) {
           GGS_typeKind var_typeKind_4120 ;
           var_type_3964.method_extractAtomic (var_typeKind_4120, inCompiler COMMA_SOURCE_FILE ("program.ggs", 79)) ;
-          enumGalgasBool test_9 = kBoolTrue ;
-          if (kBoolTrue == test_9) {
+          GalgasBool test_9 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_9) {
             test_9 = var_typeKind_4120.getter_isEnumType (SOURCE_FILE ("program.ggs", 80)).operator_not (SOURCE_FILE ("program.ggs", 80)).boolEnum () ;
-            if (kBoolTrue == test_9) {
+            if (GalgasBool::boolTrue == test_9) {
               TC_Array <FixItDescription> fixItArray10 ;
               inCompiler->emitSemanticError (enumerator_3849.current_mEnumName (HERE).readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray10  COMMA_SOURCE_FILE ("program.ggs", 81)) ;
             }
@@ -5765,19 +5800,19 @@ static void routine_programRule_5F__30_ (const GGS_lstring constinArgument_inSou
       }
     }
   }
-  enumGalgasBool test_11 = kBoolTrue ;
-  if (kBoolTrue == test_11) {
+  GalgasBool test_11 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_11) {
     test_11 = GGS_bool (ComparisonKind::equal, GGS_uint::class_func_errorCount (SOURCE_FILE ("program.ggs", 87)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_11) {
+    if (GalgasBool::boolTrue == test_11) {
       {
       routine_graphvizAnalysis_3F__3F__3F_ (constinArgument_inSourceFile.readProperty_string ().getter_stringByDeletingLastPathComponent (SOURCE_FILE ("program.ggs", 88)), var_semanticContext_2086, var_declarationStruct_1070.readProperty_mGraphvizList (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 88)) ;
       }
     }
   }
-  enumGalgasBool test_12 = kBoolTrue ;
-  if (kBoolTrue == test_12) {
+  GalgasBool test_12 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_12) {
     test_12 = GGS_bool (ComparisonKind::equal, GGS_uint::class_func_errorCount (SOURCE_FILE ("program.ggs", 91)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_12) {
+    if (GalgasBool::boolTrue == test_12) {
       {
       routine_generateCode_3F__3F__3F_ (var_declarationStruct_1070.readProperty_mXcodeProject ().readProperty_string (), var_generation_2416, constinArgument_inSourceFile.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("program.ggs", 92)) ;
       }

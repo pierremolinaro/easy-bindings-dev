@@ -7734,73 +7734,73 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
     constinArgument_inFunctionMap.method_searchKey (GGS_lstring::init_21__21_ (var_mangleName_26025, enumerator_25985.current_mFunctionName (HERE).readProperty_location (), inCompiler COMMA_HERE), var_formalParameterList_26267, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 660)) ;
     GGS_autoLayoutViewInstructionGenerationParameterList temp_2 = GGS_autoLayoutViewInstructionGenerationParameterList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 661)) ;
     GGS_autoLayoutViewInstructionGenerationParameterList var_parameterList_26346 = temp_2 ;
-    enumGalgasBool test_3 = kBoolTrue ;
-    if (kBoolTrue == test_3) {
+    GalgasBool test_3 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_3) {
       test_3 = GGS_bool (ComparisonKind::notEqual, var_formalParameterList_26267.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 662)).objectCompare (enumerator_25985.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 662)))).boolEnum () ;
-      if (kBoolTrue == test_3) {
+      if (GalgasBool::boolTrue == test_3) {
         TC_Array <FixItDescription> fixItArray4 ;
         inCompiler->emitSemanticError (enumerator_25985.current_mFunctionName (HERE).readProperty_location (), var_formalParameterList_26267.getter_count (SOURCE_FILE ("auto-layout-view.ggs", 664)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 664)).add_operation (GGS_string (" parameter(s) required, "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 664)).add_operation (enumerator_25985.current_mParameterList (HERE).getter_count (SOURCE_FILE ("auto-layout-view.ggs", 664)).getter_string (SOURCE_FILE ("auto-layout-view.ggs", 664)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 664)).add_operation (GGS_string (" provided"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 664)), fixItArray4  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 663)) ;
       }
     }
-    if (kBoolFalse == test_3) {
+    if (GalgasBool::boolFalse == test_3) {
       cEnumerator_astAutoLayoutViewInstructionParameterList enumerator_26603 (enumerator_25985.current_mParameterList (HERE), EnumerationOrder::up) ;
       cEnumerator_autoLayoutClassParameterList enumerator_26647 (var_formalParameterList_26267, EnumerationOrder::up) ;
       while (enumerator_26603.hasCurrentObject () && enumerator_26647.hasCurrentObject ()) {
-        enumGalgasBool test_5 = kBoolTrue ;
-        if (kBoolTrue == test_5) {
+        GalgasBool test_5 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_5) {
           const GGS_autoLayoutClassParameterType_2E_typeEnum var_formalTypeEnum_26700 = enumerator_26647.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 667)).unwrappedValue () ;
           if (!enumerator_26647.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 667)).isValuated ()) {
-            test_5 = kBoolFalse ;
+            test_5 = GalgasBool::boolFalse ;
           }
-          if (kBoolTrue == test_5) {
+          if (GalgasBool::boolTrue == test_5) {
             const GGS_autoLayoutClassParameterType_2E_typeEnum var_actualTypeEnum_26745 = enumerator_26603.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 667)).unwrappedValue () ;
             if (!enumerator_26603.current_mParameterType (HERE).getter_getTypeEnum (SOURCE_FILE ("auto-layout-view.ggs", 667)).isValuated ()) {
-              test_5 = kBoolFalse ;
+              test_5 = GalgasBool::boolFalse ;
             }
-            if (kBoolTrue == test_5) {
+            if (GalgasBool::boolTrue == test_5) {
               GGS_classKind var_typeKind_26842 ;
               GGS_propertyMap joker_26852_3 ; // Joker input parameter
               GGS_actionMap joker_26852_2 ; // Joker input parameter
               GGS_propertyGenerationList joker_26852_1 ; // Joker input parameter
               constinArgument_inClassMap.method_searchKey (var_formalTypeEnum_26700.readProperty_name (), var_typeKind_26842, joker_26852_3, joker_26852_2, joker_26852_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 668)) ;
-              enumGalgasBool test_6 = kBoolTrue ;
-              if (kBoolTrue == test_6) {
+              GalgasBool test_6 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_6) {
                 const GGS_classKind_2E_atomic var_atomicTypeKind_26874 = var_typeKind_26842.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 669)).unwrappedValue () ;
                 if (!var_typeKind_26842.getter_getAtomic (SOURCE_FILE ("auto-layout-view.ggs", 669)).isValuated ()) {
-                  test_6 = kBoolFalse ;
+                  test_6 = GalgasBool::boolFalse ;
                 }
-                if (kBoolTrue == test_6) {
+                if (GalgasBool::boolTrue == test_6) {
                   const GGS_typeKind_2E_enumType var_atomicEnumType_26915 = var_atomicTypeKind_26874.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 669)).unwrappedValue () ;
                   if (!var_atomicTypeKind_26874.readProperty_kind ().getter_getEnumType (SOURCE_FILE ("auto-layout-view.ggs", 669)).isValuated ()) {
-                    test_6 = kBoolFalse ;
+                    test_6 = GalgasBool::boolFalse ;
                   }
-                  if (kBoolTrue == test_6) {
+                  if (GalgasBool::boolTrue == test_6) {
                     GGS_uint joker_27040 ; // Joker input parameter
                     var_atomicEnumType_26915.readProperty_constantMap ().method_searchKey (var_actualTypeEnum_26745.readProperty_name (), joker_27040, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 670)) ;
                   }
                 }
               }
-              if (kBoolFalse == test_6) {
+              if (GalgasBool::boolFalse == test_6) {
                 TC_Array <FixItDescription> fixItArray7 ;
                 inCompiler->emitSemanticError (var_formalTypeEnum_26700.readProperty_name ().readProperty_location (), GGS_string ("this type name is not an enum"), fixItArray7  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 672)) ;
               }
             }
           }
         }
-        if (kBoolFalse == test_5) {
-          enumGalgasBool test_8 = kBoolTrue ;
-          if (kBoolTrue == test_8) {
+        if (GalgasBool::boolFalse == test_5) {
+          GalgasBool test_8 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_8) {
             test_8 = GGS_bool (ComparisonKind::notEqual, enumerator_26603.current_mParameterType (HERE).objectCompare (enumerator_26647.current_mParameterType (HERE))).boolEnum () ;
-            if (kBoolTrue == test_8) {
+            if (GalgasBool::boolTrue == test_8) {
               TC_Array <FixItDescription> fixItArray9 ;
               inCompiler->emitSemanticError (enumerator_26603.current_mParameterName (HERE).readProperty_location (), GGS_string ("the formal parameter requires ").add_operation (extensionGetter_string (enumerator_26647.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)).add_operation (GGS_string (", actual parameter is "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)).add_operation (extensionGetter_string (enumerator_26603.current_mParameterType (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)), fixItArray9  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 675)) ;
             }
           }
         }
-        enumGalgasBool test_10 = kBoolTrue ;
-        if (kBoolTrue == test_10) {
+        GalgasBool test_10 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_10) {
           test_10 = GGS_bool (ComparisonKind::notEqual, enumerator_26603.current_mParameterName (HERE).readProperty_string ().objectCompare (enumerator_26647.current_mParameterName (HERE).readProperty_string ())).boolEnum () ;
-          if (kBoolTrue == test_10) {
+          if (GalgasBool::boolTrue == test_10) {
             TC_Array <FixItDescription> fixItArray11 ;
             inCompiler->emitSemanticError (enumerator_26603.current_mParameterName (HERE).readProperty_location (), GGS_string ("the parameter name should be '").add_operation (enumerator_26647.current_mParameterName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 678)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 678)), fixItArray11  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 678)) ;
           }
@@ -7838,10 +7838,10 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
             GGS_actionMap joker_28506_2 ; // Joker input parameter
             GGS_propertyGenerationList joker_28506_1 ; // Joker input parameter
             constinArgument_inClassMap.method_searchKey (extractedValue_28432_entityName_0, var_classKind_28495, joker_28506_3, joker_28506_2, joker_28506_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 706)) ;
-            enumGalgasBool test_12 = kBoolTrue ;
-            if (kBoolTrue == test_12) {
+            GalgasBool test_12 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_12) {
               test_12 = var_classKind_28495.getter_isEntity (SOURCE_FILE ("auto-layout-view.ggs", 707)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 707)).boolEnum () ;
-              if (kBoolTrue == test_12) {
+              if (GalgasBool::boolTrue == test_12) {
                 TC_Array <FixItDescription> fixItArray13 ;
                 inCompiler->emitSemanticError (extractedValue_28432_entityName_0.readProperty_location (), GGS_string ("an entity is required here"), fixItArray13  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 708)) ;
               }
@@ -7916,21 +7916,21 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
             GGS_actionMap joker_30235_2 ; // Joker input parameter
             GGS_propertyGenerationList joker_30235_1 ; // Joker input parameter
             constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_30135_enumTypeName_0, var_type_30229, joker_30235_3, joker_30235_2, joker_30235_1, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 749)) ;
-            enumGalgasBool test_14 = kBoolTrue ;
-            if (kBoolTrue == test_14) {
+            GalgasBool test_14 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_14) {
               test_14 = var_type_30229.getter_isAtomic (SOURCE_FILE ("auto-layout-view.ggs", 750)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 750)).boolEnum () ;
-              if (kBoolTrue == test_14) {
+              if (GalgasBool::boolTrue == test_14) {
                 TC_Array <FixItDescription> fixItArray15 ;
                 inCompiler->emitSemanticError (extractedValue_30135_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray15  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 751)) ;
               }
             }
-            if (kBoolFalse == test_14) {
+            if (GalgasBool::boolFalse == test_14) {
               GGS_typeKind var_typeKind_30411 ;
               var_type_30229.method_extractAtomic (var_typeKind_30411, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 753)) ;
-              enumGalgasBool test_16 = kBoolTrue ;
-              if (kBoolTrue == test_16) {
+              GalgasBool test_16 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_16) {
                 test_16 = var_typeKind_30411.getter_isEnumType (SOURCE_FILE ("auto-layout-view.ggs", 754)).boolEnum () ;
-                if (kBoolTrue == test_16) {
+                if (GalgasBool::boolTrue == test_16) {
                   GGS_enumFuncMap var_funcMap_30519 ;
                   GGS_string joker_30501_2 ; // Joker input parameter
                   GGS_enumConstantMap joker_30501_1 ; // Joker input parameter
@@ -7939,7 +7939,7 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
                   var_funcMap_30519.method_searchKey (extractedValue_30149_funcName_1, joker_30571, inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 756)) ;
                 }
               }
-              if (kBoolFalse == test_16) {
+              if (GalgasBool::boolFalse == test_16) {
                 TC_Array <FixItDescription> fixItArray17 ;
                 inCompiler->emitSemanticError (extractedValue_30135_enumTypeName_0.readProperty_location (), GGS_string ("this type should be an enum type"), fixItArray17  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 758)) ;
               }

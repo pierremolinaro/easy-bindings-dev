@@ -3392,10 +3392,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
   case 2: {
     GGS_lstring var_attribute_1614 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("enumeration.ggs", 45)) ;
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
+    GalgasBool test_0 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_0) {
       test_0 = GGS_bool (ComparisonKind::notEqual, var_attribute_1614.readProperty_string ().objectCompare (GGS_string ("CaseIterable"))).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      if (GalgasBool::boolTrue == test_0) {
         TC_Array <FixItDescription> fixItArray1 ;
         appendFixItActions (fixItArray1, kFixItReplace, GGS_string ("@CaseIterable")) ;
         inCompiler->emitSemanticError (var_attribute_1614.readProperty_location (), GGS_string ("only @CaseIterable attribute is allowed here"), fixItArray1  COMMA_SOURCE_FILE ("enumeration.ggs", 47)) ;
@@ -3692,10 +3692,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
       var_graphicOptionArray_2841.setter_append (var_graphicOption_3544, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 109)) ;
       }
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("entity.ggs", 110)) ;
-      enumGalgasBool test_9 = kBoolTrue ;
-      if (kBoolTrue == test_9) {
+      GalgasBool test_9 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_9) {
         test_9 = var_graphicEntity_1831.operator_not (SOURCE_FILE ("entity.ggs", 111)).boolEnum () ;
-        if (kBoolTrue == test_9) {
+        if (GalgasBool::boolTrue == test_9) {
           TC_Array <FixItDescription> fixItArray10 ;
           inCompiler->emitSemanticError (var_graphicOption_3544.readProperty_location (), GGS_string ("only a graphic entity accepts a graphic option"), fixItArray10  COMMA_SOURCE_FILE ("entity.ggs", 112)) ;
         }
@@ -3710,14 +3710,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_entityDeclarationAST::init_21__21__21__21__21__21__21__21__21__21__21_ (var_entityName_2130, var_isAbstract_1714, var_superEntityName_2400, var_handlingOpposite_1956, var_simpleStoredPropertyList_2568, var_signatureList_2617, var_actionDeclarationList_2657, var_obsoleteEntityNames_2163, var_graphicEntity_1831, var_externSwiftDelegateList_2717, var_graphicOptionArray_2841, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 116)) ;
   }
-  enumGalgasBool test_11 = kBoolTrue ;
-  if (kBoolTrue == test_11) {
+  GalgasBool test_11 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_11) {
     GGS_bool test_12 = var_isAbstract_1714 ;
-    if (kBoolTrue == test_12.boolEnum ()) {
+    if (GalgasBool::boolTrue == test_12.boolEnum ()) {
       test_12 = var_graphicEntity_1831 ;
     }
     test_11 = test_12.boolEnum () ;
-    if (kBoolTrue == test_11) {
+    if (GalgasBool::boolTrue == test_11) {
       {
       GGS_observablePropertyList temp_13 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 136)) ;
       ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2130, GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 133)), GGS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 134)), GGS_string ("selectionDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 135)), temp_13, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 131)) ;
@@ -4699,46 +4699,46 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
       case 4: {
         GGS_lstring var_parameterTypeName_6694 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 202)) ;
-        enumGalgasBool test_2 = kBoolTrue ;
-        if (kBoolTrue == test_2) {
+        GalgasBool test_2 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_2) {
           test_2 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("String"))).boolEnum () ;
-          if (kBoolTrue == test_2) {
+          if (GalgasBool::boolTrue == test_2) {
             {
             outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view-class.ggs", 204)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 204)) ;
             }
           }
         }
-        if (kBoolFalse == test_2) {
-          enumGalgasBool test_3 = kBoolTrue ;
-          if (kBoolTrue == test_3) {
+        if (GalgasBool::boolFalse == test_2) {
+          GalgasBool test_3 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_3) {
             test_3 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("StringArray"))).boolEnum () ;
-            if (kBoolTrue == test_3) {
+            if (GalgasBool::boolTrue == test_3) {
               {
               outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view-class.ggs", 206)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 206)) ;
               }
             }
           }
-          if (kBoolFalse == test_3) {
-            enumGalgasBool test_4 = kBoolTrue ;
-            if (kBoolTrue == test_4) {
+          if (GalgasBool::boolFalse == test_3) {
+            GalgasBool test_4 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_4) {
               test_4 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("Int"))).boolEnum () ;
-              if (kBoolTrue == test_4) {
+              if (GalgasBool::boolTrue == test_4) {
                 {
                 outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view-class.ggs", 208)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 208)) ;
                 }
               }
             }
-            if (kBoolFalse == test_4) {
-              enumGalgasBool test_5 = kBoolTrue ;
-              if (kBoolTrue == test_5) {
+            if (GalgasBool::boolFalse == test_4) {
+              GalgasBool test_5 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_5) {
                 test_5 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("Bool"))).boolEnum () ;
-                if (kBoolTrue == test_5) {
+                if (GalgasBool::boolTrue == test_5) {
                   {
                   outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view-class.ggs", 210)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 210)) ;
                   }
                 }
               }
-              if (kBoolFalse == test_5) {
+              if (GalgasBool::boolFalse == test_5) {
                 {
                 outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeEnum (var_parameterTypeName_6694  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)) ;
                 }
@@ -5308,10 +5308,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.ggs", 295)) ;
       GGS_lstring var_localViewName_12469 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 296)) ;
-      enumGalgasBool test_1 = kBoolTrue ;
-      if (kBoolTrue == test_1) {
+      GalgasBool test_1 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_1) {
         test_1 = ioArgument_ioStackViewInstances.getter_hasKey (var_localViewName_12469.readProperty_string () COMMA_SOURCE_FILE ("auto-layout-view.ggs", 297)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 297)).boolEnum () ;
-        if (kBoolTrue == test_1) {
+        if (GalgasBool::boolTrue == test_1) {
           TC_Array <FixItDescription> fixItArray2 ;
           inCompiler->emitSemanticError (var_localViewName_12469.readProperty_location (), GGS_string ("the view is not instancied"), fixItArray2  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 298)) ;
         }
@@ -5765,10 +5765,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.ggs", 455)) ;
         GGS_lstring var_viewName_18182 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 456)) ;
-        enumGalgasBool test_2 = kBoolTrue ;
-        if (kBoolTrue == test_2) {
+        GalgasBool test_2 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_2) {
           test_2 = ioArgument_ioStackViewInstances.getter_hasKey (var_viewName_18182.readProperty_string () COMMA_SOURCE_FILE ("auto-layout-view.ggs", 457)).operator_not (SOURCE_FILE ("auto-layout-view.ggs", 457)).boolEnum () ;
-          if (kBoolTrue == test_2) {
+          if (GalgasBool::boolTrue == test_2) {
             TC_Array <FixItDescription> fixItArray3 ;
             inCompiler->emitSemanticError (var_viewName_18182.readProperty_location (), GGS_string ("view is not instancied"), fixItArray3  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 458)) ;
           }
@@ -6711,10 +6711,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     switch (select_easyBindings_5F_syntax_56 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.ggs", 85)) ;
-      enumGalgasBool test_2 = kBoolTrue ;
-      if (kBoolTrue == test_2) {
+      GalgasBool test_2 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_2) {
         test_2 = GGS_bool (ComparisonKind::notEqual, outArgument_tableValueBinding.objectCompare (GGS_tableValueBinding::class_func_noTableValueBinding (SOURCE_FILE ("outlet-declaration.ggs", 86)))).boolEnum () ;
-        if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_2) {
           TC_Array <FixItDescription> fixItArray3 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 87)), GGS_string ("duplicated $tableValue binding"), fixItArray3  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 87)) ;
         }
@@ -6725,10 +6725,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-declaration.ggs", 92)) ;
-      enumGalgasBool test_4 = kBoolTrue ;
-      if (kBoolTrue == test_4) {
+      GalgasBool test_4 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_4) {
         test_4 = GGS_bool (ComparisonKind::notEqual, outArgument_runActionDescriptor.objectCompare (GGS_runActionDescriptor::class_func_noAction (SOURCE_FILE ("outlet-declaration.ggs", 93)))).boolEnum () ;
-        if (kBoolTrue == test_4) {
+        if (GalgasBool::boolTrue == test_4) {
           TC_Array <FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 94)), GGS_string ("duplicated $run binding"), fixItArray5  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 94)) ;
         }
@@ -6757,10 +6757,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-declaration.ggs", 111)) ;
-      enumGalgasBool test_6 = kBoolTrue ;
-      if (kBoolTrue == test_6) {
+      GalgasBool test_6 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_6) {
         test_6 = GGS_bool (ComparisonKind::notEqual, outArgument_enabledBindingDescriptor.objectCompare (GGS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("outlet-declaration.ggs", 112)))).boolEnum () ;
-        if (kBoolTrue == test_6) {
+        if (GalgasBool::boolTrue == test_6) {
           TC_Array <FixItDescription> fixItArray7 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 113)), GGS_string ("duplicated $enabled binding"), fixItArray7  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 113)) ;
         }
@@ -6771,10 +6771,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-declaration.ggs", 119)) ;
-      enumGalgasBool test_8 = kBoolTrue ;
-      if (kBoolTrue == test_8) {
+      GalgasBool test_8 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_8) {
         test_8 = GGS_bool (ComparisonKind::notEqual, outArgument_hiddenBindingDescriptor.objectCompare (GGS_multipleBindingDescriptor::class_func_noBinding (SOURCE_FILE ("outlet-declaration.ggs", 120)))).boolEnum () ;
-        if (kBoolTrue == test_8) {
+        if (GalgasBool::boolTrue == test_8) {
           TC_Array <FixItDescription> fixItArray9 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 121)), GGS_string ("duplicated $hidden binding"), fixItArray9  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 121)) ;
         }
@@ -6824,14 +6824,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
       default:
         break ;
       }
-      enumGalgasBool test_12 = kBoolTrue ;
-      if (kBoolTrue == test_12) {
+      GalgasBool test_12 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_12) {
         test_12 = outArgument_graphicController.getter_isNone (SOURCE_FILE ("outlet-declaration.ggs", 152)).boolEnum () ;
-        if (kBoolTrue == test_12) {
+        if (GalgasBool::boolTrue == test_12) {
           outArgument_graphicController = GGS_graphicController::class_func_defined (var_graphicControllerName_5448, var_propertyName_5490  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 153)) ;
         }
       }
-      if (kBoolFalse == test_12) {
+      if (GalgasBool::boolFalse == test_12) {
         TC_Array <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (var_graphicControllerName_5448.readProperty_location (), GGS_string ("binding already defined"), fixItArray13  COMMA_SOURCE_FILE ("outlet-declaration.ggs", 155)) ;
       }
@@ -7799,14 +7799,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
     if (select_easyBindings_5F_syntax_74 (inCompiler) == 2) {
       GGS_lstring var_attributeName_2493 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.ggs", 58)) ;
-      enumGalgasBool test_1 = kBoolTrue ;
-      if (kBoolTrue == test_1) {
+      GalgasBool test_1 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_1) {
         test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
-        if (kBoolTrue == test_1) {
-          enumGalgasBool test_2 = kBoolTrue ;
-          if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_1) {
+          GalgasBool test_2 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_2) {
             test_2 = var_usedForSignature_2314.boolEnum () ;
-            if (kBoolTrue == test_2) {
+            if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (kFixItRemove, "")) ;
               inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 61)) ;
@@ -7815,15 +7815,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
           var_usedForSignature_2314 = GGS_bool (true) ;
         }
       }
-      if (kBoolFalse == test_1) {
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
+      if (GalgasBool::boolFalse == test_1) {
+        GalgasBool test_4 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_4) {
           test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateResetMethod"))).boolEnum () ;
-          if (kBoolTrue == test_4) {
-            enumGalgasBool test_5 = kBoolTrue ;
-            if (kBoolTrue == test_5) {
+          if (GalgasBool::boolTrue == test_4) {
+            GalgasBool test_5 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_5) {
               test_5 = var_generateResetMethod_2347.boolEnum () ;
-              if (kBoolTrue == test_5) {
+              if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (kFixItRemove, "")) ;
                 inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 66)) ;
@@ -7832,15 +7832,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
             var_generateResetMethod_2347 = GGS_bool (true) ;
           }
         }
-        if (kBoolFalse == test_4) {
-          enumGalgasBool test_7 = kBoolTrue ;
-          if (kBoolTrue == test_7) {
+        if (GalgasBool::boolFalse == test_4) {
+          GalgasBool test_7 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_7) {
             test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
-            if (kBoolTrue == test_7) {
-              enumGalgasBool test_8 = kBoolTrue ;
-              if (kBoolTrue == test_8) {
+            if (GalgasBool::boolTrue == test_7) {
+              GalgasBool test_8 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_8) {
                 test_8 = var_generateDirectRead_2383.boolEnum () ;
-                if (kBoolTrue == test_8) {
+                if (GalgasBool::boolTrue == test_8) {
                   TC_Array <FixItDescription> fixItArray9 ;
                   fixItArray9.appendObject (FixItDescription (kFixItRemove, "")) ;
                   inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 71)) ;
@@ -7849,15 +7849,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
               var_generateDirectRead_2383 = GGS_bool (true) ;
             }
           }
-          if (kBoolFalse == test_7) {
-            enumGalgasBool test_10 = kBoolTrue ;
-            if (kBoolTrue == test_10) {
+          if (GalgasBool::boolFalse == test_7) {
+            GalgasBool test_10 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_10) {
               test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
-              if (kBoolTrue == test_10) {
-                enumGalgasBool test_11 = kBoolTrue ;
-                if (kBoolTrue == test_11) {
+              if (GalgasBool::boolTrue == test_10) {
+                GalgasBool test_11 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_11) {
                   test_11 = var_generateDirectAccess_2418.boolEnum () ;
-                  if (kBoolTrue == test_11) {
+                  if (GalgasBool::boolTrue == test_11) {
                     TC_Array <FixItDescription> fixItArray12 ;
                     fixItArray12.appendObject (FixItDescription (kFixItRemove, "")) ;
                     inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 76)) ;
@@ -7866,7 +7866,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
                 var_generateDirectAccess_2418 = GGS_bool (true) ;
               }
             }
-            if (kBoolFalse == test_10) {
+            if (GalgasBool::boolFalse == test_10) {
               TC_Array <FixItDescription> fixItArray13 ;
               appendFixItActions (fixItArray13, kFixItReplace, GGS_string ("@signature")) ;
               appendFixItActions (fixItArray13, kFixItReplace, GGS_string ("@generateResetMethod")) ;
@@ -7881,14 +7881,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
       repeatFlag_0 = false ;
     }
   }
-  enumGalgasBool test_14 = kBoolTrue ;
-  if (kBoolTrue == test_14) {
+  GalgasBool test_14 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_14) {
     GGS_bool test_15 = var_generateDirectAccess_2418 ;
-    if (kBoolTrue == test_15.boolEnum ()) {
+    if (GalgasBool::boolTrue == test_15.boolEnum ()) {
       test_15 = var_generateDirectRead_2383 ;
     }
     test_14 = test_15.boolEnum () ;
-    if (kBoolTrue == test_14) {
+    if (GalgasBool::boolTrue == test_14) {
       TC_Array <FixItDescription> fixItArray16 ;
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 87)), GGS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 87)) ;
     }
@@ -7897,10 +7897,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 89)) ;
   GGS_lstring var_attributeName_3828 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 90)) ;
-  enumGalgasBool test_17 = kBoolTrue ;
-  if (kBoolTrue == test_17) {
+  GalgasBool test_17 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_17) {
     test_17 = var_usedForSignature_2314.boolEnum () ;
-    if (kBoolTrue == test_17) {
+    if (GalgasBool::boolTrue == test_17) {
       {
       ioArgument_ioSignatureList.setter_insert (var_attributeName_3828.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 92)) ;
       }
@@ -8020,14 +8020,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
     if (select_easyBindings_5F_syntax_75 (inCompiler) == 2) {
       GGS_lstring var_attributeName_2059 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.ggs", 50)) ;
-      enumGalgasBool test_1 = kBoolTrue ;
-      if (kBoolTrue == test_1) {
+      GalgasBool test_1 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_1) {
         test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2059.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
-        if (kBoolTrue == test_1) {
-          enumGalgasBool test_2 = kBoolTrue ;
-          if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_1) {
+          GalgasBool test_2 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_2) {
             test_2 = var_usedForSignature_1965.boolEnum () ;
-            if (kBoolTrue == test_2) {
+            if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (kFixItRemove, "")) ;
               inCompiler->emitSemanticError (var_attributeName_2059.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 53)) ;
@@ -8036,15 +8036,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
           var_usedForSignature_1965 = GGS_bool (true) ;
         }
       }
-      if (kBoolFalse == test_1) {
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
+      if (GalgasBool::boolFalse == test_1) {
+        GalgasBool test_4 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_4) {
           test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2059.readProperty_string ().objectCompare (GGS_string ("weak"))).boolEnum () ;
-          if (kBoolTrue == test_4) {
-            enumGalgasBool test_5 = kBoolTrue ;
-            if (kBoolTrue == test_5) {
+          if (GalgasBool::boolTrue == test_4) {
+            GalgasBool test_5 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_5) {
               test_5 = var_isWeak_1998.boolEnum () ;
-              if (kBoolTrue == test_5) {
+              if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (kFixItRemove, "")) ;
                 inCompiler->emitSemanticError (var_attributeName_2059.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 58)) ;
@@ -8053,7 +8053,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
             var_isWeak_1998 = GGS_bool (true) ;
           }
         }
-        if (kBoolFalse == test_4) {
+        if (GalgasBool::boolFalse == test_4) {
           TC_Array <FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, kFixItReplace, GGS_string ("@signature")) ;
           appendFixItActions (fixItArray7, kFixItReplace, GGS_string ("@weak")) ;
@@ -8194,14 +8194,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
     if (select_easyBindings_5F_syntax_78 (inCompiler) == 2) {
       GGS_lstring var_attributeName_2538 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.ggs", 64)) ;
-      enumGalgasBool test_1 = kBoolTrue ;
-      if (kBoolTrue == test_1) {
+      GalgasBool test_1 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_1) {
         test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
-        if (kBoolTrue == test_1) {
-          enumGalgasBool test_2 = kBoolTrue ;
-          if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_1) {
+          GalgasBool test_2 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_2) {
             test_2 = var_usedForSignature_2367.boolEnum () ;
-            if (kBoolTrue == test_2) {
+            if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (kFixItRemove, "")) ;
               inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 67)) ;
@@ -8210,15 +8210,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
           var_usedForSignature_2367 = GGS_bool (true) ;
         }
       }
-      if (kBoolFalse == test_1) {
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
+      if (GalgasBool::boolFalse == test_1) {
+        GalgasBool test_4 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_4) {
           test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("customStore"))).boolEnum () ;
-          if (kBoolTrue == test_4) {
-            enumGalgasBool test_5 = kBoolTrue ;
-            if (kBoolTrue == test_5) {
+          if (GalgasBool::boolTrue == test_4) {
+            GalgasBool test_5 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_5) {
               test_5 = var_customStore_2400.boolEnum () ;
-              if (kBoolTrue == test_5) {
+              if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (kFixItRemove, "")) ;
                 inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 72)) ;
@@ -8227,15 +8227,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
             var_customStore_2400 = GGS_bool (true) ;
           }
         }
-        if (kBoolFalse == test_4) {
-          enumGalgasBool test_7 = kBoolTrue ;
-          if (kBoolTrue == test_7) {
+        if (GalgasBool::boolFalse == test_4) {
+          GalgasBool test_7 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_7) {
             test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
-            if (kBoolTrue == test_7) {
-              enumGalgasBool test_8 = kBoolTrue ;
-              if (kBoolTrue == test_8) {
+            if (GalgasBool::boolTrue == test_7) {
+              GalgasBool test_8 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_8) {
                 test_8 = var_generateDirectRead_2465.boolEnum () ;
-                if (kBoolTrue == test_8) {
+                if (GalgasBool::boolTrue == test_8) {
                   TC_Array <FixItDescription> fixItArray9 ;
                   fixItArray9.appendObject (FixItDescription (kFixItRemove, "")) ;
                   inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 77)) ;
@@ -8244,15 +8244,15 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
               var_generateDirectRead_2465 = GGS_bool (true) ;
             }
           }
-          if (kBoolFalse == test_7) {
-            enumGalgasBool test_10 = kBoolTrue ;
-            if (kBoolTrue == test_10) {
+          if (GalgasBool::boolFalse == test_7) {
+            GalgasBool test_10 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_10) {
               test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
-              if (kBoolTrue == test_10) {
-                enumGalgasBool test_11 = kBoolTrue ;
-                if (kBoolTrue == test_11) {
+              if (GalgasBool::boolTrue == test_10) {
+                GalgasBool test_11 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_11) {
                   test_11 = var_generateDirectAccess_2428.boolEnum () ;
-                  if (kBoolTrue == test_11) {
+                  if (GalgasBool::boolTrue == test_11) {
                     TC_Array <FixItDescription> fixItArray12 ;
                     fixItArray12.appendObject (FixItDescription (kFixItRemove, "")) ;
                     inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 82)) ;
@@ -8261,7 +8261,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
                 var_generateDirectAccess_2428 = GGS_bool (true) ;
               }
             }
-            if (kBoolFalse == test_10) {
+            if (GalgasBool::boolFalse == test_10) {
               TC_Array <FixItDescription> fixItArray13 ;
               appendFixItActions (fixItArray13, kFixItReplace, GGS_string ("@signature")) ;
               appendFixItActions (fixItArray13, kFixItReplace, GGS_string ("@customStore")) ;
@@ -8276,14 +8276,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
       repeatFlag_0 = false ;
     }
   }
-  enumGalgasBool test_14 = kBoolTrue ;
-  if (kBoolTrue == test_14) {
+  GalgasBool test_14 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_14) {
     GGS_bool test_15 = var_generateDirectAccess_2428 ;
-    if (kBoolTrue == test_15.boolEnum ()) {
+    if (GalgasBool::boolTrue == test_15.boolEnum ()) {
       test_15 = var_generateDirectRead_2465 ;
     }
     test_14 = test_15.boolEnum () ;
-    if (kBoolTrue == test_14) {
+    if (GalgasBool::boolTrue == test_14) {
       TC_Array <FixItDescription> fixItArray16 ;
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)), GGS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)) ;
     }
@@ -8292,10 +8292,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 95)) ;
   GGS_lstring var_relationshipName_3827 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 96)) ;
-  enumGalgasBool test_17 = kBoolTrue ;
-  if (kBoolTrue == test_17) {
+  GalgasBool test_17 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_17) {
     test_17 = var_usedForSignature_2367.boolEnum () ;
-    if (kBoolTrue == test_17) {
+    if (GalgasBool::boolTrue == test_17) {
       {
       ioArgument_ioSignatureList.setter_insert (var_relationshipName_3827.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 98)) ;
       }
@@ -9407,24 +9407,24 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
   GGS_lstring var_xcodeProjectString_399 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("xcode-project.ggs", 13)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("xcode-project.ggs", 14)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::equal, var_xcodeProjectString_399.readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       TC_Array <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (var_xcodeProjectString_399.readProperty_location (), GGS_string ("string should not be empty"), fixItArray1  COMMA_SOURCE_FILE ("xcode-project.ggs", 16)) ;
     }
   }
-  if (kBoolFalse == test_0) {
-    enumGalgasBool test_2 = kBoolTrue ;
-    if (kBoolTrue == test_2) {
+  if (GalgasBool::boolFalse == test_0) {
+    GalgasBool test_2 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_2) {
       test_2 = GGS_bool (ComparisonKind::notEqual, ioArgument_ioXcodeProjectString.readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_2) {
+      if (GalgasBool::boolTrue == test_2) {
         TC_Array <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (var_xcodeProjectString_399.readProperty_location (), GGS_string ("Xcode project already defined"), fixItArray3  COMMA_SOURCE_FILE ("xcode-project.ggs", 18)) ;
       }
     }
-    if (kBoolFalse == test_2) {
+    if (GalgasBool::boolFalse == test_2) {
       ioArgument_ioXcodeProjectString = var_xcodeProjectString_399 ;
     }
   }

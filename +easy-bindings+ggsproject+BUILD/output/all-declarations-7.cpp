@@ -14226,18 +14226,18 @@ GGS_bool extensionGetter_isAbstract (const GGS_propertyMap_2E_element & inObject
                                      COMMA_UNUSED_LOCATION_ARGS) {
   GGS_bool result_result ; // Returned variable
   result_result = GGS_bool (false) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     const GGS_propertyMap_2E_element temp_1 = inObject ;
     const GGS_propertyKind_2E_property var_prop_5233 = temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.ggs", 133)).unwrappedValue () ;
     if (!temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.ggs", 133)).isValuated ()) {
-      test_0 = kBoolFalse ;
+      test_0 = GalgasBool::boolFalse ;
     }
-    if (kBoolTrue == test_0) {
-      enumGalgasBool test_2 = kBoolTrue ;
-      if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_0) {
+      GalgasBool test_2 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_2) {
         test_2 = var_prop_5233.readProperty_accessibility ().getter_isTransient (SOURCE_FILE ("semantic-analysis.ggs", 134)).boolEnum () ;
-        if (kBoolTrue == test_2) {
+        if (GalgasBool::boolTrue == test_2) {
           GGS_bool var_ab_5371 ;
           var_prop_5233.readProperty_accessibility ().method_extractTransient (var_ab_5371, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.ggs", 135)) ;
           result_result = var_ab_5371 ;
@@ -14435,10 +14435,10 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
     callExtensionMethod_enterInPrecedenceGraph ((cPtr_abstractDeclarationAST *) enumerator_2455.current_mPropertyDeclaration (HERE).ptr (), var_declarationPrecedenceGraph_2415, inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 69)) ;
     enumerator_2455.gotoNextObject () ;
   }
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (gOption_easyBindings_5F_options_outputDeclarationDependencyGraph.readProperty_value ()).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       GGS_string var_s_2694 = var_declarationPrecedenceGraph_2415.getter_graphviz (SOURCE_FILE ("declaration-graph.ggs", 73)) ;
       GGS_string var_path_2742 = constinArgument_inSourceFile.add_operation (GGS_string (".declarationDependancy.dot"), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 74)) ;
       GGS_bool joker_2839 ; // Joker input parameter
@@ -14447,10 +14447,10 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
   }
   GGS_declarationListAST temp_1 = GGS_declarationListAST::init (inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 78)) ;
   outArgument_outSortedDeclarationListAST = temp_1 ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     test_2 = GGS_bool (ComparisonKind::greaterThan, var_declarationPrecedenceGraph_2415.getter_undefinedNodeCount (SOURCE_FILE ("declaration-graph.ggs", 79)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       cEnumerator_lstringlist enumerator_3009 (var_declarationPrecedenceGraph_2415.getter_undefinedNodeReferenceList (SOURCE_FILE ("declaration-graph.ggs", 80)), EnumerationOrder::up) ;
       while (enumerator_3009.hasCurrentObject ()) {
         TC_Array <FixItDescription> fixItArray3 ;
@@ -14459,15 +14459,15 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
       }
     }
   }
-  if (kBoolFalse == test_2) {
+  if (GalgasBool::boolFalse == test_2) {
     GGS_declarationListAST var_unsortedSemanticDeclarationListAST_3271 ;
     GGS_lstringlist joker_3256 ; // Joker input parameter
     GGS_lstringlist joker_3313 ; // Joker input parameter
     var_declarationPrecedenceGraph_2415.method_topologicalSort (outArgument_outSortedDeclarationListAST, joker_3256, var_unsortedSemanticDeclarationListAST_3271, joker_3313, inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 84)) ;
-    enumGalgasBool test_4 = kBoolTrue ;
-    if (kBoolTrue == test_4) {
+    GalgasBool test_4 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_4) {
       test_4 = GGS_bool (ComparisonKind::greaterThan, var_unsortedSemanticDeclarationListAST_3271.getter_count (SOURCE_FILE ("declaration-graph.ggs", 90)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_4) {
+      if (GalgasBool::boolTrue == test_4) {
         GGS_string var_s_3389 = GGS_string ("semantic analysis not performed, ").add_operation (var_unsortedSemanticDeclarationListAST_3271.getter_count (SOURCE_FILE ("declaration-graph.ggs", 92)).getter_string (SOURCE_FILE ("declaration-graph.ggs", 91)), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 91)).add_operation (GGS_string (" declarations are involved in circular definition:"), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 92)) ;
         cEnumerator_declarationListAST enumerator_3562 (var_unsortedSemanticDeclarationListAST_3271, EnumerationOrder::up) ;
         while (enumerator_3562.hasCurrentObject ()) {
@@ -14598,11 +14598,11 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
   GGS_enumFuncMap var_enumFuncMap_4419 = temp_2 ;
   cEnumerator_enumerationFunctionListAST enumerator_4467 (ioArgument_ioSemanticContext.readProperty_mEnumerationFunctionListAST (), EnumerationOrder::up) ;
   while (enumerator_4467.hasCurrentObject ()) {
-    enumGalgasBool test_3 = kBoolTrue ;
-    if (kBoolTrue == test_3) {
+    GalgasBool test_3 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_3) {
       const GGS_enumerationDeclarationAST temp_4 = this ;
       test_3 = GGS_bool (ComparisonKind::equal, enumerator_4467.current_mEnumName (HERE).readProperty_string ().objectCompare (temp_4.readProperty_mClassName ().readProperty_string ())).boolEnum () ;
-      if (kBoolTrue == test_3) {
+      if (GalgasBool::boolTrue == test_3) {
         GGS_stringset temp_5 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 129)) ;
         GGS_stringset var_definedConstantNameSet_4615 = temp_5 ;
         GGS_enumFunAssociationSortedList temp_6 = GGS_enumFunAssociationSortedList::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 130)) ;
@@ -14614,10 +14614,10 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
           {
           var_associationSortedList_4683.setter_insert (var_idx_4829, enumerator_4735.current_mValue_31_ (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 133)) ;
           }
-          enumGalgasBool test_7 = kBoolTrue ;
-          if (kBoolTrue == test_7) {
+          GalgasBool test_7 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_7) {
             test_7 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_4735.current_mValue_30_ (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 134)).boolEnum () ;
-            if (kBoolTrue == test_7) {
+            if (GalgasBool::boolTrue == test_7) {
               TC_Array <FixItDescription> fixItArray8 ;
               inCompiler->emitSemanticError (enumerator_4735.current_mValue_30_ (HERE).readProperty_location (), GGS_string ("Duplicated constant"), fixItArray8  COMMA_SOURCE_FILE ("enumeration.ggs", 135)) ;
             }
@@ -14630,10 +14630,10 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
         const GGS_enumerationDeclarationAST temp_9 = this ;
         cEnumerator_lstringlist enumerator_5106 (temp_9.readProperty_mEnumConstantNameList (), EnumerationOrder::up) ;
         while (enumerator_5106.hasCurrentObject ()) {
-          enumGalgasBool test_10 = kBoolTrue ;
-          if (kBoolTrue == test_10) {
+          GalgasBool test_10 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_10) {
             test_10 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_5106.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 140)).operator_not (SOURCE_FILE ("enumeration.ggs", 140)).boolEnum () ;
-            if (kBoolTrue == test_10) {
+            if (GalgasBool::boolTrue == test_10) {
               TC_Array <FixItDescription> fixItArray11 ;
               inCompiler->emitSemanticError (enumerator_4467.current_mFunctionName (HERE).readProperty_location (), GGS_string ("No association for '").add_operation (enumerator_5106.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)).add_operation (GGS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)), fixItArray11  COMMA_SOURCE_FILE ("enumeration.ggs", 141)) ;
             }
@@ -14775,14 +14775,14 @@ GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (Com
   result.appendString ("//--------------------------------------------------------------------------------------------------\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//--------------------------------------------------------------------------------------------------\n\nimport Foundation\n\n//--------------------------------------------------------------------------------------------------\n\nenum ") ;
   result.appendString (in_ENUM_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" : Int, Sendable") ;
-  const enumGalgasBool test_0 = in_CASE_5F_ITERABLE.boolEnum () ;
+  const GalgasBool test_0 = in_CASE_5F_ITERABLE.boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString (", CaseIterable") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString (" {\n") ;
@@ -14897,11 +14897,11 @@ void cPtr_enumForGeneration::method_generateCode (const GGS_string constinArgume
                                                   GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                   Compiler * inCompiler
                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     const GGS_enumForGeneration temp_1 = this ;
     test_0 = GGS_bool (ComparisonKind::greaterThan, temp_1.readProperty_mEnumConstantList ().getter_count (SOURCE_FILE ("enumeration.ggs", 198)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       const GGS_enumForGeneration temp_2 = this ;
       const GGS_enumForGeneration temp_3 = this ;
       const GGS_enumForGeneration temp_4 = this ;
@@ -15038,11 +15038,11 @@ void cPtr_entityDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPr
   const GGS_entityDeclarationAST temp_1 = this ;
   ioArgument_ioGraph.setter_addNode (temp_0.readProperty_mClassName (), temp_1, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 21)) ;
   }
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     const GGS_entityDeclarationAST temp_3 = this ;
     test_2 = GGS_bool (ComparisonKind::notEqual, temp_3.readProperty_mSuperEntityName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       {
       const GGS_entityDeclarationAST temp_4 = this ;
       const GGS_entityDeclarationAST temp_5 = this ;
@@ -15103,11 +15103,11 @@ void cPtr_entityDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext 
                                                             GGS_generationStruct & /* ioArgument_ioGeneration */,
                                                             Compiler * inCompiler
                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     const GGS_entityDeclarationAST temp_1 = this ;
     test_0 = GGS_bool (ComparisonKind::notEqual, temp_1.readProperty_mSuperEntityName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       GGS_propertyMap var_inheritedPropertyMap_6021 ;
       const GGS_entityDeclarationAST temp_2 = this ;
       GGS_classKind joker_5993 ; // Joker input parameter
@@ -15123,17 +15123,17 @@ void cPtr_entityDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext 
       GGS_propertyMap var_newPropertyMap_6268 = var_inheritedPropertyMap_6021 ;
       cEnumerator_propertyMap enumerator_6442 (var_propertyMap_6207, EnumerationOrder::up) ;
       while (enumerator_6442.hasCurrentObject ()) {
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
+        GalgasBool test_4 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_4) {
           test_4 = enumerator_6442.current_mIsOverriding (HERE).boolEnum () ;
-          if (kBoolTrue == test_4) {
+          if (GalgasBool::boolTrue == test_4) {
             GGS_propertyKind joker_6547_3 ; // Joker input parameter
             GGS_actionMap joker_6547_2 ; // Joker input parameter
             GGS_bool joker_6547_1 ; // Joker input parameter
             var_inheritedPropertyMap_6021.method_searchKey (enumerator_6442.current_lkey (HERE), joker_6547_3, joker_6547_2, joker_6547_1, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 203)) ;
           }
         }
-        if (kBoolFalse == test_4) {
+        if (GalgasBool::boolFalse == test_4) {
           {
           var_newPropertyMap_6268.setter_insertKey (enumerator_6442.current_lkey (HERE), enumerator_6442.current_mKind (HERE), enumerator_6442.current_mActionMap (HERE), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 206)) ;
           }
@@ -15167,12 +15167,12 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
   ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_0.readProperty_mClassName (), joker_7224, var_propertyMap_7250, joker_7267, var_propertyGenerationList_7304, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 222)) ;
   GGS_stringset temp_1 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 230)) ;
   GGS_stringset var_overridenTransients_7449 = temp_1 ;
-  enumGalgasBool test_2 = kBoolTrue ;
-  if (kBoolTrue == test_2) {
+  GalgasBool test_2 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_2) {
     const GGS_entityDeclarationAST temp_3 = this ;
     const GGS_entityDeclarationAST temp_4 = this ;
     test_2 = GGS_bool (ComparisonKind::notEqual, temp_3.readProperty_mSuperEntityName ().readProperty_string ().objectCompare (GGS_string::makeEmptyString ())).operator_and (temp_4.readProperty_mIsAbstract ().operator_not (SOURCE_FILE ("entity.ggs", 231)) COMMA_SOURCE_FILE ("entity.ggs", 231)).boolEnum () ;
-    if (kBoolTrue == test_2) {
+    if (GalgasBool::boolTrue == test_2) {
       GGS_classKind var_superClassKind_7638 ;
       GGS_propertyMap var_superPropertyMap_7678 ;
       const GGS_entityDeclarationAST temp_5 = this ;
@@ -15214,31 +15214,31 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
           GGS_bool extractedValue_8066_isAbstract_2 ;
           GGS_bool extractedValue_8078__3 ;
           var_superClassKind_7638.getAssociatedValuesFor_entity (extractedValue_8040__0, extractedValue_8049_isGraphic_1, extractedValue_8066_isAbstract_2, extractedValue_8078__3) ;
-          enumGalgasBool test_12 = kBoolTrue ;
-          if (kBoolTrue == test_12) {
+          GalgasBool test_12 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_12) {
             const GGS_entityDeclarationAST temp_13 = this ;
             test_12 = extractedValue_8049_isGraphic_1.operator_and (temp_13.readProperty_mIsGraphicEntity ().operator_not (SOURCE_FILE ("entity.ggs", 246)) COMMA_SOURCE_FILE ("entity.ggs", 246)).boolEnum () ;
-            if (kBoolTrue == test_12) {
+            if (GalgasBool::boolTrue == test_12) {
               const GGS_entityDeclarationAST temp_14 = this ;
               TC_Array <FixItDescription> fixItArray15 ;
               inCompiler->emitSemanticError (temp_14.readProperty_mClassName ().readProperty_location (), GGS_string ("this entity should be declared with 'graphic', as super entity is graphic"), fixItArray15  COMMA_SOURCE_FILE ("entity.ggs", 247)) ;
             }
           }
-          enumGalgasBool test_16 = kBoolTrue ;
-          if (kBoolTrue == test_16) {
+          GalgasBool test_16 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_16) {
             const GGS_entityDeclarationAST temp_17 = this ;
             test_16 = extractedValue_8066_isAbstract_2.operator_and (temp_17.readProperty_mIsAbstract ().operator_not (SOURCE_FILE ("entity.ggs", 249)) COMMA_SOURCE_FILE ("entity.ggs", 249)).boolEnum () ;
-            if (kBoolTrue == test_16) {
+            if (GalgasBool::boolTrue == test_16) {
               cEnumerator_propertyMap enumerator_8375 (var_superPropertyMap_7678, EnumerationOrder::up) ;
               while (enumerator_8375.hasCurrentObject ()) {
-                enumGalgasBool test_18 = kBoolTrue ;
-                if (kBoolTrue == test_18) {
+                GalgasBool test_18 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_18) {
                   test_18 = extensionGetter_isAbstract (enumerator_8375.current (HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 251)).boolEnum () ;
-                  if (kBoolTrue == test_18) {
-                    enumGalgasBool test_19 = kBoolTrue ;
-                    if (kBoolTrue == test_19) {
+                  if (GalgasBool::boolTrue == test_18) {
+                    GalgasBool test_19 = GalgasBool::boolTrue ;
+                    if (GalgasBool::boolTrue == test_19) {
                       test_19 = var_propertyMap_7250.getter_hasKey (enumerator_8375.current (HERE).readProperty_lkey ().readProperty_string () COMMA_SOURCE_FILE ("entity.ggs", 252)).boolEnum () ;
-                      if (kBoolTrue == test_19) {
+                      if (GalgasBool::boolTrue == test_19) {
                         {
                         var_overridenTransients_7449.setter_insert (enumerator_8375.current (HERE).readProperty_lkey ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 253)) ;
                         }
@@ -15248,17 +15248,17 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
                         var_propertyMap_7250.method_searchKey (enumerator_8375.current (HERE).readProperty_lkey (), var_propertyKind_8652, joker_8666_2, joker_8666_1, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 254)) ;
                         GGS_string var_typeName_8689 = extensionGetter_typeName (var_propertyKind_8652, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 255)) ;
                         GGS_string var_superTypeName_8740 = extensionGetter_typeName (enumerator_8375.current (HERE).readProperty_mKind (), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 256)) ;
-                        enumGalgasBool test_20 = kBoolTrue ;
-                        if (kBoolTrue == test_20) {
+                        GalgasBool test_20 = GalgasBool::boolTrue ;
+                        if (GalgasBool::boolTrue == test_20) {
                           test_20 = GGS_bool (ComparisonKind::notEqual, var_typeName_8689.objectCompare (var_superTypeName_8740)).boolEnum () ;
-                          if (kBoolTrue == test_20) {
+                          if (GalgasBool::boolTrue == test_20) {
                             TC_Array <FixItDescription> fixItArray21 ;
                             inCompiler->emitSemanticError (var_propertyMap_7250.getter_locationForKey (enumerator_8375.current (HERE).readProperty_lkey ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 258)), GGS_string ("type '").add_operation (var_superTypeName_8740, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 259)).add_operation (GGS_string ("' is required by declaration in super entity"), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 259)), fixItArray21  COMMA_SOURCE_FILE ("entity.ggs", 258)) ;
                           }
                         }
                       }
                     }
-                    if (kBoolFalse == test_19) {
+                    if (GalgasBool::boolFalse == test_19) {
                       const GGS_entityDeclarationAST temp_22 = this ;
                       TC_Array <FixItDescription> fixItArray23 ;
                       inCompiler->emitSemanticError (temp_22.readProperty_mClassName ().readProperty_location (), GGS_string ("transient '").add_operation (enumerator_8375.current (HERE).readProperty_lkey ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 263)).add_operation (GGS_string ("' should be defined, it is declared abstract in super entity"), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 263)), fixItArray23  COMMA_SOURCE_FILE ("entity.ggs", 262)) ;
@@ -15279,14 +15279,14 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
   const GGS_entityDeclarationAST temp_24 = this ;
   cEnumerator_lstringlist enumerator_9357 (temp_24.readProperty_mGraphicOptionArray (), EnumerationOrder::up) ;
   while (enumerator_9357.hasCurrentObject ()) {
-    enumGalgasBool test_25 = kBoolTrue ;
-    if (kBoolTrue == test_25) {
+    GalgasBool test_25 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_25) {
       test_25 = GGS_bool (ComparisonKind::equal, enumerator_9357.current_mValue (HERE).readProperty_string ().objectCompare (GGS_string ("canCopyAndPaste"))).boolEnum () ;
-      if (kBoolTrue == test_25) {
-        enumGalgasBool test_26 = kBoolTrue ;
-        if (kBoolTrue == test_26) {
+      if (GalgasBool::boolTrue == test_25) {
+        GalgasBool test_26 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_26) {
           test_26 = var_canCopyAndPaste_5F_option_9279.boolEnum () ;
-          if (kBoolTrue == test_26) {
+          if (GalgasBool::boolTrue == test_26) {
             TC_Array <FixItDescription> fixItArray27 ;
             inCompiler->emitSemanticError (enumerator_9357.current_mValue (HERE).readProperty_location (), GGS_string ("duplicated option"), fixItArray27  COMMA_SOURCE_FILE ("entity.ggs", 277)) ;
           }
@@ -15294,15 +15294,15 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
         var_canCopyAndPaste_5F_option_9279 = GGS_bool (true) ;
       }
     }
-    if (kBoolFalse == test_25) {
-      enumGalgasBool test_28 = kBoolTrue ;
-      if (kBoolTrue == test_28) {
+    if (GalgasBool::boolFalse == test_25) {
+      GalgasBool test_28 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_28) {
         test_28 = GGS_bool (ComparisonKind::equal, enumerator_9357.current_mValue (HERE).readProperty_string ().objectCompare (GGS_string ("cannotBeDeleted"))).boolEnum () ;
-        if (kBoolTrue == test_28) {
-          enumGalgasBool test_29 = kBoolTrue ;
-          if (kBoolTrue == test_29) {
+        if (GalgasBool::boolTrue == test_28) {
+          GalgasBool test_29 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_29) {
             test_29 = var_cannotBeDeleted_5F_option_9316.boolEnum () ;
-            if (kBoolTrue == test_29) {
+            if (GalgasBool::boolTrue == test_29) {
               TC_Array <FixItDescription> fixItArray30 ;
               inCompiler->emitSemanticError (enumerator_9357.current_mValue (HERE).readProperty_location (), GGS_string ("duplicated option"), fixItArray30  COMMA_SOURCE_FILE ("entity.ggs", 282)) ;
             }
@@ -15310,7 +15310,7 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
           var_cannotBeDeleted_5F_option_9316 = GGS_bool (true) ;
         }
       }
-      if (kBoolFalse == test_28) {
+      if (GalgasBool::boolFalse == test_28) {
         TC_Array <FixItDescription> fixItArray31 ;
         appendFixItActions (fixItArray31, kFixItReplace, GGS_string ("acceptedTranslation")) ;
         appendFixItActions (fixItArray31, kFixItReplace, GGS_string ("canCopyAndPaste")) ;
@@ -15325,10 +15325,10 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
   bool bool_32 = var_hasSubClass_10023.operator_not (SOURCE_FILE ("entity.ggs", 295)).isValidAndTrue () ;
   if (enumerator_10087.hasCurrentObject () && bool_32) {
     while (enumerator_10087.hasCurrentObject () && bool_32) {
-      enumGalgasBool test_33 = kBoolTrue ;
-      if (kBoolTrue == test_33) {
+      GalgasBool test_33 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_33) {
         test_33 = enumerator_10087.current (HERE).readProperty_mClassKind ().getter_isEntity (SOURCE_FILE ("entity.ggs", 296)).boolEnum () ;
-        if (kBoolTrue == test_33) {
+        if (GalgasBool::boolTrue == test_33) {
           GGS_string var_superEntityName_10242 ;
           GGS_bool joker_10259_3 ; // Joker input parameter
           GGS_bool joker_10259_2 ; // Joker input parameter
@@ -15388,91 +15388,91 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
   const GGS_entityForGeneration temp_7 = this ;
   cEnumerator_propertyGenerationList enumerator_12642 (temp_7.readProperty_mPropertyGenerationList (), EnumerationOrder::up) ;
   while (enumerator_12642.hasCurrentObject ()) {
-    enumGalgasBool test_8 = kBoolTrue ;
-    if (kBoolTrue == test_8) {
+    GalgasBool test_8 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_8) {
       GGS_atomicPropertyGeneration var_atomicProperty_12698 (dynamic_cast <const cPtr_atomicPropertyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
       if (nullptr == var_atomicProperty_12698.ptr ()) {
-        test_8 = kBoolFalse ;
+        test_8 = GalgasBool::boolFalse ;
       }
-      if (kBoolTrue == test_8) {
+      if (GalgasBool::boolTrue == test_8) {
         {
         var_atomicPropertyGenerationList_12191.setter_append (var_atomicProperty_12698, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 363)) ;
         }
       }
     }
-    if (kBoolFalse == test_8) {
-      enumGalgasBool test_9 = kBoolTrue ;
-      if (kBoolTrue == test_9) {
+    if (GalgasBool::boolFalse == test_8) {
+      GalgasBool test_9 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_9) {
         GGS_transientPropertyGeneration var_transientProperty_12833 (dynamic_cast <const cPtr_transientPropertyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
         if (nullptr == var_transientProperty_12833.ptr ()) {
-          test_9 = kBoolFalse ;
+          test_9 = GalgasBool::boolFalse ;
         }
-        if (kBoolTrue == test_9) {
+        if (GalgasBool::boolTrue == test_9) {
           {
           var_transientPropertyGenerationList_12264.setter_append (var_transientProperty_12833, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 365)) ;
           }
         }
       }
-      if (kBoolFalse == test_9) {
-        enumGalgasBool test_10 = kBoolTrue ;
-        if (kBoolTrue == test_10) {
+      if (GalgasBool::boolFalse == test_9) {
+        GalgasBool test_10 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_10) {
           GGS_computedPropertyGeneration var_computedProperty_12980 (dynamic_cast <const cPtr_computedPropertyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
           if (nullptr == var_computedProperty_12980.ptr ()) {
-            test_10 = kBoolFalse ;
+            test_10 = GalgasBool::boolFalse ;
           }
-          if (kBoolTrue == test_10) {
+          if (GalgasBool::boolTrue == test_10) {
             {
             var_computedPropertyGenerationList_12339.setter_append (var_computedProperty_12980, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 367)) ;
             }
           }
         }
-        if (kBoolFalse == test_10) {
-          enumGalgasBool test_11 = kBoolTrue ;
-          if (kBoolTrue == test_11) {
+        if (GalgasBool::boolFalse == test_10) {
+          GalgasBool test_11 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_11) {
             GGS_toManyProxyGeneration var_toManyProxy_13123 (dynamic_cast <const cPtr_toManyProxyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
             if (nullptr == var_toManyProxy_13123.ptr ()) {
-              test_11 = kBoolFalse ;
+              test_11 = GalgasBool::boolFalse ;
             }
-            if (kBoolTrue == test_11) {
+            if (GalgasBool::boolTrue == test_11) {
               {
               var_toManyProxyGenerationList_12604.setter_append (var_toManyProxy_13123, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 369)) ;
               }
             }
           }
-          if (kBoolFalse == test_11) {
-            enumGalgasBool test_12 = kBoolTrue ;
-            if (kBoolTrue == test_12) {
+          if (GalgasBool::boolFalse == test_11) {
+            GalgasBool test_12 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_12) {
               GGS_atomicProxyGeneration var_proxyProperty_13246 (dynamic_cast <const cPtr_atomicProxyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
               if (nullptr == var_proxyProperty_13246.ptr ()) {
-                test_12 = kBoolFalse ;
+                test_12 = GalgasBool::boolFalse ;
               }
-              if (kBoolTrue == test_12) {
+              if (GalgasBool::boolTrue == test_12) {
                 {
                 var_proxyGenerationList_12546.setter_append (var_proxyProperty_13246, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 371)) ;
                 }
               }
             }
-            if (kBoolFalse == test_12) {
-              enumGalgasBool test_13 = kBoolTrue ;
-              if (kBoolTrue == test_13) {
+            if (GalgasBool::boolFalse == test_12) {
+              GalgasBool test_13 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_13) {
                 GGS_toOnePropertyGeneration var_toOneProperty_13367 (dynamic_cast <const cPtr_toOnePropertyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
                 if (nullptr == var_toOneProperty_13367.ptr ()) {
-                  test_13 = kBoolFalse ;
+                  test_13 = GalgasBool::boolFalse ;
                 }
-                if (kBoolTrue == test_13) {
+                if (GalgasBool::boolTrue == test_13) {
                   {
                   var_toOnePropertyGenerationList_12410.setter_append (var_toOneProperty_13367, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 373)) ;
                   }
                 }
               }
-              if (kBoolFalse == test_13) {
-                enumGalgasBool test_14 = kBoolTrue ;
-                if (kBoolTrue == test_14) {
+              if (GalgasBool::boolFalse == test_13) {
+                GalgasBool test_14 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_14) {
                   GGS_toManyPropertyGeneration var_toOneProperty_13498 (dynamic_cast <const cPtr_toManyPropertyGeneration *> (enumerator_12642.current_mProperty (HERE).ptr ())) ;
                   if (nullptr == var_toOneProperty_13498.ptr ()) {
-                    test_14 = kBoolFalse ;
+                    test_14 = GalgasBool::boolFalse ;
                   }
-                  if (kBoolTrue == test_14) {
+                  if (GalgasBool::boolTrue == test_14) {
                     {
                     var_toManyPropertyGenerationList_12479.setter_append (var_toOneProperty_13498, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 375)) ;
                     }
@@ -15487,25 +15487,25 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
     enumerator_12642.gotoNextObject () ;
   }
   GGS_string var_superEntityName_13637 = GGS_string::makeEmptyString () ;
-  enumGalgasBool test_15 = kBoolTrue ;
-  if (kBoolTrue == test_15) {
+  GalgasBool test_15 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_15) {
     const GGS_entityForGeneration temp_16 = this ;
     test_15 = GGS_bool (ComparisonKind::notEqual, temp_16.readProperty_mSuperEntityName ().objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-    if (kBoolTrue == test_15) {
+    if (GalgasBool::boolTrue == test_15) {
       const GGS_entityForGeneration temp_17 = this ;
       var_superEntityName_13637 = temp_17.readProperty_mSuperEntityName () ;
     }
   }
-  if (kBoolFalse == test_15) {
-    enumGalgasBool test_18 = kBoolTrue ;
-    if (kBoolTrue == test_18) {
+  if (GalgasBool::boolFalse == test_15) {
+    GalgasBool test_18 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_18) {
       const GGS_entityForGeneration temp_19 = this ;
       test_18 = temp_19.readProperty_mIsGraphicEntity ().boolEnum () ;
-      if (kBoolTrue == test_18) {
+      if (GalgasBool::boolTrue == test_18) {
         var_superEntityName_13637 = GGS_string ("EBGraphicManagedObject") ;
       }
     }
-    if (kBoolFalse == test_18) {
+    if (GalgasBool::boolFalse == test_18) {
       var_superEntityName_13637 = GGS_string ("EBManagedObject") ;
     }
   }
@@ -15529,11 +15529,11 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
   {
   GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_14577, var_s_13881, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 409)) ;
   }
-  enumGalgasBool test_32 = kBoolTrue ;
-  if (kBoolTrue == test_32) {
+  GalgasBool test_32 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_32) {
     const GGS_entityForGeneration temp_33 = this ;
     test_32 = constinArgument_inGenerationStruct.readProperty_mToOneClassImplementations ().getter_hasKey (temp_33.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 414)).boolEnum () ;
-    if (kBoolTrue == test_32) {
+    if (GalgasBool::boolTrue == test_32) {
       const GGS_entityForGeneration temp_34 = this ;
       const GGS_entityForGeneration temp_35 = this ;
       const GGS_entityForGeneration temp_36 = this ;
@@ -15545,7 +15545,7 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
       var_s_13881 = GGS_string (filewrapperTemplate_entityGenerationTemplate_entityToOneImplementationInSwift (inCompiler, temp_34.readProperty_mEntityName (), var_superEntityName_13637, temp_35.readProperty_mHandlingOpposite (), temp_36.readProperty_mPropertyGenerationList (), var_proxyGenerationList_12546, var_toManyProxyGenerationList_12604, var_atomicPropertyGenerationList_12191, var_transientPropertyGenerationList_12264, var_computedPropertyGenerationList_12339, var_toOnePropertyGenerationList_12410, var_toManyPropertyGenerationList_12479, temp_37.readProperty_mSignatureSet (), temp_38.readProperty_mIsGraphicEntity (), temp_39.readProperty_mIsAbstract (), temp_40.readProperty_mOverridenTransients (), temp_41.readProperty_mExternSwiftDelegateList () COMMA_SOURCE_FILE ("entity.ggs", 415))) ;
     }
   }
-  if (kBoolFalse == test_32) {
+  if (GalgasBool::boolFalse == test_32) {
     var_s_13881 = GGS_string ("// Unused code, not generated by EasyBinding compiler\n") ;
   }
   const GGS_entityForGeneration temp_42 = this ;
@@ -15556,11 +15556,11 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
   {
   GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_14577, var_s_13881, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 438)) ;
   }
-  enumGalgasBool test_43 = kBoolTrue ;
-  if (kBoolTrue == test_43) {
+  GalgasBool test_43 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_43) {
     const GGS_entityForGeneration temp_44 = this ;
     test_43 = constinArgument_inGenerationStruct.readProperty_mToManyClassImplementations ().getter_hasKey (temp_44.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 443)).boolEnum () ;
-    if (kBoolTrue == test_43) {
+    if (GalgasBool::boolTrue == test_43) {
       const GGS_entityForGeneration temp_45 = this ;
       const GGS_entityForGeneration temp_46 = this ;
       const GGS_entityForGeneration temp_47 = this ;
@@ -15577,7 +15577,7 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
       var_s_13881 = GGS_string (filewrapperTemplate_entityGenerationTemplate_entityToManyImplementationInSwift (inCompiler, temp_45.readProperty_mEntityName (), var_superEntityName_13637, temp_46.readProperty_mHandlingOpposite (), temp_47.readProperty_mPropertyGenerationList (), var_proxyGenerationList_12546, var_toManyProxyGenerationList_12604, var_atomicPropertyGenerationList_12191, var_transientPropertyGenerationList_12264, var_computedPropertyGenerationList_12339, var_toOnePropertyGenerationList_12410, var_toManyPropertyGenerationList_12479, temp_48.readProperty_mSignatureSet (), temp_49.readProperty_mIsGraphicEntity (), temp_50.readProperty_mIsAbstract (), temp_51.readProperty_mOverridenTransients (), temp_52.readProperty_mExternSwiftDelegateList (), constinArgument_inGenerationStruct.readProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ ().getter_hasKey (temp_53.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 461)), constinArgument_inGenerationStruct.readProperty_mGenerateClass_5F_ProxyArrayOf_5F_ ().getter_hasKey (temp_54.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 462)), constinArgument_inGenerationStruct.readProperty_mGenerateClass_5F_TransientArrayOfSuperOf_5F_ ().getter_hasKey (temp_55.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 463)), constinArgument_inGenerationStruct.readProperty_mGenerateClass_5F_TransientArrayOf_5F_ ().getter_hasKey (temp_56.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 464)), constinArgument_inGenerationStruct.readProperty_mGenerateClass_5F_StoredArrayOf_5F_ ().getter_hasKey (temp_57.readProperty_mEntityName () COMMA_SOURCE_FILE ("entity.ggs", 465)) COMMA_SOURCE_FILE ("entity.ggs", 444))) ;
     }
   }
-  if (kBoolFalse == test_43) {
+  if (GalgasBool::boolFalse == test_43) {
     var_s_13881 = GGS_string ("// Unused code, not generated by EasyBinding compiler\n") ;
   }
   const GGS_entityForGeneration temp_58 = this ;
@@ -15600,10 +15600,10 @@ void routine_generateEBManagedObjectContext_3F__3F__26_ (const GGS_entityListFor
                                                          GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                          Compiler * inCompiler
                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::greaterThan, constinArgument_inEntityListForGeneration.getter_count (SOURCE_FILE ("entity.ggs", 486)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       GGS_string var_fileName_17349 = GGS_string ("EBManagedObjectFactory.swift") ;
       {
       ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_17349, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 488)) ;
@@ -15744,9 +15744,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   String result ;
   result.appendString ("//--------------------------------------------------------------------------------------------------\n//  THIS FILE IS GENERATED BY EASY BINDINGS, DO NOT MODIFY IT\n//--------------------------------------------------------------------------------------------------\n\nimport AppKit\n\n") ;
-  const enumGalgasBool test_0 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
+  const GalgasBool test_0 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     GGS_uint index_387_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_atomicPropertyGenerationList enumerator_387 (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
@@ -15765,14 +15765,14 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
       }
     }
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
-  const enumGalgasBool test_1 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
+  const GalgasBool test_1 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     GGS_uint index_748_ (0) ;
     if (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_atomicProxyGenerationList enumerator_748 (in_PROXY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
@@ -15791,14 +15791,14 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
       }
     }
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
-  const enumGalgasBool test_2 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
+  const GalgasBool test_2 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
   switch (test_2) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     GGS_uint index_1118_ (0) ;
     if (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.isValid ()) {
       cEnumerator_transientPropertyGenerationList enumerator_1118 (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION, EnumerationOrder::up) ;
@@ -15817,46 +15817,46 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
       }
     }
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("//--------------------------------------------------------------------------------------------------\n//    ") ;
   result.appendString (GGS_string ("Entity: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 42)).stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_3 = in_HAS_5F_SUB_5F_ENTITY.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 46)).boolEnum () ;
+  const GalgasBool test_3 = in_HAS_5F_SUB_5F_ENTITY.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 46)).boolEnum () ;
   switch (test_3) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("final ") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("class ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString (" : ") ;
   result.appendString (in_SUPER_5F_CLASS_5F_NAME.stringValue ()) ;
-  const enumGalgasBool test_4 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
+  const GalgasBool test_4 = in_GENERATE_5F_PROPERTY_5F_ACCESS_5F_PROTOCOLS.boolEnum () ;
   switch (test_4) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     GGS_uint index_1810_ (0) ;
     if (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
       cEnumerator_propertyGenerationList enumerator_1810 (in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION, EnumerationOrder::up) ;
       while (enumerator_1810.hasCurrentObject ()) {
-        const enumGalgasBool test_5 = GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).operator_or (GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).boolEnum () ;
+        const GalgasBool test_5 = GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicPropertyGeneration).operator_or (GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_transientPropertyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).operator_or (GGS_bool (enumerator_1810.current_mProperty (HERE).dynamicTypeDescriptor () == & kTypeDescriptor_GALGAS_atomicProxyGeneration) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 52)).boolEnum () ;
         switch (test_5) {
-        case kBoolTrue : {
+        case GalgasBool::boolTrue : {
           result.appendString (",\n         ") ;
           result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
           result.appendString ("_") ;
           result.appendString (enumerator_1810.current_mProperty (HERE).readProperty_mPropertyName ().stringValue ()) ;
           } break ;
-        case kBoolFalse : {
+        case GalgasBool::boolFalse : {
           } break ;
-        default :
+        case GalgasBool::boolNotValid :
           break ;
         }
         index_1810_.increment () ;
@@ -15864,9 +15864,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
       }
     }
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString (" {\n\n") ;
@@ -15999,9 +15999,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
     }
   }
   result.appendString ("\n") ;
-  const enumGalgasBool test_6 = GGS_bool (ComparisonKind::greaterThan, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 124)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+  const GalgasBool test_6 = GGS_bool (ComparisonKind::greaterThan, in_SIGNATURE_5F_SET.getter_count (SOURCE_FILE ("entity.swift.galgasTemplate", 124)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_6) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   computeSignature\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func computeSignature () -> UInt32 {\n    var crc = super.computeSignature ()\n") ;
     GGS_uint index_4978_ (0) ;
     if (in_SIGNATURE_5F_SET.isValid ()) {
@@ -16016,14 +16016,14 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
     }
     result.appendString ("    return crc\n  }\n\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
-  const enumGalgasBool test_7 = in_IS_5F_GRAPHIC_5F_ENTITY.operator_and (in_IS_5F_ABSTRACT.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 140)) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 140)).boolEnum () ;
+  const GalgasBool test_7 = in_IS_5F_GRAPHIC_5F_ENTITY.operator_and (in_IS_5F_ABSTRACT.operator_not (SOURCE_FILE ("entity.swift.galgasTemplate", 140)) COMMA_SOURCE_FILE ("entity.swift.galgasTemplate", 140)).boolEnum () ;
   switch (test_7) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func cursorForKnob (knob inKnobIndex: Int) -> NSCursor\? {\n    return self.cursorForKnob_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" (knob: inKnobIndex)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  Translate\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func acceptedTranslation (xBy inDx: Int, yBy inDy: Int) -> CanariPoint {\n    return self.acceptedTranslation_") ;
@@ -16063,30 +16063,30 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
     result.appendString (" ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  operationBeforeRemoving\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func operationBeforeRemoving () {\n    self.operationBeforeRemoving_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" ()\n  }\n\n") ;
-    const enumGalgasBool test_8 = in_OPTION_5F_CanCopyAndPaste.boolEnum () ;
+    const GalgasBool test_8 = in_OPTION_5F_CanCopyAndPaste.boolEnum () ;
     switch (test_8) {
-    case kBoolTrue : {
+    case GalgasBool::boolTrue : {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  COPY AND PASTE\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func canCopyAndPaste () -> Bool {\n    return true\n  }\n\n") ;
       } break ;
-    case kBoolFalse : {
+    case GalgasBool::boolFalse : {
       } break ;
-    default :
+    case GalgasBool::boolNotValid :
       break ;
     }
-    const enumGalgasBool test_9 = in_OPTION_5F_CannotBeDeleted.boolEnum () ;
+    const GalgasBool test_9 = in_OPTION_5F_CannotBeDeleted.boolEnum () ;
     switch (test_9) {
-    case kBoolTrue : {
+    case GalgasBool::boolTrue : {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //  Can be deleted\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func canBeDeleted () -> Bool {\n    return false\n  }\n\n") ;
       } break ;
-    case kBoolFalse : {
+    case GalgasBool::boolFalse : {
       } break ;
-    default :
+    case GalgasBool::boolNotValid :
       break ;
     }
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n\n") ;
@@ -16368,14 +16368,14 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n\n//--------------------------------------------------------------------------------------------------\n//    TransientArrayOf ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_0 = in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 235)).boolEnum () ;
+  const GalgasBool test_0 = in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 235)).boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// TransientArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("final class TransientArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadOnlyArrayOf_") ;
@@ -16400,20 +16400,20 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    TransientArrayOfSuperOf ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_1 = in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 372)).boolEnum () ;
+  const GalgasBool test_1 = in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 372)).boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// TransientArrayOfSuperOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("final class TransientArrayOfSuperOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" <SUPER : EBManagedObject> : ReadOnlyArrayOf_") ;
@@ -16428,20 +16428,20 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> {\n    self.computeModelArray ()\n    return self.mInternalArrayValue\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    ") ;
   result.appendString (GGS_string ("To many relationship read write: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 475)).stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_2 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).boolEnum () ;
+  const GalgasBool test_2 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).operator_and (in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)) COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 478)).boolEnum () ;
   switch (test_2) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("class ReadWriteArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadOnlyArrayOf_") ;
@@ -16450,20 +16450,20 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (">) { } // Abstract method\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    Proxy: ProxyArrayOf_") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_3 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 495)).boolEnum () ;
+  const GalgasBool test_3 = in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 495)).boolEnum () ;
   switch (test_3) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// ProxyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("final class ProxyArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadWriteArrayOf_") ;
@@ -16484,20 +16484,20 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString ("> {\n    if let model = self.mModel {\n      switch model.selection {\n      case .empty, .multiple :\n        return EBReferenceArray ()\n      case .single (let v) :\n        return EBReferenceArray (v)\n      }\n    }else{\n      return EBReferenceArray ()\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    ") ;
   result.appendString (GGS_string ("Stored Array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 570)).stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_4 = in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 573)).boolEnum () ;
+  const GalgasBool test_4 = in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 573)).boolEnum () ;
   switch (test_4) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// StoredArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("class StoredArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : ReadWriteArrayOf_") ;
@@ -16511,9 +16511,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString ("> ()\n    let indexArray = inData.base62EncodedIntArray (fromRange: inRange)\n    for idx in indexArray {\n      objectArray.append (inRawObjectArray [idx].object as! ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (")\n    }\n    self.setProp (objectArray)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, self.mInternalArrayValue.count > 0 {\n      var array = [Int] ()\n      for object in self.mInternalArrayValue.values {\n        array.append (object.savingIndex)\n      }\n      ioDictionary [key] = array\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, self.mInternalArrayValue.count > 0 {\n      for object in self.mInternalArrayValue.values {\n        ioArray.append (object)\n      }\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func appendValueTo (data ioData : inout Data) {\n    enterToManyRelationshipObjectIndexes (from: self.propval.values, into: &ioData)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Signature \?\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final private let mUsedForSignature : Bool\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Undo manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  weak final var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
-    const enumGalgasBool test_5 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+    const GalgasBool test_5 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
     switch (test_5) {
-    case kBoolTrue : {
+    case GalgasBool::boolTrue : {
       result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Opposite relationship management\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.appendString (") -> Void > = nil\n  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
@@ -16524,9 +16524,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
       result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
       result.appendString (") -> Void) {\n    self.mSetOppositeRelationship = inSetter\n    self.mResetOppositeRelationship = inResetter\n  }\n\n") ;
       } break ;
-    case kBoolFalse : {
+    case GalgasBool::boolFalse : {
       } break ;
-    default :
+    case GalgasBool::boolNotValid :
       break ;
     }
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final class MyPrivateUndoer : NSObject { // For Swift 6\n    let mOldValue : EBReferenceArray <") ;
@@ -16540,25 +16540,25 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (">,\n                                 addedSet inAddedSet : EBReferenceSet <") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (">) {\n    for managedObject in inRemovedSet.values {\n      if self.mUsedForSignature {\n        managedObject.setSignatureObserver (observer: nil)\n      }\n") ;
-    const enumGalgasBool test_6 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+    const GalgasBool test_6 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
     switch (test_6) {
-    case kBoolTrue : {
+    case GalgasBool::boolTrue : {
       result.appendString ("      self.mResetOppositeRelationship\? (managedObject)\n") ;
       } break ;
-    case kBoolFalse : {
+    case GalgasBool::boolFalse : {
       } break ;
-    default :
+    case GalgasBool::boolNotValid :
       break ;
     }
     result.appendString ("   }\n  //---\n    for managedObject in inAddedSet.values {\n      if self.mUsedForSignature {\n        managedObject.setSignatureObserver (observer: self)\n      }\n") ;
-    const enumGalgasBool test_7 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+    const GalgasBool test_7 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
     switch (test_7) {
-    case kBoolTrue : {
+    case GalgasBool::boolTrue : {
       result.appendString ("      self.mSetOppositeRelationship\? (managedObject)\n") ;
       } break ;
-    case kBoolFalse : {
+    case GalgasBool::boolFalse : {
       } break ;
-    default :
+    case GalgasBool::boolNotValid :
       break ;
     }
     result.appendString ("    }\n  //---\n    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)\n }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override final var selection : EBSelection < [") ;
@@ -16573,20 +16573,20 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (") {\n    if !self.internalSetValue.contains (inObject) {\n      self.mInternalArrayValue.append (inObject)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   signature\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private weak final var mSignatureObserver : (any EBSignatureObserverProtocol)\? = nil // SOULD BE WEAK\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final var mSignatureCache : UInt32\? = nil\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func setSignatureObserver (observer inObserver : (any EBSignatureObserverProtocol)\?) {\n    self.mSignatureObserver\?.clearSignatureCache ()\n    self.mSignatureObserver = inObserver\n    inObserver\?.clearSignatureCache ()\n    self.clearSignatureCache ()\n }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func signature () -> UInt32 {\n    let computedSignature : UInt32\n    if let s = self.mSignatureCache {\n      computedSignature = s\n    }else{\n      computedSignature = self.computeSignature ()\n      self.mSignatureCache = computedSignature\n    }\n    return computedSignature\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final private func computeSignature () -> UInt32 {\n    var crc : UInt32 = 0\n    for object in self.mInternalArrayValue.values {\n      crc.accumulate (u32: object.signature ())\n    }\n    return crc\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func clearSignatureCache () {\n    if self.mSignatureCache != nil {\n      self.mSignatureCache = nil\n      self.mSignatureObserver\?.clearSignatureCache ()\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n//    ") ;
   result.appendString (GGS_string ("Preferences array: ").add_operation (in_ENTITY_5F_NAME, inCompiler COMMA_SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 834)).stringValue ()) ;
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
-  const enumGalgasBool test_8 = in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 837)).boolEnum () ;
+  const GalgasBool test_8 = in_GENERATE_5F_CLASS_5F_PreferencesArrayOf_5F_.operator_not (SOURCE_FILE ("entity-tomany.swift.galgasTemplate", 837)).boolEnum () ;
   switch (test_8) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("// PreferencesArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" is useless.\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     result.appendString ("final class PreferencesArrayOf_") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (" : StoredArrayOf_") ;
@@ -16611,7 +16611,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
     }
     result.appendString ("    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self\?.writeInPreferences () }\n }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private func writeInPreferences () {\n    var dictionaryArray = [[String  : Any]] ()\n    for object in self.mInternalArrayValue.values {\n      var d = [String  : Any] ()\n      object.savePropertiesAndRelationshipsIntoDictionary (&d)\n      d [ENTITY_KEY] = nil // Remove entity key, not used in preferences\n      dictionaryArray.append (d)\n    }\n    UserDefaults.standard.set (dictionaryArray, forKey: self.mPrefKey)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n}\n") ;
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("\n//--------------------------------------------------------------------------------------------------\n\n") ;
@@ -16652,9 +16652,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
   result.appendString ("> {\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\?) {\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  //--- Remove observers from removed objects\n") ;
-  const enumGalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+  const GalgasBool test_0 = GGS_bool (ComparisonKind::greaterThan, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 18)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_0) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("    if let oldValue = inOldValue {\n") ;
     GGS_uint index_1161_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
@@ -16710,15 +16710,15 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
     }
     result.appendString ("    }\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("  //--- Add observers to added objects\n") ;
-  const enumGalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+  const GalgasBool test_1 = GGS_bool (ComparisonKind::greaterThan, in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_TRANSIENT_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).add_operation (in_COMPUTED_5F_PROPERTY_5F_LIST_5F_FOR_5F_IMPLEMENTATION.getter_count (SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)), inCompiler COMMA_SOURCE_FILE ("entity-toone.swift.galgasTemplate", 37)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
   switch (test_1) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("    if let newValue = self.mWeakInternalValue {\n") ;
     GGS_uint index_2297_ (0) ;
     if (in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION.isValid ()) {
@@ -16774,9 +16774,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
     }
     result.appendString ("    }\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("  }\n\n") ;
@@ -16907,9 +16907,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
   result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func initialize (fromRange inRange : NSRange, ofData inData : Data, _ inRawObjectArray : [RawObject]) {\n    if let idx = inData.base62EncodedInt (range: inRange) {\n      let object = inRawObjectArray [idx].object as! ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\n      self.setProp (object)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func store (inDictionary ioDictionary : inout [String : Any]) {\n    if let key = self.mKey, let idx = self.mWeakInternalValue\?.savingIndex {\n      ioDictionary [key] = idx\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func enterRelationshipObjects (intoArray ioArray : inout [EBManagedObject]) {\n    if self.mKey != nil, let object = self.mWeakInternalValue {\n      ioArray.append (object)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func appendValueTo (data ioData : inout Data) {\n    if let object = self.propval {\n      ioData.append (base62Encoded: object.savingIndex)\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Signature \?\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mUsedForSignature : Bool\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Undo manager\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  weak var undoManager : UndoManager\? = nil // SOULD BE WEAK\n\n") ;
-  const enumGalgasBool test_2 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+  const GalgasBool test_2 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
   switch (test_2) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Opposite relationship management\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mSetOppositeRelationship : Optional < (_ inManagedObject : ") ;
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (") -> Void > = nil\n  private var mResetOppositeRelationship : Optional < (_ inManagedObject : ") ;
@@ -16920,9 +16920,9 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
     result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
     result.appendString (") -> Void) {\n    self.mSetOppositeRelationship = inSetter\n    self.mResetOppositeRelationship = inResetter\n  }\n\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model will change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private final class MyPrivateUndoer : NSObject { // For Swift 6\n    let mOldValue : ") ;
@@ -16932,25 +16932,25 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToOneImplementatio
   result.appendString ("\?) {\n      self.mOldValue = inOldValue\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  // @objc private final func myPerformUndo (_ inObject : MyPrivateUndoer) {  // For Swift 6\n  //   self.setProp (inObject.mOldValue)\n  // }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChangeFrom (oldValue inOldValue : ") ;
   result.appendString (in_ENTITY_5F_NAME.stringValue ()) ;
   result.appendString ("\?) {\n  //--- Register old value in undo manager\n     // self.undoManager\?.registerUndo (  // For Swift 6\n     //  withTarget: self,\n     // selector: #selector (Self.myPerformUndo (_:)),\n     // object: MyPrivateUndoer (inOldValue)\n    // )\n    self.undoManager\?.registerUndo (withTarget: self) { selfTarget in\n      MainActor.assumeIsolated { selfTarget.setProp (inOldValue) }\n    }\n  //---\n    if let object = inOldValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: nil)\n      }\n") ;
-  const enumGalgasBool test_3 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+  const GalgasBool test_3 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
   switch (test_3) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("      self.mResetOppositeRelationship\? (object)\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("    }\n  //---\n    if let object = self.mWeakInternalValue {\n      if self.mUsedForSignature {\n        object.setSignatureObserver (observer: self)\n      }\n") ;
-  const enumGalgasBool test_4 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
+  const GalgasBool test_4 = in_HANDLING_5F_OPPOSITE.boolEnum () ;
   switch (test_4) {
-  case kBoolTrue : {
+  case GalgasBool::boolTrue : {
     result.appendString ("      self.mSetOppositeRelationship\? (object)\n") ;
     } break ;
-  case kBoolFalse : {
+  case GalgasBool::boolFalse : {
     } break ;
-  default :
+  case GalgasBool::boolNotValid :
     break ;
   }
   result.appendString ("    }\n  //---\n    super.notifyModelDidChangeFrom (oldValue: inOldValue)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Model did change\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override func notifyModelDidChange () {\n  //--- Notify observers\n    self.observedObjectDidChange ()\n    self.clearSignatureCache ()\n  //---\n    super.notifyModelDidChange ()\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  override var selection : EBSelection < ") ;

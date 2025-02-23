@@ -27,8 +27,8 @@
  <key>CFBundleDocumentTypes</key>
  <array>
   <dict>
-      <key>CFBundleTypeIconFile</key>
-      <string>eb_icns</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>eb_icns</string>
       <key>CFBundleTypeIconSystemGenerated</key>
       <integer>0</integer>
       <key>CFBundleTypeName</key>
@@ -42,7 +42,7 @@
         <string>$(PRODUCT_BUNDLE_IDENTIFIER).eb</string>
       </array>
       <key>NSDocumentClass</key>
-      <string>OC_GGS_Document</string>
+      <string>$(PRODUCT_MODULE_NAME).SWIFT_SingleDocument</string>
   </dict>
 
  </array>
@@ -58,7 +58,7 @@
     <key>UTTypeIcons</key>
     <dict>
       <key>UTTypeIconBadgeName</key>
-      <string>galgasDocuments</string>
+      <string>eb_icns</string>
     </dict>
     <key>UTTypeIdentifier</key>
     <string>$(PRODUCT_BUNDLE_IDENTIFIER).eb</string>

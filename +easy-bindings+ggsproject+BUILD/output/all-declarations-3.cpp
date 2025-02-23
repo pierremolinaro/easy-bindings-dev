@@ -3048,14 +3048,14 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_bool extractedValue_18720__2 ;
           GGS_toManyRelationshipOptionAST extractedValue_18720__3 ;
           var_kind_18556.getAssociatedValuesFor_toMany (extractedValue_18720__0, extractedValue_18720__1, extractedValue_18720__2, extractedValue_18720__3) ;
-          enumGalgasBool test_6 = kBoolTrue ;
-          if (kBoolTrue == test_6) {
+          GalgasBool test_6 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_6) {
             test_6 = GGS_bool (ComparisonKind::equal, extractedValue_18478_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
-            if (kBoolTrue == test_6) {
+            if (GalgasBool::boolTrue == test_6) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 441)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 441))  COMMA_SOURCE_FILE ("observable-property.ggs", 441)) ;
             }
           }
-          if (kBoolFalse == test_6) {
+          if (GalgasBool::boolFalse == test_6) {
             TC_Array <FixItDescription> fixItArray7 ;
             inCompiler->emitSemanticError (extractedValue_18478_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count')"), fixItArray7  COMMA_SOURCE_FILE ("observable-property.ggs", 443)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
@@ -3080,22 +3080,22 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_lstring extractedValue_19107__0 ;
           GGS_bool extractedValue_19107__1 ;
           var_kind_18556.getAssociatedValuesFor_arrayController (extractedValue_19107__0, extractedValue_19107__1) ;
-          enumGalgasBool test_9 = kBoolTrue ;
-          if (kBoolTrue == test_9) {
+          GalgasBool test_9 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_9) {
             test_9 = GGS_bool (ComparisonKind::equal, extractedValue_18478_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
-            if (kBoolTrue == test_9) {
+            if (GalgasBool::boolTrue == test_9) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 449)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 449))  COMMA_SOURCE_FILE ("observable-property.ggs", 449)) ;
             }
           }
-          if (kBoolFalse == test_9) {
-            enumGalgasBool test_10 = kBoolTrue ;
-            if (kBoolTrue == test_10) {
+          if (GalgasBool::boolFalse == test_9) {
+            GalgasBool test_10 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_10) {
               test_10 = GGS_bool (ComparisonKind::equal, extractedValue_18478_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-              if (kBoolTrue == test_10) {
+              if (GalgasBool::boolTrue == test_10) {
                 outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 451)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 451))  COMMA_SOURCE_FILE ("observable-property.ggs", 451)) ;
               }
             }
-            if (kBoolFalse == test_10) {
+            if (GalgasBool::boolFalse == test_10) {
               TC_Array <FixItDescription> fixItArray11 ;
               inCompiler->emitSemanticError (extractedValue_18478_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray11  COMMA_SOURCE_FILE ("observable-property.ggs", 453)) ;
               outArgument_outKind.drop () ; // Release error dropped variable
@@ -3289,14 +3289,14 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_bool extractedValue_22035__2 ;
           GGS_toManyRelationshipOptionAST extractedValue_22035__3 ;
           var_kind_21872.getAssociatedValuesFor_toMany (extractedValue_22035__0, extractedValue_22035__1, extractedValue_22035__2, extractedValue_22035__3) ;
-          enumGalgasBool test_20 = kBoolTrue ;
-          if (kBoolTrue == test_20) {
+          GalgasBool test_20 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_20) {
             test_20 = GGS_bool (ComparisonKind::equal, extractedValue_21788_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
-            if (kBoolTrue == test_20) {
+            if (GalgasBool::boolTrue == test_20) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 515)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 515))  COMMA_SOURCE_FILE ("observable-property.ggs", 515)) ;
             }
           }
-          if (kBoolFalse == test_20) {
+          if (GalgasBool::boolFalse == test_20) {
             TC_Array <FixItDescription> fixItArray21 ;
             inCompiler->emitSemanticError (extractedValue_21788_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count')"), fixItArray21  COMMA_SOURCE_FILE ("observable-property.ggs", 517)) ;
             outArgument_outKind.drop () ; // Release error dropped variable
@@ -3321,22 +3321,22 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_lstring extractedValue_22413__0 ;
           GGS_bool extractedValue_22413__1 ;
           var_kind_21872.getAssociatedValuesFor_arrayController (extractedValue_22413__0, extractedValue_22413__1) ;
-          enumGalgasBool test_23 = kBoolTrue ;
-          if (kBoolTrue == test_23) {
+          GalgasBool test_23 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_23) {
             test_23 = GGS_bool (ComparisonKind::equal, extractedValue_21788_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
-            if (kBoolTrue == test_23) {
+            if (GalgasBool::boolTrue == test_23) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 523)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 523))  COMMA_SOURCE_FILE ("observable-property.ggs", 523)) ;
             }
           }
-          if (kBoolFalse == test_23) {
-            enumGalgasBool test_24 = kBoolTrue ;
-            if (kBoolTrue == test_24) {
+          if (GalgasBool::boolFalse == test_23) {
+            GalgasBool test_24 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_24) {
               test_24 = GGS_bool (ComparisonKind::equal, extractedValue_21788_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-              if (kBoolTrue == test_24) {
+              if (GalgasBool::boolTrue == test_24) {
                 outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 525)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 525))  COMMA_SOURCE_FILE ("observable-property.ggs", 525)) ;
               }
             }
-            if (kBoolFalse == test_24) {
+            if (GalgasBool::boolFalse == test_24) {
               TC_Array <FixItDescription> fixItArray25 ;
               inCompiler->emitSemanticError (extractedValue_21788_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray25  COMMA_SOURCE_FILE ("observable-property.ggs", 527)) ;
               outArgument_outKind.drop () ; // Release error dropped variable
@@ -3646,22 +3646,22 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_lstring extractedValue_26844__0 ;
           GGS_bool extractedValue_26844__1 ;
           var_kind_26447.getAssociatedValuesFor_arrayController (extractedValue_26844__0, extractedValue_26844__1) ;
-          enumGalgasBool test_42 = kBoolTrue ;
-          if (kBoolTrue == test_42) {
+          GalgasBool test_42 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_42) {
             test_42 = GGS_bool (ComparisonKind::equal, extractedValue_26252_optionName_1.readProperty_string ().objectCompare (GGS_string ("count"))).boolEnum () ;
-            if (kBoolTrue == test_42) {
+            if (GalgasBool::boolTrue == test_42) {
               outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 625)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 625))  COMMA_SOURCE_FILE ("observable-property.ggs", 625)) ;
             }
           }
-          if (kBoolFalse == test_42) {
-            enumGalgasBool test_43 = kBoolTrue ;
-            if (kBoolTrue == test_43) {
+          if (GalgasBool::boolFalse == test_42) {
+            GalgasBool test_43 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_43) {
               test_43 = GGS_bool (ComparisonKind::equal, extractedValue_26252_optionName_1.readProperty_string ().objectCompare (GGS_string ("empty"))).boolEnum () ;
-              if (kBoolTrue == test_43) {
+              if (GalgasBool::boolTrue == test_43) {
                 outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_boolType (SOURCE_FILE ("observable-property.ggs", 627)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 627))  COMMA_SOURCE_FILE ("observable-property.ggs", 627)) ;
               }
             }
-            if (kBoolFalse == test_43) {
+            if (GalgasBool::boolFalse == test_43) {
               TC_Array <FixItDescription> fixItArray44 ;
               inCompiler->emitSemanticError (extractedValue_26252_optionName_1.readProperty_location (), GGS_string ("unknown option (accepted : 'count', 'empty')"), fixItArray44  COMMA_SOURCE_FILE ("observable-property.ggs", 629)) ;
               outArgument_outKind.drop () ; // Release error dropped variable
@@ -3734,18 +3734,18 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_lstring extractedValue_28036_typeName_0 ;
           GGS_bool extractedValue_28046_graphic_1 ;
           var_propertyKind_27624.getAssociatedValuesFor_arrayController (extractedValue_28036_typeName_0, extractedValue_28046_graphic_1) ;
-          enumGalgasBool test_49 = kBoolTrue ;
-          if (kBoolTrue == test_49) {
+          GalgasBool test_49 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_49) {
             GGS_bool test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27522_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
-            if (kBoolTrue != test_50.boolEnum ()) {
+            if (GalgasBool::boolTrue != test_50.boolEnum ()) {
               test_50 = GGS_bool (ComparisonKind::equal, extractedValue_27522_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
             }
             test_49 = test_50.boolEnum () ;
-            if (kBoolTrue == test_49) {
+            if (GalgasBool::boolTrue == test_49) {
               outArgument_outKind = GGS_propertyKind::class_func_toMany (extractedValue_28036_typeName_0, GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 652)), extractedValue_28046_graphic_1, GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("observable-property.ggs", 654))  COMMA_SOURCE_FILE ("observable-property.ggs", 650)) ;
             }
           }
-          if (kBoolFalse == test_49) {
+          if (GalgasBool::boolFalse == test_49) {
             TC_Array <FixItDescription> fixItArray51 ;
             appendFixItActions (fixItArray51, kFixItReplace, GGS_string ("sortedArray")) ;
             appendFixItActions (fixItArray51, kFixItReplace, GGS_string ("selectedArray")) ;
@@ -3782,30 +3782,30 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
       GGS_actionMap joker_29096_2 ; // Joker input parameter
       GGS_bool joker_29096_1 ; // Joker input parameter
       constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_28968_controllerName_0, joker_29096_3, joker_29096_2, joker_29096_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 673)) ;
-      enumGalgasBool test_52 = kBoolTrue ;
-      if (kBoolTrue == test_52) {
+      GalgasBool test_52 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_52) {
         GGS_bool test_53 = GGS_bool (ComparisonKind::equal, extractedValue_28993_propertyName_1.readProperty_string ().objectCompare (GGS_string ("sortedArray"))) ;
-        if (kBoolTrue == test_53.boolEnum ()) {
+        if (GalgasBool::boolTrue == test_53.boolEnum ()) {
           test_53 = GGS_bool (ComparisonKind::equal, extractedValue_29016_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
         }
         test_52 = test_53.boolEnum () ;
-        if (kBoolTrue == test_52) {
+        if (GalgasBool::boolTrue == test_52) {
           outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 675)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 675))  COMMA_SOURCE_FILE ("observable-property.ggs", 675)) ;
         }
       }
-      if (kBoolFalse == test_52) {
-        enumGalgasBool test_54 = kBoolTrue ;
-        if (kBoolTrue == test_54) {
+      if (GalgasBool::boolFalse == test_52) {
+        GalgasBool test_54 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_54) {
           GGS_bool test_55 = GGS_bool (ComparisonKind::equal, extractedValue_28993_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))) ;
-          if (kBoolTrue == test_55.boolEnum ()) {
+          if (GalgasBool::boolTrue == test_55.boolEnum ()) {
             test_55 = GGS_bool (ComparisonKind::equal, extractedValue_29016_secondaryPropertyName_2.readProperty_string ().objectCompare (GGS_string ("count"))) ;
           }
           test_54 = test_55.boolEnum () ;
-          if (kBoolTrue == test_54) {
+          if (GalgasBool::boolTrue == test_54) {
             outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 677)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 677))  COMMA_SOURCE_FILE ("observable-property.ggs", 677)) ;
           }
         }
-        if (kBoolFalse == test_54) {
+        if (GalgasBool::boolFalse == test_54) {
           TC_Array <FixItDescription> fixItArray56 ;
           appendFixItActions (fixItArray56, kFixItReplace, GGS_string ("sortedArray")) ;
           appendFixItActions (fixItArray56, kFixItReplace, GGS_string ("selectedArray")) ;
@@ -3900,10 +3900,10 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
       GGS_actionMap joker_30972_2 ; // Joker input parameter
       GGS_bool joker_30972_1 ; // Joker input parameter
       constinArgument_inBoundModelPropertyMap.method_searchKey (extractedValue_30811_controllerName_0, var_propertyKind_30958, joker_30972_2, joker_30972_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 706)) ;
-      enumGalgasBool test_62 = kBoolTrue ;
-      if (kBoolTrue == test_62) {
+      GalgasBool test_62 = GalgasBool::boolTrue ;
+      if (GalgasBool::boolTrue == test_62) {
         test_62 = GGS_bool (ComparisonKind::notEqual, extractedValue_30836_propertyName_1.readProperty_string ().objectCompare (GGS_string ("selectedArray"))).boolEnum () ;
-        if (kBoolTrue == test_62) {
+        if (GalgasBool::boolTrue == test_62) {
           TC_Array <FixItDescription> fixItArray63 ;
           appendFixItActions (fixItArray63, kFixItReplace, GGS_string ("selectedArray")) ;
           inCompiler->emitSemanticError (extractedValue_30836_propertyName_1.readProperty_location (), GGS_string ("unknown property"), fixItArray63  COMMA_SOURCE_FILE ("observable-property.ggs", 708)) ;
@@ -3911,7 +3911,7 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           outArgument_outSwiftTypeStringForTransientFunctionArgument.drop () ; // Release error dropped variable
         }
       }
-      if (kBoolFalse == test_62) {
+      if (GalgasBool::boolFalse == test_62) {
         outArgument_outKind = GGS_propertyKind::class_func_property (GGS_typeKind::class_func_integerType (SOURCE_FILE ("observable-property.ggs", 712)), GGS_propertyAccessibility::class_func_transient (GGS_bool (false)  COMMA_SOURCE_FILE ("observable-property.ggs", 712))  COMMA_SOURCE_FILE ("observable-property.ggs", 712)) ;
         switch (var_propertyKind_30958.enumValue ()) {
         case GGS_propertyKind::Enumeration::invalid:
@@ -6802,10 +6802,10 @@ GGS_string extensionGetter_transientComputeFunctionCall (const GGS_transientDepe
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GGS_string result_outResult ; // Returned variable
   GGS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
+  const GalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_1) {
     temp_0 = GGS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
+  }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("unwSelf.") ;
   }
   GGS_string var_uwself_18145 = temp_0 ;
@@ -6815,10 +6815,10 @@ GGS_string extensionGetter_transientComputeFunctionCall (const GGS_transientDepe
   cEnumerator_transientDependencyListForGeneration enumerator_18276 (temp_2, EnumerationOrder::up) ;
   GGS_uint index_18255 (uint32_t (0)) ;
   while (enumerator_18276.hasCurrentObject ()) {
-    enumGalgasBool test_3 = kBoolTrue ;
-    if (kBoolTrue == test_3) {
+    GalgasBool test_3 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_3) {
       test_3 = GGS_bool (ComparisonKind::notEqual, enumerator_18276.current_mDefaultValueAsString (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
-      if (kBoolTrue == test_3) {
+      if (GalgasBool::boolTrue == test_3) {
         result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("var s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 424)) ;
         result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("switch s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (GGS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 425)) ;
         result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("case .single :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 426)) ;
@@ -6828,7 +6828,7 @@ GGS_string extensionGetter_transientComputeFunctionCall (const GGS_transientDepe
         result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 430)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 430)) ;
       }
     }
-    if (kBoolFalse == test_3) {
+    if (GalgasBool::boolFalse == test_3) {
       result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("let s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 432)) ;
     }
     enumerator_18276.gotoNextObject () ;
@@ -6940,10 +6940,10 @@ GGS_string extensionGetter_generateAddObserverCall (const GGS_observableProperty
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GGS_string result_outResult ; // Returned variable
   GGS_string temp_0 ;
-  const enumGalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
-  if (kBoolTrue == test_1) {
+  const GalgasBool test_1 = constinArgument_inPreferences.boolEnum () ;
+  if (GalgasBool::boolTrue == test_1) {
     temp_0 = GGS_string ("preferences_") ;
-  }else if (kBoolFalse == test_1) {
+  }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("self.") ;
   }
   GGS_string var_prefix_20484 = temp_0 ;
