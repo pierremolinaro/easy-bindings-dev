@@ -19,9 +19,7 @@ mProperty_lkey (inLKey) {
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lstringlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lstringlist ("lstringlist",
@@ -409,16 +407,17 @@ GGS_lstring GGS_lstringlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @lstringlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_lstringlist::cEnumerator_lstringlist (const GGS_lstringlist & inEnumeratedObject,
-                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_lstringlist::DownEnumerator_lstringlist (const GGS_lstringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist_2E_element cEnumerator_lstringlist::current (LOCATION_ARGS) const {
+GGS_lstringlist_2E_element DownEnumerator_lstringlist::current (LOCATION_ARGS) const {
   const cCollectionElement_lstringlist * p = (const cCollectionElement_lstringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_lstringlist) ;
   return p->mObject ;
@@ -427,7 +426,35 @@ GGS_lstringlist_2E_element cEnumerator_lstringlist::current (LOCATION_ARGS) cons
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_lstringlist::current_mValue (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_lstringlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_lstringlist * p = (const cCollectionElement_lstringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_lstringlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @lstringlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_lstringlist::UpEnumerator_lstringlist (const GGS_lstringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist_2E_element UpEnumerator_lstringlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_lstringlist * p = (const cCollectionElement_lstringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_lstringlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_lstringlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_lstringlist * p = (const cCollectionElement_lstringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_lstringlist) ;
   return p->mObject.mProperty_mValue ;
@@ -437,9 +464,7 @@ GGS_lstring cEnumerator_lstringlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @bool generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bool ("bool",
@@ -479,9 +504,7 @@ GGS_bool GGS_bool::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint ("uint",
@@ -521,9 +544,7 @@ GGS_uint GGS_uint::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @string generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_string ("string",
@@ -563,9 +584,7 @@ GGS_string GGS_string::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @stringset generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringset ("stringset",
@@ -605,9 +624,7 @@ GGS_stringset GGS_stringset::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @2stringlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_stringlist ("2stringlist",
@@ -1051,16 +1068,17 @@ GGS_string GGS__32_stringlist::getter_mValue_31_AtIndex (const GGS_uint & inInde
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @_32_stringlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator__32_stringlist::cEnumerator__32_stringlist (const GGS__32_stringlist & inEnumeratedObject,
-                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator__32_stringlist::DownEnumerator__32_stringlist (const GGS__32_stringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_stringlist_2E_element cEnumerator__32_stringlist::current (LOCATION_ARGS) const {
+GGS__32_stringlist_2E_element DownEnumerator__32_stringlist::current (LOCATION_ARGS) const {
   const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
   return p->mObject ;
@@ -1069,7 +1087,7 @@ GGS__32_stringlist_2E_element cEnumerator__32_stringlist::current (LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator__32_stringlist::current_mValue_30_ (LOCATION_ARGS) const {
+GGS_string DownEnumerator__32_stringlist::current_mValue_30_ (LOCATION_ARGS) const {
   const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
   return p->mObject.mProperty_mValue_30_ ;
@@ -1077,7 +1095,43 @@ GGS_string cEnumerator__32_stringlist::current_mValue_30_ (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator__32_stringlist::current_mValue_31_ (LOCATION_ARGS) const {
+GGS_string DownEnumerator__32_stringlist::current_mValue_31_ (LOCATION_ARGS) const {
+  const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
+  return p->mObject.mProperty_mValue_31_ ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @_32_stringlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator__32_stringlist::UpEnumerator__32_stringlist (const GGS__32_stringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS__32_stringlist_2E_element UpEnumerator__32_stringlist::current (LOCATION_ARGS) const {
+  const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator__32_stringlist::current_mValue_30_ (LOCATION_ARGS) const {
+  const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
+  return p->mObject.mProperty_mValue_30_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator__32_stringlist::current_mValue_31_ (LOCATION_ARGS) const {
   const cCollectionElement__32_stringlist * p = (const cCollectionElement__32_stringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement__32_stringlist) ;
   return p->mObject.mProperty_mValue_31_ ;
@@ -1087,9 +1141,7 @@ GGS_string cEnumerator__32_stringlist::current_mValue_31_ (LOCATION_ARGS) const 
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @stringlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringlist ("stringlist",
@@ -1477,16 +1529,17 @@ GGS_string GGS_stringlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @stringlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_stringlist::cEnumerator_stringlist (const GGS_stringlist & inEnumeratedObject,
-                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_stringlist::DownEnumerator_stringlist (const GGS_stringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_stringlist_2E_element cEnumerator_stringlist::current (LOCATION_ARGS) const {
+GGS_stringlist_2E_element DownEnumerator_stringlist::current (LOCATION_ARGS) const {
   const cCollectionElement_stringlist * p = (const cCollectionElement_stringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_stringlist) ;
   return p->mObject ;
@@ -1495,7 +1548,35 @@ GGS_stringlist_2E_element cEnumerator_stringlist::current (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_stringlist::current_mValue (LOCATION_ARGS) const {
+GGS_string DownEnumerator_stringlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_stringlist * p = (const cCollectionElement_stringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_stringlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @stringlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_stringlist::UpEnumerator_stringlist (const GGS_stringlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_stringlist_2E_element UpEnumerator_stringlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_stringlist * p = (const cCollectionElement_stringlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_stringlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_stringlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_stringlist * p = (const cCollectionElement_stringlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_stringlist) ;
   return p->mObject.mProperty_mValue ;
@@ -1505,9 +1586,7 @@ GGS_string cEnumerator_stringlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @location generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_location ("location",
@@ -1547,9 +1626,7 @@ GGS_location GGS_location::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @luint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_luint ("luint",
@@ -1597,7 +1674,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint::~ GGS_luint (void) {
+GGS_luint::GGS_luint (const GGS_luint & inSource) :
+mProperty_uint (inSource.mProperty_uint),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint & GGS_luint::operator = (const GGS_luint & inSource) {
+  mProperty_uint = inSource.mProperty_uint ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -1681,9 +1768,7 @@ void GGS_luint::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lbool generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbool ("lbool",
@@ -1731,7 +1816,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lbool::~ GGS_lbool (void) {
+GGS_lbool::GGS_lbool (const GGS_lbool & inSource) :
+mProperty_bool (inSource.mProperty_bool),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lbool & GGS_lbool::operator = (const GGS_lbool & inSource) {
+  mProperty_bool = inSource.mProperty_bool ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -1815,9 +1910,7 @@ void GGS_lbool::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @bigint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bigint ("bigint",
@@ -1857,9 +1950,7 @@ GGS_bigint GGS_bigint::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @binaryset generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_binaryset ("binaryset",
@@ -1899,9 +1990,7 @@ GGS_binaryset GGS_binaryset::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @char generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_char ("char",
@@ -1941,9 +2030,7 @@ GGS_char GGS_char::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @data generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_data ("data",
@@ -1983,9 +2070,7 @@ GGS_data GGS_data::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @double generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_double ("double",
@@ -2025,9 +2110,7 @@ GGS_double GGS_double::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @filewrapper generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_filewrapper ("filewrapper",
@@ -2067,9 +2150,7 @@ GGS_filewrapper GGS_filewrapper::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @function generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_function ("function",
@@ -2109,9 +2190,7 @@ GGS_function GGS_function::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @object generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_object ("object",
@@ -2151,9 +2230,7 @@ GGS_object GGS_object::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @sint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_sint ("sint",
@@ -2193,9 +2270,7 @@ GGS_sint GGS_sint::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @sint64 generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_sint_36__34_ ("sint64",
@@ -2235,9 +2310,7 @@ GGS_sint_36__34_ GGS_sint_36__34_::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @timer generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_timer ("timer",
@@ -2277,9 +2350,7 @@ GGS_timer GGS_timer::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @type generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_type ("type",
@@ -2319,9 +2390,7 @@ GGS_type GGS_type::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uint64 generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint_36__34_ ("uint64",
@@ -2361,9 +2430,7 @@ GGS_uint_36__34_ GGS_uint_36__34_::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @functionlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_functionlist ("functionlist",
@@ -2751,16 +2818,17 @@ GGS_function GGS_functionlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @functionlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_functionlist::cEnumerator_functionlist (const GGS_functionlist & inEnumeratedObject,
-                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_functionlist::DownEnumerator_functionlist (const GGS_functionlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_functionlist_2E_element cEnumerator_functionlist::current (LOCATION_ARGS) const {
+GGS_functionlist_2E_element DownEnumerator_functionlist::current (LOCATION_ARGS) const {
   const cCollectionElement_functionlist * p = (const cCollectionElement_functionlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_functionlist) ;
   return p->mObject ;
@@ -2769,7 +2837,35 @@ GGS_functionlist_2E_element cEnumerator_functionlist::current (LOCATION_ARGS) co
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_function cEnumerator_functionlist::current_mValue (LOCATION_ARGS) const {
+GGS_function DownEnumerator_functionlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_functionlist * p = (const cCollectionElement_functionlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_functionlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @functionlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_functionlist::UpEnumerator_functionlist (const GGS_functionlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_functionlist_2E_element UpEnumerator_functionlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_functionlist * p = (const cCollectionElement_functionlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_functionlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_function UpEnumerator_functionlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_functionlist * p = (const cCollectionElement_functionlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_functionlist) ;
   return p->mObject.mProperty_mValue ;
@@ -2779,9 +2875,7 @@ GGS_function cEnumerator_functionlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @luintlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_luintlist ("luintlist",
@@ -3169,16 +3263,17 @@ GGS_luint GGS_luintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @luintlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_luintlist::cEnumerator_luintlist (const GGS_luintlist & inEnumeratedObject,
-                                              const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_luintlist::DownEnumerator_luintlist (const GGS_luintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luintlist_2E_element cEnumerator_luintlist::current (LOCATION_ARGS) const {
+GGS_luintlist_2E_element DownEnumerator_luintlist::current (LOCATION_ARGS) const {
   const cCollectionElement_luintlist * p = (const cCollectionElement_luintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_luintlist) ;
   return p->mObject ;
@@ -3187,7 +3282,35 @@ GGS_luintlist_2E_element cEnumerator_luintlist::current (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_luintlist::current_mValue (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_luintlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_luintlist * p = (const cCollectionElement_luintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_luintlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @luintlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_luintlist::UpEnumerator_luintlist (const GGS_luintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luintlist_2E_element UpEnumerator_luintlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_luintlist * p = (const cCollectionElement_luintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_luintlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_luintlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_luintlist * p = (const cCollectionElement_luintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_luintlist) ;
   return p->mObject.mProperty_mValue ;
@@ -3197,9 +3320,7 @@ GGS_luint cEnumerator_luintlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @objectlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_objectlist ("objectlist",
@@ -3587,16 +3708,17 @@ GGS_object GGS_objectlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @objectlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_objectlist::cEnumerator_objectlist (const GGS_objectlist & inEnumeratedObject,
-                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_objectlist::DownEnumerator_objectlist (const GGS_objectlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_objectlist_2E_element cEnumerator_objectlist::current (LOCATION_ARGS) const {
+GGS_objectlist_2E_element DownEnumerator_objectlist::current (LOCATION_ARGS) const {
   const cCollectionElement_objectlist * p = (const cCollectionElement_objectlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_objectlist) ;
   return p->mObject ;
@@ -3605,7 +3727,35 @@ GGS_objectlist_2E_element cEnumerator_objectlist::current (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_object cEnumerator_objectlist::current_mValue (LOCATION_ARGS) const {
+GGS_object DownEnumerator_objectlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_objectlist * p = (const cCollectionElement_objectlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_objectlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @objectlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_objectlist::UpEnumerator_objectlist (const GGS_objectlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_objectlist_2E_element UpEnumerator_objectlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_objectlist * p = (const cCollectionElement_objectlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_objectlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_object UpEnumerator_objectlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_objectlist * p = (const cCollectionElement_objectlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_objectlist) ;
   return p->mObject.mProperty_mValue ;
@@ -3615,9 +3765,7 @@ GGS_object cEnumerator_objectlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @typelist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typelist ("typelist",
@@ -4005,16 +4153,17 @@ GGS_type GGS_typelist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @typelist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_typelist::cEnumerator_typelist (const GGS_typelist & inEnumeratedObject,
-                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_typelist::DownEnumerator_typelist (const GGS_typelist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_typelist_2E_element cEnumerator_typelist::current (LOCATION_ARGS) const {
+GGS_typelist_2E_element DownEnumerator_typelist::current (LOCATION_ARGS) const {
   const cCollectionElement_typelist * p = (const cCollectionElement_typelist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_typelist) ;
   return p->mObject ;
@@ -4023,7 +4172,35 @@ GGS_typelist_2E_element cEnumerator_typelist::current (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_type cEnumerator_typelist::current_mValue (LOCATION_ARGS) const {
+GGS_type DownEnumerator_typelist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_typelist * p = (const cCollectionElement_typelist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_typelist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @typelist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_typelist::UpEnumerator_typelist (const GGS_typelist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typelist_2E_element UpEnumerator_typelist::current (LOCATION_ARGS) const {
+  const cCollectionElement_typelist * p = (const cCollectionElement_typelist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_typelist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_type UpEnumerator_typelist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_typelist * p = (const cCollectionElement_typelist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_typelist) ;
   return p->mObject.mProperty_mValue ;
@@ -4033,9 +4210,7 @@ GGS_type cEnumerator_typelist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uintlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uintlist ("uintlist",
@@ -4423,16 +4598,17 @@ GGS_uint GGS_uintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @uintlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_uintlist::cEnumerator_uintlist (const GGS_uintlist & inEnumeratedObject,
-                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_uintlist::DownEnumerator_uintlist (const GGS_uintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uintlist_2E_element cEnumerator_uintlist::current (LOCATION_ARGS) const {
+GGS_uintlist_2E_element DownEnumerator_uintlist::current (LOCATION_ARGS) const {
   const cCollectionElement_uintlist * p = (const cCollectionElement_uintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_uintlist) ;
   return p->mObject ;
@@ -4441,7 +4617,35 @@ GGS_uintlist_2E_element cEnumerator_uintlist::current (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_uintlist::current_mValue (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_uintlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_uintlist * p = (const cCollectionElement_uintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_uintlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @uintlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_uintlist::UpEnumerator_uintlist (const GGS_uintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uintlist_2E_element UpEnumerator_uintlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_uintlist * p = (const cCollectionElement_uintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_uintlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_uintlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_uintlist * p = (const cCollectionElement_uintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_uintlist) ;
   return p->mObject.mProperty_mValue ;
@@ -4451,9 +4655,7 @@ GGS_uint cEnumerator_uintlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uint64list generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint_36__34_list ("uint64list",
@@ -4841,16 +5043,17 @@ GGS_uint_36__34_ GGS_uint_36__34_list::getter_mValueAtIndex (const GGS_uint & in
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @uint_36__34_list
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_uint_36__34_list::cEnumerator_uint_36__34_list (const GGS_uint_36__34_list & inEnumeratedObject,
-                                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_uint_36__34_list::DownEnumerator_uint_36__34_list (const GGS_uint_36__34_list & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint_36__34_list_2E_element cEnumerator_uint_36__34_list::current (LOCATION_ARGS) const {
+GGS_uint_36__34_list_2E_element DownEnumerator_uint_36__34_list::current (LOCATION_ARGS) const {
   const cCollectionElement_uint_36__34_list * p = (const cCollectionElement_uint_36__34_list *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_uint_36__34_list) ;
   return p->mObject ;
@@ -4859,7 +5062,35 @@ GGS_uint_36__34_list_2E_element cEnumerator_uint_36__34_list::current (LOCATION_
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint_36__34_ cEnumerator_uint_36__34_list::current_mValue (LOCATION_ARGS) const {
+GGS_uint_36__34_ DownEnumerator_uint_36__34_list::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_uint_36__34_list * p = (const cCollectionElement_uint_36__34_list *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_uint_36__34_list) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @uint_36__34_list
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_uint_36__34_list::UpEnumerator_uint_36__34_list (const GGS_uint_36__34_list & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint_36__34_list_2E_element UpEnumerator_uint_36__34_list::current (LOCATION_ARGS) const {
+  const cCollectionElement_uint_36__34_list * p = (const cCollectionElement_uint_36__34_list *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_uint_36__34_list) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint_36__34_ UpEnumerator_uint_36__34_list::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_uint_36__34_list * p = (const cCollectionElement_uint_36__34_list *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_uint_36__34_list) ;
   return p->mObject.mProperty_mValue ;
@@ -4869,9 +5100,7 @@ GGS_uint_36__34_ cEnumerator_uint_36__34_list::current_mValue (LOCATION_ARGS) co
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @bigintlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bigintlist ("bigintlist",
@@ -5259,16 +5488,17 @@ GGS_bigint GGS_bigintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @bigintlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_bigintlist::cEnumerator_bigintlist (const GGS_bigintlist & inEnumeratedObject,
-                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_bigintlist::DownEnumerator_bigintlist (const GGS_bigintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bigintlist_2E_element cEnumerator_bigintlist::current (LOCATION_ARGS) const {
+GGS_bigintlist_2E_element DownEnumerator_bigintlist::current (LOCATION_ARGS) const {
   const cCollectionElement_bigintlist * p = (const cCollectionElement_bigintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_bigintlist) ;
   return p->mObject ;
@@ -5277,7 +5507,35 @@ GGS_bigintlist_2E_element cEnumerator_bigintlist::current (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bigint cEnumerator_bigintlist::current_mValue (LOCATION_ARGS) const {
+GGS_bigint DownEnumerator_bigintlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_bigintlist * p = (const cCollectionElement_bigintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_bigintlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @bigintlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_bigintlist::UpEnumerator_bigintlist (const GGS_bigintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bigintlist_2E_element UpEnumerator_bigintlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_bigintlist * p = (const cCollectionElement_bigintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_bigintlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bigint UpEnumerator_bigintlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_bigintlist * p = (const cCollectionElement_bigintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_bigintlist) ;
   return p->mObject.mProperty_mValue ;
@@ -5287,9 +5545,7 @@ GGS_bigint cEnumerator_bigintlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lbigintlist generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigintlist ("lbigintlist",
@@ -5677,16 +5933,17 @@ GGS_lbigint GGS_lbigintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @lbigintlist
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_lbigintlist::cEnumerator_lbigintlist (const GGS_lbigintlist & inEnumeratedObject,
-                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_lbigintlist::DownEnumerator_lbigintlist (const GGS_lbigintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lbigintlist_2E_element cEnumerator_lbigintlist::current (LOCATION_ARGS) const {
+GGS_lbigintlist_2E_element DownEnumerator_lbigintlist::current (LOCATION_ARGS) const {
   const cCollectionElement_lbigintlist * p = (const cCollectionElement_lbigintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_lbigintlist) ;
   return p->mObject ;
@@ -5695,7 +5952,35 @@ GGS_lbigintlist_2E_element cEnumerator_lbigintlist::current (LOCATION_ARGS) cons
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lbigint cEnumerator_lbigintlist::current_mValue (LOCATION_ARGS) const {
+GGS_lbigint DownEnumerator_lbigintlist::current_mValue (LOCATION_ARGS) const {
+  const cCollectionElement_lbigintlist * p = (const cCollectionElement_lbigintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_lbigintlist) ;
+  return p->mObject.mProperty_mValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @lbigintlist
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_lbigintlist::UpEnumerator_lbigintlist (const GGS_lbigintlist & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lbigintlist_2E_element UpEnumerator_lbigintlist::current (LOCATION_ARGS) const {
+  const cCollectionElement_lbigintlist * p = (const cCollectionElement_lbigintlist *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_lbigintlist) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lbigint UpEnumerator_lbigintlist::current_mValue (LOCATION_ARGS) const {
   const cCollectionElement_lbigintlist * p = (const cCollectionElement_lbigintlist *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_lbigintlist) ;
   return p->mObject.mProperty_mValue ;
@@ -5705,9 +5990,7 @@ GGS_lbigint cEnumerator_lbigintlist::current_mValue (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lbigint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigint ("lbigint",
@@ -5755,7 +6038,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lbigint::~ GGS_lbigint (void) {
+GGS_lbigint::GGS_lbigint (const GGS_lbigint & inSource) :
+mProperty_bigint (inSource.mProperty_bigint),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lbigint & GGS_lbigint::operator = (const GGS_lbigint & inSource) {
+  mProperty_bigint = inSource.mProperty_bigint ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -5839,9 +6132,7 @@ void GGS_lbigint::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lchar generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lchar ("lchar",
@@ -5889,7 +6180,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lchar::~ GGS_lchar (void) {
+GGS_lchar::GGS_lchar (const GGS_lchar & inSource) :
+mProperty_char (inSource.mProperty_char),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lchar & GGS_lchar::operator = (const GGS_lchar & inSource) {
+  mProperty_char = inSource.mProperty_char ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -5973,9 +6274,7 @@ void GGS_lchar::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lsint generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lsint ("lsint",
@@ -6023,7 +6322,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lsint::~ GGS_lsint (void) {
+GGS_lsint::GGS_lsint (const GGS_lsint & inSource) :
+mProperty_sint (inSource.mProperty_sint),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lsint & GGS_lsint::operator = (const GGS_lsint & inSource) {
+  mProperty_sint = inSource.mProperty_sint ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6107,9 +6416,7 @@ void GGS_lsint::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lsint64 generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lsint_36__34_ ("lsint64",
@@ -6157,7 +6464,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lsint_36__34_::~ GGS_lsint_36__34_ (void) {
+GGS_lsint_36__34_::GGS_lsint_36__34_ (const GGS_lsint_36__34_ & inSource) :
+mProperty_sint_36__34_ (inSource.mProperty_sint_36__34_),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lsint_36__34_ & GGS_lsint_36__34_::operator = (const GGS_lsint_36__34_ & inSource) {
+  mProperty_sint_36__34_ = inSource.mProperty_sint_36__34_ ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6241,9 +6558,7 @@ void GGS_lsint_36__34_::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @luint64 generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_luint_36__34_ ("luint64",
@@ -6291,7 +6606,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint_36__34_::~ GGS_luint_36__34_ (void) {
+GGS_luint_36__34_::GGS_luint_36__34_ (const GGS_luint_36__34_ & inSource) :
+mProperty_uint_36__34_ (inSource.mProperty_uint_36__34_),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint_36__34_ & GGS_luint_36__34_::operator = (const GGS_luint_36__34_ & inSource) {
+  mProperty_uint_36__34_ = inSource.mProperty_uint_36__34_ ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6375,9 +6700,7 @@ void GGS_luint_36__34_::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @range generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_range ("range",
@@ -6425,7 +6748,17 @@ mProperty_length () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_range::~ GGS_range (void) {
+GGS_range::GGS_range (const GGS_range & inSource) :
+mProperty_start (inSource.mProperty_start),
+mProperty_length (inSource.mProperty_length) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_range & GGS_range::operator = (const GGS_range & inSource) {
+  mProperty_start = inSource.mProperty_start ;
+  mProperty_length = inSource.mProperty_length ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6509,9 +6842,7 @@ void GGS_range::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @bigint? generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bigint_3F_ ("bigint?",
@@ -6648,9 +6979,7 @@ void GGS_bigint_3F_::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @functionlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_functionlist_2E_element ("functionlist.element",
@@ -6697,7 +7026,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_functionlist_2E_element::~ GGS_functionlist_2E_element (void) {
+GGS_functionlist_2E_element::GGS_functionlist_2E_element (const GGS_functionlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_functionlist_2E_element & GGS_functionlist_2E_element::operator = (const GGS_functionlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6769,9 +7106,7 @@ void GGS_functionlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @luintlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_luintlist_2E_element ("luintlist.element",
@@ -6818,7 +7153,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luintlist_2E_element::~ GGS_luintlist_2E_element (void) {
+GGS_luintlist_2E_element::GGS_luintlist_2E_element (const GGS_luintlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luintlist_2E_element & GGS_luintlist_2E_element::operator = (const GGS_luintlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6890,9 +7233,7 @@ void GGS_luintlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @objectlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_objectlist_2E_element ("objectlist.element",
@@ -6939,7 +7280,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_objectlist_2E_element::~ GGS_objectlist_2E_element (void) {
+GGS_objectlist_2E_element::GGS_objectlist_2E_element (const GGS_objectlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_objectlist_2E_element & GGS_objectlist_2E_element::operator = (const GGS_objectlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7011,9 +7360,7 @@ void GGS_objectlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @stringlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringlist_2E_element ("stringlist.element",
@@ -7060,7 +7407,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_stringlist_2E_element::~ GGS_stringlist_2E_element (void) {
+GGS_stringlist_2E_element::GGS_stringlist_2E_element (const GGS_stringlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_stringlist_2E_element & GGS_stringlist_2E_element::operator = (const GGS_stringlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7132,9 +7487,7 @@ void GGS_stringlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @typelist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typelist_2E_element ("typelist.element",
@@ -7181,7 +7534,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_typelist_2E_element::~ GGS_typelist_2E_element (void) {
+GGS_typelist_2E_element::GGS_typelist_2E_element (const GGS_typelist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typelist_2E_element & GGS_typelist_2E_element::operator = (const GGS_typelist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7253,9 +7614,7 @@ void GGS_typelist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uintlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uintlist_2E_element ("uintlist.element",
@@ -7302,7 +7661,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uintlist_2E_element::~ GGS_uintlist_2E_element (void) {
+GGS_uintlist_2E_element::GGS_uintlist_2E_element (const GGS_uintlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uintlist_2E_element & GGS_uintlist_2E_element::operator = (const GGS_uintlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7374,9 +7741,7 @@ void GGS_uintlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @uint64list.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_uint_36__34_list_2E_element ("uint64list.element",
@@ -7423,7 +7788,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint_36__34_list_2E_element::~ GGS_uint_36__34_list_2E_element (void) {
+GGS_uint_36__34_list_2E_element::GGS_uint_36__34_list_2E_element (const GGS_uint_36__34_list_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint_36__34_list_2E_element & GGS_uint_36__34_list_2E_element::operator = (const GGS_uint_36__34_list_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7495,9 +7868,7 @@ void GGS_uint_36__34_list_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @bigintlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bigintlist_2E_element ("bigintlist.element",
@@ -7544,7 +7915,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bigintlist_2E_element::~ GGS_bigintlist_2E_element (void) {
+GGS_bigintlist_2E_element::GGS_bigintlist_2E_element (const GGS_bigintlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bigintlist_2E_element & GGS_bigintlist_2E_element::operator = (const GGS_bigintlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7616,9 +7995,7 @@ void GGS_bigintlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lbigintlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lbigintlist_2E_element ("lbigintlist.element",
@@ -7665,7 +8042,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lbigintlist_2E_element::~ GGS_lbigintlist_2E_element (void) {
+GGS_lbigintlist_2E_element::GGS_lbigintlist_2E_element (const GGS_lbigintlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lbigintlist_2E_element & GGS_lbigintlist_2E_element::operator = (const GGS_lbigintlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7737,9 +8122,7 @@ void GGS_lbigintlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @2stringlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_stringlist_2E_element ("2stringlist.element",
@@ -7787,7 +8170,17 @@ mProperty_mValue_31_ () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_stringlist_2E_element::~ GGS__32_stringlist_2E_element (void) {
+GGS__32_stringlist_2E_element::GGS__32_stringlist_2E_element (const GGS__32_stringlist_2E_element & inSource) :
+mProperty_mValue_30_ (inSource.mProperty_mValue_30_),
+mProperty_mValue_31_ (inSource.mProperty_mValue_31_) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS__32_stringlist_2E_element & GGS__32_stringlist_2E_element::operator = (const GGS__32_stringlist_2E_element & inSource) {
+  mProperty_mValue_30_ = inSource.mProperty_mValue_30_ ;
+  mProperty_mValue_31_ = inSource.mProperty_mValue_31_ ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7871,9 +8264,7 @@ void GGS__32_stringlist_2E_element::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lstring generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lstring ("lstring",
@@ -7921,7 +8312,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring::~ GGS_lstring (void) {
+GGS_lstring::GGS_lstring (const GGS_lstring & inSource) :
+mProperty_string (inSource.mProperty_string),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring & GGS_lstring::operator = (const GGS_lstring & inSource) {
+  mProperty_string = inSource.mProperty_string ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -8005,9 +8406,7 @@ void GGS_lstring::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ldouble generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ldouble ("ldouble",
@@ -8055,7 +8454,17 @@ mProperty_location () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ldouble::~ GGS_ldouble (void) {
+GGS_ldouble::GGS_ldouble (const GGS_ldouble & inSource) :
+mProperty_double (inSource.mProperty_double),
+mProperty_location (inSource.mProperty_location) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ldouble & GGS_ldouble::operator = (const GGS_ldouble & inSource) {
+  mProperty_double = inSource.mProperty_double ;
+  mProperty_location = inSource.mProperty_location ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -8139,9 +8548,7 @@ void GGS_ldouble::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @lstringlist.element generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_lstringlist_2E_element ("lstringlist.element",
@@ -8188,7 +8595,15 @@ mProperty_mValue () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist_2E_element::~ GGS_lstringlist_2E_element (void) {
+GGS_lstringlist_2E_element::GGS_lstringlist_2E_element (const GGS_lstringlist_2E_element & inSource) :
+mProperty_mValue (inSource.mProperty_mValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist_2E_element & GGS_lstringlist_2E_element::operator = (const GGS_lstringlist_2E_element & inSource) {
+  mProperty_mValue = inSource.mProperty_mValue ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------

@@ -9,6 +9,428 @@
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_autoLayoutBindingSpecificationMap::cMapElement_autoLayoutBindingSpecificationMap (const GGS_autoLayoutBindingSpecificationMap_2E_element & inValue
+                                                                                              COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mOutletSuperClassName (inValue.mProperty_mOutletSuperClassName),
+mProperty_mBindingMap (inValue.mProperty_mBindingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_autoLayoutBindingSpecificationMap::cMapElement_autoLayoutBindingSpecificationMap (const GGS_lstring & inKey,
+                                                                                              const GGS_lstring & in_mOutletSuperClassName,
+                                                                                              const GGS_autoLayoutViewBindingSpecificationMap & in_mBindingMap
+                                                                                              COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mOutletSuperClassName (in_mOutletSuperClassName),
+mProperty_mBindingMap (in_mBindingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cMapElement_autoLayoutBindingSpecificationMap::isValid (void) const {
+  return mProperty_lkey.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement * cMapElement_autoLayoutBindingSpecificationMap::copy (void) {
+  cMapElement * result = nullptr ;
+  macroMyNew (result, cMapElement_autoLayoutBindingSpecificationMap (mProperty_lkey, mProperty_mOutletSuperClassName, mProperty_mBindingMap COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cMapElement_autoLayoutBindingSpecificationMap::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mOutletSuperClassName" ":") ;
+  mProperty_mOutletSuperClassName.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mBindingMap" ":") ;
+  mProperty_mBindingMap.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap::GGS_autoLayoutBindingSpecificationMap (void) :
+AC_GALGAS_map () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap::GGS_autoLayoutBindingSpecificationMap (const GGS_autoLayoutBindingSpecificationMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap & GGS_autoLayoutBindingSpecificationMap::operator = (const GGS_autoLayoutBindingSpecificationMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GGS_autoLayoutBindingSpecificationMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::class_func_emptyMap (LOCATION_ARGS) {
+  GGS_autoLayoutBindingSpecificationMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ GGS_autoLayoutBindingSpecificationMap
+::readSubscript__3F_ (const class GGS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_autoLayoutBindingSpecificationMap * p = (cMapElement_autoLayoutBindingSpecificationMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GGS_autoLayoutBindingSpecificationMap_2E_element_3F_::init_nil () ;
+    }else{
+      GGS_autoLayoutBindingSpecificationMap_2E_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mOutletSuperClassName = p->mProperty_mOutletSuperClassName ;
+      element.mProperty_mBindingMap = p->mProperty_mBindingMap ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::class_func_mapWithMapToOverride (const GGS_autoLayoutBindingSpecificationMap & inMapToOverride
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_autoLayoutBindingSpecificationMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::getter_overriddenMap (Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) const {
+  GGS_autoLayoutBindingSpecificationMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::enterElement (const GGS_autoLayoutBindingSpecificationMap_2E_element & inValue,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cMapElement_autoLayoutBindingSpecificationMap * p = nullptr ;
+  macroMyNew (p, cMapElement_autoLayoutBindingSpecificationMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@autoLayoutBindingSpecificationMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::addAssign_operation (const GGS_lstring & inKey,
+                                                                 const GGS_lstring & inArgument0,
+                                                                 const GGS_autoLayoutViewBindingSpecificationMap & inArgument1,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_autoLayoutBindingSpecificationMap * p = nullptr ;
+  macroMyNew (p, cMapElement_autoLayoutBindingSpecificationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@autoLayoutBindingSpecificationMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::add_operation (const GGS_autoLayoutBindingSpecificationMap & inOperand,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) const {
+  GGS_autoLayoutBindingSpecificationMap result = *this ;
+  UpEnumerator_autoLayoutBindingSpecificationMap enumerator (inOperand) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletSuperClassName (HERE), enumerator.current_mBindingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::setter_insertKey (GGS_lstring inKey,
+                                                              GGS_lstring inArgument0,
+                                                              GGS_autoLayoutViewBindingSpecificationMap inArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cMapElement_autoLayoutBindingSpecificationMap * p = nullptr ;
+  macroMyNew (p, cMapElement_autoLayoutBindingSpecificationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' binding is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const char * kSearchErrorMessage_autoLayoutBindingSpecificationMap_searchKey = "there is no '%K' binding" ;
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::method_searchKey (GGS_lstring inKey,
+                                                              GGS_lstring & outArgument0,
+                                                              GGS_autoLayoutViewBindingSpecificationMap & outArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) performSearch (inKey,
+                                                                                                                                   inCompiler,
+                                                                                                                                   kSearchErrorMessage_autoLayoutBindingSpecificationMap_searchKey
+                                                                                                                                   COMMA_THERE) ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    outArgument0 = p->mProperty_mOutletSuperClassName ;
+    outArgument1 = p->mProperty_mBindingMap ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::setter_removeKey (GGS_lstring inKey,
+                                                              GGS_lstring & outArgument0,
+                                                              GGS_autoLayoutViewBindingSpecificationMap & outArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  const char * kRemoveErrorMessage = "there is no '%K' binding" ;
+  capCollectionElement attributes ;
+  performRemove (inKey, attributes, inCompiler, kRemoveErrorMessage COMMA_THERE) ;
+  cMapElement_autoLayoutBindingSpecificationMap * p = (cMapElement_autoLayoutBindingSpecificationMap *) attributes.ptr () ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    outArgument0 = p->mProperty_mOutletSuperClassName ;
+    outArgument1 = p->mProperty_mBindingMap ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_autoLayoutBindingSpecificationMap::getter_mOutletSuperClassNameForKey (const GGS_string & inKey,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) attributes ;
+  GGS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    result = p->mProperty_mOutletSuperClassName ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::getter_mBindingMapForKey (const GGS_string & inKey,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) attributes ;
+  GGS_autoLayoutViewBindingSpecificationMap result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    result = p->mProperty_mBindingMap ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::setter_setMOutletSuperClassNameForKey (GGS_lstring inAttributeValue,
+                                                                                   GGS_string inKey,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_autoLayoutBindingSpecificationMap * p = (cMapElement_autoLayoutBindingSpecificationMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    p->mProperty_mOutletSuperClassName = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_autoLayoutBindingSpecificationMap::setter_setMBindingMapForKey (GGS_autoLayoutViewBindingSpecificationMap inAttributeValue,
+                                                                         GGS_string inKey,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_autoLayoutBindingSpecificationMap * p = (cMapElement_autoLayoutBindingSpecificationMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+    p->mProperty_mBindingMap = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_autoLayoutBindingSpecificationMap * GGS_autoLayoutBindingSpecificationMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                                                          const GGS_string & inKey
+                                                                                                                          COMMA_LOCATION_ARGS) {
+  cMapElement_autoLayoutBindingSpecificationMap * result = (cMapElement_autoLayoutBindingSpecificationMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @autoLayoutBindingSpecificationMap
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_autoLayoutBindingSpecificationMap::DownEnumerator_autoLayoutBindingSpecificationMap (const GGS_autoLayoutBindingSpecificationMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap_2E_element DownEnumerator_autoLayoutBindingSpecificationMap::current (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return GGS_autoLayoutBindingSpecificationMap_2E_element (p->mProperty_lkey, p->mProperty_mOutletSuperClassName, p->mProperty_mBindingMap) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_autoLayoutBindingSpecificationMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_autoLayoutBindingSpecificationMap::current_mOutletSuperClassName (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return p->mProperty_mOutletSuperClassName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewBindingSpecificationMap DownEnumerator_autoLayoutBindingSpecificationMap::current_mBindingMap (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return p->mProperty_mBindingMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Up Enumerator for @autoLayoutBindingSpecificationMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_autoLayoutBindingSpecificationMap::UpEnumerator_autoLayoutBindingSpecificationMap (const GGS_autoLayoutBindingSpecificationMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap_2E_element UpEnumerator_autoLayoutBindingSpecificationMap::current (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return GGS_autoLayoutBindingSpecificationMap_2E_element (p->mProperty_lkey, p->mProperty_mOutletSuperClassName, p->mProperty_mBindingMap) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_autoLayoutBindingSpecificationMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_autoLayoutBindingSpecificationMap::current_mOutletSuperClassName (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return p->mProperty_mOutletSuperClassName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewBindingSpecificationMap UpEnumerator_autoLayoutBindingSpecificationMap::current_mBindingMap (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutBindingSpecificationMap * p = (const cMapElement_autoLayoutBindingSpecificationMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutBindingSpecificationMap) ;
+  return p->mProperty_mBindingMap ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @autoLayoutBindingSpecificationMap generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutBindingSpecificationMap ("autoLayoutBindingSpecificationMap",
+                                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_autoLayoutBindingSpecificationMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutBindingSpecificationMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_autoLayoutBindingSpecificationMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_autoLayoutBindingSpecificationMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::extractObject (const GGS_object & inObject,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_autoLayoutBindingSpecificationMap result ;
+  const GGS_autoLayoutBindingSpecificationMap * p = (const GGS_autoLayoutBindingSpecificationMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_autoLayoutBindingSpecificationMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("autoLayoutBindingSpecificationMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 ComparisonResult GGS_abstractDeclarationAST_2E_weak::objectCompare (const GGS_abstractDeclarationAST_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -77,9 +499,7 @@ GGS_abstractDeclarationAST GGS_abstractDeclarationAST_2E_weak::bang_abstractDecl
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @abstractDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDeclarationAST_2E_weak ("abstractDeclarationAST.weak",
@@ -267,9 +687,7 @@ GGS_lstringlist GGS_declarationPrecedenceGraph::getter_accessibleNodesFrom (cons
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @declarationPrecedenceGraph generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationPrecedenceGraph ("declarationPrecedenceGraph",
@@ -648,16 +1066,17 @@ GGS_lstring GGS_externSwiftDelegateList::getter_mExternSwiftDelegateNameAtIndex 
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @externSwiftDelegateList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_externSwiftDelegateList::cEnumerator_externSwiftDelegateList (const GGS_externSwiftDelegateList & inEnumeratedObject,
-                                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_externSwiftDelegateList::DownEnumerator_externSwiftDelegateList (const GGS_externSwiftDelegateList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftDelegateList_2E_element cEnumerator_externSwiftDelegateList::current (LOCATION_ARGS) const {
+GGS_externSwiftDelegateList_2E_element DownEnumerator_externSwiftDelegateList::current (LOCATION_ARGS) const {
   const cCollectionElement_externSwiftDelegateList * p = (const cCollectionElement_externSwiftDelegateList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_externSwiftDelegateList) ;
   return p->mObject ;
@@ -666,7 +1085,35 @@ GGS_externSwiftDelegateList_2E_element cEnumerator_externSwiftDelegateList::curr
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_externSwiftDelegateList::current_mExternSwiftDelegateName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_externSwiftDelegateList::current_mExternSwiftDelegateName (LOCATION_ARGS) const {
+  const cCollectionElement_externSwiftDelegateList * p = (const cCollectionElement_externSwiftDelegateList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_externSwiftDelegateList) ;
+  return p->mObject.mProperty_mExternSwiftDelegateName ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @externSwiftDelegateList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_externSwiftDelegateList::UpEnumerator_externSwiftDelegateList (const GGS_externSwiftDelegateList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_externSwiftDelegateList_2E_element UpEnumerator_externSwiftDelegateList::current (LOCATION_ARGS) const {
+  const cCollectionElement_externSwiftDelegateList * p = (const cCollectionElement_externSwiftDelegateList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_externSwiftDelegateList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_externSwiftDelegateList::current_mExternSwiftDelegateName (LOCATION_ARGS) const {
   const cCollectionElement_externSwiftDelegateList * p = (const cCollectionElement_externSwiftDelegateList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_externSwiftDelegateList) ;
   return p->mObject.mProperty_mExternSwiftDelegateName ;
@@ -676,9 +1123,7 @@ GGS_lstring cEnumerator_externSwiftDelegateList::current_mExternSwiftDelegateNam
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @externSwiftDelegateList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegateList ("externSwiftDelegateList",
@@ -1113,16 +1558,17 @@ GGS_lstring GGS_externSwiftFunctionList::getter_mCallerNameAtIndex (const GGS_ui
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @externSwiftFunctionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_externSwiftFunctionList::cEnumerator_externSwiftFunctionList (const GGS_externSwiftFunctionList & inEnumeratedObject,
-                                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_externSwiftFunctionList::DownEnumerator_externSwiftFunctionList (const GGS_externSwiftFunctionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftFunctionList_2E_element cEnumerator_externSwiftFunctionList::current (LOCATION_ARGS) const {
+GGS_externSwiftFunctionList_2E_element DownEnumerator_externSwiftFunctionList::current (LOCATION_ARGS) const {
   const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
   return p->mObject ;
@@ -1131,7 +1577,7 @@ GGS_externSwiftFunctionList_2E_element cEnumerator_externSwiftFunctionList::curr
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_externSwiftFunctionList::current_mExternSwiftFunctionName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_externSwiftFunctionList::current_mExternSwiftFunctionName (LOCATION_ARGS) const {
   const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
   return p->mObject.mProperty_mExternSwiftFunctionName ;
@@ -1139,7 +1585,43 @@ GGS_lstring cEnumerator_externSwiftFunctionList::current_mExternSwiftFunctionNam
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_externSwiftFunctionList::current_mCallerName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_externSwiftFunctionList::current_mCallerName (LOCATION_ARGS) const {
+  const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
+  return p->mObject.mProperty_mCallerName ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @externSwiftFunctionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_externSwiftFunctionList::UpEnumerator_externSwiftFunctionList (const GGS_externSwiftFunctionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_externSwiftFunctionList_2E_element UpEnumerator_externSwiftFunctionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_externSwiftFunctionList::current_mExternSwiftFunctionName (LOCATION_ARGS) const {
+  const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
+  return p->mObject.mProperty_mExternSwiftFunctionName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_externSwiftFunctionList::current_mCallerName (LOCATION_ARGS) const {
   const cCollectionElement_externSwiftFunctionList * p = (const cCollectionElement_externSwiftFunctionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_externSwiftFunctionList) ;
   return p->mObject.mProperty_mCallerName ;
@@ -1149,9 +1631,7 @@ GGS_lstring cEnumerator_externSwiftFunctionList::current_mCallerName (LOCATION_A
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @externSwiftFunctionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunctionList ("externSwiftFunctionList",
@@ -1332,7 +1812,7 @@ GGS_externFunctionMap GGS_externFunctionMap::add_operation (const GGS_externFunc
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
   GGS_externFunctionMap result = *this ;
-  cEnumerator_externFunctionMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_externFunctionMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -1366,16 +1846,17 @@ cMapElement_externFunctionMap * GGS_externFunctionMap::readWriteAccessForWithIns
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @externFunctionMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_externFunctionMap::cEnumerator_externFunctionMap (const GGS_externFunctionMap & inEnumeratedObject,
-                                                              const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_externFunctionMap::DownEnumerator_externFunctionMap (const GGS_externFunctionMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externFunctionMap_2E_element cEnumerator_externFunctionMap::current (LOCATION_ARGS) const {
+GGS_externFunctionMap_2E_element DownEnumerator_externFunctionMap::current (LOCATION_ARGS) const {
   const cMapElement_externFunctionMap * p = (const cMapElement_externFunctionMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_externFunctionMap) ;
   return GGS_externFunctionMap_2E_element (p->mProperty_lkey) ;
@@ -1383,16 +1864,40 @@ GGS_externFunctionMap_2E_element cEnumerator_externFunctionMap::current (LOCATIO
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_externFunctionMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_externFunctionMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @externFunctionMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_externFunctionMap::UpEnumerator_externFunctionMap (const GGS_externFunctionMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_externFunctionMap_2E_element UpEnumerator_externFunctionMap::current (LOCATION_ARGS) const {
+  const cMapElement_externFunctionMap * p = (const cMapElement_externFunctionMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_externFunctionMap) ;
+  return GGS_externFunctionMap_2E_element (p->mProperty_lkey) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_externFunctionMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @externFunctionMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externFunctionMap ("externFunctionMap",
@@ -1501,9 +2006,7 @@ GGS_transientClassDeclarationAST GGS_transientClassDeclarationAST_2E_weak::bang_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @transientClassDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientClassDeclarationAST_2E_weak ("transientClassDeclarationAST.weak",
@@ -1612,9 +2115,7 @@ GGS_enumerationDeclarationAST GGS_enumerationDeclarationAST_2E_weak::bang_enumer
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @enumerationDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationDeclarationAST_2E_weak ("enumerationDeclarationAST.weak",
@@ -1815,7 +2316,7 @@ GGS_enumConstantMap GGS_enumConstantMap::add_operation (const GGS_enumConstantMa
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   GGS_enumConstantMap result = *this ;
-  cEnumerator_enumConstantMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_enumConstantMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIndex (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -1901,16 +2402,17 @@ cMapElement_enumConstantMap * GGS_enumConstantMap::readWriteAccessForWithInstruc
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @enumConstantMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_enumConstantMap::cEnumerator_enumConstantMap (const GGS_enumConstantMap & inEnumeratedObject,
-                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_enumConstantMap::DownEnumerator_enumConstantMap (const GGS_enumConstantMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumConstantMap_2E_element cEnumerator_enumConstantMap::current (LOCATION_ARGS) const {
+GGS_enumConstantMap_2E_element DownEnumerator_enumConstantMap::current (LOCATION_ARGS) const {
   const cMapElement_enumConstantMap * p = (const cMapElement_enumConstantMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_enumConstantMap) ;
   return GGS_enumConstantMap_2E_element (p->mProperty_lkey, p->mProperty_mIndex) ;
@@ -1918,7 +2420,7 @@ GGS_enumConstantMap_2E_element cEnumerator_enumConstantMap::current (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_enumConstantMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_enumConstantMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -1926,16 +2428,48 @@ GGS_lstring cEnumerator_enumConstantMap::current_lkey (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_enumConstantMap::current_mIndex (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_enumConstantMap::current_mIndex (LOCATION_ARGS) const {
   const cMapElement_enumConstantMap * p = (const cMapElement_enumConstantMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_enumConstantMap) ;
   return p->mProperty_mIndex ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @enumConstantMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_enumConstantMap::UpEnumerator_enumConstantMap (const GGS_enumConstantMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_enumConstantMap_2E_element UpEnumerator_enumConstantMap::current (LOCATION_ARGS) const {
+  const cMapElement_enumConstantMap * p = (const cMapElement_enumConstantMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_enumConstantMap) ;
+  return GGS_enumConstantMap_2E_element (p->mProperty_lkey, p->mProperty_mIndex) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_enumConstantMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_enumConstantMap::current_mIndex (LOCATION_ARGS) const {
+  const cMapElement_enumConstantMap * p = (const cMapElement_enumConstantMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_enumConstantMap) ;
+  return p->mProperty_mIndex ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @enumConstantMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumConstantMap ("enumConstantMap",
@@ -1975,9 +2509,7 @@ GGS_enumConstantMap GGS_enumConstantMap::extractObject (const GGS_object & inObj
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@enumFunAssociationSortedList' sorted list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cSortedListElement_enumFunAssociationSortedList : public cSortedListElement {
@@ -2240,16 +2772,17 @@ void GGS_enumFunAssociationSortedList::method_greatest (GGS_uint & outOperand0,
 }
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @enumFunAssociationSortedList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_enumFunAssociationSortedList::cEnumerator_enumFunAssociationSortedList (const GGS_enumFunAssociationSortedList & inEnumeratedObject,
-                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_enumFunAssociationSortedList::DownEnumerator_enumFunAssociationSortedList (const GGS_enumFunAssociationSortedList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumFunAssociationSortedList_2E_element cEnumerator_enumFunAssociationSortedList::current (LOCATION_ARGS) const {
+GGS_enumFunAssociationSortedList_2E_element DownEnumerator_enumFunAssociationSortedList::current (LOCATION_ARGS) const {
   const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
   return p->mObject ;
@@ -2257,7 +2790,7 @@ GGS_enumFunAssociationSortedList_2E_element cEnumerator_enumFunAssociationSorted
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_enumFunAssociationSortedList::current_mIndex (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_enumFunAssociationSortedList::current_mIndex (LOCATION_ARGS) const {
   const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
   return p->mObject.mProperty_mIndex ;
@@ -2265,7 +2798,7 @@ GGS_uint cEnumerator_enumFunAssociationSortedList::current_mIndex (LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_enumFunAssociationSortedList::current_mAssociatedString (LOCATION_ARGS) const {
+GGS_string DownEnumerator_enumFunAssociationSortedList::current_mAssociatedString (LOCATION_ARGS) const {
   const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
   return p->mObject.mProperty_mAssociatedString ;
@@ -2274,9 +2807,42 @@ GGS_string cEnumerator_enumFunAssociationSortedList::current_mAssociatedString (
 
 
 //--------------------------------------------------------------------------------------------------
-//
+// Up Enumerator for @enumFunAssociationSortedList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_enumFunAssociationSortedList::UpEnumerator_enumFunAssociationSortedList (const GGS_enumFunAssociationSortedList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_enumFunAssociationSortedList_2E_element UpEnumerator_enumFunAssociationSortedList::current (LOCATION_ARGS) const {
+  const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
+  return p->mObject ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_enumFunAssociationSortedList::current_mIndex (LOCATION_ARGS) const {
+  const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
+  return p->mObject.mProperty_mIndex ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_enumFunAssociationSortedList::current_mAssociatedString (LOCATION_ARGS) const {
+  const cSortedListElement_enumFunAssociationSortedList * p = (const cSortedListElement_enumFunAssociationSortedList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cSortedListElement_enumFunAssociationSortedList) ;
+  return p->mObject.mProperty_mAssociatedString ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
 //     @enumFunAssociationSortedList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFunAssociationSortedList ("enumFunAssociationSortedList",
@@ -2477,7 +3043,7 @@ GGS_enumFuncMap GGS_enumFuncMap::add_operation (const GGS_enumFuncMap & inOperan
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) const {
   GGS_enumFuncMap result = *this ;
-  cEnumerator_enumFuncMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_enumFuncMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mAssociationSortedList (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -2563,16 +3129,17 @@ cMapElement_enumFuncMap * GGS_enumFuncMap::readWriteAccessForWithInstruction (Co
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @enumFuncMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_enumFuncMap::cEnumerator_enumFuncMap (const GGS_enumFuncMap & inEnumeratedObject,
-                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_enumFuncMap::DownEnumerator_enumFuncMap (const GGS_enumFuncMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumFuncMap_2E_element cEnumerator_enumFuncMap::current (LOCATION_ARGS) const {
+GGS_enumFuncMap_2E_element DownEnumerator_enumFuncMap::current (LOCATION_ARGS) const {
   const cMapElement_enumFuncMap * p = (const cMapElement_enumFuncMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_enumFuncMap) ;
   return GGS_enumFuncMap_2E_element (p->mProperty_lkey, p->mProperty_mAssociationSortedList) ;
@@ -2580,7 +3147,7 @@ GGS_enumFuncMap_2E_element cEnumerator_enumFuncMap::current (LOCATION_ARGS) cons
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_enumFuncMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_enumFuncMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -2588,16 +3155,48 @@ GGS_lstring cEnumerator_enumFuncMap::current_lkey (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumFunAssociationSortedList cEnumerator_enumFuncMap::current_mAssociationSortedList (LOCATION_ARGS) const {
+GGS_enumFunAssociationSortedList DownEnumerator_enumFuncMap::current_mAssociationSortedList (LOCATION_ARGS) const {
   const cMapElement_enumFuncMap * p = (const cMapElement_enumFuncMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_enumFuncMap) ;
   return p->mProperty_mAssociationSortedList ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @enumFuncMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_enumFuncMap::UpEnumerator_enumFuncMap (const GGS_enumFuncMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_enumFuncMap_2E_element UpEnumerator_enumFuncMap::current (LOCATION_ARGS) const {
+  const cMapElement_enumFuncMap * p = (const cMapElement_enumFuncMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_enumFuncMap) ;
+  return GGS_enumFuncMap_2E_element (p->mProperty_lkey, p->mProperty_mAssociationSortedList) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_enumFuncMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_enumFunAssociationSortedList UpEnumerator_enumFuncMap::current_mAssociationSortedList (LOCATION_ARGS) const {
+  const cMapElement_enumFuncMap * p = (const cMapElement_enumFuncMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_enumFuncMap) ;
+  return p->mProperty_mAssociationSortedList ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @enumFuncMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumFuncMap ("enumFuncMap",
@@ -2690,9 +3289,7 @@ acStrongPtr_class (inCompiler COMMA_THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @abstractFileGeneration generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGeneration ("abstractFileGeneration",
@@ -2801,9 +3398,7 @@ GGS_abstractFileGeneration GGS_abstractFileGeneration_2E_weak::bang_abstractFile
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @abstractFileGeneration.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractFileGeneration_2E_weak ("abstractFileGeneration.weak",
@@ -3338,9 +3933,7 @@ ComparisonResult GGS_typeKind::objectCompare (const GGS_typeKind & inOperand) co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @typeKind generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind ("typeKind",
@@ -3449,9 +4042,7 @@ GGS_atomicClassDeclarationAST GGS_atomicClassDeclarationAST_2E_weak::bang_atomic
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @atomicClassDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicClassDeclarationAST_2E_weak ("atomicClassDeclarationAST.weak",
@@ -3942,16 +4533,17 @@ GGS_abstractDefaultValue GGS_simpleStoredPropertyList::getter_mDefaultValueAtInd
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @simpleStoredPropertyList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_simpleStoredPropertyList::cEnumerator_simpleStoredPropertyList (const GGS_simpleStoredPropertyList & inEnumeratedObject,
-                                                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_simpleStoredPropertyList::DownEnumerator_simpleStoredPropertyList (const GGS_simpleStoredPropertyList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_simpleStoredPropertyList_2E_element cEnumerator_simpleStoredPropertyList::current (LOCATION_ARGS) const {
+GGS_simpleStoredPropertyList_2E_element DownEnumerator_simpleStoredPropertyList::current (LOCATION_ARGS) const {
   const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
   return p->mObject ;
@@ -3960,7 +4552,7 @@ GGS_simpleStoredPropertyList_2E_element cEnumerator_simpleStoredPropertyList::cu
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_simpleStoredPropertyList::current_mPropertyTypeName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_simpleStoredPropertyList::current_mPropertyTypeName (LOCATION_ARGS) const {
   const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
   return p->mObject.mProperty_mPropertyTypeName ;
@@ -3968,7 +4560,7 @@ GGS_lstring cEnumerator_simpleStoredPropertyList::current_mPropertyTypeName (LOC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_simpleStoredPropertyList::current_mPropertyName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_simpleStoredPropertyList::current_mPropertyName (LOCATION_ARGS) const {
   const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
   return p->mObject.mProperty_mPropertyName ;
@@ -3976,7 +4568,51 @@ GGS_lstring cEnumerator_simpleStoredPropertyList::current_mPropertyName (LOCATIO
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractDefaultValue cEnumerator_simpleStoredPropertyList::current_mDefaultValue (LOCATION_ARGS) const {
+GGS_abstractDefaultValue DownEnumerator_simpleStoredPropertyList::current_mDefaultValue (LOCATION_ARGS) const {
+  const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
+  return p->mObject.mProperty_mDefaultValue ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @simpleStoredPropertyList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_simpleStoredPropertyList::UpEnumerator_simpleStoredPropertyList (const GGS_simpleStoredPropertyList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_simpleStoredPropertyList_2E_element UpEnumerator_simpleStoredPropertyList::current (LOCATION_ARGS) const {
+  const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_simpleStoredPropertyList::current_mPropertyTypeName (LOCATION_ARGS) const {
+  const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
+  return p->mObject.mProperty_mPropertyTypeName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_simpleStoredPropertyList::current_mPropertyName (LOCATION_ARGS) const {
+  const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
+  return p->mObject.mProperty_mPropertyName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractDefaultValue UpEnumerator_simpleStoredPropertyList::current_mDefaultValue (LOCATION_ARGS) const {
   const cCollectionElement_simpleStoredPropertyList * p = (const cCollectionElement_simpleStoredPropertyList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_simpleStoredPropertyList) ;
   return p->mObject.mProperty_mDefaultValue ;
@@ -3986,9 +4622,7 @@ GGS_abstractDefaultValue cEnumerator_simpleStoredPropertyList::current_mDefaultV
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @simpleStoredPropertyList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropertyList ("simpleStoredPropertyList",
@@ -4097,9 +4731,7 @@ GGS_entityDeclarationAST GGS_entityDeclarationAST_2E_weak::bang_entityDeclaratio
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @entityDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAST_2E_weak ("entityDeclarationAST.weak",
@@ -4478,16 +5110,17 @@ GGS_propertyGeneration GGS_propertyGenerationList::getter_mPropertyAtIndex (cons
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @propertyGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_propertyGenerationList::cEnumerator_propertyGenerationList (const GGS_propertyGenerationList & inEnumeratedObject,
-                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_propertyGenerationList::DownEnumerator_propertyGenerationList (const GGS_propertyGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_propertyGenerationList_2E_element cEnumerator_propertyGenerationList::current (LOCATION_ARGS) const {
+GGS_propertyGenerationList_2E_element DownEnumerator_propertyGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_propertyGenerationList * p = (const cCollectionElement_propertyGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_propertyGenerationList) ;
   return p->mObject ;
@@ -4496,7 +5129,35 @@ GGS_propertyGenerationList_2E_element cEnumerator_propertyGenerationList::curren
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_propertyGeneration cEnumerator_propertyGenerationList::current_mProperty (LOCATION_ARGS) const {
+GGS_propertyGeneration DownEnumerator_propertyGenerationList::current_mProperty (LOCATION_ARGS) const {
+  const cCollectionElement_propertyGenerationList * p = (const cCollectionElement_propertyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_propertyGenerationList) ;
+  return p->mObject.mProperty_mProperty ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @propertyGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_propertyGenerationList::UpEnumerator_propertyGenerationList (const GGS_propertyGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_propertyGenerationList_2E_element UpEnumerator_propertyGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_propertyGenerationList * p = (const cCollectionElement_propertyGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_propertyGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_propertyGeneration UpEnumerator_propertyGenerationList::current_mProperty (LOCATION_ARGS) const {
   const cCollectionElement_propertyGenerationList * p = (const cCollectionElement_propertyGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_propertyGenerationList) ;
   return p->mObject.mProperty_mProperty ;
@@ -4506,9 +5167,7 @@ GGS_propertyGeneration cEnumerator_propertyGenerationList::current_mProperty (LO
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @propertyGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGenerationList ("propertyGenerationList",
@@ -4617,9 +5276,7 @@ GGS_entityForGeneration GGS_entityForGeneration_2E_weak::bang_entityForGeneratio
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @entityForGeneration.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityForGeneration_2E_weak ("entityForGeneration.weak",
@@ -5054,16 +5711,17 @@ GGS_lstringlist GGS_entityListForGeneratingEBManagedObjectContext::getter_mObsol
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @entityListForGeneratingEBManagedObjectContext
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_entityListForGeneratingEBManagedObjectContext::cEnumerator_entityListForGeneratingEBManagedObjectContext (const GGS_entityListForGeneratingEBManagedObjectContext & inEnumeratedObject,
-                                                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_entityListForGeneratingEBManagedObjectContext::DownEnumerator_entityListForGeneratingEBManagedObjectContext (const GGS_entityListForGeneratingEBManagedObjectContext & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_entityListForGeneratingEBManagedObjectContext_2E_element cEnumerator_entityListForGeneratingEBManagedObjectContext::current (LOCATION_ARGS) const {
+GGS_entityListForGeneratingEBManagedObjectContext_2E_element DownEnumerator_entityListForGeneratingEBManagedObjectContext::current (LOCATION_ARGS) const {
   const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
   return p->mObject ;
@@ -5072,7 +5730,7 @@ GGS_entityListForGeneratingEBManagedObjectContext_2E_element cEnumerator_entityL
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_entityListForGeneratingEBManagedObjectContext::current_mEntityName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_entityListForGeneratingEBManagedObjectContext::current_mEntityName (LOCATION_ARGS) const {
   const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
   return p->mObject.mProperty_mEntityName ;
@@ -5080,7 +5738,43 @@ GGS_string cEnumerator_entityListForGeneratingEBManagedObjectContext::current_mE
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist cEnumerator_entityListForGeneratingEBManagedObjectContext::current_mObsoleteEntityNames (LOCATION_ARGS) const {
+GGS_lstringlist DownEnumerator_entityListForGeneratingEBManagedObjectContext::current_mObsoleteEntityNames (LOCATION_ARGS) const {
+  const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
+  return p->mObject.mProperty_mObsoleteEntityNames ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @entityListForGeneratingEBManagedObjectContext
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_entityListForGeneratingEBManagedObjectContext::UpEnumerator_entityListForGeneratingEBManagedObjectContext (const GGS_entityListForGeneratingEBManagedObjectContext & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_entityListForGeneratingEBManagedObjectContext_2E_element UpEnumerator_entityListForGeneratingEBManagedObjectContext::current (LOCATION_ARGS) const {
+  const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_entityListForGeneratingEBManagedObjectContext::current_mEntityName (LOCATION_ARGS) const {
+  const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
+  return p->mObject.mProperty_mEntityName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist UpEnumerator_entityListForGeneratingEBManagedObjectContext::current_mObsoleteEntityNames (LOCATION_ARGS) const {
   const cCollectionElement_entityListForGeneratingEBManagedObjectContext * p = (const cCollectionElement_entityListForGeneratingEBManagedObjectContext *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_entityListForGeneratingEBManagedObjectContext) ;
   return p->mObject.mProperty_mObsoleteEntityNames ;
@@ -5090,9 +5784,7 @@ GGS_lstringlist cEnumerator_entityListForGeneratingEBManagedObjectContext::curre
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @entityListForGeneratingEBManagedObjectContext generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityListForGeneratingEBManagedObjectContext ("entityListForGeneratingEBManagedObjectContext",
@@ -5863,16 +6555,17 @@ GGS_graphicController GGS_outletDeclarationList::getter_mGraphicControllerAtInde
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @outletDeclarationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_outletDeclarationList::cEnumerator_outletDeclarationList (const GGS_outletDeclarationList & inEnumeratedObject,
-                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_outletDeclarationList::DownEnumerator_outletDeclarationList (const GGS_outletDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_outletDeclarationList_2E_element cEnumerator_outletDeclarationList::current (LOCATION_ARGS) const {
+GGS_outletDeclarationList_2E_element DownEnumerator_outletDeclarationList::current (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject ;
@@ -5881,7 +6574,7 @@ GGS_outletDeclarationList_2E_element cEnumerator_outletDeclarationList::current 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_outletDeclarationList::current_mOutletTypeName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_outletDeclarationList::current_mOutletTypeName (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mOutletTypeName ;
@@ -5889,7 +6582,7 @@ GGS_lstring cEnumerator_outletDeclarationList::current_mOutletTypeName (LOCATION
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_outletDeclarationList::current_mOutletName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_outletDeclarationList::current_mOutletName (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mOutletName ;
@@ -5897,7 +6590,7 @@ GGS_lstring cEnumerator_outletDeclarationList::current_mOutletName (LOCATION_ARG
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_tableValueBinding cEnumerator_outletDeclarationList::current_mTableValueBindingDescriptor (LOCATION_ARGS) const {
+GGS_tableValueBinding DownEnumerator_outletDeclarationList::current_mTableValueBindingDescriptor (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mTableValueBindingDescriptor ;
@@ -5905,7 +6598,7 @@ GGS_tableValueBinding cEnumerator_outletDeclarationList::current_mTableValueBind
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_runActionDescriptor cEnumerator_outletDeclarationList::current_mRunDescriptor (LOCATION_ARGS) const {
+GGS_runActionDescriptor DownEnumerator_outletDeclarationList::current_mRunDescriptor (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mRunDescriptor ;
@@ -5913,7 +6606,7 @@ GGS_runActionDescriptor cEnumerator_outletDeclarationList::current_mRunDescripto
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mEnabledBindingDescriptor (LOCATION_ARGS) const {
+GGS_multipleBindingDescriptor DownEnumerator_outletDeclarationList::current_mEnabledBindingDescriptor (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mEnabledBindingDescriptor ;
@@ -5921,7 +6614,7 @@ GGS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mEnable
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mHiddenBindingDescriptor (LOCATION_ARGS) const {
+GGS_multipleBindingDescriptor DownEnumerator_outletDeclarationList::current_mHiddenBindingDescriptor (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mHiddenBindingDescriptor ;
@@ -5929,7 +6622,7 @@ GGS_multipleBindingDescriptor cEnumerator_outletDeclarationList::current_mHidden
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_regularBindingList cEnumerator_outletDeclarationList::current_mRegularBindingList (LOCATION_ARGS) const {
+GGS_regularBindingList DownEnumerator_outletDeclarationList::current_mRegularBindingList (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mRegularBindingList ;
@@ -5937,7 +6630,91 @@ GGS_regularBindingList cEnumerator_outletDeclarationList::current_mRegularBindin
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_graphicController cEnumerator_outletDeclarationList::current_mGraphicController (LOCATION_ARGS) const {
+GGS_graphicController DownEnumerator_outletDeclarationList::current_mGraphicController (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mGraphicController ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @outletDeclarationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_outletDeclarationList::UpEnumerator_outletDeclarationList (const GGS_outletDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_outletDeclarationList_2E_element UpEnumerator_outletDeclarationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_outletDeclarationList::current_mOutletTypeName (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mOutletTypeName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_outletDeclarationList::current_mOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_tableValueBinding UpEnumerator_outletDeclarationList::current_mTableValueBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mTableValueBindingDescriptor ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_runActionDescriptor UpEnumerator_outletDeclarationList::current_mRunDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mRunDescriptor ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingDescriptor UpEnumerator_outletDeclarationList::current_mEnabledBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mEnabledBindingDescriptor ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingDescriptor UpEnumerator_outletDeclarationList::current_mHiddenBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mHiddenBindingDescriptor ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_regularBindingList UpEnumerator_outletDeclarationList::current_mRegularBindingList (LOCATION_ARGS) const {
+  const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
+  return p->mObject.mProperty_mRegularBindingList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_graphicController UpEnumerator_outletDeclarationList::current_mGraphicController (LOCATION_ARGS) const {
   const cCollectionElement_outletDeclarationList * p = (const cCollectionElement_outletDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_outletDeclarationList) ;
   return p->mObject.mProperty_mGraphicController ;
@@ -5947,9 +6724,7 @@ GGS_graphicController cEnumerator_outletDeclarationList::current_mGraphicControl
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @outletDeclarationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationList ("outletDeclarationList",
@@ -6384,16 +7159,17 @@ GGS_multipleBindingDescriptor GGS_arrayControllerBindingListAST::getter_mHiddenS
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @arrayControllerBindingListAST
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_arrayControllerBindingListAST::cEnumerator_arrayControllerBindingListAST (const GGS_arrayControllerBindingListAST & inEnumeratedObject,
-                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_arrayControllerBindingListAST::DownEnumerator_arrayControllerBindingListAST (const GGS_arrayControllerBindingListAST & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_arrayControllerBindingListAST_2E_element cEnumerator_arrayControllerBindingListAST::current (LOCATION_ARGS) const {
+GGS_arrayControllerBindingListAST_2E_element DownEnumerator_arrayControllerBindingListAST::current (LOCATION_ARGS) const {
   const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
   return p->mObject ;
@@ -6402,7 +7178,7 @@ GGS_arrayControllerBindingListAST_2E_element cEnumerator_arrayControllerBindingL
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_arrayControllerBindingListAST::current_mControllerName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_arrayControllerBindingListAST::current_mControllerName (LOCATION_ARGS) const {
   const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
   return p->mObject.mProperty_mControllerName ;
@@ -6410,7 +7186,43 @@ GGS_lstring cEnumerator_arrayControllerBindingListAST::current_mControllerName (
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingDescriptor cEnumerator_arrayControllerBindingListAST::current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const {
+GGS_multipleBindingDescriptor DownEnumerator_arrayControllerBindingListAST::current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
+  return p->mObject.mProperty_mHiddenSelectionViewBindingDescriptor ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @arrayControllerBindingListAST
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_arrayControllerBindingListAST::UpEnumerator_arrayControllerBindingListAST (const GGS_arrayControllerBindingListAST & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_arrayControllerBindingListAST_2E_element UpEnumerator_arrayControllerBindingListAST::current (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_arrayControllerBindingListAST::current_mControllerName (LOCATION_ARGS) const {
+  const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
+  return p->mObject.mProperty_mControllerName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingDescriptor UpEnumerator_arrayControllerBindingListAST::current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const {
   const cCollectionElement_arrayControllerBindingListAST * p = (const cCollectionElement_arrayControllerBindingListAST *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_arrayControllerBindingListAST) ;
   return p->mObject.mProperty_mHiddenSelectionViewBindingDescriptor ;
@@ -6420,9 +7232,7 @@ GGS_multipleBindingDescriptor cEnumerator_arrayControllerBindingListAST::current
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @arrayControllerBindingListAST generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBindingListAST ("arrayControllerBindingListAST",
@@ -6857,16 +7667,17 @@ GGS_astAbstractViewDeclaration GGS_astViewDeclarationList::getter_mViewAtIndex (
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @astViewDeclarationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_astViewDeclarationList::cEnumerator_astViewDeclarationList (const GGS_astViewDeclarationList & inEnumeratedObject,
-                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_astViewDeclarationList::DownEnumerator_astViewDeclarationList (const GGS_astViewDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astViewDeclarationList_2E_element cEnumerator_astViewDeclarationList::current (LOCATION_ARGS) const {
+GGS_astViewDeclarationList_2E_element DownEnumerator_astViewDeclarationList::current (LOCATION_ARGS) const {
   const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
   return p->mObject ;
@@ -6875,7 +7686,7 @@ GGS_astViewDeclarationList_2E_element cEnumerator_astViewDeclarationList::curren
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_astViewDeclarationList::current_mViewName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_astViewDeclarationList::current_mViewName (LOCATION_ARGS) const {
   const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
   return p->mObject.mProperty_mViewName ;
@@ -6883,7 +7694,43 @@ GGS_lstring cEnumerator_astViewDeclarationList::current_mViewName (LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAbstractViewDeclaration cEnumerator_astViewDeclarationList::current_mView (LOCATION_ARGS) const {
+GGS_astAbstractViewDeclaration DownEnumerator_astViewDeclarationList::current_mView (LOCATION_ARGS) const {
+  const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
+  return p->mObject.mProperty_mView ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @astViewDeclarationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_astViewDeclarationList::UpEnumerator_astViewDeclarationList (const GGS_astViewDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element UpEnumerator_astViewDeclarationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_astViewDeclarationList::current_mViewName (LOCATION_ARGS) const {
+  const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
+  return p->mObject.mProperty_mViewName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAbstractViewDeclaration UpEnumerator_astViewDeclarationList::current_mView (LOCATION_ARGS) const {
   const cCollectionElement_astViewDeclarationList * p = (const cCollectionElement_astViewDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astViewDeclarationList) ;
   return p->mObject.mProperty_mView ;
@@ -6893,9 +7740,7 @@ GGS_astAbstractViewDeclaration cEnumerator_astViewDeclarationList::current_mView
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @astViewDeclarationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astViewDeclarationList ("astViewDeclarationList",
@@ -7330,16 +8175,17 @@ GGS_lstringlist GGS_astAutoLayoutOutletLinkerList::getter_mOutletNameListAtIndex
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @astAutoLayoutOutletLinkerList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_astAutoLayoutOutletLinkerList::cEnumerator_astAutoLayoutOutletLinkerList (const GGS_astAutoLayoutOutletLinkerList & inEnumeratedObject,
-                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_astAutoLayoutOutletLinkerList::DownEnumerator_astAutoLayoutOutletLinkerList (const GGS_astAutoLayoutOutletLinkerList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutOutletLinkerList_2E_element cEnumerator_astAutoLayoutOutletLinkerList::current (LOCATION_ARGS) const {
+GGS_astAutoLayoutOutletLinkerList_2E_element DownEnumerator_astAutoLayoutOutletLinkerList::current (LOCATION_ARGS) const {
   const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
   return p->mObject ;
@@ -7348,7 +8194,7 @@ GGS_astAutoLayoutOutletLinkerList_2E_element cEnumerator_astAutoLayoutOutletLink
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_astAutoLayoutOutletLinkerList::current_mLinkerName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_astAutoLayoutOutletLinkerList::current_mLinkerName (LOCATION_ARGS) const {
   const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
   return p->mObject.mProperty_mLinkerName ;
@@ -7356,7 +8202,43 @@ GGS_lstring cEnumerator_astAutoLayoutOutletLinkerList::current_mLinkerName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist cEnumerator_astAutoLayoutOutletLinkerList::current_mOutletNameList (LOCATION_ARGS) const {
+GGS_lstringlist DownEnumerator_astAutoLayoutOutletLinkerList::current_mOutletNameList (LOCATION_ARGS) const {
+  const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
+  return p->mObject.mProperty_mOutletNameList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @astAutoLayoutOutletLinkerList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_astAutoLayoutOutletLinkerList::UpEnumerator_astAutoLayoutOutletLinkerList (const GGS_astAutoLayoutOutletLinkerList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutOutletLinkerList_2E_element UpEnumerator_astAutoLayoutOutletLinkerList::current (LOCATION_ARGS) const {
+  const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_astAutoLayoutOutletLinkerList::current_mLinkerName (LOCATION_ARGS) const {
+  const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
+  return p->mObject.mProperty_mLinkerName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist UpEnumerator_astAutoLayoutOutletLinkerList::current_mOutletNameList (LOCATION_ARGS) const {
   const cCollectionElement_astAutoLayoutOutletLinkerList * p = (const cCollectionElement_astAutoLayoutOutletLinkerList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_astAutoLayoutOutletLinkerList) ;
   return p->mObject.mProperty_mOutletNameList ;
@@ -7366,9 +8248,7 @@ GGS_lstringlist cEnumerator_astAutoLayoutOutletLinkerList::current_mOutletNameLi
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @astAutoLayoutOutletLinkerList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutOutletLinkerList ("astAutoLayoutOutletLinkerList",
@@ -7477,9 +8357,7 @@ GGS_autoLayoutDocumentDeclarationAST GGS_autoLayoutDocumentDeclarationAST_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @autoLayoutDocumentDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST_2E_weak ("autoLayoutDocumentDeclarationAST.weak",
@@ -7914,16 +8792,17 @@ GGS__32_stringlist GGS_autoLayoutOutletLinkerGenerationList::getter_mOutletNameA
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @autoLayoutOutletLinkerGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_autoLayoutOutletLinkerGenerationList::cEnumerator_autoLayoutOutletLinkerGenerationList (const GGS_autoLayoutOutletLinkerGenerationList & inEnumeratedObject,
-                                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_autoLayoutOutletLinkerGenerationList::DownEnumerator_autoLayoutOutletLinkerGenerationList (const GGS_autoLayoutOutletLinkerGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutOutletLinkerGenerationList_2E_element cEnumerator_autoLayoutOutletLinkerGenerationList::current (LOCATION_ARGS) const {
+GGS_autoLayoutOutletLinkerGenerationList_2E_element DownEnumerator_autoLayoutOutletLinkerGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
   return p->mObject ;
@@ -7932,7 +8811,7 @@ GGS_autoLayoutOutletLinkerGenerationList_2E_element cEnumerator_autoLayoutOutlet
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_autoLayoutOutletLinkerGenerationList::current_mLinkerName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_autoLayoutOutletLinkerGenerationList::current_mLinkerName (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
   return p->mObject.mProperty_mLinkerName ;
@@ -7940,7 +8819,43 @@ GGS_string cEnumerator_autoLayoutOutletLinkerGenerationList::current_mLinkerName
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_stringlist cEnumerator_autoLayoutOutletLinkerGenerationList::current_mOutletNameAndTypeNameList (LOCATION_ARGS) const {
+GGS__32_stringlist DownEnumerator_autoLayoutOutletLinkerGenerationList::current_mOutletNameAndTypeNameList (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
+  return p->mObject.mProperty_mOutletNameAndTypeNameList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @autoLayoutOutletLinkerGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_autoLayoutOutletLinkerGenerationList::UpEnumerator_autoLayoutOutletLinkerGenerationList (const GGS_autoLayoutOutletLinkerGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutOutletLinkerGenerationList_2E_element UpEnumerator_autoLayoutOutletLinkerGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_autoLayoutOutletLinkerGenerationList::current_mLinkerName (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
+  return p->mObject.mProperty_mLinkerName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS__32_stringlist UpEnumerator_autoLayoutOutletLinkerGenerationList::current_mOutletNameAndTypeNameList (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutOutletLinkerGenerationList * p = (const cCollectionElement_autoLayoutOutletLinkerGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutOutletLinkerGenerationList) ;
   return p->mObject.mProperty_mOutletNameAndTypeNameList ;
@@ -7950,9 +8865,7 @@ GGS__32_stringlist cEnumerator_autoLayoutOutletLinkerGenerationList::current_mOu
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @autoLayoutOutletLinkerGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutOutletLinkerGenerationList ("autoLayoutOutletLinkerGenerationList",
@@ -8142,7 +9055,7 @@ GGS_decoratedOutletMap GGS_decoratedOutletMap::add_operation (const GGS_decorate
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
   GGS_decoratedOutletMap result = *this ;
-  cEnumerator_decoratedOutletMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_decoratedOutletMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletTypeName (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -8228,16 +9141,17 @@ cMapElement_decoratedOutletMap * GGS_decoratedOutletMap::readWriteAccessForWithI
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @decoratedOutletMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_decoratedOutletMap::cEnumerator_decoratedOutletMap (const GGS_decoratedOutletMap & inEnumeratedObject,
-                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_decoratedOutletMap::DownEnumerator_decoratedOutletMap (const GGS_decoratedOutletMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_decoratedOutletMap_2E_element cEnumerator_decoratedOutletMap::current (LOCATION_ARGS) const {
+GGS_decoratedOutletMap_2E_element DownEnumerator_decoratedOutletMap::current (LOCATION_ARGS) const {
   const cMapElement_decoratedOutletMap * p = (const cMapElement_decoratedOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
   return GGS_decoratedOutletMap_2E_element (p->mProperty_lkey, p->mProperty_mOutletTypeName) ;
@@ -8245,7 +9159,7 @@ GGS_decoratedOutletMap_2E_element cEnumerator_decoratedOutletMap::current (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_decoratedOutletMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_decoratedOutletMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -8253,16 +9167,48 @@ GGS_lstring cEnumerator_decoratedOutletMap::current_lkey (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_decoratedOutletMap::current_mOutletTypeName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_decoratedOutletMap::current_mOutletTypeName (LOCATION_ARGS) const {
   const cMapElement_decoratedOutletMap * p = (const cMapElement_decoratedOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
   return p->mProperty_mOutletTypeName ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @decoratedOutletMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_decoratedOutletMap::UpEnumerator_decoratedOutletMap (const GGS_decoratedOutletMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_decoratedOutletMap_2E_element UpEnumerator_decoratedOutletMap::current (LOCATION_ARGS) const {
+  const cMapElement_decoratedOutletMap * p = (const cMapElement_decoratedOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
+  return GGS_decoratedOutletMap_2E_element (p->mProperty_lkey, p->mProperty_mOutletTypeName) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_decoratedOutletMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_decoratedOutletMap::current_mOutletTypeName (LOCATION_ARGS) const {
+  const cMapElement_decoratedOutletMap * p = (const cMapElement_decoratedOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_decoratedOutletMap) ;
+  return p->mProperty_mOutletTypeName ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @decoratedOutletMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_decoratedOutletMap ("decoratedOutletMap",
@@ -8461,7 +9407,7 @@ GGS_autoLayoutOutletMap GGS_autoLayoutOutletMap::add_operation (const GGS_autoLa
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutOutletMap result = *this ;
-  cEnumerator_autoLayoutOutletMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_autoLayoutOutletMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mAutoLayoutOutletTypeName (HERE), enumerator.current_mOutletIsArray (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -8580,16 +9526,17 @@ cMapElement_autoLayoutOutletMap * GGS_autoLayoutOutletMap::readWriteAccessForWit
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @autoLayoutOutletMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_autoLayoutOutletMap::cEnumerator_autoLayoutOutletMap (const GGS_autoLayoutOutletMap & inEnumeratedObject,
-                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_autoLayoutOutletMap::DownEnumerator_autoLayoutOutletMap (const GGS_autoLayoutOutletMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutOutletMap_2E_element cEnumerator_autoLayoutOutletMap::current (LOCATION_ARGS) const {
+GGS_autoLayoutOutletMap_2E_element DownEnumerator_autoLayoutOutletMap::current (LOCATION_ARGS) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
   return GGS_autoLayoutOutletMap_2E_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName, p->mProperty_mOutletIsArray) ;
@@ -8597,7 +9544,7 @@ GGS_autoLayoutOutletMap_2E_element cEnumerator_autoLayoutOutletMap::current (LOC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_autoLayoutOutletMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_autoLayoutOutletMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -8605,7 +9552,7 @@ GGS_lstring cEnumerator_autoLayoutOutletMap::current_lkey (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_autoLayoutOutletMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_autoLayoutOutletMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
   return p->mProperty_mAutoLayoutOutletTypeName ;
@@ -8613,16 +9560,56 @@ GGS_string cEnumerator_autoLayoutOutletMap::current_mAutoLayoutOutletTypeName (L
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_autoLayoutOutletMap::current_mOutletIsArray (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_autoLayoutOutletMap::current_mOutletIsArray (LOCATION_ARGS) const {
   const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
   return p->mProperty_mOutletIsArray ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @autoLayoutOutletMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_autoLayoutOutletMap::UpEnumerator_autoLayoutOutletMap (const GGS_autoLayoutOutletMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutOutletMap_2E_element UpEnumerator_autoLayoutOutletMap::current (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+  return GGS_autoLayoutOutletMap_2E_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName, p->mProperty_mOutletIsArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_autoLayoutOutletMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_autoLayoutOutletMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+  return p->mProperty_mAutoLayoutOutletTypeName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_autoLayoutOutletMap::current_mOutletIsArray (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutOutletMap * p = (const cMapElement_autoLayoutOutletMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutOutletMap) ;
+  return p->mProperty_mOutletIsArray ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @autoLayoutOutletMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutOutletMap ("autoLayoutOutletMap",
@@ -9169,16 +10156,17 @@ GGS_string GGS_actionBindingListForGeneration::getter_mTargetTypeNameAtIndex (co
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @actionBindingListForGeneration
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_actionBindingListForGeneration::cEnumerator_actionBindingListForGeneration (const GGS_actionBindingListForGeneration & inEnumeratedObject,
-                                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_actionBindingListForGeneration::DownEnumerator_actionBindingListForGeneration (const GGS_actionBindingListForGeneration & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_actionBindingListForGeneration_2E_element cEnumerator_actionBindingListForGeneration::current (LOCATION_ARGS) const {
+GGS_actionBindingListForGeneration_2E_element DownEnumerator_actionBindingListForGeneration::current (LOCATION_ARGS) const {
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject ;
@@ -9187,7 +10175,7 @@ GGS_actionBindingListForGeneration_2E_element cEnumerator_actionBindingListForGe
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_actionBindingListForGeneration::current_mOutletName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_actionBindingListForGeneration::current_mOutletName (LOCATION_ARGS) const {
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject.mProperty_mOutletName ;
@@ -9195,7 +10183,7 @@ GGS_string cEnumerator_actionBindingListForGeneration::current_mOutletName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_actionBindingListForGeneration::current_mTargetName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_actionBindingListForGeneration::current_mTargetName (LOCATION_ARGS) const {
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject.mProperty_mTargetName ;
@@ -9203,7 +10191,7 @@ GGS_string cEnumerator_actionBindingListForGeneration::current_mTargetName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_actionBindingListForGeneration::current_mActionName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_actionBindingListForGeneration::current_mActionName (LOCATION_ARGS) const {
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject.mProperty_mActionName ;
@@ -9211,7 +10199,59 @@ GGS_string cEnumerator_actionBindingListForGeneration::current_mActionName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_actionBindingListForGeneration::current_mTargetTypeName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_actionBindingListForGeneration::current_mTargetTypeName (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject.mProperty_mTargetTypeName ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @actionBindingListForGeneration
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_actionBindingListForGeneration::UpEnumerator_actionBindingListForGeneration (const GGS_actionBindingListForGeneration & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_actionBindingListForGeneration_2E_element UpEnumerator_actionBindingListForGeneration::current (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_actionBindingListForGeneration::current_mOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject.mProperty_mOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_actionBindingListForGeneration::current_mTargetName (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject.mProperty_mTargetName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_actionBindingListForGeneration::current_mActionName (LOCATION_ARGS) const {
+  const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
+  return p->mObject.mProperty_mActionName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_actionBindingListForGeneration::current_mTargetTypeName (LOCATION_ARGS) const {
   const cCollectionElement_actionBindingListForGeneration * p = (const cCollectionElement_actionBindingListForGeneration *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_actionBindingListForGeneration) ;
   return p->mObject.mProperty_mTargetTypeName ;
@@ -9221,9 +10261,7 @@ GGS_string cEnumerator_actionBindingListForGeneration::current_mTargetTypeName (
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @actionBindingListForGeneration generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionBindingListForGeneration ("actionBindingListForGeneration",
@@ -9770,16 +10808,17 @@ GGS_string GGS_regularBindingsGenerationList::getter_mBindingOptionsStringAtInde
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @regularBindingsGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_regularBindingsGenerationList::cEnumerator_regularBindingsGenerationList (const GGS_regularBindingsGenerationList & inEnumeratedObject,
-                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_regularBindingsGenerationList::DownEnumerator_regularBindingsGenerationList (const GGS_regularBindingsGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_regularBindingsGenerationList_2E_element cEnumerator_regularBindingsGenerationList::current (LOCATION_ARGS) const {
+GGS_regularBindingsGenerationList_2E_element DownEnumerator_regularBindingsGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
   return p->mObject ;
@@ -9788,7 +10827,7 @@ GGS_regularBindingsGenerationList_2E_element cEnumerator_regularBindingsGenerati
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_regularBindingsGenerationList::current_mOutletName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_regularBindingsGenerationList::current_mOutletName (LOCATION_ARGS) const {
   const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
   return p->mObject.mProperty_mOutletName ;
@@ -9796,7 +10835,7 @@ GGS_string cEnumerator_regularBindingsGenerationList::current_mOutletName (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_regularBindingsGenerationList::current_mBindingName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_regularBindingsGenerationList::current_mBindingName (LOCATION_ARGS) const {
   const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
   return p->mObject.mProperty_mBindingName ;
@@ -9804,7 +10843,7 @@ GGS_string cEnumerator_regularBindingsGenerationList::current_mBindingName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_boundObjectList cEnumerator_regularBindingsGenerationList::current_mBoundObjectList (LOCATION_ARGS) const {
+GGS_boundObjectList DownEnumerator_regularBindingsGenerationList::current_mBoundObjectList (LOCATION_ARGS) const {
   const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
   return p->mObject.mProperty_mBoundObjectList ;
@@ -9812,7 +10851,59 @@ GGS_boundObjectList cEnumerator_regularBindingsGenerationList::current_mBoundObj
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_regularBindingsGenerationList::current_mBindingOptionsString (LOCATION_ARGS) const {
+GGS_string DownEnumerator_regularBindingsGenerationList::current_mBindingOptionsString (LOCATION_ARGS) const {
+  const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
+  return p->mObject.mProperty_mBindingOptionsString ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @regularBindingsGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_regularBindingsGenerationList::UpEnumerator_regularBindingsGenerationList (const GGS_regularBindingsGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_regularBindingsGenerationList_2E_element UpEnumerator_regularBindingsGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_regularBindingsGenerationList::current_mOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
+  return p->mObject.mProperty_mOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_regularBindingsGenerationList::current_mBindingName (LOCATION_ARGS) const {
+  const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
+  return p->mObject.mProperty_mBindingName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_boundObjectList UpEnumerator_regularBindingsGenerationList::current_mBoundObjectList (LOCATION_ARGS) const {
+  const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
+  return p->mObject.mProperty_mBoundObjectList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_regularBindingsGenerationList::current_mBindingOptionsString (LOCATION_ARGS) const {
   const cCollectionElement_regularBindingsGenerationList * p = (const cCollectionElement_regularBindingsGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_regularBindingsGenerationList) ;
   return p->mObject.mProperty_mBindingOptionsString ;
@@ -9822,9 +10913,7 @@ GGS_string cEnumerator_regularBindingsGenerationList::current_mBindingOptionsStr
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @regularBindingsGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingsGenerationList ("regularBindingsGenerationList",
@@ -10315,16 +11404,17 @@ GGS_abstractBooleanMultipleBindingExpressionForGeneration GGS_multipleBindingGen
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @multipleBindingGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_multipleBindingGenerationList::cEnumerator_multipleBindingGenerationList (const GGS_multipleBindingGenerationList & inEnumeratedObject,
-                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_multipleBindingGenerationList::DownEnumerator_multipleBindingGenerationList (const GGS_multipleBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingGenerationList_2E_element cEnumerator_multipleBindingGenerationList::current (LOCATION_ARGS) const {
+GGS_multipleBindingGenerationList_2E_element DownEnumerator_multipleBindingGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
   return p->mObject ;
@@ -10333,7 +11423,7 @@ GGS_multipleBindingGenerationList_2E_element cEnumerator_multipleBindingGenerati
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_multipleBindingGenerationList::current_mOutletName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_multipleBindingGenerationList::current_mOutletName (LOCATION_ARGS) const {
   const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
   return p->mObject.mProperty_mOutletName ;
@@ -10341,7 +11431,7 @@ GGS_string cEnumerator_multipleBindingGenerationList::current_mOutletName (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_multipleBindingGenerationList::current_mBindingName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_multipleBindingGenerationList::current_mBindingName (LOCATION_ARGS) const {
   const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
   return p->mObject.mProperty_mBindingName ;
@@ -10349,7 +11439,51 @@ GGS_string cEnumerator_multipleBindingGenerationList::current_mBindingName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractBooleanMultipleBindingExpressionForGeneration cEnumerator_multipleBindingGenerationList::current_mBoundObjectExpression (LOCATION_ARGS) const {
+GGS_abstractBooleanMultipleBindingExpressionForGeneration DownEnumerator_multipleBindingGenerationList::current_mBoundObjectExpression (LOCATION_ARGS) const {
+  const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
+  return p->mObject.mProperty_mBoundObjectExpression ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @multipleBindingGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_multipleBindingGenerationList::UpEnumerator_multipleBindingGenerationList (const GGS_multipleBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingGenerationList_2E_element UpEnumerator_multipleBindingGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_multipleBindingGenerationList::current_mOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
+  return p->mObject.mProperty_mOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_multipleBindingGenerationList::current_mBindingName (LOCATION_ARGS) const {
+  const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
+  return p->mObject.mProperty_mBindingName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractBooleanMultipleBindingExpressionForGeneration UpEnumerator_multipleBindingGenerationList::current_mBoundObjectExpression (LOCATION_ARGS) const {
   const cCollectionElement_multipleBindingGenerationList * p = (const cCollectionElement_multipleBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_multipleBindingGenerationList) ;
   return p->mObject.mProperty_mBoundObjectExpression ;
@@ -10359,9 +11493,7 @@ GGS_abstractBooleanMultipleBindingExpressionForGeneration cEnumerator_multipleBi
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @multipleBindingGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingGenerationList ("multipleBindingGenerationList",
@@ -10796,16 +11928,17 @@ GGS_string GGS_tableViewBindingGenerationList::getter_mTableValueBindingControll
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @tableViewBindingGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_tableViewBindingGenerationList::cEnumerator_tableViewBindingGenerationList (const GGS_tableViewBindingGenerationList & inEnumeratedObject,
-                                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_tableViewBindingGenerationList::DownEnumerator_tableViewBindingGenerationList (const GGS_tableViewBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_tableViewBindingGenerationList_2E_element cEnumerator_tableViewBindingGenerationList::current (LOCATION_ARGS) const {
+GGS_tableViewBindingGenerationList_2E_element DownEnumerator_tableViewBindingGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
   return p->mObject ;
@@ -10814,7 +11947,7 @@ GGS_tableViewBindingGenerationList_2E_element cEnumerator_tableViewBindingGenera
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_tableViewBindingGenerationList::current_mTableValueBindingOutletName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_tableViewBindingGenerationList::current_mTableValueBindingOutletName (LOCATION_ARGS) const {
   const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
   return p->mObject.mProperty_mTableValueBindingOutletName ;
@@ -10822,7 +11955,43 @@ GGS_string cEnumerator_tableViewBindingGenerationList::current_mTableValueBindin
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_tableViewBindingGenerationList::current_mTableValueBindingControllerName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_tableViewBindingGenerationList::current_mTableValueBindingControllerName (LOCATION_ARGS) const {
+  const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
+  return p->mObject.mProperty_mTableValueBindingControllerName ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @tableViewBindingGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_tableViewBindingGenerationList::UpEnumerator_tableViewBindingGenerationList (const GGS_tableViewBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_tableViewBindingGenerationList_2E_element UpEnumerator_tableViewBindingGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_tableViewBindingGenerationList::current_mTableValueBindingOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
+  return p->mObject.mProperty_mTableValueBindingOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_tableViewBindingGenerationList::current_mTableValueBindingControllerName (LOCATION_ARGS) const {
   const cCollectionElement_tableViewBindingGenerationList * p = (const cCollectionElement_tableViewBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_tableViewBindingGenerationList) ;
   return p->mObject.mProperty_mTableValueBindingControllerName ;
@@ -10832,9 +12001,7 @@ GGS_string cEnumerator_tableViewBindingGenerationList::current_mTableValueBindin
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @tableViewBindingGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableViewBindingGenerationList ("tableViewBindingGenerationList",
@@ -11269,16 +12436,17 @@ GGS_string GGS_ebViewGraphicControllerBindingGenerationList::getter_mArrayContro
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @ebViewGraphicControllerBindingGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_ebViewGraphicControllerBindingGenerationList::cEnumerator_ebViewGraphicControllerBindingGenerationList (const GGS_ebViewGraphicControllerBindingGenerationList & inEnumeratedObject,
-                                                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_ebViewGraphicControllerBindingGenerationList::DownEnumerator_ebViewGraphicControllerBindingGenerationList (const GGS_ebViewGraphicControllerBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ebViewGraphicControllerBindingGenerationList_2E_element cEnumerator_ebViewGraphicControllerBindingGenerationList::current (LOCATION_ARGS) const {
+GGS_ebViewGraphicControllerBindingGenerationList_2E_element DownEnumerator_ebViewGraphicControllerBindingGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
   return p->mObject ;
@@ -11287,7 +12455,7 @@ GGS_ebViewGraphicControllerBindingGenerationList_2E_element cEnumerator_ebViewGr
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_ebViewGraphicControllerBindingGenerationList::current_mEBViewOutletName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_ebViewGraphicControllerBindingGenerationList::current_mEBViewOutletName (LOCATION_ARGS) const {
   const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
   return p->mObject.mProperty_mEBViewOutletName ;
@@ -11295,7 +12463,43 @@ GGS_string cEnumerator_ebViewGraphicControllerBindingGenerationList::current_mEB
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_ebViewGraphicControllerBindingGenerationList::current_mArrayControllerControllerName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_ebViewGraphicControllerBindingGenerationList::current_mArrayControllerControllerName (LOCATION_ARGS) const {
+  const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
+  return p->mObject.mProperty_mArrayControllerControllerName ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @ebViewGraphicControllerBindingGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_ebViewGraphicControllerBindingGenerationList::UpEnumerator_ebViewGraphicControllerBindingGenerationList (const GGS_ebViewGraphicControllerBindingGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ebViewGraphicControllerBindingGenerationList_2E_element UpEnumerator_ebViewGraphicControllerBindingGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_ebViewGraphicControllerBindingGenerationList::current_mEBViewOutletName (LOCATION_ARGS) const {
+  const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
+  return p->mObject.mProperty_mEBViewOutletName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_ebViewGraphicControllerBindingGenerationList::current_mArrayControllerControllerName (LOCATION_ARGS) const {
   const cCollectionElement_ebViewGraphicControllerBindingGenerationList * p = (const cCollectionElement_ebViewGraphicControllerBindingGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ebViewGraphicControllerBindingGenerationList) ;
   return p->mObject.mProperty_mArrayControllerControllerName ;
@@ -11305,9 +12509,7 @@ GGS_string cEnumerator_ebViewGraphicControllerBindingGenerationList::current_mAr
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ebViewGraphicControllerBindingGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ebViewGraphicControllerBindingGenerationList ("ebViewGraphicControllerBindingGenerationList",
@@ -11742,16 +12944,17 @@ GGS_abstractViewGeneration GGS_viewGenerationList::getter_mViewAtIndex (const GG
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @viewGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_viewGenerationList::cEnumerator_viewGenerationList (const GGS_viewGenerationList & inEnumeratedObject,
-                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_viewGenerationList::DownEnumerator_viewGenerationList (const GGS_viewGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_viewGenerationList_2E_element cEnumerator_viewGenerationList::current (LOCATION_ARGS) const {
+GGS_viewGenerationList_2E_element DownEnumerator_viewGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
   return p->mObject ;
@@ -11760,7 +12963,7 @@ GGS_viewGenerationList_2E_element cEnumerator_viewGenerationList::current (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_viewGenerationList::current_mViewName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_viewGenerationList::current_mViewName (LOCATION_ARGS) const {
   const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
   return p->mObject.mProperty_mViewName ;
@@ -11768,7 +12971,43 @@ GGS_string cEnumerator_viewGenerationList::current_mViewName (LOCATION_ARGS) con
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractViewGeneration cEnumerator_viewGenerationList::current_mView (LOCATION_ARGS) const {
+GGS_abstractViewGeneration DownEnumerator_viewGenerationList::current_mView (LOCATION_ARGS) const {
+  const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
+  return p->mObject.mProperty_mView ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @viewGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_viewGenerationList::UpEnumerator_viewGenerationList (const GGS_viewGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_viewGenerationList_2E_element UpEnumerator_viewGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_viewGenerationList::current_mViewName (LOCATION_ARGS) const {
+  const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
+  return p->mObject.mProperty_mViewName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractViewGeneration UpEnumerator_viewGenerationList::current_mView (LOCATION_ARGS) const {
   const cCollectionElement_viewGenerationList * p = (const cCollectionElement_viewGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_viewGenerationList) ;
   return p->mObject.mProperty_mView ;
@@ -11778,9 +13017,7 @@ GGS_abstractViewGeneration cEnumerator_viewGenerationList::current_mView (LOCATI
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @viewGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_viewGenerationList ("viewGenerationList",
@@ -12159,16 +13396,17 @@ GGS_abstractViewInstructionGeneration GGS_implicitViewFunctionGenerationList::ge
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @implicitViewFunctionGenerationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_implicitViewFunctionGenerationList::cEnumerator_implicitViewFunctionGenerationList (const GGS_implicitViewFunctionGenerationList & inEnumeratedObject,
-                                                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_implicitViewFunctionGenerationList::DownEnumerator_implicitViewFunctionGenerationList (const GGS_implicitViewFunctionGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_implicitViewFunctionGenerationList_2E_element cEnumerator_implicitViewFunctionGenerationList::current (LOCATION_ARGS) const {
+GGS_implicitViewFunctionGenerationList_2E_element DownEnumerator_implicitViewFunctionGenerationList::current (LOCATION_ARGS) const {
   const cCollectionElement_implicitViewFunctionGenerationList * p = (const cCollectionElement_implicitViewFunctionGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_implicitViewFunctionGenerationList) ;
   return p->mObject ;
@@ -12177,7 +13415,35 @@ GGS_implicitViewFunctionGenerationList_2E_element cEnumerator_implicitViewFuncti
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_abstractViewInstructionGeneration cEnumerator_implicitViewFunctionGenerationList::current_mInstruction (LOCATION_ARGS) const {
+GGS_abstractViewInstructionGeneration DownEnumerator_implicitViewFunctionGenerationList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_implicitViewFunctionGenerationList * p = (const cCollectionElement_implicitViewFunctionGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_implicitViewFunctionGenerationList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @implicitViewFunctionGenerationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_implicitViewFunctionGenerationList::UpEnumerator_implicitViewFunctionGenerationList (const GGS_implicitViewFunctionGenerationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_implicitViewFunctionGenerationList_2E_element UpEnumerator_implicitViewFunctionGenerationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_implicitViewFunctionGenerationList * p = (const cCollectionElement_implicitViewFunctionGenerationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_implicitViewFunctionGenerationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractViewInstructionGeneration UpEnumerator_implicitViewFunctionGenerationList::current_mInstruction (LOCATION_ARGS) const {
   const cCollectionElement_implicitViewFunctionGenerationList * p = (const cCollectionElement_implicitViewFunctionGenerationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_implicitViewFunctionGenerationList) ;
   return p->mObject.mProperty_mInstruction ;
@@ -12187,9 +13453,7 @@ GGS_abstractViewInstructionGeneration cEnumerator_implicitViewFunctionGeneration
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @implicitViewFunctionGenerationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_implicitViewFunctionGenerationList ("implicitViewFunctionGenerationList",
@@ -12379,7 +13643,7 @@ GGS_autoLayoutConfiguratorMap GGS_autoLayoutConfiguratorMap::add_operation (cons
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
   GGS_autoLayoutConfiguratorMap result = *this ;
-  cEnumerator_autoLayoutConfiguratorMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_autoLayoutConfiguratorMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mAutoLayoutOutletTypeName (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -12465,16 +13729,17 @@ cMapElement_autoLayoutConfiguratorMap * GGS_autoLayoutConfiguratorMap::readWrite
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @autoLayoutConfiguratorMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_autoLayoutConfiguratorMap::cEnumerator_autoLayoutConfiguratorMap (const GGS_autoLayoutConfiguratorMap & inEnumeratedObject,
-                                                                              const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_autoLayoutConfiguratorMap::DownEnumerator_autoLayoutConfiguratorMap (const GGS_autoLayoutConfiguratorMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutConfiguratorMap_2E_element cEnumerator_autoLayoutConfiguratorMap::current (LOCATION_ARGS) const {
+GGS_autoLayoutConfiguratorMap_2E_element DownEnumerator_autoLayoutConfiguratorMap::current (LOCATION_ARGS) const {
   const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
   return GGS_autoLayoutConfiguratorMap_2E_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName) ;
@@ -12482,7 +13747,7 @@ GGS_autoLayoutConfiguratorMap_2E_element cEnumerator_autoLayoutConfiguratorMap::
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_autoLayoutConfiguratorMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_autoLayoutConfiguratorMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -12490,16 +13755,48 @@ GGS_lstring cEnumerator_autoLayoutConfiguratorMap::current_lkey (LOCATION_ARGS) 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_string cEnumerator_autoLayoutConfiguratorMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
+GGS_string DownEnumerator_autoLayoutConfiguratorMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
   const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
   return p->mProperty_mAutoLayoutOutletTypeName ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @autoLayoutConfiguratorMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_autoLayoutConfiguratorMap::UpEnumerator_autoLayoutConfiguratorMap (const GGS_autoLayoutConfiguratorMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutConfiguratorMap_2E_element UpEnumerator_autoLayoutConfiguratorMap::current (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
+  return GGS_autoLayoutConfiguratorMap_2E_element (p->mProperty_lkey, p->mProperty_mAutoLayoutOutletTypeName) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_autoLayoutConfiguratorMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_string UpEnumerator_autoLayoutConfiguratorMap::current_mAutoLayoutOutletTypeName (LOCATION_ARGS) const {
+  const cMapElement_autoLayoutConfiguratorMap * p = (const cMapElement_autoLayoutConfiguratorMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_autoLayoutConfiguratorMap) ;
+  return p->mProperty_mAutoLayoutOutletTypeName ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @autoLayoutConfiguratorMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutConfiguratorMap ("autoLayoutConfiguratorMap",
@@ -12608,9 +13905,7 @@ GGS_autoLayoutDocumentFileGeneration GGS_autoLayoutDocumentFileGeneration_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @autoLayoutDocumentFileGeneration.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentFileGeneration_2E_weak ("autoLayoutDocumentFileGeneration.weak",
@@ -12989,16 +14284,17 @@ GGS_mainXibLineDescriptorList GGS_mainXibDescriptorList::getter_mLineAtIndex (co
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @mainXibDescriptorList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_mainXibDescriptorList::cEnumerator_mainXibDescriptorList (const GGS_mainXibDescriptorList & inEnumeratedObject,
-                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_mainXibDescriptorList::DownEnumerator_mainXibDescriptorList (const GGS_mainXibDescriptorList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_mainXibDescriptorList_2E_element cEnumerator_mainXibDescriptorList::current (LOCATION_ARGS) const {
+GGS_mainXibDescriptorList_2E_element DownEnumerator_mainXibDescriptorList::current (LOCATION_ARGS) const {
   const cCollectionElement_mainXibDescriptorList * p = (const cCollectionElement_mainXibDescriptorList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
   return p->mObject ;
@@ -13007,7 +14303,35 @@ GGS_mainXibDescriptorList_2E_element cEnumerator_mainXibDescriptorList::current 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_mainXibLineDescriptorList cEnumerator_mainXibDescriptorList::current_mLine (LOCATION_ARGS) const {
+GGS_mainXibLineDescriptorList DownEnumerator_mainXibDescriptorList::current_mLine (LOCATION_ARGS) const {
+  const cCollectionElement_mainXibDescriptorList * p = (const cCollectionElement_mainXibDescriptorList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
+  return p->mObject.mProperty_mLine ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @mainXibDescriptorList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_mainXibDescriptorList::UpEnumerator_mainXibDescriptorList (const GGS_mainXibDescriptorList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_mainXibDescriptorList_2E_element UpEnumerator_mainXibDescriptorList::current (LOCATION_ARGS) const {
+  const cCollectionElement_mainXibDescriptorList * p = (const cCollectionElement_mainXibDescriptorList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_mainXibLineDescriptorList UpEnumerator_mainXibDescriptorList::current_mLine (LOCATION_ARGS) const {
   const cCollectionElement_mainXibDescriptorList * p = (const cCollectionElement_mainXibDescriptorList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_mainXibDescriptorList) ;
   return p->mObject.mProperty_mLine ;
@@ -13017,9 +14341,7 @@ GGS_mainXibLineDescriptorList cEnumerator_mainXibDescriptorList::current_mLine (
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @mainXibDescriptorList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibDescriptorList ("mainXibDescriptorList",
@@ -13128,9 +14450,7 @@ GGS_prefsDeclarationAST GGS_prefsDeclarationAST_2E_weak::bang_prefsDeclarationAS
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @prefsDeclarationAST.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsDeclarationAST_2E_weak ("prefsDeclarationAST.weak",
@@ -13572,9 +14892,7 @@ acPtr_class * cPtr_preferencesForGeneration::duplicate (Compiler * inCompiler CO
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @preferencesForGeneration generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGeneration ("preferencesForGeneration",
@@ -13683,9 +15001,7 @@ GGS_preferencesForGeneration GGS_preferencesForGeneration_2E_weak::bang_preferen
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @preferencesForGeneration.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_preferencesForGeneration_2E_weak ("preferencesForGeneration.weak",
@@ -14120,16 +15436,17 @@ GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterList::getter_mParam
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @autoLayoutClassParameterList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_autoLayoutClassParameterList::cEnumerator_autoLayoutClassParameterList (const GGS_autoLayoutClassParameterList & inEnumeratedObject,
-                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_autoLayoutClassParameterList::DownEnumerator_autoLayoutClassParameterList (const GGS_autoLayoutClassParameterList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutClassParameterList_2E_element cEnumerator_autoLayoutClassParameterList::current (LOCATION_ARGS) const {
+GGS_autoLayoutClassParameterList_2E_element DownEnumerator_autoLayoutClassParameterList::current (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
   return p->mObject ;
@@ -14138,7 +15455,7 @@ GGS_autoLayoutClassParameterList_2E_element cEnumerator_autoLayoutClassParameter
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_autoLayoutClassParameterList::current_mParameterName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_autoLayoutClassParameterList::current_mParameterName (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
   return p->mObject.mProperty_mParameterName ;
@@ -14146,7 +15463,43 @@ GGS_lstring cEnumerator_autoLayoutClassParameterList::current_mParameterName (LO
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutClassParameterType cEnumerator_autoLayoutClassParameterList::current_mParameterType (LOCATION_ARGS) const {
+GGS_autoLayoutClassParameterType DownEnumerator_autoLayoutClassParameterList::current_mParameterType (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
+  return p->mObject.mProperty_mParameterType ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @autoLayoutClassParameterList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_autoLayoutClassParameterList::UpEnumerator_autoLayoutClassParameterList (const GGS_autoLayoutClassParameterList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutClassParameterList_2E_element UpEnumerator_autoLayoutClassParameterList::current (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_autoLayoutClassParameterList::current_mParameterName (LOCATION_ARGS) const {
+  const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
+  return p->mObject.mProperty_mParameterName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutClassParameterType UpEnumerator_autoLayoutClassParameterList::current_mParameterType (LOCATION_ARGS) const {
   const cCollectionElement_autoLayoutClassParameterList * p = (const cCollectionElement_autoLayoutClassParameterList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_autoLayoutClassParameterList) ;
   return p->mObject.mProperty_mParameterType ;
@@ -14156,9 +15509,7 @@ GGS_autoLayoutClassParameterType cEnumerator_autoLayoutClassParameterList::curre
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @autoLayoutClassParameterList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterList ("autoLayoutClassParameterList",
@@ -14192,1395 +15543,6 @@ GGS_autoLayoutClassParameterList GGS_autoLayoutClassParameterList::extractObject
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutClassParameterList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_autoLayoutViewClassDeclarationAST_2E_weak::objectCompare (const GGS_autoLayoutViewClassDeclarationAST_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST_2E_weak::GGS_autoLayoutViewClassDeclarationAST_2E_weak (void) :
-GGS_abstractDeclarationAST_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST_2E_weak & GGS_autoLayoutViewClassDeclarationAST_2E_weak::operator = (const GGS_autoLayoutViewClassDeclarationAST & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST_2E_weak::GGS_autoLayoutViewClassDeclarationAST_2E_weak (const GGS_autoLayoutViewClassDeclarationAST & inSource) :
-GGS_abstractDeclarationAST_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST_2E_weak GGS_autoLayoutViewClassDeclarationAST_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_autoLayoutViewClassDeclarationAST_2E_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST GGS_autoLayoutViewClassDeclarationAST_2E_weak::bang_autoLayoutViewClassDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_autoLayoutViewClassDeclarationAST result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_autoLayoutViewClassDeclarationAST) ;
-      result = GGS_autoLayoutViewClassDeclarationAST ((cPtr_autoLayoutViewClassDeclarationAST *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutViewClassDeclarationAST.weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST_2E_weak ("autoLayoutViewClassDeclarationAST.weak",
-                                                                                                 & kTypeDescriptor_GALGAS_abstractDeclarationAST_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_autoLayoutViewClassDeclarationAST_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_autoLayoutViewClassDeclarationAST_2E_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_autoLayoutViewClassDeclarationAST_2E_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST_2E_weak GGS_autoLayoutViewClassDeclarationAST_2E_weak::extractObject (const GGS_object & inObject,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutViewClassDeclarationAST_2E_weak result ;
-  const GGS_autoLayoutViewClassDeclarationAST_2E_weak * p = (const GGS_autoLayoutViewClassDeclarationAST_2E_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_autoLayoutViewClassDeclarationAST_2E_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutViewClassDeclarationAST.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//  Enum autoLayoutClassParameterType
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType::GGS_autoLayoutClassParameterType (void) :
-mAssociatedValues (),
-mEnum (Enumeration::invalid) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeString (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeString ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeStringArray (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeStringArray ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeInt (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeInt ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeBool (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeBool ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeView (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeView ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_menuItem (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_menuItem ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_entity (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_entity ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::class_func_typeEnum (const GGS_lstring & inAssociatedValue0
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  result.mEnum = Enumeration::enum_typeEnum ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_autoLayoutClassParameterType_2E_typeEnum (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutClassParameterType::method_extractTypeEnum (GGS_lstring & outAssociatedValue_name,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_typeEnum) {
-    outAssociatedValue_name.drop () ;
-    String s ;
-    s.appendCString ("method @autoLayoutClassParameterType.typeEnum invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_autoLayoutClassParameterType_2E_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_name = ptr->mProperty_name ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ GGS_autoLayoutClassParameterType::getter_getTypeEnum (UNUSED_LOCATION_ARGS) const {
-  GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ result ;
-  if (mEnum == Enumeration::enum_typeEnum) {
-    const auto ptr = (const GGS_autoLayoutClassParameterType_2E_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_autoLayoutClassParameterType_2E_typeEnum (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutClassParameterType::getAssociatedValuesFor_typeEnum (GGS_lstring & out_name) const {
-  const auto ptr = (const GGS_autoLayoutClassParameterType_2E_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
-  out_name = ptr->mProperty_name ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_autoLayoutClassParameterType [9] = {
-  "(not built)",
-  "typeString",
-  "typeStringArray",
-  "typeInt",
-  "typeBool",
-  "typeView",
-  "menuItem",
-  "entity",
-  "typeEnum"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeString (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeString == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeStringArray (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeStringArray == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeInt (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeInt == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeBool (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeBool == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeView (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeView == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isMenuItem (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_menuItem == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isEntity (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutClassParameterType::getter_isTypeEnum (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_typeEnum == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutClassParameterType::description (String & ioString,
-                                                    const int32_t inIndentation) const {
-  ioString.appendCString ("<enum @autoLayoutClassParameterType: ") ;
-  ioString.appendCString (gEnumNameArrayFor_autoLayoutClassParameterType [size_t (mEnum)]) ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_autoLayoutClassParameterType::objectCompare (const GGS_autoLayoutClassParameterType & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      switch (mEnum) {
-      case Enumeration::enum_typeEnum: {
-        const auto left = (GGS_autoLayoutClassParameterType_2E_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
-        const auto right = (GGS_autoLayoutClassParameterType_2E_typeEnum *) inOperand.mAssociatedValues.associatedValuesPointer () ;
-        result = left->objectCompare (*right) ;
-        }break ;
-      default:
-        result = ComparisonResult::operandEqual ;
-        break ;
-      }
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @autoLayoutClassParameterType generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterType ("autoLayoutClassParameterType",
-                                                                                    nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_autoLayoutClassParameterType::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutClassParameterType ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_autoLayoutClassParameterType::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_autoLayoutClassParameterType (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterType::extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType result ;
-  const GGS_autoLayoutClassParameterType * p = (const GGS_autoLayoutClassParameterType *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_autoLayoutClassParameterType *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutClassParameterType", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@autoLayoutClassParameterType string'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string extensionGetter_string (const GGS_autoLayoutClassParameterType & inObject,
-                                   Compiler * inCompiler
-                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string result_result ; // Returned variable
-  const GGS_autoLayoutClassParameterType temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GGS_autoLayoutClassParameterType::Enumeration::invalid:
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeString:
-    {
-      result_result = GGS_string ("String") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeStringArray:
-    {
-      result_result = GGS_string ("String array") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeInt:
-    {
-      result_result = GGS_string ("Int") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeBool:
-    {
-      result_result = GGS_string ("Bool") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeView:
-    {
-      result_result = GGS_string ("a view") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_menuItem:
-    {
-      result_result = GGS_string ("a menu item") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_entity:
-    {
-      result_result = GGS_string ("an entity name") ;
-    }
-    break ;
-  case GGS_autoLayoutClassParameterType::Enumeration::enum_typeEnum:
-    {
-      GGS_lstring extractedValue_1433_name_0 ;
-      temp_0.getAssociatedValuesFor_typeEnum (extractedValue_1433_name_0) ;
-      result_result = GGS_string ("the ").add_operation (extractedValue_1433_name_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)).add_operation (GGS_string (" enum type"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 41)) ;
-    }
-    break ;
-  }
-//---
-  return result_result ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//Class for element of '@outletClassBindingSpecificationModelList' list
-//
-//--------------------------------------------------------------------------------------------------
-
-class cCollectionElement_outletClassBindingSpecificationModelList : public cCollectionElement {
-  public: GGS_outletClassBindingSpecificationModelList_2E_element mObject ;
-
-//--- Class functions
-  public: cCollectionElement_outletClassBindingSpecificationModelList (const GGS_lstring & in_mModelTypeName,
-                                                                       const GGS_bool & in_mModelShouldBeWritableProperty
-                                                                       COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_outletClassBindingSpecificationModelList (const GGS_outletClassBindingSpecificationModelList_2E_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_outletClassBindingSpecificationModelList::cCollectionElement_outletClassBindingSpecificationModelList (const GGS_lstring & in_mModelTypeName,
-                                                                                                                          const GGS_bool & in_mModelShouldBeWritableProperty
-                                                                                                                          COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mModelTypeName, in_mModelShouldBeWritableProperty) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_outletClassBindingSpecificationModelList::cCollectionElement_outletClassBindingSpecificationModelList (const GGS_outletClassBindingSpecificationModelList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mModelTypeName, inElement.mProperty_mModelShouldBeWritableProperty) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cCollectionElement_outletClassBindingSpecificationModelList::isValid (void) const {
-  return true ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement * cCollectionElement_outletClassBindingSpecificationModelList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_outletClassBindingSpecificationModelList (mObject.mProperty_mModelTypeName, mObject.mProperty_mModelShouldBeWritableProperty COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cCollectionElement_outletClassBindingSpecificationModelList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mModelTypeName" ":") ;
-  mObject.mProperty_mModelTypeName.description (ioString, inIndentation) ;
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mModelShouldBeWritableProperty" ":") ;
-  mObject.mProperty_mModelShouldBeWritableProperty.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList::GGS_outletClassBindingSpecificationModelList (void) :
-AC_GALGAS_list () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList::GGS_outletClassBindingSpecificationModelList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  return GGS_outletClassBindingSpecificationModelList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
-  return GGS_outletClassBindingSpecificationModelList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::enterElement (const GGS_outletClassBindingSpecificationModelList_2E_element & inValue,
-                                                                 Compiler * /* inCompiler */
-                                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement * p = nullptr ;
-  macroMyNew (p, cCollectionElement_outletClassBindingSpecificationModelList (inValue COMMA_THERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  appendObject (attributes) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::class_func_listWithValue (const GGS_lstring & inOperand0,
-                                                                                                                     const GGS_bool & inOperand1
-                                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_outletClassBindingSpecificationModelList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GGS_outletClassBindingSpecificationModelList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GGS_outletClassBindingSpecificationModelList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                              const GGS_lstring & in_mModelTypeName,
-                                                                              const GGS_bool & in_mModelShouldBeWritableProperty
-                                                                              COMMA_LOCATION_ARGS) {
-  cCollectionElement_outletClassBindingSpecificationModelList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_outletClassBindingSpecificationModelList (in_mModelTypeName,
-                                                                              in_mModelShouldBeWritableProperty COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                                        const GGS_bool & inOperand1
-                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_outletClassBindingSpecificationModelList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_append (const GGS_lstring inOperand0,
-                                                                  const GGS_bool inOperand1,
-                                                                  Compiler * /* inCompiler */
-                                                                  COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_outletClassBindingSpecificationModelList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_insertAtIndex (const GGS_lstring inOperand0,
-                                                                         const GGS_bool inOperand1,
-                                                                         const GGS_uint inInsertionIndex,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_outletClassBindingSpecificationModelList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_removeAtIndex (GGS_lstring & outOperand0,
-                                                                         GGS_bool & outOperand1,
-                                                                         const GGS_uint inRemoveIndex,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  outOperand0.drop () ;
-  outOperand1.drop () ;
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-    if (nullptr == p) {
-      drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-      outOperand0 = p->mObject.mProperty_mModelTypeName ;
-      outOperand1 = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-    }
-  }else{
-    drop () ;    
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_popFirst (GGS_lstring & outOperand0,
-                                                                    GGS_bool & outOperand1,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    outOperand0 = p->mObject.mProperty_mModelTypeName ;
-    outOperand1 = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_popLast (GGS_lstring & outOperand0,
-                                                                   GGS_bool & outOperand1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    outOperand0 = p->mObject.mProperty_mModelTypeName ;
-    outOperand1 = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::method_first (GGS_lstring & outOperand0,
-                                                                 GGS_bool & outOperand1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    outOperand0 = p->mObject.mProperty_mModelTypeName ;
-    outOperand1 = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::method_last (GGS_lstring & outOperand0,
-                                                                GGS_bool & outOperand1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    outOperand0 = p->mObject.mProperty_mModelTypeName ;
-    outOperand1 = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::add_operation (const GGS_outletClassBindingSpecificationModelList & inOperand,
-                                                                                                          Compiler * /* inCompiler */
-                                                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_outletClassBindingSpecificationModelList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::getter_subListWithRange (const GGS_range & inRange,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_outletClassBindingSpecificationModelList result = GGS_outletClassBindingSpecificationModelList::class_func_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::getter_subListFromIndex (const GGS_uint & inIndex,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_outletClassBindingSpecificationModelList result = GGS_outletClassBindingSpecificationModelList::class_func_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::getter_subListToIndex (const GGS_uint & inIndex,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GGS_outletClassBindingSpecificationModelList result = GGS_outletClassBindingSpecificationModelList::class_func_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::plusAssign_operation (const GGS_outletClassBindingSpecificationModelList inOperand,
-                                                                         Compiler * /* inCompiler */
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_setMModelTypeNameAtIndex (GGS_lstring inOperand,
-                                                                                    GGS_uint inIndex,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mModelTypeName = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_outletClassBindingSpecificationModelList::getter_mModelTypeNameAtIndex (const GGS_uint & inIndex,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  GGS_lstring result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    result = p->mObject.mProperty_mModelTypeName ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassBindingSpecificationModelList::setter_setMModelShouldBeWritablePropertyAtIndex (GGS_bool inOperand,
-                                                                                                    GGS_uint inIndex,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mModelShouldBeWritableProperty = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassBindingSpecificationModelList::getter_mModelShouldBeWritablePropertyAtIndex (const GGS_uint & inIndex,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_outletClassBindingSpecificationModelList * p = (cCollectionElement_outletClassBindingSpecificationModelList *) attributes.ptr () ;
-  GGS_bool result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-    result = p->mObject.mProperty_mModelShouldBeWritableProperty ;
-  }
-  return result ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-cEnumerator_outletClassBindingSpecificationModelList::cEnumerator_outletClassBindingSpecificationModelList (const GGS_outletClassBindingSpecificationModelList & inEnumeratedObject,
-                                                                                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList_2E_element cEnumerator_outletClassBindingSpecificationModelList::current (LOCATION_ARGS) const {
-  const cCollectionElement_outletClassBindingSpecificationModelList * p = (const cCollectionElement_outletClassBindingSpecificationModelList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-  return p->mObject ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring cEnumerator_outletClassBindingSpecificationModelList::current_mModelTypeName (LOCATION_ARGS) const {
-  const cCollectionElement_outletClassBindingSpecificationModelList * p = (const cCollectionElement_outletClassBindingSpecificationModelList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-  return p->mObject.mProperty_mModelTypeName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool cEnumerator_outletClassBindingSpecificationModelList::current_mModelShouldBeWritableProperty (LOCATION_ARGS) const {
-  const cCollectionElement_outletClassBindingSpecificationModelList * p = (const cCollectionElement_outletClassBindingSpecificationModelList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_outletClassBindingSpecificationModelList) ;
-  return p->mObject.mProperty_mModelShouldBeWritableProperty ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @outletClassBindingSpecificationModelList generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList ("outletClassBindingSpecificationModelList",
-                                                                                                nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_outletClassBindingSpecificationModelList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_outletClassBindingSpecificationModelList::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_outletClassBindingSpecificationModelList (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList GGS_outletClassBindingSpecificationModelList::extractObject (const GGS_object & inObject,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) {
-  GGS_outletClassBindingSpecificationModelList result ;
-  const GGS_outletClassBindingSpecificationModelList * p = (const GGS_outletClassBindingSpecificationModelList *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_outletClassBindingSpecificationModelList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassBindingSpecificationModelList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Class for element of '@controllerBindingOptionList' list
-//
-//--------------------------------------------------------------------------------------------------
-
-class cCollectionElement_controllerBindingOptionList : public cCollectionElement {
-  public: GGS_controllerBindingOptionList_2E_element mObject ;
-
-//--- Class functions
-  public: cCollectionElement_controllerBindingOptionList (const GGS_lstring & in_mOptionName,
-                                                          const GGS_lstring & in_mOptionTypeName
-                                                          COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_controllerBindingOptionList (const GGS_controllerBindingOptionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_controllerBindingOptionList::cCollectionElement_controllerBindingOptionList (const GGS_lstring & in_mOptionName,
-                                                                                                const GGS_lstring & in_mOptionTypeName
-                                                                                                COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mOptionName, in_mOptionTypeName) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_controllerBindingOptionList::cCollectionElement_controllerBindingOptionList (const GGS_controllerBindingOptionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mOptionName, inElement.mProperty_mOptionTypeName) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cCollectionElement_controllerBindingOptionList::isValid (void) const {
-  return true ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement * cCollectionElement_controllerBindingOptionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_controllerBindingOptionList (mObject.mProperty_mOptionName, mObject.mProperty_mOptionTypeName COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cCollectionElement_controllerBindingOptionList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mOptionName" ":") ;
-  mObject.mProperty_mOptionName.description (ioString, inIndentation) ;
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mOptionTypeName" ":") ;
-  mObject.mProperty_mOptionTypeName.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList::GGS_controllerBindingOptionList (void) :
-AC_GALGAS_list () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList::GGS_controllerBindingOptionList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  return GGS_controllerBindingOptionList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
-  return GGS_controllerBindingOptionList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::enterElement (const GGS_controllerBindingOptionList_2E_element & inValue,
-                                                    Compiler * /* inCompiler */
-                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement * p = nullptr ;
-  macroMyNew (p, cCollectionElement_controllerBindingOptionList (inValue COMMA_THERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  appendObject (attributes) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::class_func_listWithValue (const GGS_lstring & inOperand0,
-                                                                                           const GGS_lstring & inOperand1
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_controllerBindingOptionList result ;
-  if (inOperand0.isValid () && inOperand1.isValid ()) {
-    result = GGS_controllerBindingOptionList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GGS_controllerBindingOptionList::makeAttributesFromObjects (attributes, inOperand0, inOperand1 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                 const GGS_lstring & in_mOptionName,
-                                                                 const GGS_lstring & in_mOptionTypeName
-                                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement_controllerBindingOptionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_controllerBindingOptionList (in_mOptionName,
-                                                                 in_mOptionTypeName COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                           const GGS_lstring & inOperand1
-                                                           COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_controllerBindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_append (const GGS_lstring inOperand0,
-                                                     const GGS_lstring inOperand1,
-                                                     Compiler * /* inCompiler */
-                                                     COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_controllerBindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_insertAtIndex (const GGS_lstring inOperand0,
-                                                            const GGS_lstring inOperand1,
-                                                            const GGS_uint inInsertionIndex,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_controllerBindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_removeAtIndex (GGS_lstring & outOperand0,
-                                                            GGS_lstring & outOperand1,
-                                                            const GGS_uint inRemoveIndex,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  outOperand0.drop () ;
-  outOperand1.drop () ;
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-    if (nullptr == p) {
-      drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-      outOperand0 = p->mObject.mProperty_mOptionName ;
-      outOperand1 = p->mObject.mProperty_mOptionTypeName ;
-    }
-  }else{
-    drop () ;    
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_popFirst (GGS_lstring & outOperand0,
-                                                       GGS_lstring & outOperand1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    outOperand0 = p->mObject.mProperty_mOptionName ;
-    outOperand1 = p->mObject.mProperty_mOptionTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_popLast (GGS_lstring & outOperand0,
-                                                      GGS_lstring & outOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    outOperand0 = p->mObject.mProperty_mOptionName ;
-    outOperand1 = p->mObject.mProperty_mOptionTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::method_first (GGS_lstring & outOperand0,
-                                                    GGS_lstring & outOperand1,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    outOperand0 = p->mObject.mProperty_mOptionName ;
-    outOperand1 = p->mObject.mProperty_mOptionTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::method_last (GGS_lstring & outOperand0,
-                                                   GGS_lstring & outOperand1,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-    outOperand1.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    outOperand0 = p->mObject.mProperty_mOptionName ;
-    outOperand1 = p->mObject.mProperty_mOptionTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::add_operation (const GGS_controllerBindingOptionList & inOperand,
-                                                                                Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_controllerBindingOptionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::getter_subListWithRange (const GGS_range & inRange,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const {
-  GGS_controllerBindingOptionList result = GGS_controllerBindingOptionList::class_func_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::getter_subListFromIndex (const GGS_uint & inIndex,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const {
-  GGS_controllerBindingOptionList result = GGS_controllerBindingOptionList::class_func_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::getter_subListToIndex (const GGS_uint & inIndex,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const {
-  GGS_controllerBindingOptionList result = GGS_controllerBindingOptionList::class_func_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::plusAssign_operation (const GGS_controllerBindingOptionList inOperand,
-                                                            Compiler * /* inCompiler */
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_setMOptionNameAtIndex (GGS_lstring inOperand,
-                                                                    GGS_uint inIndex,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) {
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mOptionName = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_controllerBindingOptionList::getter_mOptionNameAtIndex (const GGS_uint & inIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  GGS_lstring result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    result = p->mObject.mProperty_mOptionName ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_controllerBindingOptionList::setter_setMOptionTypeNameAtIndex (GGS_lstring inOperand,
-                                                                        GGS_uint inIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mOptionTypeName = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_controllerBindingOptionList::getter_mOptionTypeNameAtIndex (const GGS_uint & inIndex,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_controllerBindingOptionList * p = (cCollectionElement_controllerBindingOptionList *) attributes.ptr () ;
-  GGS_lstring result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-    result = p->mObject.mProperty_mOptionTypeName ;
-  }
-  return result ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-cEnumerator_controllerBindingOptionList::cEnumerator_controllerBindingOptionList (const GGS_controllerBindingOptionList & inEnumeratedObject,
-                                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList_2E_element cEnumerator_controllerBindingOptionList::current (LOCATION_ARGS) const {
-  const cCollectionElement_controllerBindingOptionList * p = (const cCollectionElement_controllerBindingOptionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-  return p->mObject ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring cEnumerator_controllerBindingOptionList::current_mOptionName (LOCATION_ARGS) const {
-  const cCollectionElement_controllerBindingOptionList * p = (const cCollectionElement_controllerBindingOptionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-  return p->mObject.mProperty_mOptionName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring cEnumerator_controllerBindingOptionList::current_mOptionTypeName (LOCATION_ARGS) const {
-  const cCollectionElement_controllerBindingOptionList * p = (const cCollectionElement_controllerBindingOptionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_controllerBindingOptionList) ;
-  return p->mObject.mProperty_mOptionTypeName ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @controllerBindingOptionList generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionList ("controllerBindingOptionList",
-                                                                                   nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_controllerBindingOptionList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_controllerBindingOptionList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_controllerBindingOptionList::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_controllerBindingOptionList (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_controllerBindingOptionList GGS_controllerBindingOptionList::extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GGS_controllerBindingOptionList result ;
-  const GGS_controllerBindingOptionList * p = (const GGS_controllerBindingOptionList *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_controllerBindingOptionList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("controllerBindingOptionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
