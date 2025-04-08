@@ -95,7 +95,7 @@ override proc @prefsDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSema
   !?ioSemanticContext.mClassMap.insertKey (
     @(preferencesName (), .here),
     .prefs,
-    [],
+    (),
     actionMap,
     []
   )
@@ -119,7 +119,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 {
 //-- Analyze extern functions
   let @stringset availableCallers = ["awakeFromNib", "init"]
-  var @externFunctionMap externFunctionMap = []
+  var @externFunctionMap externFunctionMap = ()
   for (mExternSwiftFunctionName, mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     !?externFunctionMap.insertKey (mExternSwiftFunctionName)
     if not availableCallers.hasKey (mCallerName.string) then
@@ -141,7 +141,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 //-- Analyze outlets and bindings
   analyzeOutlets (
     true,
-    [], // No root entity
+    (), // No root entity
     preferencesPropertyMap,
     "", // No root entity
     ioSemanticContext,
@@ -158,21 +158,21 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 //-- Check auto layout view declarations
-  var @autoLayoutViewDeclarationMap viewDeclarationMap = []
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = ()
   var @viewGenerationList viewGenerationList = []
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
-  var @autoLayoutConfiguratorMap configuratorMap = []
-  var @autoLayoutOutletMap autoLayoutOutletMap = []
+  var @autoLayoutConfiguratorMap configuratorMap = ()
+  var @autoLayoutOutletMap autoLayoutOutletMap = ()
   for (viewName, viewDeclaration) in self.mDeclaration.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     viewDeclaration.checkView (
       viewName,
       viewDeclarationMap,
       !prefs: true,
-      [], // rootPropertyMap
+      (), // rootPropertyMap
       preferencesPropertyMap,
       ioSemanticContext,
-      [], // documentPropertyMap
+      (), // documentPropertyMap
       actionMap,
       self.mClassName,
       ioSemanticContext.mClassMap,

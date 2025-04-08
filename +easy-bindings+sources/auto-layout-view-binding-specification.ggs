@@ -99,7 +99,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         !?outletBindingSpecificationModelList.append (
-          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []), // Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: (), !funcMap: ()), // Any enum type
           !mModelShouldBeWritableProperty
         )
       else
@@ -140,7 +140,7 @@ proc buildAutoLayoutBindingSpecificationMap(
     if ioSemanticContext.mAutoLayoutBindingSpecificationMap.hasKey (mOutletClassName.string) then
       !?ioSemanticContext.mAutoLayoutBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
-      bindingMap = []
+      bindingMap = ()
       ioSemanticContext.mAutolayoutViewClassMap.searchKey (mOutletClassName, ?outletSuperClassName, ?8*)
     end
     !?bindingMap.insertKey (

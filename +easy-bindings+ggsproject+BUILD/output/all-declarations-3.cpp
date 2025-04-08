@@ -8,149 +8,7 @@
 #include "all-declarations-3.h"
 
 //--------------------------------------------------------------------------------------------------
-//  Enum autolayoutEnabledBindingForGeneration
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutEnabledBindingForGeneration::GGS_autolayoutEnabledBindingForGeneration (void) :
-mAssociatedValues (),
-mEnum (Enumeration::invalid) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutEnabledBindingForGeneration GGS_autolayoutEnabledBindingForGeneration::class_func_none (UNUSED_LOCATION_ARGS) {
-  GGS_autolayoutEnabledBindingForGeneration result ;
-  result.mEnum = Enumeration::enum_none ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutEnabledBindingForGeneration GGS_autolayoutEnabledBindingForGeneration::class_func_enabled (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & inAssociatedValue0
-                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autolayoutEnabledBindingForGeneration result ;
-  result.mEnum = Enumeration::enum_enabled ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_autolayoutEnabledBindingForGeneration_2E_enabled (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autolayoutEnabledBindingForGeneration::method_extractEnabled (GGS_abstractBooleanMultipleBindingExpressionForGeneration & outAssociatedValue_binding,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_enabled) {
-    outAssociatedValue_binding.drop () ;
-    String s ;
-    s.appendCString ("method @autolayoutEnabledBindingForGeneration.enabled invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_autolayoutEnabledBindingForGeneration_2E_enabled *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_binding = ptr->mProperty_binding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ GGS_autolayoutEnabledBindingForGeneration::getter_getEnabled (UNUSED_LOCATION_ARGS) const {
-  GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ result ;
-  if (mEnum == Enumeration::enum_enabled) {
-    const auto ptr = (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_autolayoutEnabledBindingForGeneration_2E_enabled (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autolayoutEnabledBindingForGeneration::getAssociatedValuesFor_enabled (GGS_abstractBooleanMultipleBindingExpressionForGeneration & out_binding) const {
-  const auto ptr = (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled *) mAssociatedValues.associatedValuesPointer () ;
-  out_binding = ptr->mProperty_binding ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_autolayoutEnabledBindingForGeneration [3] = {
-  "(not built)",
-  "none",
-  "enabled"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autolayoutEnabledBindingForGeneration::getter_isNone (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autolayoutEnabledBindingForGeneration::getter_isEnabled (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_enabled == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autolayoutEnabledBindingForGeneration::description (String & ioString,
-                                                             const int32_t inIndentation) const {
-  ioString.appendCString ("<enum @autolayoutEnabledBindingForGeneration: ") ;
-  ioString.appendCString (gEnumNameArrayFor_autolayoutEnabledBindingForGeneration [size_t (mEnum)]) ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendCString (">") ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//     @autolayoutEnabledBindingForGeneration generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration ("autolayoutEnabledBindingForGeneration",
-                                                                                             nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_autolayoutEnabledBindingForGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_autolayoutEnabledBindingForGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_autolayoutEnabledBindingForGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutEnabledBindingForGeneration GGS_autolayoutEnabledBindingForGeneration::extractObject (const GGS_object & inObject,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GGS_autolayoutEnabledBindingForGeneration result ;
-  const GGS_autolayoutEnabledBindingForGeneration * p = (const GGS_autolayoutEnabledBindingForGeneration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_autolayoutEnabledBindingForGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autolayoutEnabledBindingForGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutViewInstructionGenerationParameterList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutViewInstructionGenerationParameterList : public cCollectionElement {
@@ -243,9 +101,8 @@ GGS_autoLayoutViewInstructionGenerationParameterList GGS_autoLayoutViewInstructi
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewInstructionGenerationParameterList::enterElement (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inValue,
-                                                                         Compiler * /* inCompiler */
-                                                                         COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutViewInstructionGenerationParameterList::plusPlusAssignOperation (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inValue
+                                                                                    COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutViewInstructionGenerationParameterList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -284,9 +141,9 @@ void GGS_autoLayoutViewInstructionGenerationParameterList::makeAttributesFromObj
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewInstructionGenerationParameterList::addAssign_operation (const GGS_string & inOperand0,
-                                                                                const GGS_string & inOperand1
-                                                                                COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutViewInstructionGenerationParameterList::addAssignOperation (const GGS_string & inOperand0,
+                                                                               const GGS_string & inOperand1
+                                                                               COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutViewInstructionGenerationParameterList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -476,9 +333,9 @@ GGS_autoLayoutViewInstructionGenerationParameterList GGS_autoLayoutViewInstructi
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewInstructionGenerationParameterList::plusAssign_operation (const GGS_autoLayoutViewInstructionGenerationParameterList inOperand,
-                                                                                 Compiler * /* inCompiler */
-                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutViewInstructionGenerationParameterList::plusAssignOperation (const GGS_autoLayoutViewInstructionGenerationParameterList inOperand,
+                                                                                Compiler * /* inCompiler */
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -778,16 +635,16 @@ void extensionMethod_generate (const GGS_autoLayoutViewInstructionGenerationFunc
   const GGS_autoLayoutViewInstructionGenerationFuncCallList temp_0 = inObject ;
   UpEnumerator_autoLayoutViewInstructionGenerationFuncCallList enumerator_79751 (temp_0) ;
   while (enumerator_79751.hasCurrentObject ()) {
-    ioArgument_ioStr.plusAssign_operation(constinArgument_inIndentation.add_operation (GGS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)).add_operation (enumerator_79751.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)).add_operation (GGS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)) ;
+    ioArgument_ioStr.plusAssignOperation(constinArgument_inIndentation.add_operation (GGS_string ("  ."), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)).add_operation (enumerator_79751.current_mFunctionName (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)).add_operation (GGS_string (" ("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1906)) ;
     UpEnumerator_autoLayoutViewInstructionGenerationParameterList enumerator_79854 (enumerator_79751.current_mParameters (HERE)) ;
     while (enumerator_79854.hasCurrentObject ()) {
-      ioArgument_ioStr.plusAssign_operation(enumerator_79854.current_mParameterName (HERE).add_operation (GGS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)).add_operation (enumerator_79854.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)) ;
+      ioArgument_ioStr.plusAssignOperation(enumerator_79854.current_mParameterName (HERE).add_operation (GGS_string (": "), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)).add_operation (enumerator_79854.current_mParameterValue (HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1908)) ;
       enumerator_79854.gotoNextObject () ;
       if (enumerator_79854.hasCurrentObject ()) {
-        ioArgument_ioStr.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1909)) ;
+        ioArgument_ioStr.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1909)) ;
       }
     }
-    ioArgument_ioStr.plusAssign_operation(GGS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1911)) ;
+    ioArgument_ioStr.plusAssignOperation(GGS_string (")\n"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view.ggs", 1911)) ;
     enumerator_79751.gotoNextObject () ;
   }
 }
@@ -1044,52 +901,6 @@ GGS_outletBindingSpecificationMap GGS_outletBindingSpecificationMap::getter_over
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletBindingSpecificationMap::enterElement (const GGS_outletBindingSpecificationMap_2E_element & inValue,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_outletBindingSpecificationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_outletBindingSpecificationMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@outletBindingSpecificationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletBindingSpecificationMap::addAssign_operation (const GGS_lstring & inKey,
-                                                             const GGS_outletBindingSpecificationModelList & inArgument0,
-                                                             const GGS_controllerBindingOptionDecoratedList & inArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
-  cMapElement_outletBindingSpecificationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_outletBindingSpecificationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@outletBindingSpecificationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletBindingSpecificationMap GGS_outletBindingSpecificationMap::add_operation (const GGS_outletBindingSpecificationMap & inOperand,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_outletBindingSpecificationMap result = *this ;
-  UpEnumerator_outletBindingSpecificationMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletBindingSpecificationModelList (HERE), enumerator.current_mControllerBindingOptionList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_outletBindingSpecificationMap::setter_insertKey (GGS_lstring inKey,
                                                           GGS_outletBindingSpecificationModelList inArgument0,
                                                           GGS_controllerBindingOptionDecoratedList inArgument1,
@@ -1322,9 +1133,7 @@ GGS_outletBindingSpecificationMap GGS_outletBindingSpecificationMap::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@bindingOptionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_bindingOptionList : public cCollectionElement {
@@ -1417,9 +1226,8 @@ GGS_bindingOptionList GGS_bindingOptionList::init (Compiler * COMMA_UNUSED_LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_bindingOptionList::enterElement (const GGS_bindingOptionList_2E_element & inValue,
-                                          Compiler * /* inCompiler */
-                                          COMMA_LOCATION_ARGS) {
+void GGS_bindingOptionList::plusPlusAssignOperation (const GGS_bindingOptionList_2E_element & inValue
+                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_bindingOptionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1458,9 +1266,9 @@ void GGS_bindingOptionList::makeAttributesFromObjects (capCollectionElement & ou
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_bindingOptionList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                 const GGS_abstractDefaultValue & inOperand1
-                                                 COMMA_LOCATION_ARGS) {
+void GGS_bindingOptionList::addAssignOperation (const GGS_lstring & inOperand0,
+                                                const GGS_abstractDefaultValue & inOperand1
+                                                COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_bindingOptionList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -1650,9 +1458,9 @@ GGS_bindingOptionList GGS_bindingOptionList::getter_subListToIndex (const GGS_ui
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_bindingOptionList::plusAssign_operation (const GGS_bindingOptionList inOperand,
-                                                  Compiler * /* inCompiler */
-                                                  COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_bindingOptionList::plusAssignOperation (const GGS_bindingOptionList inOperand,
+                                                 Compiler * /* inCompiler */
+                                                 COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -1855,6 +1663,11 @@ GGS_abstractDefaultValue::GGS_abstractDefaultValue (void) :
 AC_GALGAS_reference_class () {
 }
 
+
+void cPtr_abstractDefaultValue::
+abstractDefaultValue_init (Compiler * /* inCompiler */) {
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_abstractDefaultValue::GGS_abstractDefaultValue (const cPtr_abstractDefaultValue * inSourcePtr) :
@@ -1923,9 +1736,7 @@ GGS_abstractDefaultValue GGS_abstractDefaultValue::extractObject (const GGS_obje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@outletBindingModelList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_outletBindingModelList : public cCollectionElement {
@@ -2018,9 +1829,8 @@ GGS_outletBindingModelList GGS_outletBindingModelList::init (Compiler * COMMA_UN
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletBindingModelList::enterElement (const GGS_outletBindingModelList_2E_element & inValue,
-                                               Compiler * /* inCompiler */
-                                               COMMA_LOCATION_ARGS) {
+void GGS_outletBindingModelList::plusPlusAssignOperation (const GGS_outletBindingModelList_2E_element & inValue
+                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_outletBindingModelList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -2059,9 +1869,9 @@ void GGS_outletBindingModelList::makeAttributesFromObjects (capCollectionElement
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletBindingModelList::addAssign_operation (const GGS_propertyKind & inOperand0,
-                                                      const GGS_location & inOperand1
-                                                      COMMA_LOCATION_ARGS) {
+void GGS_outletBindingModelList::addAssignOperation (const GGS_propertyKind & inOperand0,
+                                                     const GGS_location & inOperand1
+                                                     COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_outletBindingModelList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -2251,9 +2061,9 @@ GGS_outletBindingModelList GGS_outletBindingModelList::getter_subListToIndex (co
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletBindingModelList::plusAssign_operation (const GGS_outletBindingModelList inOperand,
-                                                       Compiler * /* inCompiler */
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_outletBindingModelList::plusAssignOperation (const GGS_outletBindingModelList inOperand,
+                                                      Compiler * /* inCompiler */
+                                                      COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -4165,9 +3975,7 @@ GGS_observablePropertyAST GGS_observablePropertyAST::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@observablePropertyList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_observablePropertyList : public cCollectionElement {
@@ -4254,9 +4062,8 @@ GGS_observablePropertyList GGS_observablePropertyList::init (Compiler * COMMA_UN
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_observablePropertyList::enterElement (const GGS_observablePropertyList_2E_element & inValue,
-                                               Compiler * /* inCompiler */
-                                               COMMA_LOCATION_ARGS) {
+void GGS_observablePropertyList::plusPlusAssignOperation (const GGS_observablePropertyList_2E_element & inValue
+                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_observablePropertyList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -4292,8 +4099,8 @@ void GGS_observablePropertyList::makeAttributesFromObjects (capCollectionElement
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_observablePropertyList::addAssign_operation (const GGS_observablePropertyAST & inOperand0
-                                                      COMMA_LOCATION_ARGS) {
+void GGS_observablePropertyList::addAssignOperation (const GGS_observablePropertyAST & inOperand0
+                                                     COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_observablePropertyList (inOperand0 COMMA_THERE)) ;
@@ -4466,9 +4273,9 @@ GGS_observablePropertyList GGS_observablePropertyList::getter_subListToIndex (co
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_observablePropertyList::plusAssign_operation (const GGS_observablePropertyList inOperand,
-                                                       Compiler * /* inCompiler */
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_observablePropertyList::plusAssignOperation (const GGS_observablePropertyList inOperand,
+                                                      Compiler * /* inCompiler */
+                                                      COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -6513,7 +6320,7 @@ void extensionMethod_analyzeObservableProperty (const GGS_observablePropertyAST 
           GGS_propertyGenerationList joker_33891_1 ; // Joker input parameter
           constinArgument_inSemanticContext.readProperty_mClassMap ().method_searchKey (GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)), GGS_location::class_func_nowhere (SOURCE_FILE ("observable-property.ggs", 773)), inCompiler COMMA_HERE), joker_33858, var_preferencesPropertyMap_33867, joker_33891_2, joker_33891_1, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 773)) ;
           GGS_typeKindList temp_69 = GGS_typeKindList::init (inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
-          temp_69.enterElement (GGS_typeKindList_2E_element::init_21_ (extractedValue_33684_propertyType_0, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
+          temp_69.plusPlusAssignOperation (GGS_typeKindList_2E_element::init_21_ (extractedValue_33684_propertyType_0, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("observable-property.ggs", 775)) ;
           callExtensionMethod_analyzeDefaultValueType ((cPtr_abstractDefaultValue *) extractedValue_33539_defaultValue_2.ptr (), temp_69, var_preferencesPropertyMap_33867, outArgument_outDefaultValue, inCompiler COMMA_SOURCE_FILE ("observable-property.ggs", 774)) ;
         }
         break ;
@@ -6699,6 +6506,13 @@ GGS_propertyGeneration::GGS_propertyGeneration (void) :
 AC_GALGAS_reference_class () {
 }
 
+
+void cPtr_propertyGeneration::
+propertyGeneration_init_21_ (const GGS_string & in_mPropertyName,
+                             Compiler * /* inCompiler */) {
+  mProperty_mPropertyName = in_mPropertyName ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyGeneration::GGS_propertyGeneration (const cPtr_propertyGeneration * inSourcePtr) :
@@ -6797,9 +6611,7 @@ GGS_propertyGeneration GGS_propertyGeneration::extractObject (const GGS_object &
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@transientDependencyListForGeneration' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_transientDependencyListForGeneration : public cCollectionElement {
@@ -6904,9 +6716,8 @@ GGS_transientDependencyListForGeneration GGS_transientDependencyListForGeneratio
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientDependencyListForGeneration::enterElement (const GGS_transientDependencyListForGeneration_2E_element & inValue,
-                                                             Compiler * /* inCompiler */
-                                                             COMMA_LOCATION_ARGS) {
+void GGS_transientDependencyListForGeneration::plusPlusAssignOperation (const GGS_transientDependencyListForGeneration_2E_element & inValue
+                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_transientDependencyListForGeneration (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -6951,11 +6762,11 @@ void GGS_transientDependencyListForGeneration::makeAttributesFromObjects (capCol
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientDependencyListForGeneration::addAssign_operation (const GGS_observablePropertyAST & inOperand0,
-                                                                    const GGS_string & inOperand1,
-                                                                    const GGS_string & inOperand2,
-                                                                    const GGS_string & inOperand3
-                                                                    COMMA_LOCATION_ARGS) {
+void GGS_transientDependencyListForGeneration::addAssignOperation (const GGS_observablePropertyAST & inOperand0,
+                                                                   const GGS_string & inOperand1,
+                                                                   const GGS_string & inOperand2,
+                                                                   const GGS_string & inOperand3
+                                                                   COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_transientDependencyListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -7179,9 +6990,9 @@ GGS_transientDependencyListForGeneration GGS_transientDependencyListForGeneratio
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientDependencyListForGeneration::plusAssign_operation (const GGS_transientDependencyListForGeneration inOperand,
-                                                                     Compiler * /* inCompiler */
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_transientDependencyListForGeneration::plusAssignOperation (const GGS_transientDependencyListForGeneration inOperand,
+                                                                    Compiler * /* inCompiler */
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -7558,9 +7369,7 @@ GGS_propertyGeneration_2E_weak GGS_propertyGeneration_2E_weak::extractObject (co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@computedPropertyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_computedPropertyGenerationList : public cCollectionElement {
@@ -7647,9 +7456,8 @@ GGS_computedPropertyGenerationList GGS_computedPropertyGenerationList::init (Com
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_computedPropertyGenerationList::enterElement (const GGS_computedPropertyGenerationList_2E_element & inValue,
-                                                       Compiler * /* inCompiler */
-                                                       COMMA_LOCATION_ARGS) {
+void GGS_computedPropertyGenerationList::plusPlusAssignOperation (const GGS_computedPropertyGenerationList_2E_element & inValue
+                                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_computedPropertyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -7685,8 +7493,8 @@ void GGS_computedPropertyGenerationList::makeAttributesFromObjects (capCollectio
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_computedPropertyGenerationList::addAssign_operation (const GGS_computedPropertyGeneration & inOperand0
-                                                              COMMA_LOCATION_ARGS) {
+void GGS_computedPropertyGenerationList::addAssignOperation (const GGS_computedPropertyGeneration & inOperand0
+                                                             COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_computedPropertyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -7859,9 +7667,9 @@ GGS_computedPropertyGenerationList GGS_computedPropertyGenerationList::getter_su
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_computedPropertyGenerationList::plusAssign_operation (const GGS_computedPropertyGenerationList inOperand,
-                                                               Compiler * /* inCompiler */
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_computedPropertyGenerationList::plusAssignOperation (const GGS_computedPropertyGenerationList inOperand,
+                                                              Compiler * /* inCompiler */
+                                                              COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8879,9 +8687,7 @@ GGS_transientPropertyGeneration_2E_weak GGS_transientPropertyGeneration_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@transientPropertyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_transientPropertyGenerationList : public cCollectionElement {
@@ -8968,9 +8774,8 @@ GGS_transientPropertyGenerationList GGS_transientPropertyGenerationList::init (C
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientPropertyGenerationList::enterElement (const GGS_transientPropertyGenerationList_2E_element & inValue,
-                                                        Compiler * /* inCompiler */
-                                                        COMMA_LOCATION_ARGS) {
+void GGS_transientPropertyGenerationList::plusPlusAssignOperation (const GGS_transientPropertyGenerationList_2E_element & inValue
+                                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_transientPropertyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -9006,8 +8811,8 @@ void GGS_transientPropertyGenerationList::makeAttributesFromObjects (capCollecti
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientPropertyGenerationList::addAssign_operation (const GGS_transientPropertyGeneration & inOperand0
-                                                               COMMA_LOCATION_ARGS) {
+void GGS_transientPropertyGenerationList::addAssignOperation (const GGS_transientPropertyGeneration & inOperand0
+                                                              COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_transientPropertyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -9180,9 +8985,9 @@ GGS_transientPropertyGenerationList GGS_transientPropertyGenerationList::getter_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientPropertyGenerationList::plusAssign_operation (const GGS_transientPropertyGenerationList inOperand,
-                                                                Compiler * /* inCompiler */
-                                                                COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_transientPropertyGenerationList::plusAssignOperation (const GGS_transientPropertyGenerationList inOperand,
+                                                               Compiler * /* inCompiler */
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -9344,77 +9149,77 @@ GGS_string extensionGetter_transientComputeFunctionCall (const GGS_transientDepe
     if (GalgasBool::boolTrue == test_3) {
       test_3 = GGS_bool (ComparisonKind::notEqual, enumerator_18276.current_mDefaultValueAsString (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       if (GalgasBool::boolTrue == test_3) {
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("var s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 424)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("switch s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (GGS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 425)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("case .single :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 426)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("  ()\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 427)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 427)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("case .empty, .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 428)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 428)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("  s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 429)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (" = .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (enumerator_18276.current_mDefaultValueAsString (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 429)) ;
-        result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 430)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 430)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("var s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 424)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("switch s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (GGS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 425)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("case .single :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 426)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("  ()\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 427)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 427)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("case .empty, .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 428)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 428)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("  s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 429)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (" = .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (enumerator_18276.current_mDefaultValueAsString (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 429)) ;
+        result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 430)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 430)) ;
       }
     }
     if (GalgasBool::boolFalse == test_3) {
-      result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("let s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 432)) ;
+      result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("let s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (index_18255.getter_string (SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (extensionGetter_modelStringForSelf (enumerator_18276.current_mDependency (HERE), var_uwself_18145, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 432)) ;
     }
     enumerator_18276.gotoNextObject () ;
     index_18255.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 422)) ;
   }
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("switch ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 435)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 435)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("switch ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 435)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 435)) ;
   const GGS_transientDependencyListForGeneration temp_4 = inObject ;
   UpEnumerator_transientDependencyListForGeneration enumerator_18930 (temp_4) ;
   GGS_uint index_18924 (uint32_t (0)) ;
   while (enumerator_18930.hasCurrentObject ()) {
-    result_outResult.plusAssign_operation(GGS_string ("s").add_operation (index_18924.getter_string (SOURCE_FILE ("transient-property.ggs", 438)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 438)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 438)) ;
+    result_outResult.plusAssignOperation(GGS_string ("s").add_operation (index_18924.getter_string (SOURCE_FILE ("transient-property.ggs", 438)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 438)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 438)) ;
     enumerator_18930.gotoNextObject () ;
     if (enumerator_18930.hasCurrentObject ()) {
-      result_outResult.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 440)) ;
+      result_outResult.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 440)) ;
     }
     index_18924.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 436)) ;
   }
-  result_outResult.plusAssign_operation(GGS_string (") {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 442)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 443)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 443)) ;
+  result_outResult.plusAssignOperation(GGS_string (") {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 442)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 443)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 443)) ;
   const GGS_transientDependencyListForGeneration temp_5 = inObject ;
   UpEnumerator_transientDependencyListForGeneration enumerator_19080 (temp_5) ;
   GGS_uint index_19074 (uint32_t (0)) ;
   while (enumerator_19080.hasCurrentObject ()) {
-    result_outResult.plusAssign_operation(GGS_string (".single (let v").add_operation (index_19074.getter_string (SOURCE_FILE ("transient-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
+    result_outResult.plusAssignOperation(GGS_string (".single (let v").add_operation (index_19074.getter_string (SOURCE_FILE ("transient-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
     enumerator_19080.gotoNextObject () ;
     if (enumerator_19080.hasCurrentObject ()) {
-      result_outResult.plusAssign_operation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 448)) ;
+      result_outResult.plusAssignOperation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 448)) ;
     }
     index_19074.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 444)) ;
   }
-  result_outResult.plusAssign_operation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 450)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("  return .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 451)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 451)) ;
-  result_outResult.plusAssign_operation(constinArgument_inFunctionNamePrefix.add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 452)) ;
-  result_outResult.plusAssign_operation(GGS_string (" ("), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 453)) ;
+  result_outResult.plusAssignOperation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 450)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("  return .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 451)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 451)) ;
+  result_outResult.plusAssignOperation(constinArgument_inFunctionNamePrefix.add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 452)) ;
+  result_outResult.plusAssignOperation(GGS_string (" ("), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 453)) ;
   const GGS_transientDependencyListForGeneration temp_6 = inObject ;
   UpEnumerator_transientDependencyListForGeneration enumerator_19376 (temp_6) ;
   GGS_uint index_19370 (uint32_t (0)) ;
   while (enumerator_19376.hasCurrentObject ()) {
-    result_outResult.plusAssign_operation(GGS_string ("v").add_operation (index_19370.getter_string (SOURCE_FILE ("transient-property.ggs", 456)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 456)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 456)) ;
+    result_outResult.plusAssignOperation(GGS_string ("v").add_operation (index_19370.getter_string (SOURCE_FILE ("transient-property.ggs", 456)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 456)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 456)) ;
     enumerator_19376.gotoNextObject () ;
     if (enumerator_19376.hasCurrentObject ()) {
-      result_outResult.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 458)) ;
+      result_outResult.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 458)) ;
     }
     index_19370.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 454)) ;
   }
-  result_outResult.plusAssign_operation(GGS_string ("))\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 460)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 461)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 461)) ;
+  result_outResult.plusAssignOperation(GGS_string ("))\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 460)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 461)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 461)) ;
   const GGS_transientDependencyListForGeneration temp_7 = inObject ;
   UpEnumerator_transientDependencyListForGeneration enumerator_19525 (temp_7) ;
   while (enumerator_19525.hasCurrentObject ()) {
-    result_outResult.plusAssign_operation(GGS_string (".multiple"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 464)) ;
+    result_outResult.plusAssignOperation(GGS_string (".multiple"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 464)) ;
     enumerator_19525.gotoNextObject () ;
     if (enumerator_19525.hasCurrentObject ()) {
-      result_outResult.plusAssign_operation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 466)) ;
+      result_outResult.plusAssignOperation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 466)) ;
     }
   }
-  result_outResult.plusAssign_operation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 468)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("  return .multiple\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 469)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 469)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("default :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 470)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 470)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 471)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 471)) ;
-  result_outResult.plusAssign_operation(var_ident_18234.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 472)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 472)) ;
+  result_outResult.plusAssignOperation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 468)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("  return .multiple\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 469)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 469)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("default :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 470)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 470)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 471)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 471)) ;
+  result_outResult.plusAssignOperation(var_ident_18234.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 472)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 472)) ;
 //---
   return result_outResult ;
 }
@@ -10857,9 +10662,7 @@ GGS_toManyProxyGeneration_2E_weak GGS_toManyProxyGeneration_2E_weak::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@toManyProxyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_toManyProxyGenerationList : public cCollectionElement {
@@ -10946,9 +10749,8 @@ GGS_toManyProxyGenerationList GGS_toManyProxyGenerationList::init (Compiler * CO
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyProxyGenerationList::enterElement (const GGS_toManyProxyGenerationList_2E_element & inValue,
-                                                  Compiler * /* inCompiler */
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_toManyProxyGenerationList::plusPlusAssignOperation (const GGS_toManyProxyGenerationList_2E_element & inValue
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_toManyProxyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -10984,8 +10786,8 @@ void GGS_toManyProxyGenerationList::makeAttributesFromObjects (capCollectionElem
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyProxyGenerationList::addAssign_operation (const GGS_toManyProxyGeneration & inOperand0
-                                                         COMMA_LOCATION_ARGS) {
+void GGS_toManyProxyGenerationList::addAssignOperation (const GGS_toManyProxyGeneration & inOperand0
+                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_toManyProxyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -11158,9 +10960,9 @@ GGS_toManyProxyGenerationList GGS_toManyProxyGenerationList::getter_subListToInd
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyProxyGenerationList::plusAssign_operation (const GGS_toManyProxyGenerationList inOperand,
-                                                          Compiler * /* inCompiler */
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_toManyProxyGenerationList::plusAssignOperation (const GGS_toManyProxyGenerationList inOperand,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -11685,9 +11487,7 @@ GGS_atomicProxyGeneration_2E_weak GGS_atomicProxyGeneration_2E_weak::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@atomicProxyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_atomicProxyGenerationList : public cCollectionElement {
@@ -11774,9 +11574,8 @@ GGS_atomicProxyGenerationList GGS_atomicProxyGenerationList::init (Compiler * CO
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicProxyGenerationList::enterElement (const GGS_atomicProxyGenerationList_2E_element & inValue,
-                                                  Compiler * /* inCompiler */
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_atomicProxyGenerationList::plusPlusAssignOperation (const GGS_atomicProxyGenerationList_2E_element & inValue
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_atomicProxyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -11812,8 +11611,8 @@ void GGS_atomicProxyGenerationList::makeAttributesFromObjects (capCollectionElem
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicProxyGenerationList::addAssign_operation (const GGS_atomicProxyGeneration & inOperand0
-                                                         COMMA_LOCATION_ARGS) {
+void GGS_atomicProxyGenerationList::addAssignOperation (const GGS_atomicProxyGeneration & inOperand0
+                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_atomicProxyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -11986,9 +11785,9 @@ GGS_atomicProxyGenerationList GGS_atomicProxyGenerationList::getter_subListToInd
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicProxyGenerationList::plusAssign_operation (const GGS_atomicProxyGenerationList inOperand,
-                                                          Compiler * /* inCompiler */
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_atomicProxyGenerationList::plusAssignOperation (const GGS_atomicProxyGenerationList inOperand,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -12674,9 +12473,7 @@ GGS_atomicPropertyGeneration_2E_weak GGS_atomicPropertyGeneration_2E_weak::extra
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@atomicPropertyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_atomicPropertyGenerationList : public cCollectionElement {
@@ -12763,9 +12560,8 @@ GGS_atomicPropertyGenerationList GGS_atomicPropertyGenerationList::init (Compile
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicPropertyGenerationList::enterElement (const GGS_atomicPropertyGenerationList_2E_element & inValue,
-                                                     Compiler * /* inCompiler */
-                                                     COMMA_LOCATION_ARGS) {
+void GGS_atomicPropertyGenerationList::plusPlusAssignOperation (const GGS_atomicPropertyGenerationList_2E_element & inValue
+                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_atomicPropertyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -12801,8 +12597,8 @@ void GGS_atomicPropertyGenerationList::makeAttributesFromObjects (capCollectionE
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicPropertyGenerationList::addAssign_operation (const GGS_atomicPropertyGeneration & inOperand0
-                                                            COMMA_LOCATION_ARGS) {
+void GGS_atomicPropertyGenerationList::addAssignOperation (const GGS_atomicPropertyGeneration & inOperand0
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_atomicPropertyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -12975,9 +12771,9 @@ GGS_atomicPropertyGenerationList GGS_atomicPropertyGenerationList::getter_subLis
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_atomicPropertyGenerationList::plusAssign_operation (const GGS_atomicPropertyGenerationList inOperand,
-                                                             Compiler * /* inCompiler */
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_atomicPropertyGenerationList::plusAssignOperation (const GGS_atomicPropertyGenerationList inOperand,
+                                                            Compiler * /* inCompiler */
+                                                            COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -13575,53 +13371,6 @@ GGS_propertyMap GGS_propertyMap::getter_overriddenMap (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_propertyMap::enterElement (const GGS_propertyMap_2E_element & inValue,
-                                    Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) {
-  cMapElement_propertyMap * p = nullptr ;
-  macroMyNew (p, cMapElement_propertyMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@propertyMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_propertyMap::addAssign_operation (const GGS_lstring & inKey,
-                                           const GGS_propertyKind & inArgument0,
-                                           const GGS_actionMap & inArgument1,
-                                           const GGS_bool & inArgument2,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-  cMapElement_propertyMap * p = nullptr ;
-  macroMyNew (p, cMapElement_propertyMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@propertyMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyMap GGS_propertyMap::add_operation (const GGS_propertyMap & inOperand,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) const {
-  GGS_propertyMap result = *this ;
-  UpEnumerator_propertyMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mKind (HERE), enumerator.current_mActionMap (HERE), enumerator.current_mIsOverriding (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_propertyMap::setter_insertKey (GGS_lstring inKey,
                                         GGS_propertyKind inArgument0,
                                         GGS_actionMap inArgument1,
@@ -14012,9 +13761,7 @@ GGS_toOnePropertyGeneration_2E_weak GGS_toOnePropertyGeneration_2E_weak::extract
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@toOnePropertyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_toOnePropertyGenerationList : public cCollectionElement {
@@ -14101,9 +13848,8 @@ GGS_toOnePropertyGenerationList GGS_toOnePropertyGenerationList::init (Compiler 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toOnePropertyGenerationList::enterElement (const GGS_toOnePropertyGenerationList_2E_element & inValue,
-                                                    Compiler * /* inCompiler */
-                                                    COMMA_LOCATION_ARGS) {
+void GGS_toOnePropertyGenerationList::plusPlusAssignOperation (const GGS_toOnePropertyGenerationList_2E_element & inValue
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_toOnePropertyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -14139,8 +13885,8 @@ void GGS_toOnePropertyGenerationList::makeAttributesFromObjects (capCollectionEl
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toOnePropertyGenerationList::addAssign_operation (const GGS_toOnePropertyGeneration & inOperand0
-                                                           COMMA_LOCATION_ARGS) {
+void GGS_toOnePropertyGenerationList::addAssignOperation (const GGS_toOnePropertyGeneration & inOperand0
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_toOnePropertyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -14313,9 +14059,9 @@ GGS_toOnePropertyGenerationList GGS_toOnePropertyGenerationList::getter_subListT
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toOnePropertyGenerationList::plusAssign_operation (const GGS_toOnePropertyGenerationList inOperand,
-                                                            Compiler * /* inCompiler */
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_toOnePropertyGenerationList::plusAssignOperation (const GGS_toOnePropertyGenerationList inOperand,
+                                                           Compiler * /* inCompiler */
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -14442,6 +14188,202 @@ GGS_toOnePropertyGenerationList GGS_toOnePropertyGenerationList::extractObject (
       result = *p ;
     }else{
       inCompiler->castError ("toOnePropertyGenerationList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Enum toManyRelationshipOptionAST
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST::GGS_toManyRelationshipOptionAST (void) :
+mAssociatedValues (),
+mEnum (Enumeration::invalid) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_none (UNUSED_LOCATION_ARGS) {
+  GGS_toManyRelationshipOptionAST result ;
+  result.mEnum = Enumeration::enum_none ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_hasOpposite (const GGS_lstring & inAssociatedValue0
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_toManyRelationshipOptionAST result ;
+  result.mEnum = Enumeration::enum_hasOpposite ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GGS_toManyRelationshipOptionAST_2E_hasOpposite (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_hasDependance (const GGS_lstring & inAssociatedValue0
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_toManyRelationshipOptionAST result ;
+  result.mEnum = Enumeration::enum_hasDependance ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GGS_toManyRelationshipOptionAST_2E_hasDependance (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toManyRelationshipOptionAST::method_extractHasOpposite (GGS_lstring & outAssociatedValue_oppositeName,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_hasOpposite) {
+    outAssociatedValue_oppositeName.drop () ;
+    String s ;
+    s.appendCString ("method @toManyRelationshipOptionAST.hasOpposite invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_oppositeName = ptr->mProperty_oppositeName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toManyRelationshipOptionAST::method_extractHasDependance (GGS_lstring & outAssociatedValue_masterPropertyName,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_hasDependance) {
+    outAssociatedValue_masterPropertyName.drop () ;
+    String s ;
+    s.appendCString ("method @toManyRelationshipOptionAST.hasDependance invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_masterPropertyName = ptr->mProperty_masterPropertyName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ GGS_toManyRelationshipOptionAST::getter_getHasOpposite (UNUSED_LOCATION_ARGS) const {
+  GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ result ;
+  if (mEnum == Enumeration::enum_hasOpposite) {
+    const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
+    result = GGS_toManyRelationshipOptionAST_2E_hasOpposite (*ptr) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toManyRelationshipOptionAST::getAssociatedValuesFor_hasOpposite (GGS_lstring & out_oppositeName) const {
+  const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
+  out_oppositeName = ptr->mProperty_oppositeName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ GGS_toManyRelationshipOptionAST::getter_getHasDependance (UNUSED_LOCATION_ARGS) const {
+  GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ result ;
+  if (mEnum == Enumeration::enum_hasDependance) {
+    const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
+    result = GGS_toManyRelationshipOptionAST_2E_hasDependance (*ptr) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toManyRelationshipOptionAST::getAssociatedValuesFor_hasDependance (GGS_lstring & out_masterPropertyName) const {
+  const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
+  out_masterPropertyName = ptr->mProperty_masterPropertyName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_toManyRelationshipOptionAST [4] = {
+  "(not built)",
+  "none",
+  "hasOpposite",
+  "hasDependance"
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_toManyRelationshipOptionAST::getter_isNone (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_toManyRelationshipOptionAST::getter_isHasOpposite (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasOpposite == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_toManyRelationshipOptionAST::getter_isHasDependance (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasDependance == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toManyRelationshipOptionAST::description (String & ioString,
+                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("<enum @toManyRelationshipOptionAST: ") ;
+  ioString.appendCString (gEnumNameArrayFor_toManyRelationshipOptionAST [size_t (mEnum)]) ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString.appendCString (">") ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @toManyRelationshipOptionAST generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ("toManyRelationshipOptionAST",
+                                                                                   nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_toManyRelationshipOptionAST::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toManyRelationshipOptionAST::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toManyRelationshipOptionAST (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::extractObject (const GGS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) {
+  GGS_toManyRelationshipOptionAST result ;
+  const GGS_toManyRelationshipOptionAST * p = (const GGS_toManyRelationshipOptionAST *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toManyRelationshipOptionAST *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toManyRelationshipOptionAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

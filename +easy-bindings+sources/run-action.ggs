@@ -43,7 +43,7 @@ proc buildActionMap(
   let @lstringlist inActionDeclarationList,
   !@actionMap outActionMap)
 {
-  outActionMap = []
+  outActionMap = ()
   for (mValue) in inActionDeclarationList do
     !?outActionMap.insertKey (mValue)
   end

@@ -8,9 +8,7 @@
 #include "all-declarations-0.h"
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@_32_lstringlist' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement__32_lstringlist : public cCollectionElement {
@@ -103,9 +101,8 @@ GGS__32_lstringlist GGS__32_lstringlist::init (Compiler * COMMA_UNUSED_LOCATION_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS__32_lstringlist::enterElement (const GGS__32_lstringlist_2E_element & inValue,
-                                        Compiler * /* inCompiler */
-                                        COMMA_LOCATION_ARGS) {
+void GGS__32_lstringlist::plusPlusAssignOperation (const GGS__32_lstringlist_2E_element & inValue
+                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement__32_lstringlist (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -144,9 +141,9 @@ void GGS__32_lstringlist::makeAttributesFromObjects (capCollectionElement & outA
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS__32_lstringlist::addAssign_operation (const GGS_lstring & inOperand0,
-                                               const GGS_lstring & inOperand1
-                                               COMMA_LOCATION_ARGS) {
+void GGS__32_lstringlist::addAssignOperation (const GGS_lstring & inOperand0,
+                                              const GGS_lstring & inOperand1
+                                              COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement__32_lstringlist (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -336,9 +333,9 @@ GGS__32_lstringlist GGS__32_lstringlist::getter_subListToIndex (const GGS_uint &
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS__32_lstringlist::plusAssign_operation (const GGS__32_lstringlist inOperand,
-                                                Compiler * /* inCompiler */
-                                                COMMA_UNUSED_LOCATION_ARGS) {
+void GGS__32_lstringlist::plusAssignOperation (const GGS__32_lstringlist inOperand,
+                                               Compiler * /* inCompiler */
+                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2730,110 +2727,110 @@ GGS_luint Lexique_easyBindings_5F_lexique::synthetizedAttribute_uint_33__32_valu
 
 GGS_stringlist Lexique_easyBindings_5F_lexique::symbols (LOCATION_ARGS) {
   GGS_stringlist result = GGS_stringlist::class_func_emptyList (THERE) ;
-  result.addAssign_operation (GGS_string ("identifier") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("Identifier") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("@attribute") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("bindingName") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("controllerName") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("viewName") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("literal_integer") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("literal_double") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("literal_string") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("comment") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("abstract") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("action") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("all") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("arrayController") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("autolayout") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("autoLayoutDocument") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("binding") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("calledBy") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("class") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("classForSwift") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("column") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("computed") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("configurator") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("default") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("dependsFrom") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("divider") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("enum") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("editableColumn") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("entity") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("extern") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("externDelegate") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("externFunc") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("func") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("graphic") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("graphviz") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("gutter") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("handlingOpposite") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("hStack") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("include") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("inverse") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("linker") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("mainxib") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("menuItem") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("no") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("newView") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("none") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("one") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("outlet") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("outletArray") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("override") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("prefs") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("property") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("proxy") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("root") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("selectionController") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("self") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("separator") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("signature") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("sortkey") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("space") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("stackView") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("standalone") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("struct") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("super") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("tableViewController") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("toMany") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("toOne") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("transient") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("typeView") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("version") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("vStack") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("versionShouldChange") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("view") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("weak") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("withVScroller") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("xcodeproject") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("yes") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("enabled") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("graphicController") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("hidden") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("tableValue") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("run") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (":") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (",") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (";") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("!") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("[") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("]") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("{") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("}") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("(") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (")") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (".") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("|") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("&") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("<") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (">") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("<=") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (">=") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("!=") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("==") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("^") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("-") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("=") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("identifier") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("Identifier") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("@attribute") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("bindingName") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("controllerName") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("viewName") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("literal_integer") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("literal_double") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("literal_string") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("comment") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("abstract") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("action") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("all") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("arrayController") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("autolayout") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("autoLayoutDocument") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("binding") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("calledBy") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("class") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("classForSwift") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("column") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("computed") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("configurator") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("default") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("dependsFrom") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("divider") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("enum") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("editableColumn") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("entity") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("extern") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("externDelegate") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("externFunc") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("func") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("graphic") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("graphviz") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("gutter") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("handlingOpposite") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("hStack") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("include") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("inverse") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("linker") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("mainxib") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("menuItem") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("no") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("newView") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("none") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("one") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("outlet") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("outletArray") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("override") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("prefs") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("property") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("proxy") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("root") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("selectionController") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("self") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("separator") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("signature") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("sortkey") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("space") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("stackView") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("standalone") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("struct") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("super") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("tableViewController") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("toMany") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("toOne") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("transient") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("typeView") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("version") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("vStack") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("versionShouldChange") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("view") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("weak") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("withVScroller") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("xcodeproject") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("yes") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("enabled") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("graphicController") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("hidden") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("tableValue") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("run") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (":") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (",") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (";") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("!") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("[") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("]") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("{") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("}") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("(") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (")") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (".") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("|") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("&") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("<") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (">") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("<=") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (">=") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("!=") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("==") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("^") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("-") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("=") COMMA_HERE) ;
   return result ;
 }
 
@@ -4201,7 +4198,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       GGS_astViewDeclarationList temp_3 = GGS_astViewDeclarationList::init (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 55)) ;
       GGS_astViewDeclarationList var_viewDeclarationList_2160 = temp_3 ;
       nt_stack_5F_view_5F_declaration_ (var_viewDeclarationList_2160, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mViewDeclarationList.plusAssign_operation(var_viewDeclarationList_2160, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 57)) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mViewDeclarationList.plusAssignOperation(var_viewDeclarationList_2160, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 57)) ;
     } break ;
     case 3: {
       nt_action_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mActionDeclarationList, inCompiler) ;
@@ -4210,7 +4207,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       GGS_simpleStoredPropertyList temp_4 = GGS_simpleStoredPropertyList::init (inCompiler COMMA_SOURCE_FILE ("preferences.ggs", 61)) ;
       GGS_simpleStoredPropertyList var_simpleStoredPropertyList_2460 = temp_4 ;
       nt_simple_5F_stored_5F_declaration_ (var_prefs_1940, var_simpleStoredPropertyList_2460, var_signatureList_2012, ioArgument_ioDeclarationAST, inCompiler) ;
-      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssign_operation(var_simpleStoredPropertyList_2460, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 67)) ;
+      ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSimpleStoredAttributeList.plusAssignOperation(var_simpleStoredPropertyList_2460, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 67)) ;
     } break ;
     case 5: {
       nt_outlet_5F_declaration_ (ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mOutletDeclarationList, inCompiler) ;
@@ -4233,7 +4230,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
       break ;
     }
   }
-  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssign_operation(var_signatureList_2012, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 80)) ;
+  ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssignOperation(var_signatureList_2012, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 80)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.ggs", 81)) ;
 }
 
@@ -4504,11 +4501,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
       break ;
     }
   }
-  GGS_astAutoLayoutViewFunctionMap temp_2 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 151)) ;
-  GGS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5039 = temp_2 ;
+  GGS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5039 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 152)) ;
-  bool repeatFlag_3 = true ;
-  while (repeatFlag_3) {
+  bool repeatFlag_2 = true ;
+  while (repeatFlag_2) {
     switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 155)) ;
@@ -4525,7 +4521,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
       nt_auto_5F_layout_5F_view_5F_binding_5F_specification_ (var_outletClassName_4158, ioArgument_ioDeclarationAST.mProperty_mAutoLayoutBindingSpecificationList, inCompiler) ;
     } break ;
     default:
-      repeatFlag_3 = false ;
+      repeatFlag_2 = false ;
       break ;
     }
   }
@@ -4710,7 +4706,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
     while (repeatFlag_1) {
       GGS_lstring var_parameterName_6299 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 189)) ;
-      var_mangledName_6191.plusAssign_operation(var_parameterName_6299.readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
+      var_mangledName_6191.plusAssignOperation(var_parameterName_6299.readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 191)) ;
       switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
       case 1: {
@@ -4796,7 +4792,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 219)) ;
-  var_mangledName_6191.plusAssign_operation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
+  var_mangledName_6191.plusAssignOperation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
   outArgument_outMangledName = GGS_lstring::init_21__21_ (var_mangledName_6191, constinArgument_inFunctionName.readProperty_location (), inCompiler COMMA_HERE) ;
 }
 
@@ -9498,7 +9494,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i52
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.ggs", 38)) ;
       {
       GGS_mainXibLineDescriptorList temp_1 = GGS_mainXibLineDescriptorList::init (inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 39)) ;
-      temp_1.enterElement (GGS_mainXibLineDescriptorList_2E_element::init_21_ (GGS_mainXibElement::class_func_outlet (var_outletType_1178, var_outletName_1226  COMMA_SOURCE_FILE ("main-xib.ggs", 39)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 39)) ;
+      temp_1.plusPlusAssignOperation (GGS_mainXibLineDescriptorList_2E_element::init_21_ (GGS_mainXibElement::class_func_outlet (var_outletType_1178, var_outletName_1226  COMMA_SOURCE_FILE ("main-xib.ggs", 39)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("main-xib.ggs", 39)) ;
       ioArgument_ioElementList.setter_append (temp_1, inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 39)) ;
       }
     } break ;
@@ -9507,7 +9503,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i52
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("main-xib.ggs", 41)) ;
       {
       GGS_mainXibLineDescriptorList temp_2 = GGS_mainXibLineDescriptorList::init (inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 42)) ;
-      temp_2.enterElement (GGS_mainXibLineDescriptorList_2E_element::init_21_ (GGS_mainXibElement::class_func_text (var_s_1382  COMMA_SOURCE_FILE ("main-xib.ggs", 42)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 42)) ;
+      temp_2.plusPlusAssignOperation (GGS_mainXibLineDescriptorList_2E_element::init_21_ (GGS_mainXibElement::class_func_text (var_s_1382  COMMA_SOURCE_FILE ("main-xib.ggs", 42)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("main-xib.ggs", 42)) ;
       ioArgument_ioElementList.setter_append (temp_2, inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 42)) ;
       }
     } break ;
@@ -9684,9 +9680,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@declarationListAST' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_declarationListAST : public cCollectionElement {
@@ -9773,9 +9767,8 @@ GGS_declarationListAST GGS_declarationListAST::init (Compiler * COMMA_UNUSED_LOC
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_declarationListAST::enterElement (const GGS_declarationListAST_2E_element & inValue,
-                                           Compiler * /* inCompiler */
-                                           COMMA_LOCATION_ARGS) {
+void GGS_declarationListAST::plusPlusAssignOperation (const GGS_declarationListAST_2E_element & inValue
+                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_declarationListAST (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -9811,8 +9804,8 @@ void GGS_declarationListAST::makeAttributesFromObjects (capCollectionElement & o
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_declarationListAST::addAssign_operation (const GGS_abstractDeclarationAST & inOperand0
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_declarationListAST::addAssignOperation (const GGS_abstractDeclarationAST & inOperand0
+                                                 COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_declarationListAST (inOperand0 COMMA_THERE)) ;
@@ -9985,9 +9978,9 @@ GGS_declarationListAST GGS_declarationListAST::getter_subListToIndex (const GGS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_declarationListAST::plusAssign_operation (const GGS_declarationListAST inOperand,
-                                                   Compiler * /* inCompiler */
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_declarationListAST::plusAssignOperation (const GGS_declarationListAST inOperand,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -10120,9 +10113,7 @@ GGS_declarationListAST GGS_declarationListAST::extractObject (const GGS_object &
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@outletClassBindingSpecificationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_outletClassBindingSpecificationList : public cCollectionElement {
@@ -10227,9 +10218,8 @@ GGS_outletClassBindingSpecificationList GGS_outletClassBindingSpecificationList:
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletClassBindingSpecificationList::enterElement (const GGS_outletClassBindingSpecificationList_2E_element & inValue,
-                                                            Compiler * /* inCompiler */
-                                                            COMMA_LOCATION_ARGS) {
+void GGS_outletClassBindingSpecificationList::plusPlusAssignOperation (const GGS_outletClassBindingSpecificationList_2E_element & inValue
+                                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_outletClassBindingSpecificationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -10274,11 +10264,11 @@ void GGS_outletClassBindingSpecificationList::makeAttributesFromObjects (capColl
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletClassBindingSpecificationList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                                   const GGS_lstring & inOperand1,
-                                                                   const GGS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                   const GGS_controllerBindingOptionList & inOperand3
-                                                                   COMMA_LOCATION_ARGS) {
+void GGS_outletClassBindingSpecificationList::addAssignOperation (const GGS_lstring & inOperand0,
+                                                                  const GGS_lstring & inOperand1,
+                                                                  const GGS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                  const GGS_controllerBindingOptionList & inOperand3
+                                                                  COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_outletClassBindingSpecificationList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -10502,9 +10492,9 @@ GGS_outletClassBindingSpecificationList GGS_outletClassBindingSpecificationList:
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_outletClassBindingSpecificationList::plusAssign_operation (const GGS_outletClassBindingSpecificationList inOperand,
-                                                                    Compiler * /* inCompiler */
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_outletClassBindingSpecificationList::plusAssignOperation (const GGS_outletClassBindingSpecificationList inOperand,
+                                                                   Compiler * /* inCompiler */
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -10772,9 +10762,7 @@ GGS_outletClassBindingSpecificationList GGS_outletClassBindingSpecificationList:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutViewClassBindingSpecificationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutViewClassBindingSpecificationList : public cCollectionElement {
@@ -10879,9 +10867,8 @@ GGS_autoLayoutViewClassBindingSpecificationList GGS_autoLayoutViewClassBindingSp
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewClassBindingSpecificationList::enterElement (const GGS_autoLayoutViewClassBindingSpecificationList_2E_element & inValue,
-                                                                    Compiler * /* inCompiler */
-                                                                    COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutViewClassBindingSpecificationList::plusPlusAssignOperation (const GGS_autoLayoutViewClassBindingSpecificationList_2E_element & inValue
+                                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutViewClassBindingSpecificationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -10926,11 +10913,11 @@ void GGS_autoLayoutViewClassBindingSpecificationList::makeAttributesFromObjects 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewClassBindingSpecificationList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                                           const GGS_lstring & inOperand1,
-                                                                           const GGS_outletClassBindingSpecificationModelList & inOperand2,
-                                                                           const GGS_controllerBindingOptionList & inOperand3
-                                                                           COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutViewClassBindingSpecificationList::addAssignOperation (const GGS_lstring & inOperand0,
+                                                                          const GGS_lstring & inOperand1,
+                                                                          const GGS_outletClassBindingSpecificationModelList & inOperand2,
+                                                                          const GGS_controllerBindingOptionList & inOperand3
+                                                                          COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutViewClassBindingSpecificationList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -11154,9 +11141,9 @@ GGS_autoLayoutViewClassBindingSpecificationList GGS_autoLayoutViewClassBindingSp
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutViewClassBindingSpecificationList::plusAssign_operation (const GGS_autoLayoutViewClassBindingSpecificationList inOperand,
-                                                                            Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutViewClassBindingSpecificationList::plusAssignOperation (const GGS_autoLayoutViewClassBindingSpecificationList inOperand,
+                                                                           Compiler * /* inCompiler */
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -11539,51 +11526,6 @@ GGS_astAutoLayoutViewFunctionMap GGS_astAutoLayoutViewFunctionMap::getter_overri
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_astAutoLayoutViewFunctionMap::enterElement (const GGS_astAutoLayoutViewFunctionMap_2E_element & inValue,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cMapElement_astAutoLayoutViewFunctionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_astAutoLayoutViewFunctionMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@astAutoLayoutViewFunctionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astAutoLayoutViewFunctionMap::addAssign_operation (const GGS_lstring & inKey,
-                                                            const GGS_autoLayoutClassParameterList & inArgument0,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_astAutoLayoutViewFunctionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_astAutoLayoutViewFunctionMap (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@astAutoLayoutViewFunctionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionMap GGS_astAutoLayoutViewFunctionMap::add_operation (const GGS_astAutoLayoutViewFunctionMap & inOperand,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const {
-  GGS_astAutoLayoutViewFunctionMap result = *this ;
-  UpEnumerator_astAutoLayoutViewFunctionMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mFomalParameterList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_astAutoLayoutViewFunctionMap::setter_insertKey (GGS_lstring inKey,
                                                          GGS_autoLayoutClassParameterList inArgument0,
                                                          Compiler * inCompiler
@@ -11767,9 +11709,7 @@ GGS_astAutoLayoutViewFunctionMap GGS_astAutoLayoutViewFunctionMap::extractObject
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@enumerationFunctionListAST' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_enumerationFunctionListAST : public cCollectionElement {
@@ -11868,9 +11808,8 @@ GGS_enumerationFunctionListAST GGS_enumerationFunctionListAST::init (Compiler * 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_enumerationFunctionListAST::enterElement (const GGS_enumerationFunctionListAST_2E_element & inValue,
-                                                   Compiler * /* inCompiler */
-                                                   COMMA_LOCATION_ARGS) {
+void GGS_enumerationFunctionListAST::plusPlusAssignOperation (const GGS_enumerationFunctionListAST_2E_element & inValue
+                                                              COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_enumerationFunctionListAST (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -11912,10 +11851,10 @@ void GGS_enumerationFunctionListAST::makeAttributesFromObjects (capCollectionEle
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_enumerationFunctionListAST::addAssign_operation (const GGS_lstring & inOperand0,
-                                                          const GGS_lstring & inOperand1,
-                                                          const GGS__32_lstringlist & inOperand2
-                                                          COMMA_LOCATION_ARGS) {
+void GGS_enumerationFunctionListAST::addAssignOperation (const GGS_lstring & inOperand0,
+                                                         const GGS_lstring & inOperand1,
+                                                         const GGS__32_lstringlist & inOperand2
+                                                         COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_enumerationFunctionListAST (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -12122,9 +12061,9 @@ GGS_enumerationFunctionListAST GGS_enumerationFunctionListAST::getter_subListToI
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_enumerationFunctionListAST::plusAssign_operation (const GGS_enumerationFunctionListAST inOperand,
-                                                           Compiler * /* inCompiler */
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_enumerationFunctionListAST::plusAssignOperation (const GGS_enumerationFunctionListAST inOperand,
+                                                          Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -12481,54 +12420,6 @@ GGS_classMap GGS_classMap::getter_overriddenMap (Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
   GGS_classMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classMap::enterElement (const GGS_classMap_2E_element & inValue,
-                                 Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) {
-  cMapElement_classMap * p = nullptr ;
-  macroMyNew (p, cMapElement_classMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@classMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classMap::addAssign_operation (const GGS_lstring & inKey,
-                                        const GGS_classKind & inArgument0,
-                                        const GGS_propertyMap & inArgument1,
-                                        const GGS_actionMap & inArgument2,
-                                        const GGS_propertyGenerationList & inArgument3,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-  cMapElement_classMap * p = nullptr ;
-  macroMyNew (p, cMapElement_classMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@classMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classMap GGS_classMap::add_operation (const GGS_classMap & inOperand,
-                                          Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) const {
-  GGS_classMap result = *this ;
-  UpEnumerator_classMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mClassKind (HERE), enumerator.current_mPropertyMap (HERE), enumerator.current_mActionMap (HERE), enumerator.current_mPropertyGenerationList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -13022,57 +12913,6 @@ GGS_outletClassMap GGS_outletClassMap::getter_overriddenMap (Compiler * inCompil
                                                              COMMA_LOCATION_ARGS) const {
   GGS_outletClassMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassMap::enterElement (const GGS_outletClassMap_2E_element & inValue,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
-  cMapElement_outletClassMap * p = nullptr ;
-  macroMyNew (p, cMapElement_outletClassMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@outletClassMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassMap::addAssign_operation (const GGS_lstring & inKey,
-                                              const GGS_lstring & inArgument0,
-                                              const GGS_bool & inArgument1,
-                                              const GGS_bool & inArgument2,
-                                              const GGS_bool & inArgument3,
-                                              const GGS_bool & inArgument4,
-                                              const GGS_bool & inArgument5,
-                                              const GGS_bool & inArgument6,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  cMapElement_outletClassMap * p = nullptr ;
-  macroMyNew (p, cMapElement_outletClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4, inArgument5, inArgument6 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@outletClassMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassMap GGS_outletClassMap::add_operation (const GGS_outletClassMap & inOperand,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const {
-  GGS_outletClassMap result = *this ;
-  UpEnumerator_outletClassMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mSuperClassName (HERE), enumerator.current_mHandlesRunAction (HERE), enumerator.current_mHandlesTableValueBinding (HERE), enumerator.current_mHandleEnabledBinding (HERE), enumerator.current_mHandleHiddenBinding (HERE), enumerator.current_mHandleGraphicControllerBinding (HERE), enumerator.current_mUserDefined (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -13678,52 +13518,6 @@ GGS_bindingSpecificationMap GGS_bindingSpecificationMap::getter_overriddenMap (C
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_bindingSpecificationMap::enterElement (const GGS_bindingSpecificationMap_2E_element & inValue,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
-  cMapElement_bindingSpecificationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_bindingSpecificationMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@bindingSpecificationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_bindingSpecificationMap::addAssign_operation (const GGS_lstring & inKey,
-                                                       const GGS_lstring & inArgument0,
-                                                       const GGS_outletBindingSpecificationMap & inArgument1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
-  cMapElement_bindingSpecificationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_bindingSpecificationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@bindingSpecificationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bindingSpecificationMap GGS_bindingSpecificationMap::add_operation (const GGS_bindingSpecificationMap & inOperand,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const {
-  GGS_bindingSpecificationMap result = *this ;
-  UpEnumerator_bindingSpecificationMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mOutletSuperClassName (HERE), enumerator.current_mBindingMap (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_bindingSpecificationMap::setter_insertKey (GGS_lstring inKey,
                                                     GGS_lstring inArgument0,
                                                     GGS_outletBindingSpecificationMap inArgument1,
@@ -14151,59 +13945,6 @@ GGS_autolayoutViewClassMap GGS_autolayoutViewClassMap::getter_overriddenMap (Com
                                                                              COMMA_LOCATION_ARGS) const {
   GGS_autolayoutViewClassMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autolayoutViewClassMap::enterElement (const GGS_autolayoutViewClassMap_2E_element & inValue,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_autolayoutViewClassMap * p = nullptr ;
-  macroMyNew (p, cMapElement_autolayoutViewClassMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@autolayoutViewClassMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autolayoutViewClassMap::addAssign_operation (const GGS_lstring & inKey,
-                                                      const GGS_lstring & inArgument0,
-                                                      const GGS_bool & inArgument1,
-                                                      const GGS_bool & inArgument2,
-                                                      const GGS_bool & inArgument3,
-                                                      const GGS_bool & inArgument4,
-                                                      const GGS_bool & inArgument5,
-                                                      const GGS_bool & inArgument6,
-                                                      const GGS_autoLayoutClassParameterList & inArgument7,
-                                                      const GGS_astAutoLayoutViewFunctionMap & inArgument8,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_autolayoutViewClassMap * p = nullptr ;
-  macroMyNew (p, cMapElement_autolayoutViewClassMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4, inArgument5, inArgument6, inArgument7, inArgument8 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@autolayoutViewClassMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutViewClassMap GGS_autolayoutViewClassMap::add_operation (const GGS_autolayoutViewClassMap & inOperand,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const {
-  GGS_autolayoutViewClassMap result = *this ;
-  UpEnumerator_autolayoutViewClassMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mSuperClassName (HERE), enumerator.current_mHandlesRunAction (HERE), enumerator.current_mHandlesTableValueBinding (HERE), enumerator.current_mHandleEnabledBinding (HERE), enumerator.current_mHandleHiddenBinding (HERE), enumerator.current_mHandleGraphicControllerBinding (HERE), enumerator.current_mUserDefined (HERE), enumerator.current_mParameterList (HERE), enumerator.current_mAutoLayoutViewFunctionMap (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 

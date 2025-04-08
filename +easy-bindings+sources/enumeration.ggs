@@ -119,11 +119,11 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct ioGeneration)
 {
-  var @enumConstantMap enumConstantMap = []
+  var @enumConstantMap enumConstantMap = ()
   for (s) in self.mEnumConstantNameList do
     !?enumConstantMap.insertKey (s, enumConstantMap.count )
   end
-  var @enumFuncMap enumFuncMap = []
+  var @enumFuncMap enumFuncMap = ()
   for (enumTypeName, funcName, associationList) in ioSemanticContext.mEnumerationFunctionListAST do
     if enumTypeName.string == self.mClassName.string then
       var @stringset definedConstantNameSet = []
@@ -147,8 +147,8 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .atomic (!kind: .enumType (!enumTypeName:self.mClassName, !constantMap: enumConstantMap, !funcMap: enumFuncMap)),
-    [],
-    [],
+    (),
+    (),
     []
   )
 //-- Generation

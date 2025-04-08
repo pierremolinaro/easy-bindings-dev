@@ -78,9 +78,7 @@ void callExtensionMethod_fourthAnalysisPhase (class cPtr_abstractDeclarationAST 
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @enumForGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_enumForGeneration : public GGS_abstractFileGeneration {
@@ -137,6 +135,7 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -147,9 +146,7 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumForGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @enumForGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
@@ -204,9 +201,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @enumForGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak {
@@ -282,6 +277,7 @@ class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak 
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;

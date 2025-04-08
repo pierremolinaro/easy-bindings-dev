@@ -8,202 +8,6 @@
 #include "all-declarations-4.h"
 
 //--------------------------------------------------------------------------------------------------
-//  Enum toManyRelationshipOptionAST
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST::GGS_toManyRelationshipOptionAST (void) :
-mAssociatedValues (),
-mEnum (Enumeration::invalid) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_none (UNUSED_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST result ;
-  result.mEnum = Enumeration::enum_none ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_hasOpposite (const GGS_lstring & inAssociatedValue0
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST result ;
-  result.mEnum = Enumeration::enum_hasOpposite ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_toManyRelationshipOptionAST_2E_hasOpposite (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::class_func_hasDependance (const GGS_lstring & inAssociatedValue0
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST result ;
-  result.mEnum = Enumeration::enum_hasDependance ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_toManyRelationshipOptionAST_2E_hasDependance (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_toManyRelationshipOptionAST::method_extractHasOpposite (GGS_lstring & outAssociatedValue_oppositeName,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_hasOpposite) {
-    outAssociatedValue_oppositeName.drop () ;
-    String s ;
-    s.appendCString ("method @toManyRelationshipOptionAST.hasOpposite invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_oppositeName = ptr->mProperty_oppositeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_toManyRelationshipOptionAST::method_extractHasDependance (GGS_lstring & outAssociatedValue_masterPropertyName,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_hasDependance) {
-    outAssociatedValue_masterPropertyName.drop () ;
-    String s ;
-    s.appendCString ("method @toManyRelationshipOptionAST.hasDependance invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_masterPropertyName = ptr->mProperty_masterPropertyName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ GGS_toManyRelationshipOptionAST::getter_getHasOpposite (UNUSED_LOCATION_ARGS) const {
-  GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ result ;
-  if (mEnum == Enumeration::enum_hasOpposite) {
-    const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_toManyRelationshipOptionAST_2E_hasOpposite (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_toManyRelationshipOptionAST::getAssociatedValuesFor_hasOpposite (GGS_lstring & out_oppositeName) const {
-  const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasOpposite *) mAssociatedValues.associatedValuesPointer () ;
-  out_oppositeName = ptr->mProperty_oppositeName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ GGS_toManyRelationshipOptionAST::getter_getHasDependance (UNUSED_LOCATION_ARGS) const {
-  GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ result ;
-  if (mEnum == Enumeration::enum_hasDependance) {
-    const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_toManyRelationshipOptionAST_2E_hasDependance (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_toManyRelationshipOptionAST::getAssociatedValuesFor_hasDependance (GGS_lstring & out_masterPropertyName) const {
-  const auto ptr = (const GGS_toManyRelationshipOptionAST_2E_hasDependance *) mAssociatedValues.associatedValuesPointer () ;
-  out_masterPropertyName = ptr->mProperty_masterPropertyName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_toManyRelationshipOptionAST [4] = {
-  "(not built)",
-  "none",
-  "hasOpposite",
-  "hasDependance"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_toManyRelationshipOptionAST::getter_isNone (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_none == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_toManyRelationshipOptionAST::getter_isHasOpposite (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasOpposite == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_toManyRelationshipOptionAST::getter_isHasDependance (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_hasDependance == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_toManyRelationshipOptionAST::description (String & ioString,
-                                                   const int32_t inIndentation) const {
-  ioString.appendCString ("<enum @toManyRelationshipOptionAST: ") ;
-  ioString.appendCString (gEnumNameArrayFor_toManyRelationshipOptionAST [size_t (mEnum)]) ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendCString (">") ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//     @toManyRelationshipOptionAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ("toManyRelationshipOptionAST",
-                                                                                   nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_toManyRelationshipOptionAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_toManyRelationshipOptionAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_toManyRelationshipOptionAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST GGS_toManyRelationshipOptionAST::extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST result ;
-  const GGS_toManyRelationshipOptionAST * p = (const GGS_toManyRelationshipOptionAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_toManyRelationshipOptionAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("toManyRelationshipOptionAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 
 ComparisonResult GGS_toManyRelationshipAST_2E_weak::objectCompare (const GGS_toManyRelationshipAST_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -936,9 +740,7 @@ GGS_toManyPropertyGeneration_2E_weak GGS_toManyPropertyGeneration_2E_weak::extra
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@toManyPropertyGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_toManyPropertyGenerationList : public cCollectionElement {
@@ -1025,9 +827,8 @@ GGS_toManyPropertyGenerationList GGS_toManyPropertyGenerationList::init (Compile
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyPropertyGenerationList::enterElement (const GGS_toManyPropertyGenerationList_2E_element & inValue,
-                                                     Compiler * /* inCompiler */
-                                                     COMMA_LOCATION_ARGS) {
+void GGS_toManyPropertyGenerationList::plusPlusAssignOperation (const GGS_toManyPropertyGenerationList_2E_element & inValue
+                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_toManyPropertyGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1063,8 +864,8 @@ void GGS_toManyPropertyGenerationList::makeAttributesFromObjects (capCollectionE
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyPropertyGenerationList::addAssign_operation (const GGS_toManyPropertyGeneration & inOperand0
-                                                            COMMA_LOCATION_ARGS) {
+void GGS_toManyPropertyGenerationList::addAssignOperation (const GGS_toManyPropertyGeneration & inOperand0
+                                                           COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_toManyPropertyGenerationList (inOperand0 COMMA_THERE)) ;
@@ -1237,9 +1038,9 @@ GGS_toManyPropertyGenerationList GGS_toManyPropertyGenerationList::getter_subLis
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_toManyPropertyGenerationList::plusAssign_operation (const GGS_toManyPropertyGenerationList inOperand,
-                                                             Compiler * /* inCompiler */
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_toManyPropertyGenerationList::plusAssignOperation (const GGS_toManyPropertyGenerationList inOperand,
+                                                            Compiler * /* inCompiler */
+                                                            COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -1372,9 +1173,7 @@ GGS_toManyPropertyGenerationList GGS_toManyPropertyGenerationList::extractObject
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@validationStubRoutineListForGeneration' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_validationStubRoutineListForGeneration : public cCollectionElement {
@@ -1473,9 +1272,8 @@ GGS_validationStubRoutineListForGeneration GGS_validationStubRoutineListForGener
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_validationStubRoutineListForGeneration::enterElement (const GGS_validationStubRoutineListForGeneration_2E_element & inValue,
-                                                               Compiler * /* inCompiler */
-                                                               COMMA_LOCATION_ARGS) {
+void GGS_validationStubRoutineListForGeneration::plusPlusAssignOperation (const GGS_validationStubRoutineListForGeneration_2E_element & inValue
+                                                                          COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_validationStubRoutineListForGeneration (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1517,10 +1315,10 @@ void GGS_validationStubRoutineListForGeneration::makeAttributesFromObjects (capC
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_validationStubRoutineListForGeneration::addAssign_operation (const GGS_string & inOperand0,
-                                                                      const GGS_string & inOperand1,
-                                                                      const GGS_string & inOperand2
-                                                                      COMMA_LOCATION_ARGS) {
+void GGS_validationStubRoutineListForGeneration::addAssignOperation (const GGS_string & inOperand0,
+                                                                     const GGS_string & inOperand1,
+                                                                     const GGS_string & inOperand2
+                                                                     COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_validationStubRoutineListForGeneration (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -1727,9 +1525,9 @@ GGS_validationStubRoutineListForGeneration GGS_validationStubRoutineListForGener
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_validationStubRoutineListForGeneration::plusAssign_operation (const GGS_validationStubRoutineListForGeneration inOperand,
-                                                                       Compiler * /* inCompiler */
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_validationStubRoutineListForGeneration::plusAssignOperation (const GGS_validationStubRoutineListForGeneration inOperand,
+                                                                      Compiler * /* inCompiler */
+                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2054,50 +1852,6 @@ GGS_actionMap GGS_actionMap::getter_overriddenMap (Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
   GGS_actionMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_actionMap::enterElement (const GGS_actionMap_2E_element & inValue,
-                                  Compiler * inCompiler
-                                  COMMA_LOCATION_ARGS) {
-  cMapElement_actionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_actionMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@actionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_actionMap::addAssign_operation (const GGS_lstring & inKey,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) {
-  cMapElement_actionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_actionMap (inKey COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@actionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_actionMap GGS_actionMap::add_operation (const GGS_actionMap & inOperand,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) const {
-  GGS_actionMap result = *this ;
-  UpEnumerator_actionMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -2745,6 +2499,11 @@ ComparisonResult GGS_abstractBooleanMultipleBindingExpressionAST::objectCompare 
 
 GGS_abstractBooleanMultipleBindingExpressionAST::GGS_abstractBooleanMultipleBindingExpressionAST (void) :
 AC_GALGAS_reference_class () {
+}
+
+
+void cPtr_abstractBooleanMultipleBindingExpressionAST::
+abstractBooleanMultipleBindingExpressionAST_init (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8003,9 +7762,7 @@ GGS_arrayControllerGeneration_2E_weak GGS_arrayControllerGeneration_2E_weak::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutTableViewControllerBoundColumnListAST' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST : public cCollectionElement {
@@ -8110,9 +7867,8 @@ GGS_autoLayoutTableViewControllerBoundColumnListAST GGS_autoLayoutTableViewContr
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListAST::enterElement (const GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element & inValue,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListAST::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element & inValue
+                                                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -8157,11 +7913,11 @@ void GGS_autoLayoutTableViewControllerBoundColumnListAST::makeAttributesFromObje
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListAST::addAssign_operation (const GGS_bool & inOperand0,
-                                                                               const GGS_lstring & inOperand1,
-                                                                               const GGS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                                               const GGS_lstring & inOperand3
-                                                                               COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListAST::addAssignOperation (const GGS_bool & inOperand0,
+                                                                              const GGS_lstring & inOperand1,
+                                                                              const GGS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                                                              const GGS_lstring & inOperand3
+                                                                              COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListAST (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -8385,9 +8141,9 @@ GGS_autoLayoutTableViewControllerBoundColumnListAST GGS_autoLayoutTableViewContr
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListAST::plusAssign_operation (const GGS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
-                                                                                Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListAST::plusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
+                                                                               Compiler * /* inCompiler */
+                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8655,9 +8411,7 @@ GGS_autoLayoutTableViewControllerBoundColumnListAST GGS_autoLayoutTableViewContr
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutTableViewControllerAttributListAST' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutTableViewControllerAttributListAST : public cCollectionElement {
@@ -8750,9 +8504,8 @@ GGS_autoLayoutTableViewControllerAttributListAST GGS_autoLayoutTableViewControll
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerAttributListAST::enterElement (const GGS_autoLayoutTableViewControllerAttributListAST_2E_element & inValue,
-                                                                     Compiler * /* inCompiler */
-                                                                     COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerAttributListAST::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST_2E_element & inValue
+                                                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerAttributListAST (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -8791,9 +8544,9 @@ void GGS_autoLayoutTableViewControllerAttributListAST::makeAttributesFromObjects
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerAttributListAST::addAssign_operation (const GGS_lstring & inOperand0,
-                                                                            const GGS_abstractDefaultValue & inOperand1
-                                                                            COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerAttributListAST::addAssignOperation (const GGS_lstring & inOperand0,
+                                                                           const GGS_abstractDefaultValue & inOperand1
+                                                                           COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerAttributListAST (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -8983,9 +8736,9 @@ GGS_autoLayoutTableViewControllerAttributListAST GGS_autoLayoutTableViewControll
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerAttributListAST::plusAssign_operation (const GGS_autoLayoutTableViewControllerAttributListAST inOperand,
-                                                                             Compiler * /* inCompiler */
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerAttributListAST::plusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST inOperand,
+                                                                            Compiler * /* inCompiler */
+                                                                            COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -9677,9 +9430,7 @@ GGS_autoLayoutTableViewControllerModelKind GGS_autoLayoutTableViewControllerMode
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutTableViewControllerBoundColumnListForGeneration' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration : public cCollectionElement {
@@ -9796,9 +9547,8 @@ GGS_autoLayoutTableViewControllerBoundColumnListForGeneration GGS_autoLayoutTabl
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::enterElement (const GGS_autoLayoutTableViewControllerBoundColumnListForGeneration_2E_element & inValue,
-                                                                                  Compiler * /* inCompiler */
-                                                                                  COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListForGeneration_2E_element & inValue
+                                                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -9849,13 +9599,13 @@ void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::makeAttribut
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::addAssign_operation (const GGS_bool & inOperand0,
-                                                                                         const GGS_string & inOperand1,
-                                                                                         const GGS_string & inOperand2,
-                                                                                         const GGS_string & inOperand3,
-                                                                                         const GGS_string & inOperand4,
-                                                                                         const GGS__32_stringlist & inOperand5
-                                                                                         COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::addAssignOperation (const GGS_bool & inOperand0,
+                                                                                        const GGS_string & inOperand1,
+                                                                                        const GGS_string & inOperand2,
+                                                                                        const GGS_string & inOperand3,
+                                                                                        const GGS_string & inOperand4,
+                                                                                        const GGS__32_stringlist & inOperand5
+                                                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerBoundColumnListForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5 COMMA_THERE)) ;
@@ -10113,9 +9863,9 @@ GGS_autoLayoutTableViewControllerBoundColumnListForGeneration GGS_autoLayoutTabl
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::plusAssign_operation (const GGS_autoLayoutTableViewControllerBoundColumnListForGeneration inOperand,
-                                                                                          Compiler * /* inCompiler */
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerBoundColumnListForGeneration::plusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListForGeneration inOperand,
+                                                                                         Compiler * /* inCompiler */
+                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -10473,9 +10223,7 @@ GGS_autoLayoutTableViewControllerBoundColumnListForGeneration GGS_autoLayoutTabl
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@autoLayoutTableViewControllerSortedColumnListForGeneration' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration : public cCollectionElement {
@@ -10574,9 +10322,8 @@ GGS_autoLayoutTableViewControllerSortedColumnListForGeneration GGS_autoLayoutTab
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::enterElement (const GGS_autoLayoutTableViewControllerSortedColumnListForGeneration_2E_element & inValue,
-                                                                                   Compiler * /* inCompiler */
-                                                                                   COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerSortedColumnListForGeneration_2E_element & inValue
+                                                                                              COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -10618,10 +10365,10 @@ void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::makeAttribu
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::addAssign_operation (const GGS_string & inOperand0,
-                                                                                          const GGS_propertyKind & inOperand1,
-                                                                                          const GGS_string & inOperand2
-                                                                                          COMMA_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::addAssignOperation (const GGS_string & inOperand0,
+                                                                                         const GGS_propertyKind & inOperand1,
+                                                                                         const GGS_string & inOperand2
+                                                                                         COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_autoLayoutTableViewControllerSortedColumnListForGeneration (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -10828,9 +10575,9 @@ GGS_autoLayoutTableViewControllerSortedColumnListForGeneration GGS_autoLayoutTab
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::plusAssign_operation (const GGS_autoLayoutTableViewControllerSortedColumnListForGeneration inOperand,
-                                                                                           Compiler * /* inCompiler */
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_autoLayoutTableViewControllerSortedColumnListForGeneration::plusAssignOperation (const GGS_autoLayoutTableViewControllerSortedColumnListForGeneration inOperand,
+                                                                                          Compiler * /* inCompiler */
+                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -11600,9 +11347,7 @@ GGS_selectionControllerPropertyGeneration_2E_weak GGS_selectionControllerPropert
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@selectionControllerForGeneration' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_selectionControllerForGeneration : public cCollectionElement {
@@ -11731,9 +11476,8 @@ GGS_selectionControllerForGeneration GGS_selectionControllerForGeneration::init 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_selectionControllerForGeneration::enterElement (const GGS_selectionControllerForGeneration_2E_element & inValue,
-                                                         Compiler * /* inCompiler */
-                                                         COMMA_LOCATION_ARGS) {
+void GGS_selectionControllerForGeneration::plusPlusAssignOperation (const GGS_selectionControllerForGeneration_2E_element & inValue
+                                                                    COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_selectionControllerForGeneration (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -11790,15 +11534,15 @@ void GGS_selectionControllerForGeneration::makeAttributesFromObjects (capCollect
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_selectionControllerForGeneration::addAssign_operation (const GGS_string & inOperand0,
-                                                                const GGS_string & inOperand1,
-                                                                const GGS_string & inOperand2,
-                                                                const GGS_string & inOperand3,
-                                                                const GGS_string & inOperand4,
-                                                                const GGS_string & inOperand5,
-                                                                const GGS_propertyMap & inOperand6,
-                                                                const GGS_propertyGenerationList & inOperand7
-                                                                COMMA_LOCATION_ARGS) {
+void GGS_selectionControllerForGeneration::addAssignOperation (const GGS_string & inOperand0,
+                                                               const GGS_string & inOperand1,
+                                                               const GGS_string & inOperand2,
+                                                               const GGS_string & inOperand3,
+                                                               const GGS_string & inOperand4,
+                                                               const GGS_string & inOperand5,
+                                                               const GGS_propertyMap & inOperand6,
+                                                               const GGS_propertyGenerationList & inOperand7
+                                                               COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_selectionControllerForGeneration (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7 COMMA_THERE)) ;
@@ -12090,9 +11834,9 @@ GGS_selectionControllerForGeneration GGS_selectionControllerForGeneration::gette
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_selectionControllerForGeneration::plusAssign_operation (const GGS_selectionControllerForGeneration inOperand,
-                                                                 Compiler * /* inCompiler */
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_selectionControllerForGeneration::plusAssignOperation (const GGS_selectionControllerForGeneration inOperand,
+                                                                Compiler * /* inCompiler */
+                                                                COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -13532,9 +13276,7 @@ void callExtensionMethod_analyzeDefaultValueType (cPtr_abstractDefaultValue * in
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@abstractDefaultValue enterDefaultValuePrecedence'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDefaultValue::method_enterDefaultValuePrecedence (const GGS_lstring /* constinArgument_inNode */,
@@ -13552,9 +13294,10 @@ void callExtensionMethod_enterDefaultValuePrecedence (cPtr_abstractDefaultValue 
                                                       COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDefaultValue) ;
-    inObject->method_enterDefaultValuePrecedence  (constin_inNode, io_ioGraph, inCompiler COMMA_THERE) ;
+    inObject->method_enterDefaultValuePrecedence (constin_inNode, io_ioGraph, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //  Extension Getter '@typeKind typeName'
 //--------------------------------------------------------------------------------------------------
@@ -13802,9 +13545,7 @@ GGS_bool extensionGetter_isGraphic (const GGS_typeKind & inObject,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@typeKindList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_typeKindList : public cCollectionElement {
@@ -13891,9 +13632,8 @@ GGS_typeKindList GGS_typeKindList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_typeKindList::enterElement (const GGS_typeKindList_2E_element & inValue,
-                                     Compiler * /* inCompiler */
-                                     COMMA_LOCATION_ARGS) {
+void GGS_typeKindList::plusPlusAssignOperation (const GGS_typeKindList_2E_element & inValue
+                                                COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_typeKindList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -13929,8 +13669,8 @@ void GGS_typeKindList::makeAttributesFromObjects (capCollectionElement & outAttr
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_typeKindList::addAssign_operation (const GGS_typeKind & inOperand0
-                                            COMMA_LOCATION_ARGS) {
+void GGS_typeKindList::addAssignOperation (const GGS_typeKind & inOperand0
+                                           COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_typeKindList (inOperand0 COMMA_THERE)) ;
@@ -14103,9 +13843,9 @@ GGS_typeKindList GGS_typeKindList::getter_subListToIndex (const GGS_uint & inInd
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_typeKindList::plusAssign_operation (const GGS_typeKindList inOperand,
-                                             Compiler * /* inCompiler */
-                                             COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_typeKindList::plusAssignOperation (const GGS_typeKindList inOperand,
+                                            Compiler * /* inCompiler */
+                                            COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -14470,4 +14210,530 @@ GGS_string extensionGetter_swiftTypeName (const GGS_typeKind & inObject,
 
 
 
+
+//--------------------------------------------------------------------------------------------------
+//  Extension Getter '@propertyKind isTransient'
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool extensionGetter_isTransient (const GGS_propertyKind & inObject,
+                                      Compiler *
+                                      COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_bool result_result ; // Returned variable
+  const GGS_propertyKind temp_0 = inObject ;
+  switch (temp_0.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_4310__0 ;
+      GGS_propertyAccessibility extractedValue_4313_accessibility_1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_4310__0, extractedValue_4313_accessibility_1) ;
+      result_result = extractedValue_4313_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_4380__0 ;
+      GGS_propertyAccessibility extractedValue_4383_accessibility_1 ;
+      GGS_bool extractedValue_4399__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_4399__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_4380__0, extractedValue_4383_accessibility_1, extractedValue_4399__2, extractedValue_4399__3) ;
+      result_result = extractedValue_4383_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_4453__0 ;
+      GGS_propertyAccessibility extractedValue_4456_accessibility_1 ;
+      GGS_bool extractedValue_4472__2 ;
+      GGS_toOneOppositeRelationship extractedValue_4472__3 ;
+      GGS_bool extractedValue_4472__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_4453__0, extractedValue_4456_accessibility_1, extractedValue_4472__2, extractedValue_4472__3, extractedValue_4472__4) ;
+      result_result = extractedValue_4456_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_4537__0 ;
+      GGS_bool extractedValue_4537__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4537__0, extractedValue_4537__1) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_4585__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4585__0) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  }
+//---
+  return result_result ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//  Extension Getter '@propertyKind isComparable'
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool extensionGetter_isComparable (const GGS_propertyKind & inObject,
+                                       Compiler * inCompiler
+                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_bool result_result ; // Returned variable
+  const GGS_propertyKind temp_0 = inObject ;
+  switch (temp_0.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_4790_type_0 ;
+      GGS_propertyAccessibility extractedValue_4796__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_4790_type_0, extractedValue_4796__1) ;
+      result_result = extensionGetter_isComparable (extractedValue_4790_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_4844__0 ;
+      GGS_propertyAccessibility extractedValue_4844__1 ;
+      GGS_bool extractedValue_4844__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_4844__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_4844__0, extractedValue_4844__1, extractedValue_4844__2, extractedValue_4844__3) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_4879__0 ;
+      GGS_propertyAccessibility extractedValue_4879__1 ;
+      GGS_bool extractedValue_4879__2 ;
+      GGS_toOneOppositeRelationship extractedValue_4879__3 ;
+      GGS_bool extractedValue_4879__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_4879__0, extractedValue_4879__1, extractedValue_4879__2, extractedValue_4879__3, extractedValue_4879__4) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_4924__0 ;
+      GGS_bool extractedValue_4924__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4924__0, extractedValue_4924__1) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_4972__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4972__0) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  }
+//---
+  return result_result ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//  Extension Getter '@propertyKind isEntityType'
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool extensionGetter_isEntityType (const GGS_propertyKind & inObject,
+                                       Compiler *
+                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_bool result_result ; // Returned variable
+  const GGS_propertyKind temp_0 = inObject ;
+  switch (temp_0.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_5178__0 ;
+      GGS_propertyAccessibility extractedValue_5178__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_5178__0, extractedValue_5178__1) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_5214__0 ;
+      GGS_propertyAccessibility extractedValue_5214__1 ;
+      GGS_bool extractedValue_5214__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_5214__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_5214__0, extractedValue_5214__1, extractedValue_5214__2, extractedValue_5214__3) ;
+      result_result = GGS_bool (true) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_5248__0 ;
+      GGS_propertyAccessibility extractedValue_5248__1 ;
+      GGS_bool extractedValue_5248__2 ;
+      GGS_toOneOppositeRelationship extractedValue_5248__3 ;
+      GGS_bool extractedValue_5248__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_5248__0, extractedValue_5248__1, extractedValue_5248__2, extractedValue_5248__3, extractedValue_5248__4) ;
+      result_result = GGS_bool (true) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_5292__0 ;
+      GGS_bool extractedValue_5292__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5292__0, extractedValue_5292__1) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_5340__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5340__0) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  }
+//---
+  return result_result ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//  Extension Getter '@propertyKind isEnumType'
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool extensionGetter_isEnumType (const GGS_propertyKind & inObject,
+                                     Compiler *
+                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_bool result_result ; // Returned variable
+  const GGS_propertyKind temp_0 = inObject ;
+  switch (temp_0.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_5543_type_0 ;
+      GGS_propertyAccessibility extractedValue_5549__1 ;
+      temp_0.getAssociatedValuesFor_property (extractedValue_5543_type_0, extractedValue_5549__1) ;
+      result_result = extractedValue_5543_type_0.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_5595__0 ;
+      GGS_propertyAccessibility extractedValue_5595__1 ;
+      GGS_bool extractedValue_5595__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_5595__3 ;
+      temp_0.getAssociatedValuesFor_toMany (extractedValue_5595__0, extractedValue_5595__1, extractedValue_5595__2, extractedValue_5595__3) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_5630__0 ;
+      GGS_propertyAccessibility extractedValue_5630__1 ;
+      GGS_bool extractedValue_5630__2 ;
+      GGS_toOneOppositeRelationship extractedValue_5630__3 ;
+      GGS_bool extractedValue_5630__4 ;
+      temp_0.getAssociatedValuesFor_toOne (extractedValue_5630__0, extractedValue_5630__1, extractedValue_5630__2, extractedValue_5630__3, extractedValue_5630__4) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_5675__0 ;
+      GGS_bool extractedValue_5675__1 ;
+      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5675__0, extractedValue_5675__1) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_5723__0 ;
+      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5723__0) ;
+      result_result = GGS_bool (false) ;
+    }
+    break ;
+  }
+//---
+  return result_result ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//  Enum classKind
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind::GGS_classKind (void) :
+mAssociatedValues (),
+mEnum (Enumeration::invalid) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind GGS_classKind::class_func_prefs (UNUSED_LOCATION_ARGS) {
+  GGS_classKind result ;
+  result.mEnum = Enumeration::enum_prefs ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind GGS_classKind::class_func_atomic (const GGS_typeKind & inAssociatedValue0
+                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_classKind result ;
+  result.mEnum = Enumeration::enum_atomic ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GGS_classKind_2E_atomic (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind GGS_classKind::class_func_document (const GGS_lstring & inAssociatedValue0
+                                                  COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_classKind result ;
+  result.mEnum = Enumeration::enum_document ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GGS_classKind_2E_document (inAssociatedValue0)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind GGS_classKind::class_func_entity (const GGS_string & inAssociatedValue0,
+                                                const GGS_bool & inAssociatedValue1,
+                                                const GGS_bool & inAssociatedValue2,
+                                                const GGS_bool & inAssociatedValue3
+                                                COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_classKind result ;
+  result.mEnum = Enumeration::enum_entity ;
+  AC_GALGAS_root * p = nullptr ;
+  macroMyNew (p, GGS_classKind_2E_entity (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2, inAssociatedValue3)) ;
+  EnumerationAssociatedValues * eav = nullptr ;
+  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
+  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
+  macroDetachSharedObject (eav) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::method_extractAtomic (GGS_typeKind & outAssociatedValue_kind,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_atomic) {
+    outAssociatedValue_kind.drop () ;
+    String s ;
+    s.appendCString ("method @classKind.atomic invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_kind = ptr->mProperty_kind ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::method_extractDocument (GGS_lstring & outAssociatedValue_rootEntityName,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_document) {
+    outAssociatedValue_rootEntityName.drop () ;
+    String s ;
+    s.appendCString ("method @classKind.document invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_rootEntityName = ptr->mProperty_rootEntityName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::method_extractEntity (GGS_string & outAssociatedValue_superEntityName,
+                                          GGS_bool & outAssociatedValue_isGraphic,
+                                          GGS_bool & outAssociatedValue_isAbstract,
+                                          GGS_bool & outAssociatedValue_handlingOpposite,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const {
+  if (mEnum != Enumeration::enum_entity) {
+    outAssociatedValue_superEntityName.drop () ;
+    outAssociatedValue_isGraphic.drop () ;
+    outAssociatedValue_isAbstract.drop () ;
+    outAssociatedValue_handlingOpposite.drop () ;
+    String s ;
+    s.appendCString ("method @classKind.entity invoked with an invalid enum value") ;
+    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
+  }else{
+    const auto ptr = (GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
+    outAssociatedValue_superEntityName = ptr->mProperty_superEntityName ;
+    outAssociatedValue_isGraphic = ptr->mProperty_isGraphic ;
+    outAssociatedValue_isAbstract = ptr->mProperty_isAbstract ;
+    outAssociatedValue_handlingOpposite = ptr->mProperty_handlingOpposite ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind_2E_atomic_3F_ GGS_classKind::getter_getAtomic (UNUSED_LOCATION_ARGS) const {
+  GGS_classKind_2E_atomic_3F_ result ;
+  if (mEnum == Enumeration::enum_atomic) {
+    const auto ptr = (const GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
+    result = GGS_classKind_2E_atomic (*ptr) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::getAssociatedValuesFor_atomic (GGS_typeKind & out_kind) const {
+  const auto ptr = (const GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
+  out_kind = ptr->mProperty_kind ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind_2E_document_3F_ GGS_classKind::getter_getDocument (UNUSED_LOCATION_ARGS) const {
+  GGS_classKind_2E_document_3F_ result ;
+  if (mEnum == Enumeration::enum_document) {
+    const auto ptr = (const GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
+    result = GGS_classKind_2E_document (*ptr) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::getAssociatedValuesFor_document (GGS_lstring & out_rootEntityName) const {
+  const auto ptr = (const GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
+  out_rootEntityName = ptr->mProperty_rootEntityName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind_2E_entity_3F_ GGS_classKind::getter_getEntity (UNUSED_LOCATION_ARGS) const {
+  GGS_classKind_2E_entity_3F_ result ;
+  if (mEnum == Enumeration::enum_entity) {
+    const auto ptr = (const GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
+    result = GGS_classKind_2E_entity (*ptr) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::getAssociatedValuesFor_entity (GGS_string & out_superEntityName,
+                                                   GGS_bool & out_isGraphic,
+                                                   GGS_bool & out_isAbstract,
+                                                   GGS_bool & out_handlingOpposite) const {
+  const auto ptr = (const GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
+  out_superEntityName = ptr->mProperty_superEntityName ;
+  out_isGraphic = ptr->mProperty_isGraphic ;
+  out_isAbstract = ptr->mProperty_isAbstract ;
+  out_handlingOpposite = ptr->mProperty_handlingOpposite ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_classKind [5] = {
+  "(not built)",
+  "prefs",
+  "atomic",
+  "document",
+  "entity"
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_classKind::getter_isPrefs (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_prefs == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_classKind::getter_isAtomic (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_atomic == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_classKind::getter_isDocument (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_document == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_classKind::getter_isEntity (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_classKind::description (String & ioString,
+                                 const int32_t inIndentation) const {
+  ioString.appendCString ("<enum @classKind: ") ;
+  ioString.appendCString (gEnumNameArrayFor_classKind [size_t (mEnum)]) ;
+  mAssociatedValues.description (ioString, inIndentation) ;
+  ioString.appendCString (">") ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @classKind generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind ("classKind",
+                                                                 nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_classKind::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_classKind ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_classKind::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_classKind (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_classKind GGS_classKind::extractObject (const GGS_object & inObject,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  GGS_classKind result ;
+  const GGS_classKind * p = (const GGS_classKind *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_classKind *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("classKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
 

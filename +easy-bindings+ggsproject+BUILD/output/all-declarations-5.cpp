@@ -8,532 +8,6 @@
 #include "all-declarations-5.h"
 
 //--------------------------------------------------------------------------------------------------
-//  Extension Getter '@propertyKind isTransient'
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool extensionGetter_isTransient (const GGS_propertyKind & inObject,
-                                      Compiler *
-                                      COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bool result_result ; // Returned variable
-  const GGS_propertyKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GGS_propertyKind::Enumeration::invalid:
-    break ;
-  case GGS_propertyKind::Enumeration::enum_property:
-    {
-      GGS_typeKind extractedValue_4310__0 ;
-      GGS_propertyAccessibility extractedValue_4313_accessibility_1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_4310__0, extractedValue_4313_accessibility_1) ;
-      result_result = extractedValue_4313_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 145)) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toMany:
-    {
-      GGS_lstring extractedValue_4380__0 ;
-      GGS_propertyAccessibility extractedValue_4383_accessibility_1 ;
-      GGS_bool extractedValue_4399__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_4399__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_4380__0, extractedValue_4383_accessibility_1, extractedValue_4399__2, extractedValue_4399__3) ;
-      result_result = extractedValue_4383_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 146)) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toOne:
-    {
-      GGS_lstring extractedValue_4453__0 ;
-      GGS_propertyAccessibility extractedValue_4456_accessibility_1 ;
-      GGS_bool extractedValue_4472__2 ;
-      GGS_toOneOppositeRelationship extractedValue_4472__3 ;
-      GGS_bool extractedValue_4472__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_4453__0, extractedValue_4456_accessibility_1, extractedValue_4472__2, extractedValue_4472__3, extractedValue_4472__4) ;
-      result_result = extractedValue_4456_accessibility_1.getter_isTransient (SOURCE_FILE ("unified-type.ggs", 147)) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_arrayController:
-    {
-      GGS_lstring extractedValue_4537__0 ;
-      GGS_bool extractedValue_4537__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4537__0, extractedValue_4537__1) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_selectionController:
-    {
-      GGS_string extractedValue_4585__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4585__0) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  }
-//---
-  return result_result ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//  Extension Getter '@propertyKind isComparable'
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool extensionGetter_isComparable (const GGS_propertyKind & inObject,
-                                       Compiler * inCompiler
-                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bool result_result ; // Returned variable
-  const GGS_propertyKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GGS_propertyKind::Enumeration::invalid:
-    break ;
-  case GGS_propertyKind::Enumeration::enum_property:
-    {
-      GGS_typeKind extractedValue_4790_type_0 ;
-      GGS_propertyAccessibility extractedValue_4796__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_4790_type_0, extractedValue_4796__1) ;
-      result_result = extensionGetter_isComparable (extractedValue_4790_type_0, inCompiler COMMA_SOURCE_FILE ("unified-type.ggs", 157)) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toMany:
-    {
-      GGS_lstring extractedValue_4844__0 ;
-      GGS_propertyAccessibility extractedValue_4844__1 ;
-      GGS_bool extractedValue_4844__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_4844__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_4844__0, extractedValue_4844__1, extractedValue_4844__2, extractedValue_4844__3) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toOne:
-    {
-      GGS_lstring extractedValue_4879__0 ;
-      GGS_propertyAccessibility extractedValue_4879__1 ;
-      GGS_bool extractedValue_4879__2 ;
-      GGS_toOneOppositeRelationship extractedValue_4879__3 ;
-      GGS_bool extractedValue_4879__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_4879__0, extractedValue_4879__1, extractedValue_4879__2, extractedValue_4879__3, extractedValue_4879__4) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_arrayController:
-    {
-      GGS_lstring extractedValue_4924__0 ;
-      GGS_bool extractedValue_4924__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_4924__0, extractedValue_4924__1) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_selectionController:
-    {
-      GGS_string extractedValue_4972__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_4972__0) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  }
-//---
-  return result_result ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//  Extension Getter '@propertyKind isEntityType'
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool extensionGetter_isEntityType (const GGS_propertyKind & inObject,
-                                       Compiler *
-                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bool result_result ; // Returned variable
-  const GGS_propertyKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GGS_propertyKind::Enumeration::invalid:
-    break ;
-  case GGS_propertyKind::Enumeration::enum_property:
-    {
-      GGS_typeKind extractedValue_5178__0 ;
-      GGS_propertyAccessibility extractedValue_5178__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_5178__0, extractedValue_5178__1) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toMany:
-    {
-      GGS_lstring extractedValue_5214__0 ;
-      GGS_propertyAccessibility extractedValue_5214__1 ;
-      GGS_bool extractedValue_5214__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_5214__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_5214__0, extractedValue_5214__1, extractedValue_5214__2, extractedValue_5214__3) ;
-      result_result = GGS_bool (true) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toOne:
-    {
-      GGS_lstring extractedValue_5248__0 ;
-      GGS_propertyAccessibility extractedValue_5248__1 ;
-      GGS_bool extractedValue_5248__2 ;
-      GGS_toOneOppositeRelationship extractedValue_5248__3 ;
-      GGS_bool extractedValue_5248__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_5248__0, extractedValue_5248__1, extractedValue_5248__2, extractedValue_5248__3, extractedValue_5248__4) ;
-      result_result = GGS_bool (true) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_arrayController:
-    {
-      GGS_lstring extractedValue_5292__0 ;
-      GGS_bool extractedValue_5292__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5292__0, extractedValue_5292__1) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_selectionController:
-    {
-      GGS_string extractedValue_5340__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5340__0) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  }
-//---
-  return result_result ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//  Extension Getter '@propertyKind isEnumType'
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool extensionGetter_isEnumType (const GGS_propertyKind & inObject,
-                                     Compiler *
-                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bool result_result ; // Returned variable
-  const GGS_propertyKind temp_0 = inObject ;
-  switch (temp_0.enumValue ()) {
-  case GGS_propertyKind::Enumeration::invalid:
-    break ;
-  case GGS_propertyKind::Enumeration::enum_property:
-    {
-      GGS_typeKind extractedValue_5543_type_0 ;
-      GGS_propertyAccessibility extractedValue_5549__1 ;
-      temp_0.getAssociatedValuesFor_property (extractedValue_5543_type_0, extractedValue_5549__1) ;
-      result_result = extractedValue_5543_type_0.getter_isEnumType (SOURCE_FILE ("unified-type.ggs", 181)) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toMany:
-    {
-      GGS_lstring extractedValue_5595__0 ;
-      GGS_propertyAccessibility extractedValue_5595__1 ;
-      GGS_bool extractedValue_5595__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_5595__3 ;
-      temp_0.getAssociatedValuesFor_toMany (extractedValue_5595__0, extractedValue_5595__1, extractedValue_5595__2, extractedValue_5595__3) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_toOne:
-    {
-      GGS_lstring extractedValue_5630__0 ;
-      GGS_propertyAccessibility extractedValue_5630__1 ;
-      GGS_bool extractedValue_5630__2 ;
-      GGS_toOneOppositeRelationship extractedValue_5630__3 ;
-      GGS_bool extractedValue_5630__4 ;
-      temp_0.getAssociatedValuesFor_toOne (extractedValue_5630__0, extractedValue_5630__1, extractedValue_5630__2, extractedValue_5630__3, extractedValue_5630__4) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_arrayController:
-    {
-      GGS_lstring extractedValue_5675__0 ;
-      GGS_bool extractedValue_5675__1 ;
-      temp_0.getAssociatedValuesFor_arrayController (extractedValue_5675__0, extractedValue_5675__1) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  case GGS_propertyKind::Enumeration::enum_selectionController:
-    {
-      GGS_string extractedValue_5723__0 ;
-      temp_0.getAssociatedValuesFor_selectionController (extractedValue_5723__0) ;
-      result_result = GGS_bool (false) ;
-    }
-    break ;
-  }
-//---
-  return result_result ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//  Enum classKind
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind::GGS_classKind (void) :
-mAssociatedValues (),
-mEnum (Enumeration::invalid) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind GGS_classKind::class_func_prefs (UNUSED_LOCATION_ARGS) {
-  GGS_classKind result ;
-  result.mEnum = Enumeration::enum_prefs ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind GGS_classKind::class_func_atomic (const GGS_typeKind & inAssociatedValue0
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_classKind result ;
-  result.mEnum = Enumeration::enum_atomic ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_classKind_2E_atomic (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind GGS_classKind::class_func_document (const GGS_lstring & inAssociatedValue0
-                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_classKind result ;
-  result.mEnum = Enumeration::enum_document ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_classKind_2E_document (inAssociatedValue0)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind GGS_classKind::class_func_entity (const GGS_string & inAssociatedValue0,
-                                                const GGS_bool & inAssociatedValue1,
-                                                const GGS_bool & inAssociatedValue2,
-                                                const GGS_bool & inAssociatedValue3
-                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_classKind result ;
-  result.mEnum = Enumeration::enum_entity ;
-  AC_GALGAS_root * p = nullptr ;
-  macroMyNew (p, GGS_classKind_2E_entity (inAssociatedValue0, inAssociatedValue1, inAssociatedValue2, inAssociatedValue3)) ;
-  EnumerationAssociatedValues * eav = nullptr ;
-  macroMyNew (eav, EnumerationAssociatedValues (p COMMA_HERE)) ;
-  result.mAssociatedValues.assignPointer (eav) ; // Ownership is transfered to mAssociatedValues
-  macroDetachSharedObject (eav) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::method_extractAtomic (GGS_typeKind & outAssociatedValue_kind,
-                                          Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_atomic) {
-    outAssociatedValue_kind.drop () ;
-    String s ;
-    s.appendCString ("method @classKind.atomic invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_kind = ptr->mProperty_kind ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::method_extractDocument (GGS_lstring & outAssociatedValue_rootEntityName,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_document) {
-    outAssociatedValue_rootEntityName.drop () ;
-    String s ;
-    s.appendCString ("method @classKind.document invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_rootEntityName = ptr->mProperty_rootEntityName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::method_extractEntity (GGS_string & outAssociatedValue_superEntityName,
-                                          GGS_bool & outAssociatedValue_isGraphic,
-                                          GGS_bool & outAssociatedValue_isAbstract,
-                                          GGS_bool & outAssociatedValue_handlingOpposite,
-                                          Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) const {
-  if (mEnum != Enumeration::enum_entity) {
-    outAssociatedValue_superEntityName.drop () ;
-    outAssociatedValue_isGraphic.drop () ;
-    outAssociatedValue_isAbstract.drop () ;
-    outAssociatedValue_handlingOpposite.drop () ;
-    String s ;
-    s.appendCString ("method @classKind.entity invoked with an invalid enum value") ;
-    inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
-  }else{
-    const auto ptr = (GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
-    outAssociatedValue_superEntityName = ptr->mProperty_superEntityName ;
-    outAssociatedValue_isGraphic = ptr->mProperty_isGraphic ;
-    outAssociatedValue_isAbstract = ptr->mProperty_isAbstract ;
-    outAssociatedValue_handlingOpposite = ptr->mProperty_handlingOpposite ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind_2E_atomic_3F_ GGS_classKind::getter_getAtomic (UNUSED_LOCATION_ARGS) const {
-  GGS_classKind_2E_atomic_3F_ result ;
-  if (mEnum == Enumeration::enum_atomic) {
-    const auto ptr = (const GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_classKind_2E_atomic (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::getAssociatedValuesFor_atomic (GGS_typeKind & out_kind) const {
-  const auto ptr = (const GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
-  out_kind = ptr->mProperty_kind ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind_2E_document_3F_ GGS_classKind::getter_getDocument (UNUSED_LOCATION_ARGS) const {
-  GGS_classKind_2E_document_3F_ result ;
-  if (mEnum == Enumeration::enum_document) {
-    const auto ptr = (const GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_classKind_2E_document (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::getAssociatedValuesFor_document (GGS_lstring & out_rootEntityName) const {
-  const auto ptr = (const GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
-  out_rootEntityName = ptr->mProperty_rootEntityName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind_2E_entity_3F_ GGS_classKind::getter_getEntity (UNUSED_LOCATION_ARGS) const {
-  GGS_classKind_2E_entity_3F_ result ;
-  if (mEnum == Enumeration::enum_entity) {
-    const auto ptr = (const GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
-    result = GGS_classKind_2E_entity (*ptr) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::getAssociatedValuesFor_entity (GGS_string & out_superEntityName,
-                                                   GGS_bool & out_isGraphic,
-                                                   GGS_bool & out_isAbstract,
-                                                   GGS_bool & out_handlingOpposite) const {
-  const auto ptr = (const GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
-  out_superEntityName = ptr->mProperty_superEntityName ;
-  out_isGraphic = ptr->mProperty_isGraphic ;
-  out_isAbstract = ptr->mProperty_isAbstract ;
-  out_handlingOpposite = ptr->mProperty_handlingOpposite ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_classKind [5] = {
-  "(not built)",
-  "prefs",
-  "atomic",
-  "document",
-  "entity"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_classKind::getter_isPrefs (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_prefs == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_classKind::getter_isAtomic (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_atomic == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_classKind::getter_isDocument (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_document == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_classKind::getter_isEntity (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_entity == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_classKind::description (String & ioString,
-                                 const int32_t inIndentation) const {
-  ioString.appendCString ("<enum @classKind: ") ;
-  ioString.appendCString (gEnumNameArrayFor_classKind [size_t (mEnum)]) ;
-  mAssociatedValues.description (ioString, inIndentation) ;
-  ioString.appendCString (">") ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//     @classKind generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind ("classKind",
-                                                                 nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_classKind::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_classKind ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_classKind::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_classKind (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind GGS_classKind::extractObject (const GGS_object & inObject,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) {
-  GGS_classKind result ;
-  const GGS_classKind * p = (const GGS_classKind *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_classKind *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("classKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@propertyGeneration prefKeyDefinitionCode'
 //
@@ -939,9 +413,7 @@ GGS_propertyAccessibility GGS_propertyAccessibility::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@transientExternTypeList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_transientExternTypeList : public cCollectionElement {
@@ -1034,9 +506,8 @@ GGS_transientExternTypeList GGS_transientExternTypeList::init (Compiler * COMMA_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientExternTypeList::enterElement (const GGS_transientExternTypeList_2E_element & inValue,
-                                                Compiler * /* inCompiler */
-                                                COMMA_LOCATION_ARGS) {
+void GGS_transientExternTypeList::plusPlusAssignOperation (const GGS_transientExternTypeList_2E_element & inValue
+                                                           COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_transientExternTypeList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1075,9 +546,9 @@ void GGS_transientExternTypeList::makeAttributesFromObjects (capCollectionElemen
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientExternTypeList::addAssign_operation (const GGS_string & inOperand0,
-                                                       const GGS_bool & inOperand1
-                                                       COMMA_LOCATION_ARGS) {
+void GGS_transientExternTypeList::addAssignOperation (const GGS_string & inOperand0,
+                                                      const GGS_bool & inOperand1
+                                                      COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_transientExternTypeList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -1267,9 +738,9 @@ GGS_transientExternTypeList GGS_transientExternTypeList::getter_subListToIndex (
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_transientExternTypeList::plusAssign_operation (const GGS_transientExternTypeList inOperand,
-                                                        Compiler * /* inCompiler */
-                                                        COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_transientExternTypeList::plusAssignOperation (const GGS_transientExternTypeList inOperand,
+                                                       Compiler * /* inCompiler */
+                                                       COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -1466,9 +937,7 @@ void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@fileGenerationList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_fileGenerationList : public cCollectionElement {
@@ -1555,9 +1024,8 @@ GGS_fileGenerationList GGS_fileGenerationList::init (Compiler * COMMA_UNUSED_LOC
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_fileGenerationList::enterElement (const GGS_fileGenerationList_2E_element & inValue,
-                                           Compiler * /* inCompiler */
-                                           COMMA_LOCATION_ARGS) {
+void GGS_fileGenerationList::plusPlusAssignOperation (const GGS_fileGenerationList_2E_element & inValue
+                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_fileGenerationList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1593,8 +1061,8 @@ void GGS_fileGenerationList::makeAttributesFromObjects (capCollectionElement & o
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_fileGenerationList::addAssign_operation (const GGS_abstractFileGeneration & inOperand0
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_fileGenerationList::addAssignOperation (const GGS_abstractFileGeneration & inOperand0
+                                                 COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_fileGenerationList (inOperand0 COMMA_THERE)) ;
@@ -1767,9 +1235,9 @@ GGS_fileGenerationList GGS_fileGenerationList::getter_subListToIndex (const GGS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_fileGenerationList::plusAssign_operation (const GGS_fileGenerationList inOperand,
-                                                   Compiler * /* inCompiler */
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_fileGenerationList::plusAssignOperation (const GGS_fileGenerationList inOperand,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2175,9 +1643,7 @@ GGS_generationStruct GGS_generationStruct::extractObject (const GGS_object & inO
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@XCodeGroupList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_XCodeGroupList : public cCollectionElement {
@@ -2282,9 +1748,8 @@ GGS_XCodeGroupList GGS_XCodeGroupList::init (Compiler * COMMA_UNUSED_LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeGroupList::enterElement (const GGS_XCodeGroupList_2E_element & inValue,
-                                       Compiler * /* inCompiler */
-                                       COMMA_LOCATION_ARGS) {
+void GGS_XCodeGroupList::plusPlusAssignOperation (const GGS_XCodeGroupList_2E_element & inValue
+                                                  COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_XCodeGroupList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -2329,11 +1794,11 @@ void GGS_XCodeGroupList::makeAttributesFromObjects (capCollectionElement & outAt
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeGroupList::addAssign_operation (const GGS_string & inOperand0,
-                                              const GGS_string & inOperand1,
-                                              const GGS_string & inOperand2,
-                                              const GGS_stringlist & inOperand3
-                                              COMMA_LOCATION_ARGS) {
+void GGS_XCodeGroupList::addAssignOperation (const GGS_string & inOperand0,
+                                             const GGS_string & inOperand1,
+                                             const GGS_string & inOperand2,
+                                             const GGS_stringlist & inOperand3
+                                             COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_XCodeGroupList (inOperand0, inOperand1, inOperand2, inOperand3 COMMA_THERE)) ;
@@ -2557,9 +2022,9 @@ GGS_XCodeGroupList GGS_XCodeGroupList::getter_subListToIndex (const GGS_uint & i
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeGroupList::plusAssign_operation (const GGS_XCodeGroupList inOperand,
-                                               Compiler * /* inCompiler */
-                                               COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_XCodeGroupList::plusAssignOperation (const GGS_XCodeGroupList inOperand,
+                                              Compiler * /* inCompiler */
+                                              COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2827,9 +2292,7 @@ GGS_XCodeGroupList GGS_XCodeGroupList::extractObject (const GGS_object & inObjec
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@XCodeToolTargetList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_XCodeToolTargetList : public cCollectionElement {
@@ -2976,9 +2439,8 @@ GGS_XCodeToolTargetList GGS_XCodeToolTargetList::init (Compiler * COMMA_UNUSED_L
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeToolTargetList::enterElement (const GGS_XCodeToolTargetList_2E_element & inValue,
-                                            Compiler * /* inCompiler */
-                                            COMMA_LOCATION_ARGS) {
+void GGS_XCodeToolTargetList::plusPlusAssignOperation (const GGS_XCodeToolTargetList_2E_element & inValue
+                                                       COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_XCodeToolTargetList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -3044,18 +2506,18 @@ void GGS_XCodeToolTargetList::makeAttributesFromObjects (capCollectionElement & 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeToolTargetList::addAssign_operation (const GGS_string & inOperand0,
-                                                   const GGS_string & inOperand1,
-                                                   const GGS_string & inOperand2,
-                                                   const GGS_string & inOperand3,
-                                                   const GGS_stringlist & inOperand4,
-                                                   const GGS_string & inOperand5,
-                                                   const GGS_string & inOperand6,
-                                                   const GGS_stringlist & inOperand7,
-                                                   const GGS_string & inOperand8,
-                                                   const GGS_stringlist & inOperand9,
-                                                   const GGS_string & inOperand10
-                                                   COMMA_LOCATION_ARGS) {
+void GGS_XCodeToolTargetList::addAssignOperation (const GGS_string & inOperand0,
+                                                  const GGS_string & inOperand1,
+                                                  const GGS_string & inOperand2,
+                                                  const GGS_string & inOperand3,
+                                                  const GGS_stringlist & inOperand4,
+                                                  const GGS_string & inOperand5,
+                                                  const GGS_string & inOperand6,
+                                                  const GGS_stringlist & inOperand7,
+                                                  const GGS_string & inOperand8,
+                                                  const GGS_stringlist & inOperand9,
+                                                  const GGS_string & inOperand10
+                                                  COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_XCodeToolTargetList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10 COMMA_THERE)) ;
@@ -3398,9 +2860,9 @@ GGS_XCodeToolTargetList GGS_XCodeToolTargetList::getter_subListToIndex (const GG
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeToolTargetList::plusAssign_operation (const GGS_XCodeToolTargetList inOperand,
-                                                    Compiler * /* inCompiler */
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_XCodeToolTargetList::plusAssignOperation (const GGS_XCodeToolTargetList inOperand,
+                                                   Compiler * /* inCompiler */
+                                                   COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -3983,9 +3445,7 @@ GGS_XCodeToolTargetList GGS_XCodeToolTargetList::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@XCodeAppTargetList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_XCodeAppTargetList : public cCollectionElement {
@@ -4156,9 +3616,8 @@ GGS_XCodeAppTargetList GGS_XCodeAppTargetList::init (Compiler * COMMA_UNUSED_LOC
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeAppTargetList::enterElement (const GGS_XCodeAppTargetList_2E_element & inValue,
-                                           Compiler * /* inCompiler */
-                                           COMMA_LOCATION_ARGS) {
+void GGS_XCodeAppTargetList::plusPlusAssignOperation (const GGS_XCodeAppTargetList_2E_element & inValue
+                                                      COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_XCodeAppTargetList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -4236,22 +3695,22 @@ void GGS_XCodeAppTargetList::makeAttributesFromObjects (capCollectionElement & o
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeAppTargetList::addAssign_operation (const GGS_string & inOperand0,
-                                                  const GGS_string & inOperand1,
-                                                  const GGS_string & inOperand2,
-                                                  const GGS_string & inOperand3,
-                                                  const GGS_stringlist & inOperand4,
-                                                  const GGS_string & inOperand5,
-                                                  const GGS_string & inOperand6,
-                                                  const GGS_stringlist & inOperand7,
-                                                  const GGS_string & inOperand8,
-                                                  const GGS_stringlist & inOperand9,
-                                                  const GGS_string & inOperand10,
-                                                  const GGS__32_stringlist & inOperand11,
-                                                  const GGS_string & inOperand12,
-                                                  const GGS_stringlist & inOperand13,
-                                                  const GGS_string & inOperand14
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_XCodeAppTargetList::addAssignOperation (const GGS_string & inOperand0,
+                                                 const GGS_string & inOperand1,
+                                                 const GGS_string & inOperand2,
+                                                 const GGS_string & inOperand3,
+                                                 const GGS_stringlist & inOperand4,
+                                                 const GGS_string & inOperand5,
+                                                 const GGS_string & inOperand6,
+                                                 const GGS_stringlist & inOperand7,
+                                                 const GGS_string & inOperand8,
+                                                 const GGS_stringlist & inOperand9,
+                                                 const GGS_string & inOperand10,
+                                                 const GGS__32_stringlist & inOperand11,
+                                                 const GGS_string & inOperand12,
+                                                 const GGS_stringlist & inOperand13,
+                                                 const GGS_string & inOperand14
+                                                 COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_XCodeAppTargetList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4, inOperand5, inOperand6, inOperand7, inOperand8, inOperand9, inOperand10, inOperand11, inOperand12, inOperand13, inOperand14 COMMA_THERE)) ;
@@ -4662,9 +4121,9 @@ GGS_XCodeAppTargetList GGS_XCodeAppTargetList::getter_subListToIndex (const GGS_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_XCodeAppTargetList::plusAssign_operation (const GGS_XCodeAppTargetList inOperand,
-                                                   Compiler * /* inCompiler */
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_XCodeAppTargetList::plusAssignOperation (const GGS_XCodeAppTargetList inOperand,
+                                                  Compiler * /* inCompiler */
+                                                  COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -5427,9 +4886,7 @@ GGS_XCodeAppTargetList GGS_XCodeAppTargetList::extractObject (const GGS_object &
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@BuildFileList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_BuildFileList : public cCollectionElement {
@@ -5528,9 +4985,8 @@ GGS_BuildFileList GGS_BuildFileList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_BuildFileList::enterElement (const GGS_BuildFileList_2E_element & inValue,
-                                      Compiler * /* inCompiler */
-                                      COMMA_LOCATION_ARGS) {
+void GGS_BuildFileList::plusPlusAssignOperation (const GGS_BuildFileList_2E_element & inValue
+                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_BuildFileList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -5572,10 +5028,10 @@ void GGS_BuildFileList::makeAttributesFromObjects (capCollectionElement & outAtt
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_BuildFileList::addAssign_operation (const GGS_string & inOperand0,
-                                             const GGS_string & inOperand1,
-                                             const GGS_string & inOperand2
-                                             COMMA_LOCATION_ARGS) {
+void GGS_BuildFileList::addAssignOperation (const GGS_string & inOperand0,
+                                            const GGS_string & inOperand1,
+                                            const GGS_string & inOperand2
+                                            COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_BuildFileList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -5782,9 +5238,9 @@ GGS_BuildFileList GGS_BuildFileList::getter_subListToIndex (const GGS_uint & inI
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_BuildFileList::plusAssign_operation (const GGS_BuildFileList inOperand,
-                                              Compiler * /* inCompiler */
-                                              COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_BuildFileList::plusAssignOperation (const GGS_BuildFileList inOperand,
+                                             Compiler * /* inCompiler */
+                                             COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -6007,9 +5463,7 @@ GGS_BuildFileList GGS_BuildFileList::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@mainXibLineDescriptorList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_mainXibLineDescriptorList : public cCollectionElement {
@@ -6096,9 +5550,8 @@ GGS_mainXibLineDescriptorList GGS_mainXibLineDescriptorList::init (Compiler * CO
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_mainXibLineDescriptorList::enterElement (const GGS_mainXibLineDescriptorList_2E_element & inValue,
-                                                  Compiler * /* inCompiler */
-                                                  COMMA_LOCATION_ARGS) {
+void GGS_mainXibLineDescriptorList::plusPlusAssignOperation (const GGS_mainXibLineDescriptorList_2E_element & inValue
+                                                             COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_mainXibLineDescriptorList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -6134,8 +5587,8 @@ void GGS_mainXibLineDescriptorList::makeAttributesFromObjects (capCollectionElem
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_mainXibLineDescriptorList::addAssign_operation (const GGS_mainXibElement & inOperand0
-                                                         COMMA_LOCATION_ARGS) {
+void GGS_mainXibLineDescriptorList::addAssignOperation (const GGS_mainXibElement & inOperand0
+                                                        COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_mainXibLineDescriptorList (inOperand0 COMMA_THERE)) ;
@@ -6308,9 +5761,9 @@ GGS_mainXibLineDescriptorList GGS_mainXibLineDescriptorList::getter_subListToInd
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_mainXibLineDescriptorList::plusAssign_operation (const GGS_mainXibLineDescriptorList inOperand,
-                                                          Compiler * /* inCompiler */
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_mainXibLineDescriptorList::plusAssignOperation (const GGS_mainXibLineDescriptorList inOperand,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -6643,14 +6096,14 @@ GGS_string extensionGetter_generateCode (const GGS_mainXibDescriptorList & inObj
     if (GalgasBool::boolTrue == test_0) {
       const GGS_mainXibDescriptorList temp_2 = inObject ;
       result_outResult = GGS_string ("    var y = OUTLET_HEIGHT * 1.5 * ").add_operation (temp_2.getter_count (SOURCE_FILE ("main-xib.ggs", 88)).getter_string (SOURCE_FILE ("main-xib.ggs", 88)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 88)).add_operation (GGS_string (".0\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 88)) ;
-      result_outResult.plusAssign_operation(GGS_string ("    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 89)) ;
+      result_outResult.plusAssignOperation(GGS_string ("    let view = NSView (frame:NSRect (x:0.0, y:0.0, width:10.0, height:10.0))\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 89)) ;
       GGS_bigint var_idx_2876 = GGS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 90)) ;
       GGS_bigint var_columnMax_2892 = GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 91)) ;
       const GGS_mainXibDescriptorList temp_3 = inObject ;
       UpEnumerator_mainXibDescriptorList enumerator_2915 (temp_3) ;
       while (enumerator_2915.hasCurrentObject ()) {
         GGS_bigint var_column_2943 = GGS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 93)) ;
-        result_outResult.plusAssign_operation(GGS_string ("    y -= OUTLET_HEIGHT\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 94)) ;
+        result_outResult.plusAssignOperation(GGS_string ("    y -= OUTLET_HEIGHT\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 94)) ;
         UpEnumerator_mainXibLineDescriptorList enumerator_3011 (enumerator_2915.current_mLine (HERE)) ;
         while (enumerator_3011.hasCurrentObject ()) {
           switch (enumerator_3011.current_mElement (HERE).enumValue ()) {
@@ -6660,15 +6113,15 @@ GGS_string extensionGetter_generateCode (const GGS_mainXibDescriptorList & inObj
             {
               GGS_lstring extractedValue_3076_t_0 ;
               enumerator_3011.current_mElement (HERE).getAssociatedValuesFor_text (extractedValue_3076_t_0) ;
-              var_idx_2876.plusAssign_operation(GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 98)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 98)) ;
-              result_outResult.plusAssign_operation(GGS_string ("  //--- Text ").add_operation (extractedValue_3076_t_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 99)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 99)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 99)) ;
-              result_outResult.plusAssign_operation(GGS_string ("  //  createTextFieldForText (").add_operation (extractedValue_3076_t_0.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 100)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 100)).add_operation (GGS_string (", y:&y, col:0, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 100)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 100)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    let tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (GGS_string (" = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (var_column_2943.getter_string (SOURCE_FILE ("main-xib.ggs", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (GGS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 101)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (GGS_string (".stringValue = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (extractedValue_3076_t_0.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 102)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 103)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 103)).add_operation (GGS_string (".isEditable = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 103)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 103)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 104)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 104)).add_operation (GGS_string (".drawsBackground = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 104)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 104)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 105)).add_operation (GGS_string (".isBordered = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 105)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 105)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    view.addSubview (tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 106)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 106)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 106)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 106)) ;
+              var_idx_2876.plusAssignOperation(GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 98)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 98)) ;
+              result_outResult.plusAssignOperation(GGS_string ("  //--- Text ").add_operation (extractedValue_3076_t_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 99)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 99)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 99)) ;
+              result_outResult.plusAssignOperation(GGS_string ("  //  createTextFieldForText (").add_operation (extractedValue_3076_t_0.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 100)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 100)).add_operation (GGS_string (", y:&y, col:0, view:view)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 100)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 100)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    let tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (GGS_string (" = NSTextField (frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (var_column_2943.getter_string (SOURCE_FILE ("main-xib.ggs", 101)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)).add_operation (GGS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 101)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 101)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (GGS_string (".stringValue = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (extractedValue_3076_t_0.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 102)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 102)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 102)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 103)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 103)).add_operation (GGS_string (".isEditable = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 103)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 103)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 104)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 104)).add_operation (GGS_string (".drawsBackground = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 104)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 104)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 105)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 105)).add_operation (GGS_string (".isBordered = false\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 105)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 105)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    view.addSubview (tf").add_operation (var_idx_2876.getter_string (SOURCE_FILE ("main-xib.ggs", 106)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 106)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 106)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 106)) ;
             }
             break ;
           case GGS_mainXibElement::Enumeration::enum_outlet:
@@ -6676,14 +6129,14 @@ GGS_string extensionGetter_generateCode (const GGS_mainXibDescriptorList & inObj
               GGS_lstring extractedValue_3804_outletType_0 ;
               GGS_lstring extractedValue_3816_outletName_1 ;
               enumerator_3011.current_mElement (HERE).getAssociatedValuesFor_outlet (extractedValue_3804_outletType_0, extractedValue_3816_outletName_1) ;
-              result_outResult.plusAssign_operation(GGS_string ("  //--- Outlet ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 108)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (extractedValue_3804_outletType_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (var_column_2943.getter_string (SOURCE_FILE ("main-xib.ggs", 109)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 109)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GGS_string ("\?.setAccessibilityIdentifier ("), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (extractedValue_3816_outletName_1.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 110)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 110)) ;
-              result_outResult.plusAssign_operation(GGS_string ("    view.addSubview (").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 111)).add_operation (GGS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 111)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 111)) ;
+              result_outResult.plusAssignOperation(GGS_string ("  //--- Outlet ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 108)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 108)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (extractedValue_3804_outletType_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string ("(frame:NSRect (x:10.0 + OUTLET_WIDTH * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (var_column_2943.getter_string (SOURCE_FILE ("main-xib.ggs", 109)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)).add_operation (GGS_string (".0, y:y, width:OUTLET_WIDTH, height:OUTLET_HEIGHT))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 109)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 109)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    ").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GGS_string ("\?.setAccessibilityIdentifier ("), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (extractedValue_3816_outletName_1.readProperty_string ().getter_utf_38_Representation (SOURCE_FILE ("main-xib.ggs", 110)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 110)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 110)) ;
+              result_outResult.plusAssignOperation(GGS_string ("    view.addSubview (").add_operation (extractedValue_3816_outletName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 111)).add_operation (GGS_string ("!)\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 111)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 111)) ;
             }
             break ;
           }
-          var_column_2943.plusAssign_operation(GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 113)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 113)) ;
+          var_column_2943.plusAssignOperation(GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 113)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 113)) ;
           enumerator_3011.gotoNextObject () ;
         }
         GalgasBool test_4 = GalgasBool::boolTrue ;
@@ -6693,13 +6146,13 @@ GGS_string extensionGetter_generateCode (const GGS_mainXibDescriptorList & inObj
             var_columnMax_2892 = var_column_2943 ;
           }
         }
-        result_outResult.plusAssign_operation(GGS_string ("    y -= OUTLET_HEIGHT / 2.0\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 118)) ;
+        result_outResult.plusAssignOperation(GGS_string ("    y -= OUTLET_HEIGHT / 2.0\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 118)) ;
         enumerator_2915.gotoNextObject () ;
       }
-      result_outResult.plusAssign_operation(GGS_string ("  //--- Set pref window content view\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 120)) ;
+      result_outResult.plusAssignOperation(GGS_string ("  //--- Set pref window content view\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 120)) ;
       const GGS_mainXibDescriptorList temp_5 = inObject ;
-      result_outResult.plusAssign_operation(GGS_string ("    window\?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * ").add_operation (var_columnMax_2892.getter_string (SOURCE_FILE ("main-xib.ggs", 121)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (GGS_string (".0, height:OUTLET_HEIGHT * (1.5 * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (temp_5.getter_count (SOURCE_FILE ("main-xib.ggs", 121)).getter_string (SOURCE_FILE ("main-xib.ggs", 121)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (GGS_string (".0 + 0.5)))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 121)) ;
-      result_outResult.plusAssign_operation(GGS_string ("    window\?.contentView = view\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 122)) ;
+      result_outResult.plusAssignOperation(GGS_string ("    window\?.setContentSize (NSSize (width:20.0 + OUTLET_WIDTH * ").add_operation (var_columnMax_2892.getter_string (SOURCE_FILE ("main-xib.ggs", 121)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (GGS_string (".0, height:OUTLET_HEIGHT * (1.5 * "), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (temp_5.getter_count (SOURCE_FILE ("main-xib.ggs", 121)).getter_string (SOURCE_FILE ("main-xib.ggs", 121)), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)).add_operation (GGS_string (".0 + 0.5)))\n"), inCompiler COMMA_SOURCE_FILE ("main-xib.ggs", 121)), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 121)) ;
+      result_outResult.plusAssignOperation(GGS_string ("    window\?.contentView = view\n"), inCompiler  COMMA_SOURCE_FILE ("main-xib.ggs", 122)) ;
     }
   }
 //---
@@ -7227,9 +6680,7 @@ GGS_optionalHiddenBinding_2E_binding GGS_optionalHiddenBinding_2E_binding::extra
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @optionalHiddenBinding_2E_binding_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_optionalHiddenBinding_2E_binding_3F_::GGS_optionalHiddenBinding_2E_binding_3F_ (void) :
@@ -7464,9 +6915,7 @@ GGS_astAutoLayoutViewInstructionParameterValue_2E_string GGS_astAutoLayoutViewIn
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewInstructionParameterValue_2E_string_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_::GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_ (void) :
@@ -7725,9 +7174,7 @@ GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem GGS_astAutoLayoutView
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_::GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ (void) :
@@ -7962,9 +7409,7 @@ GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc GGS_astAutoLayoutView
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_::GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_ (void) :
@@ -8856,9 +8301,7 @@ GGS_autolayoutRunBindingForGeneration_2E_run GGS_autolayoutRunBindingForGenerati
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autolayoutRunBindingForGeneration_2E_run_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutRunBindingForGeneration_2E_run_3F_::GGS_autolayoutRunBindingForGeneration_2E_run_3F_ (void) :
@@ -9093,9 +8536,7 @@ GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding GGS_autoLayoutVi
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_::GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ (void) :
@@ -9330,9 +8771,7 @@ GGS_autolayoutEnabledBindingForGeneration_2E_enabled GGS_autolayoutEnabledBindin
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autolayoutEnabledBindingForGeneration_2E_enabled_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_::GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (void) :
@@ -10893,9 +10332,7 @@ GGS_observablePropertyAST_2E_selfWithoutProperty GGS_observablePropertyAST_2E_se
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfWithoutProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfWithoutProperty_3F_::GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ (void) :
@@ -11130,9 +10567,7 @@ GGS_observablePropertyAST_2E_signatureProperty GGS_observablePropertyAST_2E_sign
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_signatureProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_signatureProperty_3F_::GGS_observablePropertyAST_2E_signatureProperty_3F_ (void) :
@@ -11367,9 +10802,7 @@ GGS_observablePropertyAST_2E_versionProperty GGS_observablePropertyAST_2E_versio
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_versionProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_versionProperty_3F_::GGS_observablePropertyAST_2E_versionProperty_3F_ (void) :
@@ -11604,9 +11037,7 @@ GGS_observablePropertyAST_2E_versionShouldChangeProperty GGS_observablePropertyA
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_versionShouldChangeProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_::GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ (void) :
@@ -12579,9 +12010,7 @@ GGS_toManyRelationshipOptionGeneration_2E_hasOpposite GGS_toManyRelationshipOpti
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toManyRelationshipOptionGeneration_2E_hasOpposite_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_::GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ (void) :
@@ -12828,9 +12257,7 @@ GGS_toManyRelationshipOptionGeneration_2E_hasDependance GGS_toManyRelationshipOp
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toManyRelationshipOptionGeneration_2E_hasDependance_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_::GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_ (void) :
@@ -13333,9 +12760,7 @@ GGS_multipleBindingDescriptor_2E_binding GGS_multipleBindingDescriptor_2E_bindin
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @multipleBindingDescriptor_2E_binding_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_multipleBindingDescriptor_2E_binding_3F_::GGS_multipleBindingDescriptor_2E_binding_3F_ (void) :
@@ -14364,9 +13789,7 @@ GGS_classKind_2E_atomic GGS_classKind_2E_atomic::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @classKind_2E_atomic_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_classKind_2E_atomic_3F_::GGS_classKind_2E_atomic_3F_ (void) :
@@ -14637,9 +14060,7 @@ GGS_classKind_2E_entity GGS_classKind_2E_entity::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @classKind_2E_entity_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_classKind_2E_entity_3F_::GGS_classKind_2E_entity_3F_ (void) :
@@ -14991,9 +14412,7 @@ GGS_propertyAccessibility_2E_transient GGS_propertyAccessibility_2E_transient::e
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyAccessibility_2E_transient_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyAccessibility_2E_transient_3F_::GGS_propertyAccessibility_2E_transient_3F_ (void) :
@@ -15262,6 +14681,418 @@ GGS_typeKind_2E_enumType GGS_typeKind_2E_enumType::extractObject (const GGS_obje
       result = *p ;
     }else{
       inCompiler->castError ("typeKind.enumType", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @typeKind_2E_enumType_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_enumType_3F_::GGS_typeKind_2E_enumType_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_enumType_3F_::GGS_typeKind_2E_enumType_3F_ (const GGS_typeKind_2E_enumType & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_enumType_3F_ GGS_typeKind_2E_enumType_3F_::init_nil (void) {
+  GGS_typeKind_2E_enumType_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_typeKind_2E_enumType_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_typeKind_2E_enumType_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_enumType_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_typeKind_2E_enumType () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_typeKind_2E_enumType_3F_::objectCompare (const GGS_typeKind_2E_enumType_3F_ & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mState < inOperand.mState) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mState > inOperand.mState) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else if (mState == OptionalState::valuated) {
+      result = mValue.objectCompare (inOperand.mValue) ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_enumType_3F_::description (String & ioString,
+                                                const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @typeKind.enumType? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_enumType_3F_ ("typeKind.enumType?",
+                                                                                nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_typeKind_2E_enumType_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_typeKind_2E_enumType_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_typeKind_2E_enumType_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_typeKind_2E_enumType_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_enumType_3F_ GGS_typeKind_2E_enumType_3F_::extractObject (const GGS_object & inObject,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) {
+  GGS_typeKind_2E_enumType_3F_ result ;
+  const GGS_typeKind_2E_enumType_3F_ * p = (const GGS_typeKind_2E_enumType_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_typeKind_2E_enumType_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("typeKind.enumType?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (void) :
+mProperty_entityName (),
+mProperty_graphic () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (const GGS_typeKind_2E_entityType & inSource) :
+mProperty_entityName (inSource.mProperty_entityName),
+mProperty_graphic (inSource.mProperty_graphic) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType & GGS_typeKind_2E_entityType::operator = (const GGS_typeKind_2E_entityType & inSource) {
+  mProperty_entityName = inSource.mProperty_entityName ;
+  mProperty_graphic = inSource.mProperty_graphic ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::init_21__21_ (const GGS_string & in_entityName,
+                                                                     const GGS_bool & in_graphic,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_typeKind_2E_entityType result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_entityName = in_entityName ;
+  result.mProperty_graphic = in_graphic ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_entityType::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (const GGS_string & inOperand0,
+                                                        const GGS_bool & inOperand1) :
+mProperty_entityName (inOperand0),
+mProperty_graphic (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::class_func_new (const GGS_string & in_entityName,
+                                                                       const GGS_bool & in_graphic,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_typeKind_2E_entityType result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_entityName = in_entityName ;
+  result.mProperty_graphic = in_graphic ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_typeKind_2E_entityType::objectCompare (const GGS_typeKind_2E_entityType & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_entityName.objectCompare (inOperand.mProperty_entityName) ;
+  }
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_graphic.objectCompare (inOperand.mProperty_graphic) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_typeKind_2E_entityType::isValid (void) const {
+  return mProperty_entityName.isValid () && mProperty_graphic.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_entityType::drop (void) {
+  mProperty_entityName.drop () ;
+  mProperty_graphic.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_entityType::description (String & ioString,
+                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @typeKind.entityType:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_entityName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_graphic.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @typeKind.entityType generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_entityType ("typeKind.entityType",
+                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_typeKind_2E_entityType::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_typeKind_2E_entityType ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_typeKind_2E_entityType::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_typeKind_2E_entityType (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::extractObject (const GGS_object & inObject,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  GGS_typeKind_2E_entityType result ;
+  const GGS_typeKind_2E_entityType * p = (const GGS_typeKind_2E_entityType *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_typeKind_2E_entityType *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("typeKind.entityType", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @typeKind_2E_entityType_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType_3F_::GGS_typeKind_2E_entityType_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType_3F_::GGS_typeKind_2E_entityType_3F_ (const GGS_typeKind_2E_entityType & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType_3F_ GGS_typeKind_2E_entityType_3F_::init_nil (void) {
+  GGS_typeKind_2E_entityType_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_typeKind_2E_entityType_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_typeKind_2E_entityType_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_entityType_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_typeKind_2E_entityType () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_typeKind_2E_entityType_3F_::objectCompare (const GGS_typeKind_2E_entityType_3F_ & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mState < inOperand.mState) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mState > inOperand.mState) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else if (mState == OptionalState::valuated) {
+      result = mValue.objectCompare (inOperand.mValue) ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_typeKind_2E_entityType_3F_::description (String & ioString,
+                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @typeKind.entityType? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_entityType_3F_ ("typeKind.entityType?",
+                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_typeKind_2E_entityType_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_typeKind_2E_entityType_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_typeKind_2E_entityType_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_typeKind_2E_entityType_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_typeKind_2E_entityType_3F_ GGS_typeKind_2E_entityType_3F_::extractObject (const GGS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
+  GGS_typeKind_2E_entityType_3F_ result ;
+  const GGS_typeKind_2E_entityType_3F_ * p = (const GGS_typeKind_2E_entityType_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_typeKind_2E_entityType_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("typeKind.entityType?", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

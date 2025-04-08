@@ -3,14 +3,14 @@
 //------------------------------------------------------------------------------------------------
 
 struct @semanticContext {
-  public var @classMap mClassMap = []
-  public var @outletClassMap mOutletClassMap = []
-  public var @bindingSpecificationMap mBindingSpecificationMap = []
-  public var @autolayoutViewClassMap mAutolayoutViewClassMap = []
-  public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap = []
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = []
-  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = []
-  public var @enumerationFunctionListAST mEnumerationFunctionListAST = []
+  public var @classMap mClassMap = ()
+  public var @outletClassMap mOutletClassMap = ()
+  public var @bindingSpecificationMap mBindingSpecificationMap = ()
+  public var @autolayoutViewClassMap mAutolayoutViewClassMap = ()
+  public var @autoLayoutBindingSpecificationMap mAutoLayoutBindingSpecificationMap = ()
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutVStackFunctionMap = ()
+  public var @astAutoLayoutViewFunctionMap mAutoLayoutHStackFunctionMap = ()
+  public var @enumerationFunctionListAST mEnumerationFunctionListAST = ()
 }
 
 //------------------------------------------------------------------------------------------------

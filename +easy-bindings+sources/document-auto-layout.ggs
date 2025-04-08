@@ -135,7 +135,7 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .document (!rootEntityName: self.mRootEntityName),
-    [],
+    (),
     actionMap,
     []
   )
@@ -222,11 +222,11 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     end
   end
 //-- Check auto layout view declarations
-  var @autoLayoutViewDeclarationMap viewDeclarationMap = []
+  var @autoLayoutViewDeclarationMap viewDeclarationMap = ()
   var @viewGenerationList viewGenerationList = []
   var @implicitViewFunctionGenerationList implicitViewFunctionGenerationList = []
-  var @autoLayoutConfiguratorMap configuratorMap = []
-  var @autoLayoutOutletMap autoLayoutOutletMap = []
+  var @autoLayoutConfiguratorMap configuratorMap = ()
+  var @autoLayoutOutletMap autoLayoutOutletMap = ()
   for (viewName, viewDeclaration) in self.mViewDeclarationList do
     !?viewDeclarationMap.insertKey (viewName)
     viewDeclaration.checkView

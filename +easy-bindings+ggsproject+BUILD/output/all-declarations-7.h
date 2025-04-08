@@ -9,9 +9,7 @@
 #include "all-declarations-6.h"
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @entityStrongReferenceGraph graph
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_entityStrongReferenceGraph : public AC_GALGAS_graph {
@@ -90,6 +88,7 @@ class GGS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -100,9 +99,7 @@ class GGS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityStrongReferenceGraph ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @computedPropertyGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak {
@@ -178,6 +175,7 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -453,6 +451,7 @@ class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;

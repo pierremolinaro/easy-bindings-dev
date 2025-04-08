@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AE40A577928B76D2FC3EDC2A"
+               BlueprintIdentifier = "166DD424A57127423D276BBE"
                BuildableName = "Eb IDE.app"
                BlueprintName = "eb IDE"
                ReferencedContainer = "container:eb.xcodeproj">
@@ -44,7 +44,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AE40A577928B76D2FC3EDC2A"
+            BlueprintIdentifier = "166DD424A57127423D276BBE"
             BuildableName = "Eb IDE.app"
             BlueprintName = "eb IDE"
             ReferencedContainer = "container:eb.xcodeproj">
@@ -61,7 +61,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AE40A577928B76D2FC3EDC2A"
+            BlueprintIdentifier = "166DD424A57127423D276BBE"
             BuildableName = "Eb IDE.app"
             BlueprintName = "eb IDE"
             ReferencedContainer = "container:eb.xcodeproj">

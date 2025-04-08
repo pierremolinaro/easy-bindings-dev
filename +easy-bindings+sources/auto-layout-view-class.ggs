@@ -148,7 +148,7 @@ syntax extension easyBindings_syntax {
       $graphicController$
       handlesGraphicControllerBinding = true
     end
-    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = []
+    var @astAutoLayoutViewFunctionMap astAutoLayoutViewFunctionMap = ()
     ${$
     repeat
     while

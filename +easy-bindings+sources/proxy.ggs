@@ -101,14 +101,14 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
         !graphic: isGraphic,
         !optionKind: .none
       )
-      !?mPropertyMap.insertKey (self.mProxyName, k, [], false)
+      !?mPropertyMap.insertKey (self.mProxyName, k, (), false)
       case propertyProxy :
         error self.mProxyTypeName : "this type should be an entity"
       end
     case document (*) :
       error self.mProxyTypeName : "an atomic type is required here"
     case atomic (type) :
-      !?mPropertyMap.insertKey (self.mProxyName, .property (!type: type, !accessibility: .stored), [], false)
+      !?mPropertyMap.insertKey (self.mProxyName, .property (!type: type, !accessibility: .stored), (), false)
     end
   end
 }

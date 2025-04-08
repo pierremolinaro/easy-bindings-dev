@@ -8,422 +8,6 @@
 #include "all-declarations-6.h"
 
 //--------------------------------------------------------------------------------------------------
-//
-//Optional @typeKind_2E_enumType_3F_
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_enumType_3F_::GGS_typeKind_2E_enumType_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_enumType_3F_::GGS_typeKind_2E_enumType_3F_ (const GGS_typeKind_2E_enumType & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_enumType_3F_ GGS_typeKind_2E_enumType_3F_::init_nil (void) {
-  GGS_typeKind_2E_enumType_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_enumType_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_enumType_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_enumType_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_typeKind_2E_enumType () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_enumType_3F_::objectCompare (const GGS_typeKind_2E_enumType_3F_ & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mState < inOperand.mState) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mState > inOperand.mState) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else if (mState == OptionalState::valuated) {
-      result = mValue.objectCompare (inOperand.mValue) ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_enumType_3F_::description (String & ioString,
-                                                const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.enumType? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_enumType_3F_ ("typeKind.enumType?",
-                                                                                nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_typeKind_2E_enumType_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_enumType_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_typeKind_2E_enumType_3F_::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_typeKind_2E_enumType_3F_ (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_enumType_3F_ GGS_typeKind_2E_enumType_3F_::extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
-  GGS_typeKind_2E_enumType_3F_ result ;
-  const GGS_typeKind_2E_enumType_3F_ * p = (const GGS_typeKind_2E_enumType_3F_ *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_typeKind_2E_enumType_3F_ *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("typeKind.enumType?", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (void) :
-mProperty_entityName (),
-mProperty_graphic () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (const GGS_typeKind_2E_entityType & inSource) :
-mProperty_entityName (inSource.mProperty_entityName),
-mProperty_graphic (inSource.mProperty_graphic) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType & GGS_typeKind_2E_entityType::operator = (const GGS_typeKind_2E_entityType & inSource) {
-  mProperty_entityName = inSource.mProperty_entityName ;
-  mProperty_graphic = inSource.mProperty_graphic ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::init_21__21_ (const GGS_string & in_entityName,
-                                                                     const GGS_bool & in_graphic,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_typeKind_2E_entityType result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_entityName = in_entityName ;
-  result.mProperty_graphic = in_graphic ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_entityType::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType::GGS_typeKind_2E_entityType (const GGS_string & inOperand0,
-                                                        const GGS_bool & inOperand1) :
-mProperty_entityName (inOperand0),
-mProperty_graphic (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::class_func_new (const GGS_string & in_entityName,
-                                                                       const GGS_bool & in_graphic,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_typeKind_2E_entityType result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_entityName = in_entityName ;
-  result.mProperty_graphic = in_graphic ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_entityType::objectCompare (const GGS_typeKind_2E_entityType & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_entityName.objectCompare (inOperand.mProperty_entityName) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_graphic.objectCompare (inOperand.mProperty_graphic) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_entityType::isValid (void) const {
-  return mProperty_entityName.isValid () && mProperty_graphic.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_entityType::drop (void) {
-  mProperty_entityName.drop () ;
-  mProperty_graphic.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_entityType::description (String & ioString,
-                                              const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @typeKind.entityType:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_entityName.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_graphic.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.entityType generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_entityType ("typeKind.entityType",
-                                                                              nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_typeKind_2E_entityType::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_entityType ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_typeKind_2E_entityType::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_typeKind_2E_entityType (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType GGS_typeKind_2E_entityType::extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  GGS_typeKind_2E_entityType result ;
-  const GGS_typeKind_2E_entityType * p = (const GGS_typeKind_2E_entityType *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_typeKind_2E_entityType *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("typeKind.entityType", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Optional @typeKind_2E_entityType_3F_
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType_3F_::GGS_typeKind_2E_entityType_3F_ (void) :
-AC_GALGAS_root (),
-mValue (),
-mState (OptionalState::invalid) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType_3F_::GGS_typeKind_2E_entityType_3F_ (const GGS_typeKind_2E_entityType & inSource) :
-AC_GALGAS_root (),
-mValue (inSource),
-mState (OptionalState::valuated) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType_3F_ GGS_typeKind_2E_entityType_3F_::init_nil (void) {
-  GGS_typeKind_2E_entityType_3F_ result ;
-  result.mState = OptionalState::isNil ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_entityType_3F_::isValid (void) const {
-  bool result = false ;
-  switch (mState) {
-  case OptionalState::invalid :
-    break ;
-  case OptionalState::isNil :
-    result = true ;
-    break ;
-  case OptionalState::valuated :
-    result = mValue.isValid () ;
-    break ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_typeKind_2E_entityType_3F_::isValuated (void) const {
-  return (mState == OptionalState::valuated) && mValue.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_entityType_3F_::drop (void) {
-  mState = OptionalState::invalid ;
-  mValue = GGS_typeKind_2E_entityType () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_typeKind_2E_entityType_3F_::objectCompare (const GGS_typeKind_2E_entityType_3F_ & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mState < inOperand.mState) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mState > inOperand.mState) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else if (mState == OptionalState::valuated) {
-      result = mValue.objectCompare (inOperand.mValue) ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-//--------------------------------------------------------------------------------------------------
-
-void GGS_typeKind_2E_entityType_3F_::description (String & ioString,
-                                                  const int32_t inIndentation) const {
-  ioString.appendCString ("<optional @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  ioString.appendCString (": ") ;
-  switch (mState) {
-  case OptionalState::invalid :
-    ioString.appendCString ("invalid") ;
-    break ;
-  case OptionalState::isNil :
-    ioString.appendCString ("nil") ;
-    break ;
-  case OptionalState::valuated :
-    mValue.description (ioString, inIndentation) ;
-    break ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @typeKind.entityType? generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_typeKind_2E_entityType_3F_ ("typeKind.entityType?",
-                                                                                  nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_typeKind_2E_entityType_3F_::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_typeKind_2E_entityType_3F_ ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_typeKind_2E_entityType_3F_::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_typeKind_2E_entityType_3F_ (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_typeKind_2E_entityType_3F_ GGS_typeKind_2E_entityType_3F_::extractObject (const GGS_object & inObject,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
-  GGS_typeKind_2E_entityType_3F_ result ;
-  const GGS_typeKind_2E_entityType_3F_ * p = (const GGS_typeKind_2E_entityType_3F_ *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_typeKind_2E_entityType_3F_ *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("typeKind.entityType?", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 
 GGS_typeKind_2E_classType::GGS_typeKind_2E_classType (void) :
 mProperty_className () {
@@ -551,9 +135,7 @@ GGS_typeKind_2E_classType GGS_typeKind_2E_classType::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @typeKind_2E_classType_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_typeKind_2E_classType_3F_::GGS_typeKind_2E_classType_3F_ (void) :
@@ -815,9 +397,7 @@ GGS_typeKind_2E_transientPropertyExternType GGS_typeKind_2E_transientPropertyExt
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @typeKind_2E_transientPropertyExternType_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_typeKind_2E_transientPropertyExternType_3F_::GGS_typeKind_2E_transientPropertyExternType_3F_ (void) :
@@ -1081,9 +661,7 @@ GGS_propertyKind_2E_property GGS_propertyKind_2E_property::extractObject (const 
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyKind_2E_property_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_property_3F_::GGS_propertyKind_2E_property_3F_ (void) :
@@ -1318,9 +896,7 @@ GGS_propertyKind_2E_selectionController GGS_propertyKind_2E_selectionController:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyKind_2E_selectionController_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_selectionController_3F_::GGS_propertyKind_2E_selectionController_3F_ (void) :
@@ -13580,22 +13156,14 @@ GGS_semanticContext GGS_semanticContext::init (Compiler * inCompiler
 //--------------------------------------------------------------------------------------------------
 
 void GGS_semanticContext::setInitializedProperties (Compiler * inCompiler) {
-GGS_classMap temp_0 = GGS_classMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 6)) ;
-  mProperty_mClassMap = temp_0 ;
-GGS_outletClassMap temp_1 = GGS_outletClassMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 7)) ;
-  mProperty_mOutletClassMap = temp_1 ;
-GGS_bindingSpecificationMap temp_2 = GGS_bindingSpecificationMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 8)) ;
-  mProperty_mBindingSpecificationMap = temp_2 ;
-GGS_autolayoutViewClassMap temp_3 = GGS_autolayoutViewClassMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 9)) ;
-  mProperty_mAutolayoutViewClassMap = temp_3 ;
-GGS_autoLayoutBindingSpecificationMap temp_4 = GGS_autoLayoutBindingSpecificationMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 10)) ;
-  mProperty_mAutoLayoutBindingSpecificationMap = temp_4 ;
-GGS_astAutoLayoutViewFunctionMap temp_5 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 11)) ;
-  mProperty_mAutoLayoutVStackFunctionMap = temp_5 ;
-GGS_astAutoLayoutViewFunctionMap temp_6 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 12)) ;
-  mProperty_mAutoLayoutHStackFunctionMap = temp_6 ;
-GGS_enumerationFunctionListAST temp_7 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("program.ggs", 13)) ;
-  mProperty_mEnumerationFunctionListAST = temp_7 ;
+  mProperty_mClassMap = GGS_classMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mOutletClassMap = GGS_outletClassMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mBindingSpecificationMap = GGS_bindingSpecificationMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutolayoutViewClassMap = GGS_autolayoutViewClassMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutoLayoutBindingSpecificationMap = GGS_autoLayoutBindingSpecificationMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutoLayoutVStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutoLayoutHStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mEnumerationFunctionListAST = GGS_enumerationFunctionListAST::init (inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13737,6 +13305,13 @@ ComparisonResult GGS_abstractDeclarationAST::objectCompare (const GGS_abstractDe
 
 GGS_abstractDeclarationAST::GGS_abstractDeclarationAST (void) :
 AC_GALGAS_reference_class () {
+}
+
+
+void cPtr_abstractDeclarationAST::
+abstractDeclarationAST_init_21_ (const GGS_lstring & in_mClassName,
+                                 Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13888,9 +13463,7 @@ void callExtensionMethod_firstAnalysisPhase (cPtr_abstractDeclarationAST * inObj
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@abstractDeclarationAST secondAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,
@@ -13908,13 +13481,12 @@ void callExtensionMethod_secondAnalysisPhase (cPtr_abstractDeclarationAST * inOb
                                               COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDeclarationAST) ;
-    inObject->method_secondAnalysisPhase  (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
+    inObject->method_secondAnalysisPhase (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@abstractDeclarationAST thirdAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,
@@ -13932,13 +13504,12 @@ void callExtensionMethod_thirdAnalysisPhase (cPtr_abstractDeclarationAST * inObj
                                              COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDeclarationAST) ;
-    inObject->method_thirdAnalysisPhase  (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
+    inObject->method_thirdAnalysisPhase (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@abstractDeclarationAST fourthAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,
@@ -13956,9 +13527,10 @@ void callExtensionMethod_fourthAnalysisPhase (cPtr_abstractDeclarationAST * inOb
                                               COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDeclarationAST) ;
-    inObject->method_fourthAnalysisPhase  (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
+    inObject->method_fourthAnalysisPhase (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 // @transientClassDeclarationAST reference class
 //--------------------------------------------------------------------------------------------------

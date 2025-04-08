@@ -61,8 +61,8 @@ override proc @transientClassDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .atomic (!kind: .transientPropertyExternType (!externTypeName: self.mClassName)),
-    [],
-    [],
+    (),
+    (),
     []
   )
   !?ioGeneration.mTransientPropertyTypeList.append (self.mClassName.string, self.mIsClass)

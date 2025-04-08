@@ -9,9 +9,7 @@
 #include "all-declarations-1.h"
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutViewClassDeclarationAST_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutViewClassDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
@@ -87,6 +85,7 @@ class GGS_autoLayoutViewClassDeclarationAST_2E_weak : public GGS_abstractDeclara
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -167,6 +166,7 @@ class GGS_autoLayoutClassParameterType_2E_typeEnum : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -177,9 +177,7 @@ class GGS_autoLayoutClassParameterType_2E_typeEnum : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterType_2E_typeEnum ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: autoLayoutClassParameterType.typeEnum? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ : public AC_GALGAS_root {
@@ -246,6 +244,7 @@ class GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -346,6 +345,7 @@ class GGS_outletClassBindingSpecificationModelList_2E_element : public AC_GALGAS
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -435,6 +435,7 @@ class GGS_controllerBindingOptionList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -515,14 +516,18 @@ class GGS_controllerBindingOptionDecoratedList : public AC_GALGAS_list {
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_controllerBindingOptionDecoratedList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_controllerBindingOptionDecoratedList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_typeKind & inOperand0,
-                                                     const class GGS_lstring & inOperand1
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_typeKind & inOperand0,
+                                                    const class GGS_lstring & inOperand1
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_controllerBindingOptionDecoratedList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_controllerBindingOptionDecoratedList add_operation (const GGS_controllerBindingOptionDecoratedList & inOperand,
                                                                                    Compiler * inCompiler
@@ -605,14 +610,9 @@ class GGS_controllerBindingOptionDecoratedList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_controllerBindingOptionDecoratedList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_controllerBindingOptionDecoratedList ;
   friend class DownEnumerator_controllerBindingOptionDecoratedList ;
@@ -694,14 +694,18 @@ class GGS_outletBindingSpecificationModelList : public AC_GALGAS_list {
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_outletBindingSpecificationModelList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_outletBindingSpecificationModelList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_typeKind & inOperand0,
-                                                     const class GGS_bool & inOperand1
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_typeKind & inOperand0,
+                                                    const class GGS_bool & inOperand1
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_outletBindingSpecificationModelList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_outletBindingSpecificationModelList add_operation (const GGS_outletBindingSpecificationModelList & inOperand,
                                                                                   Compiler * inCompiler
@@ -784,14 +788,9 @@ class GGS_outletBindingSpecificationModelList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_outletBindingSpecificationModelList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_outletBindingSpecificationModelList ;
   friend class DownEnumerator_outletBindingSpecificationModelList ;
@@ -803,9 +802,7 @@ class GGS_outletBindingSpecificationModelList : public AC_GALGAS_list {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationModelList ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@autoLayoutViewBindingSpecificationMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_autoLayoutViewBindingSpecificationMap : public cMapElement {
@@ -926,6 +923,7 @@ class GGS_autoLayoutViewBindingSpecificationMap_2E_element : public AC_GALGAS_ro
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -936,9 +934,7 @@ class GGS_autoLayoutViewBindingSpecificationMap_2E_element : public AC_GALGAS_ro
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewBindingSpecificationMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: autoLayoutViewBindingSpecificationMap.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_root {
@@ -1003,6 +999,7 @@ class GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ : public AC_GALGA
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -1093,6 +1090,7 @@ class GGS_outletBindingSpecificationModelList_2E_element : public AC_GALGAS_root
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1182,6 +1180,7 @@ class GGS_controllerBindingOptionDecoratedList_2E_element : public AC_GALGAS_roo
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1192,9 +1191,7 @@ class GGS_controllerBindingOptionDecoratedList_2E_element : public AC_GALGAS_roo
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionDecoratedList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astAbstractViewDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAbstractViewDeclaration_2E_weak : public AC_GALGAS_weak_reference {
@@ -1270,6 +1267,7 @@ class GGS_astAbstractViewDeclaration_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -1360,6 +1358,7 @@ class GGS_astAutoLayoutViewFunctionCallList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1436,6 +1435,7 @@ class GGS_astViewInstructionList_2E_element : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -1526,6 +1526,7 @@ class GGS_astNewStackViewDeclarationList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1536,9 +1537,7 @@ class GGS_astNewStackViewDeclarationList_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astNewStackViewDeclarationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astComputedHorizontalViewDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astComputedHorizontalViewDeclaration_2E_weak : public GGS_astAbstractViewDeclaration_2E_weak {
@@ -1615,6 +1614,7 @@ class GGS_astComputedHorizontalViewDeclaration_2E_weak : public GGS_astAbstractV
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1625,9 +1625,7 @@ class GGS_astComputedHorizontalViewDeclaration_2E_weak : public GGS_astAbstractV
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astComputedVerticalViewDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astComputedVerticalViewDeclaration_2E_weak : public GGS_astAbstractViewDeclaration_2E_weak {
@@ -1704,6 +1702,7 @@ class GGS_astComputedVerticalViewDeclaration_2E_weak : public GGS_astAbstractVie
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1714,9 +1713,7 @@ class GGS_astComputedVerticalViewDeclaration_2E_weak : public GGS_astAbstractVie
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astAbstractViewInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAbstractViewInstructionDeclaration_2E_weak : public AC_GALGAS_weak_reference {
@@ -1793,6 +1790,7 @@ class GGS_astAbstractViewInstructionDeclaration_2E_weak : public AC_GALGAS_weak_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1803,9 +1801,7 @@ class GGS_astAbstractViewInstructionDeclaration_2E_weak : public AC_GALGAS_weak_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astSeparatorInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astSeparatorInstructionDeclaration_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -1882,6 +1878,7 @@ class GGS_astSeparatorInstructionDeclaration_2E_weak : public GGS_astAbstractVie
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1892,9 +1889,7 @@ class GGS_astSeparatorInstructionDeclaration_2E_weak : public GGS_astAbstractVie
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSeparatorInstructionDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astGutterInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astGutterInstructionDeclaration_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -1971,6 +1966,7 @@ class GGS_astGutterInstructionDeclaration_2E_weak : public GGS_astAbstractViewIn
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1981,9 +1977,7 @@ class GGS_astGutterInstructionDeclaration_2E_weak : public GGS_astAbstractViewIn
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astGutterInstructionDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astDividerInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astDividerInstructionDeclaration_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -2059,6 +2053,7 @@ class GGS_astDividerInstructionDeclaration_2E_weak : public GGS_astAbstractViewI
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -2137,6 +2132,7 @@ class GGS_optionalHiddenBinding_2E_binding : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2147,9 +2143,7 @@ class GGS_optionalHiddenBinding_2E_binding : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optionalHiddenBinding_2E_binding ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: optionalHiddenBinding.binding? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_optionalHiddenBinding_2E_binding_3F_ : public AC_GALGAS_root {
@@ -2215,6 +2209,7 @@ class GGS_optionalHiddenBinding_2E_binding_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2225,9 +2220,7 @@ class GGS_optionalHiddenBinding_2E_binding_3F_ : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optionalHiddenBinding_2E_binding_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astHStackViewInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astHStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -2304,6 +2297,7 @@ class GGS_astHStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractVi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2314,9 +2308,7 @@ class GGS_astHStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractVi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHStackViewInstructionDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astVStackViewInstructionDeclaration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astVStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -2393,6 +2385,7 @@ class GGS_astVStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractVi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2403,9 +2396,7 @@ class GGS_astVStackViewInstructionDeclaration_2E_weak : public GGS_astAbstractVi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astSpaceViewInstruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astSpaceViewInstruction_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -2482,6 +2473,7 @@ class GGS_astSpaceViewInstruction_2E_weak : public GGS_astAbstractViewInstructio
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2492,9 +2484,7 @@ class GGS_astSpaceViewInstruction_2E_weak : public GGS_astAbstractViewInstructio
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSpaceViewInstruction_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astLocalViewInstruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astLocalViewInstruction_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -2570,6 +2560,7 @@ class GGS_astLocalViewInstruction_2E_weak : public GGS_astAbstractViewInstructio
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -2672,6 +2663,7 @@ class GGS_astAutoLayoutViewInstructionParameterList_2E_element : public AC_GALGA
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2751,6 +2743,7 @@ class GGS_tableValueBinding_2E_tableValueBinding : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2761,9 +2754,7 @@ class GGS_tableValueBinding_2E_tableValueBinding : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableValueBinding_2E_tableValueBinding ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: tableValueBinding.tableValueBinding? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_tableValueBinding_2E_tableValueBinding_3F_ : public AC_GALGAS_root {
@@ -2830,6 +2821,7 @@ class GGS_tableValueBinding_2E_tableValueBinding_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -2922,6 +2914,7 @@ class GGS_runActionDescriptor_2E_action : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2932,9 +2925,7 @@ class GGS_runActionDescriptor_2E_action : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_runActionDescriptor_2E_action ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: runActionDescriptor.action? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_runActionDescriptor_2E_action_3F_ : public AC_GALGAS_root {
@@ -3001,6 +2992,7 @@ class GGS_runActionDescriptor_2E_action_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3081,6 +3073,7 @@ class GGS_multipleBindingDescriptor_2E_binding : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3091,9 +3084,7 @@ class GGS_multipleBindingDescriptor_2E_binding : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingDescriptor_2E_binding ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: multipleBindingDescriptor.binding? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_multipleBindingDescriptor_2E_binding_3F_ : public AC_GALGAS_root {
@@ -3160,6 +3151,7 @@ class GGS_multipleBindingDescriptor_2E_binding_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3250,6 +3242,7 @@ class GGS_graphicController_2E_defined : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3260,9 +3253,7 @@ class GGS_graphicController_2E_defined : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_graphicController_2E_defined ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: graphicController.defined? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_graphicController_2E_defined_3F_ : public AC_GALGAS_root {
@@ -3327,6 +3318,7 @@ class GGS_graphicController_2E_defined_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3429,6 +3421,7 @@ class GGS_regularBindingList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3439,9 +3432,7 @@ class GGS_regularBindingList_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @astComputedViewInstruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astComputedViewInstruction_2E_weak : public GGS_astAbstractViewInstructionDeclaration_2E_weak {
@@ -3517,6 +3508,7 @@ class GGS_astComputedViewInstruction_2E_weak : public GGS_astAbstractViewInstruc
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3595,6 +3587,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity : public AC_GALGA
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3605,9 +3598,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity : public AC_GALGA
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue_2E_entity ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: astAutoLayoutViewInstructionParameterValue.entity? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_ : public AC_GALGAS_root {
@@ -3672,6 +3663,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_ : public AC_G
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3762,6 +3754,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc : public AC_GAL
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3772,9 +3765,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc : public AC_GAL
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: astAutoLayoutViewInstructionParameterValue.enumFunc? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_ : public AC_GALGAS_root {
@@ -3839,6 +3830,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_ : public AC
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -3941,6 +3933,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem : public AC_GAL
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3951,9 +3944,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem : public AC_GAL
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue_2E_menuItem ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: astAutoLayoutViewInstructionParameterValue.menuItem? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ : public AC_GALGAS_root {
@@ -4018,6 +4009,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ : public AC
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -4096,6 +4088,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_string : public AC_GALGA
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4106,9 +4099,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_string : public AC_GALGA
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue_2E_string ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: astAutoLayoutViewInstructionParameterValue.string? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_ : public AC_GALGAS_root {
@@ -4173,6 +4164,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_ : public AC_G
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -4251,6 +4243,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc : public AC_GAL
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4261,9 +4254,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc : public AC_GAL
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: astAutoLayoutViewInstructionParameterValue.viewFunc? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_ : public AC_GALGAS_root {
@@ -4328,6 +4319,7 @@ class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_ : public AC
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -4408,15 +4400,6 @@ class GGS_autoLayoutViewDeclarationMap : public AC_GALGAS_map {
   public: static class GGS_autoLayoutViewDeclarationMap class_func_mapWithMapToOverride (const class GGS_autoLayoutViewDeclarationMap & inOperand0
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_lstring & inOperand0,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_autoLayoutViewDeclarationMap add_operation (const GGS_autoLayoutViewDeclarationMap & inOperand,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
@@ -4442,17 +4425,12 @@ class GGS_autoLayoutViewDeclarationMap : public AC_GALGAS_map {
                                                                                                      COMMA_LOCATION_ARGS) const ;
 
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_autoLayoutViewDeclarationMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
                                                                                                          const GGS_string & inKey
                                                                                                          COMMA_LOCATION_ARGS) ;
-
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutViewDeclarationMap_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewDeclarationMap ;
@@ -4465,9 +4443,7 @@ class GGS_autoLayoutViewDeclarationMap : public AC_GALGAS_map {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewDeclarationMap ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@autoLayoutViewDeclarationMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_autoLayoutViewDeclarationMap : public cMapElement {
@@ -4560,6 +4536,7 @@ class GGS_autoLayoutViewDeclarationMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4570,9 +4547,7 @@ class GGS_autoLayoutViewDeclarationMap_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewDeclarationMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: autoLayoutViewDeclarationMap.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutViewDeclarationMap_2E_element_3F_ : public AC_GALGAS_root {
@@ -4638,6 +4613,7 @@ class GGS_autoLayoutViewDeclarationMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4672,9 +4648,7 @@ void callExtensionMethod_checkView (class cPtr_astAbstractViewDeclaration * inOb
                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@actionMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_actionMap : public cMapElement {
@@ -4850,6 +4824,7 @@ class GGS_propertyKind : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4860,9 +4835,7 @@ class GGS_propertyKind : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyKind ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@propertyMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_propertyMap : public cMapElement {
@@ -5029,6 +5002,7 @@ class GGS_semanticContext : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5140,6 +5114,7 @@ class GGS_autolayoutEnabledBindingForGeneration : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5231,6 +5206,7 @@ class GGS_autolayoutRunBindingForGeneration : public AC_GALGAS_root {
 
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -5335,14 +5311,18 @@ class GGS_autoLayoutViewInstructionGenerationFuncCallList : public AC_GALGAS_lis
                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_autoLayoutViewInstructionGenerationFuncCallList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutViewInstructionGenerationFuncCallList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_string & inOperand0,
-                                                     const class GGS_autoLayoutViewInstructionGenerationParameterList & inOperand1
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_string & inOperand0,
+                                                    const class GGS_autoLayoutViewInstructionGenerationParameterList & inOperand1
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutViewInstructionGenerationFuncCallList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_autoLayoutViewInstructionGenerationFuncCallList add_operation (const GGS_autoLayoutViewInstructionGenerationFuncCallList & inOperand,
                                                                                               Compiler * inCompiler
@@ -5425,14 +5405,9 @@ class GGS_autoLayoutViewInstructionGenerationFuncCallList : public AC_GALGAS_lis
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutViewInstructionGenerationFuncCallList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewInstructionGenerationFuncCallList ;
   friend class DownEnumerator_autoLayoutViewInstructionGenerationFuncCallList ;
@@ -5514,14 +5489,18 @@ class GGS_autoLayoutViewInstructionGenerationParameterList : public AC_GALGAS_li
                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_autoLayoutViewInstructionGenerationParameterList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutViewInstructionGenerationParameterList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_string & inOperand0,
-                                                     const class GGS_string & inOperand1
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_string & inOperand0,
+                                                    const class GGS_string & inOperand1
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_autoLayoutViewInstructionGenerationParameterList add_operation (const GGS_autoLayoutViewInstructionGenerationParameterList & inOperand,
                                                                                                Compiler * inCompiler
@@ -5604,14 +5583,9 @@ class GGS_autoLayoutViewInstructionGenerationParameterList : public AC_GALGAS_li
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewInstructionGenerationParameterList ;
   friend class DownEnumerator_autoLayoutViewInstructionGenerationParameterList ;
@@ -5713,6 +5687,7 @@ class GGS_classKind_2E_atomic : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5723,9 +5698,7 @@ class GGS_classKind_2E_atomic : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind_2E_atomic ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: classKind.atomic? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_classKind_2E_atomic_3F_ : public AC_GALGAS_root {
@@ -5791,6 +5764,7 @@ class GGS_classKind_2E_atomic_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5836,9 +5810,7 @@ void routine_analyzeAutoLayoutRunBinding_3F__3F_handlesRunAction_3F__3F__3F__3F_
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @abstractViewGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_abstractViewGeneration_2E_weak : public AC_GALGAS_weak_reference {
@@ -5914,6 +5886,7 @@ class GGS_abstractViewGeneration_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -6004,6 +5977,7 @@ class GGS_autoLayoutViewInstructionGenerationFuncCallList_2E_element : public AC
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6080,13 +6054,17 @@ class GGS_autoLayoutViewInstructionGenerationList : public AC_GALGAS_list {
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_autoLayoutViewInstructionGenerationList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutViewInstructionGenerationList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_abstractViewInstructionGeneration & inOperand0
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_abstractViewInstructionGeneration & inOperand0
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutViewInstructionGenerationList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_autoLayoutViewInstructionGenerationList add_operation (const GGS_autoLayoutViewInstructionGenerationList & inOperand,
                                                                                       Compiler * inCompiler
@@ -6153,14 +6131,9 @@ class GGS_autoLayoutViewInstructionGenerationList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutViewInstructionGenerationList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewInstructionGenerationList ;
   friend class DownEnumerator_autoLayoutViewInstructionGenerationList ;
@@ -6239,6 +6212,7 @@ class GGS_autoLayoutViewInstructionGenerationList_2E_element : public AC_GALGAS_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6249,9 +6223,7 @@ class GGS_autoLayoutViewInstructionGenerationList_2E_element : public AC_GALGAS_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @computedHorizontalViewGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_computedHorizontalViewGeneration : public GGS_abstractViewGeneration {
@@ -6304,6 +6276,7 @@ class GGS_computedHorizontalViewGeneration : public GGS_abstractViewGeneration {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6314,9 +6287,7 @@ class GGS_computedHorizontalViewGeneration : public GGS_abstractViewGeneration {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedHorizontalViewGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @computedHorizontalViewGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration {
@@ -6367,9 +6338,7 @@ class cPtr_computedHorizontalViewGeneration : public cPtr_abstractViewGeneration
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @computedHorizontalViewGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_computedHorizontalViewGeneration_2E_weak : public GGS_abstractViewGeneration_2E_weak {
@@ -6446,6 +6415,7 @@ class GGS_computedHorizontalViewGeneration_2E_weak : public GGS_abstractViewGene
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6456,9 +6426,7 @@ class GGS_computedHorizontalViewGeneration_2E_weak : public GGS_abstractViewGene
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedHorizontalViewGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @computedVerticalViewGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_computedVerticalViewGeneration : public GGS_abstractViewGeneration {
@@ -6519,6 +6487,7 @@ class GGS_computedVerticalViewGeneration : public GGS_abstractViewGeneration {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6529,9 +6498,7 @@ class GGS_computedVerticalViewGeneration : public GGS_abstractViewGeneration {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedVerticalViewGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @computedVerticalViewGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
@@ -6588,9 +6555,7 @@ class cPtr_computedVerticalViewGeneration : public cPtr_abstractViewGeneration {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @computedVerticalViewGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_computedVerticalViewGeneration_2E_weak : public GGS_abstractViewGeneration_2E_weak {
@@ -6667,6 +6632,7 @@ class GGS_computedVerticalViewGeneration_2E_weak : public GGS_abstractViewGenera
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6690,9 +6656,7 @@ class GGS_string callExtensionGetter_generateAppendViewInstruction (const class 
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @abstractViewInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_abstractViewInstructionGeneration_2E_weak : public AC_GALGAS_weak_reference {
@@ -6768,6 +6732,7 @@ class GGS_abstractViewInstructionGeneration_2E_weak : public AC_GALGAS_weak_refe
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -6849,14 +6814,18 @@ class GGS_autoLayoutMultipleBindingGenerationList : public AC_GALGAS_list {
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_autoLayoutMultipleBindingGenerationList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutMultipleBindingGenerationList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_string & inOperand0,
-                                                     const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_string & inOperand0,
+                                                    const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand1
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutMultipleBindingGenerationList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_autoLayoutMultipleBindingGenerationList add_operation (const GGS_autoLayoutMultipleBindingGenerationList & inOperand,
                                                                                       Compiler * inCompiler
@@ -6939,14 +6908,9 @@ class GGS_autoLayoutMultipleBindingGenerationList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutMultipleBindingGenerationList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutMultipleBindingGenerationList ;
   friend class DownEnumerator_autoLayoutMultipleBindingGenerationList ;
@@ -7037,6 +7001,7 @@ class GGS_autoLayoutMultipleBindingGenerationList_2E_element : public AC_GALGAS_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7047,9 +7012,7 @@ class GGS_autoLayoutMultipleBindingGenerationList_2E_element : public AC_GALGAS_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutMultipleBindingGenerationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @hStackViewInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_hStackViewInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -7106,6 +7069,7 @@ class GGS_hStackViewInstructionGeneration : public GGS_abstractViewInstructionGe
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7116,9 +7080,7 @@ class GGS_hStackViewInstructionGeneration : public GGS_abstractViewInstructionGe
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @hStackViewInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -7179,9 +7141,7 @@ class cPtr_hStackViewInstructionGeneration : public cPtr_abstractViewInstruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @hStackViewInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_hStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -7258,6 +7218,7 @@ class GGS_hStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7268,9 +7229,7 @@ class GGS_hStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_hStackViewInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @vStackViewInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_vStackViewInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -7335,6 +7294,7 @@ class GGS_vStackViewInstructionGeneration : public GGS_abstractViewInstructionGe
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7345,9 +7305,7 @@ class GGS_vStackViewInstructionGeneration : public GGS_abstractViewInstructionGe
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @vStackViewInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -7414,9 +7372,7 @@ class cPtr_vStackViewInstructionGeneration : public cPtr_abstractViewInstruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @vStackViewInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_vStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -7493,6 +7449,7 @@ class GGS_vStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7503,9 +7460,7 @@ class GGS_vStackViewInstructionGeneration_2E_weak : public GGS_abstractViewInstr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_vStackViewInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutSpaceViewInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutSpaceViewInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -7546,6 +7501,7 @@ class GGS_autoLayoutSpaceViewInstructionGeneration : public GGS_abstractViewInst
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7556,9 +7512,7 @@ class GGS_autoLayoutSpaceViewInstructionGeneration : public GGS_abstractViewInst
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSpaceViewInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @autoLayoutSpaceViewInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -7605,9 +7559,7 @@ class cPtr_autoLayoutSpaceViewInstructionGeneration : public cPtr_abstractViewIn
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutSpaceViewInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -7684,6 +7636,7 @@ class GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak : public GGS_abstract
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7694,9 +7647,7 @@ class GGS_autoLayoutSpaceViewInstructionGeneration_2E_weak : public GGS_abstract
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSpaceViewInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutSeparatorInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutSeparatorInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -7741,6 +7692,7 @@ class GGS_autoLayoutSeparatorInstructionGeneration : public GGS_abstractViewInst
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7751,9 +7703,7 @@ class GGS_autoLayoutSeparatorInstructionGeneration : public GGS_abstractViewInst
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSeparatorInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @autoLayoutSeparatorInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -7805,9 +7755,7 @@ class cPtr_autoLayoutSeparatorInstructionGeneration : public cPtr_abstractViewIn
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutSeparatorInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutSeparatorInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -7884,6 +7832,7 @@ class GGS_autoLayoutSeparatorInstructionGeneration_2E_weak : public GGS_abstract
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7894,9 +7843,7 @@ class GGS_autoLayoutSeparatorInstructionGeneration_2E_weak : public GGS_abstract
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutSeparatorInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutGutterInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutGutterInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -7941,6 +7888,7 @@ class GGS_autoLayoutGutterInstructionGeneration : public GGS_abstractViewInstruc
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7951,9 +7899,7 @@ class GGS_autoLayoutGutterInstructionGeneration : public GGS_abstractViewInstruc
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutGutterInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @autoLayoutGutterInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutGutterInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -8005,9 +7951,7 @@ class cPtr_autoLayoutGutterInstructionGeneration : public cPtr_abstractViewInstr
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutGutterInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutGutterInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -8084,6 +8028,7 @@ class GGS_autoLayoutGutterInstructionGeneration_2E_weak : public GGS_abstractVie
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8094,9 +8039,7 @@ class GGS_autoLayoutGutterInstructionGeneration_2E_weak : public GGS_abstractVie
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutGutterInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutDividerInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutDividerInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -8141,6 +8084,7 @@ class GGS_autoLayoutDividerInstructionGeneration : public GGS_abstractViewInstru
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8151,9 +8095,7 @@ class GGS_autoLayoutDividerInstructionGeneration : public GGS_abstractViewInstru
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDividerInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @autoLayoutDividerInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutDividerInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -8205,9 +8147,7 @@ class cPtr_autoLayoutDividerInstructionGeneration : public cPtr_abstractViewInst
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutDividerInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutDividerInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -8284,6 +8224,7 @@ class GGS_autoLayoutDividerInstructionGeneration_2E_weak : public GGS_abstractVi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8294,9 +8235,7 @@ class GGS_autoLayoutDividerInstructionGeneration_2E_weak : public GGS_abstractVi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDividerInstructionGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutLocalViewInstructionGeneration reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutLocalViewInstructionGeneration : public GGS_abstractViewInstructionGeneration {
@@ -8341,6 +8280,7 @@ class GGS_autoLayoutLocalViewInstructionGeneration : public GGS_abstractViewInst
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8351,9 +8291,7 @@ class GGS_autoLayoutLocalViewInstructionGeneration : public GGS_abstractViewInst
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutLocalViewInstructionGeneration ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @autoLayoutLocalViewInstructionGeneration class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewInstructionGeneration {
@@ -8405,9 +8343,7 @@ class cPtr_autoLayoutLocalViewInstructionGeneration : public cPtr_abstractViewIn
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @autoLayoutLocalViewInstructionGeneration_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutLocalViewInstructionGeneration_2E_weak : public GGS_abstractViewInstructionGeneration_2E_weak {
@@ -8483,6 +8419,7 @@ class GGS_autoLayoutLocalViewInstructionGeneration_2E_weak : public GGS_abstract
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -8568,15 +8505,19 @@ class GGS_autoLayoutRegularBindingsGenerationList : public AC_GALGAS_list {
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_autoLayoutRegularBindingsGenerationList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutRegularBindingsGenerationList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_string & inOperand0,
-                                                     const class GGS_boundObjectList & inOperand1,
-                                                     const class GGS_string & inOperand2
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_string & inOperand0,
+                                                    const class GGS_boundObjectList & inOperand1,
+                                                    const class GGS_string & inOperand2
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutRegularBindingsGenerationList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_autoLayoutRegularBindingsGenerationList add_operation (const GGS_autoLayoutRegularBindingsGenerationList & inOperand,
                                                                                       Compiler * inCompiler
@@ -8675,14 +8616,9 @@ class GGS_autoLayoutRegularBindingsGenerationList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_autoLayoutRegularBindingsGenerationList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutRegularBindingsGenerationList ;
   friend class DownEnumerator_autoLayoutRegularBindingsGenerationList ;
@@ -8785,6 +8721,7 @@ class GGS_autoLayoutRegularBindingsGenerationList_2E_element : public AC_GALGAS_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8873,6 +8810,7 @@ class GGS_boundObjectList_2E_element : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -8975,6 +8913,7 @@ class GGS_autolayoutRunBindingForGeneration_2E_run : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8985,9 +8924,7 @@ class GGS_autolayoutRunBindingForGeneration_2E_run : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutRunBindingForGeneration_2E_run ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: autolayoutRunBindingForGeneration.run? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autolayoutRunBindingForGeneration_2E_run_3F_ : public AC_GALGAS_root {
@@ -9052,6 +8989,7 @@ class GGS_autolayoutRunBindingForGeneration_2E_run_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -9139,6 +9077,7 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration : public AC_GALGAS_ro
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9216,6 +9155,7 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding : public A
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9226,9 +9166,7 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding : public A
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: autoLayoutViewGraphicControllerBindingGeneration.binding? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ : public AC_GALGAS_root {
@@ -9294,6 +9232,7 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ : publ
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9302,4 +9241,159 @@ class GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ : publ
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @autolayoutEnabledBindingForGeneration_2E_enabled struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_autolayoutEnabledBindingForGeneration_2E_enabled : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_binding ;
+  public: inline GGS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_binding (void) const {
+    return mProperty_binding ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setBinding (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_binding = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & in_binding) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled & operator = (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled init_21_ (const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled extractObject (const GGS_object & inObject,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_autolayoutEnabledBindingForGeneration_2E_enabled class_func_new (const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
+                                                                                            class Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration_2E_enabled ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: autolayoutEnabledBindingForGeneration.enabled? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_autolayoutEnabledBindingForGeneration_2E_enabled mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_autolayoutEnabledBindingForGeneration_2E_enabled unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ extractObject (const GGS_object & inObject,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ ;
 

@@ -84,7 +84,7 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
         error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
-      !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, [], false)
+      !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, (), false)
       !?mPropertyGenerationList.append (@selectionControllerPropertyGeneration (
         self.mSelectionControllerName.string,
         self.mClassName,

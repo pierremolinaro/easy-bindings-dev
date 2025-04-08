@@ -108,7 +108,9 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
   with self.mClassName in !?ioSemanticContext.mClassMap 
     %errorMessage searchKey
   do
-    let @actionMap controllerActions = [@("add".nowhere), @("remove".nowhere)]
+    var @actionMap controllerActions = ()
+    !?controllerActions.insertKey ("add".nowhere)
+    !?controllerActions.insertKey ("remove".nowhere)
     switch self.mModel
     case rootToManyRelationship (@lstring rootEntityName) :
       ioSemanticContext.mClassMap.searchKey (rootEntityName, ?*, ?let rootProperties, ?2*)

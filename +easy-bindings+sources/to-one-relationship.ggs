@@ -124,7 +124,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
       if self.mOpposite != .none, not handleOpposite then
         error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
-      !?mPropertyMap.insertKey (self.mToOneRelationshipName, kind, [], false)
+      !?mPropertyMap.insertKey (self.mToOneRelationshipName, kind, (), false)
     end
   end
 }

@@ -8,9 +8,7 @@
 #include "all-declarations-8.h"
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutOutletMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutOutletMap_2E_element_3F_::GGS_autoLayoutOutletMap_2E_element_3F_ (void) :
@@ -329,9 +327,7 @@ GGS_outletClassMap_2E_element GGS_outletClassMap_2E_element::extractObject (cons
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @outletClassMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_outletClassMap_2E_element_3F_::GGS_outletClassMap_2E_element_3F_ (void) :
@@ -1001,9 +997,7 @@ GGS_bindingSpecificationMap_2E_element GGS_bindingSpecificationMap_2E_element::e
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @bindingSpecificationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_bindingSpecificationMap_2E_element_3F_::GGS_bindingSpecificationMap_2E_element_3F_ (void) :
@@ -1391,9 +1385,7 @@ GGS_outletBindingSpecificationMap_2E_element GGS_outletBindingSpecificationMap_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @outletBindingSpecificationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_outletBindingSpecificationMap_2E_element_3F_::GGS_outletBindingSpecificationMap_2E_element_3F_ (void) :
@@ -1767,9 +1759,7 @@ GGS_tableValueBinding_2E_tableValueBinding GGS_tableValueBinding_2E_tableValueBi
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @tableValueBinding_2E_tableValueBinding_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_tableValueBinding_2E_tableValueBinding_3F_::GGS_tableValueBinding_2E_tableValueBinding_3F_ (void) :
@@ -2033,9 +2023,7 @@ GGS_graphicController_2E_defined GGS_graphicController_2E_defined::extractObject
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @graphicController_2E_defined_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_graphicController_2E_defined_3F_::GGS_graphicController_2E_defined_3F_ (void) :
@@ -2483,9 +2471,7 @@ GGS_decoratedOutletMap_2E_element GGS_decoratedOutletMap_2E_element::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @decoratedOutletMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_decoratedOutletMap_2E_element_3F_::GGS_decoratedOutletMap_2E_element_3F_ (void) :
@@ -2720,9 +2706,7 @@ GGS_observablePropertyAST_2E_rootProperty GGS_observablePropertyAST_2E_rootPrope
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_rootProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootProperty_3F_::GGS_observablePropertyAST_2E_rootProperty_3F_ (void) :
@@ -2969,9 +2953,7 @@ GGS_observablePropertyAST_2E_rootPropertyWithOption GGS_observablePropertyAST_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_rootPropertyWithOption_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_::GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ (void) :
@@ -3218,9 +3200,7 @@ GGS_observablePropertyAST_2E_rootPropertyRelationship GGS_observablePropertyAST_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_rootPropertyRelationship_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_::GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ (void) :
@@ -3455,9 +3435,7 @@ GGS_observablePropertyAST_2E_rootPropertyNone GGS_observablePropertyAST_2E_rootP
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_rootPropertyNone_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_rootPropertyNone_3F_::GGS_observablePropertyAST_2E_rootPropertyNone_3F_ (void) :
@@ -3692,9 +3670,7 @@ GGS_observablePropertyAST_2E_selfProperty GGS_observablePropertyAST_2E_selfPrope
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfProperty_3F_::GGS_observablePropertyAST_2E_selfProperty_3F_ (void) :
@@ -3941,9 +3917,7 @@ GGS_observablePropertyAST_2E_selfPropertyWithOption GGS_observablePropertyAST_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfPropertyWithOption_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (void) :
@@ -4190,9 +4164,7 @@ GGS_observablePropertyAST_2E_selfPropertyArray GGS_observablePropertyAST_2E_self
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfPropertyArray_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyArray_3F_::GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (void) :
@@ -4439,9 +4411,7 @@ GGS_observablePropertyAST_2E_selfPropertyObject GGS_observablePropertyAST_2E_sel
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfPropertyObject_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyObject_3F_::GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (void) :
@@ -4676,9 +4646,7 @@ GGS_observablePropertyAST_2E_selfPropertyNone GGS_observablePropertyAST_2E_selfP
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfPropertyNone_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfPropertyNone_3F_::GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (void) :
@@ -4913,9 +4881,7 @@ GGS_observablePropertyAST_2E_prefsProperty GGS_observablePropertyAST_2E_prefsPro
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_prefsProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_prefsProperty_3F_::GGS_observablePropertyAST_2E_prefsProperty_3F_ (void) :
@@ -5162,9 +5128,7 @@ GGS_observablePropertyAST_2E_prefsPropertyWithOption GGS_observablePropertyAST_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_prefsPropertyWithOption_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (void) :
@@ -5411,9 +5375,7 @@ GGS_observablePropertyAST_2E_selfControllerProperty GGS_observablePropertyAST_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfControllerProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerProperty_3F_::GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (void) :
@@ -5672,9 +5634,7 @@ GGS_observablePropertyAST_2E_selfControllerSecondaryProperty GGS_observablePrope
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfControllerSecondaryProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (void) :
@@ -5933,9 +5893,7 @@ GGS_observablePropertyAST_2E_selfControllerAllProperties GGS_observablePropertyA
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfControllerAllProperties_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (void) :
@@ -6182,9 +6140,7 @@ GGS_observablePropertyAST_2E_selfControllerOneProperty GGS_observablePropertyAST
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_selfControllerOneProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (void) :
@@ -6431,9 +6387,7 @@ GGS_observablePropertyAST_2E_superProperty GGS_observablePropertyAST_2E_superPro
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_superProperty_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_superProperty_3F_::GGS_observablePropertyAST_2E_superProperty_3F_ (void) :
@@ -6692,9 +6646,7 @@ GGS_observablePropertyAST_2E_superPropertyWithDefaultValue GGS_observablePropert
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @observablePropertyAST_2E_superPropertyWithDefaultValue_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (void) :
@@ -7197,9 +7149,7 @@ GGS_toOneOppositeRelationship_2E_oppositeIsToOne GGS_toOneOppositeRelationship_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toOneOppositeRelationship_2E_oppositeIsToOne_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ (void) :
@@ -7461,9 +7411,7 @@ GGS_toOneOppositeRelationship_2E_oppositeIsToMany GGS_toOneOppositeRelationship_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toOneOppositeRelationship_2E_oppositeIsToMany_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ (void) :
@@ -7832,9 +7780,7 @@ GGS_toManyRelationshipOptionAST_2E_hasOpposite GGS_toManyRelationshipOptionAST_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toManyRelationshipOptionAST_2E_hasOpposite_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_::GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ (void) :
@@ -8069,9 +8015,7 @@ GGS_toManyRelationshipOptionAST_2E_hasDependance GGS_toManyRelationshipOptionAST
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @toManyRelationshipOptionAST_2E_hasDependance_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_::GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ (void) :
@@ -8331,9 +8275,7 @@ GGS_runActionDescriptor_2E_action GGS_runActionDescriptor_2E_action::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @runActionDescriptor_2E_action_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_runActionDescriptor_2E_action_3F_::GGS_runActionDescriptor_2E_action_3F_ (void) :
@@ -8585,9 +8527,7 @@ GGS_actionMap_2E_element GGS_actionMap_2E_element::extractObject (const GGS_obje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @actionMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_actionMap_2E_element_3F_::GGS_actionMap_2E_element_3F_ (void) :
@@ -9092,9 +9032,7 @@ GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship GGS_arrayControllerBo
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @arrayControllerBoundModelAST_2E_rootToManyRelationship_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship_3F_::GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship_3F_ (void) :
@@ -9611,9 +9549,7 @@ GGS_classKind_2E_document GGS_classKind_2E_document::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @classKind_2E_document_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_classKind_2E_document_3F_::GGS_classKind_2E_document_3F_ (void) :
@@ -9896,9 +9832,7 @@ GGS_classMap_2E_element GGS_classMap_2E_element::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @classMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_classMap_2E_element_3F_::GGS_classMap_2E_element_3F_ (void) :
@@ -10169,9 +10103,7 @@ GGS_propertyKind_2E_toMany GGS_propertyKind_2E_toMany::extractObject (const GGS_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyKind_2E_toMany_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_toMany_3F_::GGS_propertyKind_2E_toMany_3F_ (void) :
@@ -10454,9 +10386,7 @@ GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyKind_2E_toOne_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_toOne_3F_::GGS_propertyKind_2E_toOne_3F_ (void) :
@@ -10703,9 +10633,7 @@ GGS_propertyKind_2E_arrayController GGS_propertyKind_2E_arrayController::extract
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyKind_2E_arrayController_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyKind_2E_arrayController_3F_::GGS_propertyKind_2E_arrayController_3F_ (void) :
@@ -10823,9 +10751,7 @@ GGS_propertyKind_2E_arrayController_3F_ GGS_propertyKind_2E_arrayController_3F_:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @propertyMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyMap_2E_element_3F_::GGS_propertyMap_2E_element_3F_ (void) :
@@ -11060,9 +10986,7 @@ GGS_mainXibElement_2E_text GGS_mainXibElement_2E_text::extractObject (const GGS_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @mainXibElement_2E_text_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_mainXibElement_2E_text_3F_::GGS_mainXibElement_2E_text_3F_ (void) :
@@ -11309,9 +11233,7 @@ GGS_mainXibElement_2E_outlet GGS_mainXibElement_2E_outlet::extractObject (const 
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @mainXibElement_2E_outlet_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_mainXibElement_2E_outlet_3F_::GGS_mainXibElement_2E_outlet_3F_ (void) :
@@ -11493,12 +11415,10 @@ GGS_autoLayoutViewClassBindingSpecificationList temp_2 = GGS_autoLayoutViewClass
   mProperty_mXcodeProject = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.ggs", 19)) ;
 GGS_lstringlist temp_3 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 20)) ;
   mProperty_mGraphvizList = temp_3 ;
-GGS_astAutoLayoutViewFunctionMap temp_4 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 21)) ;
-  mProperty_mAutoLayoutVStackFunctionMap = temp_4 ;
-GGS_astAutoLayoutViewFunctionMap temp_5 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 22)) ;
-  mProperty_mAutoLayoutHStackFunctionMap = temp_5 ;
-GGS_enumerationFunctionListAST temp_6 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 23)) ;
-  mProperty_mEnumerationFunctionListAST = temp_6 ;
+  mProperty_mAutoLayoutVStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+  mProperty_mAutoLayoutHStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+GGS_enumerationFunctionListAST temp_4 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 23)) ;
+  mProperty_mEnumerationFunctionListAST = temp_4 ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12051,7 +11971,7 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
         GGS_string var_s_3389 = GGS_string ("semantic analysis not performed, ").add_operation (var_unsortedSemanticDeclarationListAST_3271.getter_count (SOURCE_FILE ("declaration-graph.ggs", 92)).getter_string (SOURCE_FILE ("declaration-graph.ggs", 91)), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 91)).add_operation (GGS_string (" declarations are involved in circular definition:"), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 92)) ;
         UpEnumerator_declarationListAST enumerator_3562 (var_unsortedSemanticDeclarationListAST_3271) ;
         while (enumerator_3562.hasCurrentObject ()) {
-          var_s_3389.plusAssign_operation(GGS_string ("\n-  ").add_operation (callExtensionGetter_nodeKey ((const cPtr_abstractDeclarationAST *) enumerator_3562.current_mPropertyDeclaration (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)), inCompiler  COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)) ;
+          var_s_3389.plusAssignOperation(GGS_string ("\n-  ").add_operation (callExtensionGetter_nodeKey ((const cPtr_abstractDeclarationAST *) enumerator_3562.current_mPropertyDeclaration (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)), inCompiler  COMMA_SOURCE_FILE ("declaration-graph.ggs", 95)) ;
           enumerator_3562.gotoNextObject () ;
         }
         TC_Array <FixItDescription> fixItArray5 ;
@@ -12069,9 +11989,7 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@transientClassDeclarationAST enterInPrecedenceGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -12083,6 +12001,7 @@ void cPtr_transientClassDeclarationAST::method_enterInPrecedenceGraph (GGS_decla
   ioArgument_ioGraph.setter_addNode (temp_0.readProperty_mClassName (), temp_1, inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 12)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@transientClassDeclarationAST nodeKey'
@@ -12100,9 +12019,7 @@ GGS_lstring cPtr_transientClassDeclarationAST::getter_nodeKey (Compiler */* inCo
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@transientClassDeclarationAST firstAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12112,21 +12029,18 @@ void cPtr_transientClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticC
   {
   const GGS_transientClassDeclarationAST temp_0 = this ;
   const GGS_transientClassDeclarationAST temp_1 = this ;
-  GGS_propertyMap temp_2 = GGS_propertyMap::init (inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 64)) ;
-  GGS_actionMap temp_3 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 65)) ;
-  GGS_propertyGenerationList temp_4 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 66)) ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (GGS_typeKind::class_func_transientPropertyExternType (temp_1.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("transient-property-class.ggs", 63))  COMMA_SOURCE_FILE ("transient-property-class.ggs", 63)), temp_2, temp_3, temp_4, inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 61)) ;
+  GGS_propertyGenerationList temp_2 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 66)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (GGS_typeKind::class_func_transientPropertyExternType (temp_1.readProperty_mClassName ().readProperty_string ()  COMMA_SOURCE_FILE ("transient-property-class.ggs", 63))  COMMA_SOURCE_FILE ("transient-property-class.ggs", 63)), GGS_propertyMap::init (inCompiler COMMA_HERE), GGS_actionMap::init (inCompiler COMMA_HERE), temp_2, inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 61)) ;
   }
   {
-  const GGS_transientClassDeclarationAST temp_5 = this ;
-  const GGS_transientClassDeclarationAST temp_6 = this ;
-  ioArgument_ioGeneration.mProperty_mTransientPropertyTypeList.setter_append (temp_5.readProperty_mClassName ().readProperty_string (), temp_6.readProperty_mIsClass (), inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 68)) ;
+  const GGS_transientClassDeclarationAST temp_3 = this ;
+  const GGS_transientClassDeclarationAST temp_4 = this ;
+  ioArgument_ioGeneration.mProperty_mTransientPropertyTypeList.setter_append (temp_3.readProperty_mClassName ().readProperty_string (), temp_4.readProperty_mIsClass (), inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 68)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@enumerationDeclarationAST enterInPrecedenceGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_enumerationDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -12138,6 +12052,7 @@ void cPtr_enumerationDeclarationAST::method_enterInPrecedenceGraph (GGS_declarat
   ioArgument_ioGraph.setter_addNode (temp_0.readProperty_mClassName (), temp_1, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 13)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@enumerationDeclarationAST nodeKey'
@@ -12155,38 +12070,34 @@ GGS_lstring cPtr_enumerationDeclarationAST::getter_nodeKey (Compiler */* inCompi
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@enumerationDeclarationAST firstAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
                                                                 GGS_generationStruct & ioArgument_ioGeneration,
                                                                 Compiler * inCompiler
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_enumConstantMap temp_0 = GGS_enumConstantMap::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 122)) ;
-  GGS_enumConstantMap var_enumConstantMap_4270 = temp_0 ;
-  const GGS_enumerationDeclarationAST temp_1 = this ;
-  UpEnumerator_lstringlist enumerator_4298 (temp_1.readProperty_mEnumConstantNameList ()) ;
+  GGS_enumConstantMap var_enumConstantMap_4270 = GGS_enumConstantMap::init (inCompiler COMMA_HERE) ;
+  const GGS_enumerationDeclarationAST temp_0 = this ;
+  UpEnumerator_lstringlist enumerator_4298 (temp_0.readProperty_mEnumConstantNameList ()) ;
   while (enumerator_4298.hasCurrentObject ()) {
     {
     var_enumConstantMap_4270.setter_insertKey (enumerator_4298.current_mValue (HERE), var_enumConstantMap_4270.getter_count (SOURCE_FILE ("enumeration.ggs", 124)), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 124)) ;
     }
     enumerator_4298.gotoNextObject () ;
   }
-  GGS_enumFuncMap temp_2 = GGS_enumFuncMap::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 126)) ;
-  GGS_enumFuncMap var_enumFuncMap_4419 = temp_2 ;
+  GGS_enumFuncMap var_enumFuncMap_4419 = GGS_enumFuncMap::init (inCompiler COMMA_HERE) ;
   UpEnumerator_enumerationFunctionListAST enumerator_4467 (ioArgument_ioSemanticContext.readProperty_mEnumerationFunctionListAST ()) ;
   while (enumerator_4467.hasCurrentObject ()) {
-    GalgasBool test_3 = GalgasBool::boolTrue ;
-    if (GalgasBool::boolTrue == test_3) {
-      const GGS_enumerationDeclarationAST temp_4 = this ;
-      test_3 = GGS_bool (ComparisonKind::equal, enumerator_4467.current_mEnumName (HERE).readProperty_string ().objectCompare (temp_4.readProperty_mClassName ().readProperty_string ())).boolEnum () ;
-      if (GalgasBool::boolTrue == test_3) {
-        GGS_stringset temp_5 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 129)) ;
-        GGS_stringset var_definedConstantNameSet_4615 = temp_5 ;
-        GGS_enumFunAssociationSortedList temp_6 = GGS_enumFunAssociationSortedList::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 130)) ;
-        GGS_enumFunAssociationSortedList var_associationSortedList_4683 = temp_6 ;
+    GalgasBool test_1 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_1) {
+      const GGS_enumerationDeclarationAST temp_2 = this ;
+      test_1 = GGS_bool (ComparisonKind::equal, enumerator_4467.current_mEnumName (HERE).readProperty_string ().objectCompare (temp_2.readProperty_mClassName ().readProperty_string ())).boolEnum () ;
+      if (GalgasBool::boolTrue == test_1) {
+        GGS_stringset temp_3 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 129)) ;
+        GGS_stringset var_definedConstantNameSet_4615 = temp_3 ;
+        GGS_enumFunAssociationSortedList temp_4 = GGS_enumFunAssociationSortedList::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 130)) ;
+        GGS_enumFunAssociationSortedList var_associationSortedList_4683 = temp_4 ;
         UpEnumerator__32_lstringlist enumerator_4735 (enumerator_4467.current_mAssociationList (HERE)) ;
         while (enumerator_4735.hasCurrentObject ()) {
           GGS_uint var_idx_4829 ;
@@ -12194,12 +12105,12 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
           {
           var_associationSortedList_4683.setter_insert (var_idx_4829, enumerator_4735.current_mValue_31_ (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 133)) ;
           }
-          GalgasBool test_7 = GalgasBool::boolTrue ;
-          if (GalgasBool::boolTrue == test_7) {
-            test_7 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_4735.current_mValue_30_ (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 134)).boolEnum () ;
-            if (GalgasBool::boolTrue == test_7) {
-              TC_Array <FixItDescription> fixItArray8 ;
-              inCompiler->emitSemanticError (enumerator_4735.current_mValue_30_ (HERE).readProperty_location (), GGS_string ("Duplicated constant"), fixItArray8  COMMA_SOURCE_FILE ("enumeration.ggs", 135)) ;
+          GalgasBool test_5 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_5) {
+            test_5 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_4735.current_mValue_30_ (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 134)).boolEnum () ;
+            if (GalgasBool::boolTrue == test_5) {
+              TC_Array <FixItDescription> fixItArray6 ;
+              inCompiler->emitSemanticError (enumerator_4735.current_mValue_30_ (HERE).readProperty_location (), GGS_string ("Duplicated constant"), fixItArray6  COMMA_SOURCE_FILE ("enumeration.ggs", 135)) ;
             }
           }
           {
@@ -12207,15 +12118,15 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
           }
           enumerator_4735.gotoNextObject () ;
         }
-        const GGS_enumerationDeclarationAST temp_9 = this ;
-        UpEnumerator_lstringlist enumerator_5106 (temp_9.readProperty_mEnumConstantNameList ()) ;
+        const GGS_enumerationDeclarationAST temp_7 = this ;
+        UpEnumerator_lstringlist enumerator_5106 (temp_7.readProperty_mEnumConstantNameList ()) ;
         while (enumerator_5106.hasCurrentObject ()) {
-          GalgasBool test_10 = GalgasBool::boolTrue ;
-          if (GalgasBool::boolTrue == test_10) {
-            test_10 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_5106.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 140)).operator_not (SOURCE_FILE ("enumeration.ggs", 140)).boolEnum () ;
-            if (GalgasBool::boolTrue == test_10) {
-              TC_Array <FixItDescription> fixItArray11 ;
-              inCompiler->emitSemanticError (enumerator_4467.current_mFunctionName (HERE).readProperty_location (), GGS_string ("No association for '").add_operation (enumerator_5106.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)).add_operation (GGS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)), fixItArray11  COMMA_SOURCE_FILE ("enumeration.ggs", 141)) ;
+          GalgasBool test_8 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_8) {
+            test_8 = var_definedConstantNameSet_4615.getter_hasKey (enumerator_5106.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("enumeration.ggs", 140)).operator_not (SOURCE_FILE ("enumeration.ggs", 140)).boolEnum () ;
+            if (GalgasBool::boolTrue == test_8) {
+              TC_Array <FixItDescription> fixItArray9 ;
+              inCompiler->emitSemanticError (enumerator_4467.current_mFunctionName (HERE).readProperty_location (), GGS_string ("No association for '").add_operation (enumerator_5106.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)).add_operation (GGS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 141)), fixItArray9  COMMA_SOURCE_FILE ("enumeration.ggs", 141)) ;
             }
           }
           enumerator_5106.gotoNextObject () ;
@@ -12228,20 +12139,19 @@ void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
     enumerator_4467.gotoNextObject () ;
   }
   {
-  const GGS_enumerationDeclarationAST temp_12 = this ;
-  const GGS_enumerationDeclarationAST temp_13 = this ;
-  GGS_propertyMap temp_14 = GGS_propertyMap::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 150)) ;
-  GGS_actionMap temp_15 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 151)) ;
-  GGS_propertyGenerationList temp_16 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 152)) ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_12.readProperty_mClassName (), GGS_classKind::class_func_atomic (GGS_typeKind::class_func_enumType (temp_13.readProperty_mClassName ().readProperty_string (), var_enumConstantMap_4270, var_enumFuncMap_4419  COMMA_SOURCE_FILE ("enumeration.ggs", 149))  COMMA_SOURCE_FILE ("enumeration.ggs", 149)), temp_14, temp_15, temp_16, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 147)) ;
+  const GGS_enumerationDeclarationAST temp_10 = this ;
+  const GGS_enumerationDeclarationAST temp_11 = this ;
+  GGS_propertyGenerationList temp_12 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 152)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_10.readProperty_mClassName (), GGS_classKind::class_func_atomic (GGS_typeKind::class_func_enumType (temp_11.readProperty_mClassName ().readProperty_string (), var_enumConstantMap_4270, var_enumFuncMap_4419  COMMA_SOURCE_FILE ("enumeration.ggs", 149))  COMMA_SOURCE_FILE ("enumeration.ggs", 149)), GGS_propertyMap::init (inCompiler COMMA_HERE), GGS_actionMap::init (inCompiler COMMA_HERE), temp_12, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 147)) ;
   }
   {
-  const GGS_enumerationDeclarationAST temp_17 = this ;
-  const GGS_enumerationDeclarationAST temp_18 = this ;
-  const GGS_enumerationDeclarationAST temp_19 = this ;
-  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_enumForGeneration::init_21__21__21__21_ (temp_17.readProperty_mClassName ().readProperty_string (), temp_18.readProperty_mEnumConstantNameList (), var_enumFuncMap_4419, temp_19.readProperty_mCaseIterable (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 155)) ;
+  const GGS_enumerationDeclarationAST temp_13 = this ;
+  const GGS_enumerationDeclarationAST temp_14 = this ;
+  const GGS_enumerationDeclarationAST temp_15 = this ;
+  ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_enumForGeneration::init_21__21__21__21_ (temp_13.readProperty_mClassName ().readProperty_string (), temp_14.readProperty_mEnumConstantNameList (), var_enumFuncMap_4419, temp_15.readProperty_mCaseIterable (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 155)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Filewrapper 'enumGenerationTemplate'
@@ -12467,9 +12377,7 @@ GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationI
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@enumForGeneration generateCode'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_enumForGeneration::method_generateCode (const GGS_string constinArgument_inOutputDirectory,
@@ -12509,10 +12417,9 @@ void cPtr_enumForGeneration::method_generateCode (const GGS_string constinArgume
     }
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@atomicClassDeclarationAST enterInPrecedenceGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -12524,6 +12431,7 @@ void cPtr_atomicClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarat
   ioArgument_ioGraph.setter_addNode (temp_0.readProperty_mClassName (), temp_1, inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 12)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@atomicClassDeclarationAST nodeKey'
@@ -12586,9 +12494,7 @@ void routine_enterAtomicClassesIn_26_declarationList (GGS_declarationListAST & i
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@atomicClassDeclarationAST firstAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12598,16 +12504,13 @@ void cPtr_atomicClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
   {
   const GGS_atomicClassDeclarationAST temp_0 = this ;
   const GGS_atomicClassDeclarationAST temp_1 = this ;
-  GGS_propertyMap temp_2 = GGS_propertyMap::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 51)) ;
-  GGS_actionMap temp_3 = GGS_actionMap::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 52)) ;
-  GGS_propertyGenerationList temp_4 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 53)) ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (temp_1.readProperty_mKind ()  COMMA_SOURCE_FILE ("atomic-class.ggs", 50)), temp_2, temp_3, temp_4, inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 48)) ;
+  GGS_propertyGenerationList temp_2 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 53)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (temp_1.readProperty_mKind ()  COMMA_SOURCE_FILE ("atomic-class.ggs", 50)), GGS_propertyMap::init (inCompiler COMMA_HERE), GGS_actionMap::init (inCompiler COMMA_HERE), temp_2, inCompiler COMMA_SOURCE_FILE ("atomic-class.ggs", 48)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@entityDeclarationAST enterInPrecedenceGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_entityDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -12631,6 +12534,7 @@ void cPtr_entityDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPr
     }
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@entityDeclarationAST nodeKey'
@@ -12648,9 +12552,7 @@ GGS_lstring cPtr_entityDeclarationAST::getter_nodeKey (Compiler */* inCompiler *
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@entityDeclarationAST firstAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_entityDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12668,15 +12570,13 @@ void cPtr_entityDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext &
   const GGS_entityDeclarationAST temp_3 = this ;
   const GGS_entityDeclarationAST temp_4 = this ;
   const GGS_entityDeclarationAST temp_5 = this ;
-  GGS_propertyMap temp_6 = GGS_propertyMap::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 171)) ;
-  GGS_propertyGenerationList temp_7 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 173)) ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_1.readProperty_mClassName (), GGS_classKind::class_func_entity (temp_2.readProperty_mSuperEntityName ().readProperty_string (), temp_3.readProperty_mIsGraphicEntity (), temp_4.readProperty_mIsAbstract (), temp_5.readProperty_mHandlingOpposite ()  COMMA_SOURCE_FILE ("entity.ggs", 165)), temp_6, var_actionMap_5216, temp_7, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 163)) ;
+  GGS_propertyGenerationList temp_6 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 173)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_1.readProperty_mClassName (), GGS_classKind::class_func_entity (temp_2.readProperty_mSuperEntityName ().readProperty_string (), temp_3.readProperty_mIsGraphicEntity (), temp_4.readProperty_mIsAbstract (), temp_5.readProperty_mHandlingOpposite ()  COMMA_SOURCE_FILE ("entity.ggs", 165)), GGS_propertyMap::init (inCompiler COMMA_HERE), var_actionMap_5216, temp_6, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 163)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@entityDeclarationAST secondAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_entityDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12729,10 +12629,9 @@ void cPtr_entityDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext 
     }
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@entityDeclarationAST fourthAnalysisPhase'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12940,10 +12839,9 @@ void cPtr_entityDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext 
   ioArgument_ioGeneration.mProperty_mFileGenerationList.setter_append (GGS_entityForGeneration::init_21__21__21__21__21__21__21__21__21__21__21__21_ (temp_37.readProperty_mClassName ().readProperty_string (), temp_38.readProperty_mSuperEntityName ().readProperty_string (), temp_39.readProperty_mHandlingOpposite (), var_propertyGenerationList_7304, temp_40.readProperty_mSignatureList (), temp_41.readProperty_mIsGraphicEntity (), temp_42.readProperty_mIsAbstract (), var_overridenTransients_7449, temp_43.readProperty_mExternSwiftDelegateList (), var_hasSubClass_10023, var_canCopyAndPaste_5F_option_9279, var_cannotBeDeleted_5F_option_9316, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 306)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@entityForGeneration generateCode'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgument_inOutputDirectory,
@@ -13169,6 +13067,7 @@ void cPtr_entityForGeneration::method_generateCode (const GGS_string constinArgu
   GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_14577, var_s_13881, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 472)) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Routine 'generateEBManagedObjectContext??&'

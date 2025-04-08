@@ -48,8 +48,8 @@ override proc @atomicClassDeclarationAST.firstAnalysisPhase(
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,
     .atomic (!kind: self.mKind),
-    [],
-    [],
+    (),
+    (),
     []
   )
 }

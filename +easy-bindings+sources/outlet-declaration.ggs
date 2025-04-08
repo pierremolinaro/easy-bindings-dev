@@ -207,7 +207,7 @@ proc analyzeOutlets(
   outRegularBindingsGenerationList = []
   outTargetActionList = []
   outMultipleBindingGenerationList = []
-  outletMap = []
+  outletMap = ()
   outTableViewBindingGenerationList = []
   outEBViewGraphicControllerBindingGenerationList = []
   for (outlet_mOutletTypeName, outlet_mOutletName, outlet_mTableValueBindingDescriptor, outlet_mRunDescriptor, outlet_mEnabledBindingDescriptor, outlet_mHiddenBindingDescriptor, outlet_mRegularBindingList, outlet_mGraphicController) in inOutletDeclarationList do

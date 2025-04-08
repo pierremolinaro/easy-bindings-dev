@@ -131,7 +131,7 @@ proc buildBindingSpecificationMap(
     for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         !?outletBindingSpecificationModelList.append (
-          !.enumType (!enumTypeName: "", !constantMap: [], !funcMap: []), // Any enum type
+          !.enumType (!enumTypeName: "", !constantMap: (), !funcMap: ()), // Any enum type
           !mModelShouldBeWritableProperty
         )
       else
@@ -172,7 +172,7 @@ proc buildBindingSpecificationMap(
     if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
       !?ioSemanticContext.mBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
-      bindingMap = []
+      bindingMap = ()
       ioSemanticContext.mOutletClassMap.searchKey (mOutletClassName, ?outletSuperClassName, ?6*)
     end
     !?bindingMap.insertKey (

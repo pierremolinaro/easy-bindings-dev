@@ -182,9 +182,7 @@ GGS_prefsDeclarationAST GGS_prefsDeclarationAST::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //'@entityStrongReferenceGraph' graph
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_entityStrongReferenceGraph::GGS_entityStrongReferenceGraph (void) :
@@ -10019,7 +10017,7 @@ void extensionSetter_addSettingsToDefaultConfiguration (GGS_XcodeProjectDescript
                                                         const GGS_stringlist constinArgument_inSettingList,
                                                         Compiler * inCompiler
                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  ioObject.mProperty_mDefaultConfigurationSettingList.plusAssign_operation(constinArgument_inSettingList, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 292)) ;
+  ioObject.mProperty_mDefaultConfigurationSettingList.plusAssignOperation(constinArgument_inSettingList, inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 292)) ;
 }
 
 
@@ -10041,12 +10039,12 @@ void extensionSetter_getReferenceKey (GGS_XcodeProjectDescriptor & ioObject,
     if (GalgasBool::boolTrue == test_0) {
       const GGS_XcodeProjectDescriptor temp_2 = ioObject ;
       ioObject.mProperty_mProjectObjectReference = temp_2.readProperty_mSequenceNumber ().getter_string (SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 352)).getter_md_35_ (SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 352)).getter_rightSubString (GGS_uint (uint32_t (24U)) COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 352)) ;
-      ioObject.mProperty_mSequenceNumber.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 353)) ;
+      ioObject.mProperty_mSequenceNumber.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 353)) ;
     }
   }
   const GGS_XcodeProjectDescriptor temp_3 = ioObject ;
   outArgument_outRef = temp_3.readProperty_mSequenceNumber ().getter_string (SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 355)).getter_md_35_ (SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 355)).getter_rightSubString (GGS_uint (uint32_t (24U)) COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 355)) ;
-  ioObject.mProperty_mSequenceNumber.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 356)) ;
+  ioObject.mProperty_mSequenceNumber.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("XcodeProjectNewGeneration.ggs", 356)) ;
 }
 
 
@@ -10713,9 +10711,7 @@ GGS_externFunctionMap_2E_element GGS_externFunctionMap_2E_element::extractObject
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @externFunctionMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_externFunctionMap_2E_element_3F_::GGS_externFunctionMap_2E_element_3F_ (void) :
@@ -11116,9 +11112,7 @@ GGS_enumConstantMap_2E_element GGS_enumConstantMap_2E_element::extractObject (co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @enumConstantMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_enumConstantMap_2E_element_3F_::GGS_enumConstantMap_2E_element_3F_ (void) :
@@ -11395,9 +11389,7 @@ GGS_enumFuncMap_2E_element GGS_enumFuncMap_2E_element::extractObject (const GGS_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @enumFuncMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_enumFuncMap_2E_element_3F_::GGS_enumFuncMap_2E_element_3F_ (void) :
@@ -11788,9 +11780,7 @@ GGS_autoLayoutClassParameterType_2E_typeEnum GGS_autoLayoutClassParameterType_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutClassParameterType_2E_typeEnum_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutClassParameterType_2E_typeEnum_3F_::GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ (void) :
@@ -12183,9 +12173,7 @@ GGS_astAutoLayoutViewFunctionMap_2E_element GGS_astAutoLayoutViewFunctionMap_2E_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewFunctionMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewFunctionMap_2E_element_3F_::GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ (void) :
@@ -12528,9 +12516,7 @@ GGS_autolayoutViewClassMap_2E_element GGS_autolayoutViewClassMap_2E_element::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autolayoutViewClassMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutViewClassMap_2E_element_3F_::GGS_autolayoutViewClassMap_2E_element_3F_ (void) :
@@ -12942,9 +12928,7 @@ GGS_autoLayoutBindingSpecificationMap_2E_element GGS_autoLayoutBindingSpecificat
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutBindingSpecificationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutBindingSpecificationMap_2E_element_3F_::GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ (void) :
@@ -13203,9 +13187,7 @@ GGS_autoLayoutViewBindingSpecificationMap_2E_element GGS_autoLayoutViewBindingSp
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutViewBindingSpecificationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_::GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ (void) :
@@ -13839,9 +13821,7 @@ GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc GGS_astAutoLayoutView
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_::GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_ (void) :
@@ -14076,9 +14056,7 @@ GGS_astAutoLayoutViewInstructionParameterValue_2E_entity GGS_astAutoLayoutViewIn
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @astAutoLayoutViewInstructionParameterValue_2E_entity_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_::GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_ (void) :
@@ -14454,9 +14432,7 @@ GGS_autoLayoutViewDeclarationMap_2E_element GGS_autoLayoutViewDeclarationMap_2E_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutViewDeclarationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutViewDeclarationMap_2E_element_3F_::GGS_autoLayoutViewDeclarationMap_2E_element_3F_ (void) :
@@ -14703,9 +14679,7 @@ GGS_autoLayoutConfiguratorMap_2E_element GGS_autoLayoutConfiguratorMap_2E_elemen
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @autoLayoutConfiguratorMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutConfiguratorMap_2E_element_3F_::GGS_autoLayoutConfiguratorMap_2E_element_3F_ (void) :
