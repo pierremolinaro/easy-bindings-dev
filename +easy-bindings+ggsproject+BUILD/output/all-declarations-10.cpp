@@ -4227,29 +4227,29 @@ void routine_generateCode_3F__3F__3F_ (const GGS_string constinArgument_inXcodeP
                                        Compiler * inCompiler
                                        COMMA_UNUSED_LOCATION_ARGS) {
   GGS_string var_outputDirectory_2519 = constinArgument_inSourceFile.getter_stringByDeletingLastPathComponent (SOURCE_FILE ("code-generation.ggs", 62)) ;
-  GGS_string var_projectName_2590 = constinArgument_inSourceFile.getter_lastPathComponent (SOURCE_FILE ("code-generation.ggs", 63)).getter_stringByDeletingPathExtension (SOURCE_FILE ("code-generation.ggs", 63)) ;
-  GGS_string var_fileOutputDirectory_2672 = var_outputDirectory_2519.add_operation (GGS_string ("/"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 64)).add_operation (var_projectName_2590, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 64)) ;
+  GGS_string var_projectName_2590 = constinArgument_inSourceFile.getter_lastPathComponent (SOURCE_FILE ("code-generation.ggs", 63)).getter_deletingPathExtension (SOURCE_FILE ("code-generation.ggs", 63)) ;
+  GGS_string var_fileOutputDirectory_2663 = var_outputDirectory_2519.add_operation (GGS_string ("/"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 64)).add_operation (var_projectName_2590, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 64)) ;
   GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 65)) ;
-  GGS_stringset var_generatedFileSet_2747 = temp_0 ;
-  UpEnumerator_fileGenerationList enumerator_2776 (constinArgument_inGeneration.readProperty_mFileGenerationList ()) ;
-  while (enumerator_2776.hasCurrentObject ()) {
-    callExtensionMethod_generateCode ((cPtr_abstractFileGeneration *) enumerator_2776.current_mFileGeneration (HERE).ptr (), var_fileOutputDirectory_2672, constinArgument_inGeneration, var_generatedFileSet_2747, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 67)) ;
-    enumerator_2776.gotoNextObject () ;
+  GGS_stringset var_generatedFileSet_2738 = temp_0 ;
+  UpEnumerator_fileGenerationList enumerator_2767 (constinArgument_inGeneration.readProperty_mFileGenerationList ()) ;
+  while (enumerator_2767.hasCurrentObject ()) {
+    callExtensionMethod_generateCode ((cPtr_abstractFileGeneration *) enumerator_2767.current_mFileGeneration (HERE).ptr (), var_fileOutputDirectory_2663, constinArgument_inGeneration, var_generatedFileSet_2738, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 67)) ;
+    enumerator_2767.gotoNextObject () ;
   }
   {
-  routine_generateEBManagedObjectContext_3F__3F__26_ (constinArgument_inGeneration.readProperty_mEntityListForGeneration (), var_fileOutputDirectory_2672, var_generatedFileSet_2747, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 73)) ;
+  routine_generateEBManagedObjectContext_3F__3F__26_ (constinArgument_inGeneration.readProperty_mEntityListForGeneration (), var_fileOutputDirectory_2663, var_generatedFileSet_2738, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 73)) ;
   }
   {
-  routine_generateSelectionControllers_3F__3F__26_ (constinArgument_inGeneration.readProperty_mSelectionControllerListForGeneration (), var_fileOutputDirectory_2672, var_generatedFileSet_2747, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 78)) ;
+  routine_generateSelectionControllers_3F__3F__26_ (constinArgument_inGeneration.readProperty_mSelectionControllerListForGeneration (), var_fileOutputDirectory_2663, var_generatedFileSet_2738, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 78)) ;
   }
   {
-  routine_generateValidationRoutineStubs_3F__3F__26_ (var_fileOutputDirectory_2672, constinArgument_inGeneration.readProperty_mValidationStubRoutineListForGeneration (), var_generatedFileSet_2747, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 83)) ;
+  routine_generateValidationRoutineStubs_3F__3F__26_ (var_fileOutputDirectory_2663, constinArgument_inGeneration.readProperty_mValidationStubRoutineListForGeneration (), var_generatedFileSet_2738, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 83)) ;
   }
   {
-  routine_generateStandardProperties_3F__3F__3F__26_ (var_fileOutputDirectory_2672, constinArgument_inGeneration.readProperty_mPropertyClassList (), constinArgument_inGeneration.readProperty_mTransientPropertyTypeList (), var_generatedFileSet_2747, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 88)) ;
+  routine_generateStandardProperties_3F__3F__3F__26_ (var_fileOutputDirectory_2663, constinArgument_inGeneration.readProperty_mPropertyClassList (), constinArgument_inGeneration.readProperty_mTransientPropertyTypeList (), var_generatedFileSet_2738, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 88)) ;
   }
   {
-  routine_generateXcodeProject_3F__3F__3F__3F_ (var_outputDirectory_2519, constinArgument_inXcodeProjectString, var_generatedFileSet_2747, var_projectName_2590, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 94)) ;
+  routine_generateXcodeProject_3F__3F__3F__3F_ (var_outputDirectory_2519, constinArgument_inXcodeProjectString, var_generatedFileSet_2738, var_projectName_2590, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 94)) ;
   }
   {
   routine_generateTestFile_3F__3F__3F__3F_ (constinArgument_inXcodeProjectString, var_projectName_2590, constinArgument_inGeneration.readProperty_mMainXibDescriptorList (), var_outputDirectory_2519, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 100)) ;
@@ -4425,30 +4425,30 @@ void routine_generateStandardProperties_3F__3F__3F__26_ (const GGS_string consti
   {
   routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("BezierPathArray"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 140)) ;
   }
-  UpEnumerator_stringlist enumerator_5564 (constinArgument_inPropertyClassList) ;
-  while (enumerator_5564.hasCurrentObject ()) {
+  UpEnumerator_stringlist enumerator_5555 (constinArgument_inPropertyClassList) ;
+  while (enumerator_5555.hasCurrentObject ()) {
     {
-    routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_5564.current_mValue (HERE), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 143)) ;
+    routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_5555.current_mValue (HERE), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 143)) ;
     }
-    enumerator_5564.gotoNextObject () ;
+    enumerator_5555.gotoNextObject () ;
   }
-  UpEnumerator_transientExternTypeList enumerator_5734 (constinArgument_inTransientPropertyExternTypeList) ;
-  while (enumerator_5734.hasCurrentObject ()) {
+  UpEnumerator_transientExternTypeList enumerator_5725 (constinArgument_inTransientPropertyExternTypeList) ;
+  while (enumerator_5725.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
-      test_0 = enumerator_5734.current_mIsClass (HERE).boolEnum () ;
+      test_0 = enumerator_5725.current_mIsClass (HERE).boolEnum () ;
       if (GalgasBool::boolTrue == test_0) {
         {
-        routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_5734.current_mTypeName (HERE), GGS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 147)) ;
+        routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_5725.current_mTypeName (HERE), GGS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 147)) ;
         }
       }
     }
     if (GalgasBool::boolFalse == test_0) {
       {
-      routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, enumerator_5734.current_mTypeName (HERE), GGS_bool (true), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 149)) ;
+      routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, enumerator_5725.current_mTypeName (HERE), GGS_bool (true), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 149)) ;
       }
     }
-    enumerator_5734.gotoNextObject () ;
+    enumerator_5725.gotoNextObject () ;
   }
   {
   routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSBezierPath"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.ggs", 152)) ;
@@ -4474,13 +4474,13 @@ void routine_generateClassProperty_3F__3F__3F_transient_26_ (const GGS_string co
                                                              GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                              Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string var_contents_6721 = GGS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 163))) ;
-  GGS_string var_fileName_6843 = GGS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)) ;
+  GGS_string var_contents_6712 = GGS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.ggs", 163))) ;
+  GGS_string var_fileName_6834 = GGS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 165)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_6843, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 166)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_6834, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 166)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6843, var_contents_6721, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 167)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_6834, var_contents_6712, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 167)) ;
   }
 }
 
@@ -4498,13 +4498,13 @@ void routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (const GGS_stri
                                                                   GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                                   Compiler * inCompiler
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string var_contents_7484 = GGS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 181))) ;
-  GGS_string var_fileName_7628 = GGS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)) ;
+  GGS_string var_contents_7475 = GGS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.ggs", 181))) ;
+  GGS_string var_fileName_7619 = GGS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 183)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_7628, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 184)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_7619, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 184)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7628, var_contents_7484, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 185)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7619, var_contents_7475, inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 185)) ;
   }
 }
 

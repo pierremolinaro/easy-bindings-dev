@@ -60,7 +60,7 @@ proc generateCode(
   let @string inSourceFile)
 {
   let outputDirectory = inSourceFile.stringByDeletingLastPathComponent
-  let projectName = inSourceFile.lastPathComponent .stringByDeletingPathExtension
+  let projectName = inSourceFile.lastPathComponent.deletingPathExtension
   let fileOutputDirectory = outputDirectory + "/" + projectName
   var @stringset generatedFileSet = []
   for (fileGeneration) in inGeneration.mFileGenerationList do
