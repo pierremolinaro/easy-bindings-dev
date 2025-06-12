@@ -31,7 +31,7 @@ list @autoLayoutOutletLinkerGenerationList {
 
 override proc @autoLayoutDocumentDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
-  !?ioGraph.addEdge (self.mClassName, self.mRootEntityName)
+  !?ioGraph.addEdge (!from: self.mClassName, !to: self.mRootEntityName)
 }
 
 //------------------------------------------------------------------------------------------------

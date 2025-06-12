@@ -22,8 +22,8 @@ class @proxyDeclarationAST : @abstractDeclarationAST {
 override proc @proxyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mProxyName, self.mProxyName.location)
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, self.mClassName)
-  !?ioGraph.addEdge (node, self.mProxyTypeName)
+  !?ioGraph.addEdge (!from: node, !to: self.mClassName)
+  !?ioGraph.addEdge (!from: node, !to: self.mProxyTypeName)
 }
 
 //------------------------------------------------------------------------------------------------

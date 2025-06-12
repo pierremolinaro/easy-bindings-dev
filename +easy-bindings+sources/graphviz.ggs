@@ -165,7 +165,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
         !?exploreArray.append (superEntityName)
       end
       !?arrowList.append (superEntityName + " -> " + entityName +  " [arrowtail=dot arrowhead=normal]")
-      !?entityStrongReferenceGraph.addEdge (@(superEntityName, .nowhere), @(entityName, .nowhere))
+      !?entityStrongReferenceGraph.addEdge (!from: @(superEntityName, .nowhere), !to: @(entityName, .nowhere))
     end
     for (*, propertyKind, 2*) in propertyMap do
       switch propertyKind
@@ -174,7 +174,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case selectionController (*) :
       case toMany (@lstring typeName, @propertyAccessibility accessibility, 2*) :
         !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
-        !?entityStrongReferenceGraph.addEdge (@(entityName, .nowhere), @(typeName, .nowhere))
+        !?entityStrongReferenceGraph.addEdge (!from: @(entityName, .nowhere), !to: @(typeName, .nowhere))
         if accessibility.isStored then
           if not reachableEntityNameSet.hasKey (typeName) then
              !?reachableEntityNameSet.insert (typeName)
@@ -184,7 +184,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
       case toOne (@lstring typeName, @propertyAccessibility accessibility, *, opposite, isWeak) :
         if not isWeak then
           !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
-          !?entityStrongReferenceGraph.addEdge (@(entityName, .nowhere), @(typeName, .nowhere))
+          !?entityStrongReferenceGraph.addEdge (!from: @(entityName, .nowhere), !to: @(typeName, .nowhere))
         end
         if accessibility.isStored then
           switch opposite

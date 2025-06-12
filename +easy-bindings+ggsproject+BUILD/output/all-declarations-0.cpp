@@ -3602,47 +3602,47 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_functio
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i6_ (GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                             Lexique_easyBindings_5F_lexique * inCompiler) {
-  GGS_bool var_isAbstract_1714 ;
+  GGS_bool var_isAbstract_1726 ;
   switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_isAbstract_1714 = GGS_bool (false) ;
+    var_isAbstract_1726 = GGS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("entity.ggs", 46)) ;
-    var_isAbstract_1714 = GGS_bool (true) ;
+    var_isAbstract_1726 = GGS_bool (true) ;
   } break ;
   default:
     break ;
   }
-  GGS_bool var_graphicEntity_1831 ;
+  GGS_bool var_graphicEntity_1843 ;
   switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
   case 1: {
-    var_graphicEntity_1831 = GGS_bool (false) ;
+    var_graphicEntity_1843 = GGS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphic COMMA_SOURCE_FILE ("entity.ggs", 53)) ;
-    var_graphicEntity_1831 = GGS_bool (true) ;
+    var_graphicEntity_1843 = GGS_bool (true) ;
   } break ;
   default:
     break ;
   }
-  GGS_bool var_handlingOpposite_1956 ;
+  GGS_bool var_handlingOpposite_1968 ;
   switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
   case 1: {
-    var_handlingOpposite_1956 = GGS_bool (false) ;
+    var_handlingOpposite_1968 = GGS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_handlingOpposite COMMA_SOURCE_FILE ("entity.ggs", 60)) ;
-    var_handlingOpposite_1956 = GGS_bool (true) ;
+    var_handlingOpposite_1968 = GGS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("entity.ggs", 63)) ;
-  GGS_lstring var_entityName_2130 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_entityName_2142 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 64)) ;
   GGS_lstringlist temp_0 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 65)) ;
-  GGS_lstringlist var_obsoleteEntityNames_2163 = temp_0 ;
+  GGS_lstringlist var_obsoleteEntityNames_2175 = temp_0 ;
   switch (select_easyBindings_5F_syntax_8 (inCompiler)) {
   case 1: {
   } break ;
@@ -3650,10 +3650,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("entity.ggs", 68)) ;
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      GGS_lstring var_obsoleteName_2265 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_obsoleteName_2277 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 70)) ;
       {
-      var_obsoleteEntityNames_2163.setter_append (var_obsoleteName_2265, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 71)) ;
+      var_obsoleteEntityNames_2175.setter_append (var_obsoleteName_2277, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 71)) ;
       }
       if (select_easyBindings_5F_syntax_9 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("entity.ggs", 73)) ;
@@ -3666,14 +3666,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   default:
     break ;
   }
-  GGS_lstring var_superEntityName_2400 ;
+  GGS_lstring var_superEntityName_2412 ;
   switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
   case 1: {
-    var_superEntityName_2400 = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 79)) ;
+    var_superEntityName_2412 = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 79)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("entity.ggs", 81)) ;
-    var_superEntityName_2400 = inCompiler->synthetizedAttribute_tokenString () ;
+    var_superEntityName_2412 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 82)) ;
   } break ;
   default:
@@ -3681,55 +3681,55 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("entity.ggs", 84)) ;
   GGS_simpleStoredPropertyList temp_2 = GGS_simpleStoredPropertyList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 85)) ;
-  GGS_simpleStoredPropertyList var_simpleStoredPropertyList_2568 = temp_2 ;
+  GGS_simpleStoredPropertyList var_simpleStoredPropertyList_2580 = temp_2 ;
   GGS_stringset temp_3 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 86)) ;
-  GGS_stringset var_signatureList_2617 = temp_3 ;
+  GGS_stringset var_signatureList_2629 = temp_3 ;
   GGS_lstringlist temp_4 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 87)) ;
-  GGS_lstringlist var_actionDeclarationList_2657 = temp_4 ;
+  GGS_lstringlist var_actionDeclarationList_2669 = temp_4 ;
   GGS_externSwiftDelegateList temp_5 = GGS_externSwiftDelegateList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 88)) ;
-  GGS_externSwiftDelegateList var_externSwiftDelegateList_2717 = temp_5 ;
+  GGS_externSwiftDelegateList var_externSwiftDelegateList_2729 = temp_5 ;
   GGS_arrayControllerBindingListAST temp_6 = GGS_arrayControllerBindingListAST::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 89)) ;
-  GGS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2785 = temp_6 ;
+  GGS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2797 = temp_6 ;
   GGS_lstringlist temp_7 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 90)) ;
-  GGS_lstringlist var_graphicOptionArray_2841 = temp_7 ;
+  GGS_lstringlist var_graphicOptionArray_2853 = temp_7 ;
   bool repeatFlag_8 = true ;
   while (repeatFlag_8) {
     switch (select_easyBindings_5F_syntax_11 (inCompiler)) {
     case 2: {
-      nt_simple_5F_stored_5F_declaration_ (var_entityName_2130, var_simpleStoredPropertyList_2568, var_signatureList_2617, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_simple_5F_stored_5F_declaration_ (var_entityName_2142, var_simpleStoredPropertyList_2580, var_signatureList_2629, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 3: {
-      nt_transient_5F_declaration_ (var_entityName_2130, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 95)), ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_transient_5F_declaration_ (var_entityName_2142, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 95)), ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 4: {
-      nt_toMany_5F_relationship_ (var_entityName_2130, var_signatureList_2617, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_toMany_5F_relationship_ (var_entityName_2142, var_signatureList_2629, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 5: {
-      nt_toOne_5F_relationship_ (var_entityName_2130, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_toOne_5F_relationship_ (var_entityName_2142, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 6: {
-      nt_action_5F_declaration_ (var_actionDeclarationList_2657, inCompiler) ;
+      nt_action_5F_declaration_ (var_actionDeclarationList_2669, inCompiler) ;
     } break ;
     case 7: {
-      nt_controller_5F_declaration_ (var_entityName_2130, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 103)), var_arrayControllerBindingListAST_2785, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_controller_5F_declaration_ (var_entityName_2142, GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("entity.ggs", 103)), var_arrayControllerBindingListAST_2797, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 8: {
-      nt_extern_5F_swift_5F_delegate_ (var_externSwiftDelegateList_2717, inCompiler) ;
+      nt_extern_5F_swift_5F_delegate_ (var_externSwiftDelegateList_2729, inCompiler) ;
     } break ;
     case 9: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphic COMMA_SOURCE_FILE ("entity.ggs", 107)) ;
-      GGS_lstring var_graphicOption_3544 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_graphicOption_3556 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("entity.ggs", 108)) ;
       {
-      var_graphicOptionArray_2841.setter_append (var_graphicOption_3544, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 109)) ;
+      var_graphicOptionArray_2853.setter_append (var_graphicOption_3556, inCompiler COMMA_SOURCE_FILE ("entity.ggs", 109)) ;
       }
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("entity.ggs", 110)) ;
       GalgasBool test_9 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_9) {
-        test_9 = var_graphicEntity_1831.operator_not (SOURCE_FILE ("entity.ggs", 111)).boolEnum () ;
+        test_9 = var_graphicEntity_1843.operator_not (SOURCE_FILE ("entity.ggs", 111)).boolEnum () ;
         if (GalgasBool::boolTrue == test_9) {
           TC_Array <FixItDescription> fixItArray10 ;
-          inCompiler->emitSemanticError (var_graphicOption_3544.readProperty_location (), GGS_string ("only a graphic entity accepts a graphic option"), fixItArray10  COMMA_SOURCE_FILE ("entity.ggs", 112)) ;
+          inCompiler->emitSemanticError (var_graphicOption_3556.readProperty_location (), GGS_string ("only a graphic entity accepts a graphic option"), fixItArray10  COMMA_SOURCE_FILE ("entity.ggs", 112)) ;
         }
       }
     } break ;
@@ -3740,23 +3740,23 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("entity.ggs", 115)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_entityDeclarationAST::init_21__21__21__21__21__21__21__21__21__21__21_ (var_entityName_2130, var_isAbstract_1714, var_superEntityName_2400, var_handlingOpposite_1956, var_simpleStoredPropertyList_2568, var_signatureList_2617, var_actionDeclarationList_2657, var_obsoleteEntityNames_2163, var_graphicEntity_1831, var_externSwiftDelegateList_2717, var_graphicOptionArray_2841, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 116)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_entityDeclarationAST::init_21__21__21__21__21__21__21__21__21__21__21_ (var_entityName_2142, var_isAbstract_1726, var_superEntityName_2412, var_handlingOpposite_1968, var_simpleStoredPropertyList_2580, var_signatureList_2629, var_actionDeclarationList_2669, var_obsoleteEntityNames_2175, var_graphicEntity_1843, var_externSwiftDelegateList_2729, var_graphicOptionArray_2853, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 116)) ;
   }
   GalgasBool test_11 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_11) {
-    GGS_bool test_12 = var_isAbstract_1714 ;
+    GGS_bool test_12 = var_isAbstract_1726 ;
     if (GalgasBool::boolTrue == test_12.boolEnum ()) {
-      test_12 = var_graphicEntity_1831 ;
+      test_12 = var_graphicEntity_1843 ;
     }
     test_11 = test_12.boolEnum () ;
     if (GalgasBool::boolTrue == test_11) {
       {
       GGS_observablePropertyList temp_13 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 136)) ;
-      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2130, GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 133)), GGS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 134)), GGS_string ("selectionDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 135)), temp_13, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 131)) ;
+      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2142, GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 133)), GGS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 134)), GGS_string ("selectionDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 135)), temp_13, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 131)) ;
       }
       {
       GGS_observablePropertyList temp_14 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 145)) ;
-      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2130, GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 142)), GGS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 143)), GGS_string ("objectDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 144)), temp_14, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 140)) ;
+      ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_entityName_2142, GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 142)), GGS_string ("EBShape").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 143)), GGS_string ("objectDisplay").getter_here (inCompiler COMMA_SOURCE_FILE ("entity.ggs", 144)), temp_14, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("entity.ggs", 140)) ;
       }
     }
   }
@@ -3966,70 +3966,70 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i7_ (GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.ggs", 52)) ;
-  GGS_lstring var_documentName_2197 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_documentName_2209 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 53)) ;
-  GGS_string var_customSuperClassName_2227 ;
+  GGS_string var_customSuperClassName_2239 ;
   switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
   case 1: {
-    var_customSuperClassName_2227 = GGS_string::makeEmptyString () ;
+    var_customSuperClassName_2239 = GGS_string::makeEmptyString () ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 58)) ;
-    GGS_lstring var_name_2333 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_name_2345 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 59)) ;
-    var_customSuperClassName_2227 = var_name_2333.readProperty_string () ;
+    var_customSuperClassName_2239 = var_name_2345.readProperty_string () ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.ggs", 62)) ;
-  GGS_lstring var_rootEntityName_2431 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_rootEntityName_2443 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 63)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("document-auto-layout.ggs", 64)) ;
-  GGS_lstring var_mainViewName_2493 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_mainViewName_2505 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("document-auto-layout.ggs", 65)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 66)) ;
   GGS_outletDeclarationList temp_0 = GGS_outletDeclarationList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 67)) ;
-  GGS_outletDeclarationList var_outletDeclarationList_2546 = temp_0 ;
+  GGS_outletDeclarationList var_outletDeclarationList_2558 = temp_0 ;
   GGS_lstringlist temp_1 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 68)) ;
-  GGS_lstringlist var_actionDeclarationList_2594 = temp_1 ;
+  GGS_lstringlist var_actionDeclarationList_2606 = temp_1 ;
   GGS_arrayControllerBindingListAST temp_2 = GGS_arrayControllerBindingListAST::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 69)) ;
-  GGS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2660 = temp_2 ;
+  GGS_arrayControllerBindingListAST var_arrayControllerBindingListAST_2672 = temp_2 ;
   GGS_astViewDeclarationList temp_3 = GGS_astViewDeclarationList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 70)) ;
-  GGS_astViewDeclarationList var_viewDeclarationList_2727 = temp_3 ;
+  GGS_astViewDeclarationList var_viewDeclarationList_2739 = temp_3 ;
   GGS_astAutoLayoutOutletLinkerList temp_4 = GGS_astAutoLayoutOutletLinkerList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 72)) ;
-  GGS_astAutoLayoutOutletLinkerList var_autoLayoutOutletLinkerList_2862 = temp_4 ;
+  GGS_astAutoLayoutOutletLinkerList var_autoLayoutOutletLinkerList_2874 = temp_4 ;
   bool repeatFlag_5 = true ;
   while (repeatFlag_5) {
     switch (select_easyBindings_5F_syntax_13 (inCompiler)) {
     case 2: {
-      nt_stack_5F_view_5F_declaration_ (var_viewDeclarationList_2727, inCompiler) ;
+      nt_stack_5F_view_5F_declaration_ (var_viewDeclarationList_2739, inCompiler) ;
     } break ;
     case 3: {
-      nt_action_5F_declaration_ (var_actionDeclarationList_2594, inCompiler) ;
+      nt_action_5F_declaration_ (var_actionDeclarationList_2606, inCompiler) ;
     } break ;
     case 4: {
-      nt_transient_5F_declaration_ (var_documentName_2197, var_rootEntityName_2431, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_transient_5F_declaration_ (var_documentName_2209, var_rootEntityName_2443, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 5: {
-      nt_outlet_5F_declaration_ (var_outletDeclarationList_2546, inCompiler) ;
+      nt_outlet_5F_declaration_ (var_outletDeclarationList_2558, inCompiler) ;
     } break ;
     case 6: {
-      nt_controller_5F_declaration_ (var_documentName_2197, var_rootEntityName_2431, var_arrayControllerBindingListAST_2660, ioArgument_ioDeclarationAST, inCompiler) ;
+      nt_controller_5F_declaration_ (var_documentName_2209, var_rootEntityName_2443, var_arrayControllerBindingListAST_2672, ioArgument_ioDeclarationAST, inCompiler) ;
     } break ;
     case 7: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_linker COMMA_SOURCE_FILE ("document-auto-layout.ggs", 85)) ;
-      GGS_lstring var_linkerName_3362 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_linkerName_3374 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 86)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 87)) ;
       GGS_lstringlist temp_6 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 88)) ;
-      GGS_lstringlist var_outletNameList_3407 = temp_6 ;
+      GGS_lstringlist var_outletNameList_3419 = temp_6 ;
       bool repeatFlag_7 = true ;
       while (repeatFlag_7) {
-        GGS_lstring var_outletName_3467 = inCompiler->synthetizedAttribute_tokenString () ;
+        GGS_lstring var_outletName_3479 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 90)) ;
         {
-        var_outletNameList_3407.setter_append (var_outletName_3467, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 91)) ;
+        var_outletNameList_3419.setter_append (var_outletName_3479, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 91)) ;
         }
         if (select_easyBindings_5F_syntax_14 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 93)) ;
@@ -4039,7 +4039,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
       }
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 95)) ;
       {
-      var_autoLayoutOutletLinkerList_2862.setter_append (var_linkerName_3362, var_outletNameList_3407, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 96)) ;
+      var_autoLayoutOutletLinkerList_2874.setter_append (var_linkerName_3374, var_outletNameList_3419, inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 96)) ;
       }
     } break ;
     default:
@@ -4049,11 +4049,11 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 98)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutDocumentDeclarationAST::init_21__21__21__21__21__21__21__21__21_ (var_documentName_2197, var_rootEntityName_2431, var_mainViewName_2493, var_outletDeclarationList_2546, var_actionDeclarationList_2594, var_arrayControllerBindingListAST_2660, var_viewDeclarationList_2727, var_customSuperClassName_2227, var_autoLayoutOutletLinkerList_2862, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 99)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutDocumentDeclarationAST::init_21__21__21__21__21__21__21__21__21_ (var_documentName_2209, var_rootEntityName_2443, var_mainViewName_2505, var_outletDeclarationList_2558, var_actionDeclarationList_2606, var_arrayControllerBindingListAST_2672, var_viewDeclarationList_2739, var_customSuperClassName_2239, var_autoLayoutOutletLinkerList_2874, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 99)) ;
   }
   {
   GGS_observablePropertyList temp_8 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 116)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_documentName_2197, var_rootEntityName_2431, GGS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 114)), GGS_string ("documentFileName").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 115)), temp_8, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 111)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (var_documentName_2209, var_rootEntityName_2443, GGS_string ("String").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 114)), GGS_string ("documentFileName").getter_here (inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 115)), temp_8, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("document-auto-layout.ggs", 111)) ;
   }
 }
 
@@ -4351,14 +4351,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 84)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 85)) ;
-  GGS_lstring var_functionName_3138 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_functionName_3150 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 86)) ;
-  GGS_autoLayoutClassParameterList var_parameterList_3211 ;
-  GGS_lstring var_mangledName_3231 ;
-  nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_3138, var_parameterList_3211, var_mangledName_3231, inCompiler) ;
+  GGS_autoLayoutClassParameterList var_parameterList_3223 ;
+  GGS_lstring var_mangledName_3243 ;
+  nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_3150, var_parameterList_3223, var_mangledName_3243, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 88)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mAutoLayoutVStackFunctionMap.setter_insertKey (var_mangledName_3231, var_parameterList_3211, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 89)) ;
+  ioArgument_ioDeclarationAST.mProperty_mAutoLayoutVStackFunctionMap.setter_insertKey (var_mangledName_3243, var_parameterList_3223, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 89)) ;
   }
 }
 
@@ -4389,14 +4389,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 95)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 96)) ;
-  GGS_lstring var_functionName_3582 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_functionName_3594 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 97)) ;
-  GGS_autoLayoutClassParameterList var_parameterList_3655 ;
-  GGS_lstring var_mangledName_3675 ;
-  nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_3582, var_parameterList_3655, var_mangledName_3675, inCompiler) ;
+  GGS_autoLayoutClassParameterList var_parameterList_3667 ;
+  GGS_lstring var_mangledName_3687 ;
+  nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_3594, var_parameterList_3667, var_mangledName_3687, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 99)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mAutoLayoutHStackFunctionMap.setter_insertKey (var_mangledName_3675, var_parameterList_3655, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 100)) ;
+  ioArgument_ioDeclarationAST.mProperty_mAutoLayoutHStackFunctionMap.setter_insertKey (var_mangledName_3687, var_parameterList_3667, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 100)) ;
   }
 }
 
@@ -4425,100 +4425,100 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i12_ (GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                           Lexique_easyBindings_5F_lexique * inCompiler) {
-  GGS_bool var_userDefined_3993 ;
+  GGS_bool var_userDefined_4005 ;
   switch (select_easyBindings_5F_syntax_16 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 108)) ;
-    var_userDefined_3993 = GGS_bool (true) ;
+    var_userDefined_4005 = GGS_bool (true) ;
   } break ;
   case 2: {
-    var_userDefined_3993 = GGS_bool (false) ;
+    var_userDefined_4005 = GGS_bool (false) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autolayout COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 113)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 114)) ;
-  GGS_lstring var_outletClassName_4158 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_outletClassName_4170 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 115)) ;
-  GGS_autoLayoutClassParameterList var_parameterList_4213 ;
+  GGS_autoLayoutClassParameterList var_parameterList_4225 ;
   switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
   case 1: {
     GGS_autoLayoutClassParameterList temp_0 = GGS_autoLayoutClassParameterList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 118)) ;
-    var_parameterList_4213 = temp_0 ;
+    var_parameterList_4225 = temp_0 ;
   } break ;
   case 2: {
-    GGS_lstring joker_4341 ; // Joker input parameter
-    nt_autolayout_5F_formal_5F_parameter_5F_list_ (GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view-class.ggs", 120)), var_parameterList_4213, joker_4341, inCompiler) ;
-    joker_4341.drop () ; // Release temporary input variables (joker in source)
+    GGS_lstring joker_4353 ; // Joker input parameter
+    nt_autolayout_5F_formal_5F_parameter_5F_list_ (GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-view-class.ggs", 120)), var_parameterList_4225, joker_4353, inCompiler) ;
+    joker_4353.drop () ; // Release temporary input variables (joker in source)
   } break ;
   default:
     break ;
   }
-  GGS_lstring var_superClassName_4370 ;
+  GGS_lstring var_superClassName_4382 ;
   switch (select_easyBindings_5F_syntax_18 (inCompiler)) {
   case 1: {
-    var_superClassName_4370 = GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 124)) ;
+    var_superClassName_4382 = GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 124)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 126)) ;
-    var_superClassName_4370 = inCompiler->synthetizedAttribute_tokenString () ;
+    var_superClassName_4382 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 127)) ;
   } break ;
   default:
     break ;
   }
-  GGS_bool var_hasRunAction_4503 = GGS_bool (false) ;
-  GGS_bool var_hasEnabled_4538 = GGS_bool (false) ;
-  GGS_bool var_hasHidden_4571 = GGS_bool (false) ;
-  GGS_bool var_handlesTableViewBinding_4603 = GGS_bool (false) ;
-  GGS_bool var_handlesGraphicControllerBinding_4649 = GGS_bool (false) ;
+  GGS_bool var_hasRunAction_4515 = GGS_bool (false) ;
+  GGS_bool var_hasEnabled_4550 = GGS_bool (false) ;
+  GGS_bool var_hasHidden_4583 = GGS_bool (false) ;
+  GGS_bool var_handlesTableViewBinding_4615 = GGS_bool (false) ;
+  GGS_bool var_handlesGraphicControllerBinding_4661 = GGS_bool (false) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
     switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 136)) ;
-      var_handlesTableViewBinding_4603 = GGS_bool (true) ;
+      var_handlesTableViewBinding_4615 = GGS_bool (true) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 139)) ;
-      var_hasRunAction_4503 = GGS_bool (true) ;
+      var_hasRunAction_4515 = GGS_bool (true) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 142)) ;
-      var_hasEnabled_4538 = GGS_bool (true) ;
+      var_hasEnabled_4550 = GGS_bool (true) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 145)) ;
-      var_hasHidden_4571 = GGS_bool (true) ;
+      var_hasHidden_4583 = GGS_bool (true) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 148)) ;
-      var_handlesGraphicControllerBinding_4649 = GGS_bool (true) ;
+      var_handlesGraphicControllerBinding_4661 = GGS_bool (true) ;
     } break ;
     default:
       repeatFlag_1 = false ;
       break ;
     }
   }
-  GGS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5039 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
+  GGS_astAutoLayoutViewFunctionMap var_astAutoLayoutViewFunctionMap_5051 = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 152)) ;
   bool repeatFlag_2 = true ;
   while (repeatFlag_2) {
     switch (select_easyBindings_5F_syntax_20 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 155)) ;
-      GGS_lstring var_functionName_5140 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_functionName_5152 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 156)) ;
-      GGS_autoLayoutClassParameterList var_parameterList_5215 ;
-      GGS_lstring var_mangledName_5235 ;
-      nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_5140, var_parameterList_5215, var_mangledName_5235, inCompiler) ;
+      GGS_autoLayoutClassParameterList var_parameterList_5227 ;
+      GGS_lstring var_mangledName_5247 ;
+      nt_autolayout_5F_formal_5F_parameter_5F_list_ (var_functionName_5152, var_parameterList_5227, var_mangledName_5247, inCompiler) ;
       {
-      var_astAutoLayoutViewFunctionMap_5039.setter_insertKey (var_mangledName_5235, var_parameterList_5215, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 158)) ;
+      var_astAutoLayoutViewFunctionMap_5051.setter_insertKey (var_mangledName_5247, var_parameterList_5227, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 158)) ;
       }
     } break ;
     case 3: {
-      nt_auto_5F_layout_5F_view_5F_binding_5F_specification_ (var_outletClassName_4158, ioArgument_ioDeclarationAST.mProperty_mAutoLayoutBindingSpecificationList, inCompiler) ;
+      nt_auto_5F_layout_5F_view_5F_binding_5F_specification_ (var_outletClassName_4170, ioArgument_ioDeclarationAST.mProperty_mAutoLayoutBindingSpecificationList, inCompiler) ;
     } break ;
     default:
       repeatFlag_2 = false ;
@@ -4527,7 +4527,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 162)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutViewClassDeclarationAST::init_21__21__21__21__21__21__21__21__21__21_ (var_outletClassName_4158, var_userDefined_3993, var_superClassName_4370, var_hasRunAction_4503, var_hasEnabled_4538, var_handlesTableViewBinding_4603, var_handlesGraphicControllerBinding_4649, var_hasHidden_4571, var_parameterList_4213, var_astAutoLayoutViewFunctionMap_5039, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutViewClassDeclarationAST::init_21__21__21__21__21__21__21__21__21__21_ (var_outletClassName_4170, var_userDefined_4005, var_superClassName_4382, var_hasRunAction_4515, var_hasEnabled_4550, var_handlesTableViewBinding_4615, var_handlesGraphicControllerBinding_4661, var_hasHidden_4583, var_parameterList_4225, var_astAutoLayoutViewFunctionMap_5051, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)) ;
   }
 }
 
@@ -4696,7 +4696,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   outArgument_outMangledName.drop () ; // Release 'out' argument
   GGS_autoLayoutClassParameterList temp_0 = GGS_autoLayoutClassParameterList::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 183)) ;
   outArgument_ioParameterList = temp_0 ;
-  GGS_string var_mangledName_6191 = constinArgument_inFunctionName.readProperty_string ().add_operation (GGS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 184)) ;
+  GGS_string var_mangledName_6203 = constinArgument_inFunctionName.readProperty_string ().add_operation (GGS_string ("("), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 184)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
   switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
   case 1: {
@@ -4704,74 +4704,74 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
   case 2: {
     bool repeatFlag_1 = true ;
     while (repeatFlag_1) {
-      GGS_lstring var_parameterName_6299 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_parameterName_6311 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 189)) ;
-      var_mangledName_6191.plusAssignOperation(var_parameterName_6299.readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
+      var_mangledName_6203.plusAssignOperation(var_parameterName_6311.readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 190)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 191)) ;
       switch (select_easyBindings_5F_syntax_23 (inCompiler)) {
       case 1: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 193)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view-class.ggs", 194)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 194)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeView (SOURCE_FILE ("auto-layout-view-class.ggs", 194)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 194)) ;
         }
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_menuItem COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 196)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view-class.ggs", 197)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 197)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_menuItem (SOURCE_FILE ("auto-layout-view-class.ggs", 197)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 197)) ;
         }
       } break ;
       case 3: {
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 199)) ;
         {
-        outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view-class.ggs", 200)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 200)) ;
+        outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_entity (SOURCE_FILE ("auto-layout-view-class.ggs", 200)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 200)) ;
         }
       } break ;
       case 4: {
-        GGS_lstring var_parameterTypeName_6694 = inCompiler->synthetizedAttribute_tokenString () ;
+        GGS_lstring var_parameterTypeName_6706 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 202)) ;
         GalgasBool test_2 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_2) {
-          test_2 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("String"))).boolEnum () ;
+          test_2 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6706.readProperty_string ().objectCompare (GGS_string ("String"))).boolEnum () ;
           if (GalgasBool::boolTrue == test_2) {
             {
-            outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view-class.ggs", 204)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 204)) ;
+            outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeString (SOURCE_FILE ("auto-layout-view-class.ggs", 204)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 204)) ;
             }
           }
         }
         if (GalgasBool::boolFalse == test_2) {
           GalgasBool test_3 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_3) {
-            test_3 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("StringArray"))).boolEnum () ;
+            test_3 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6706.readProperty_string ().objectCompare (GGS_string ("StringArray"))).boolEnum () ;
             if (GalgasBool::boolTrue == test_3) {
               {
-              outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view-class.ggs", 206)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 206)) ;
+              outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeStringArray (SOURCE_FILE ("auto-layout-view-class.ggs", 206)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 206)) ;
               }
             }
           }
           if (GalgasBool::boolFalse == test_3) {
             GalgasBool test_4 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_4) {
-              test_4 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("Int"))).boolEnum () ;
+              test_4 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6706.readProperty_string ().objectCompare (GGS_string ("Int"))).boolEnum () ;
               if (GalgasBool::boolTrue == test_4) {
                 {
-                outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view-class.ggs", 208)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 208)) ;
+                outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeInt (SOURCE_FILE ("auto-layout-view-class.ggs", 208)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 208)) ;
                 }
               }
             }
             if (GalgasBool::boolFalse == test_4) {
               GalgasBool test_5 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_5) {
-                test_5 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6694.readProperty_string ().objectCompare (GGS_string ("Bool"))).boolEnum () ;
+                test_5 = GGS_bool (ComparisonKind::equal, var_parameterTypeName_6706.readProperty_string ().objectCompare (GGS_string ("Bool"))).boolEnum () ;
                 if (GalgasBool::boolTrue == test_5) {
                   {
-                  outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view-class.ggs", 210)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 210)) ;
+                  outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeBool (SOURCE_FILE ("auto-layout-view-class.ggs", 210)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 210)) ;
                   }
                 }
               }
               if (GalgasBool::boolFalse == test_5) {
                 {
-                outArgument_ioParameterList.setter_append (var_parameterName_6299, GGS_autoLayoutClassParameterType::class_func_typeEnum (var_parameterTypeName_6694  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)) ;
+                outArgument_ioParameterList.setter_append (var_parameterName_6311, GGS_autoLayoutClassParameterType::class_func_typeEnum (var_parameterTypeName_6706  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 212)) ;
                 }
               }
             }
@@ -4792,8 +4792,8 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 219)) ;
-  var_mangledName_6191.plusAssignOperation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
-  outArgument_outMangledName = GGS_lstring::init_21__21_ (var_mangledName_6191, constinArgument_inFunctionName.readProperty_location (), inCompiler COMMA_HERE) ;
+  var_mangledName_6203.plusAssignOperation(GGS_string (")"), inCompiler  COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 220)) ;
+  outArgument_outMangledName = GGS_lstring::init_21__21_ (var_mangledName_6203, constinArgument_inFunctionName.readProperty_location (), inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6299,62 +6299,62 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i25_ (GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                       Lexique_easyBindings_5F_lexique * inCompiler) {
-  GGS_bool var_userDefined_1542 ;
+  GGS_bool var_userDefined_1554 ;
   switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.ggs", 41)) ;
-    var_userDefined_1542 = GGS_bool (true) ;
+    var_userDefined_1554 = GGS_bool (true) ;
   } break ;
   case 2: {
-    var_userDefined_1542 = GGS_bool (false) ;
+    var_userDefined_1554 = GGS_bool (false) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.ggs", 46)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.ggs", 47)) ;
-  GGS_lstring var_outletClassName_1703 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_outletClassName_1715 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.ggs", 48)) ;
-  GGS_lstring var_superClassName_1737 ;
+  GGS_lstring var_superClassName_1749 ;
   switch (select_easyBindings_5F_syntax_49 (inCompiler)) {
   case 1: {
-    var_superClassName_1737 = GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 51)) ;
+    var_superClassName_1749 = GGS_string::makeEmptyString ().getter_here (inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 51)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-class.ggs", 53)) ;
-    var_superClassName_1737 = inCompiler->synthetizedAttribute_tokenString () ;
+    var_superClassName_1749 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.ggs", 54)) ;
   } break ;
   default:
     break ;
   }
-  GGS_bool var_hasRunAction_1870 = GGS_bool (false) ;
-  GGS_bool var_hasEnabled_1905 = GGS_bool (false) ;
-  GGS_bool var_hasHidden_1938 = GGS_bool (false) ;
-  GGS_bool var_handlesTableViewBinding_1970 = GGS_bool (false) ;
-  GGS_bool var_handlesGraphicControllerBinding_2016 = GGS_bool (false) ;
+  GGS_bool var_hasRunAction_1882 = GGS_bool (false) ;
+  GGS_bool var_hasEnabled_1917 = GGS_bool (false) ;
+  GGS_bool var_hasHidden_1950 = GGS_bool (false) ;
+  GGS_bool var_handlesTableViewBinding_1982 = GGS_bool (false) ;
+  GGS_bool var_handlesGraphicControllerBinding_2028 = GGS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.ggs", 63)) ;
-      var_handlesTableViewBinding_1970 = GGS_bool (true) ;
+      var_handlesTableViewBinding_1982 = GGS_bool (true) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.ggs", 66)) ;
-      var_hasRunAction_1870 = GGS_bool (true) ;
+      var_hasRunAction_1882 = GGS_bool (true) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.ggs", 69)) ;
-      var_hasEnabled_1905 = GGS_bool (true) ;
+      var_hasEnabled_1917 = GGS_bool (true) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-class.ggs", 72)) ;
-      var_hasHidden_1938 = GGS_bool (true) ;
+      var_hasHidden_1950 = GGS_bool (true) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("outlet-class.ggs", 75)) ;
-      var_handlesGraphicControllerBinding_2016 = GGS_bool (true) ;
+      var_handlesGraphicControllerBinding_2028 = GGS_bool (true) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6363,7 +6363,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.ggs", 78)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_outletClassDeclarationAST::init_21__21__21__21__21__21__21__21_ (var_outletClassName_1703, var_userDefined_1542, var_superClassName_1737, var_hasRunAction_1870, var_hasEnabled_1905, var_handlesTableViewBinding_1970, var_handlesGraphicControllerBinding_2016, var_hasHidden_1938, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 79)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_outletClassDeclarationAST::init_21__21__21__21__21__21__21__21_ (var_outletClassName_1715, var_userDefined_1554, var_superClassName_1749, var_hasRunAction_1882, var_hasEnabled_1917, var_handlesTableViewBinding_1982, var_handlesGraphicControllerBinding_2028, var_hasHidden_1950, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("outlet-class.ggs", 79)) ;
   }
 }
 
@@ -7522,19 +7522,19 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
-  GGS_lstring var_transientTypeName_5347 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientTypeName_5575 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("computed-property.ggs", 99)) ;
-  GGS_lstring var_transientName_5398 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientName_5626 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("computed-property.ggs", 100)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("computed-property.ggs", 101)) ;
   GGS_observablePropertyList temp_0 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 102)) ;
-  GGS_observablePropertyList var_dependanceList_5463 = temp_0 ;
+  GGS_observablePropertyList var_dependanceList_5691 = temp_0 ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    GGS_observablePropertyAST var_observablePropertyAST_5551 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_5551, inCompiler) ;
+    GGS_observablePropertyAST var_observablePropertyAST_5779 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_5779, inCompiler) ;
     {
-    var_dependanceList_5463.setter_append (var_observablePropertyAST_5551, inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 105)) ;
+    var_dependanceList_5691.setter_append (var_observablePropertyAST_5779, inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 105)) ;
     }
     if (select_easyBindings_5F_syntax_70 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("computed-property.ggs", 107)) ;
@@ -7544,7 +7544,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("computed-property.ggs", 109)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_computedPropertyDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5347, var_transientName_5398, var_dependanceList_5463, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 110)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_computedPropertyDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5575, var_transientName_5626, var_dependanceList_5691, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("computed-property.ggs", 110)) ;
   }
 }
 
@@ -7595,14 +7595,14 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.ggs", 91)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 92)) ;
-  GGS_lstring var_transientTypeName_5169 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientTypeName_5397 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 93)) ;
-  GGS_lstring var_transientName_5220 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientName_5448 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 94)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 95)) ;
   {
   GGS_observablePropertyList temp_0 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 101)) ;
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5169, var_transientName_5220, temp_0, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 96)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5397, var_transientName_5448, temp_0, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 96)) ;
   }
 }
 
@@ -7633,32 +7633,32 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
                                                                                                 const GGS_lstring constinArgument_inRootEntity,
                                                                                                 GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                 Lexique_easyBindings_5F_lexique * inCompiler) {
-  GGS_bool var_isOverriding_5740 ;
+  GGS_bool var_isOverriding_5968 ;
   switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
   case 1: {
-    var_isOverriding_5740 = GGS_bool (false) ;
+    var_isOverriding_5968 = GGS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_override COMMA_SOURCE_FILE ("transient-property.ggs", 118)) ;
-    var_isOverriding_5740 = GGS_bool (true) ;
+    var_isOverriding_5968 = GGS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 121)) ;
-  GGS_lstring var_transientTypeName_5888 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientTypeName_6116 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 122)) ;
-  GGS_lstring var_transientName_5939 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_transientName_6167 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 123)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("transient-property.ggs", 124)) ;
   GGS_observablePropertyList temp_0 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 125)) ;
-  GGS_observablePropertyList var_dependanceList_6004 = temp_0 ;
+  GGS_observablePropertyList var_dependanceList_6232 = temp_0 ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    GGS_observablePropertyAST var_observablePropertyAST_6092 ;
-    nt_observable_5F_property_ (var_observablePropertyAST_6092, inCompiler) ;
+    GGS_observablePropertyAST var_observablePropertyAST_6320 ;
+    nt_observable_5F_property_ (var_observablePropertyAST_6320, inCompiler) ;
     {
-    var_dependanceList_6004.setter_append (var_observablePropertyAST_6092, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 128)) ;
+    var_dependanceList_6232.setter_append (var_observablePropertyAST_6320, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 128)) ;
     }
     if (select_easyBindings_5F_syntax_72 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.ggs", 130)) ;
@@ -7668,7 +7668,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 132)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5888, var_transientName_5939, var_dependanceList_6004, var_isOverriding_5740, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 133)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_6116, var_transientName_6167, var_dependanceList_6232, var_isOverriding_5968, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 133)) ;
   }
 }
 
@@ -7736,33 +7736,33 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GGS_arrayControllerBindingListAST & /* ioArgument_ioArrayControllerBindingListAST */,
                                                                                                  GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
-  GGS_proxyKind var_proxyKind_1942 ;
+  GGS_proxyKind var_proxyKind_1966 ;
   switch (select_easyBindings_5F_syntax_73 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("proxy.ggs", 51)) ;
-    var_proxyKind_1942 = GGS_proxyKind::class_func_propertyProxy (SOURCE_FILE ("proxy.ggs", 52)) ;
+    var_proxyKind_1966 = GGS_proxyKind::class_func_propertyProxy (SOURCE_FILE ("proxy.ggs", 52)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("proxy.ggs", 54)) ;
-    var_proxyKind_1942 = GGS_proxyKind::class_func_toManyProxy (SOURCE_FILE ("proxy.ggs", 55)) ;
+    var_proxyKind_1966 = GGS_proxyKind::class_func_toManyProxy (SOURCE_FILE ("proxy.ggs", 55)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_proxy COMMA_SOURCE_FILE ("proxy.ggs", 57)) ;
-  GGS_lstring var_proxyTypeName_2118 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_proxyTypeName_2142 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("proxy.ggs", 58)) ;
-  GGS_lstring var_proxyName_2165 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_proxyName_2189 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 59)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("proxy.ggs", 60)) ;
-  GGS_lstring var_toOnePropertyName_2216 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_toOnePropertyName_2240 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 61)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("proxy.ggs", 62)) ;
-  GGS_lstring var_propertyName_2275 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_propertyName_2299 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 63)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("proxy.ggs", 64)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_proxyDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_proxyKind_1942, var_proxyTypeName_2118, var_proxyName_2165, var_toOnePropertyName_2216, var_propertyName_2275, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 65)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_proxyDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_proxyKind_1966, var_proxyTypeName_2142, var_proxyName_2189, var_toOnePropertyName_2240, var_propertyName_2299, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 65)) ;
   }
 }
 
@@ -7821,80 +7821,80 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
                                                                                                        GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                        Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 51)) ;
-  GGS_bool var_usedForSignature_2314 = GGS_bool (false) ;
-  GGS_bool var_generateResetMethod_2347 = GGS_bool (false) ;
-  GGS_bool var_generateDirectRead_2383 = GGS_bool (false) ;
-  GGS_bool var_generateDirectAccess_2418 = GGS_bool (false) ;
+  GGS_bool var_usedForSignature_2338 = GGS_bool (false) ;
+  GGS_bool var_generateResetMethod_2371 = GGS_bool (false) ;
+  GGS_bool var_generateDirectRead_2407 = GGS_bool (false) ;
+  GGS_bool var_generateDirectAccess_2442 = GGS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_easyBindings_5F_syntax_74 (inCompiler) == 2) {
-      GGS_lstring var_attributeName_2493 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_attributeName_2517 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.ggs", 58)) ;
       GalgasBool test_1 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_1) {
-        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
+        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2517.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
         if (GalgasBool::boolTrue == test_1) {
           GalgasBool test_2 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_2) {
-            test_2 = var_usedForSignature_2314.boolEnum () ;
+            test_2 = var_usedForSignature_2338.boolEnum () ;
             if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-              inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 61)) ;
+              inCompiler->emitSemanticError (var_attributeName_2517.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 61)) ;
             }
           }
-          var_usedForSignature_2314 = GGS_bool (true) ;
+          var_usedForSignature_2338 = GGS_bool (true) ;
         }
       }
       if (GalgasBool::boolFalse == test_1) {
         GalgasBool test_4 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_4) {
-          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateResetMethod"))).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2517.readProperty_string ().objectCompare (GGS_string ("generateResetMethod"))).boolEnum () ;
           if (GalgasBool::boolTrue == test_4) {
             GalgasBool test_5 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_5) {
-              test_5 = var_generateResetMethod_2347.boolEnum () ;
+              test_5 = var_generateResetMethod_2371.boolEnum () ;
               if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 66)) ;
+                inCompiler->emitSemanticError (var_attributeName_2517.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 66)) ;
               }
             }
-            var_generateResetMethod_2347 = GGS_bool (true) ;
+            var_generateResetMethod_2371 = GGS_bool (true) ;
           }
         }
         if (GalgasBool::boolFalse == test_4) {
           GalgasBool test_7 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_7) {
-            test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
+            test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2517.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
             if (GalgasBool::boolTrue == test_7) {
               GalgasBool test_8 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_8) {
-                test_8 = var_generateDirectRead_2383.boolEnum () ;
+                test_8 = var_generateDirectRead_2407.boolEnum () ;
                 if (GalgasBool::boolTrue == test_8) {
                   TC_Array <FixItDescription> fixItArray9 ;
                   fixItArray9.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                  inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 71)) ;
+                  inCompiler->emitSemanticError (var_attributeName_2517.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 71)) ;
                 }
               }
-              var_generateDirectRead_2383 = GGS_bool (true) ;
+              var_generateDirectRead_2407 = GGS_bool (true) ;
             }
           }
           if (GalgasBool::boolFalse == test_7) {
             GalgasBool test_10 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_10) {
-              test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2493.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
+              test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2517.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
               if (GalgasBool::boolTrue == test_10) {
                 GalgasBool test_11 = GalgasBool::boolTrue ;
                 if (GalgasBool::boolTrue == test_11) {
-                  test_11 = var_generateDirectAccess_2418.boolEnum () ;
+                  test_11 = var_generateDirectAccess_2442.boolEnum () ;
                   if (GalgasBool::boolTrue == test_11) {
                     TC_Array <FixItDescription> fixItArray12 ;
                     fixItArray12.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                    inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 76)) ;
+                    inCompiler->emitSemanticError (var_attributeName_2517.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 76)) ;
                   }
                 }
-                var_generateDirectAccess_2418 = GGS_bool (true) ;
+                var_generateDirectAccess_2442 = GGS_bool (true) ;
               }
             }
             if (GalgasBool::boolFalse == test_10) {
@@ -7903,7 +7903,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@generateResetMethod")) ;
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@generateDirectRead")) ;
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@generateDirectAccess")) ;
-              inCompiler->emitSemanticError (var_attributeName_2493.readProperty_location (), GGS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 80)) ;
+              inCompiler->emitSemanticError (var_attributeName_2517.readProperty_location (), GGS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 80)) ;
             }
           }
         }
@@ -7914,9 +7914,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   }
   GalgasBool test_14 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_14) {
-    GGS_bool test_15 = var_generateDirectAccess_2418 ;
+    GGS_bool test_15 = var_generateDirectAccess_2442 ;
     if (GalgasBool::boolTrue == test_15.boolEnum ()) {
-      test_15 = var_generateDirectRead_2383 ;
+      test_15 = var_generateDirectRead_2407 ;
     }
     test_14 = test_15.boolEnum () ;
     if (GalgasBool::boolTrue == test_14) {
@@ -7924,28 +7924,28 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 87)), GGS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("simple-stored-property.ggs", 87)) ;
     }
   }
-  GGS_lstring var_attributeTypeName_3777 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_attributeTypeName_3801 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 89)) ;
-  GGS_lstring var_attributeName_3828 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_attributeName_3852 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 90)) ;
   GalgasBool test_17 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_17) {
-    test_17 = var_usedForSignature_2314.boolEnum () ;
+    test_17 = var_usedForSignature_2338.boolEnum () ;
     if (GalgasBool::boolTrue == test_17) {
       {
-      ioArgument_ioSignatureList.setter_insert (var_attributeName_3828.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 92)) ;
+      ioArgument_ioSignatureList.setter_insert (var_attributeName_3852.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 92)) ;
       }
     }
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 94)) ;
-  GGS_abstractDefaultValue var_defaultValue_3997 ;
-  nt_explicit_5F_value_ (var_defaultValue_3997, inCompiler) ;
+  GGS_abstractDefaultValue var_defaultValue_4021 ;
+  nt_explicit_5F_value_ (var_defaultValue_4021, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 96)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_atomicPropertyDeclarationAST::init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (constinArgument_inClassName, var_attributeTypeName_3777, var_attributeName_3828, var_defaultValue_3997, var_generateResetMethod_2347, var_generateDirectRead_2383, var_generateDirectAccess_2418, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_atomicPropertyDeclarationAST::init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (constinArgument_inClassName, var_attributeTypeName_3801, var_attributeName_3852, var_defaultValue_4021, var_generateResetMethod_2371, var_generateDirectRead_2407, var_generateDirectAccess_2442, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 97)) ;
   }
   {
-  ioArgument_ioAttributeList.setter_append (var_attributeTypeName_3777, var_attributeName_3828, var_defaultValue_3997, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 109)) ;
+  ioArgument_ioAttributeList.setter_append (var_attributeTypeName_3801, var_attributeName_3852, var_defaultValue_4021, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 109)) ;
   }
 }
 
@@ -7997,19 +7997,19 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
                                                                                                        Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_standalone COMMA_SOURCE_FILE ("simple-stored-property.ggs", 122)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 123)) ;
-  GGS_lstring var_attributeTypeName_4971 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_attributeTypeName_4995 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 124)) ;
-  GGS_lstring var_attributeName_5022 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_attributeName_5046 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 125)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 126)) ;
-  GGS_abstractDefaultValue var_defaultValue_5100 ;
-  nt_explicit_5F_value_ (var_defaultValue_5100, inCompiler) ;
+  GGS_abstractDefaultValue var_defaultValue_5124 ;
+  nt_explicit_5F_value_ (var_defaultValue_5124, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 128)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_atomicPropertyDeclarationAST::init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (constinArgument_inClassName, var_attributeTypeName_4971, var_attributeName_5022, var_defaultValue_5100, GGS_bool (false), GGS_bool (true), GGS_bool (true), GGS_bool (true), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_atomicPropertyDeclarationAST::init_21__21__21__21__21_generateResetMethod_21_generateDirectRead_21_generateDirectAccess_21_standalone (constinArgument_inClassName, var_attributeTypeName_4995, var_attributeName_5046, var_defaultValue_5124, GGS_bool (false), GGS_bool (true), GGS_bool (true), GGS_bool (true), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 129)) ;
   }
   {
-  ioArgument_ioAttributeList.setter_append (var_attributeTypeName_4971, var_attributeName_5022, var_defaultValue_5100, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 141)) ;
+  ioArgument_ioAttributeList.setter_append (var_attributeTypeName_4995, var_attributeName_5046, var_defaultValue_5124, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 141)) ;
   }
 }
 
@@ -8044,80 +8044,80 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
                                                                                              GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                              Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
-  GGS_bool var_usedForSignature_1965 = GGS_bool (false) ;
-  GGS_bool var_isWeak_1998 = GGS_bool (false) ;
+  GGS_bool var_usedForSignature_1989 = GGS_bool (false) ;
+  GGS_bool var_isWeak_2022 = GGS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_easyBindings_5F_syntax_75 (inCompiler) == 2) {
-      GGS_lstring var_attributeName_2059 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_attributeName_2083 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.ggs", 50)) ;
       GalgasBool test_1 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_1) {
-        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2059.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
+        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2083.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
         if (GalgasBool::boolTrue == test_1) {
           GalgasBool test_2 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_2) {
-            test_2 = var_usedForSignature_1965.boolEnum () ;
+            test_2 = var_usedForSignature_1989.boolEnum () ;
             if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-              inCompiler->emitSemanticError (var_attributeName_2059.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 53)) ;
+              inCompiler->emitSemanticError (var_attributeName_2083.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 53)) ;
             }
           }
-          var_usedForSignature_1965 = GGS_bool (true) ;
+          var_usedForSignature_1989 = GGS_bool (true) ;
         }
       }
       if (GalgasBool::boolFalse == test_1) {
         GalgasBool test_4 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_4) {
-          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2059.readProperty_string ().objectCompare (GGS_string ("weak"))).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2083.readProperty_string ().objectCompare (GGS_string ("weak"))).boolEnum () ;
           if (GalgasBool::boolTrue == test_4) {
             GalgasBool test_5 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_5) {
-              test_5 = var_isWeak_1998.boolEnum () ;
+              test_5 = var_isWeak_2022.boolEnum () ;
               if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                inCompiler->emitSemanticError (var_attributeName_2059.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 58)) ;
+                inCompiler->emitSemanticError (var_attributeName_2083.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 58)) ;
               }
             }
-            var_isWeak_1998 = GGS_bool (true) ;
+            var_isWeak_2022 = GGS_bool (true) ;
           }
         }
         if (GalgasBool::boolFalse == test_4) {
           TC_Array <FixItDescription> fixItArray7 ;
           appendFixItActions (fixItArray7, EnumFixItKind::fixItReplace, GGS_string ("@signature")) ;
           appendFixItActions (fixItArray7, EnumFixItKind::fixItReplace, GGS_string ("@weak")) ;
-          inCompiler->emitSemanticError (var_attributeName_2059.readProperty_location (), GGS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 62)) ;
+          inCompiler->emitSemanticError (var_attributeName_2083.readProperty_location (), GGS_string ("unknow attribute"), fixItArray7  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 62)) ;
         }
       }
     }else{
       repeatFlag_0 = false ;
     }
   }
-  GGS_lstring var_destinationEntityName_2616 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_destinationEntityName_2640 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 65)) ;
-  GGS_lstring var_relationshipName_2671 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_relationshipName_2695 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 66)) ;
-  GGS_toOneOppositeRelationship var_opposite_2724 ;
+  GGS_toOneOppositeRelationship var_opposite_2748 ;
   switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
   case 1: {
-    var_opposite_2724 = GGS_toOneOppositeRelationship::class_func_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
+    var_opposite_2748 = GGS_toOneOppositeRelationship::class_func_none (SOURCE_FILE ("to-one-relationship.ggs", 69)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.ggs", 71)) ;
     switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 73)) ;
-      GGS_lstring var_inverseRelationshipName_2846 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_inverseRelationshipName_2870 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 74)) ;
-      var_opposite_2724 = GGS_toOneOppositeRelationship::class_func_oppositeIsToOne (var_inverseRelationshipName_2846  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
+      var_opposite_2748 = GGS_toOneOppositeRelationship::class_func_oppositeIsToOne (var_inverseRelationshipName_2870  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 75)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-one-relationship.ggs", 77)) ;
-      GGS_lstring var_inverseRelationshipName_3013 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_inverseRelationshipName_3037 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 78)) ;
-      var_opposite_2724 = GGS_toOneOppositeRelationship::class_func_oppositeIsToMany (var_inverseRelationshipName_3013  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
+      var_opposite_2748 = GGS_toOneOppositeRelationship::class_func_oppositeIsToMany (var_inverseRelationshipName_3037  COMMA_SOURCE_FILE ("to-one-relationship.ggs", 79)) ;
     } break ;
     default:
       break ;
@@ -8128,7 +8128,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toOneRelationshipAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_2616, var_relationshipName_2671, var_opposite_2724, var_usedForSignature_1965, var_isWeak_1998, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toOneRelationshipAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_2640, var_relationshipName_2695, var_opposite_2748, var_usedForSignature_1989, var_isWeak_2022, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-one-relationship.ggs", 83)) ;
   }
 }
 
@@ -8216,80 +8216,80 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
                                                                                               GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.ggs", 57)) ;
-  GGS_bool var_usedForSignature_2367 = GGS_bool (false) ;
-  GGS_bool var_customStore_2400 = GGS_bool (false) ;
-  GGS_bool var_generateDirectAccess_2428 = GGS_bool (false) ;
-  GGS_bool var_generateDirectRead_2465 = GGS_bool (false) ;
+  GGS_bool var_usedForSignature_2403 = GGS_bool (false) ;
+  GGS_bool var_customStore_2436 = GGS_bool (false) ;
+  GGS_bool var_generateDirectAccess_2464 = GGS_bool (false) ;
+  GGS_bool var_generateDirectRead_2501 = GGS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_easyBindings_5F_syntax_78 (inCompiler) == 2) {
-      GGS_lstring var_attributeName_2538 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_attributeName_2574 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.ggs", 64)) ;
       GalgasBool test_1 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_1) {
-        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
+        test_1 = GGS_bool (ComparisonKind::equal, var_attributeName_2574.readProperty_string ().objectCompare (GGS_string ("signature"))).boolEnum () ;
         if (GalgasBool::boolTrue == test_1) {
           GalgasBool test_2 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_2) {
-            test_2 = var_usedForSignature_2367.boolEnum () ;
+            test_2 = var_usedForSignature_2403.boolEnum () ;
             if (GalgasBool::boolTrue == test_2) {
               TC_Array <FixItDescription> fixItArray3 ;
               fixItArray3.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-              inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 67)) ;
+              inCompiler->emitSemanticError (var_attributeName_2574.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray3  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 67)) ;
             }
           }
-          var_usedForSignature_2367 = GGS_bool (true) ;
+          var_usedForSignature_2403 = GGS_bool (true) ;
         }
       }
       if (GalgasBool::boolFalse == test_1) {
         GalgasBool test_4 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_4) {
-          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("customStore"))).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::equal, var_attributeName_2574.readProperty_string ().objectCompare (GGS_string ("customStore"))).boolEnum () ;
           if (GalgasBool::boolTrue == test_4) {
             GalgasBool test_5 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_5) {
-              test_5 = var_customStore_2400.boolEnum () ;
+              test_5 = var_customStore_2436.boolEnum () ;
               if (GalgasBool::boolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
                 fixItArray6.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 72)) ;
+                inCompiler->emitSemanticError (var_attributeName_2574.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray6  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 72)) ;
               }
             }
-            var_customStore_2400 = GGS_bool (true) ;
+            var_customStore_2436 = GGS_bool (true) ;
           }
         }
         if (GalgasBool::boolFalse == test_4) {
           GalgasBool test_7 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_7) {
-            test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
+            test_7 = GGS_bool (ComparisonKind::equal, var_attributeName_2574.readProperty_string ().objectCompare (GGS_string ("generateDirectRead"))).boolEnum () ;
             if (GalgasBool::boolTrue == test_7) {
               GalgasBool test_8 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_8) {
-                test_8 = var_generateDirectRead_2465.boolEnum () ;
+                test_8 = var_generateDirectRead_2501.boolEnum () ;
                 if (GalgasBool::boolTrue == test_8) {
                   TC_Array <FixItDescription> fixItArray9 ;
                   fixItArray9.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                  inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 77)) ;
+                  inCompiler->emitSemanticError (var_attributeName_2574.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray9  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 77)) ;
                 }
               }
-              var_generateDirectRead_2465 = GGS_bool (true) ;
+              var_generateDirectRead_2501 = GGS_bool (true) ;
             }
           }
           if (GalgasBool::boolFalse == test_7) {
             GalgasBool test_10 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_10) {
-              test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2538.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
+              test_10 = GGS_bool (ComparisonKind::equal, var_attributeName_2574.readProperty_string ().objectCompare (GGS_string ("generateDirectAccess"))).boolEnum () ;
               if (GalgasBool::boolTrue == test_10) {
                 GalgasBool test_11 = GalgasBool::boolTrue ;
                 if (GalgasBool::boolTrue == test_11) {
-                  test_11 = var_generateDirectAccess_2428.boolEnum () ;
+                  test_11 = var_generateDirectAccess_2464.boolEnum () ;
                   if (GalgasBool::boolTrue == test_11) {
                     TC_Array <FixItDescription> fixItArray12 ;
                     fixItArray12.appendObject (FixItDescription (EnumFixItKind::fixItRemove, "")) ;
-                    inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 82)) ;
+                    inCompiler->emitSemanticError (var_attributeName_2574.readProperty_location (), GGS_string ("duplicated attribute"), fixItArray12  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 82)) ;
                   }
                 }
-                var_generateDirectAccess_2428 = GGS_bool (true) ;
+                var_generateDirectAccess_2464 = GGS_bool (true) ;
               }
             }
             if (GalgasBool::boolFalse == test_10) {
@@ -8298,7 +8298,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@customStore")) ;
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@generateDirectAccess")) ;
               appendFixItActions (fixItArray13, EnumFixItKind::fixItReplace, GGS_string ("@generateDirectRead")) ;
-              inCompiler->emitSemanticError (var_attributeName_2538.readProperty_location (), GGS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 86)) ;
+              inCompiler->emitSemanticError (var_attributeName_2574.readProperty_location (), GGS_string ("unknow attribute"), fixItArray13  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 86)) ;
             }
           }
         }
@@ -8309,9 +8309,9 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
   }
   GalgasBool test_14 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_14) {
-    GGS_bool test_15 = var_generateDirectAccess_2428 ;
+    GGS_bool test_15 = var_generateDirectAccess_2464 ;
     if (GalgasBool::boolTrue == test_15.boolEnum ()) {
-      test_15 = var_generateDirectRead_2465 ;
+      test_15 = var_generateDirectRead_2501 ;
     }
     test_14 = test_15.boolEnum () ;
     if (GalgasBool::boolTrue == test_14) {
@@ -8319,45 +8319,45 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)), GGS_string ("@generateDirectAccess implies @generateDirectRead"), fixItArray16  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 93)) ;
     }
   }
-  GGS_lstring var_destinationEntityName_3781 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_destinationEntityName_3817 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 95)) ;
-  GGS_lstring var_relationshipName_3827 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_relationshipName_3863 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 96)) ;
   GalgasBool test_17 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_17) {
-    test_17 = var_usedForSignature_2367.boolEnum () ;
+    test_17 = var_usedForSignature_2403.boolEnum () ;
     if (GalgasBool::boolTrue == test_17) {
       {
-      ioArgument_ioSignatureList.setter_insert (var_relationshipName_3827.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 98)) ;
+      ioArgument_ioSignatureList.setter_insert (var_relationshipName_3863.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 98)) ;
       }
     }
   }
-  GGS_toManyRelationshipOptionAST var_toManyRelationshipOption_3976 ;
+  GGS_toManyRelationshipOptionAST var_toManyRelationshipOption_4012 ;
   switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-many-relationship.ggs", 102)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-many-relationship.ggs", 103)) ;
-    GGS_lstring var_inserseRelationshipName_4067 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_inserseRelationshipName_4103 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 104)) ;
-    var_toManyRelationshipOption_3976 = GGS_toManyRelationshipOptionAST::class_func_hasOpposite (var_inserseRelationshipName_4067  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 105)) ;
+    var_toManyRelationshipOption_4012 = GGS_toManyRelationshipOptionAST::class_func_hasOpposite (var_inserseRelationshipName_4103  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 105)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("to-many-relationship.ggs", 107)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("to-many-relationship.ggs", 108)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 109)) ;
-    GGS_lstring var_masterPropertyName_4254 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_masterPropertyName_4290 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 110)) ;
-    var_toManyRelationshipOption_3976 = GGS_toManyRelationshipOptionAST::class_func_hasDependance (var_masterPropertyName_4254  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 111)) ;
+    var_toManyRelationshipOption_4012 = GGS_toManyRelationshipOptionAST::class_func_hasDependance (var_masterPropertyName_4290  COMMA_SOURCE_FILE ("to-many-relationship.ggs", 111)) ;
   } break ;
   case 3: {
-    var_toManyRelationshipOption_3976 = GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("to-many-relationship.ggs", 113)) ;
+    var_toManyRelationshipOption_4012 = GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("to-many-relationship.ggs", 113)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 115)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toManyRelationshipAST::init_21__21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_3781, var_relationshipName_3827, var_toManyRelationshipOption_3976, var_customStore_2400, var_usedForSignature_2367, var_generateDirectAccess_2428, var_generateDirectRead_2465, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_toManyRelationshipAST::init_21__21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_destinationEntityName_3817, var_relationshipName_3863, var_toManyRelationshipOption_4012, var_customStore_2436, var_usedForSignature_2403, var_generateDirectAccess_2464, var_generateDirectRead_2501, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("to-many-relationship.ggs", 116)) ;
   }
 }
 
@@ -8901,35 +8901,35 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.ggs", 61)) ;
-  GGS_lstring var_controllerName_2639 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_controllerName_2675 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("array-controller.ggs", 62)) ;
-  GGS_arrayControllerBoundModelAST var_model_2706 ;
+  GGS_arrayControllerBoundModelAST var_model_2742 ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.ggs", 65)) ;
   switch (select_easyBindings_5F_syntax_85 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.ggs", 67)) ;
-    var_model_2706 = GGS_arrayControllerBoundModelAST::class_func_rootToManyRelationship (constinArgument_inRootEntity  COMMA_SOURCE_FILE ("array-controller.ggs", 68)) ;
+    var_model_2742 = GGS_arrayControllerBoundModelAST::class_func_rootToManyRelationship (constinArgument_inRootEntity  COMMA_SOURCE_FILE ("array-controller.ggs", 68)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("array-controller.ggs", 70)) ;
-    var_model_2706 = GGS_arrayControllerBoundModelAST::class_func_selfToManyRelationship (SOURCE_FILE ("array-controller.ggs", 71)) ;
+    var_model_2742 = GGS_arrayControllerBoundModelAST::class_func_selfToManyRelationship (SOURCE_FILE ("array-controller.ggs", 71)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.ggs", 73)) ;
-  GGS_lstring var_relationshipName_2920 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_relationshipName_2956 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.ggs", 74)) ;
   switch (select_easyBindings_5F_syntax_86 (inCompiler)) {
   case 1: {
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("array-controller.ggs", 78)) ;
-    GGS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3088 ;
-    nt_booleanMultipleBindingExpression_ (var_bindingExpression_3088, inCompiler) ;
-    GGS_multipleBindingDescriptor var_hiddenSelectionViewBindingDescriptor_3117 = GGS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_3088  COMMA_SOURCE_FILE ("array-controller.ggs", 80)) ;
+    GGS_abstractBooleanMultipleBindingExpressionAST var_bindingExpression_3124 ;
+    nt_booleanMultipleBindingExpression_ (var_bindingExpression_3124, inCompiler) ;
+    GGS_multipleBindingDescriptor var_hiddenSelectionViewBindingDescriptor_3153 = GGS_multipleBindingDescriptor::class_func_binding (var_bindingExpression_3124  COMMA_SOURCE_FILE ("array-controller.ggs", 80)) ;
     {
-    ioArgument_ioArrayControllerBindingListAST.setter_append (var_controllerName_2639, var_hiddenSelectionViewBindingDescriptor_3117, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 81)) ;
+    ioArgument_ioArrayControllerBindingListAST.setter_append (var_controllerName_2675, var_hiddenSelectionViewBindingDescriptor_3153, inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 81)) ;
     }
   } break ;
   default:
@@ -8937,7 +8937,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("array-controller.ggs", 86)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_arrayControllerDeclarationAST::init_21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2639, var_model_2706, var_relationshipName_2920, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 87)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_arrayControllerDeclarationAST::init_21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2675, var_model_2742, var_relationshipName_2956, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 87)) ;
   }
 }
 
@@ -9012,20 +9012,20 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 63)) ;
-  GGS_lstring var_controllerName_2926 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_controllerName_2962 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 64)) ;
   GGS_autoLayoutTableViewControllerAttributListAST temp_0 = GGS_autoLayoutTableViewControllerAttributListAST::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 65)) ;
-  GGS_autoLayoutTableViewControllerAttributListAST var_arrayControllerAttributListAST_2996 = temp_0 ;
+  GGS_autoLayoutTableViewControllerAttributListAST var_arrayControllerAttributListAST_3032 = temp_0 ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 66)) ;
   bool repeatFlag_1 = true ;
   while (repeatFlag_1) {
-    GGS_lstring var_attributeName_3085 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_attributeName_3121 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 68)) ;
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 69)) ;
-    GGS_abstractDefaultValue var_attributeValue_3161 ;
-    nt_explicit_5F_value_ (var_attributeValue_3161, inCompiler) ;
+    GGS_abstractDefaultValue var_attributeValue_3197 ;
+    nt_explicit_5F_value_ (var_attributeValue_3197, inCompiler) ;
     {
-    var_arrayControllerAttributListAST_2996.setter_append (var_attributeName_3085, var_attributeValue_3161, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 71)) ;
+    var_arrayControllerAttributListAST_3032.setter_append (var_attributeName_3121, var_attributeValue_3197, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 71)) ;
     }
     if (select_easyBindings_5F_syntax_87 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 73)) ;
@@ -9034,24 +9034,24 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     }
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 75)) ;
-  GGS_bool var_isRoot_3318 ;
+  GGS_bool var_isRoot_3354 ;
   switch (select_easyBindings_5F_syntax_88 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 79)) ;
-    var_isRoot_3318 = GGS_bool (true) ;
+    var_isRoot_3354 = GGS_bool (true) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 82)) ;
-    var_isRoot_3318 = GGS_bool (false) ;
+    var_isRoot_3354 = GGS_bool (false) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 85)) ;
-  GGS_lstring var_relationshipName_3458 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_relationshipName_3494 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 86)) ;
   GGS_autoLayoutTableViewControllerBoundColumnListAST temp_2 = GGS_autoLayoutTableViewControllerBoundColumnListAST::init (inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 87)) ;
-  GGS_autoLayoutTableViewControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3533 = temp_2 ;
+  GGS_autoLayoutTableViewControllerBoundColumnListAST var_arrayControllerBoundColumnListAST_3569 = temp_2 ;
   switch (select_easyBindings_5F_syntax_89 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 89)) ;
@@ -9061,39 +9061,39 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     bool repeatFlag_3 = true ;
     while (repeatFlag_3) {
       if (select_easyBindings_5F_syntax_90 (inCompiler) == 2) {
-        GGS_bool var_editableColumn_3653 ;
+        GGS_bool var_editableColumn_3689 ;
         switch (select_easyBindings_5F_syntax_91 (inCompiler)) {
         case 1: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 96)) ;
-          var_editableColumn_3653 = GGS_bool (false) ;
+          var_editableColumn_3689 = GGS_bool (false) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_editableColumn COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 99)) ;
-          var_editableColumn_3653 = GGS_bool (true) ;
+          var_editableColumn_3689 = GGS_bool (true) ;
         } break ;
         default:
           break ;
         }
-        GGS_lstring var_propertyName_3844 = inCompiler->synthetizedAttribute_tokenString () ;
+        GGS_lstring var_propertyName_3880 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 102)) ;
-        GGS_stringset var_unusedSet_3870 = GGS_stringset::init (inCompiler COMMA_HERE) ;
-        GGS_astAutoLayoutViewInstructionParameterList var_columnParameterListAST_3952 ;
-        nt_view_5F_actual_5F_parameter_5F_list_ (var_unusedSet_3870, var_columnParameterListAST_3952, inCompiler) ;
-        GGS_lstring var_sortPropertyName_4001 ;
+        GGS_stringset var_unusedSet_3906 = GGS_stringset::init (inCompiler COMMA_HERE) ;
+        GGS_astAutoLayoutViewInstructionParameterList var_columnParameterListAST_3988 ;
+        nt_view_5F_actual_5F_parameter_5F_list_ (var_unusedSet_3906, var_columnParameterListAST_3988, inCompiler) ;
+        GGS_lstring var_sortPropertyName_4037 ;
         switch (select_easyBindings_5F_syntax_92 (inCompiler)) {
         case 1: {
-          var_sortPropertyName_4001 = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 107)) ;
+          var_sortPropertyName_4037 = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("auto-layout-table-view-controller.ggs", 107)) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_sortkey COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 109)) ;
-          var_sortPropertyName_4001 = inCompiler->synthetizedAttribute_tokenString () ;
+          var_sortPropertyName_4037 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 110)) ;
         } break ;
         default:
           break ;
         }
         {
-        var_arrayControllerBoundColumnListAST_3533.setter_append (var_editableColumn_3653, var_propertyName_3844, var_columnParameterListAST_3952, var_sortPropertyName_4001, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 112)) ;
+        var_arrayControllerBoundColumnListAST_3569.setter_append (var_editableColumn_3689, var_propertyName_3880, var_columnParameterListAST_3988, var_sortPropertyName_4037, inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 112)) ;
         }
       }else{
         repeatFlag_3 = false ;
@@ -9105,7 +9105,7 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
     break ;
   }
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutTableViewControllerDeclarationAST::init_21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2926, var_isRoot_3318, constinArgument_inRootEntity, var_relationshipName_3458, var_arrayControllerBoundColumnListAST_3533, var_arrayControllerAttributListAST_2996, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 121)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutTableViewControllerDeclarationAST::init_21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2962, var_isRoot_3354, constinArgument_inRootEntity, var_relationshipName_3494, var_arrayControllerBoundColumnListAST_3569, var_arrayControllerAttributListAST_3032, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 121)) ;
   }
 }
 
@@ -9262,19 +9262,19 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
                                                                                                  GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                                  Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.ggs", 41)) ;
-  GGS_lstring var_selectionEntityName_2002 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_selectionEntityName_2014 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 42)) ;
-  GGS_lstring var_selectionControllerName_2059 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_selectionControllerName_2071 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 43)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("selection-controller.ggs", 44)) ;
-  GGS_lstring var_modelControllerName_2119 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_modelControllerName_2131 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 45)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("selection-controller.ggs", 46)) ;
-  GGS_lstring var_propertyName_2180 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_propertyName_2192 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 47)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("selection-controller.ggs", 48)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_selectionControllerDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, var_selectionControllerName_2059, var_modelControllerName_2119, var_propertyName_2180, var_selectionEntityName_2002, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 49)) ;
+  ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_selectionControllerDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, var_selectionControllerName_2071, var_modelControllerName_2131, var_propertyName_2192, var_selectionEntityName_2014, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 49)) ;
   }
 }
 

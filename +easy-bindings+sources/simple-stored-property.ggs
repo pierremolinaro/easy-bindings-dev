@@ -25,8 +25,8 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, self.mClassName)
-  !?ioGraph.addEdge (node, self.mPropertyTypeName)
+  !?ioGraph.addEdge (!from: node, !to: self.mClassName)
+  !?ioGraph.addEdge (!from: node, !to: self.mPropertyTypeName)
   self.mDefaultValue.enterDefaultValuePrecedence (node, !?ioGraph)
 }
 

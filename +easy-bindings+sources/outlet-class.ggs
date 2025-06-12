@@ -17,7 +17,7 @@ class @outletClassDeclarationAST : @abstractDeclarationAST {
 override proc @outletClassDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
   if self.mSuperClassName.string != "" then
-    !?ioGraph.addEdge (self.mClassName, self.mSuperClassName)
+    !?ioGraph.addEdge (!from: self.mClassName, !to: self.mSuperClassName)
   end
 }
 

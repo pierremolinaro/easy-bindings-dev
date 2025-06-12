@@ -17,7 +17,7 @@ override proc @selectionControllerDeclarationAST.enterInPrecedenceGraph (?!@decl
     self.mSelectionControllerName.location
   )
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, @(self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
+  !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string + " " + self.mModelControllerName, self.mModelControllerName.location))
 }
 
 //------------------------------------------------------------------------------------------------

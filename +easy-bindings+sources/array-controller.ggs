@@ -27,14 +27,14 @@ enum @arrayControllerBoundModelAST {
 override proc @arrayControllerDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mControllerName, self.mControllerName.location)
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, self.mClassName)
+  !?ioGraph.addEdge (!from: node, !to: self.mClassName)
   switch self.mModel 
   case rootToManyRelationship (@lstring rootEntityName) :
     if rootEntityName.string != "" then
-      !?ioGraph.addEdge (node, @(rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+      !?ioGraph.addEdge (!from: node, !to: @(rootEntityName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
     end
   case selfToManyRelationship :
-    !?ioGraph.addEdge (node, @(self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
+    !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string + " " + self.mToManyPropertyName, self.mToManyPropertyName.location))
   end
 }
 

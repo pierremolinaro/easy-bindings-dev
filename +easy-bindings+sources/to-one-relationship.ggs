@@ -23,8 +23,8 @@ class @toOneRelationshipAST : @abstractDeclarationAST {
 override proc @toOneRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mToOneRelationshipName, self.mToOneRelationshipName.location)
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, self.mClassName)
-  !?ioGraph.addEdge (node, self.mDestinationEntityName)
+  !?ioGraph.addEdge (!from: node, !to: self.mClassName)
+  !?ioGraph.addEdge (!from: node, !to: self.mDestinationEntityName)
 }
 
 //------------------------------------------------------------------------------------------------

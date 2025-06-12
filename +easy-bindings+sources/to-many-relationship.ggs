@@ -25,12 +25,12 @@ class @toManyRelationshipAST : @abstractDeclarationAST {
 override proc @toManyRelationshipAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mToManyRelationshipName, self.mToManyRelationshipName.location)
   !?ioGraph.addNode (node, self)
-  !?ioGraph.addEdge (node, self.mClassName)
-  !?ioGraph.addEdge (node, self.mDestinationEntityName)
+  !?ioGraph.addEdge (!from: node, !to: self.mClassName)
+  !?ioGraph.addEdge (!from: node, !to: self.mDestinationEntityName)
   switch self.mOption
   case hasDependance (masterPropertyName) :
     let dependanceNode = @lstring (self.mClassName.string + " " + masterPropertyName, masterPropertyName.location)
-    !?ioGraph.addEdge (node, dependanceNode)
+    !?ioGraph.addEdge (!from: node, !to: dependanceNode)
   case hasOpposite (*) :
   case none :
   end
