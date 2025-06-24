@@ -94,7 +94,7 @@ rule 'a'->'z' {
 rule 'A'->'Z' {
   repeat
     enterCharacterIntoString  (!?tokenString !* )
-  while 'a'->'z' | 'A'->'Z' | '0'->'9' :
+  while isUnicodeLetter | '_' | '0'->'9' :
   end
   send $Identifier$
 }
