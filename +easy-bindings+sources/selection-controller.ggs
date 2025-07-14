@@ -66,10 +66,9 @@ syntax extension easyBindings_syntax {
 
 override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                                      ?!@generationStruct unused ioGeneration) {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
-    mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
+    entry.mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
     switch propertyKind
     case property (2*) :
       error self.mModelControllerName : "an array controller is required here"
@@ -84,8 +83,8 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
         error self.mModelControllerPropertyName : "'selectedArray' is required here"
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
-      !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, (), false)
-      !?mPropertyGenerationList.append (@selectionControllerPropertyGeneration (
+      !?entry.mPropertyMap.insertKey (self.mSelectionControllerName, kind, (), false)
+      !?entry.mPropertyGenerationList.append (@selectionControllerPropertyGeneration (
         self.mSelectionControllerName.string,
         self.mClassName,
         self.mModelControllerName.string,
@@ -93,7 +92,35 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
       )
       )
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
+
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
+//    mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
+//    switch propertyKind
+//    case property (2*) :
+//      error self.mModelControllerName : "an array controller is required here"
+//    case toMany (4*) :
+//      error self.mModelControllerName : "an array controller is required here"
+//    case toOne (5*) :
+//      error self.mModelControllerName : "an array controller is required here"
+//    case selectionController (*) :
+//      error self.mModelControllerName : "an array controller is required here"
+//    case arrayController (2*) :
+//      if self.mModelControllerPropertyName.string != "selectedArray" then
+//        error self.mModelControllerPropertyName : "'selectedArray' is required here"
+//      end
+//      let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
+//      !?mPropertyMap.insertKey (self.mSelectionControllerName, kind, (), false)
+//      !?mPropertyGenerationList.append (@selectionControllerPropertyGeneration (
+//        self.mSelectionControllerName.string,
+//        self.mClassName,
+//        self.mModelControllerName.string,
+//        self.mModelControllerPropertyName.string
+//      )
+//      )
+//    end
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -168,9 +195,9 @@ override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
    let @bool unused inPreferences,
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final var " + self.mPropertyName + " = SelectionController_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
 }
 

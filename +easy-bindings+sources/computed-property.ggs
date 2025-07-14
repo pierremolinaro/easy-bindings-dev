@@ -7,7 +7,6 @@ class @computedPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mComputedPropertyTypeName
   public var @lstring mComputedPropertyName
   public var @observablePropertyList mDependencyList
-//  @bool mIsOverriding
 }
 
 //------------------------------------------------------------------------------------------------
@@ -127,15 +126,13 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     ioSemanticContext.mClassMap.searchKey (self.mComputedPropertyTypeName, ?let classKind, ?3*)
     switch classKind
     case prefs :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
     case atomic (kind) :
-      !?mPropertyMap.insertKey (
+      !?entry.mPropertyMap.insertKey (
         self.mComputedPropertyName,
         .property (!type: kind, !accessibility: .computed),
         (),
@@ -146,7 +143,8 @@ override proc @computedPropertyDeclarationAST.firstAnalysisPhase(
     case entity (4*) :
       error self.mComputedPropertyTypeName : "an atomic class is required here"
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -222,9 +220,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
     dependencies
   )
   )
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     let @bool generate
     switch currentClassKind
     case prefs :
@@ -240,7 +236,7 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
         generate = true
       end
     end
-    !?mPropertyGenerationList.append (@computedPropertyGeneration (
+    !?entry.mPropertyGenerationList.append (@computedPropertyGeneration (
       self.mComputedPropertyName.string,
       self.mClassName.string,
       typeKind,
@@ -248,7 +244,8 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       generate
     )
     )
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -271,9 +268,9 @@ list @computedPropertyGenerationList {
 //------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
@@ -286,7 +283,7 @@ override func @computedPropertyGeneration.initCode() -> @string {
 //------------------------------------------------------------------------------------------------
 
 override func @computedPropertyGeneration.bindPropertyInSelectionController () -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -347,18 +344,18 @@ override func @computedPropertyGeneration.propertyDeclarationCode (let @bool inP
   result  = ""
   if self.mGenerate & not inOverriddenTransients.hasKey (self.mPropertyName) then
     if inPreferences then
-      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n\n"
       result += "  let preferences_" + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n\n"
       result += "  var preferences_" + self.mPropertyName + " : " + self.mType.swiftTypeName + "? {\n"
       result += "    return preferences_" + self.mPropertyName + "_property.optionalValue\n"
-     result += "  }\n\n"
+      result += "  }\n\n"
     else
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
-      result += "  //   Transient property: " + self.mPropertyName + "\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
+      result += "//   Transient property: " + self.mPropertyName + "\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n\n"
       result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
     end
   end
@@ -425,7 +422,7 @@ override proc @computeRoutineGeneration.generateCode(
     header += "import AppKit\n\n"
     header += "//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n\n"
     var generatedZone3 = "  }\n\n"
-    generatedZone3 += "  //" + @string.stringWithSequenceOfCharacters ('·', 96) + "\n\n"
+    generatedZone3 += "  //" + @string.stringWithSequenceOfCharacters ('-', 96) + "\n\n"
     generatedZone3 += "}\n\n"
     generatedZone3 += "//" + @string.stringWithSequenceOfCharacters ('-', 98) + "\n\n"
     @string.generateFileWithPattern (

@@ -72,6 +72,8 @@ map @classMap {
   public let @propertyGenerationList mPropertyGenerationList
   %insertSetter insertKey %errorMessage "the '%K' class is already declared in %L"
   %searchMethod searchKey %errorMessage "there is no '%K' class"
+  %searchSubscript searchKey %errorMessage "there is no '%K' class"
+  %replaceSetter replace %errorMessage "there is no '%K' class"
 }
 
 //------------------------------------------------------------------------------------------------

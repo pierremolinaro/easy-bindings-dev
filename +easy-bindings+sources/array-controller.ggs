@@ -105,9 +105,8 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     var @actionMap controllerActions = ()
     !?controllerActions.insertKey ("add".nowhere)
     !?controllerActions.insertKey ("remove".nowhere)
@@ -123,9 +122,9 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
+        !?entry.mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      !?mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
+      !?entry.mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         "rootObject." + self.mToManyPropertyName,
         self.mClassName
@@ -139,7 +138,7 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error rootEntityName : "a toMany relationship is required here"
       end
     case selfToManyRelationship :
-      mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
+      entry.mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error self.mToManyPropertyName : "a toMany relationship is required here"
@@ -148,9 +147,9 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
+        !?entry.mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      !?mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
+      !?entry.mPropertyGenerationList.append (@arrayControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
         self.mClassName
@@ -164,7 +163,10 @@ override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
         error self.mToManyPropertyName : "a toMany relationship is required here"
       end
     end
-  end
+    
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -256,14 +258,14 @@ override func @arrayControllerPropertyGeneration.propertyDeclarationCode (let @b
                                                             let @bool unused inGenerationDirectAccess,
                                                             let @stringset unused inOverriddenTransients) -> @string {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n\n"
     result += "@MainAction let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }

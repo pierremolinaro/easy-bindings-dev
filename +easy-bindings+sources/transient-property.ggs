@@ -150,15 +150,13 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
     switch classKind
     case prefs :
       error self.mTransientTypeName : "an atomic class is required here"
     case atomic (kind) :
-      !?mPropertyMap.insertKey (
+      !?entry.mPropertyMap.insertKey (
         self.mTransientName,
         .property (!type: kind, !accessibility: .transient (!isAbstract: self.mDependencyList.count == 0)),
         (),
@@ -169,7 +167,8 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
     case entity (4*) :
       error self.mTransientTypeName : "an atomic class is required here"
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -238,9 +237,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     dependencies
   )
   )
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     let @bool generate
     switch currentClassKind
     case prefs :
@@ -256,7 +253,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
         generate = true
       end
     end
-    !?mPropertyGenerationList.append (@transientPropertyGeneration (
+    !?entry.mPropertyGenerationList.append (@transientPropertyGeneration (
       self.mTransientName.string,
       self.mClassName.string,
       typeKind,
@@ -264,7 +261,8 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
       generate
     )
     )
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -287,9 +285,9 @@ list @transientPropertyGenerationList {
 //------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Selection observable property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName + "> ()\n\n"
 }
 
@@ -302,7 +300,7 @@ override func @transientPropertyGeneration.initCode() -> @string {
 //------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.bindPropertyInSelectionController() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -352,16 +350,16 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
   result  = ""
   if self.mGenerate & not inOverriddenTransients.hasKey (self.mPropertyName) then
     if inPreferences then
-      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
-      result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "//" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
       result += "@MainActor let preferences_" + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName + "> ()\n\n"
     else
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
       result += "  //   Transient property: " + self.mPropertyName + "\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
       result += "  final let " + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName + "> ()\n\n"
-      result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+      result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
       result += "  final var " + self.mPropertyName + " : " + self.mType.swiftTypeName + "? {\n"
       result += "    return self." + self.mPropertyName + "_property.optionalValue\n"
       result += "  }\n\n"

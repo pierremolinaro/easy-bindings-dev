@@ -96,5 +96,6 @@ typealias EBReadWriteProperty_%!ENUM_TYPE_NAME%  = EBEnumReadWriteProperty <%!EN
 typealias EBStoredProperty_%!ENUM_TYPE_NAME%     = EBEnumStoredProperty <%!ENUM_TYPE_NAME%>
 typealias EBStandAloneProperty_%!ENUM_TYPE_NAME% = EBEnumStandAloneProperty <%!ENUM_TYPE_NAME%>
 typealias EBComputedProperty_%!ENUM_TYPE_NAME%   = EBEnumGenericComputedProperty <%!ENUM_TYPE_NAME%>
+typealias EBPreferenceProperty_%!ENUM_TYPE_NAME% = EBEnumPreferenceProperty <%!ENUM_TYPE_NAME%>
 
 //--------------------------------------------------------------------------------------------------

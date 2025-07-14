@@ -73,7 +73,7 @@ end
 
 %for (lkey mKind mActionMap mIsOverriding) in SELECTION_OBSERVABLE_PROPERTY_MAP do
 if not [mKind isEntityType] then
-  %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -···················*\n\n%
+  %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n%
   %  private final func bind_property_%!lkey.string% (model : ReadOnlyArrayOf_%!ELEMENT_TYPE_NAME%) {\n%
   %    model.toMany_%!lkey.string%_StartsBeingObserved (by: self.%!lkey.string%_property)\n%
   %    self.%!lkey.string%_property.mReadModelFunction = { [weak self] in\n%

@@ -247,3 +247,4 @@ makefile-unix/eb
 makefile-unix/eb-debug
 +easy-bindings-ggsproject-build/indexes/*
 galgas-sources/build/indexes/*
++easy-bindings+ggsproject+BUILD/indexes/*

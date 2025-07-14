@@ -11,46 +11,105 @@
 // Phase 1: @_32_lstringlist list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator__32_lstringlist final : public cGenericAbstractEnumerator {
-  public: DownEnumerator__32_lstringlist (const class GGS__32_lstringlist & inEnumeratedObject) ;
+class DownEnumerator__32_lstringlist final {
+  public: DownEnumerator__32_lstringlist (const class GGS__32_lstringlist & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator__32_lstringlist (void) = default ;
 
-  public: class GGS_lstring current_mValue_30_ (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mValue_31_ (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS__32_lstringlist_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator__32_lstringlist final : public cGenericAbstractEnumerator {
-  public: UpEnumerator__32_lstringlist (const class GGS__32_lstringlist & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mValue_30_ (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mValue_31_ (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS__32_lstringlist_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS__32_lstringlist_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator__32_lstringlist (const DownEnumerator__32_lstringlist &) = delete ;
+  private: DownEnumerator__32_lstringlist & operator = (const DownEnumerator__32_lstringlist &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @2lstringlist list
+
+class UpEnumerator__32_lstringlist final {
+  public: UpEnumerator__32_lstringlist (const class GGS__32_lstringlist & inList)  ;
+
+  public: ~ UpEnumerator__32_lstringlist (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mValue_30_ (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mValue_31_ (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS__32_lstringlist_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS__32_lstringlist_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator__32_lstringlist (const UpEnumerator__32_lstringlist &) = delete ;
+  private: UpEnumerator__32_lstringlist & operator = (const UpEnumerator__32_lstringlist &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @2lstringlist list
 //--------------------------------------------------------------------------------------------------
 
-class GGS__32_lstringlist : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS__32_lstringlist : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS__32_lstringlist_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS__32_lstringlist (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS__32_lstringlist (void) = default ;
+
+//--- Copy
+  public: GGS__32_lstringlist (const GGS__32_lstringlist &) = default ;
+  public: GGS__32_lstringlist & operator = (const GGS__32_lstringlist &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS__32_lstringlist_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS__32_lstringlist subList (const int32_t inStart,
+                                        const int32_t inLength,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS__32_lstringlist (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mValue_30_,
                                                  const class GGS_lstring & in_mValue_31_
@@ -149,6 +208,8 @@ class GGS__32_lstringlist : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mValue_30_AtIndex (const class GGS_uint & constinOperand0,
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) const ;
@@ -156,6 +217,8 @@ class GGS__32_lstringlist : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mValue_31_AtIndex (const class GGS_uint & constinOperand0,
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS__32_lstringlist getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                               Compiler * inCompiler
@@ -174,7 +237,7 @@ class GGS__32_lstringlist : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator__32_lstringlist ;
   friend class DownEnumerator__32_lstringlist ;
@@ -183,7 +246,7 @@ class GGS__32_lstringlist : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_lstringlist ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS__32_lstringlist ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @_32_lstringlist_2E_element struct
@@ -267,13 +330,13 @@ class GGS__32_lstringlist_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS__32_lstringlist_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS__32_lstringlist_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -1461,13 +1524,13 @@ class GGS_abstractBooleanMultipleBindingExpressionAST : public AC_GALGAS_referen
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractBooleanMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @abstractBooleanMultipleBindingExpressionAST class
@@ -1508,7 +1571,7 @@ class cPtr_abstractBooleanMultipleBindingExpressionAST : public acStrongPtr_clas
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1556,13 +1619,13 @@ class GGS_abstractDeclarationAST : public AC_GALGAS_reference_class {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @abstractDeclarationAST class
@@ -1624,7 +1687,7 @@ class cPtr_abstractDeclarationAST : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1668,13 +1731,13 @@ class GGS_abstractDefaultValue : public AC_GALGAS_reference_class {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_abstractDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @abstractDefaultValue class
@@ -1715,7 +1778,7 @@ class cPtr_abstractDefaultValue : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -1773,13 +1836,13 @@ class GGS_andBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_andBooleanMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_andBooleanMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @andBooleanMultipleBindingExpressionAST class
@@ -1831,7 +1894,7 @@ class cPtr_andBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1896,13 +1959,13 @@ class GGS_arrayControllerDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_arrayControllerDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum arrayControllerBoundModelAST
@@ -1983,13 +2046,13 @@ class GGS_arrayControllerBoundModelAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBoundModelAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_arrayControllerBoundModelAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @arrayControllerDeclarationAST class
@@ -2052,7 +2115,7 @@ class cPtr_arrayControllerDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2096,13 +2159,13 @@ class GGS_astAbstractViewDeclaration : public AC_GALGAS_reference_class {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAbstractViewDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astAbstractViewDeclaration class
@@ -2149,7 +2212,7 @@ class cPtr_astAbstractViewDeclaration : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -2193,13 +2256,13 @@ class GGS_astAbstractViewInstructionDeclaration : public AC_GALGAS_reference_cla
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astAbstractViewInstructionDeclaration class
@@ -2245,7 +2308,7 @@ class cPtr_astAbstractViewInstructionDeclaration : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -2305,58 +2368,117 @@ class GGS_astComputedHorizontalViewDeclaration : public GGS_astAbstractViewDecla
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astAutoLayoutViewFunctionCallList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astAutoLayoutViewFunctionCallList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astAutoLayoutViewFunctionCallList (const class GGS_astAutoLayoutViewFunctionCallList & inEnumeratedObject) ;
+class DownEnumerator_astAutoLayoutViewFunctionCallList final {
+  public: DownEnumerator_astAutoLayoutViewFunctionCallList (const class GGS_astAutoLayoutViewFunctionCallList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astAutoLayoutViewFunctionCallList (void) = default ;
 
-  public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
-  public: class GGS_astAutoLayoutViewInstructionParameterList current_mParameterList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astAutoLayoutViewFunctionCallList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astAutoLayoutViewFunctionCallList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astAutoLayoutViewFunctionCallList (const class GGS_astAutoLayoutViewFunctionCallList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
   public: class GGS_astAutoLayoutViewInstructionParameterList current_mParameterList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astAutoLayoutViewFunctionCallList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutViewFunctionCallList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astAutoLayoutViewFunctionCallList (const DownEnumerator_astAutoLayoutViewFunctionCallList &) = delete ;
+  private: DownEnumerator_astAutoLayoutViewFunctionCallList & operator = (const DownEnumerator_astAutoLayoutViewFunctionCallList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astAutoLayoutViewFunctionCallList list
+
+class UpEnumerator_astAutoLayoutViewFunctionCallList final {
+  public: UpEnumerator_astAutoLayoutViewFunctionCallList (const class GGS_astAutoLayoutViewFunctionCallList & inList)  ;
+
+  public: ~ UpEnumerator_astAutoLayoutViewFunctionCallList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList current_mParameterList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astAutoLayoutViewFunctionCallList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutViewFunctionCallList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astAutoLayoutViewFunctionCallList (const UpEnumerator_astAutoLayoutViewFunctionCallList &) = delete ;
+  private: UpEnumerator_astAutoLayoutViewFunctionCallList & operator = (const UpEnumerator_astAutoLayoutViewFunctionCallList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astAutoLayoutViewFunctionCallList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astAutoLayoutViewFunctionCallList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astAutoLayoutViewFunctionCallList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astAutoLayoutViewFunctionCallList (void) = default ;
+
+//--- Copy
+  public: GGS_astAutoLayoutViewFunctionCallList (const GGS_astAutoLayoutViewFunctionCallList &) = default ;
+  public: GGS_astAutoLayoutViewFunctionCallList & operator = (const GGS_astAutoLayoutViewFunctionCallList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astAutoLayoutViewFunctionCallList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astAutoLayoutViewFunctionCallList subList (const int32_t inStart,
+                                                          const int32_t inLength,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astAutoLayoutViewFunctionCallList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mFunctionName,
                                                  const class GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList
@@ -2455,6 +2577,8 @@ class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mFunctionNameAtIndex (const class GGS_uint & constinOperand0,
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
@@ -2462,6 +2586,8 @@ class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_mParameterListAtIndex (const class GGS_uint & constinOperand0,
                                                                                                              Compiler * inCompiler
                                                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewFunctionCallList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                 Compiler * inCompiler
@@ -2480,7 +2606,7 @@ class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutViewFunctionCallList ;
   friend class DownEnumerator_astAutoLayoutViewFunctionCallList ;
@@ -2489,52 +2615,111 @@ class GGS_astAutoLayoutViewFunctionCallList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionCallList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionCallList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astNewStackViewDeclarationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astNewStackViewDeclarationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astNewStackViewDeclarationList (const class GGS_astNewStackViewDeclarationList & inEnumeratedObject) ;
+class DownEnumerator_astNewStackViewDeclarationList final {
+  public: DownEnumerator_astNewStackViewDeclarationList (const class GGS_astNewStackViewDeclarationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astNewStackViewDeclarationList (void) = default ;
 
-  public: class GGS_lstring current_mInstanciedStackViewName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mTypeStackViewName (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astNewStackViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astNewStackViewDeclarationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astNewStackViewDeclarationList (const class GGS_astNewStackViewDeclarationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mInstanciedStackViewName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mTypeStackViewName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astNewStackViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astNewStackViewDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astNewStackViewDeclarationList (const DownEnumerator_astNewStackViewDeclarationList &) = delete ;
+  private: DownEnumerator_astNewStackViewDeclarationList & operator = (const DownEnumerator_astNewStackViewDeclarationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astNewStackViewDeclarationList list
+
+class UpEnumerator_astNewStackViewDeclarationList final {
+  public: UpEnumerator_astNewStackViewDeclarationList (const class GGS_astNewStackViewDeclarationList & inList)  ;
+
+  public: ~ UpEnumerator_astNewStackViewDeclarationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mInstanciedStackViewName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mTypeStackViewName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astNewStackViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astNewStackViewDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astNewStackViewDeclarationList (const UpEnumerator_astNewStackViewDeclarationList &) = delete ;
+  private: UpEnumerator_astNewStackViewDeclarationList & operator = (const UpEnumerator_astNewStackViewDeclarationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astNewStackViewDeclarationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astNewStackViewDeclarationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astNewStackViewDeclarationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astNewStackViewDeclarationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astNewStackViewDeclarationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astNewStackViewDeclarationList (void) = default ;
+
+//--- Copy
+  public: GGS_astNewStackViewDeclarationList (const GGS_astNewStackViewDeclarationList &) = default ;
+  public: GGS_astNewStackViewDeclarationList & operator = (const GGS_astNewStackViewDeclarationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astNewStackViewDeclarationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astNewStackViewDeclarationList subList (const int32_t inStart,
+                                                       const int32_t inLength,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astNewStackViewDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mInstanciedStackViewName,
                                                  const class GGS_lstring & in_mTypeStackViewName
@@ -2633,6 +2818,8 @@ class GGS_astNewStackViewDeclarationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mInstanciedStackViewNameAtIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
@@ -2640,6 +2827,8 @@ class GGS_astNewStackViewDeclarationList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mTypeStackViewNameAtIndex (const class GGS_uint & constinOperand0,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astNewStackViewDeclarationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                              Compiler * inCompiler
@@ -2658,7 +2847,7 @@ class GGS_astNewStackViewDeclarationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astNewStackViewDeclarationList ;
   friend class DownEnumerator_astNewStackViewDeclarationList ;
@@ -2667,50 +2856,109 @@ class GGS_astNewStackViewDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astNewStackViewDeclarationList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astNewStackViewDeclarationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astViewInstructionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astViewInstructionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astViewInstructionList (const class GGS_astViewInstructionList & inEnumeratedObject) ;
+class DownEnumerator_astViewInstructionList final {
+  public: DownEnumerator_astViewInstructionList (const class GGS_astViewInstructionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astViewInstructionList (void) = default ;
 
-  public: class GGS_astAbstractViewInstructionDeclaration current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astViewInstructionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astViewInstructionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astViewInstructionList (const class GGS_astViewInstructionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_astAbstractViewInstructionDeclaration current_mInstruction (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astViewInstructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astViewInstructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astViewInstructionList (const DownEnumerator_astViewInstructionList &) = delete ;
+  private: DownEnumerator_astViewInstructionList & operator = (const DownEnumerator_astViewInstructionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astViewInstructionList list
+
+class UpEnumerator_astViewInstructionList final {
+  public: UpEnumerator_astViewInstructionList (const class GGS_astViewInstructionList & inList)  ;
+
+  public: ~ UpEnumerator_astViewInstructionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_astAbstractViewInstructionDeclaration current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astViewInstructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astViewInstructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astViewInstructionList (const UpEnumerator_astViewInstructionList &) = delete ;
+  private: UpEnumerator_astViewInstructionList & operator = (const UpEnumerator_astViewInstructionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astViewInstructionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astViewInstructionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astViewInstructionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astViewInstructionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astViewInstructionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astViewInstructionList (void) = default ;
+
+//--- Copy
+  public: GGS_astViewInstructionList (const GGS_astViewInstructionList &) = default ;
+  public: GGS_astViewInstructionList & operator = (const GGS_astViewInstructionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astViewInstructionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astViewInstructionList subList (const int32_t inStart,
+                                               const int32_t inLength,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astViewInstructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_astAbstractViewInstructionDeclaration & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
@@ -2794,9 +3042,13 @@ class GGS_astViewInstructionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_astAbstractViewInstructionDeclaration getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
                                                                                                        Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astViewInstructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
@@ -2815,7 +3067,7 @@ class GGS_astViewInstructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astViewInstructionList ;
   friend class DownEnumerator_astViewInstructionList ;
@@ -2824,7 +3076,7 @@ class GGS_astViewInstructionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astViewInstructionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astViewInstructionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astComputedHorizontalViewDeclaration class
@@ -2885,7 +3137,7 @@ class cPtr_astComputedHorizontalViewDeclaration : public cPtr_astAbstractViewDec
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2953,13 +3205,13 @@ class GGS_astComputedVerticalViewDeclaration : public GGS_astAbstractViewDeclara
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astComputedVerticalViewDeclaration class
@@ -3026,7 +3278,7 @@ class cPtr_astComputedVerticalViewDeclaration : public cPtr_astAbstractViewDecla
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3122,13 +3374,13 @@ class GGS_astComputedViewInstruction : public GGS_astAbstractViewInstructionDecl
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astComputedViewInstruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedViewInstruction ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum graphicController
@@ -3212,13 +3464,13 @@ class GGS_graphicController : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_graphicController ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_graphicController ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum multipleBindingDescriptor
@@ -3301,13 +3553,13 @@ class GGS_multipleBindingDescriptor : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingDescriptor ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_multipleBindingDescriptor ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum runActionDescriptor
@@ -3393,13 +3645,13 @@ class GGS_runActionDescriptor : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_runActionDescriptor ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_runActionDescriptor ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum tableValueBinding
@@ -3482,60 +3734,119 @@ class GGS_tableValueBinding : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableValueBinding ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_tableValueBinding ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astAutoLayoutViewInstructionParameterList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astAutoLayoutViewInstructionParameterList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astAutoLayoutViewInstructionParameterList (const class GGS_astAutoLayoutViewInstructionParameterList & inEnumeratedObject) ;
+class DownEnumerator_astAutoLayoutViewInstructionParameterList final {
+  public: DownEnumerator_astAutoLayoutViewInstructionParameterList (const class GGS_astAutoLayoutViewInstructionParameterList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astAutoLayoutViewInstructionParameterList (void) = default ;
 
-  public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
-  public: class GGS_astAutoLayoutViewInstructionParameterValue current_mParameter (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astAutoLayoutViewInstructionParameterList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astAutoLayoutViewInstructionParameterList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astAutoLayoutViewInstructionParameterList (const class GGS_astAutoLayoutViewInstructionParameterList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
   public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
   public: class GGS_astAutoLayoutViewInstructionParameterValue current_mParameter (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astAutoLayoutViewInstructionParameterList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutViewInstructionParameterList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astAutoLayoutViewInstructionParameterList (const DownEnumerator_astAutoLayoutViewInstructionParameterList &) = delete ;
+  private: DownEnumerator_astAutoLayoutViewInstructionParameterList & operator = (const DownEnumerator_astAutoLayoutViewInstructionParameterList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astAutoLayoutViewInstructionParameterList list
+
+class UpEnumerator_astAutoLayoutViewInstructionParameterList final {
+  public: UpEnumerator_astAutoLayoutViewInstructionParameterList (const class GGS_astAutoLayoutViewInstructionParameterList & inList)  ;
+
+  public: ~ UpEnumerator_astAutoLayoutViewInstructionParameterList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue current_mParameter (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astAutoLayoutViewInstructionParameterList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutViewInstructionParameterList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astAutoLayoutViewInstructionParameterList (const UpEnumerator_astAutoLayoutViewInstructionParameterList &) = delete ;
+  private: UpEnumerator_astAutoLayoutViewInstructionParameterList & operator = (const UpEnumerator_astAutoLayoutViewInstructionParameterList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astAutoLayoutViewInstructionParameterList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astAutoLayoutViewInstructionParameterList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astAutoLayoutViewInstructionParameterList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astAutoLayoutViewInstructionParameterList (void) = default ;
+
+//--- Copy
+  public: GGS_astAutoLayoutViewInstructionParameterList (const GGS_astAutoLayoutViewInstructionParameterList &) = default ;
+  public: GGS_astAutoLayoutViewInstructionParameterList & operator = (const GGS_astAutoLayoutViewInstructionParameterList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astAutoLayoutViewInstructionParameterList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astAutoLayoutViewInstructionParameterList subList (const int32_t inStart,
+                                                                  const int32_t inLength,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astAutoLayoutViewInstructionParameterList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mParameterName,
                                                  const class GGS_autoLayoutClassParameterType & in_mParameterType,
@@ -3649,6 +3960,8 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue getter_mParameterAtIndex (const class GGS_uint & constinOperand0,
                                                                                                           Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) const ;
@@ -3660,6 +3973,8 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                         Compiler * inCompiler
@@ -3678,7 +3993,7 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutViewInstructionParameterList ;
   friend class DownEnumerator_astAutoLayoutViewInstructionParameterList ;
@@ -3687,54 +4002,113 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @regularBindingList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_regularBindingList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_regularBindingList (const class GGS_regularBindingList & inEnumeratedObject) ;
+class DownEnumerator_regularBindingList final {
+  public: DownEnumerator_regularBindingList (const class GGS_regularBindingList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_regularBindingList (void) = default ;
 
-  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
-  public: class GGS_observablePropertyList current_mObservablePropertyList (LOCATION_ARGS) const ;
-  public: class GGS_bindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_regularBindingList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_regularBindingList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_regularBindingList (const class GGS_regularBindingList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
   public: class GGS_observablePropertyList current_mObservablePropertyList (LOCATION_ARGS) const ;
   public: class GGS_bindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_regularBindingList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_regularBindingList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_regularBindingList (const DownEnumerator_regularBindingList &) = delete ;
+  private: DownEnumerator_regularBindingList & operator = (const DownEnumerator_regularBindingList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @regularBindingList list
+
+class UpEnumerator_regularBindingList final {
+  public: UpEnumerator_regularBindingList (const class GGS_regularBindingList & inList)  ;
+
+  public: ~ UpEnumerator_regularBindingList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
+  public: class GGS_observablePropertyList current_mObservablePropertyList (LOCATION_ARGS) const ;
+  public: class GGS_bindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_regularBindingList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_regularBindingList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_regularBindingList (const UpEnumerator_regularBindingList &) = delete ;
+  private: UpEnumerator_regularBindingList & operator = (const UpEnumerator_regularBindingList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @regularBindingList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_regularBindingList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_regularBindingList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_regularBindingList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_regularBindingList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_regularBindingList (void) = default ;
+
+//--- Copy
+  public: GGS_regularBindingList (const GGS_regularBindingList &) = default ;
+  public: GGS_regularBindingList & operator = (const GGS_regularBindingList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_regularBindingList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_regularBindingList subList (const int32_t inStart,
+                                           const int32_t inLength,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_regularBindingList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mBindingName,
                                                  const class GGS_observablePropertyList & in_mObservablePropertyList,
@@ -3848,6 +4222,8 @@ class GGS_regularBindingList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mBindingNameAtIndex (const class GGS_uint & constinOperand0,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
@@ -3859,6 +4235,8 @@ class GGS_regularBindingList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_observablePropertyList getter_mObservablePropertyListAtIndex (const class GGS_uint & constinOperand0,
                                                                                                    Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_regularBindingList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                  Compiler * inCompiler
@@ -3877,7 +4255,7 @@ class GGS_regularBindingList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_regularBindingList ;
   friend class DownEnumerator_regularBindingList ;
@@ -3886,7 +4264,7 @@ class GGS_regularBindingList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_regularBindingList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_regularBindingList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astComputedViewInstruction class
@@ -3973,7 +4351,7 @@ class cPtr_astComputedViewInstruction : public cPtr_astAbstractViewInstructionDe
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4025,13 +4403,13 @@ class GGS_astDividerInstructionDeclaration : public GGS_astAbstractViewInstructi
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDividerInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astDividerInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astDividerInstructionDeclaration class
@@ -4085,7 +4463,7 @@ class cPtr_astDividerInstructionDeclaration : public cPtr_astAbstractViewInstruc
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4137,13 +4515,13 @@ class GGS_astGutterInstructionDeclaration : public GGS_astAbstractViewInstructio
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astGutterInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astGutterInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astGutterInstructionDeclaration class
@@ -4197,7 +4575,7 @@ class cPtr_astGutterInstructionDeclaration : public cPtr_astAbstractViewInstruct
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4261,13 +4639,13 @@ class GGS_astHStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astHStackViewInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astHStackViewInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum optionalHiddenBinding
@@ -4348,13 +4726,13 @@ class GGS_optionalHiddenBinding : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_optionalHiddenBinding ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_optionalHiddenBinding ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astHStackViewInstructionDeclaration class
@@ -4417,7 +4795,7 @@ class cPtr_astHStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4469,13 +4847,13 @@ class GGS_astLocalViewInstruction : public GGS_astAbstractViewInstructionDeclara
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astLocalViewInstruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astLocalViewInstruction ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astLocalViewInstruction class
@@ -4529,7 +4907,7 @@ class cPtr_astLocalViewInstruction : public cPtr_astAbstractViewInstructionDecla
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4581,13 +4959,13 @@ class GGS_astSeparatorInstructionDeclaration : public GGS_astAbstractViewInstruc
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSeparatorInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astSeparatorInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astSeparatorInstructionDeclaration class
@@ -4641,7 +5019,7 @@ class cPtr_astSeparatorInstructionDeclaration : public cPtr_astAbstractViewInstr
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4689,13 +5067,13 @@ class GGS_astSpaceViewInstruction : public GGS_astAbstractViewInstructionDeclara
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astSpaceViewInstruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astSpaceViewInstruction ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astSpaceViewInstruction class
@@ -4744,7 +5122,7 @@ class cPtr_astSpaceViewInstruction : public cPtr_astAbstractViewInstructionDecla
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4816,13 +5194,13 @@ class GGS_astVStackViewInstructionDeclaration : public GGS_astAbstractViewInstru
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @astVStackViewInstructionDeclaration class
@@ -4891,7 +5269,7 @@ class cPtr_astVStackViewInstructionDeclaration : public cPtr_astAbstractViewInst
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4973,13 +5351,13 @@ class GGS_atomicPropertyDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_atomicPropertyDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_atomicPropertyDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @atomicPropertyDeclarationAST class
@@ -5049,7 +5427,7 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5131,58 +5509,117 @@ class GGS_autoLayoutDocumentDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @arrayControllerBindingListAST list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_arrayControllerBindingListAST final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_arrayControllerBindingListAST (const class GGS_arrayControllerBindingListAST & inEnumeratedObject) ;
+class DownEnumerator_arrayControllerBindingListAST final {
+  public: DownEnumerator_arrayControllerBindingListAST (const class GGS_arrayControllerBindingListAST & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_arrayControllerBindingListAST (void) = default ;
 
-  public: class GGS_lstring current_mControllerName (LOCATION_ARGS) const ;
-  public: class GGS_multipleBindingDescriptor current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_arrayControllerBindingListAST_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_arrayControllerBindingListAST final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_arrayControllerBindingListAST (const class GGS_arrayControllerBindingListAST & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mControllerName (LOCATION_ARGS) const ;
   public: class GGS_multipleBindingDescriptor current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_arrayControllerBindingListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_arrayControllerBindingListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_arrayControllerBindingListAST (const DownEnumerator_arrayControllerBindingListAST &) = delete ;
+  private: DownEnumerator_arrayControllerBindingListAST & operator = (const DownEnumerator_arrayControllerBindingListAST &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @arrayControllerBindingListAST list
+
+class UpEnumerator_arrayControllerBindingListAST final {
+  public: UpEnumerator_arrayControllerBindingListAST (const class GGS_arrayControllerBindingListAST & inList)  ;
+
+  public: ~ UpEnumerator_arrayControllerBindingListAST (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mControllerName (LOCATION_ARGS) const ;
+  public: class GGS_multipleBindingDescriptor current_mHiddenSelectionViewBindingDescriptor (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_arrayControllerBindingListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_arrayControllerBindingListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_arrayControllerBindingListAST (const UpEnumerator_arrayControllerBindingListAST &) = delete ;
+  private: UpEnumerator_arrayControllerBindingListAST & operator = (const UpEnumerator_arrayControllerBindingListAST &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @arrayControllerBindingListAST list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_arrayControllerBindingListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_arrayControllerBindingListAST : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_arrayControllerBindingListAST_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_arrayControllerBindingListAST (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_arrayControllerBindingListAST (void) = default ;
+
+//--- Copy
+  public: GGS_arrayControllerBindingListAST (const GGS_arrayControllerBindingListAST &) = default ;
+  public: GGS_arrayControllerBindingListAST & operator = (const GGS_arrayControllerBindingListAST &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_arrayControllerBindingListAST_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_arrayControllerBindingListAST subList (const int32_t inStart,
+                                                      const int32_t inLength,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_arrayControllerBindingListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mControllerName,
                                                  const class GGS_multipleBindingDescriptor & in_mHiddenSelectionViewBindingDescriptor
@@ -5281,6 +5718,8 @@ class GGS_arrayControllerBindingListAST : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mControllerNameAtIndex (const class GGS_uint & constinOperand0,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
@@ -5288,6 +5727,8 @@ class GGS_arrayControllerBindingListAST : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_multipleBindingDescriptor getter_mHiddenSelectionViewBindingDescriptorAtIndex (const class GGS_uint & constinOperand0,
                                                                                                                     Compiler * inCompiler
                                                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_arrayControllerBindingListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                             Compiler * inCompiler
@@ -5306,7 +5747,7 @@ class GGS_arrayControllerBindingListAST : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_arrayControllerBindingListAST ;
   friend class DownEnumerator_arrayControllerBindingListAST ;
@@ -5315,52 +5756,111 @@ class GGS_arrayControllerBindingListAST : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_arrayControllerBindingListAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_arrayControllerBindingListAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astAutoLayoutOutletLinkerList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astAutoLayoutOutletLinkerList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astAutoLayoutOutletLinkerList (const class GGS_astAutoLayoutOutletLinkerList & inEnumeratedObject) ;
+class DownEnumerator_astAutoLayoutOutletLinkerList final {
+  public: DownEnumerator_astAutoLayoutOutletLinkerList (const class GGS_astAutoLayoutOutletLinkerList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astAutoLayoutOutletLinkerList (void) = default ;
 
-  public: class GGS_lstring current_mLinkerName (LOCATION_ARGS) const ;
-  public: class GGS_lstringlist current_mOutletNameList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astAutoLayoutOutletLinkerList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astAutoLayoutOutletLinkerList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astAutoLayoutOutletLinkerList (const class GGS_astAutoLayoutOutletLinkerList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mLinkerName (LOCATION_ARGS) const ;
   public: class GGS_lstringlist current_mOutletNameList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astAutoLayoutOutletLinkerList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutOutletLinkerList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astAutoLayoutOutletLinkerList (const DownEnumerator_astAutoLayoutOutletLinkerList &) = delete ;
+  private: DownEnumerator_astAutoLayoutOutletLinkerList & operator = (const DownEnumerator_astAutoLayoutOutletLinkerList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astAutoLayoutOutletLinkerList list
+
+class UpEnumerator_astAutoLayoutOutletLinkerList final {
+  public: UpEnumerator_astAutoLayoutOutletLinkerList (const class GGS_astAutoLayoutOutletLinkerList & inList)  ;
+
+  public: ~ UpEnumerator_astAutoLayoutOutletLinkerList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mLinkerName (LOCATION_ARGS) const ;
+  public: class GGS_lstringlist current_mOutletNameList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astAutoLayoutOutletLinkerList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astAutoLayoutOutletLinkerList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astAutoLayoutOutletLinkerList (const UpEnumerator_astAutoLayoutOutletLinkerList &) = delete ;
+  private: UpEnumerator_astAutoLayoutOutletLinkerList & operator = (const UpEnumerator_astAutoLayoutOutletLinkerList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astAutoLayoutOutletLinkerList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astAutoLayoutOutletLinkerList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astAutoLayoutOutletLinkerList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astAutoLayoutOutletLinkerList (void) = default ;
+
+//--- Copy
+  public: GGS_astAutoLayoutOutletLinkerList (const GGS_astAutoLayoutOutletLinkerList &) = default ;
+  public: GGS_astAutoLayoutOutletLinkerList & operator = (const GGS_astAutoLayoutOutletLinkerList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astAutoLayoutOutletLinkerList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astAutoLayoutOutletLinkerList subList (const int32_t inStart,
+                                                      const int32_t inLength,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astAutoLayoutOutletLinkerList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mLinkerName,
                                                  const class GGS_lstringlist & in_mOutletNameList
@@ -5459,6 +5959,8 @@ class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mLinkerNameAtIndex (const class GGS_uint & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -5466,6 +5968,8 @@ class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_mOutletNameListAtIndex (const class GGS_uint & constinOperand0,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutOutletLinkerList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                             Compiler * inCompiler
@@ -5484,7 +5988,7 @@ class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutOutletLinkerList ;
   friend class DownEnumerator_astAutoLayoutOutletLinkerList ;
@@ -5493,52 +5997,111 @@ class GGS_astAutoLayoutOutletLinkerList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutOutletLinkerList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutOutletLinkerList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astViewDeclarationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_astViewDeclarationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astViewDeclarationList (const class GGS_astViewDeclarationList & inEnumeratedObject) ;
+class DownEnumerator_astViewDeclarationList final {
+  public: DownEnumerator_astViewDeclarationList (const class GGS_astViewDeclarationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_astViewDeclarationList (void) = default ;
 
-  public: class GGS_lstring current_mViewName (LOCATION_ARGS) const ;
-  public: class GGS_astAbstractViewDeclaration current_mView (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_astViewDeclarationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astViewDeclarationList (const class GGS_astViewDeclarationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mViewName (LOCATION_ARGS) const ;
   public: class GGS_astAbstractViewDeclaration current_mView (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_astViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astViewDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astViewDeclarationList (const DownEnumerator_astViewDeclarationList &) = delete ;
+  private: DownEnumerator_astViewDeclarationList & operator = (const DownEnumerator_astViewDeclarationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @astViewDeclarationList list
+
+class UpEnumerator_astViewDeclarationList final {
+  public: UpEnumerator_astViewDeclarationList (const class GGS_astViewDeclarationList & inList)  ;
+
+  public: ~ UpEnumerator_astViewDeclarationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mViewName (LOCATION_ARGS) const ;
+  public: class GGS_astAbstractViewDeclaration current_mView (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_astViewDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_astViewDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astViewDeclarationList (const UpEnumerator_astViewDeclarationList &) = delete ;
+  private: UpEnumerator_astViewDeclarationList & operator = (const UpEnumerator_astViewDeclarationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @astViewDeclarationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astViewDeclarationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_astViewDeclarationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_astViewDeclarationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_astViewDeclarationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_astViewDeclarationList (void) = default ;
+
+//--- Copy
+  public: GGS_astViewDeclarationList (const GGS_astViewDeclarationList &) = default ;
+  public: GGS_astViewDeclarationList & operator = (const GGS_astViewDeclarationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_astViewDeclarationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_astViewDeclarationList subList (const int32_t inStart,
+                                               const int32_t inLength,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_astViewDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mViewName,
                                                  const class GGS_astAbstractViewDeclaration & in_mView
@@ -5637,6 +6200,8 @@ class GGS_astViewDeclarationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_astAbstractViewDeclaration getter_mViewAtIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
@@ -5644,6 +6209,8 @@ class GGS_astViewDeclarationList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mViewNameAtIndex (const class GGS_uint & constinOperand0,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_astViewDeclarationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
@@ -5662,7 +6229,7 @@ class GGS_astViewDeclarationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astViewDeclarationList ;
   friend class DownEnumerator_astViewDeclarationList ;
@@ -5671,39 +6238,24 @@ class GGS_astViewDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astViewDeclarationList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astViewDeclarationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletDeclarationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_outletDeclarationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_outletDeclarationList (const class GGS_outletDeclarationList & inEnumeratedObject) ;
+class DownEnumerator_outletDeclarationList final {
+  public: DownEnumerator_outletDeclarationList (const class GGS_outletDeclarationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_outletDeclarationList (void) = default ;
 
-  public: class GGS_lstring current_mOutletTypeName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mOutletName (LOCATION_ARGS) const ;
-  public: class GGS_tableValueBinding current_mTableValueBindingDescriptor (LOCATION_ARGS) const ;
-  public: class GGS_runActionDescriptor current_mRunDescriptor (LOCATION_ARGS) const ;
-  public: class GGS_multipleBindingDescriptor current_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
-  public: class GGS_multipleBindingDescriptor current_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
-  public: class GGS_regularBindingList current_mRegularBindingList (LOCATION_ARGS) const ;
-  public: class GGS_graphicController current_mGraphicController (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletDeclarationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_outletDeclarationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_outletDeclarationList (const class GGS_outletDeclarationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mOutletTypeName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mOutletName (LOCATION_ARGS) const ;
@@ -5715,20 +6267,94 @@ class UpEnumerator_outletDeclarationList final : public cGenericAbstractEnumerat
   public: class GGS_graphicController current_mGraphicController (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_outletDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_outletDeclarationList (const DownEnumerator_outletDeclarationList &) = delete ;
+  private: DownEnumerator_outletDeclarationList & operator = (const DownEnumerator_outletDeclarationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @outletDeclarationList list
+
+class UpEnumerator_outletDeclarationList final {
+  public: UpEnumerator_outletDeclarationList (const class GGS_outletDeclarationList & inList)  ;
+
+  public: ~ UpEnumerator_outletDeclarationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mOutletTypeName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mOutletName (LOCATION_ARGS) const ;
+  public: class GGS_tableValueBinding current_mTableValueBindingDescriptor (LOCATION_ARGS) const ;
+  public: class GGS_runActionDescriptor current_mRunDescriptor (LOCATION_ARGS) const ;
+  public: class GGS_multipleBindingDescriptor current_mEnabledBindingDescriptor (LOCATION_ARGS) const ;
+  public: class GGS_multipleBindingDescriptor current_mHiddenBindingDescriptor (LOCATION_ARGS) const ;
+  public: class GGS_regularBindingList current_mRegularBindingList (LOCATION_ARGS) const ;
+  public: class GGS_graphicController current_mGraphicController (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_outletDeclarationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletDeclarationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_outletDeclarationList (const UpEnumerator_outletDeclarationList &) = delete ;
+  private: UpEnumerator_outletDeclarationList & operator = (const UpEnumerator_outletDeclarationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @outletDeclarationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_outletDeclarationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_outletDeclarationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_outletDeclarationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_outletDeclarationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_outletDeclarationList (void) = default ;
+
+//--- Copy
+  public: GGS_outletDeclarationList (const GGS_outletDeclarationList &) = default ;
+  public: GGS_outletDeclarationList & operator = (const GGS_outletDeclarationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_outletDeclarationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_outletDeclarationList subList (const int32_t inStart,
+                                              const int32_t inLength,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_outletDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOutletTypeName,
                                                  const class GGS_lstring & in_mOutletName,
@@ -5917,6 +6543,8 @@ class GGS_outletDeclarationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_multipleBindingDescriptor getter_mEnabledBindingDescriptorAtIndex (const class GGS_uint & constinOperand0,
                                                                                                         Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) const ;
@@ -5949,6 +6577,8 @@ class GGS_outletDeclarationList : public AC_GALGAS_list {
                                                                                                    Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_outletDeclarationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const ;
@@ -5966,7 +6596,7 @@ class GGS_outletDeclarationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletDeclarationList ;
   friend class DownEnumerator_outletDeclarationList ;
@@ -5975,7 +6605,7 @@ class GGS_outletDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletDeclarationList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletDeclarationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @autoLayoutDocumentDeclarationAST class
@@ -6053,7 +6683,7 @@ class cPtr_autoLayoutDocumentDeclarationAST : public cPtr_abstractDeclarationAST
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6127,58 +6757,117 @@ class GGS_autoLayoutTableViewControllerDeclarationAST : public GGS_abstractDecla
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutTableViewControllerAttributListAST list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_autoLayoutTableViewControllerAttributListAST final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_autoLayoutTableViewControllerAttributListAST (const class GGS_autoLayoutTableViewControllerAttributListAST & inEnumeratedObject) ;
+class DownEnumerator_autoLayoutTableViewControllerAttributListAST final {
+  public: DownEnumerator_autoLayoutTableViewControllerAttributListAST (const class GGS_autoLayoutTableViewControllerAttributListAST & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_autoLayoutTableViewControllerAttributListAST (void) = default ;
 
-  public: class GGS_lstring current_mAttributeName (LOCATION_ARGS) const ;
-  public: class GGS_abstractDefaultValue current_mAttributeValue (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autoLayoutTableViewControllerAttributListAST_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_autoLayoutTableViewControllerAttributListAST final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_autoLayoutTableViewControllerAttributListAST (const class GGS_autoLayoutTableViewControllerAttributListAST & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mAttributeName (LOCATION_ARGS) const ;
   public: class GGS_abstractDefaultValue current_mAttributeValue (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_autoLayoutTableViewControllerAttributListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutTableViewControllerAttributListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_autoLayoutTableViewControllerAttributListAST (const DownEnumerator_autoLayoutTableViewControllerAttributListAST &) = delete ;
+  private: DownEnumerator_autoLayoutTableViewControllerAttributListAST & operator = (const DownEnumerator_autoLayoutTableViewControllerAttributListAST &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerAttributListAST list
+
+class UpEnumerator_autoLayoutTableViewControllerAttributListAST final {
+  public: UpEnumerator_autoLayoutTableViewControllerAttributListAST (const class GGS_autoLayoutTableViewControllerAttributListAST & inList)  ;
+
+  public: ~ UpEnumerator_autoLayoutTableViewControllerAttributListAST (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mAttributeName (LOCATION_ARGS) const ;
+  public: class GGS_abstractDefaultValue current_mAttributeValue (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_autoLayoutTableViewControllerAttributListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutTableViewControllerAttributListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_autoLayoutTableViewControllerAttributListAST (const UpEnumerator_autoLayoutTableViewControllerAttributListAST &) = delete ;
+  private: UpEnumerator_autoLayoutTableViewControllerAttributListAST & operator = (const UpEnumerator_autoLayoutTableViewControllerAttributListAST &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @autoLayoutTableViewControllerAttributListAST list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_autoLayoutTableViewControllerAttributListAST_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_autoLayoutTableViewControllerAttributListAST (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_autoLayoutTableViewControllerAttributListAST (void) = default ;
+
+//--- Copy
+  public: GGS_autoLayoutTableViewControllerAttributListAST (const GGS_autoLayoutTableViewControllerAttributListAST &) = default ;
+  public: GGS_autoLayoutTableViewControllerAttributListAST & operator = (const GGS_autoLayoutTableViewControllerAttributListAST &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_autoLayoutTableViewControllerAttributListAST_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_autoLayoutTableViewControllerAttributListAST subList (const int32_t inStart,
+                                                                     const int32_t inLength,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_autoLayoutTableViewControllerAttributListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mAttributeName,
                                                  const class GGS_abstractDefaultValue & in_mAttributeValue
@@ -6277,6 +6966,8 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mAttributeNameAtIndex (const class GGS_uint & constinOperand0,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
@@ -6284,6 +6975,8 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_abstractDefaultValue getter_mAttributeValueAtIndex (const class GGS_uint & constinOperand0,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerAttributListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                            Compiler * inCompiler
@@ -6302,7 +6995,7 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutTableViewControllerAttributListAST ;
   friend class DownEnumerator_autoLayoutTableViewControllerAttributListAST ;
@@ -6311,35 +7004,24 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerAttributListAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerAttributListAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutTableViewControllerBoundColumnListAST list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const class GGS_autoLayoutTableViewControllerBoundColumnListAST & inEnumeratedObject) ;
+class DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST final {
+  public: DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const class GGS_autoLayoutTableViewControllerBoundColumnListAST & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST (void) = default ;
 
-  public: class GGS_bool current_mEditable (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
-  public: class GGS_astAutoLayoutViewInstructionParameterList current_mColumnParameterListAST (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const class GGS_autoLayoutTableViewControllerBoundColumnListAST & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_bool current_mEditable (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
@@ -6347,20 +7029,90 @@ class UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST final : publi
   public: class GGS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST &) = delete ;
+  private: DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST & operator = (const DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerBoundColumnListAST list
+
+class UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST final {
+  public: UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const class GGS_autoLayoutTableViewControllerBoundColumnListAST & inList)  ;
+
+  public: ~ UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_bool current_mEditable (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList current_mColumnParameterListAST (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mSortPropertyName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST (const UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST &) = delete ;
+  private: UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST & operator = (const UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @autoLayoutTableViewControllerBoundColumnListAST list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_autoLayoutTableViewControllerBoundColumnListAST (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_autoLayoutTableViewControllerBoundColumnListAST (void) = default ;
+
+//--- Copy
+  public: GGS_autoLayoutTableViewControllerBoundColumnListAST (const GGS_autoLayoutTableViewControllerBoundColumnListAST &) = default ;
+  public: GGS_autoLayoutTableViewControllerBoundColumnListAST & operator = (const GGS_autoLayoutTableViewControllerBoundColumnListAST &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_autoLayoutTableViewControllerBoundColumnListAST subList (const int32_t inStart,
+                                                                        const int32_t inLength,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_autoLayoutTableViewControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_bool & in_mEditable,
                                                  const class GGS_lstring & in_mPropertyName,
@@ -6489,6 +7241,8 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_lis
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListASTAtIndex (const class GGS_uint & constinOperand0,
                                                                                                                       Compiler * inCompiler
                                                                                                                       COMMA_LOCATION_ARGS) const ;
@@ -6504,6 +7258,8 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_lis
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mSortPropertyNameAtIndex (const class GGS_uint & constinOperand0,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                               Compiler * inCompiler
@@ -6522,7 +7278,7 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_lis
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST ;
   friend class DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST ;
@@ -6531,7 +7287,7 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_lis
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerBoundColumnListAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @autoLayoutTableViewControllerDeclarationAST class
@@ -6603,7 +7359,7 @@ class cPtr_autoLayoutTableViewControllerDeclarationAST : public cPtr_abstractDec
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6698,58 +7454,117 @@ class GGS_autoLayoutViewClassDeclarationAST : public GGS_abstractDeclarationAST 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutClassParameterList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_autoLayoutClassParameterList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_autoLayoutClassParameterList (const class GGS_autoLayoutClassParameterList & inEnumeratedObject) ;
+class DownEnumerator_autoLayoutClassParameterList final {
+  public: DownEnumerator_autoLayoutClassParameterList (const class GGS_autoLayoutClassParameterList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_autoLayoutClassParameterList (void) = default ;
 
-  public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autoLayoutClassParameterList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_autoLayoutClassParameterList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_autoLayoutClassParameterList (const class GGS_autoLayoutClassParameterList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
   public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_autoLayoutClassParameterList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutClassParameterList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_autoLayoutClassParameterList (const DownEnumerator_autoLayoutClassParameterList &) = delete ;
+  private: DownEnumerator_autoLayoutClassParameterList & operator = (const DownEnumerator_autoLayoutClassParameterList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutClassParameterList list
+
+class UpEnumerator_autoLayoutClassParameterList final {
+  public: UpEnumerator_autoLayoutClassParameterList (const class GGS_autoLayoutClassParameterList & inList)  ;
+
+  public: ~ UpEnumerator_autoLayoutClassParameterList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mParameterName (LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterType current_mParameterType (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_autoLayoutClassParameterList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutClassParameterList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_autoLayoutClassParameterList (const UpEnumerator_autoLayoutClassParameterList &) = delete ;
+  private: UpEnumerator_autoLayoutClassParameterList & operator = (const UpEnumerator_autoLayoutClassParameterList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @autoLayoutClassParameterList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_autoLayoutClassParameterList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_autoLayoutClassParameterList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_autoLayoutClassParameterList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_autoLayoutClassParameterList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_autoLayoutClassParameterList (void) = default ;
+
+//--- Copy
+  public: GGS_autoLayoutClassParameterList (const GGS_autoLayoutClassParameterList &) = default ;
+  public: GGS_autoLayoutClassParameterList & operator = (const GGS_autoLayoutClassParameterList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_autoLayoutClassParameterList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_autoLayoutClassParameterList subList (const int32_t inStart,
+                                                     const int32_t inLength,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_autoLayoutClassParameterList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mParameterName,
                                                  const class GGS_autoLayoutClassParameterType & in_mParameterType
@@ -6848,6 +7663,8 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mParameterNameAtIndex (const class GGS_uint & constinOperand0,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
@@ -6855,6 +7672,8 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                            Compiler * inCompiler
@@ -6873,7 +7692,7 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutClassParameterList ;
   friend class DownEnumerator_autoLayoutClassParameterList ;
@@ -6882,60 +7701,117 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @astAutoLayoutViewFunctionMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_astAutoLayoutViewFunctionMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_astAutoLayoutViewFunctionMap (const class GGS_astAutoLayoutViewFunctionMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterList current_mFomalParameterList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astAutoLayoutViewFunctionMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_astAutoLayoutViewFunctionMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_astAutoLayoutViewFunctionMap (const class GGS_astAutoLayoutViewFunctionMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterList current_mFomalParameterList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_astAutoLayoutViewFunctionMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astAutoLayoutViewFunctionMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_astAutoLayoutViewFunctionMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_astAutoLayoutViewFunctionMap_searchKey ;
+class DownEnumerator_astAutoLayoutViewFunctionMap final {
+
+  public: DownEnumerator_astAutoLayoutViewFunctionMap (const class GGS_astAutoLayoutViewFunctionMap & inMap) ;
+
+  public: ~ DownEnumerator_astAutoLayoutViewFunctionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_autoLayoutClassParameterList current_mFomalParameterList (LOCATION_ARGS) const ;
+
+  public: class GGS_astAutoLayoutViewFunctionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_astAutoLayoutViewFunctionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_astAutoLayoutViewFunctionMap (const DownEnumerator_astAutoLayoutViewFunctionMap &) = delete ;
+  private: DownEnumerator_astAutoLayoutViewFunctionMap & operator = (const DownEnumerator_astAutoLayoutViewFunctionMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_astAutoLayoutViewFunctionMap final {
+  public: UpEnumerator_astAutoLayoutViewFunctionMap (const class GGS_astAutoLayoutViewFunctionMap & inMap)  ;
+
+  public: ~ UpEnumerator_astAutoLayoutViewFunctionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterList current_mFomalParameterList (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewFunctionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_astAutoLayoutViewFunctionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_astAutoLayoutViewFunctionMap (const UpEnumerator_astAutoLayoutViewFunctionMap &) = delete ;
+  private: UpEnumerator_astAutoLayoutViewFunctionMap & operator = (const UpEnumerator_astAutoLayoutViewFunctionMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_astAutoLayoutViewFunctionMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_astAutoLayoutViewFunctionMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_astAutoLayoutViewFunctionMap (void) ;
+
+//--- Handle copy
   public: GGS_astAutoLayoutViewFunctionMap (const GGS_astAutoLayoutViewFunctionMap & inSource) ;
   public: GGS_astAutoLayoutViewFunctionMap & operator = (const GGS_astAutoLayoutViewFunctionMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_astAutoLayoutViewFunctionMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_astAutoLayoutViewFunctionMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_astAutoLayoutViewFunctionMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -6978,6 +7854,27 @@ class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_mFomalParameterListForKey (const class GGS_string & constinOperand0,
                                                                                                     Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) const ;
@@ -6994,11 +7891,7 @@ class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_astAutoLayoutViewFunctionMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                         const GGS_string & inKey
-                                                                                                         COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutViewFunctionMap ;
   friend class DownEnumerator_astAutoLayoutViewFunctionMap ;
@@ -7007,35 +7900,7 @@ class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@astAutoLayoutViewFunctionMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_astAutoLayoutViewFunctionMap : public cMapElement {
-//--- Map attributes
-  public: GGS_autoLayoutClassParameterList mProperty_mFomalParameterList ;
-
-//--- Constructors
-  public: cMapElement_astAutoLayoutViewFunctionMap (const GGS_astAutoLayoutViewFunctionMap_2E_element & inValue
-                                                    COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_astAutoLayoutViewFunctionMap (const GGS_lstring & inKey,
-                                                    const GGS_autoLayoutClassParameterList & in_mFomalParameterList
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @autoLayoutViewClassDeclarationAST class
@@ -7111,7 +7976,7 @@ class cPtr_autoLayoutViewClassDeclarationAST : public cPtr_abstractDeclarationAS
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7164,13 +8029,13 @@ class GGS_boolAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_boolAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_boolAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @boolAsDefaultValue class
@@ -7214,7 +8079,7 @@ class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7277,13 +8142,13 @@ class GGS_comparisonMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_comparisonMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum multipleBindingComparisonAST
@@ -7374,13 +8239,13 @@ class GGS_multipleBindingComparisonAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_multipleBindingComparisonAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_multipleBindingComparisonAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @comparisonMultipleBindingExpressionAST class
@@ -7435,7 +8300,7 @@ class cPtr_comparisonMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7505,56 +8370,115 @@ class GGS_computedPropertyDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_computedPropertyDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_computedPropertyDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @observablePropertyList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_observablePropertyList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_observablePropertyList (const class GGS_observablePropertyList & inEnumeratedObject) ;
+class DownEnumerator_observablePropertyList final {
+  public: DownEnumerator_observablePropertyList (const class GGS_observablePropertyList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_observablePropertyList (void) = default ;
 
-  public: class GGS_observablePropertyAST current_mObservableProperty (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_observablePropertyList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_observablePropertyList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_observablePropertyList (const class GGS_observablePropertyList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_observablePropertyAST current_mObservableProperty (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_observablePropertyList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_observablePropertyList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_observablePropertyList (const DownEnumerator_observablePropertyList &) = delete ;
+  private: DownEnumerator_observablePropertyList & operator = (const DownEnumerator_observablePropertyList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @observablePropertyList list
+
+class UpEnumerator_observablePropertyList final {
+  public: UpEnumerator_observablePropertyList (const class GGS_observablePropertyList & inList)  ;
+
+  public: ~ UpEnumerator_observablePropertyList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_observablePropertyAST current_mObservableProperty (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_observablePropertyList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_observablePropertyList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_observablePropertyList (const UpEnumerator_observablePropertyList &) = delete ;
+  private: UpEnumerator_observablePropertyList & operator = (const UpEnumerator_observablePropertyList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @observablePropertyList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_observablePropertyList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_observablePropertyList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_observablePropertyList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_observablePropertyList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_observablePropertyList (void) = default ;
+
+//--- Copy
+  public: GGS_observablePropertyList (const GGS_observablePropertyList &) = default ;
+  public: GGS_observablePropertyList & operator = (const GGS_observablePropertyList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_observablePropertyList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_observablePropertyList subList (const int32_t inStart,
+                                               const int32_t inLength,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_observablePropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_observablePropertyAST & in_mObservableProperty
                                                  COMMA_LOCATION_ARGS) ;
@@ -7638,9 +8562,13 @@ class GGS_observablePropertyList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_observablePropertyAST getter_mObservablePropertyAtIndex (const class GGS_uint & constinOperand0,
                                                                                               Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_observablePropertyList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
@@ -7659,7 +8587,7 @@ class GGS_observablePropertyList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_observablePropertyList ;
   friend class DownEnumerator_observablePropertyList ;
@@ -7668,7 +8596,7 @@ class GGS_observablePropertyList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @computedPropertyDeclarationAST class
@@ -7734,7 +8662,7 @@ class cPtr_computedPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7787,13 +8715,13 @@ class GGS_doubleAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_doubleAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_doubleAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @doubleAsDefaultValue class
@@ -7837,7 +8765,7 @@ class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7927,56 +8855,115 @@ class GGS_entityDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_entityDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @externSwiftDelegateList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_externSwiftDelegateList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_externSwiftDelegateList (const class GGS_externSwiftDelegateList & inEnumeratedObject) ;
+class DownEnumerator_externSwiftDelegateList final {
+  public: DownEnumerator_externSwiftDelegateList (const class GGS_externSwiftDelegateList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_externSwiftDelegateList (void) = default ;
 
-  public: class GGS_lstring current_mExternSwiftDelegateName (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_externSwiftDelegateList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_externSwiftDelegateList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_externSwiftDelegateList (const class GGS_externSwiftDelegateList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mExternSwiftDelegateName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_externSwiftDelegateList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_externSwiftDelegateList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_externSwiftDelegateList (const DownEnumerator_externSwiftDelegateList &) = delete ;
+  private: DownEnumerator_externSwiftDelegateList & operator = (const DownEnumerator_externSwiftDelegateList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @externSwiftDelegateList list
+
+class UpEnumerator_externSwiftDelegateList final {
+  public: UpEnumerator_externSwiftDelegateList (const class GGS_externSwiftDelegateList & inList)  ;
+
+  public: ~ UpEnumerator_externSwiftDelegateList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mExternSwiftDelegateName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_externSwiftDelegateList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_externSwiftDelegateList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_externSwiftDelegateList (const UpEnumerator_externSwiftDelegateList &) = delete ;
+  private: UpEnumerator_externSwiftDelegateList & operator = (const UpEnumerator_externSwiftDelegateList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @externSwiftDelegateList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_externSwiftDelegateList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_externSwiftDelegateList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_externSwiftDelegateList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_externSwiftDelegateList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_externSwiftDelegateList (void) = default ;
+
+//--- Copy
+  public: GGS_externSwiftDelegateList (const GGS_externSwiftDelegateList &) = default ;
+  public: GGS_externSwiftDelegateList & operator = (const GGS_externSwiftDelegateList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_externSwiftDelegateList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_externSwiftDelegateList subList (const int32_t inStart,
+                                                const int32_t inLength,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_externSwiftDelegateList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mExternSwiftDelegateName
                                                  COMMA_LOCATION_ARGS) ;
@@ -8060,9 +9047,13 @@ class GGS_externSwiftDelegateList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mExternSwiftDelegateNameAtIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_externSwiftDelegateList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                       Compiler * inCompiler
@@ -8081,7 +9072,7 @@ class GGS_externSwiftDelegateList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_externSwiftDelegateList ;
   friend class DownEnumerator_externSwiftDelegateList ;
@@ -8090,54 +9081,113 @@ class GGS_externSwiftDelegateList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftDelegateList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_externSwiftDelegateList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @simpleStoredPropertyList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_simpleStoredPropertyList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_simpleStoredPropertyList (const class GGS_simpleStoredPropertyList & inEnumeratedObject) ;
+class DownEnumerator_simpleStoredPropertyList final {
+  public: DownEnumerator_simpleStoredPropertyList (const class GGS_simpleStoredPropertyList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_simpleStoredPropertyList (void) = default ;
 
-  public: class GGS_lstring current_mPropertyTypeName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
-  public: class GGS_abstractDefaultValue current_mDefaultValue (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_simpleStoredPropertyList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_simpleStoredPropertyList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_simpleStoredPropertyList (const class GGS_simpleStoredPropertyList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mPropertyTypeName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
   public: class GGS_abstractDefaultValue current_mDefaultValue (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_simpleStoredPropertyList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_simpleStoredPropertyList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_simpleStoredPropertyList (const DownEnumerator_simpleStoredPropertyList &) = delete ;
+  private: DownEnumerator_simpleStoredPropertyList & operator = (const DownEnumerator_simpleStoredPropertyList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @simpleStoredPropertyList list
+
+class UpEnumerator_simpleStoredPropertyList final {
+  public: UpEnumerator_simpleStoredPropertyList (const class GGS_simpleStoredPropertyList & inList)  ;
+
+  public: ~ UpEnumerator_simpleStoredPropertyList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mPropertyTypeName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mPropertyName (LOCATION_ARGS) const ;
+  public: class GGS_abstractDefaultValue current_mDefaultValue (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_simpleStoredPropertyList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_simpleStoredPropertyList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_simpleStoredPropertyList (const UpEnumerator_simpleStoredPropertyList &) = delete ;
+  private: UpEnumerator_simpleStoredPropertyList & operator = (const UpEnumerator_simpleStoredPropertyList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @simpleStoredPropertyList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_simpleStoredPropertyList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_simpleStoredPropertyList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_simpleStoredPropertyList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_simpleStoredPropertyList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_simpleStoredPropertyList (void) = default ;
+
+//--- Copy
+  public: GGS_simpleStoredPropertyList (const GGS_simpleStoredPropertyList &) = default ;
+  public: GGS_simpleStoredPropertyList & operator = (const GGS_simpleStoredPropertyList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_simpleStoredPropertyList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_simpleStoredPropertyList subList (const int32_t inStart,
+                                                 const int32_t inLength,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_simpleStoredPropertyList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mPropertyTypeName,
                                                  const class GGS_lstring & in_mPropertyName,
@@ -8251,6 +9301,8 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_abstractDefaultValue getter_mDefaultValueAtIndex (const class GGS_uint & constinOperand0,
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) const ;
@@ -8262,6 +9314,8 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mPropertyTypeNameAtIndex (const class GGS_uint & constinOperand0,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_simpleStoredPropertyList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                        Compiler * inCompiler
@@ -8280,7 +9334,7 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_simpleStoredPropertyList ;
   friend class DownEnumerator_simpleStoredPropertyList ;
@@ -8289,7 +9343,7 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_simpleStoredPropertyList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_simpleStoredPropertyList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @entityDeclarationAST class
@@ -8378,7 +9432,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8436,13 +9490,13 @@ class GGS_enumerationDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumerationDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @enumerationDeclarationAST class
@@ -8497,7 +9551,7 @@ class cPtr_enumerationDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8550,13 +9604,13 @@ class GGS_identifierAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_identifierAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_identifierAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @identifierAsDefaultValue class
@@ -8600,7 +9654,7 @@ class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8658,13 +9712,13 @@ class GGS_integerAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_integerAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_integerAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @integerAsDefaultValue class
@@ -8711,7 +9765,7 @@ class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8764,13 +9818,13 @@ class GGS_literalIntMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_literalIntMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @literalIntMultipleBindingExpressionAST class
@@ -8819,7 +9873,7 @@ class cPtr_literalIntMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8872,13 +9926,13 @@ class GGS_negateBooleanMultipleBindingExpressionAST : public GGS_abstractBoolean
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_negateBooleanMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_negateBooleanMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @negateBooleanMultipleBindingExpressionAST class
@@ -8927,7 +9981,7 @@ class cPtr_negateBooleanMultipleBindingExpressionAST : public cPtr_abstractBoole
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8980,13 +10034,13 @@ class GGS_observablePropertyInMultipleBindingExpressionAST : public GGS_abstract
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyInMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyInMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum observablePropertyAST
@@ -9367,13 +10421,13 @@ class GGS_observablePropertyAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_observablePropertyAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @observablePropertyInMultipleBindingExpressionAST class
@@ -9422,7 +10476,7 @@ class cPtr_observablePropertyInMultipleBindingExpressionAST : public cPtr_abstra
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9480,13 +10534,13 @@ class GGS_orBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMult
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_orBooleanMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_orBooleanMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @orBooleanMultipleBindingExpressionAST class
@@ -9538,7 +10592,7 @@ class cPtr_orBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanMu
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9623,13 +10677,13 @@ class GGS_outletClassDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @outletClassDeclarationAST class
@@ -9699,7 +10753,7 @@ class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9752,13 +10806,13 @@ class GGS_prefsAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @prefsAsDefaultValue class
@@ -9807,7 +10861,7 @@ class cPtr_prefsAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9882,13 +10936,13 @@ class GGS_proxyDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_proxyDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum proxyKind
@@ -9961,13 +11015,13 @@ class GGS_proxyKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_proxyKind ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_proxyKind ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @proxyDeclarationAST class
@@ -10036,7 +11090,7 @@ class cPtr_proxyDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10102,13 +11156,13 @@ class GGS_selectionControllerDeclarationAST : public GGS_abstractDeclarationAST 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_selectionControllerDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_selectionControllerDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @selectionControllerDeclarationAST class
@@ -10174,7 +11228,7 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10227,13 +11281,13 @@ class GGS_stringAsDefaultValue : public GGS_abstractDefaultValue {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_stringAsDefaultValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_stringAsDefaultValue ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @stringAsDefaultValue class
@@ -10277,7 +11331,7 @@ class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10355,13 +11409,13 @@ class GGS_toManyRelationshipAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toManyRelationshipAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum toManyRelationshipOptionAST
@@ -10455,13 +11509,13 @@ class GGS_toManyRelationshipOptionAST : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toManyRelationshipOptionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @toManyRelationshipAST class
@@ -10531,7 +11585,7 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10606,13 +11660,13 @@ class GGS_toOneRelationshipAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneRelationshipAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneRelationshipAST ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum toOneOppositeRelationship
@@ -10708,13 +11762,13 @@ class GGS_toOneOppositeRelationship : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @toOneRelationshipAST class
@@ -10783,7 +11837,7 @@ class cPtr_toOneRelationshipAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10838,13 +11892,13 @@ class GGS_transientClassDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientClassDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_transientClassDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @transientClassDeclarationAST class
@@ -10896,7 +11950,7 @@ class cPtr_transientClassDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10971,13 +12025,13 @@ class GGS_transientDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_transientDeclarationAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_transientDeclarationAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @transientDeclarationAST class
@@ -11046,7 +12100,7 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -11104,13 +12158,13 @@ class GGS_xorBooleanMultipleBindingExpressionAST : public GGS_abstractBooleanMul
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_xorBooleanMultipleBindingExpressionAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @xorBooleanMultipleBindingExpressionAST class
@@ -11162,7 +12216,7 @@ class cPtr_xorBooleanMultipleBindingExpressionAST : public cPtr_abstractBooleanM
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -11301,13 +12355,13 @@ class GGS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewInstructionParameterValue ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum autoLayoutClassParameterType
@@ -11420,13 +12474,13 @@ class GGS_autoLayoutClassParameterType : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterType ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutClassParameterType ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum mainXibElement
@@ -11518,13 +12572,13 @@ class GGS_mainXibElement : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibElement ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibElement ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12224,29 +13278,18 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 // Phase 1: @autoLayoutViewClassBindingSpecificationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_autoLayoutViewClassBindingSpecificationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_autoLayoutViewClassBindingSpecificationList (const class GGS_autoLayoutViewClassBindingSpecificationList & inEnumeratedObject) ;
+class DownEnumerator_autoLayoutViewClassBindingSpecificationList final {
+  public: DownEnumerator_autoLayoutViewClassBindingSpecificationList (const class GGS_autoLayoutViewClassBindingSpecificationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_autoLayoutViewClassBindingSpecificationList (void) = default ;
 
-  public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
-  public: class GGS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
-  public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autoLayoutViewClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_autoLayoutViewClassBindingSpecificationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_autoLayoutViewClassBindingSpecificationList (const class GGS_autoLayoutViewClassBindingSpecificationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
@@ -12254,20 +13297,90 @@ class UpEnumerator_autoLayoutViewClassBindingSpecificationList final : public cG
   public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_autoLayoutViewClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutViewClassBindingSpecificationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_autoLayoutViewClassBindingSpecificationList (const DownEnumerator_autoLayoutViewClassBindingSpecificationList &) = delete ;
+  private: DownEnumerator_autoLayoutViewClassBindingSpecificationList & operator = (const DownEnumerator_autoLayoutViewClassBindingSpecificationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutViewClassBindingSpecificationList list
+
+class UpEnumerator_autoLayoutViewClassBindingSpecificationList final {
+  public: UpEnumerator_autoLayoutViewClassBindingSpecificationList (const class GGS_autoLayoutViewClassBindingSpecificationList & inList)  ;
+
+  public: ~ UpEnumerator_autoLayoutViewClassBindingSpecificationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
+  public: class GGS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
+  public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_autoLayoutViewClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_autoLayoutViewClassBindingSpecificationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_autoLayoutViewClassBindingSpecificationList (const UpEnumerator_autoLayoutViewClassBindingSpecificationList &) = delete ;
+  private: UpEnumerator_autoLayoutViewClassBindingSpecificationList & operator = (const UpEnumerator_autoLayoutViewClassBindingSpecificationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @autoLayoutViewClassBindingSpecificationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_autoLayoutViewClassBindingSpecificationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_autoLayoutViewClassBindingSpecificationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_autoLayoutViewClassBindingSpecificationList (void) = default ;
+
+//--- Copy
+  public: GGS_autoLayoutViewClassBindingSpecificationList (const GGS_autoLayoutViewClassBindingSpecificationList &) = default ;
+  public: GGS_autoLayoutViewClassBindingSpecificationList & operator = (const GGS_autoLayoutViewClassBindingSpecificationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_autoLayoutViewClassBindingSpecificationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_autoLayoutViewClassBindingSpecificationList subList (const int32_t inStart,
+                                                                    const int32_t inLength,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_autoLayoutViewClassBindingSpecificationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOutletClassName,
                                                  const class GGS_lstring & in_mBindingName,
@@ -12396,6 +13509,8 @@ class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mBindingNameAtIndex (const class GGS_uint & constinOperand0,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
@@ -12411,6 +13526,8 @@ class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOutletClassNameAtIndex (const class GGS_uint & constinOperand0,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_autoLayoutViewClassBindingSpecificationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                           Compiler * inCompiler
@@ -12429,7 +13546,7 @@ class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewClassBindingSpecificationList ;
   friend class DownEnumerator_autoLayoutViewClassBindingSpecificationList ;
@@ -12438,52 +13555,111 @@ class GGS_autoLayoutViewClassBindingSpecificationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecificationList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecificationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @bindingOptionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_bindingOptionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_bindingOptionList (const class GGS_bindingOptionList & inEnumeratedObject) ;
+class DownEnumerator_bindingOptionList final {
+  public: DownEnumerator_bindingOptionList (const class GGS_bindingOptionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_bindingOptionList (void) = default ;
 
-  public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
-  public: class GGS_abstractDefaultValue current_mOptionValue (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_bindingOptionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_bindingOptionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_bindingOptionList (const class GGS_bindingOptionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
   public: class GGS_abstractDefaultValue current_mOptionValue (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_bindingOptionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_bindingOptionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_bindingOptionList (const DownEnumerator_bindingOptionList &) = delete ;
+  private: DownEnumerator_bindingOptionList & operator = (const DownEnumerator_bindingOptionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @bindingOptionList list
+
+class UpEnumerator_bindingOptionList final {
+  public: UpEnumerator_bindingOptionList (const class GGS_bindingOptionList & inList)  ;
+
+  public: ~ UpEnumerator_bindingOptionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
+  public: class GGS_abstractDefaultValue current_mOptionValue (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_bindingOptionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_bindingOptionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_bindingOptionList (const UpEnumerator_bindingOptionList &) = delete ;
+  private: UpEnumerator_bindingOptionList & operator = (const UpEnumerator_bindingOptionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @bindingOptionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_bindingOptionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_bindingOptionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_bindingOptionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_bindingOptionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_bindingOptionList (void) = default ;
+
+//--- Copy
+  public: GGS_bindingOptionList (const GGS_bindingOptionList &) = default ;
+  public: GGS_bindingOptionList & operator = (const GGS_bindingOptionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_bindingOptionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_bindingOptionList subList (const int32_t inStart,
+                                          const int32_t inLength,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_bindingOptionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOptionName,
                                                  const class GGS_abstractDefaultValue & in_mOptionValue
@@ -12582,6 +13758,8 @@ class GGS_bindingOptionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOptionNameAtIndex (const class GGS_uint & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -12589,6 +13767,8 @@ class GGS_bindingOptionList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_abstractDefaultValue getter_mOptionValueAtIndex (const class GGS_uint & constinOperand0,
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_bindingOptionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                 Compiler * inCompiler
@@ -12607,7 +13787,7 @@ class GGS_bindingOptionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_bindingOptionList ;
   friend class DownEnumerator_bindingOptionList ;
@@ -12616,52 +13796,111 @@ class GGS_bindingOptionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingOptionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_bindingOptionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @controllerBindingOptionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_controllerBindingOptionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_controllerBindingOptionList (const class GGS_controllerBindingOptionList & inEnumeratedObject) ;
+class DownEnumerator_controllerBindingOptionList final {
+  public: DownEnumerator_controllerBindingOptionList (const class GGS_controllerBindingOptionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_controllerBindingOptionList (void) = default ;
 
-  public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mOptionTypeName (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_controllerBindingOptionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_controllerBindingOptionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_controllerBindingOptionList (const class GGS_controllerBindingOptionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mOptionTypeName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_controllerBindingOptionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_controllerBindingOptionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_controllerBindingOptionList (const DownEnumerator_controllerBindingOptionList &) = delete ;
+  private: DownEnumerator_controllerBindingOptionList & operator = (const DownEnumerator_controllerBindingOptionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @controllerBindingOptionList list
+
+class UpEnumerator_controllerBindingOptionList final {
+  public: UpEnumerator_controllerBindingOptionList (const class GGS_controllerBindingOptionList & inList)  ;
+
+  public: ~ UpEnumerator_controllerBindingOptionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mOptionName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mOptionTypeName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_controllerBindingOptionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_controllerBindingOptionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_controllerBindingOptionList (const UpEnumerator_controllerBindingOptionList &) = delete ;
+  private: UpEnumerator_controllerBindingOptionList & operator = (const UpEnumerator_controllerBindingOptionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @controllerBindingOptionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_controllerBindingOptionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_controllerBindingOptionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_controllerBindingOptionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_controllerBindingOptionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_controllerBindingOptionList (void) = default ;
+
+//--- Copy
+  public: GGS_controllerBindingOptionList (const GGS_controllerBindingOptionList &) = default ;
+  public: GGS_controllerBindingOptionList & operator = (const GGS_controllerBindingOptionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_controllerBindingOptionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_controllerBindingOptionList subList (const int32_t inStart,
+                                                    const int32_t inLength,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_controllerBindingOptionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOptionName,
                                                  const class GGS_lstring & in_mOptionTypeName
@@ -12760,6 +13999,8 @@ class GGS_controllerBindingOptionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOptionNameAtIndex (const class GGS_uint & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -12767,6 +14008,8 @@ class GGS_controllerBindingOptionList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOptionTypeNameAtIndex (const class GGS_uint & constinOperand0,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_controllerBindingOptionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                           Compiler * inCompiler
@@ -12785,7 +14028,7 @@ class GGS_controllerBindingOptionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_controllerBindingOptionList ;
   friend class DownEnumerator_controllerBindingOptionList ;
@@ -12794,50 +14037,109 @@ class GGS_controllerBindingOptionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_controllerBindingOptionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_controllerBindingOptionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @declarationListAST list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_declarationListAST final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_declarationListAST (const class GGS_declarationListAST & inEnumeratedObject) ;
+class DownEnumerator_declarationListAST final {
+  public: DownEnumerator_declarationListAST (const class GGS_declarationListAST & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_declarationListAST (void) = default ;
 
-  public: class GGS_abstractDeclarationAST current_mPropertyDeclaration (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_declarationListAST_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_declarationListAST final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_declarationListAST (const class GGS_declarationListAST & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_abstractDeclarationAST current_mPropertyDeclaration (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_declarationListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_declarationListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_declarationListAST (const DownEnumerator_declarationListAST &) = delete ;
+  private: DownEnumerator_declarationListAST & operator = (const DownEnumerator_declarationListAST &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @declarationListAST list
+
+class UpEnumerator_declarationListAST final {
+  public: UpEnumerator_declarationListAST (const class GGS_declarationListAST & inList)  ;
+
+  public: ~ UpEnumerator_declarationListAST (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_abstractDeclarationAST current_mPropertyDeclaration (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_declarationListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_declarationListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_declarationListAST (const UpEnumerator_declarationListAST &) = delete ;
+  private: UpEnumerator_declarationListAST & operator = (const UpEnumerator_declarationListAST &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @declarationListAST list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_declarationListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_declarationListAST : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_declarationListAST_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_declarationListAST (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_declarationListAST (void) = default ;
+
+//--- Copy
+  public: GGS_declarationListAST (const GGS_declarationListAST &) = default ;
+  public: GGS_declarationListAST & operator = (const GGS_declarationListAST &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_declarationListAST_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_declarationListAST subList (const int32_t inStart,
+                                           const int32_t inLength,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_declarationListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_abstractDeclarationAST & in_mPropertyDeclaration
                                                  COMMA_LOCATION_ARGS) ;
@@ -12921,9 +14223,13 @@ class GGS_declarationListAST : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_abstractDeclarationAST getter_mPropertyDeclarationAtIndex (const class GGS_uint & constinOperand0,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_declarationListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                  Compiler * inCompiler
@@ -12942,7 +14248,7 @@ class GGS_declarationListAST : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_declarationListAST ;
   friend class DownEnumerator_declarationListAST ;
@@ -12951,54 +14257,113 @@ class GGS_declarationListAST : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_declarationListAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @enumerationFunctionListAST list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_enumerationFunctionListAST final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_enumerationFunctionListAST (const class GGS_enumerationFunctionListAST & inEnumeratedObject) ;
+class DownEnumerator_enumerationFunctionListAST final {
+  public: DownEnumerator_enumerationFunctionListAST (const class GGS_enumerationFunctionListAST & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_enumerationFunctionListAST (void) = default ;
 
-  public: class GGS_lstring current_mEnumName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
-  public: class GGS__32_lstringlist current_mAssociationList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_enumerationFunctionListAST_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_enumerationFunctionListAST final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_enumerationFunctionListAST (const class GGS_enumerationFunctionListAST & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mEnumName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
   public: class GGS__32_lstringlist current_mAssociationList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_enumerationFunctionListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_enumerationFunctionListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_enumerationFunctionListAST (const DownEnumerator_enumerationFunctionListAST &) = delete ;
+  private: DownEnumerator_enumerationFunctionListAST & operator = (const DownEnumerator_enumerationFunctionListAST &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @enumerationFunctionListAST list
+
+class UpEnumerator_enumerationFunctionListAST final {
+  public: UpEnumerator_enumerationFunctionListAST (const class GGS_enumerationFunctionListAST & inList)  ;
+
+  public: ~ UpEnumerator_enumerationFunctionListAST (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mEnumName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mFunctionName (LOCATION_ARGS) const ;
+  public: class GGS__32_lstringlist current_mAssociationList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_enumerationFunctionListAST_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_enumerationFunctionListAST_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_enumerationFunctionListAST (const UpEnumerator_enumerationFunctionListAST &) = delete ;
+  private: UpEnumerator_enumerationFunctionListAST & operator = (const UpEnumerator_enumerationFunctionListAST &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @enumerationFunctionListAST list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_enumerationFunctionListAST : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_enumerationFunctionListAST : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_enumerationFunctionListAST_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_enumerationFunctionListAST (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_enumerationFunctionListAST (void) = default ;
+
+//--- Copy
+  public: GGS_enumerationFunctionListAST (const GGS_enumerationFunctionListAST &) = default ;
+  public: GGS_enumerationFunctionListAST & operator = (const GGS_enumerationFunctionListAST &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_enumerationFunctionListAST_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_enumerationFunctionListAST subList (const int32_t inStart,
+                                                   const int32_t inLength,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_enumerationFunctionListAST (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mEnumName,
                                                  const class GGS_lstring & in_mFunctionName,
@@ -13112,6 +14477,8 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS__32_lstringlist getter_mAssociationListAtIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
@@ -13123,6 +14490,8 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mFunctionNameAtIndex (const class GGS_uint & constinOperand0,
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_enumerationFunctionListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                          Compiler * inCompiler
@@ -13141,7 +14510,7 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_enumerationFunctionListAST ;
   friend class DownEnumerator_enumerationFunctionListAST ;
@@ -13150,52 +14519,111 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationFunctionListAST ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumerationFunctionListAST ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @externSwiftFunctionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_externSwiftFunctionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_externSwiftFunctionList (const class GGS_externSwiftFunctionList & inEnumeratedObject) ;
+class DownEnumerator_externSwiftFunctionList final {
+  public: DownEnumerator_externSwiftFunctionList (const class GGS_externSwiftFunctionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_externSwiftFunctionList (void) = default ;
 
-  public: class GGS_lstring current_mExternSwiftFunctionName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mCallerName (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_externSwiftFunctionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_externSwiftFunctionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_externSwiftFunctionList (const class GGS_externSwiftFunctionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mExternSwiftFunctionName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mCallerName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_externSwiftFunctionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_externSwiftFunctionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_externSwiftFunctionList (const DownEnumerator_externSwiftFunctionList &) = delete ;
+  private: DownEnumerator_externSwiftFunctionList & operator = (const DownEnumerator_externSwiftFunctionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @externSwiftFunctionList list
+
+class UpEnumerator_externSwiftFunctionList final {
+  public: UpEnumerator_externSwiftFunctionList (const class GGS_externSwiftFunctionList & inList)  ;
+
+  public: ~ UpEnumerator_externSwiftFunctionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mExternSwiftFunctionName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mCallerName (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_externSwiftFunctionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_externSwiftFunctionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_externSwiftFunctionList (const UpEnumerator_externSwiftFunctionList &) = delete ;
+  private: UpEnumerator_externSwiftFunctionList & operator = (const UpEnumerator_externSwiftFunctionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @externSwiftFunctionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_externSwiftFunctionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_externSwiftFunctionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_externSwiftFunctionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_externSwiftFunctionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_externSwiftFunctionList (void) = default ;
+
+//--- Copy
+  public: GGS_externSwiftFunctionList (const GGS_externSwiftFunctionList &) = default ;
+  public: GGS_externSwiftFunctionList & operator = (const GGS_externSwiftFunctionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_externSwiftFunctionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_externSwiftFunctionList subList (const int32_t inStart,
+                                                const int32_t inLength,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_externSwiftFunctionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mExternSwiftFunctionName,
                                                  const class GGS_lstring & in_mCallerName
@@ -13294,6 +14722,8 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mCallerNameAtIndex (const class GGS_uint & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -13301,6 +14731,8 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mExternSwiftFunctionNameAtIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_externSwiftFunctionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                       Compiler * inCompiler
@@ -13319,7 +14751,7 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_externSwiftFunctionList ;
   friend class DownEnumerator_externSwiftFunctionList ;
@@ -13328,50 +14760,109 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_externSwiftFunctionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_externSwiftFunctionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @mainXibDescriptorList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_mainXibDescriptorList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_mainXibDescriptorList (const class GGS_mainXibDescriptorList & inEnumeratedObject) ;
+class DownEnumerator_mainXibDescriptorList final {
+  public: DownEnumerator_mainXibDescriptorList (const class GGS_mainXibDescriptorList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_mainXibDescriptorList (void) = default ;
 
-  public: class GGS_mainXibLineDescriptorList current_mLine (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_mainXibDescriptorList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_mainXibDescriptorList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_mainXibDescriptorList (const class GGS_mainXibDescriptorList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_mainXibLineDescriptorList current_mLine (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_mainXibDescriptorList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_mainXibDescriptorList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_mainXibDescriptorList (const DownEnumerator_mainXibDescriptorList &) = delete ;
+  private: DownEnumerator_mainXibDescriptorList & operator = (const DownEnumerator_mainXibDescriptorList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @mainXibDescriptorList list
+
+class UpEnumerator_mainXibDescriptorList final {
+  public: UpEnumerator_mainXibDescriptorList (const class GGS_mainXibDescriptorList & inList)  ;
+
+  public: ~ UpEnumerator_mainXibDescriptorList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_mainXibLineDescriptorList current_mLine (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_mainXibDescriptorList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_mainXibDescriptorList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_mainXibDescriptorList (const UpEnumerator_mainXibDescriptorList &) = delete ;
+  private: UpEnumerator_mainXibDescriptorList & operator = (const UpEnumerator_mainXibDescriptorList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @mainXibDescriptorList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_mainXibDescriptorList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_mainXibDescriptorList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_mainXibDescriptorList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_mainXibDescriptorList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_mainXibDescriptorList (void) = default ;
+
+//--- Copy
+  public: GGS_mainXibDescriptorList (const GGS_mainXibDescriptorList &) = default ;
+  public: GGS_mainXibDescriptorList & operator = (const GGS_mainXibDescriptorList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_mainXibDescriptorList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_mainXibDescriptorList subList (const int32_t inStart,
+                                              const int32_t inLength,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_mainXibDescriptorList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_mainXibLineDescriptorList & in_mLine
                                                  COMMA_LOCATION_ARGS) ;
@@ -13455,9 +14946,13 @@ class GGS_mainXibDescriptorList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_mainXibLineDescriptorList getter_mLineAtIndex (const class GGS_uint & constinOperand0,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_mainXibDescriptorList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                     Compiler * inCompiler
@@ -13476,7 +14971,7 @@ class GGS_mainXibDescriptorList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_mainXibDescriptorList ;
   friend class DownEnumerator_mainXibDescriptorList ;
@@ -13485,50 +14980,109 @@ class GGS_mainXibDescriptorList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibDescriptorList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibDescriptorList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @mainXibLineDescriptorList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_mainXibLineDescriptorList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_mainXibLineDescriptorList (const class GGS_mainXibLineDescriptorList & inEnumeratedObject) ;
+class DownEnumerator_mainXibLineDescriptorList final {
+  public: DownEnumerator_mainXibLineDescriptorList (const class GGS_mainXibLineDescriptorList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_mainXibLineDescriptorList (void) = default ;
 
-  public: class GGS_mainXibElement current_mElement (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_mainXibLineDescriptorList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_mainXibLineDescriptorList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_mainXibLineDescriptorList (const class GGS_mainXibLineDescriptorList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_mainXibElement current_mElement (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_mainXibLineDescriptorList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_mainXibLineDescriptorList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_mainXibLineDescriptorList (const DownEnumerator_mainXibLineDescriptorList &) = delete ;
+  private: DownEnumerator_mainXibLineDescriptorList & operator = (const DownEnumerator_mainXibLineDescriptorList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @mainXibLineDescriptorList list
+
+class UpEnumerator_mainXibLineDescriptorList final {
+  public: UpEnumerator_mainXibLineDescriptorList (const class GGS_mainXibLineDescriptorList & inList)  ;
+
+  public: ~ UpEnumerator_mainXibLineDescriptorList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_mainXibElement current_mElement (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_mainXibLineDescriptorList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_mainXibLineDescriptorList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_mainXibLineDescriptorList (const UpEnumerator_mainXibLineDescriptorList &) = delete ;
+  private: UpEnumerator_mainXibLineDescriptorList & operator = (const UpEnumerator_mainXibLineDescriptorList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @mainXibLineDescriptorList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_mainXibLineDescriptorList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_mainXibLineDescriptorList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_mainXibLineDescriptorList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_mainXibLineDescriptorList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_mainXibLineDescriptorList (void) = default ;
+
+//--- Copy
+  public: GGS_mainXibLineDescriptorList (const GGS_mainXibLineDescriptorList &) = default ;
+  public: GGS_mainXibLineDescriptorList & operator = (const GGS_mainXibLineDescriptorList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_mainXibLineDescriptorList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_mainXibLineDescriptorList subList (const int32_t inStart,
+                                                  const int32_t inLength,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_mainXibLineDescriptorList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_mainXibElement & in_mElement
                                                  COMMA_LOCATION_ARGS) ;
@@ -13612,9 +15166,13 @@ class GGS_mainXibLineDescriptorList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_mainXibElement getter_mElementAtIndex (const class GGS_uint & constinOperand0,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_mainXibLineDescriptorList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                         Compiler * inCompiler
@@ -13633,7 +15191,7 @@ class GGS_mainXibLineDescriptorList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_mainXibLineDescriptorList ;
   friend class DownEnumerator_mainXibLineDescriptorList ;
@@ -13642,35 +15200,24 @@ class GGS_mainXibLineDescriptorList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibLineDescriptorList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibLineDescriptorList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletClassBindingSpecificationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_outletClassBindingSpecificationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_outletClassBindingSpecificationList (const class GGS_outletClassBindingSpecificationList & inEnumeratedObject) ;
+class DownEnumerator_outletClassBindingSpecificationList final {
+  public: DownEnumerator_outletClassBindingSpecificationList (const class GGS_outletClassBindingSpecificationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_outletClassBindingSpecificationList (void) = default ;
 
-  public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
-  public: class GGS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
-  public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_outletClassBindingSpecificationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_outletClassBindingSpecificationList (const class GGS_outletClassBindingSpecificationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
   public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
@@ -13678,20 +15225,90 @@ class UpEnumerator_outletClassBindingSpecificationList final : public cGenericAb
   public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_outletClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletClassBindingSpecificationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_outletClassBindingSpecificationList (const DownEnumerator_outletClassBindingSpecificationList &) = delete ;
+  private: DownEnumerator_outletClassBindingSpecificationList & operator = (const DownEnumerator_outletClassBindingSpecificationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @outletClassBindingSpecificationList list
+
+class UpEnumerator_outletClassBindingSpecificationList final {
+  public: UpEnumerator_outletClassBindingSpecificationList (const class GGS_outletClassBindingSpecificationList & inList)  ;
+
+  public: ~ UpEnumerator_outletClassBindingSpecificationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mOutletClassName (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mBindingName (LOCATION_ARGS) const ;
+  public: class GGS_outletClassBindingSpecificationModelList current_mOutletClassBindingSpecificationModelList (LOCATION_ARGS) const ;
+  public: class GGS_controllerBindingOptionList current_mBindingOptionList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_outletClassBindingSpecificationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletClassBindingSpecificationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_outletClassBindingSpecificationList (const UpEnumerator_outletClassBindingSpecificationList &) = delete ;
+  private: UpEnumerator_outletClassBindingSpecificationList & operator = (const UpEnumerator_outletClassBindingSpecificationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @outletClassBindingSpecificationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_outletClassBindingSpecificationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_outletClassBindingSpecificationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_outletClassBindingSpecificationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_outletClassBindingSpecificationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_outletClassBindingSpecificationList (void) = default ;
+
+//--- Copy
+  public: GGS_outletClassBindingSpecificationList (const GGS_outletClassBindingSpecificationList &) = default ;
+  public: GGS_outletClassBindingSpecificationList & operator = (const GGS_outletClassBindingSpecificationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_outletClassBindingSpecificationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_outletClassBindingSpecificationList subList (const int32_t inStart,
+                                                            const int32_t inLength,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_outletClassBindingSpecificationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOutletClassName,
                                                  const class GGS_lstring & in_mBindingName,
@@ -13820,6 +15437,8 @@ class GGS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mBindingNameAtIndex (const class GGS_uint & constinOperand0,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
@@ -13835,6 +15454,8 @@ class GGS_outletClassBindingSpecificationList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOutletClassNameAtIndex (const class GGS_uint & constinOperand0,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_outletClassBindingSpecificationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                   Compiler * inCompiler
@@ -13853,7 +15474,7 @@ class GGS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletClassBindingSpecificationList ;
   friend class DownEnumerator_outletClassBindingSpecificationList ;
@@ -13862,52 +15483,111 @@ class GGS_outletClassBindingSpecificationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletClassBindingSpecificationModelList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_outletClassBindingSpecificationModelList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_outletClassBindingSpecificationModelList (const class GGS_outletClassBindingSpecificationModelList & inEnumeratedObject) ;
+class DownEnumerator_outletClassBindingSpecificationModelList final {
+  public: DownEnumerator_outletClassBindingSpecificationModelList (const class GGS_outletClassBindingSpecificationModelList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_outletClassBindingSpecificationModelList (void) = default ;
 
-  public: class GGS_lstring current_mModelTypeName (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletClassBindingSpecificationModelList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_outletClassBindingSpecificationModelList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_outletClassBindingSpecificationModelList (const class GGS_outletClassBindingSpecificationModelList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mModelTypeName (LOCATION_ARGS) const ;
   public: class GGS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_outletClassBindingSpecificationModelList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletClassBindingSpecificationModelList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_outletClassBindingSpecificationModelList (const DownEnumerator_outletClassBindingSpecificationModelList &) = delete ;
+  private: DownEnumerator_outletClassBindingSpecificationModelList & operator = (const DownEnumerator_outletClassBindingSpecificationModelList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @outletClassBindingSpecificationModelList list
+
+class UpEnumerator_outletClassBindingSpecificationModelList final {
+  public: UpEnumerator_outletClassBindingSpecificationModelList (const class GGS_outletClassBindingSpecificationModelList & inList)  ;
+
+  public: ~ UpEnumerator_outletClassBindingSpecificationModelList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mModelTypeName (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mModelShouldBeWritableProperty (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_outletClassBindingSpecificationModelList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_outletClassBindingSpecificationModelList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_outletClassBindingSpecificationModelList (const UpEnumerator_outletClassBindingSpecificationModelList &) = delete ;
+  private: UpEnumerator_outletClassBindingSpecificationModelList & operator = (const UpEnumerator_outletClassBindingSpecificationModelList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @outletClassBindingSpecificationModelList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_outletClassBindingSpecificationModelList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_outletClassBindingSpecificationModelList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_outletClassBindingSpecificationModelList (void) = default ;
+
+//--- Copy
+  public: GGS_outletClassBindingSpecificationModelList (const GGS_outletClassBindingSpecificationModelList &) = default ;
+  public: GGS_outletClassBindingSpecificationModelList & operator = (const GGS_outletClassBindingSpecificationModelList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_outletClassBindingSpecificationModelList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_outletClassBindingSpecificationModelList subList (const int32_t inStart,
+                                                                 const int32_t inLength,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_outletClassBindingSpecificationModelList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mModelTypeName,
                                                  const class GGS_bool & in_mModelShouldBeWritableProperty
@@ -14006,6 +15686,8 @@ class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_bool getter_mModelShouldBeWritablePropertyAtIndex (const class GGS_uint & constinOperand0,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const ;
@@ -14013,6 +15695,8 @@ class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mModelTypeNameAtIndex (const class GGS_uint & constinOperand0,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_outletClassBindingSpecificationModelList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                        Compiler * inCompiler
@@ -14031,7 +15715,7 @@ class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletClassBindingSpecificationModelList ;
   friend class DownEnumerator_outletClassBindingSpecificationModelList ;
@@ -14040,7 +15724,7 @@ class GGS_outletClassBindingSpecificationModelList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationModelList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @prefDeclaration struct
@@ -14170,13 +15854,13 @@ class GGS_prefDeclaration : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_prefDeclaration ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefDeclaration ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astDeclarationStruct struct
@@ -14326,13 +16010,13 @@ class GGS_astDeclarationStruct : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astDeclarationStruct ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astDeclarationStruct ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @mainXibLineDescriptorList_2E_element struct
@@ -14404,13 +16088,13 @@ class GGS_mainXibLineDescriptorList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_mainXibLineDescriptorList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_mainXibLineDescriptorList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @declarationListAST_2E_element struct
@@ -14482,13 +16166,13 @@ class GGS_declarationListAST_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declarationListAST_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_declarationListAST_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletClassBindingSpecificationList_2E_element struct
@@ -14596,13 +16280,13 @@ class GGS_outletClassBindingSpecificationList_2E_element : public AC_GALGAS_root
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassBindingSpecificationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutViewClassBindingSpecificationList_2E_element struct
@@ -14710,13 +16394,13 @@ class GGS_autoLayoutViewClassBindingSpecificationList_2E_element : public AC_GAL
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecificationList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassBindingSpecificationList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @astAutoLayoutViewFunctionMap_2E_element struct
@@ -14800,13 +16484,13 @@ class GGS_astAutoLayoutViewFunctionMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: astAutoLayoutViewFunctionMap.element? optional
@@ -14877,13 +16561,13 @@ class GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap_2E_element_3F_ ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAutoLayoutViewFunctionMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @enumerationFunctionListAST_2E_element struct
@@ -14979,72 +16663,132 @@ class GGS_enumerationFunctionListAST_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_enumerationFunctionListAST_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @classMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_classMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_classMap (const class GGS_classMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_classKind current_mClassKind (LOCATION_ARGS) const ;
-  public: class GGS_propertyMap current_mPropertyMap (LOCATION_ARGS) const ;
-  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
-  public: class GGS_propertyGenerationList current_mPropertyGenerationList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_classMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_classMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_classMap (const class GGS_classMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_classKind current_mClassKind (LOCATION_ARGS) const ;
-  public: class GGS_propertyMap current_mPropertyMap (LOCATION_ARGS) const ;
-  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
-  public: class GGS_propertyGenerationList current_mPropertyGenerationList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_classMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumerationFunctionListAST_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @classMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_classMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_classMap_searchKey ;
+class DownEnumerator_classMap final {
+
+  public: DownEnumerator_classMap (const class GGS_classMap & inMap) ;
+
+  public: ~ DownEnumerator_classMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_classKind current_mClassKind (LOCATION_ARGS) const ;
+
+  public: class GGS_propertyMap current_mPropertyMap (LOCATION_ARGS) const ;
+
+  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
+
+  public: class GGS_propertyGenerationList current_mPropertyGenerationList (LOCATION_ARGS) const ;
+
+  public: class GGS_classMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_classMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_classMap (const DownEnumerator_classMap &) = delete ;
+  private: DownEnumerator_classMap & operator = (const DownEnumerator_classMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_classMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_classMap final {
+  public: UpEnumerator_classMap (const class GGS_classMap & inMap)  ;
+
+  public: ~ UpEnumerator_classMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_classKind current_mClassKind (LOCATION_ARGS) const ;
+  public: class GGS_propertyMap current_mPropertyMap (LOCATION_ARGS) const ;
+  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
+  public: class GGS_propertyGenerationList current_mPropertyGenerationList (LOCATION_ARGS) const ;
+  public: class GGS_classMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_classMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_classMap (const UpEnumerator_classMap &) = delete ;
+  private: UpEnumerator_classMap & operator = (const UpEnumerator_classMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_classMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_classMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_classMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_classMap (void) ;
+
+//--- Handle copy
   public: GGS_classMap (const GGS_classMap & inSource) ;
   public: GGS_classMap & operator = (const GGS_classMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_classMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_classMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_classMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -15074,6 +16818,10 @@ class GGS_classMap : public AC_GALGAS_map {
                                                   class GGS_propertyGenerationList constinArgument4,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_replace (class GGS_classMap_2E_element constinArgument0,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
   public: VIRTUAL_IN_DEBUG void setter_setMActionMapForKey (class GGS_actionMap constinArgument0,
                                                             class GGS_string constinArgument1,
@@ -15108,6 +16856,27 @@ class GGS_classMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_actionMap getter_mActionMapForKey (const class GGS_string & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -15133,14 +16902,14 @@ class GGS_classMap : public AC_GALGAS_map {
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GGS_classMap_2E_element readSubscript__3F_searchKey (const class GGS_lstring & in0,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_classMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                     const GGS_string & inKey
-                                                                                     COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_classMap ;
   friend class DownEnumerator_classMap ;
@@ -15149,7 +16918,7 @@ class GGS_classMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classMap ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_classMap ;
 
 //--------------------------------------------------------------------------------------------------
 //   enum classKind
@@ -15265,56 +17034,115 @@ class GGS_classKind : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classKind ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_classKind ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @propertyGenerationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_propertyGenerationList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_propertyGenerationList (const class GGS_propertyGenerationList & inEnumeratedObject) ;
+class DownEnumerator_propertyGenerationList final {
+  public: DownEnumerator_propertyGenerationList (const class GGS_propertyGenerationList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_propertyGenerationList (void) = default ;
 
-  public: class GGS_propertyGeneration current_mProperty (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_propertyGenerationList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_propertyGenerationList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_propertyGenerationList (const class GGS_propertyGenerationList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_propertyGeneration current_mProperty (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_propertyGenerationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_propertyGenerationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_propertyGenerationList (const DownEnumerator_propertyGenerationList &) = delete ;
+  private: DownEnumerator_propertyGenerationList & operator = (const DownEnumerator_propertyGenerationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @propertyGenerationList list
+
+class UpEnumerator_propertyGenerationList final {
+  public: UpEnumerator_propertyGenerationList (const class GGS_propertyGenerationList & inList)  ;
+
+  public: ~ UpEnumerator_propertyGenerationList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_propertyGeneration current_mProperty (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_propertyGenerationList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_propertyGenerationList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_propertyGenerationList (const UpEnumerator_propertyGenerationList &) = delete ;
+  private: UpEnumerator_propertyGenerationList & operator = (const UpEnumerator_propertyGenerationList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @propertyGenerationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_propertyGenerationList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_propertyGenerationList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_propertyGenerationList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_propertyGenerationList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_propertyGenerationList (void) = default ;
+
+//--- Copy
+  public: GGS_propertyGenerationList (const GGS_propertyGenerationList &) = default ;
+  public: GGS_propertyGenerationList & operator = (const GGS_propertyGenerationList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_propertyGenerationList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_propertyGenerationList subList (const int32_t inStart,
+                                               const int32_t inLength,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_propertyGenerationList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_propertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
@@ -15398,9 +17226,13 @@ class GGS_propertyGenerationList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_propertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_propertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                      Compiler * inCompiler
@@ -15419,7 +17251,7 @@ class GGS_propertyGenerationList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_propertyGenerationList ;
   friend class DownEnumerator_propertyGenerationList ;
@@ -15428,58 +17260,114 @@ class GGS_propertyGenerationList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyGenerationList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @actionMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_actionMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_actionMap (const class GGS_actionMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_actionMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_actionMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_actionMap (const class GGS_actionMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_actionMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGenerationList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @actionMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_actionMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_actionMap_searchKey ;
+class DownEnumerator_actionMap final {
+
+  public: DownEnumerator_actionMap (const class GGS_actionMap & inMap) ;
+
+  public: ~ DownEnumerator_actionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_actionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_actionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_actionMap (const DownEnumerator_actionMap &) = delete ;
+  private: DownEnumerator_actionMap & operator = (const DownEnumerator_actionMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_actionMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_actionMap final {
+  public: UpEnumerator_actionMap (const class GGS_actionMap & inMap)  ;
+
+  public: ~ UpEnumerator_actionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_actionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_actionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_actionMap (const UpEnumerator_actionMap &) = delete ;
+  private: UpEnumerator_actionMap & operator = (const UpEnumerator_actionMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_actionMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_actionMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_actionMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_actionMap (void) ;
+
+//--- Handle copy
   public: GGS_actionMap (const GGS_actionMap & inSource) ;
   public: GGS_actionMap & operator = (const GGS_actionMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_actionMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_actionMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_actionMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -15515,6 +17403,27 @@ class GGS_actionMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_actionMap getter_overriddenMap (Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const ;
 
@@ -15527,11 +17436,7 @@ class GGS_actionMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_actionMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                      const GGS_string & inKey
-                                                                                      COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_actionMap ;
   friend class DownEnumerator_actionMap ;
@@ -15540,64 +17445,123 @@ class GGS_actionMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_actionMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @propertyMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_propertyMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_propertyMap (const class GGS_propertyMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_propertyKind current_mKind (LOCATION_ARGS) const ;
-  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsOverriding (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_propertyMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_propertyMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_propertyMap (const class GGS_propertyMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_propertyKind current_mKind (LOCATION_ARGS) const ;
-  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsOverriding (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_propertyMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_actionMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @propertyMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_propertyMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_propertyMap_searchKey ;
+class DownEnumerator_propertyMap final {
+
+  public: DownEnumerator_propertyMap (const class GGS_propertyMap & inMap) ;
+
+  public: ~ DownEnumerator_propertyMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_propertyKind current_mKind (LOCATION_ARGS) const ;
+
+  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mIsOverriding (LOCATION_ARGS) const ;
+
+  public: class GGS_propertyMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_propertyMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_propertyMap (const DownEnumerator_propertyMap &) = delete ;
+  private: DownEnumerator_propertyMap & operator = (const DownEnumerator_propertyMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_propertyMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_propertyMap final {
+  public: UpEnumerator_propertyMap (const class GGS_propertyMap & inMap)  ;
+
+  public: ~ UpEnumerator_propertyMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_propertyKind current_mKind (LOCATION_ARGS) const ;
+  public: class GGS_actionMap current_mActionMap (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mIsOverriding (LOCATION_ARGS) const ;
+  public: class GGS_propertyMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_propertyMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_propertyMap (const UpEnumerator_propertyMap &) = delete ;
+  private: UpEnumerator_propertyMap & operator = (const UpEnumerator_propertyMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_propertyMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_propertyMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_propertyMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_propertyMap (void) ;
+
+//--- Handle copy
   public: GGS_propertyMap (const GGS_propertyMap & inSource) ;
   public: GGS_propertyMap & operator = (const GGS_propertyMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_propertyMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_propertyMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_propertyMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -15654,6 +17618,27 @@ class GGS_propertyMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_actionMap getter_mActionMapForKey (const class GGS_string & constinOperand0,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) const ;
@@ -15678,11 +17663,7 @@ class GGS_propertyMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_propertyMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                        const GGS_string & inKey
-                                                                                        COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_propertyMap ;
   friend class DownEnumerator_propertyMap ;
@@ -15691,41 +17672,7 @@ class GGS_propertyMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_propertyMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@classMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_classMap : public cMapElement {
-//--- Map attributes
-  public: GGS_classKind mProperty_mClassKind ;
-  public: GGS_propertyMap mProperty_mPropertyMap ;
-  public: GGS_actionMap mProperty_mActionMap ;
-  public: GGS_propertyGenerationList mProperty_mPropertyGenerationList ;
-
-//--- Constructors
-  public: cMapElement_classMap (const GGS_classMap_2E_element & inValue
-                                COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_classMap (const GGS_lstring & inKey,
-                                const GGS_classKind & in_mClassKind,
-                                const GGS_propertyMap & in_mPropertyMap,
-                                const GGS_actionMap & in_mActionMap,
-                                const GGS_propertyGenerationList & in_mPropertyGenerationList
-                                COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @classMap_2E_element struct
@@ -15845,13 +17792,13 @@ class GGS_classMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_classMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: classMap.element? optional
@@ -15922,78 +17869,141 @@ class GGS_classMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_classMap_2E_element_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @outletClassMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_outletClassMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_outletClassMap (const class GGS_outletClassMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletClassMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_outletClassMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_outletClassMap (const class GGS_outletClassMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletClassMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_classMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletClassMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_outletClassMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_outletClassMap_searchKey ;
+class DownEnumerator_outletClassMap final {
+
+  public: DownEnumerator_outletClassMap (const class GGS_outletClassMap & inMap) ;
+
+  public: ~ DownEnumerator_outletClassMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
+
+  public: class GGS_outletClassMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletClassMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_outletClassMap (const DownEnumerator_outletClassMap &) = delete ;
+  private: DownEnumerator_outletClassMap & operator = (const DownEnumerator_outletClassMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_outletClassMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_outletClassMap final {
+  public: UpEnumerator_outletClassMap (const class GGS_outletClassMap & inMap)  ;
+
+  public: ~ UpEnumerator_outletClassMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
+  public: class GGS_outletClassMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletClassMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_outletClassMap (const UpEnumerator_outletClassMap &) = delete ;
+  private: UpEnumerator_outletClassMap & operator = (const UpEnumerator_outletClassMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_outletClassMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_outletClassMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_outletClassMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_outletClassMap (void) ;
+
+//--- Handle copy
   public: GGS_outletClassMap (const GGS_outletClassMap & inSource) ;
   public: GGS_outletClassMap & operator = (const GGS_outletClassMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_outletClassMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_outletClassMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletClassMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -16078,6 +18088,27 @@ class GGS_outletClassMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
@@ -16118,11 +18149,7 @@ class GGS_outletClassMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_outletClassMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                           const GGS_string & inKey
-                                                                                           COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletClassMap ;
   friend class DownEnumerator_outletClassMap ;
@@ -16131,47 +18158,7 @@ class GGS_outletClassMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@outletClassMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_outletClassMap : public cMapElement {
-//--- Map attributes
-  public: GGS_lstring mProperty_mSuperClassName ;
-  public: GGS_bool mProperty_mHandlesRunAction ;
-  public: GGS_bool mProperty_mHandlesTableValueBinding ;
-  public: GGS_bool mProperty_mHandleEnabledBinding ;
-  public: GGS_bool mProperty_mHandleHiddenBinding ;
-  public: GGS_bool mProperty_mHandleGraphicControllerBinding ;
-  public: GGS_bool mProperty_mUserDefined ;
-
-//--- Constructors
-  public: cMapElement_outletClassMap (const GGS_outletClassMap_2E_element & inValue
-                                      COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_outletClassMap (const GGS_lstring & inKey,
-                                      const GGS_lstring & in_mSuperClassName,
-                                      const GGS_bool & in_mHandlesRunAction,
-                                      const GGS_bool & in_mHandlesTableValueBinding,
-                                      const GGS_bool & in_mHandleEnabledBinding,
-                                      const GGS_bool & in_mHandleHiddenBinding,
-                                      const GGS_bool & in_mHandleGraphicControllerBinding,
-                                      const GGS_bool & in_mUserDefined
-                                      COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletClassMap_2E_element struct
@@ -16327,13 +18314,13 @@ class GGS_outletClassMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: outletClassMap.element? optional
@@ -16404,68 +18391,126 @@ class GGS_outletClassMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletClassMap_2E_element_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @bindingSpecificationMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_bindingSpecificationMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_bindingSpecificationMap (const class GGS_bindingSpecificationMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mOutletSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_outletBindingSpecificationMap current_mBindingMap (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_bindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_bindingSpecificationMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_bindingSpecificationMap (const class GGS_bindingSpecificationMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mOutletSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_outletBindingSpecificationMap current_mBindingMap (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_bindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @bindingSpecificationMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_bindingSpecificationMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_bindingSpecificationMap_searchKey ;
+class DownEnumerator_bindingSpecificationMap final {
+
+  public: DownEnumerator_bindingSpecificationMap (const class GGS_bindingSpecificationMap & inMap) ;
+
+  public: ~ DownEnumerator_bindingSpecificationMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_lstring current_mOutletSuperClassName (LOCATION_ARGS) const ;
+
+  public: class GGS_outletBindingSpecificationMap current_mBindingMap (LOCATION_ARGS) const ;
+
+  public: class GGS_bindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_bindingSpecificationMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_bindingSpecificationMap (const DownEnumerator_bindingSpecificationMap &) = delete ;
+  private: DownEnumerator_bindingSpecificationMap & operator = (const DownEnumerator_bindingSpecificationMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_bindingSpecificationMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_bindingSpecificationMap final {
+  public: UpEnumerator_bindingSpecificationMap (const class GGS_bindingSpecificationMap & inMap)  ;
+
+  public: ~ UpEnumerator_bindingSpecificationMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mOutletSuperClassName (LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationMap current_mBindingMap (LOCATION_ARGS) const ;
+  public: class GGS_bindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_bindingSpecificationMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_bindingSpecificationMap (const UpEnumerator_bindingSpecificationMap &) = delete ;
+  private: UpEnumerator_bindingSpecificationMap & operator = (const UpEnumerator_bindingSpecificationMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_bindingSpecificationMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_bindingSpecificationMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_bindingSpecificationMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_bindingSpecificationMap (void) ;
+
+//--- Handle copy
   public: GGS_bindingSpecificationMap (const GGS_bindingSpecificationMap & inSource) ;
   public: GGS_bindingSpecificationMap & operator = (const GGS_bindingSpecificationMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_bindingSpecificationMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_bindingSpecificationMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_bindingSpecificationMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -16521,6 +18566,27 @@ class GGS_bindingSpecificationMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationMap getter_mBindingMapForKey (const class GGS_string & constinOperand0,
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const ;
@@ -16541,11 +18607,7 @@ class GGS_bindingSpecificationMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_bindingSpecificationMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                    const GGS_string & inKey
-                                                                                                    COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_bindingSpecificationMap ;
   friend class DownEnumerator_bindingSpecificationMap ;
@@ -16554,62 +18616,120 @@ class GGS_bindingSpecificationMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificationMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @outletBindingSpecificationMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_outletBindingSpecificationMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_outletBindingSpecificationMap (const class GGS_outletBindingSpecificationMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_outletBindingSpecificationModelList current_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
-  public: class GGS_controllerBindingOptionDecoratedList current_mControllerBindingOptionList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletBindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_outletBindingSpecificationMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_outletBindingSpecificationMap (const class GGS_outletBindingSpecificationMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_outletBindingSpecificationModelList current_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
-  public: class GGS_controllerBindingOptionDecoratedList current_mControllerBindingOptionList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_outletBindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_bindingSpecificationMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletBindingSpecificationMap map
 //--------------------------------------------------------------------------------------------------
 
-class cMapElement_outletBindingSpecificationMap ;
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const char * kSearchErrorMessage_outletBindingSpecificationMap_searchKey ;
+class DownEnumerator_outletBindingSpecificationMap final {
+
+  public: DownEnumerator_outletBindingSpecificationMap (const class GGS_outletBindingSpecificationMap & inMap) ;
+
+  public: ~ DownEnumerator_outletBindingSpecificationMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_outletBindingSpecificationModelList current_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
+
+  public: class GGS_controllerBindingOptionDecoratedList current_mControllerBindingOptionList (LOCATION_ARGS) const ;
+
+  public: class GGS_outletBindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletBindingSpecificationMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_outletBindingSpecificationMap (const DownEnumerator_outletBindingSpecificationMap &) = delete ;
+  private: DownEnumerator_outletBindingSpecificationMap & operator = (const DownEnumerator_outletBindingSpecificationMap &) = delete ;
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_outletBindingSpecificationMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+class UpEnumerator_outletBindingSpecificationMap final {
+  public: UpEnumerator_outletBindingSpecificationMap (const class GGS_outletBindingSpecificationMap & inMap)  ;
+
+  public: ~ UpEnumerator_outletBindingSpecificationMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationModelList current_mOutletBindingSpecificationModelList (LOCATION_ARGS) const ;
+  public: class GGS_controllerBindingOptionDecoratedList current_mControllerBindingOptionList (LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletBindingSpecificationMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_outletBindingSpecificationMap (const UpEnumerator_outletBindingSpecificationMap &) = delete ;
+  private: UpEnumerator_outletBindingSpecificationMap & operator = (const UpEnumerator_outletBindingSpecificationMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_outletBindingSpecificationMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_outletBindingSpecificationMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
   public: GGS_outletBindingSpecificationMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_outletBindingSpecificationMap (void) ;
+
+//--- Handle copy
   public: GGS_outletBindingSpecificationMap (const GGS_outletBindingSpecificationMap & inSource) ;
   public: GGS_outletBindingSpecificationMap & operator = (const GGS_outletBindingSpecificationMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_outletBindingSpecificationMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_outletBindingSpecificationMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_outletBindingSpecificationMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -16659,6 +18779,27 @@ class GGS_outletBindingSpecificationMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_controllerBindingOptionDecoratedList getter_mControllerBindingOptionListForKey (const class GGS_string & constinOperand0,
                                                                                                                      Compiler * inCompiler
                                                                                                                      COMMA_LOCATION_ARGS) const ;
@@ -16679,11 +18820,7 @@ class GGS_outletBindingSpecificationMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_outletBindingSpecificationMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                          const GGS_string & inKey
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletBindingSpecificationMap ;
   friend class DownEnumerator_outletBindingSpecificationMap ;
@@ -16692,37 +18829,7 @@ class GGS_outletBindingSpecificationMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_outletBindingSpecificationMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@bindingSpecificationMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_bindingSpecificationMap : public cMapElement {
-//--- Map attributes
-  public: GGS_lstring mProperty_mOutletSuperClassName ;
-  public: GGS_outletBindingSpecificationMap mProperty_mBindingMap ;
-
-//--- Constructors
-  public: cMapElement_bindingSpecificationMap (const GGS_bindingSpecificationMap_2E_element & inValue
-                                               COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_bindingSpecificationMap (const GGS_lstring & inKey,
-                                               const GGS_lstring & in_mOutletSuperClassName,
-                                               const GGS_outletBindingSpecificationMap & in_mBindingMap
-                                               COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletBindingSpecificationMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @bindingSpecificationMap_2E_element struct
@@ -16818,13 +18925,13 @@ class GGS_bindingSpecificationMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificationMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_bindingSpecificationMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: bindingSpecificationMap.element? optional
@@ -16895,547 +19002,11 @@ class GGS_bindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_bindingSpecificationMap_2E_element_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autolayoutViewClassMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_autolayoutViewClassMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_autolayoutViewClassMap (const class GGS_autolayoutViewClassMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterList current_mParameterList (LOCATION_ARGS) const ;
-  public: class GGS_astAutoLayoutViewFunctionMap current_mAutoLayoutViewFunctionMap (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autolayoutViewClassMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_autolayoutViewClassMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_autolayoutViewClassMap (const class GGS_autolayoutViewClassMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_lstring current_mSuperClassName (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesRunAction (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandlesTableValueBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleEnabledBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleHiddenBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mHandleGraphicControllerBinding (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mUserDefined (LOCATION_ARGS) const ;
-  public: class GGS_autoLayoutClassParameterList current_mParameterList (LOCATION_ARGS) const ;
-  public: class GGS_astAutoLayoutViewFunctionMap current_mAutoLayoutViewFunctionMap (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_autolayoutViewClassMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autolayoutViewClassMap map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_autolayoutViewClassMap ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const char * kSearchErrorMessage_autolayoutViewClassMap_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autolayoutViewClassMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public: GGS_autolayoutViewClassMap (void) ;
-
-//--------------------------------- Handle copy
-  public: GGS_autolayoutViewClassMap (const GGS_autolayoutViewClassMap & inSource) ;
-  public: GGS_autolayoutViewClassMap & operator = (const GGS_autolayoutViewClassMap & inSource) ;
-  
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autolayoutViewClassMap init (Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autolayoutViewClassMap extractObject (const GGS_object & inObject,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autolayoutViewClassMap class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GGS_autolayoutViewClassMap class_func_mapWithMapToOverride (const class GGS_autolayoutViewClassMap & inOperand0
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring constinArgument1,
-                                                  class GGS_bool constinArgument2,
-                                                  class GGS_bool constinArgument3,
-                                                  class GGS_bool constinArgument4,
-                                                  class GGS_bool constinArgument5,
-                                                  class GGS_bool constinArgument6,
-                                                  class GGS_bool constinArgument7,
-                                                  class GGS_autoLayoutClassParameterList constinArgument8,
-                                                  class GGS_astAutoLayoutViewFunctionMap constinArgument9,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMAutoLayoutViewFunctionMapForKey (class GGS_astAutoLayoutViewFunctionMap constinArgument0,
-                                                                            class GGS_string constinArgument1,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleEnabledBindingForKey (class GGS_bool constinArgument0,
-                                                                       class GGS_string constinArgument1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleGraphicControllerBindingForKey (class GGS_bool constinArgument0,
-                                                                                 class GGS_string constinArgument1,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleHiddenBindingForKey (class GGS_bool constinArgument0,
-                                                                      class GGS_string constinArgument1,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesRunActionForKey (class GGS_bool constinArgument0,
-                                                                   class GGS_string constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesTableValueBindingForKey (class GGS_bool constinArgument0,
-                                                                           class GGS_string constinArgument1,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterListForKey (class GGS_autoLayoutClassParameterList constinArgument0,
-                                                                class GGS_string constinArgument1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSuperClassNameForKey (class GGS_lstring constinArgument0,
-                                                                 class GGS_string constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUserDefinedForKey (class GGS_bool constinArgument0,
-                                                              class GGS_string constinArgument1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_bool & outArgument2,
-                                                  class GGS_bool & outArgument3,
-                                                  class GGS_bool & outArgument4,
-                                                  class GGS_bool & outArgument5,
-                                                  class GGS_bool & outArgument6,
-                                                  class GGS_bool & outArgument7,
-                                                  class GGS_autoLayoutClassParameterList & outArgument8,
-                                                  class GGS_astAutoLayoutViewFunctionMap & outArgument9,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewFunctionMap getter_mAutoLayoutViewFunctionMapForKey (const class GGS_string & constinOperand0,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleGraphicControllerBindingForKey (const class GGS_string & constinOperand0,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleHiddenBindingForKey (const class GGS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesRunActionForKey (const class GGS_string & constinOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesTableValueBindingForKey (const class GGS_string & constinOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_mParameterListForKey (const class GGS_string & constinOperand0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mSuperClassNameForKey (const class GGS_string & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mUserDefinedForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autolayoutViewClassMap getter_overriddenMap (Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_autolayoutViewClassMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_autolayoutViewClassMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                   const GGS_string & inKey
-                                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-  friend class UpEnumerator_autolayoutViewClassMap ;
-  friend class DownEnumerator_autolayoutViewClassMap ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutViewClassMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@autolayoutViewClassMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_autolayoutViewClassMap : public cMapElement {
-//--- Map attributes
-  public: GGS_lstring mProperty_mSuperClassName ;
-  public: GGS_bool mProperty_mHandlesRunAction ;
-  public: GGS_bool mProperty_mHandlesTableValueBinding ;
-  public: GGS_bool mProperty_mHandleEnabledBinding ;
-  public: GGS_bool mProperty_mHandleHiddenBinding ;
-  public: GGS_bool mProperty_mHandleGraphicControllerBinding ;
-  public: GGS_bool mProperty_mUserDefined ;
-  public: GGS_autoLayoutClassParameterList mProperty_mParameterList ;
-  public: GGS_astAutoLayoutViewFunctionMap mProperty_mAutoLayoutViewFunctionMap ;
-
-//--- Constructors
-  public: cMapElement_autolayoutViewClassMap (const GGS_autolayoutViewClassMap_2E_element & inValue
-                                              COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_autolayoutViewClassMap (const GGS_lstring & inKey,
-                                              const GGS_lstring & in_mSuperClassName,
-                                              const GGS_bool & in_mHandlesRunAction,
-                                              const GGS_bool & in_mHandlesTableValueBinding,
-                                              const GGS_bool & in_mHandleEnabledBinding,
-                                              const GGS_bool & in_mHandleHiddenBinding,
-                                              const GGS_bool & in_mHandleGraphicControllerBinding,
-                                              const GGS_bool & in_mUserDefined,
-                                              const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                              const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap
-                                              COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autolayoutViewClassMap_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autolayoutViewClassMap_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_lstring mProperty_lkey ;
-  public: inline GGS_lstring readProperty_lkey (void) const {
-    return mProperty_lkey ;
-  }
-
-  public: GGS_lstring mProperty_mSuperClassName ;
-  public: inline GGS_lstring readProperty_mSuperClassName (void) const {
-    return mProperty_mSuperClassName ;
-  }
-
-  public: GGS_bool mProperty_mHandlesRunAction ;
-  public: inline GGS_bool readProperty_mHandlesRunAction (void) const {
-    return mProperty_mHandlesRunAction ;
-  }
-
-  public: GGS_bool mProperty_mHandlesTableValueBinding ;
-  public: inline GGS_bool readProperty_mHandlesTableValueBinding (void) const {
-    return mProperty_mHandlesTableValueBinding ;
-  }
-
-  public: GGS_bool mProperty_mHandleEnabledBinding ;
-  public: inline GGS_bool readProperty_mHandleEnabledBinding (void) const {
-    return mProperty_mHandleEnabledBinding ;
-  }
-
-  public: GGS_bool mProperty_mHandleHiddenBinding ;
-  public: inline GGS_bool readProperty_mHandleHiddenBinding (void) const {
-    return mProperty_mHandleHiddenBinding ;
-  }
-
-  public: GGS_bool mProperty_mHandleGraphicControllerBinding ;
-  public: inline GGS_bool readProperty_mHandleGraphicControllerBinding (void) const {
-    return mProperty_mHandleGraphicControllerBinding ;
-  }
-
-  public: GGS_bool mProperty_mUserDefined ;
-  public: inline GGS_bool readProperty_mUserDefined (void) const {
-    return mProperty_mUserDefined ;
-  }
-
-  public: GGS_autoLayoutClassParameterList mProperty_mParameterList ;
-  public: inline GGS_autoLayoutClassParameterList readProperty_mParameterList (void) const {
-    return mProperty_mParameterList ;
-  }
-
-  public: GGS_astAutoLayoutViewFunctionMap mProperty_mAutoLayoutViewFunctionMap ;
-  public: inline GGS_astAutoLayoutViewFunctionMap readProperty_mAutoLayoutViewFunctionMap (void) const {
-    return mProperty_mAutoLayoutViewFunctionMap ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_autolayoutViewClassMap_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_lkey = inValue ;
-  }
-
-  public: inline void setter_setMSuperClassName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mSuperClassName = inValue ;
-  }
-
-  public: inline void setter_setMHandlesRunAction (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHandlesRunAction = inValue ;
-  }
-
-  public: inline void setter_setMHandlesTableValueBinding (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHandlesTableValueBinding = inValue ;
-  }
-
-  public: inline void setter_setMHandleEnabledBinding (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHandleEnabledBinding = inValue ;
-  }
-
-  public: inline void setter_setMHandleHiddenBinding (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHandleHiddenBinding = inValue ;
-  }
-
-  public: inline void setter_setMHandleGraphicControllerBinding (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mHandleGraphicControllerBinding = inValue ;
-  }
-
-  public: inline void setter_setMUserDefined (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mUserDefined = inValue ;
-  }
-
-  public: inline void setter_setMParameterList (const GGS_autoLayoutClassParameterList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mParameterList = inValue ;
-  }
-
-  public: inline void setter_setMAutoLayoutViewFunctionMap (const GGS_astAutoLayoutViewFunctionMap & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mAutoLayoutViewFunctionMap = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_autolayoutViewClassMap_2E_element (const GGS_lstring & in_lkey,
-                                                 const GGS_lstring & in_mSuperClassName,
-                                                 const GGS_bool & in_mHandlesRunAction,
-                                                 const GGS_bool & in_mHandlesTableValueBinding,
-                                                 const GGS_bool & in_mHandleEnabledBinding,
-                                                 const GGS_bool & in_mHandleHiddenBinding,
-                                                 const GGS_bool & in_mHandleGraphicControllerBinding,
-                                                 const GGS_bool & in_mUserDefined,
-                                                 const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                                 const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_autolayoutViewClassMap_2E_element (const GGS_autolayoutViewClassMap_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_autolayoutViewClassMap_2E_element & operator = (const GGS_autolayoutViewClassMap_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autolayoutViewClassMap_2E_element init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
-                                                                                                     const class GGS_lstring & inOperand1,
-                                                                                                     const class GGS_bool & inOperand2,
-                                                                                                     const class GGS_bool & inOperand3,
-                                                                                                     const class GGS_bool & inOperand4,
-                                                                                                     const class GGS_bool & inOperand5,
-                                                                                                     const class GGS_bool & inOperand6,
-                                                                                                     const class GGS_bool & inOperand7,
-                                                                                                     const class GGS_autoLayoutClassParameterList & inOperand8,
-                                                                                                     const class GGS_astAutoLayoutViewFunctionMap & inOperand9,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autolayoutViewClassMap_2E_element extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autolayoutViewClassMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                             const class GGS_lstring & inOperand1,
-                                                                             const class GGS_bool & inOperand2,
-                                                                             const class GGS_bool & inOperand3,
-                                                                             const class GGS_bool & inOperand4,
-                                                                             const class GGS_bool & inOperand5,
-                                                                             const class GGS_bool & inOperand6,
-                                                                             const class GGS_bool & inOperand7,
-                                                                             const class GGS_autoLayoutClassParameterList & inOperand8,
-                                                                             const class GGS_astAutoLayoutViewFunctionMap & inOperand9,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutViewClassMap_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: autolayoutViewClassMap.element? optional
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autolayoutViewClassMap_2E_element_3F_ : public AC_GALGAS_root {
-//--------------------------------- Private property
-  private: GGS_autolayoutViewClassMap_2E_element mValue ;
-  private: OptionalState mState ;
-
-//--------------------------------- Default constructor
-  public: GGS_autolayoutViewClassMap_2E_element_3F_ (void) ;
-
-//--------------------------------- Constructor from unwrapped type
-  public: GGS_autolayoutViewClassMap_2E_element_3F_ (const GGS_autolayoutViewClassMap_2E_element & inSource) ;
-
-//--------------------------------- Constructor from weak type
-
-//--------------------------------- nil initializer
-  public: static GGS_autolayoutViewClassMap_2E_element_3F_ init_nil (void) ;
-
-  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
-
-  public: bool isValuated (void) const ;
-  public: inline GGS_autolayoutViewClassMap_2E_element unwrappedValue (void) const {
-    return mValue ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
-  }
-
-  
-//--- Methods that every type should implement
-  public: virtual bool isValid (void) const override ;
-  
-  public: virtual void drop (void) override ;
-
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autolayoutViewClassMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_autolayoutViewClassMap_2E_element_3F_ ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_bindingSpecificationMap_2E_element_3F_ ;
 

@@ -19,5 +19,6 @@ if not TRANSIENT then
   %typealias EBComputedProperty_%!CLASS_NAME%    = EBComputedProperty <%!CLASS_NAME%>\n%
   %typealias EBStoredProperty_%!CLASS_NAME%      = EBStoredProperty <%!CLASS_NAME%>\n%
   %typealias EBStandAloneProperty_%!CLASS_NAME%  = EBStandAloneProperty <%!CLASS_NAME%>\n%
+  %typealias EBPreferenceProperty_%!CLASS_NAME%  = EBPreferenceProperty <%!CLASS_NAME%>\n%
 end
 %

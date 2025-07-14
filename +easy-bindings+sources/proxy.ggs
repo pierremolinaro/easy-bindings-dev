@@ -85,9 +85,8 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
        ?!@generationStruct unused ioGeneration)
 {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     ioSemanticContext.mClassMap.searchKey (self.mProxyTypeName, ?let proxyKind, ?3*)
     switch proxyKind
     case prefs :
@@ -101,26 +100,26 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
         !graphic: isGraphic,
         !optionKind: .none
       )
-      !?mPropertyMap.insertKey (self.mProxyName, k, (), false)
+      !?entry.mPropertyMap.insertKey (self.mProxyName, k, (), false)
       case propertyProxy :
         error self.mProxyTypeName : "this type should be an entity"
       end
     case document (*) :
       error self.mProxyTypeName : "an atomic type is required here"
     case atomic (type) :
-      !?mPropertyMap.insertKey (self.mProxyName, .property (!type: type, !accessibility: .stored), (), false)
+      !?entry.mPropertyMap.insertKey (self.mProxyName, .property (!type: type, !accessibility: .stored), (), false)
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
 
 override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct ioGeneration) {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
-    mPropertyMap.searchKey (self.mToOneRelationshipName, ?let relationshipKind, ?2*)
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
+    entry.mPropertyMap.searchKey (self.mToOneRelationshipName, ?let relationshipKind, ?2*)
     switch relationshipKind
     case arrayController (2*) :
       error self.mToOneRelationshipName : "a toOne relationship is required here"
@@ -135,7 +134,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
       propertyMap.searchKey (self.mPropertyName, ?let propertyKind, ?2*)
       switch propertyKind
       case property (propertyType, 1*) :
-        !?mPropertyGenerationList.append (@atomicProxyGeneration (
+        !?entry.mPropertyGenerationList.append (@atomicProxyGeneration (
           self.mProxyName.string,
           self.mProxyKind,
           propertyType,
@@ -148,7 +147,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
         end
       case toMany (toManyTypeName, 3*) :
         ioSemanticContext.mClassMap.searchKey (toManyTypeName, ?4*)
-        !?mPropertyGenerationList.append (@toManyProxyGeneration (
+        !?entry.mPropertyGenerationList.append (@toManyProxyGeneration (
           self.mProxyName.string,
           self.mProxyKind,
           toManyTypeName,
@@ -183,7 +182,8 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
         end
       end
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -206,9 +206,9 @@ list @toManyProxyGenerationList {
 //------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
 }
 
@@ -231,12 +231,12 @@ override func @toManyProxyGeneration.propertyDeclarationCode(
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string
 {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  var " + self.mPropertyName + "_modelDidChangeController : EBObservablePropertyController? = nil\n"
   result += "  final let " + self.mPropertyName + "_property = ProxyArrayOf_" + self.mToManyTypeName + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  var " + self.mPropertyName + " : EBReferenceArray <" + self.mToManyTypeName + "> {\n"
   result += "    get {\n"
   result += "      switch self." + self.mPropertyName + "_property.selection {\n"
@@ -290,9 +290,9 @@ list @atomicProxyGenerationList {
 //------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.declarationInSelectionControllerCode() -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
@@ -305,7 +305,7 @@ override func @atomicProxyGeneration.initCode() -> @string {
 //------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  private final func bind_property_" + self.mPropertyName + " () {\n"
   result += "    self.selectedArray_property.toMany_" + self.mPropertyName + "_StartsBeingObserved (by: self." + self.mPropertyName + "_property)\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
@@ -365,11 +365,11 @@ override func @atomicProxyGeneration.propertyDeclarationCode(
    let @bool unused inGenerationDirectAccess,
    let @stringset unused inOverriddenTransients) -> @string
 {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  var " + self.mPropertyName + " : " + self.mType.swiftTypeName + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.optionalValue\n"

@@ -101,9 +101,8 @@ syntax extension easyBindings_syntax {
 
 override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct ioGeneration) {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     !?ioGeneration.mToOneClassImplementations.insert (self.mDestinationEntityName)
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
@@ -124,33 +123,33 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
       if self.mOpposite != .none, not handleOpposite then
         error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
       end
-      !?mPropertyMap.insertKey (self.mToOneRelationshipName, kind, (), false)
+      !?entry.mPropertyMap.insertKey (self.mToOneRelationshipName, kind, (), false)
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
 
 override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
-    ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
-    switch classKind
-    case prefs :
-    case atomic (*) :
-    case document (*) :
-    case entity (*, graphic, 2*) :
-      let kind = @propertyKind.toOne (
-        !typeName: self.mDestinationEntityName,
-        !accessibility: .stored,
-        !graphic: graphic,
-        !opposite: self.mOpposite,
-        !isWeak: self.mWeak
-      )
-    //-- Code Generation
-      !?mPropertyGenerationList.append (@toOnePropertyGeneration (
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+  ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
+  switch classKind
+  case prefs :
+  case atomic (*) :
+  case document (*) :
+  case entity (*, graphic, 2*) :
+    let kind = @propertyKind.toOne (
+      !typeName: self.mDestinationEntityName,
+      !accessibility: .stored,
+      !graphic: graphic,
+      !opposite: self.mOpposite,
+      !isWeak: self.mWeak
+    )
+  //-- Code Generation
+    !?entry.mPropertyGenerationList.append (
+      @toOnePropertyGeneration (
         self.mToOneRelationshipName.string,
         self.mClassName,
         kind,
@@ -159,9 +158,38 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
         self.mUsedForSignature,
         not self.mWeak
       )
-      )
-    end
+    )
   end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  with self.mClassName in !?ioSemanticContext.mClassMap 
+//    %errorMessage searchKey
+//  do
+//    ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
+//    switch classKind
+//    case prefs :
+//    case atomic (*) :
+//    case document (*) :
+//    case entity (*, graphic, 2*) :
+//      let kind = @propertyKind.toOne (
+//        !typeName: self.mDestinationEntityName,
+//        !accessibility: .stored,
+//        !graphic: graphic,
+//        !opposite: self.mOpposite,
+//        !isWeak: self.mWeak
+//      )
+//    //-- Code Generation
+//      !?mPropertyGenerationList.append (@toOnePropertyGeneration (
+//        self.mToOneRelationshipName.string,
+//        self.mClassName,
+//        kind,
+//        self.mOpposite,
+//        destinationEntityPropertyMap,
+//        self.mUsedForSignature,
+//        not self.mWeak
+//      )
+//      )
+//    end
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -189,13 +217,13 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
                                                    (let @bool unused inPreferences,
                                                     let @bool unused inGenerationDirectAccess,
                                                     let @stringset unused inOverriddenTransients) -> @string {
-  result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+  result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_property = StoredObject_" + self.mRelationshipType.swiftTypeName
   result += " (usedForSignature: " + self.mUsedForSignature.cString
   result += ", strongRef: " + self.mStrongRef.cString + ", key: \"" + self.mPropertyName + "\")\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final var " + self.mPropertyName + " : " + self.mRelationshipType.swiftTypeName + "? {\n"
   result += "    get {\n"
   result += "      return self." + self.mPropertyName + "_property.propval\n"
@@ -212,7 +240,7 @@ override func @toOnePropertyGeneration.propertyDeclarationCode
   result += "      }\n"
   result += "    }\n"
   result += "  }\n\n"
-  result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+  result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
   result += "  final let " + self.mPropertyName + "_none = EBTransientProperty <Bool> ()\n\n"
 }
 

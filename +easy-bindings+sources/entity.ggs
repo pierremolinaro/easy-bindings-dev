@@ -207,11 +207,14 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
       end
     end
   //-- Replace property map
-    with self.mClassName in !?ioSemanticContext.mClassMap 
-      %errorMessage searchKey
-    do
-      mPropertyMap = newPropertyMap
-    end
+    var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+    entry.mPropertyMap = newPropertyMap
+    !?ioSemanticContext.mClassMap.replace (!with: entry)
+//    with self.mClassName in !?ioSemanticContext.mClassMap 
+//      %errorMessage searchKey
+//    do
+//      mPropertyMap = newPropertyMap
+//    end
   end
 }
 

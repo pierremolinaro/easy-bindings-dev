@@ -13,5 +13,6 @@ import AppKit
 typealias EBComputedProperty_%!TYPE%   = EBComputedProperty <%!TYPE%>
 typealias EBStoredProperty_%!TYPE%     = EBStoredProperty <%!TYPE%>
 typealias EBStandAloneProperty_%!TYPE% = EBStandAloneProperty <%!TYPE%>
+typealias EBPreferenceProperty_%!TYPE% = EBPreferenceProperty <%!TYPE%>
 %end%
 //--------------------------------------------------------------------------------------------------

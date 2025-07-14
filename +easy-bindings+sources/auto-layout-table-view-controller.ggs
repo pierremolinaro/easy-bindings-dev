@@ -140,11 +140,9 @@ syntax extension easyBindings_syntax {
 
 override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
-{
-  with self.mClassName in !?ioSemanticContext.mClassMap 
-    %errorMessage searchKey
-  do
+       ?!@generationStruct unused ioGeneration) {
+  var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
+//  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     var @actionMap controllerActions = ()
     !?controllerActions.insertKey ("add".nowhere)
     !?controllerActions.insertKey ("remove".nowhere)
@@ -159,13 +157,14 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
+        !?entry.mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      !?mPropertyGenerationList.append (@autoLayoutTableViewControllerPropertyGeneration (
-        self.mControllerName.string,
-        "rootObject." + self.mToManyPropertyName,
-        self.mClassName
-      )
+      !?entry.mPropertyGenerationList.append (
+        @autoLayoutTableViewControllerPropertyGeneration (
+          self.mControllerName.string,
+          "rootObject." + self.mToManyPropertyName,
+          self.mClassName
+        )
       )
       case toOne (5*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -175,7 +174,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         error self.mRootEntityName : "a toMany relationship is required here"
       end
     else
-      mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
+      entry.mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
         error self.mRootEntityName : "a toMany relationship is required here"
@@ -184,9 +183,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
           !typeName: typeName,
           !graphic: graphic
         )
-        !?mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
+        !?entry.mPropertyMap.insertKey (self.mControllerName, kind, controllerActions, false)
     //-- Code Generation
-      !?mPropertyGenerationList.append (@autoLayoutTableViewControllerPropertyGeneration (
+      !?entry.mPropertyGenerationList.append (@autoLayoutTableViewControllerPropertyGeneration (
         self.mControllerName.string,
         self.mToManyPropertyName,
         self.mClassName
@@ -200,7 +199,8 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         error self.mRootEntityName : "a toMany relationship is required here"
       end
     end
-  end
+  !?ioSemanticContext.mClassMap.replace (!with: entry)
+//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -402,14 +402,14 @@ override func @autoLayoutTableViewControllerPropertyGeneration.propertyDeclarati
    let @stringset unused inOverriddenTransients) -> @string
 {
   if inPreferences then
-    result  = "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+    result  = "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
     result += "//   Table View controller: " + self.mPropertyName + "\n"
-    result += "//" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+    result += "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n\n"
     result += "@MainActor let preferences_" + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   else
-    result  = "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n"
+    result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
     result += "  //   Array controller: " + self.mPropertyName + "\n"
-    result += "  //" + @string.stringWithSequenceOfCharacters  ('·', 96) + "\n\n"
+    result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
     result += "  final var " + self.mPropertyName + " = Controller_" + self.mOwnerName + "_" + self.mPropertyName + " ()\n\n"
   end
 }
