@@ -8,6 +8,358 @@
 #include "all-declarations-10.h"
 
 //--------------------------------------------------------------------------------------------------
+//Overriding extension method '@proxyDeclarationAST enterInPrecedenceGraph'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_proxyDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
+                                                              Compiler * inCompiler
+                                                              COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_proxyDeclarationAST temp_0 = this ;
+  const GGS_proxyDeclarationAST temp_1 = this ;
+  const GGS_proxyDeclarationAST temp_2 = this ;
+  GGS_lstring var_node_830 = GGS_lstring::init_21__21_ (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 23)).add_operation (temp_1.readProperty_mProxyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 23)), temp_2.readProperty_mProxyName ().readProperty_location (), inCompiler COMMA_HERE) ;
+  {
+  const GGS_proxyDeclarationAST temp_3 = this ;
+  ioArgument_ioGraph.setter_addNode (var_node_830, temp_3, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 24)) ;
+  }
+  {
+  const GGS_proxyDeclarationAST temp_4 = this ;
+  ioArgument_ioGraph.setter_addEdge (var_node_830, temp_4.readProperty_mClassName () COMMA_SOURCE_FILE ("proxy.ggs", 25)) ;
+  }
+  {
+  const GGS_proxyDeclarationAST temp_5 = this ;
+  ioArgument_ioGraph.setter_addEdge (var_node_830, temp_5.readProperty_mProxyTypeName () COMMA_SOURCE_FILE ("proxy.ggs", 26)) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension getter '@proxyDeclarationAST nodeKey'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring cPtr_proxyDeclarationAST::getter_nodeKey (Compiler * inCompiler
+                                                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_lstring result_result ; // Returned variable
+  const GGS_proxyDeclarationAST temp_0 = this ;
+  const GGS_proxyDeclarationAST temp_1 = this ;
+  const GGS_proxyDeclarationAST temp_2 = this ;
+  result_result = GGS_lstring::init_21__21_ (temp_0.readProperty_mClassName ().readProperty_string ().add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 32)).add_operation (temp_1.readProperty_mProxyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 32)), temp_2.readProperty_mProxyName ().readProperty_location (), inCompiler COMMA_HERE) ;
+//---
+  return result_result ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@proxyDeclarationAST firstAnalysisPhase'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_proxyDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
+                                                          GGS_generationStruct & /* ioArgument_ioGeneration */,
+                                                          Compiler * inCompiler
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_proxyDeclarationAST temp_0 = this ;
+  GGS_classMap_2E_element var_entry_3061 = ioArgument_ioSemanticContext.readProperty_mClassMap ().readSubscript__3F_searchKey (temp_0.readProperty_mClassName (), inCompiler COMMA_HERE) ;
+  GGS_classKind var_proxyKind_3275 ;
+  const GGS_proxyDeclarationAST temp_1 = this ;
+  GGS_propertyMap joker_3286_3 ; // Joker input parameter
+  GGS_actionMap joker_3286_2 ; // Joker input parameter
+  GGS_propertyGenerationList joker_3286_1 ; // Joker input parameter
+  ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (temp_1.readProperty_mProxyTypeName (), var_proxyKind_3275, joker_3286_3, joker_3286_2, joker_3286_1, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 90)) ;
+  switch (var_proxyKind_3275.enumValue ()) {
+  case GGS_classKind::Enumeration::invalid:
+    break ;
+  case GGS_classKind::Enumeration::enum_prefs:
+    {
+      const GGS_proxyDeclarationAST temp_2 = this ;
+      GenericArray <FixItDescription> fixItArray3 ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mProxyTypeName ().readProperty_location (), GGS_string ("an atomic type is required here"), fixItArray3  COMMA_SOURCE_FILE ("proxy.ggs", 93)) ;
+    }
+    break ;
+  case GGS_classKind::Enumeration::enum_entity:
+    {
+      GGS_string extractedValue_3414__0 ;
+      GGS_bool extractedValue_3423_isGraphic_1 ;
+      GGS_bool extractedValue_3435__2 ;
+      GGS_bool extractedValue_3435__3 ;
+      var_proxyKind_3275.getAssociatedValuesFor_entity (extractedValue_3414__0, extractedValue_3423_isGraphic_1, extractedValue_3435__2, extractedValue_3435__3) ;
+      const GGS_proxyDeclarationAST temp_4 = this ;
+      switch (temp_4.readProperty_mProxyKind ().enumValue ()) {
+      case GGS_proxyKind::Enumeration::invalid:
+        break ;
+      case GGS_proxyKind::Enumeration::enum_toManyProxy:
+        {
+          const GGS_proxyDeclarationAST temp_5 = this ;
+          GGS_propertyKind var_k_3505 = GGS_propertyKind::class_func_toMany (temp_5.readProperty_mProxyTypeName (), GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("proxy.ggs", 99)), extractedValue_3423_isGraphic_1, GGS_toManyRelationshipOptionAST::class_func_none (SOURCE_FILE ("proxy.ggs", 101))  COMMA_SOURCE_FILE ("proxy.ggs", 97)) ;
+          {
+          const GGS_proxyDeclarationAST temp_6 = this ;
+          var_entry_3061.mProperty_mPropertyMap.setter_insertKey (temp_6.readProperty_mProxyName (), var_k_3505, GGS_actionMap::init (inCompiler COMMA_HERE), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 103)) ;
+          }
+        }
+        break ;
+      case GGS_proxyKind::Enumeration::enum_propertyProxy:
+        {
+          const GGS_proxyDeclarationAST temp_7 = this ;
+          GenericArray <FixItDescription> fixItArray8 ;
+          inCompiler->emitSemanticError (temp_7.readProperty_mProxyTypeName ().readProperty_location (), GGS_string ("this type should be an entity"), fixItArray8  COMMA_SOURCE_FILE ("proxy.ggs", 105)) ;
+        }
+        break ;
+      }
+    }
+    break ;
+  case GGS_classKind::Enumeration::enum_document:
+    {
+      GGS_lstring extractedValue_3862__0 ;
+      var_proxyKind_3275.getAssociatedValuesFor_document (extractedValue_3862__0) ;
+      const GGS_proxyDeclarationAST temp_9 = this ;
+      GenericArray <FixItDescription> fixItArray10 ;
+      inCompiler->emitSemanticError (temp_9.readProperty_mProxyTypeName ().readProperty_location (), GGS_string ("an atomic type is required here"), fixItArray10  COMMA_SOURCE_FILE ("proxy.ggs", 108)) ;
+    }
+    break ;
+  case GGS_classKind::Enumeration::enum_atomic:
+    {
+      GGS_typeKind extractedValue_3952_type_0 ;
+      var_proxyKind_3275.getAssociatedValuesFor_atomic (extractedValue_3952_type_0) ;
+      {
+      const GGS_proxyDeclarationAST temp_11 = this ;
+      var_entry_3061.mProperty_mPropertyMap.setter_insertKey (temp_11.readProperty_mProxyName (), GGS_propertyKind::class_func_property (extractedValue_3952_type_0, GGS_propertyAccessibility::class_func_stored (SOURCE_FILE ("proxy.ggs", 110))  COMMA_SOURCE_FILE ("proxy.ggs", 110)), GGS_actionMap::init (inCompiler COMMA_HERE), GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 110)) ;
+      }
+    }
+    break ;
+  }
+  {
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_replace (var_entry_3061, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 112)) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@proxyDeclarationAST secondAnalysisPhase'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_proxyDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
+                                                           GGS_generationStruct & ioArgument_ioGeneration,
+                                                           Compiler * inCompiler
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_proxyDeclarationAST temp_0 = this ;
+  GGS_classMap_2E_element var_entry_4442 = ioArgument_ioSemanticContext.readProperty_mClassMap ().readSubscript__3F_searchKey (temp_0.readProperty_mClassName (), inCompiler COMMA_HERE) ;
+  GGS_propertyKind var_relationshipKind_4655 ;
+  const GGS_proxyDeclarationAST temp_1 = this ;
+  GGS_actionMap joker_4673_2 ; // Joker input parameter
+  GGS_bool joker_4673_1 ; // Joker input parameter
+  var_entry_4442.readProperty_mPropertyMap ().method_searchKey (temp_1.readProperty_mToOneRelationshipName (), var_relationshipKind_4655, joker_4673_2, joker_4673_1, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 122)) ;
+  switch (var_relationshipKind_4655.enumValue ()) {
+  case GGS_propertyKind::Enumeration::invalid:
+    break ;
+  case GGS_propertyKind::Enumeration::enum_arrayController:
+    {
+      GGS_lstring extractedValue_4733__0 ;
+      GGS_bool extractedValue_4733__1 ;
+      var_relationshipKind_4655.getAssociatedValuesFor_arrayController (extractedValue_4733__0, extractedValue_4733__1) ;
+      const GGS_proxyDeclarationAST temp_2 = this ;
+      GenericArray <FixItDescription> fixItArray3 ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mToOneRelationshipName ().readProperty_location (), GGS_string ("a toOne relationship is required here"), fixItArray3  COMMA_SOURCE_FILE ("proxy.ggs", 125)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_selectionController:
+    {
+      GGS_string extractedValue_4850__0 ;
+      var_relationshipKind_4655.getAssociatedValuesFor_selectionController (extractedValue_4850__0) ;
+      const GGS_proxyDeclarationAST temp_4 = this ;
+      GenericArray <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (temp_4.readProperty_mToOneRelationshipName ().readProperty_location (), GGS_string ("a toOne relationship is required here"), fixItArray5  COMMA_SOURCE_FILE ("proxy.ggs", 127)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_property:
+    {
+      GGS_typeKind extractedValue_4957__0 ;
+      GGS_propertyAccessibility extractedValue_4957__1 ;
+      var_relationshipKind_4655.getAssociatedValuesFor_property (extractedValue_4957__0, extractedValue_4957__1) ;
+      const GGS_proxyDeclarationAST temp_6 = this ;
+      GenericArray <FixItDescription> fixItArray7 ;
+      inCompiler->emitSemanticError (temp_6.readProperty_mToOneRelationshipName ().readProperty_location (), GGS_string ("a toOne relationship is required here"), fixItArray7  COMMA_SOURCE_FILE ("proxy.ggs", 129)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toMany:
+    {
+      GGS_lstring extractedValue_5062__0 ;
+      GGS_propertyAccessibility extractedValue_5062__1 ;
+      GGS_bool extractedValue_5062__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_5062__3 ;
+      var_relationshipKind_4655.getAssociatedValuesFor_toMany (extractedValue_5062__0, extractedValue_5062__1, extractedValue_5062__2, extractedValue_5062__3) ;
+      const GGS_proxyDeclarationAST temp_8 = this ;
+      GenericArray <FixItDescription> fixItArray9 ;
+      inCompiler->emitSemanticError (temp_8.readProperty_mToOneRelationshipName ().readProperty_location (), GGS_string ("a toOne relationship is required here"), fixItArray9  COMMA_SOURCE_FILE ("proxy.ggs", 131)) ;
+    }
+    break ;
+  case GGS_propertyKind::Enumeration::enum_toOne:
+    {
+      GGS_lstring extractedValue_5165_toOneTypeName_0 ;
+      GGS_propertyAccessibility extractedValue_5181__1 ;
+      GGS_bool extractedValue_5181__2 ;
+      GGS_toOneOppositeRelationship extractedValue_5181__3 ;
+      GGS_bool extractedValue_5181__4 ;
+      var_relationshipKind_4655.getAssociatedValuesFor_toOne (extractedValue_5165_toOneTypeName_0, extractedValue_5181__1, extractedValue_5181__2, extractedValue_5181__3, extractedValue_5181__4) ;
+      GGS_propertyMap var_propertyMap_5255 ;
+      GGS_classKind joker_5246 ; // Joker input parameter
+      GGS_actionMap joker_5268_2 ; // Joker input parameter
+      GGS_propertyGenerationList joker_5268_1 ; // Joker input parameter
+      ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_5165_toOneTypeName_0, joker_5246, var_propertyMap_5255, joker_5268_2, joker_5268_1, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 133)) ;
+      GGS_propertyKind var_propertyKind_5327 ;
+      const GGS_proxyDeclarationAST temp_10 = this ;
+      GGS_actionMap joker_5341_2 ; // Joker input parameter
+      GGS_bool joker_5341_1 ; // Joker input parameter
+      var_propertyMap_5255.method_searchKey (temp_10.readProperty_mPropertyName (), var_propertyKind_5327, joker_5341_2, joker_5341_1, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 134)) ;
+      switch (var_propertyKind_5327.enumValue ()) {
+      case GGS_propertyKind::Enumeration::invalid:
+        break ;
+      case GGS_propertyKind::Enumeration::enum_property:
+        {
+          GGS_typeKind extractedValue_5393_propertyType_0 ;
+          GGS_propertyAccessibility extractedValue_5408__1 ;
+          var_propertyKind_5327.getAssociatedValuesFor_property (extractedValue_5393_propertyType_0, extractedValue_5408__1) ;
+          {
+          const GGS_proxyDeclarationAST temp_11 = this ;
+          const GGS_proxyDeclarationAST temp_12 = this ;
+          const GGS_proxyDeclarationAST temp_13 = this ;
+          const GGS_proxyDeclarationAST temp_14 = this ;
+          var_entry_4442.mProperty_mPropertyGenerationList.setter_append (GGS_atomicProxyGeneration::init_21__21__21__21__21_ (temp_11.readProperty_mProxyName ().readProperty_string (), temp_12.readProperty_mProxyKind (), extractedValue_5393_propertyType_0, temp_13.readProperty_mToOneRelationshipName ().readProperty_string (), temp_14.readProperty_mPropertyName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 137)) ;
+          }
+          GalgasBool test_15 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_15) {
+            const GGS_proxyDeclarationAST temp_16 = this ;
+            test_15 = GGS_bool (ComparisonKind::notEqual, temp_16.readProperty_mProxyKind ().objectCompare (GGS_proxyKind::class_func_propertyProxy (SOURCE_FILE ("proxy.ggs", 145)))).boolEnum () ;
+            if (GalgasBool::boolTrue == test_15) {
+              const GGS_proxyDeclarationAST temp_17 = this ;
+              GenericArray <FixItDescription> fixItArray18 ;
+              inCompiler->emitSemanticError (temp_17.readProperty_mPropertyName ().readProperty_location (), GGS_string ("this property is not atomic"), fixItArray18  COMMA_SOURCE_FILE ("proxy.ggs", 146)) ;
+            }
+          }
+        }
+        break ;
+      case GGS_propertyKind::Enumeration::enum_toMany:
+        {
+          GGS_lstring extractedValue_5821_toManyTypeName_0 ;
+          GGS_propertyAccessibility extractedValue_5838__1 ;
+          GGS_bool extractedValue_5838__2 ;
+          GGS_toManyRelationshipOptionAST extractedValue_5838__3 ;
+          var_propertyKind_5327.getAssociatedValuesFor_toMany (extractedValue_5821_toManyTypeName_0, extractedValue_5838__1, extractedValue_5838__2, extractedValue_5838__3) ;
+          GGS_classKind joker_5906_4 ; // Joker input parameter
+          GGS_propertyMap joker_5906_3 ; // Joker input parameter
+          GGS_actionMap joker_5906_2 ; // Joker input parameter
+          GGS_propertyGenerationList joker_5906_1 ; // Joker input parameter
+          ioArgument_ioSemanticContext.readProperty_mClassMap ().method_searchKey (extractedValue_5821_toManyTypeName_0, joker_5906_4, joker_5906_3, joker_5906_2, joker_5906_1, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 149)) ;
+          {
+          const GGS_proxyDeclarationAST temp_19 = this ;
+          const GGS_proxyDeclarationAST temp_20 = this ;
+          const GGS_proxyDeclarationAST temp_21 = this ;
+          const GGS_proxyDeclarationAST temp_22 = this ;
+          var_entry_4442.mProperty_mPropertyGenerationList.setter_append (GGS_toManyProxyGeneration::init_21__21__21__21__21_ (temp_19.readProperty_mProxyName ().readProperty_string (), temp_20.readProperty_mProxyKind (), extractedValue_5821_toManyTypeName_0.readProperty_string (), temp_21.readProperty_mToOneRelationshipName ().readProperty_string (), temp_22.readProperty_mPropertyName ().readProperty_string (), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 150)) ;
+          }
+          {
+          ioArgument_ioGeneration.mProperty_mGenerateClass_5F_ProxyArrayOf_5F_.setter_insert (extractedValue_5821_toManyTypeName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 158)) ;
+          }
+          GalgasBool test_23 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_23) {
+            const GGS_proxyDeclarationAST temp_24 = this ;
+            test_23 = GGS_bool (ComparisonKind::notEqual, temp_24.readProperty_mProxyKind ().objectCompare (GGS_proxyKind::class_func_toManyProxy (SOURCE_FILE ("proxy.ggs", 159)))).boolEnum () ;
+            if (GalgasBool::boolTrue == test_23) {
+              const GGS_proxyDeclarationAST temp_25 = this ;
+              GenericArray <FixItDescription> fixItArray26 ;
+              inCompiler->emitSemanticError (temp_25.readProperty_mPropertyName ().readProperty_location (), GGS_string ("this property is not atomic"), fixItArray26  COMMA_SOURCE_FILE ("proxy.ggs", 160)) ;
+            }
+          }
+        }
+        break ;
+      case GGS_propertyKind::Enumeration::enum_toOne:
+        {
+          GGS_lstring extractedValue_6395__0 ;
+          GGS_propertyAccessibility extractedValue_6395__1 ;
+          GGS_bool extractedValue_6395__2 ;
+          GGS_toOneOppositeRelationship extractedValue_6395__3 ;
+          GGS_bool extractedValue_6395__4 ;
+          var_propertyKind_5327.getAssociatedValuesFor_toOne (extractedValue_6395__0, extractedValue_6395__1, extractedValue_6395__2, extractedValue_6395__3, extractedValue_6395__4) ;
+          const GGS_proxyDeclarationAST temp_27 = this ;
+          switch (temp_27.readProperty_mProxyKind ().enumValue ()) {
+          case GGS_proxyKind::Enumeration::invalid:
+            break ;
+          case GGS_proxyKind::Enumeration::enum_propertyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_28 = this ;
+              GenericArray <FixItDescription> fixItArray29 ;
+              inCompiler->emitSemanticError (temp_28.readProperty_mPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray29  COMMA_SOURCE_FILE ("proxy.ggs", 165)) ;
+            }
+            break ;
+          case GGS_proxyKind::Enumeration::enum_toManyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_30 = this ;
+              GenericArray <FixItDescription> fixItArray31 ;
+              inCompiler->emitSemanticError (temp_30.readProperty_mPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray31  COMMA_SOURCE_FILE ("proxy.ggs", 167)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GGS_propertyKind::Enumeration::enum_arrayController:
+        {
+          GGS_lstring extractedValue_6677__0 ;
+          GGS_bool extractedValue_6677__1 ;
+          var_propertyKind_5327.getAssociatedValuesFor_arrayController (extractedValue_6677__0, extractedValue_6677__1) ;
+          const GGS_proxyDeclarationAST temp_32 = this ;
+          switch (temp_32.readProperty_mProxyKind ().enumValue ()) {
+          case GGS_proxyKind::Enumeration::invalid:
+            break ;
+          case GGS_proxyKind::Enumeration::enum_propertyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_33 = this ;
+              GenericArray <FixItDescription> fixItArray34 ;
+              inCompiler->emitSemanticError (temp_33.readProperty_mPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray34  COMMA_SOURCE_FILE ("proxy.ggs", 172)) ;
+            }
+            break ;
+          case GGS_proxyKind::Enumeration::enum_toManyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_35 = this ;
+              GenericArray <FixItDescription> fixItArray36 ;
+              inCompiler->emitSemanticError (temp_35.readProperty_mPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray36  COMMA_SOURCE_FILE ("proxy.ggs", 174)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      case GGS_propertyKind::Enumeration::enum_selectionController:
+        {
+          GGS_string extractedValue_6962__0 ;
+          var_propertyKind_5327.getAssociatedValuesFor_selectionController (extractedValue_6962__0) ;
+          const GGS_proxyDeclarationAST temp_37 = this ;
+          switch (temp_37.readProperty_mProxyKind ().enumValue ()) {
+          case GGS_proxyKind::Enumeration::invalid:
+            break ;
+          case GGS_proxyKind::Enumeration::enum_propertyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_38 = this ;
+              GenericArray <FixItDescription> fixItArray39 ;
+              inCompiler->emitSemanticError (temp_38.readProperty_mPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray39  COMMA_SOURCE_FILE ("proxy.ggs", 179)) ;
+            }
+            break ;
+          case GGS_proxyKind::Enumeration::enum_toManyProxy:
+            {
+              const GGS_proxyDeclarationAST temp_40 = this ;
+              GenericArray <FixItDescription> fixItArray41 ;
+              inCompiler->emitSemanticError (temp_40.readProperty_mPropertyName ().readProperty_location (), GGS_string ("a toMany property is required here"), fixItArray41  COMMA_SOURCE_FILE ("proxy.ggs", 181)) ;
+            }
+            break ;
+          }
+        }
+        break ;
+      }
+    }
+    break ;
+  }
+  {
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_replace (var_entry_4442, inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 185)) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //
 //Overriding extension getter '@toManyProxyGeneration declarationInSelectionControllerCode'
 //
@@ -2864,9 +3216,9 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
   }
   result.appendString ("      self.mPrivateSelectedSet = newValue\n    }\n    get {\n      return self.selectedArray_property.propset\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mPrivateSelectedSet = EBReferenceSet <") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString ("> () {\n    didSet {\n      self.selectedArray_property.observedObjectDidChange ()\n      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Selected Array\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
+  result.appendString ("> () {\n    didSet {\n      self.selectedArray_property.observedObjectDidChange ()\n      self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (Array (self.mPrivateSelectedSet.values)))\n    }\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  // Selected Array\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mInternalSelectedArrayProperty = StandAloneArrayOf_") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (usedForSignature: false, key: nil)\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArrayDidChange_property : EBObservedObserver { return self.mInternalSelectedArrayProperty } // EBGraphicViewControllerProtocol\n  var selectedArray_property : ReadOnlyArrayOf_") ;
+  result.appendString (" ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArrayDidChange_property : EBObservedObserver { return self.mInternalSelectedArrayProperty } // EBGraphicViewControllerProtocol\n  var selectedArray_property : ReadOnlyArrayOf_") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" { return self.mInternalSelectedArrayProperty }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArray : EBReferenceArray <") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
@@ -3811,9 +4163,9 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
   case GalgasBool::boolNotValid :
     break ;
   }
-  result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  /* final func unbind_model () {\n    self.sortedArray_property.resetDataProvider ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  } */\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Selected Array\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mInternalSelectedArrayProperty = StoredArrayOf_") ;
+  result.appendString ("\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  /* final func unbind_model () {\n    self.sortedArray_property.resetDataProvider ()\n    self.mModel = nil\n    self.mUndoManager = nil\n  } */\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //   Selected Array\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private let mInternalSelectedArrayProperty = StandAloneArrayOf_") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
-  result.appendString (" (usedForSignature: false, key: nil)\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArray_property : ReadOnlyArrayOf_") ;
+  result.appendString (" ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArray_property : ReadOnlyArrayOf_") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString (" { return self.mInternalSelectedArrayProperty }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedArray : EBReferenceArray <") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
@@ -3822,20 +4174,20 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
   result.appendString ("> { return EBReferenceSet (self.selectedArray_property.propval.values) }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  var selectedIndexesSet : Set <Int> {\n    let selectedObjectSet = self.selectedSet\n    var result = Set <Int> ()\n    var idx = 0\n    if let model = self.mModel {\n      for object in model.propval.values {\n        if selectedObjectSet.contains (object) {\n          result.insert (idx)\n        }\n        idx += 1\n      }\n    }\n    return result\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  func setSelection (_ inObjects : [") ;
   result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
   result.appendString ("]) {\n    self.mInternalSelectedArrayProperty.setProp (EBReferenceArray (inObjects))\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    sorted array observer\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mSortedArrayValuesObserver = EBOutletEvent ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  @MainActor override init () {\n    super.init ()\n    self.sortedArray_property.startsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
-  GGS_uint index_6453_ (0) ;
+  GGS_uint index_6424_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    UpEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6453 (in_BOUND_5F_COLUMNS) ;
-    while (enumerator_6453.hasCurrentObject ()) {
+    UpEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_6424 (in_BOUND_5F_COLUMNS) ;
+    while (enumerator_6424.hasCurrentObject ()) {
       result.appendString ("  //--- Observe '") ;
-      result.appendString (enumerator_6453.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6424.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("' column\n    self.sortedArray_property.toMany_") ;
-      result.appendString (enumerator_6453.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_6424.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
-      const GalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6453.current_mSortPropertyName (HERE).objectCompare (enumerator_6453.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
+      const GalgasBool test_2 = GGS_bool (ComparisonKind::notEqual, enumerator_6424.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).operator_and (GGS_bool (ComparisonKind::notEqual, enumerator_6424.current_mSortPropertyName (HERE).objectCompare (enumerator_6424.current_mDisplayedPropertyName (HERE))) COMMA_SOURCE_FILE ("auto-layout-table-view-controller.swift.galgasTemplate", 161)).boolEnum () ;
       switch (test_2) {
       case GalgasBool::boolTrue : {
         result.appendString ("     self.sortedArray_property.toMany_") ;
-        result.appendString (enumerator_6453.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_6424.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_StartsBeingObserved (by: self.mSortedArrayValuesObserver)\n") ;
         } break ;
       case GalgasBool::boolFalse : {
@@ -3843,27 +4195,27 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
       case GalgasBool::boolNotValid :
         break ;
       }
-      enumerator_6453.gotoNextObject () ;
-      index_6453_.increment () ;
+      enumerator_6424.gotoNextObject () ;
+      index_6424_.increment () ;
     }
   }
   result.appendString ("  //---\n    self.mSortedArrayValuesObserver.mEventCallBack = { [weak self] in\n       for tableView in self\?.mTableViewArray \?\? [] {\n        tableView.sortAndReloadData ()\n      }\n    }\n    noteObjectAllocation (self)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  deinit {\n    noteObjectDeallocation (self)\n  }\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n  //    bind_tableView\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  private var mTableViewArray = [AutoLayoutTableView] ()\n\n  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n  final func bind_tableView (_ inTableView : AutoLayoutTableView) {\n    inTableView.configure (\n      allowsEmptySelection: allowsEmptySelection,\n      allowsMultipleSelection: allowsMultipleSelection,\n      rowCountCallBack: { [weak self] in self\?.sortedArray_property.propval.count \?\? 0 },\n      delegate: self\n    )\n") ;
-  GGS_uint index_8053_ (0) ;
+  GGS_uint index_8024_ (0) ;
   if (in_BOUND_5F_COLUMNS.isValid ()) {
-    UpEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8053 (in_BOUND_5F_COLUMNS) ;
-    while (enumerator_8053.hasCurrentObject ()) {
+    UpEnumerator_autoLayoutTableViewControllerBoundColumnListForGeneration enumerator_8024 (in_BOUND_5F_COLUMNS) ;
+    while (enumerator_8024.hasCurrentObject ()) {
       result.appendString ("  //--- Configure '") ;
-      result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8024.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString ("' column\n    inTableView.addColumn_") ;
-      result.appendString (enumerator_8053.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8024.current_mColumnObjectTypeName (HERE).stringValue ()) ;
       result.appendString (" (\n      valueGetterDelegate: { [weak self] in return self\?.sortedArray_property.propval [$0].") ;
-      result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+      result.appendString (enumerator_8024.current_mDisplayedPropertyName (HERE).stringValue ()) ;
       result.appendString (" },\n      valueSetterDelegate: ") ;
-      const GalgasBool test_3 = enumerator_8053.current_mEditable (HERE).boolEnum () ;
+      const GalgasBool test_3 = enumerator_8024.current_mEditable (HERE).boolEnum () ;
       switch (test_3) {
       case GalgasBool::boolTrue : {
         result.appendString ("{ [weak self] (inRowIndex, inNewValue) in self\?.sortedArray_property.propval [inRowIndex].") ;
-        result.appendString (enumerator_8053.current_mDisplayedPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8024.current_mDisplayedPropertyName (HERE).stringValue ()) ;
         result.appendString (" = inNewValue }") ;
         } break ;
       case GalgasBool::boolFalse : {
@@ -3873,7 +4225,7 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         break ;
       }
       result.appendString (",\n      sortDelegate: ") ;
-      const GalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8053.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+      const GalgasBool test_4 = GGS_bool (ComparisonKind::notEqual, enumerator_8024.current_mSortPropertyName (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       switch (test_4) {
       case GalgasBool::boolTrue : {
         result.appendString ("{ [weak self] (ascending) in\n        self\?.mSortDescriptorArray.append ({ (_ left : ") ;
@@ -3881,11 +4233,11 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         result.appendString (", _ right : ") ;
         result.appendString (in_ELEMENT_5F_TYPE_5F_NAME.stringValue ()) ;
         result.appendString (") in return compare_") ;
-        result.appendString (enumerator_8053.current_mColumnObjectTypeName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8024.current_mColumnObjectTypeName (HERE).stringValue ()) ;
         result.appendString ("_properties (left.") ;
-        result.appendString (enumerator_8053.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8024.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_property, ascending, right.") ;
-        result.appendString (enumerator_8053.current_mSortPropertyName (HERE).stringValue ()) ;
+        result.appendString (enumerator_8024.current_mSortPropertyName (HERE).stringValue ()) ;
         result.appendString ("_property) })\n      }") ;
         } break ;
       case GalgasBool::boolFalse : {
@@ -3895,24 +4247,24 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
         break ;
       }
       result.appendString (",\n") ;
-      GGS_uint index_8908_ (0) ;
-      if (enumerator_8053.current_mActualParameterList (HERE).isValid ()) {
-        UpEnumerator__32_stringlist enumerator_8908 (enumerator_8053.current_mActualParameterList (HERE)) ;
-        while (enumerator_8908.hasCurrentObject ()) {
+      GGS_uint index_8879_ (0) ;
+      if (enumerator_8024.current_mActualParameterList (HERE).isValid ()) {
+        UpEnumerator__32_stringlist enumerator_8879 (enumerator_8024.current_mActualParameterList (HERE)) ;
+        while (enumerator_8879.hasCurrentObject ()) {
           result.appendString ("      ") ;
-          result.appendString (enumerator_8908.current_mValue_30_ (HERE).stringValue ()) ;
+          result.appendString (enumerator_8879.current_mValue_30_ (HERE).stringValue ()) ;
           result.appendString (": ") ;
-          result.appendString (enumerator_8908.current_mValue_31_ (HERE).stringValue ()) ;
-          enumerator_8908.gotoNextObject () ;
-          if (enumerator_8908.hasCurrentObject ()) {
+          result.appendString (enumerator_8879.current_mValue_31_ (HERE).stringValue ()) ;
+          enumerator_8879.gotoNextObject () ;
+          if (enumerator_8879.hasCurrentObject ()) {
             result.appendString (",\n") ;
           }
-          index_8908_.increment () ;
+          index_8879_.increment () ;
         }
       }
       result.appendString ("\n    )\n") ;
-      enumerator_8053.gotoNextObject () ;
-      index_8053_.increment () ;
+      enumerator_8024.gotoNextObject () ;
+      index_8024_.increment () ;
     }
   }
   result.appendString ("  //---\n    self.mTableViewArray.append (inTableView)\n    inTableView.sortAndReloadData ()\n  }\n\n") ;
