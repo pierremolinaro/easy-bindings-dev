@@ -55,7 +55,7 @@ class UInt32Set final {
 
   public: bool contains (const uint32_t inNodeIndex) const ;
 
-  public: uint32_t firstValueNotIsSet (void) const ;
+  public: uint32_t firstValueNotInSet (void) const ;
 
   public: uint32_t count (void) const ;
 

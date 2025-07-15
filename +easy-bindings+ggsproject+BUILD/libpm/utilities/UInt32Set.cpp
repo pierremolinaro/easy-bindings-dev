@@ -109,7 +109,7 @@ bool UInt32Set::contains (const uint32_t inNodeIndex) const {
 
 //--------------------------------------------------------------------------------------------------
 
-uint32_t UInt32Set::firstValueNotIsSet (void) const {
+uint32_t UInt32Set::firstValueNotInSet (void) const {
   uint32_t result = 0 ;
   if (mDefinition.count () > 0) {
     result = 64 * (((uint32_t) mDefinition.count ()) - 1) ;

@@ -37,14 +37,14 @@ end
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {
+ /* func enumfromRawValue (rawValue : Int) -> %!ENUM_TYPE_NAME% {
     var result = self
     let v : %!ENUM_TYPE_NAME%? = %!ENUM_TYPE_NAME% (rawValue:rawValue) ;
     if let unwrappedV = v {
       result = unwrappedV
     }
     return result
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //  EBStoredPropertyProtocol

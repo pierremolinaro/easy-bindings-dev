@@ -231,13 +231,13 @@ final class StoredObject_%!ENTITY_NAME% : ReadOnlyObject_%!ENTITY_NAME%, EBSigna
   // Model will change
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private final class MyPrivateUndoer : NSObject { // For Swift 6
+ /* private final class MyPrivateUndoer : NSObject { // For Swift 6
     let mOldValue : %!ENTITY_NAME%?
 
     init (_ inOldValue : %!ENTITY_NAME%?) {
       self.mOldValue = inOldValue
     }
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
