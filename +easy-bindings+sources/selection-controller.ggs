@@ -216,13 +216,6 @@ override func @selectionControllerPropertyGeneration.initCode() -> @string {
 }
 
 //------------------------------------------------------------------------------------------------
-
-override func @selectionControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
-  result  = "    //--- Selection controller property: " + self.mPropertyName + "\n"
-  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
-}
-
-//------------------------------------------------------------------------------------------------
 //   GENERATION TYPES                      
 //------------------------------------------------------------------------------------------------
 

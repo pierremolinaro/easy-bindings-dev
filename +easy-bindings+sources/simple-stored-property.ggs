@@ -350,7 +350,11 @@ override func @atomicPropertyGeneration.initCode () -> @string {
 //------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
-  result  = ""
+  if self.standalone || self.mInPreferences then
+    result = ""
+  else
+    result  = "    self.accumulateProperty (self." + self.mPropertyName + "_property)\n"
+  end
 }
 
 //------------------------------------------------------------------------------------------------

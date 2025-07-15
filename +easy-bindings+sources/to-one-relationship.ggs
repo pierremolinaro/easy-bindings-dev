@@ -161,35 +161,6 @@ override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSem
     )
   end
   !?ioSemanticContext.mClassMap.replace (!with: entry)
-//  with self.mClassName in !?ioSemanticContext.mClassMap 
-//    %errorMessage searchKey
-//  do
-//    ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
-//    switch classKind
-//    case prefs :
-//    case atomic (*) :
-//    case document (*) :
-//    case entity (*, graphic, 2*) :
-//      let kind = @propertyKind.toOne (
-//        !typeName: self.mDestinationEntityName,
-//        !accessibility: .stored,
-//        !graphic: graphic,
-//        !opposite: self.mOpposite,
-//        !isWeak: self.mWeak
-//      )
-//    //-- Code Generation
-//      !?mPropertyGenerationList.append (@toOnePropertyGeneration (
-//        self.mToOneRelationshipName.string,
-//        self.mClassName,
-//        kind,
-//        self.mOpposite,
-//        destinationEntityPropertyMap,
-//        self.mUsedForSignature,
-//        not self.mWeak
-//      )
-//      )
-//    end
-//  end
 }
 
 //------------------------------------------------------------------------------------------------
@@ -252,7 +223,7 @@ override func @toOnePropertyGeneration.initCode() -> @string {
 
 //------------------------------------------------------------------------------------------------
 
-override func @toOnePropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @toOnePropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   switch self.mOpposite
   case oppositeIsToMany (oppositeName) :
     result  = "  //--- To one property: " + self.mPropertyName + " (has opposite to many relationship: " + oppositeName + ")\n"
@@ -272,31 +243,9 @@ override func @toOnePropertyGeneration.configurationCode (let @bool unused inPre
     result += "      resetter: { inObject in inObject." + oppositeName + "_property.setProp (nil) }\n"
     result += "    )\n"
   end
-}
-
-//------------------------------------------------------------------------------------------------
-
-override func @toOnePropertyGeneration.setupRelationshipFromDictionaryCode() -> @string {
-  result  = "  //--- To one property: " + self.mPropertyName + "\n"
-  result += "    do{\n"
-  result += "      let possibleEntity = readEntityFromDictionary (\n"
-  result += "        relationshipName: \"" + self.mPropertyName + "\",\n"
-  result += "        dictionary: inDictionary,\n"
-  result += "        managedObjectArray: inManagedObjectArray\n"
-  result += "      )\n"
-  result += "      if let entity = possibleEntity as? " + self.mRelationshipType.swiftTypeName + " {\n"
-  result += "        self." + self.mPropertyName + "_property.setProp (entity)\n"
-  result += "      }\n"
-  result += "    }\n"
-}
-
-//------------------------------------------------------------------------------------------------
-
-override func @toOnePropertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string {
-  result  = "  //--- To one property: " + self.mPropertyName + "\n"
-  result += "    if let object = self." + self.mPropertyName + " {\n"
-  result += "      ioObjectArray.append (object)\n"
-  result += "    }\n"
+  if not inPreferences then
+    result += "    self.accumulateProperty (self." + self.mPropertyName + "_property)\n"
+  end
 }
 
 //------------------------------------------------------------------------------------------------

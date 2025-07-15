@@ -284,13 +284,6 @@ override func @arrayControllerPropertyGeneration.configurationCode (let @bool un
 }
 
 //------------------------------------------------------------------------------------------------
-
-override func @arrayControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
-  result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
-}
-
-//------------------------------------------------------------------------------------------------
 //   GENERATION TYPES
 //------------------------------------------------------------------------------------------------
 

@@ -2371,17 +2371,11 @@ class cPtr_toOnePropertyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter objectAccessibilityCodeForSaveOperation
-  public: virtual class GGS_string getter_objectAccessibilityCodeForSaveOperation (Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
            const class GGS_bool inGenerationDirectAccess,
            const class GGS_stringset inOverriddenTransients,
            Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter setupRelationshipFromDictionaryCode
-  public: virtual class GGS_string getter_setupRelationshipFromDictionaryCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GGS_string mProperty_mClassName ;
@@ -3721,9 +3715,6 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter objectAccessibilityCodeForSaveOperation
-  public: virtual class GGS_string getter_objectAccessibilityCodeForSaveOperation (Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter prefKeyDefinitionCode
   public: virtual class GGS_string getter_prefKeyDefinitionCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -3732,12 +3723,6 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
            const class GGS_bool inGenerationDirectAccess,
            const class GGS_stringset inOverriddenTransients,
            Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter resetToManyRelationships
-  public: virtual class GGS_string getter_resetToManyRelationships (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter setupRelationshipFromDictionaryCode
-  public: virtual class GGS_string getter_setupRelationshipFromDictionaryCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Properties
   public: GGS_bool mProperty_mGenerateDirectAccess ;
@@ -7207,9 +7192,6 @@ class cPtr_arrayControllerPropertyGeneration : public cPtr_propertyGeneration {
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter populateExplorerWindowCode
-  public: virtual class GGS_string getter_populateExplorerWindowCode (Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
            const class GGS_bool inGenerationDirectAccess,
@@ -7990,9 +7972,6 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
 
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter populateExplorerWindowCode
-  public: virtual class GGS_string getter_populateExplorerWindowCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
 //--- Extension getter propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,

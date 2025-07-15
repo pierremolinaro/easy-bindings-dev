@@ -590,7 +590,7 @@ else
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func initialize (fromDictionary inDictionary : [String : Any],
+  func initialize (fromValueDictionary inDictionary : [String : Any],
                    managedObjectArray inManagedObjectArray : [EBManagedObject]) {
     if let key = self.mKey, let objectSavingIndexArray = inDictionary [key] as? [Int] {
       var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
@@ -854,7 +854,7 @@ else
       var objectArray = EBReferenceArray <%!ENTITY_NAME%> ()
       for dictionary in array {
         let object = newInstanceOfEntityNamed (self.undoManager, "%!ENTITY_NAME%") as! %!ENTITY_NAME%
-        object.setUpProperties (withDictionary: dictionary, managedObjectArray: [])
+        object.setUpProperties (fromValueDictionary: dictionary, managedObjectArray: [])
         objectArray.append (object)
       }
       self.setProp (objectArray)

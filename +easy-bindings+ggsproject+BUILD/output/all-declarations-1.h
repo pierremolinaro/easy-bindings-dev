@@ -4515,12 +4515,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-//--- Extension getter objectAccessibilityCodeForSaveOperation
-  public: virtual class GGS_string getter_objectAccessibilityCodeForSaveOperation (Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter populateExplorerWindowCode
-  public: virtual class GGS_string getter_populateExplorerWindowCode (Compiler * COMMA_LOCATION_ARGS) const ;
-
 //--- Extension getter prefKeyDefinitionCode
   public: virtual class GGS_string getter_prefKeyDefinitionCode (Compiler * COMMA_LOCATION_ARGS) const ;
 
@@ -4529,12 +4523,6 @@ class cPtr_propertyGeneration : public acStrongPtr_class {
            const class GGS_bool inGenerationDirectAccess,
            const class GGS_stringset inOverriddenTransients,
            Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter resetToManyRelationships
-  public: virtual class GGS_string getter_resetToManyRelationships (Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter setupRelationshipFromDictionaryCode
-  public: virtual class GGS_string getter_setupRelationshipFromDictionaryCode (Compiler * COMMA_LOCATION_ARGS) const ;
 
 //--- Properties
   public: GGS_string mProperty_mPropertyName ;

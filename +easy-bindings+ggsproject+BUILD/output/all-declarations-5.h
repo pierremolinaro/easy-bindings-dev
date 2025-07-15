@@ -786,9 +786,6 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
 //--- Extension getter initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter populateExplorerWindowCode
-  public: virtual class GGS_string getter_populateExplorerWindowCode (Compiler * COMMA_LOCATION_ARGS) const override ;
-
 //--- Extension getter propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
            const class GGS_bool inGenerationDirectAccess,
@@ -2487,46 +2484,6 @@ class GGS_string callExtensionGetter_configurationCode (const class cPtr_propert
 class GGS_string callExtensionGetter_initCode (const class cPtr_propertyGeneration * inObject,
                                                class Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration setupRelationshipFromDictionaryCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string callExtensionGetter_setupRelationshipFromDictionaryCode (const cPtr_propertyGeneration * inObject,
-                                                                          class Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration objectAccessibilityCodeForSaveOperation'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string callExtensionGetter_objectAccessibilityCodeForSaveOperation (const cPtr_propertyGeneration * inObject,
-                                                                              class Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration populateExplorerWindowCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string callExtensionGetter_populateExplorerWindowCode (const cPtr_propertyGeneration * inObject,
-                                                                 class Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@propertyGeneration resetToManyRelationships'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_string callExtensionGetter_resetToManyRelationships (const cPtr_propertyGeneration * inObject,
-                                                               class Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @propertyAccessibility_2E_transient struct

@@ -429,13 +429,6 @@ override func @autoLayoutTableViewControllerPropertyGeneration.initCode() -> @st
 }
 
 //------------------------------------------------------------------------------------------------
-
-override func @autoLayoutTableViewControllerPropertyGeneration.populateExplorerWindowCode() -> @string {
-  result  = "    //--- Array controller property: " + self.mPropertyName + "\n"
-  result += "      self." + self.mPropertyName + ".addExplorer (name: \"" + self.mPropertyName + "\", y:&y, view:view)\n"
-}
-
-//------------------------------------------------------------------------------------------------
 //   GENERATION TYPES
 //------------------------------------------------------------------------------------------------
 

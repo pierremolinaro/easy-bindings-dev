@@ -39,23 +39,7 @@ abstract func @propertyGeneration.configurationCode (let @bool inPreferences) ->
 
 //------------------------------------------------------------------------------------------------
 
-abstract func @propertyGeneration.initCode() -> @string
-
-//------------------------------------------------------------------------------------------------
-
-func @propertyGeneration.setupRelationshipFromDictionaryCode() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
-func @propertyGeneration.objectAccessibilityCodeForSaveOperation() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
-func @propertyGeneration.populateExplorerWindowCode() -> @string { result = "" }
-
-//------------------------------------------------------------------------------------------------
-
-func @propertyGeneration.resetToManyRelationships() -> @string { result = "" }
+abstract func @propertyGeneration.initCode () -> @string
 
 //------------------------------------------------------------------------------------------------
 
