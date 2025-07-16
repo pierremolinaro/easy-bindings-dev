@@ -249,9 +249,19 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
 
 //------------------------------------------------------------------------------------------------
 
-override proc @preferencesForGeneration.generateCode(
+override proc @preferencesForGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @preferencesForGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   let s = filewrapper [prefsGenerationTemplate.preferences:
     self.mPropertyListForGeneration,

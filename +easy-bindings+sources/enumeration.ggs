@@ -191,9 +191,19 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
 
 //------------------------------------------------------------------------------------------------
 
-override proc @enumForGeneration.generateCode(
+override proc @enumForGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @enumForGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   if self.mEnumConstantList.count > 0 then // Empty list is the generic type "Enum"
     let sA = filewrapper [enumGenerationTemplate.enumGenerationInSwift:

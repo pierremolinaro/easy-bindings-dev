@@ -528,7 +528,7 @@ syntax extension easyBindings_syntax {
     end
     ${$
     var @astNewStackViewDeclarationList astNewStackViewDeclarationList = []
-    var instructionList = @astViewInstructionList [] // §
+    var instructionList = @astViewInstructionList []
     <view_instruction_list> (
       !horizontal: false,
       !?ioStackViewInstances,
@@ -1446,6 +1446,7 @@ proc analyzeAutoLayoutRegularBinding(
         if inPreferences then inPreferencesPropertyMap else inBoundModelPropertyMap end,
         ?let @propertyKind kind,
         ?let @string unused swiftTypeStringForTransientFunctionArgument,
+        ?let @string unused protocolTypeName,
         ?let @string unused defaultValueAsString
       )
       switch kind

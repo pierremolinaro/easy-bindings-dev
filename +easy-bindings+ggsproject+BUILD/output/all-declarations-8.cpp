@@ -15539,42 +15539,55 @@ GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationI
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@enumForGeneration generateCode'
+//Overriding extension method '@enumForGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
-void cPtr_enumForGeneration::method_generateCode (const GGS_string constinArgument_inOutputDirectory,
-                                                  const GGS_generationStruct /* constinArgument_inGenerationStruct */,
-                                                  GGS_stringset & ioArgument_ioGeneratedFileSet,
-                                                  Compiler * inCompiler
-                                                  COMMA_UNUSED_LOCATION_ARGS) {
+void cPtr_enumForGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument_inOutputDirectory */,
+                                                           const GGS_generationStruct /* constinArgument_inGenerationStruct */,
+                                                           GGS_stringset & /* ioArgument_ioUsedProtocolSet */,
+                                                           GGS_stringset & /* ioArgument_ioGeneratedFileSet */,
+                                                           Compiler * /* inCompiler */
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@enumForGeneration generateCodePhase2'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_enumForGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
+                                                           const GGS_generationStruct /* constinArgument_inGenerationStruct */,
+                                                           const GGS_stringset /* constinArgument_inUsedProtocolSet */,
+                                                           GGS_stringset & ioArgument_ioGeneratedFileSet,
+                                                           Compiler * inCompiler
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_enumForGeneration temp_1 = this ;
-    test_0 = GGS_bool (ComparisonKind::greaterThan, temp_1.readProperty_mEnumConstantList ().getter_count (SOURCE_FILE ("enumeration.ggs", 198)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+    test_0 = GGS_bool (ComparisonKind::greaterThan, temp_1.readProperty_mEnumConstantList ().getter_count (SOURCE_FILE ("enumeration.ggs", 208)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_enumForGeneration temp_2 = this ;
       const GGS_enumForGeneration temp_3 = this ;
       const GGS_enumForGeneration temp_4 = this ;
-      GGS_string var_sA_7048 = GGS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, temp_2.readProperty_mEnumName (), temp_3.readProperty_mEnumConstantList (), temp_4.readProperty_mCaseIterable () COMMA_SOURCE_FILE ("enumeration.ggs", 199))) ;
+      GGS_string var_sA_7437 = GGS_string (filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (inCompiler, temp_2.readProperty_mEnumName (), temp_3.readProperty_mEnumConstantList (), temp_4.readProperty_mCaseIterable () COMMA_SOURCE_FILE ("enumeration.ggs", 209))) ;
       const GGS_enumForGeneration temp_5 = this ;
-      GGS_string var_fileNameA_7203 = GGS_string ("enum-").add_operation (temp_5.readProperty_mEnumName (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 204)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 204)) ;
+      GGS_string var_fileNameA_7592 = GGS_string ("enum-").add_operation (temp_5.readProperty_mEnumName (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 214)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 214)) ;
       {
-      ioArgument_ioGeneratedFileSet.setter_insert (var_fileNameA_7203, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 205)) ;
+      ioArgument_ioGeneratedFileSet.setter_insert (var_fileNameA_7592, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 215)) ;
       }
       {
-      GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileNameA_7203, var_sA_7048, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 206)) ;
+      GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileNameA_7592, var_sA_7437, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 216)) ;
       }
       const GGS_enumForGeneration temp_6 = this ;
       const GGS_enumForGeneration temp_7 = this ;
       const GGS_enumForGeneration temp_8 = this ;
-      GGS_string var_sB_7387 = GGS_string (filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (inCompiler, temp_6.readProperty_mEnumName (), temp_7.readProperty_mEnumConstantList (), temp_8.readProperty_mEnumFuncMap () COMMA_SOURCE_FILE ("enumeration.ggs", 211))) ;
+      GGS_string var_sB_7776 = GGS_string (filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (inCompiler, temp_6.readProperty_mEnumName (), temp_7.readProperty_mEnumConstantList (), temp_8.readProperty_mEnumFuncMap () COMMA_SOURCE_FILE ("enumeration.ggs", 221))) ;
       const GGS_enumForGeneration temp_9 = this ;
-      GGS_string var_fileNameB_7552 = GGS_string ("enum-").add_operation (temp_9.readProperty_mEnumName (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 216)).add_operation (GGS_string ("-ebExtension.swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 216)) ;
+      GGS_string var_fileNameB_7941 = GGS_string ("enum-").add_operation (temp_9.readProperty_mEnumName (), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 226)).add_operation (GGS_string ("-ebExtension.swift"), inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 226)) ;
       {
-      ioArgument_ioGeneratedFileSet.setter_insert (var_fileNameB_7552, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 217)) ;
+      ioArgument_ioGeneratedFileSet.setter_insert (var_fileNameB_7941, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 227)) ;
       }
       {
-      GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileNameB_7552, var_sB_7387, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 218)) ;
+      GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileNameB_7941, var_sB_7776, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 228)) ;
       }
     }
   }

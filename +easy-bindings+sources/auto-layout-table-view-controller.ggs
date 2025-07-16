@@ -101,7 +101,7 @@ syntax extension easyBindings_syntax {
         end
         $identifier$ (?let propertyName)
         var unusedSet = @stringset ()
-        <view_actual_parameter_list> (!?unusedSet, ?let columnParameterListAST) //§
+        <view_actual_parameter_list> (!?unusedSet, ?let columnParameterListAST)
         let @lstring sortPropertyName
         select
           sortPropertyName = "".nowhere
@@ -495,9 +495,19 @@ private filewrapper autoLayoutTableViewControllerGenerationTemplate in "generati
 //   GENERATION
 //------------------------------------------------------------------------------------------------
 
-override proc @autoLayoutTableViewControllerGeneration.generateCode(
+override proc @autoLayoutTableViewControllerGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @autoLayoutTableViewControllerGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset unused ioGeneratedFileSet) {
 //-- Build observed property set (for sorting and filtering)
   var @stringset observedProperties = []

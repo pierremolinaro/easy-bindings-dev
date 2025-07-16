@@ -327,6 +327,13 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
 //   GENERATION
 //------------------------------------------------------------------------------------------------
 
+list @entityListForGeneratingEBManagedObjectContext {
+  public var @string mEntityName
+  public var @lstringlist mObsoleteEntityNames
+}
+
+//------------------------------------------------------------------------------------------------
+
 class @entityForGeneration : @abstractFileGeneration {
   public let @string mEntityName
   public let @string mSuperEntityName
@@ -340,115 +347,58 @@ class @entityForGeneration : @abstractFileGeneration {
   public let @bool mHasSubEntity
   public let @bool mCanCopyAndPaste_option
   public let @bool mCannotBeDeleted_option
-}
 
-//------------------------------------------------------------------------------------------------
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-list @entityListForGeneratingEBManagedObjectContext {
-  public var @string mEntityName
-  public var @lstringlist mObsoleteEntityNames
-}
+  override proc generateCodePhase1  (@string unused inOutputDirectory,
+                                     @generationStruct unused inGenerationStruct,
+                                     ?!@stringset unused ioUsedProtocolSet,
+                                     ?!@stringset unused ioGeneratedFileSet) {
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-//------------------------------------------------------------------------------------------------
-
-override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
-    let @generationStruct inGenerationStruct,
-    ?!@stringset ioGeneratedFileSet) {
-  var @atomicPropertyGenerationList atomicPropertyGenerationList = []
-  var @transientPropertyGenerationList transientPropertyGenerationList = []
-  var @computedPropertyGenerationList computedPropertyGenerationList = []
-  var @toOnePropertyGenerationList toOnePropertyGenerationList = []
-  var @toManyPropertyGenerationList toManyPropertyGenerationList = []
-  var @atomicProxyGenerationList proxyGenerationList = []
-  var @toManyProxyGenerationList toManyProxyGenerationList = []
-  for (property) in self.mPropertyGenerationList do
-    if let atomicProperty = property as @atomicPropertyGeneration then
-      !?atomicPropertyGenerationList.append (atomicProperty)
-    elsif let transientProperty = property as @transientPropertyGeneration then
-      !?transientPropertyGenerationList.append (transientProperty)
-    elsif let computedProperty = property as @computedPropertyGeneration then
-      !?computedPropertyGenerationList.append (computedProperty)
-    elsif let toManyProxy = property as @toManyProxyGeneration then
-      !?toManyProxyGenerationList.append (toManyProxy)
-    elsif let proxyProperty = property as @atomicProxyGeneration then
-      !?proxyGenerationList.append (proxyProperty)
-    elsif let toOneProperty = property as @toOnePropertyGeneration then
-      !?toOnePropertyGenerationList.append (toOneProperty)
-    elsif let toOneProperty = property as @toManyPropertyGeneration then
-      !?toManyPropertyGenerationList.append (toOneProperty)
+  override proc generateCodePhase2 (@string inOutputDirectory,
+                                    @generationStruct inGenerationStruct,
+                                    @stringset inUsedProtocolSet,
+                                    ?!@stringset ioGeneratedFileSet) {
+    var @atomicPropertyGenerationList atomicPropertyGenerationList = []
+    var @transientPropertyGenerationList transientPropertyGenerationList = []
+    var @computedPropertyGenerationList computedPropertyGenerationList = []
+    var @toOnePropertyGenerationList toOnePropertyGenerationList = []
+    var @toManyPropertyGenerationList toManyPropertyGenerationList = []
+    var @atomicProxyGenerationList proxyGenerationList = []
+    var @toManyProxyGenerationList toManyProxyGenerationList = []
+    for (property) in self.mPropertyGenerationList do
+      if let atomicProperty = property as @atomicPropertyGeneration then
+        !?atomicPropertyGenerationList.append (atomicProperty)
+      elsif let transientProperty = property as @transientPropertyGeneration then
+        !?transientPropertyGenerationList.append (transientProperty)
+      elsif let computedProperty = property as @computedPropertyGeneration then
+        !?computedPropertyGenerationList.append (computedProperty)
+      elsif let toManyProxy = property as @toManyProxyGeneration then
+        !?toManyProxyGenerationList.append (toManyProxy)
+      elsif let proxyProperty = property as @atomicProxyGeneration then
+        !?proxyGenerationList.append (proxyProperty)
+      elsif let toOneProperty = property as @toOnePropertyGeneration then
+        !?toOnePropertyGenerationList.append (toOneProperty)
+      elsif let toOneProperty = property as @toManyPropertyGeneration then
+        !?toManyPropertyGenerationList.append (toOneProperty)
+      end
     end
-  end
-  var superEntityName = ""
-  if self.mSuperEntityName != "" then
-    superEntityName = self.mSuperEntityName
-  elsif self.mIsGraphicEntity then
-    superEntityName = "EBGraphicManagedObject"
-  else
-    superEntityName = "EBManagedObject"
-  end
-  var s = filewrapper [entityGenerationTemplate.entityImplementationInSwift:
-    self.mEntityName,
-    superEntityName,
-    self.mPropertyGenerationList,
-    proxyGenerationList,
-    toManyProxyGenerationList,
-    atomicPropertyGenerationList,
-    transientPropertyGenerationList,
-    computedPropertyGenerationList,
-    toOnePropertyGenerationList,
-    toManyPropertyGenerationList,
-    self.mSignatureSet,
-    self.mIsGraphicEntity,
-    self.mIsAbstract,
-    self.mOverridenTransients,
-    self.mExternSwiftDelegateList,
-    self.mHasSubEntity,
-    self.mCanCopyAndPaste_option,
-    self.mCannotBeDeleted_option,
-    inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName)
-  ]
-  var fileName = "entity-" + self.mEntityName + ".swift"
-  !?ioGeneratedFileSet.insert (fileName)
-  @string.generateFile (
-    inOutputDirectory,
-    fileName,
-    s
-  )
-  if inGenerationStruct.mToOneClassImplementations.hasKey (self.mEntityName) then
-    s = filewrapper [entityGenerationTemplate.entityToOneImplementationInSwift:
+    var superEntityName = ""
+    if self.mSuperEntityName != "" then
+      superEntityName = self.mSuperEntityName
+    elsif self.mIsGraphicEntity then
+      superEntityName = "EBGraphicManagedObject"
+    else
+      superEntityName = "EBManagedObject"
+    end
+    var s = filewrapper [entityGenerationTemplate.entityImplementationInSwift:
       self.mEntityName,
       superEntityName,
-      self.mHandlingOpposite,
       self.mPropertyGenerationList,
-      proxyGenerationList,
-      toManyProxyGenerationList,
-      atomicPropertyGenerationList,
-      transientPropertyGenerationList,
-      computedPropertyGenerationList,
-      toOnePropertyGenerationList,
-      toManyPropertyGenerationList,
-      self.mSignatureSet,
-      self.mIsGraphicEntity,
-      self.mIsAbstract,
-      self.mOverridenTransients,
-      self.mExternSwiftDelegateList
-    ]
-  else
-    s = "// Unused code, not generated by EasyBinding compiler\n"
-  end
-  fileName = "toone-" + self.mEntityName + ".swift"
-  !?ioGeneratedFileSet.insert (fileName)
-  @string.generateFile (
-    inOutputDirectory,
-    fileName,
-    s
-  )
-  if inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName) then
-    s = filewrapper [entityGenerationTemplate.entityToManyImplementationInSwift:
-      self.mEntityName,
-      superEntityName,
-      self.mHandlingOpposite,
-      self.mPropertyGenerationList,
+      !usedProtocolSet: inUsedProtocolSet,
       proxyGenerationList,
       toManyProxyGenerationList,
       atomicPropertyGenerationList,
@@ -461,31 +411,92 @@ override proc @entityForGeneration.generateCode (let @string inOutputDirectory,
       self.mIsAbstract,
       self.mOverridenTransients,
       self.mExternSwiftDelegateList,
-      inGenerationStruct.mGenerateClass_PreferencesArrayOf_.hasKey (self.mEntityName),
-      inGenerationStruct.mGenerateClass_ProxyArrayOf_.hasKey (self.mEntityName),
-      inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_.hasKey (self.mEntityName),
-      inGenerationStruct.mGenerateClass_TransientArrayOf_.hasKey (self.mEntityName),
-      inGenerationStruct.mGenerateClass_StoredArrayOf_.hasKey (self.mEntityName)
+      self.mHasSubEntity,
+      self.mCanCopyAndPaste_option,
+      self.mCannotBeDeleted_option,
+      inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName)
     ]
-  else
-    s = "// Unused code, not generated by EasyBinding compiler\n"
-  end
-  fileName = "tomany-" + self.mEntityName + ".swift"
-  !?ioGeneratedFileSet.insert (fileName)
-  @string.generateFile (
-    inOutputDirectory,
-    fileName,
-    s
-  )
+    var fileName = "entity-" + self.mEntityName + ".swift"
+    !?ioGeneratedFileSet.insert (fileName)
+    @string.generateFile (
+      inOutputDirectory,
+      fileName,
+      s
+    )
+    if inGenerationStruct.mToOneClassImplementations.hasKey (self.mEntityName) then
+      s = filewrapper [entityGenerationTemplate.entityToOneImplementationInSwift:
+        self.mEntityName,
+        superEntityName,
+        self.mHandlingOpposite,
+        self.mPropertyGenerationList,
+        proxyGenerationList,
+        toManyProxyGenerationList,
+        atomicPropertyGenerationList,
+        transientPropertyGenerationList,
+        computedPropertyGenerationList,
+        toOnePropertyGenerationList,
+        toManyPropertyGenerationList,
+        self.mSignatureSet,
+        self.mIsGraphicEntity,
+        self.mIsAbstract,
+        self.mOverridenTransients,
+        self.mExternSwiftDelegateList
+      ]
+    else
+      s = "// Unused code, not generated by EasyBinding compiler\n"
+    end
+    fileName = "toone-" + self.mEntityName + ".swift"
+    !?ioGeneratedFileSet.insert (fileName)
+    @string.generateFile (
+      inOutputDirectory,
+      fileName,
+      s
+    )
+    if inGenerationStruct.mToManyClassImplementations.hasKey (self.mEntityName) then
+      s = filewrapper [entityGenerationTemplate.entityToManyImplementationInSwift:
+        self.mEntityName,
+        superEntityName,
+        self.mHandlingOpposite,
+        self.mPropertyGenerationList,
+        proxyGenerationList,
+        toManyProxyGenerationList,
+        atomicPropertyGenerationList,
+        transientPropertyGenerationList,
+        computedPropertyGenerationList,
+        toOnePropertyGenerationList,
+        toManyPropertyGenerationList,
+        self.mSignatureSet,
+        self.mIsGraphicEntity,
+        self.mIsAbstract,
+        self.mOverridenTransients,
+        self.mExternSwiftDelegateList,
+        inGenerationStruct.mGenerateClass_PreferencesArrayOf_.hasKey (self.mEntityName),
+        inGenerationStruct.mGenerateClass_ProxyArrayOf_.hasKey (self.mEntityName),
+        inGenerationStruct.mGenerateClass_TransientArrayOfSuperOf_.hasKey (self.mEntityName),
+        inGenerationStruct.mGenerateClass_TransientArrayOf_.hasKey (self.mEntityName),
+        inGenerationStruct.mGenerateClass_StoredArrayOf_.hasKey (self.mEntityName)
+      ]
+    else
+      s = "// Unused code, not generated by EasyBinding compiler\n"
+    end
+    fileName = "tomany-" + self.mEntityName + ".swift"
+    !?ioGeneratedFileSet.insert (fileName)
+    @string.generateFile (
+      inOutputDirectory,
+      fileName,
+      s
+    )
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 }
 
 //------------------------------------------------------------------------------------------------
 
-proc generateEBManagedObjectContext(
-  let @entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
-  let @string inOutputDirectory,
-  ?!@stringset ioGeneratedFileSet)
-{
+proc generateEBManagedObjectContext (@entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
+                                     @string inOutputDirectory,
+                                     ?!@stringset ioGeneratedFileSet) {
   if inEntityListForGeneration.count > 0 then
     let fileName = "EBManagedObjectFactory.swift"
     !?ioGeneratedFileSet.insert (fileName)
@@ -507,6 +518,7 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
     @string ENTITY_NAME,
     @string SUPER_CLASS_NAME,
     @propertyGenerationList PROPERTY_LIST_FOR_GENERATION,
+    ?usedProtocolSet: @stringset USED_PROTOCOL_SET,
     @atomicProxyGenerationList PROXY_LIST_FOR_GENERATION,
     @toManyProxyGenerationList TO_MANY_PROXY_LIST_FOR_GENERATION,
     @atomicPropertyGenerationList SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION,

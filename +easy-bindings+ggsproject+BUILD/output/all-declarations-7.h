@@ -163,9 +163,17 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
                                                        Compiler * inCompiler) ;
 
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 

@@ -488,9 +488,17 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
                                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -2973,16 +2981,17 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_transientExternTypeLis
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractFileGeneration generateCode'
+//Abstract extension method '@abstractFileGeneration generateCodePhase1'
 //
 //--------------------------------------------------------------------------------------------------
 
-void callExtensionMethod_generateCode (class cPtr_abstractFileGeneration * inObject,
-                                       const class GGS_string constin_inOutputDirectory,
-                                       const class GGS_generationStruct constin_inGenerationStruct,
-                                       class GGS_stringset & io_ioGeneratedFileSet,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_generateCodePhase_31_ (class cPtr_abstractFileGeneration * inObject,
+                                                const class GGS_string constin_inOutputDirectory,
+                                                const class GGS_generationStruct constin_inGenerationStruct,
+                                                class GGS_stringset & io_ioUsedProtocolSet,
+                                                class GGS_stringset & io_ioGeneratedFileSet,
+                                                class Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @fileGenerationList list enumerator
@@ -3439,6 +3448,20 @@ class GGS_generationStruct : public AC_GALGAS_root {
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_generationStruct ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@abstractFileGeneration generateCodePhase2'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCodePhase_32_ (class cPtr_abstractFileGeneration * inObject,
+                                                const class GGS_string constin_inOutputDirectory,
+                                                const class GGS_generationStruct constin_inGenerationStruct,
+                                                const class GGS_stringset constin_inUsedProtocolSet,
+                                                class GGS_stringset & io_ioGeneratedFileSet,
+                                                class Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @fileGenerationList_2E_element struct

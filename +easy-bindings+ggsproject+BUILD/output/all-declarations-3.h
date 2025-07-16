@@ -8147,6 +8147,7 @@ void extensionMethod_analyzeObservableProperty (const class GGS_observableProper
                                                 const class GGS_propertyMap constin_inBoundModelPropertyMap,
                                                 class GGS_propertyKind & out_outKind,
                                                 class GGS_string & out_outSwiftTypeStringForTransientFunctionArgument,
+                                                class GGS_string & out_outProtocolTypeString,
                                                 class GGS_string & out_outDefaultValue,
                                                 class Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
@@ -8582,6 +8583,7 @@ class DownEnumerator_transientDependencyListForGeneration final {
   public: class GGS_string current_mFunctionArgumentName (LOCATION_ARGS) const ;
   public: class GGS_string current_mFunctionArgumentTypeString (LOCATION_ARGS) const ;
   public: class GGS_string current_mDefaultValueAsString (LOCATION_ARGS) const ;
+  public: class GGS_string current_mProtocolName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_transientDependencyListForGeneration_2E_element current (LOCATION_ARGS) const ;
 
@@ -8611,6 +8613,7 @@ class UpEnumerator_transientDependencyListForGeneration final {
   public: class GGS_string current_mFunctionArgumentName (LOCATION_ARGS) const ;
   public: class GGS_string current_mFunctionArgumentTypeString (LOCATION_ARGS) const ;
   public: class GGS_string current_mDefaultValueAsString (LOCATION_ARGS) const ;
+  public: class GGS_string current_mProtocolName (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_transientDependencyListForGeneration_2E_element current (LOCATION_ARGS) const ;
 
@@ -8672,7 +8675,8 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                  const class GGS_observablePropertyAST & in_mDependency,
                                                  const class GGS_string & in_mFunctionArgumentName,
                                                  const class GGS_string & in_mFunctionArgumentTypeString,
-                                                 const class GGS_string & in_mDefaultValueAsString
+                                                 const class GGS_string & in_mDefaultValueAsString,
+                                                 const class GGS_string & in_mProtocolName
                                                  COMMA_LOCATION_ARGS) ;
 
 //-- Start of type generic part
@@ -8695,7 +8699,8 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
   public: static class GGS_transientDependencyListForGeneration class_func_listWithValue (const class GGS_observablePropertyAST & inOperand0,
                                                                                           const class GGS_string & inOperand1,
                                                                                           const class GGS_string & inOperand2,
-                                                                                          const class GGS_string & inOperand3
+                                                                                          const class GGS_string & inOperand3,
+                                                                                          const class GGS_string & inOperand4
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
@@ -8707,7 +8712,8 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_observablePropertyAST & inOperand0,
                                                     const class GGS_string & inOperand1,
                                                     const class GGS_string & inOperand2,
-                                                    const class GGS_string & inOperand3
+                                                    const class GGS_string & inOperand3,
+                                                    const class GGS_string & inOperand4
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
@@ -8724,6 +8730,7 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                class GGS_string constinArgument1,
                                                class GGS_string constinArgument2,
                                                class GGS_string constinArgument3,
+                                               class GGS_string constinArgument4,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
@@ -8731,7 +8738,8 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                       class GGS_string constinArgument1,
                                                       class GGS_string constinArgument2,
                                                       class GGS_string constinArgument3,
-                                                      class GGS_uint constinArgument4,
+                                                      class GGS_string constinArgument4,
+                                                      class GGS_uint constinArgument5,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -8739,6 +8747,7 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                  class GGS_string & outArgument1,
                                                  class GGS_string & outArgument2,
                                                  class GGS_string & outArgument3,
+                                                 class GGS_string & outArgument4,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -8746,6 +8755,7 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                 class GGS_string & outArgument1,
                                                 class GGS_string & outArgument2,
                                                 class GGS_string & outArgument3,
+                                                class GGS_string & outArgument4,
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
@@ -8753,7 +8763,8 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                       class GGS_string & outArgument1,
                                                       class GGS_string & outArgument2,
                                                       class GGS_string & outArgument3,
-                                                      class GGS_uint constinArgument4,
+                                                      class GGS_string & outArgument4,
+                                                      class GGS_uint constinArgument5,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -8777,12 +8788,18 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
+  public: VIRTUAL_IN_DEBUG void setter_setMProtocolNameAtIndex (class GGS_string constinArgument0,
+                                                                class GGS_uint constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
   public: VIRTUAL_IN_DEBUG void method_first (class GGS_observablePropertyAST & outArgument0,
                                               class GGS_string & outArgument1,
                                               class GGS_string & outArgument2,
                                               class GGS_string & outArgument3,
+                                              class GGS_string & outArgument4,
                                               Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
@@ -8790,6 +8807,7 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                              class GGS_string & outArgument1,
                                              class GGS_string & outArgument2,
                                              class GGS_string & outArgument3,
+                                             class GGS_string & outArgument4,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
@@ -8813,6 +8831,10 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG class GGS_string getter_mFunctionArgumentTypeStringAtIndex (const class GGS_uint & constinOperand0,
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_string getter_mProtocolNameAtIndex (const class GGS_uint & constinOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
@@ -8870,6 +8892,11 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
     return mProperty_mDefaultValueAsString ;
   }
 
+  public: GGS_string mProperty_mProtocolName ;
+  public: inline GGS_string readProperty_mProtocolName (void) const {
+    return mProperty_mProtocolName ;
+  }
+
 //--------------------------------- Accessors
   public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
@@ -8894,6 +8921,10 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
     mProperty_mDefaultValueAsString = inValue ;
   }
 
+  public: inline void setter_setMProtocolName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProtocolName = inValue ;
+  }
+
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
@@ -8901,7 +8932,8 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
   public: GGS_transientDependencyListForGeneration_2E_element (const GGS_observablePropertyAST & in_mDependency,
                                                                const GGS_string & in_mFunctionArgumentName,
                                                                const GGS_string & in_mFunctionArgumentTypeString,
-                                                               const GGS_string & in_mDefaultValueAsString) ;
+                                                               const GGS_string & in_mDefaultValueAsString,
+                                                               const GGS_string & in_mProtocolName) ;
 
 //--------------------------------- Copy constructor
   public: GGS_transientDependencyListForGeneration_2E_element (const GGS_transientDependencyListForGeneration_2E_element & inSource) ;
@@ -8912,12 +8944,13 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_transientDependencyListForGeneration_2E_element init_21__21__21__21_ (const class GGS_observablePropertyAST & inOperand0,
-                                                                                           const class GGS_string & inOperand1,
-                                                                                           const class GGS_string & inOperand2,
-                                                                                           const class GGS_string & inOperand3,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public: static GGS_transientDependencyListForGeneration_2E_element init_21__21__21__21__21_ (const class GGS_observablePropertyAST & inOperand0,
+                                                                                               const class GGS_string & inOperand1,
+                                                                                               const class GGS_string & inOperand2,
+                                                                                               const class GGS_string & inOperand3,
+                                                                                               const class GGS_string & inOperand4,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8932,6 +8965,7 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
                                                                                            const class GGS_string & inOperand1,
                                                                                            const class GGS_string & inOperand2,
                                                                                            const class GGS_string & inOperand3,
+                                                                                           const class GGS_string & inOperand4,
                                                                                            class Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -9569,9 +9603,17 @@ class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
                                                               Compiler * inCompiler) ;
 
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10344,19 +10386,14 @@ class GGS_transientRoutineGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Property access
   public: class GGS_string readProperty_mOwnerName (void) const ;
-  public: void setProperty_mOwnerName (const GGS_string & inValue) ;
 
   public: class GGS_string readProperty_mTransientName (void) const ;
-  public: void setProperty_mTransientName (const GGS_string & inValue) ;
 
   public: class GGS_typeKind readProperty_mTransientType (void) const ;
-  public: void setProperty_mTransientType (const GGS_typeKind & inValue) ;
 
   public: class GGS_string readProperty_mGeneratedFunctionNamePrefix (void) const ;
-  public: void setProperty_mGeneratedFunctionNamePrefix (const GGS_string & inValue) ;
 
   public: class GGS_transientDependencyListForGeneration readProperty_mDependencyList (void) const ;
-  public: void setProperty_mDependencyList (const GGS_transientDependencyListForGeneration & inValue) ;
 
 //-- Start of type generic part
 
@@ -10427,9 +10464,17 @@ class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10544,83 +10589,4 @@ class GGS_transientRoutineGeneration_2E_weak : public GGS_abstractFileGeneration
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_transientRoutineGeneration_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @proxyDeclarationAST_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_proxyDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_proxyDeclarationAST_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_proxyDeclarationAST_2E_weak (const class GGS_proxyDeclarationAST & inSource) ;
-
-  public: GGS_proxyDeclarationAST_2E_weak & operator = (const class GGS_proxyDeclarationAST & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_proxyDeclarationAST_2E_weak init_nil (void) {
-    GGS_proxyDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_proxyDeclarationAST bang_proxyDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_proxyDeclarationAST unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_proxyDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_proxyDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_proxyDeclarationAST_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_proxyDeclarationAST_2E_weak ;
 

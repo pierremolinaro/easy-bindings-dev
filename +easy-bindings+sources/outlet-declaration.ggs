@@ -423,6 +423,7 @@ proc analyzeRegularBinding(
         inBoundModelPropertyMap,
         ?let @propertyKind kind,
         ?let @string unused swiftTypeStringForTransientFunctionArgument,
+        ?let @string unused protocolTypeName,
         ?let @string unused defaultValueAsString
       )
       switch kind

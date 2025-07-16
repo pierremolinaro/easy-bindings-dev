@@ -14,10 +14,17 @@ abstract class @abstractFileGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-abstract proc @abstractFileGeneration.generateCode(
-    let @string inOutputDirectory,
-    let @generationStruct inGenerationStruct,
-    ?!@stringset ioGeneratedFileSet)
+abstract proc @abstractFileGeneration.generateCodePhase1 (@string inOutputDirectory,
+                                                          @generationStruct inGenerationStruct,
+                                                          ?!@stringset ioUsedProtocolSet,
+                                                          ?!@stringset ioGeneratedFileSet)
+
+//------------------------------------------------------------------------------------------------
+
+abstract proc @abstractFileGeneration.generateCodePhase2 (@string inOutputDirectory,
+                                                          @generationStruct inGenerationStruct,
+                                                          @stringset inUsedProtocolSet,
+                                                          ?!@stringset ioGeneratedFileSet)
 
 //------------------------------------------------------------------------------------------------
 
@@ -54,19 +61,27 @@ struct @generationStruct {
 //   CODE GENERATION
 //------------------------------------------------------------------------------------------------
 
-proc generateCode(
-  let @string inXcodeProjectString,
-  let @generationStruct inGeneration,
-  let @string inSourceFile)
-{
+proc generateCode (@string inXcodeProjectString,
+                   @generationStruct inGeneration,
+                   @string inSourceFile) {
   let outputDirectory = inSourceFile.stringByDeletingLastPathComponent
   let projectName = inSourceFile.lastPathComponent.deletingPathExtension
   let fileOutputDirectory = outputDirectory + "/" + projectName
-  var @stringset generatedFileSet = []
+  var @stringset generatedFileSet = ()
+  var @stringset usedProtocolSet = ()
   for (fileGeneration) in inGeneration.mFileGenerationList do
-    fileGeneration.generateCode
-      (fileOutputDirectory,
+    fileGeneration.generateCodePhase1 (
+      fileOutputDirectory,
       inGeneration,
+      !?usedProtocolSet,
+      !?generatedFileSet
+    )
+  end
+  for (fileGeneration) in inGeneration.mFileGenerationList do
+    fileGeneration.generateCodePhase2 (
+      fileOutputDirectory,
+      inGeneration,
+      usedProtocolSet,
       !?generatedFileSet
     )
   end

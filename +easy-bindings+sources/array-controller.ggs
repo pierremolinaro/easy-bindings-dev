@@ -322,9 +322,19 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
 //   GENERATION
 //------------------------------------------------------------------------------------------------
 
-override proc @arrayControllerGeneration.generateCode(
+override proc @arrayControllerGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @arrayControllerGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset unused ioGeneratedFileSet) {
 //-- Build observed property set (for sorting and filtering)
   let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:

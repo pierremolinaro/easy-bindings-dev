@@ -9,33 +9,52 @@ if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//--------------------------------------------------------------------------------------------------
 
-@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]% { get }
 }
 
+%else%// Commented out, not used
+// @MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+//   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]% { get }
+// }
+
 %
+end
 end
 end
 if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in PROXY_LIST_FOR_GENERATION do
 %//--------------------------------------------------------------------------------------------------
 
-@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
-
+%else%// Commented out, not used
+// @MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+//  var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
+// }
 %
+end
 end
 end
 if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--------------------------------------------------------------------------------------------------
 
-@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
 
+%else%// Commented out, not used
+// @MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
+//   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
+// }
+
 %
+end
 end
 end
 %//--------------------------------------------------------------------------------------------------
@@ -46,15 +65,19 @@ end
 if not HAS_SUB_ENTITY then
   %final %
 end
-%class %!ENTITY_NAME% : %!SUPER_CLASS_NAME
+%class %!ENTITY_NAME% : %!SUPER_CLASS_NAME%\n%
 if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
   for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
     if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
-      %,\n         %!ENTITY_NAME%_%!mProperty.mPropertyName
+      if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+        %    , %!ENTITY_NAME%_%!mProperty.mPropertyName%\n%
+      else
+        %    // %!ENTITY_NAME%_%!mProperty.mPropertyName% // Commented out, not used\n%
+      end
     end
   end
 end
-% {
+%    {
 
 %
 for (mProperty) in PROPERTY_LIST_FOR_GENERATION do

@@ -49,6 +49,7 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityImplementationInSw
                                                                                      const class GGS_string & in_ENTITY_5F_NAME,
                                                                                      const class GGS_string & in_SUPER_5F_CLASS_5F_NAME,
                                                                                      const class GGS_propertyGenerationList & in_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
+                                                                                     const class GGS_stringset & in_USED_5F_PROTOCOL_5F_SET,
                                                                                      const class GGS_atomicProxyGenerationList & in_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                      const class GGS_toManyProxyGenerationList & in_TO_5F_MANY_5F_PROXY_5F_LIST_5F_FOR_5F_GENERATION,
                                                                                      const class GGS_atomicPropertyGenerationList & in_SIMPLE_5F_STORED_5F_PROPERTY_5F_LIST_5F_FOR_5F_GENERATION,
@@ -432,38 +433,4 @@ GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFuncti
                                                                                         const class GGS_string & in_COMPUTED_5F_PROPERTY_5F_NAME,
                                                                                         const class GGS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper 'transientManager'
-//
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
-extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'transientManager transientComputationFunctionFile'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class Compiler * inCompiler,
-                                                                                  const class GGS_string & in_OWNER_5F_NAME,
-                                                                                  const class GGS_string & in_TRANSIENT_5F_NAME,
-                                                                                  const class GGS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
-                                                                                  const class GGS_typeKind & in_TRANSIENT_5F_TYPE,
-                                                                                  const class GGS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
-                                                                                  COMMA_LOCATION_ARGS) ;
 

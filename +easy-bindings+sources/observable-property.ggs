@@ -379,15 +379,15 @@ func @observablePropertyAST.location() -> @location outResult {
 
 //------------------------------------------------------------------------------------------------
 
-proc @observablePropertyAST.analyzeObservableProperty(
-  let @propertyMap inRootPropertyMap,
-  let @semanticContext inSemanticContext,
-  let @propertyMap inBoundModelPropertyMap,
-  !@propertyKind outKind,
-  !@string outSwiftTypeStringForTransientFunctionArgument,
-  !@string outDefaultValue) // Empty string -> no default value
-{
+proc @observablePropertyAST.analyzeObservableProperty (@propertyMap inRootPropertyMap,
+                                                       @semanticContext inSemanticContext,
+                                                       @propertyMap inBoundModelPropertyMap,
+                                                       !@propertyKind outKind,
+                                                       !@string outSwiftTypeStringForTransientFunctionArgument,
+                                                       !@string outProtocolTypeString,
+                                                       !@string outDefaultValue) { // Empty string -> no default value
   outDefaultValue = "" // No default value
+  outProtocolTypeString = ""
   switch self
   case versionShouldChangeProperty (*) :
     let type = @typeKind.boolType
@@ -402,18 +402,14 @@ proc @observablePropertyAST.analyzeObservableProperty(
     outKind = .property (!type: type, !accessibility: .transient (!isAbstract: false))
     outSwiftTypeStringForTransientFunctionArgument = type.swiftTypeName
   case rootProperty (@lstring propertyName) :
-    inRootPropertyMap.searchKey
-      (propertyName,
+    inRootPropertyMap.searchKey (
+      propertyName,
       ?outKind,
       ?2*
     )
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName
   case rootPropertyNone (@lstring relationshipName) :
-    inRootPropertyMap.searchKey
-      (relationshipName,
-      ?let kind,
-      ?2*
-    )
+    inRootPropertyMap.searchKey (relationshipName, ?let kind, ?2*)
     switch kind
     case property (2*) :
       error relationshipName : "a property does not accept 'none'" spoil (outKind)
@@ -428,8 +424,8 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName
   case rootPropertyWithOption (@lstring propertyName, @lstring optionName) :
-    inRootPropertyMap.searchKey
-      (propertyName,
+    inRootPropertyMap.searchKey (
+      propertyName,
       ?let kind,
       ?2*
     )
@@ -457,21 +453,13 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName
   case rootPropertyRelationship (@lstring relationshipName, @lstring propertyName) : // root.xxx.all.xxx
-    inRootPropertyMap.searchKey
-      (relationshipName,
-      ?let kind,
-      ?2*
-    )
+    inRootPropertyMap.searchKey (relationshipName, ?let kind, ?2*)
     switch kind
     case property (2*) :
       error relationshipName : "a property does not accept 'all'" spoil (outKind)
     case toMany (typeName, 3*) : // Ok
       inSemanticContext.mClassMap.searchKey (@(typeName, relationshipName.location), ?*, ?let observablePropertyMap, ?2*)
-      observablePropertyMap.searchKey
-        (propertyName,
-        ?outKind,
-        ?2*
-      )
+      observablePropertyMap.searchKey (propertyName, ?outKind, ?2*)
     case toOne (5*) :
       error relationshipName : "a toOne property does not accept 'all'" spoil (outKind)
     case arrayController (2*) :
@@ -480,6 +468,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
       error relationshipName : "an array controller does not accept 'all'" spoil (outKind)
     end
     outSwiftTypeStringForTransientFunctionArgument = "[any " + kind.swiftTypeName + "_" + propertyName + "]"
+    outProtocolTypeString = kind.swiftTypeName + "_" + propertyName.string
   case selfProperty (@lstring propertyName) :
     inBoundModelPropertyMap.searchKey
       (propertyName,
@@ -555,6 +544,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
     end
     outSwiftTypeStringForTransientFunctionArgument = "[any " + kind.swiftTypeName
        + "_" + elementPropertyName + "]"
+    outProtocolTypeString = kind.swiftTypeName + "_" + elementPropertyName.string
   case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) : // self.xxx.one.xxx
     inBoundModelPropertyMap.searchKey
       (propertyName,
@@ -732,6 +722,7 @@ proc @observablePropertyAST.analyzeObservableProperty(
         )
         observablePropertyMap.searchKey (secondaryPropertyName, ?outKind,?2*)
         outSwiftTypeStringForTransientFunctionArgument = "[any " + typeName + "_" + secondaryPropertyName + "]"
+        outProtocolTypeString = typeName.string + "_" + secondaryPropertyName.string
       case selectionController (entityName) :
         inSemanticContext.mClassMap.searchKey (
           @(entityName, controllerName.location),
@@ -740,7 +731,8 @@ proc @observablePropertyAST.analyzeObservableProperty(
           ?2*
         )
         observablePropertyMap.searchKey (secondaryPropertyName, ?outKind, ?2*)
-         outSwiftTypeStringForTransientFunctionArgument = "[any " + entityName + "_" + secondaryPropertyName + "]"
+        outSwiftTypeStringForTransientFunctionArgument = "[any " + entityName + "_" + secondaryPropertyName + "]"
+        outProtocolTypeString = entityName + "_" + secondaryPropertyName.string
      end
     end
   case superProperty (*, @lstring propertyName) :

@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------------------------
 
 @MainActor func %!TRANSIENT_FUNCTION_NAME_PREFIX%_%!OWNER_NAME%_%!TRANSIENT_NAME% (%?^
-for (* mFunctionArgumentName mFunctionArgumentTypeString *) in DEPENDENCY_LIST
+for (* mFunctionArgumentName mFunctionArgumentTypeString 2*) in DEPENDENCY_LIST
 do %\n       _ %!mFunctionArgumentName% : %!mFunctionArgumentTypeString
 between %,%!^
 end

@@ -181,12 +181,13 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
 //-- Analyse master properties
   var @transientDependencyListForGeneration dependencies = []
   for (mObservableProperty) in self.mDependencyList do
-    mObservableProperty.analyzeObservableProperty
-      (rootProperties,
+    mObservableProperty.analyzeObservableProperty (
+      rootProperties,
       ioSemanticContext,
       properties,
       ?let @propertyKind dependencyKind,
       ?let @string swiftTypeStringForTransientFunctionArgument,
+      ?let @string protocolTypeName,
       ?let @string defaultValueAsString
     )
     switch dependencyKind
@@ -199,26 +200,29 @@ override proc @computedPropertyDeclarationAST.thirdAnalysisPhase(
       error mObservableProperty.location : "only an atomic property can be observed"
     end
     !?dependencies.append (
-      !mObservableProperty,
-      !mObservableProperty.modelStringFunctionArgument ,
-      !swiftTypeStringForTransientFunctionArgument,
-      !defaultValueAsString
+      mObservableProperty,
+      mObservableProperty.modelStringFunctionArgument ,
+      swiftTypeStringForTransientFunctionArgument,
+      defaultValueAsString,
+      protocolTypeName
     )
   end
-  !?ioGeneration.mFileGenerationList.append (@transientRoutineGeneration (
-    self.mClassName,
-    self.mComputedPropertyName.string,
-    typeKind,
-    "computed",
-    dependencies
+  !?ioGeneration.mFileGenerationList.append (
+    @transientRoutineGeneration (
+      self.mClassName,
+      self.mComputedPropertyName.string,
+      typeKind,
+      "computed",
+      dependencies
+    )
   )
-  )
-  !?ioGeneration.mFileGenerationList.append (@computeRoutineGeneration (
-    self.mClassName,
-    self.mComputedPropertyName.string,
-    typeKind,
-    dependencies
-  )
+  !?ioGeneration.mFileGenerationList.append (
+    @computeRoutineGeneration (
+      self.mClassName,
+      self.mComputedPropertyName.string,
+      typeKind,
+      dependencies
+    )
   )
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     let @bool generate
@@ -382,7 +386,7 @@ override func @computedPropertyGeneration.configurationCode (let @bool inPrefere
     end
     result += "    }\n"
     result += "    " + prefix + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] in self?.compute_" + self.mPropertyName + "_property ($0) }\n"
-    for (mDependency, 3*) in self.mDependencyList do
+    for (mDependency, 4*) in self.mDependencyList do
       let s = mDependency.generateAddObserverCall (inPreferences)
       if s != "" then
         result += "    " + s + " (by: " + prefix + self.mPropertyName + "_property)\n"
@@ -404,9 +408,19 @@ class @computeRoutineGeneration : @abstractFileGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-override proc @computeRoutineGeneration.generateCode(
+override proc @computeRoutineGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @computeRoutineGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   if self.mDependencyList.count > 0 then
     let s = filewrapper [computedPropertyManager.computedComputationFunctionFile:

@@ -5922,21 +5922,42 @@ GGS_transientExternTypeList GGS_transientExternTypeList::extractObject (const GG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractFileGeneration generateCode'
+//Abstract extension method '@abstractFileGeneration generateCodePhase1'
 //
 //--------------------------------------------------------------------------------------------------
 
-void callExtensionMethod_generateCode (cPtr_abstractFileGeneration * inObject,
-                                       const GGS_string constin_inOutputDirectory,
-                                       const GGS_generationStruct constin_inGenerationStruct,
-                                       GGS_stringset & io_ioGeneratedFileSet,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
+void callExtensionMethod_generateCodePhase_31_ (cPtr_abstractFileGeneration * inObject,
+                                                const GGS_string constin_inOutputDirectory,
+                                                const GGS_generationStruct constin_inGenerationStruct,
+                                                GGS_stringset & io_ioUsedProtocolSet,
+                                                GGS_stringset & io_ioGeneratedFileSet,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
 //--- Find method
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
-    inObject->method_generateCode (constin_inOutputDirectory, constin_inGenerationStruct, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
+    inObject->method_generateCodePhase_31_ (constin_inOutputDirectory, constin_inGenerationStruct, io_ioUsedProtocolSet, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@abstractFileGeneration generateCodePhase2'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCodePhase_32_ (cPtr_abstractFileGeneration * inObject,
+                                                const GGS_string constin_inOutputDirectory,
+                                                const GGS_generationStruct constin_inGenerationStruct,
+                                                const GGS_stringset constin_inUsedProtocolSet,
+                                                GGS_stringset & io_ioGeneratedFileSet,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+//--- Find method
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
+    inObject->method_generateCodePhase_32_ (constin_inOutputDirectory, constin_inGenerationStruct, constin_inUsedProtocolSet, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
@@ -6556,37 +6577,37 @@ GGS_generationStruct GGS_generationStruct::init (Compiler * inCompiler
 //--------------------------------------------------------------------------------------------------
 
 void GGS_generationStruct::setInitializedProperties (Compiler * inCompiler) {
-GGS_validationStubRoutineListForGeneration temp_0 = GGS_validationStubRoutineListForGeneration::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 31)) ;
+GGS_validationStubRoutineListForGeneration temp_0 = GGS_validationStubRoutineListForGeneration::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 38)) ;
   mProperty_mValidationStubRoutineListForGeneration = temp_0 ;
-GGS_fileGenerationList temp_1 = GGS_fileGenerationList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 32)) ;
+GGS_fileGenerationList temp_1 = GGS_fileGenerationList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 39)) ;
   mProperty_mFileGenerationList = temp_1 ;
-GGS_entityListForGeneratingEBManagedObjectContext temp_2 = GGS_entityListForGeneratingEBManagedObjectContext::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 33)) ;
+GGS_entityListForGeneratingEBManagedObjectContext temp_2 = GGS_entityListForGeneratingEBManagedObjectContext::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 40)) ;
   mProperty_mEntityListForGeneration = temp_2 ;
   mProperty_mGenerateEBManagedXibDocumentSwift = GGS_bool (false) ;
   mProperty_mGenerateEBManagedAutoLayoutDocumentSwift = GGS_bool (false) ;
-GGS_stringset temp_3 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 36)) ;
+GGS_stringset temp_3 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 43)) ;
   mProperty_mNeededOutletClasses = temp_3 ;
-GGS_mainXibDescriptorList temp_4 = GGS_mainXibDescriptorList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 37)) ;
+GGS_mainXibDescriptorList temp_4 = GGS_mainXibDescriptorList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 44)) ;
   mProperty_mMainXibDescriptorList = temp_4 ;
-GGS_stringset temp_5 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 39)) ;
+GGS_stringset temp_5 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 46)) ;
   mProperty_mToOneClassImplementations = temp_5 ;
-GGS_stringset temp_6 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 40)) ;
+GGS_stringset temp_6 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 47)) ;
   mProperty_mToManyClassImplementations = temp_6 ;
-GGS_selectionControllerForGeneration temp_7 = GGS_selectionControllerForGeneration::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 42)) ;
+GGS_selectionControllerForGeneration temp_7 = GGS_selectionControllerForGeneration::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 49)) ;
   mProperty_mSelectionControllerListForGeneration = temp_7 ;
-GGS_stringlist temp_8 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 43)) ;
+GGS_stringlist temp_8 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 50)) ;
   mProperty_mPropertyClassList = temp_8 ;
-GGS_transientExternTypeList temp_9 = GGS_transientExternTypeList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 44)) ;
+GGS_transientExternTypeList temp_9 = GGS_transientExternTypeList::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 51)) ;
   mProperty_mTransientPropertyTypeList = temp_9 ;
-GGS_stringset temp_10 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 46)) ;
+GGS_stringset temp_10 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 53)) ;
   mProperty_mGenerateClass_5F_PreferencesArrayOf_5F_ = temp_10 ;
-GGS_stringset temp_11 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 47)) ;
+GGS_stringset temp_11 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 54)) ;
   mProperty_mGenerateClass_5F_ProxyArrayOf_5F_ = temp_11 ;
-GGS_stringset temp_12 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 48)) ;
+GGS_stringset temp_12 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 55)) ;
   mProperty_mGenerateClass_5F_TransientArrayOfSuperOf_5F_ = temp_12 ;
-GGS_stringset temp_13 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 49)) ;
+GGS_stringset temp_13 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 56)) ;
   mProperty_mGenerateClass_5F_TransientArrayOf_5F_ = temp_13 ;
-GGS_stringset temp_14 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 50)) ;
+GGS_stringset temp_14 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("code-generation.ggs", 57)) ;
   mProperty_mGenerateClass_5F_StoredArrayOf_5F_ = temp_14 ;
 }
 

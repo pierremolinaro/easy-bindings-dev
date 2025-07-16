@@ -60,9 +60,19 @@ class @actionFileGeneration : @abstractFileGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-override proc @actionFileGeneration.generateCode(
+override proc @actionFileGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @actionFileGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
  let s = filewrapper [actionGenerationTemplate.actionGeneration:
     self.mClassName,

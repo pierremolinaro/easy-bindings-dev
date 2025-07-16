@@ -313,9 +313,19 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
 
 //------------------------------------------------------------------------------------------------
 
-override proc @autoLayoutDocumentFileGeneration.generateCode(
+override proc @autoLayoutDocumentFileGeneration.generateCodePhase1 (
+    let @string unused inOutputDirectory,
+    let @generationStruct unused inGenerationStruct,
+    ?!@stringset unused ioUsedProtocolSet,
+    ?!@stringset unused ioGeneratedFileSet) {
+}
+
+//------------------------------------------------------------------------------------------------
+
+override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
     let @generationStruct unused inGenerationStruct,
+    @stringset unused inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentImplementation:
     self.mDocumentName,

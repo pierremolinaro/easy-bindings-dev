@@ -3100,9 +3100,17 @@ class cPtr_abstractFileGeneration : public acStrongPtr_class {
   public: void abstractFileGeneration_init (Compiler * inCompiler) ;
 
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) = 0 ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
@@ -4436,453 +4444,6 @@ class GGS_entityDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityDeclarationAST_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @propertyGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_propertyGeneration : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_propertyGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_propertyGeneration (const class cPtr_propertyGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_string readProperty_mPropertyName (void) const ;
-  public: void setProperty_mPropertyName (const GGS_string & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_propertyGeneration init_21_ (const class GGS_string & inOperand0,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_propertyGeneration extractObject (const GGS_object & inObject,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_propertyGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @propertyGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_propertyGeneration : public acStrongPtr_class {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void propertyGeneration_init_21_ (const class GGS_string & inOperand0,
-                                            Compiler * inCompiler) ;
-
-
-//--- Extension getter bindPropertyInSelectionController
-  public: virtual class GGS_string getter_bindPropertyInSelectionController (Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter configurationCode
-  public: virtual class GGS_string getter_configurationCode (const class GGS_bool inPreferences,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter declarationInSelectionControllerCode
-  public: virtual class GGS_string getter_declarationInSelectionControllerCode (Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter initCode
-  public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter prefKeyDefinitionCode
-  public: virtual class GGS_string getter_prefKeyDefinitionCode (Compiler * COMMA_LOCATION_ARGS) const ;
-
-//--- Extension getter propertyDeclarationCode
-  public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
-           const class GGS_bool inGenerationDirectAccess,
-           const class GGS_stringset inOverriddenTransients,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Properties
-  public: GGS_string mProperty_mPropertyName ;
-
-
-//--- Default constructor
-  public: cPtr_propertyGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_propertyGeneration (const GGS_string & in_mPropertyName,
-                                   Compiler * inCompiler
-                                   COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @propertyGenerationList_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_propertyGenerationList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_propertyGeneration mProperty_mProperty ;
-  public: inline GGS_propertyGeneration readProperty_mProperty (void) const {
-    return mProperty_mProperty ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_propertyGenerationList_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMProperty (const GGS_propertyGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mProperty = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_propertyGenerationList_2E_element (const GGS_propertyGeneration & in_mProperty) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_propertyGenerationList_2E_element (const GGS_propertyGenerationList_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_propertyGenerationList_2E_element & operator = (const GGS_propertyGenerationList_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_propertyGenerationList_2E_element init_21_ (const class GGS_propertyGeneration & inOperand0,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_propertyGenerationList_2E_element extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_propertyGenerationList_2E_element class_func_new (const class GGS_propertyGeneration & inOperand0,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGenerationList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @entityForGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_entityForGeneration : public GGS_abstractFileGeneration {
-//--------------------------------- Default constructor
-  public: GGS_entityForGeneration (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_entityForGeneration (const class cPtr_entityForGeneration * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_string readProperty_mEntityName (void) const ;
-
-  public: class GGS_string readProperty_mSuperEntityName (void) const ;
-
-  public: class GGS_bool readProperty_mHandlingOpposite (void) const ;
-
-  public: class GGS_propertyGenerationList readProperty_mPropertyGenerationList (void) const ;
-
-  public: class GGS_stringset readProperty_mSignatureSet (void) const ;
-
-  public: class GGS_bool readProperty_mIsGraphicEntity (void) const ;
-
-  public: class GGS_bool readProperty_mIsAbstract (void) const ;
-
-  public: class GGS_stringset readProperty_mOverridenTransients (void) const ;
-
-  public: class GGS_externSwiftDelegateList readProperty_mExternSwiftDelegateList (void) const ;
-
-  public: class GGS_bool readProperty_mHasSubEntity (void) const ;
-
-  public: class GGS_bool readProperty_mCanCopyAndPaste_5F_option (void) const ;
-
-  public: class GGS_bool readProperty_mCannotBeDeleted_5F_option (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_entityForGeneration init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                                               const class GGS_string & inOperand1,
-                                                                                               const class GGS_bool & inOperand2,
-                                                                                               const class GGS_propertyGenerationList & inOperand3,
-                                                                                               const class GGS_stringset & inOperand4,
-                                                                                               const class GGS_bool & inOperand5,
-                                                                                               const class GGS_bool & inOperand6,
-                                                                                               const class GGS_stringset & inOperand7,
-                                                                                               const class GGS_externSwiftDelegateList & inOperand8,
-                                                                                               const class GGS_bool & inOperand9,
-                                                                                               const class GGS_bool & inOperand10,
-                                                                                               const class GGS_bool & inOperand11,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_entityForGeneration extractObject (const GGS_object & inObject,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_entityForGeneration class_func_new (const class GGS_string & inOperand0,
-                                                               const class GGS_string & inOperand1,
-                                                               const class GGS_bool & inOperand2,
-                                                               const class GGS_propertyGenerationList & inOperand3,
-                                                               const class GGS_stringset & inOperand4,
-                                                               const class GGS_bool & inOperand5,
-                                                               const class GGS_bool & inOperand6,
-                                                               const class GGS_stringset & inOperand7,
-                                                               const class GGS_externSwiftDelegateList & inOperand8,
-                                                               const class GGS_bool & inOperand9,
-                                                               const class GGS_bool & inOperand10,
-                                                               const class GGS_bool & inOperand11,
-                                                               class Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_entityForGeneration & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityForGeneration ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @entityForGeneration class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void entityForGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
-                                                                                         const class GGS_string & inOperand1,
-                                                                                         const class GGS_bool & inOperand2,
-                                                                                         const class GGS_propertyGenerationList & inOperand3,
-                                                                                         const class GGS_stringset & inOperand4,
-                                                                                         const class GGS_bool & inOperand5,
-                                                                                         const class GGS_bool & inOperand6,
-                                                                                         const class GGS_stringset & inOperand7,
-                                                                                         const class GGS_externSwiftDelegateList & inOperand8,
-                                                                                         const class GGS_bool & inOperand9,
-                                                                                         const class GGS_bool & inOperand10,
-                                                                                         const class GGS_bool & inOperand11,
-                                                                                         Compiler * inCompiler) ;
-
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_string arg_inOutputDirectory,
-           const class GGS_generationStruct arg_inGenerationStruct,
-           class GGS_stringset & arg_ioGeneratedFileSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_string mProperty_mEntityName ;
-  public: GGS_string mProperty_mSuperEntityName ;
-  public: GGS_bool mProperty_mHandlingOpposite ;
-  public: GGS_propertyGenerationList mProperty_mPropertyGenerationList ;
-  public: GGS_stringset mProperty_mSignatureSet ;
-  public: GGS_bool mProperty_mIsGraphicEntity ;
-  public: GGS_bool mProperty_mIsAbstract ;
-  public: GGS_stringset mProperty_mOverridenTransients ;
-  public: GGS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
-  public: GGS_bool mProperty_mHasSubEntity ;
-  public: GGS_bool mProperty_mCanCopyAndPaste_5F_option ;
-  public: GGS_bool mProperty_mCannotBeDeleted_5F_option ;
-
-
-//--- Default constructor
-  public: cPtr_entityForGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_entityForGeneration (const GGS_string & in_mEntityName,
-                                    const GGS_string & in_mSuperEntityName,
-                                    const GGS_bool & in_mHandlingOpposite,
-                                    const GGS_propertyGenerationList & in_mPropertyGenerationList,
-                                    const GGS_stringset & in_mSignatureSet,
-                                    const GGS_bool & in_mIsGraphicEntity,
-                                    const GGS_bool & in_mIsAbstract,
-                                    const GGS_stringset & in_mOverridenTransients,
-                                    const GGS_externSwiftDelegateList & in_mExternSwiftDelegateList,
-                                    const GGS_bool & in_mHasSubEntity,
-                                    const GGS_bool & in_mCanCopyAndPaste_5F_option,
-                                    const GGS_bool & in_mCannotBeDeleted_5F_option,
-                                    Compiler * inCompiler
-                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @entityForGeneration_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_entityForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_entityForGeneration_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_entityForGeneration_2E_weak (const class GGS_entityForGeneration & inSource) ;
-
-  public: GGS_entityForGeneration_2E_weak & operator = (const class GGS_entityForGeneration & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_entityForGeneration_2E_weak init_nil (void) {
-    GGS_entityForGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_entityForGeneration bang_entityForGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_entityForGeneration unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_entityForGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_entityForGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_entityForGeneration_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityForGeneration_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
 // Phase 1: @entityListForGeneratingEBManagedObjectContext list enumerator
 //--------------------------------------------------------------------------------------------------
 
@@ -5212,6 +4773,461 @@ class GGS_entityListForGeneratingEBManagedObjectContext_2E_element : public AC_G
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityListForGeneratingEBManagedObjectContext_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @propertyGeneration reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_propertyGeneration : public AC_GALGAS_reference_class {
+//--------------------------------- Default constructor
+  public: GGS_propertyGeneration (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_propertyGeneration (const class cPtr_propertyGeneration * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_string readProperty_mPropertyName (void) const ;
+  public: void setProperty_mPropertyName (const GGS_string & inValue) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_propertyGeneration init_21_ (const class GGS_string & inOperand0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_propertyGeneration extractObject (const GGS_object & inObject,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_propertyGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGeneration ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @propertyGeneration class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_propertyGeneration : public acStrongPtr_class {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void propertyGeneration_init_21_ (const class GGS_string & inOperand0,
+                                            Compiler * inCompiler) ;
+
+
+//--- Extension getter bindPropertyInSelectionController
+  public: virtual class GGS_string getter_bindPropertyInSelectionController (Compiler * COMMA_LOCATION_ARGS) const ;
+
+//--- Extension getter configurationCode
+  public: virtual class GGS_string getter_configurationCode (const class GGS_bool inPreferences,
+           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Extension getter declarationInSelectionControllerCode
+  public: virtual class GGS_string getter_declarationInSelectionControllerCode (Compiler * COMMA_LOCATION_ARGS) const ;
+
+//--- Extension getter initCode
+  public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Extension getter prefKeyDefinitionCode
+  public: virtual class GGS_string getter_prefKeyDefinitionCode (Compiler * COMMA_LOCATION_ARGS) const ;
+
+//--- Extension getter propertyDeclarationCode
+  public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
+           const class GGS_bool inGenerationDirectAccess,
+           const class GGS_stringset inOverriddenTransients,
+           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+
+//--- Properties
+  public: GGS_string mProperty_mPropertyName ;
+
+
+//--- Default constructor
+  public: cPtr_propertyGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_propertyGeneration (const GGS_string & in_mPropertyName,
+                                   Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override = 0 ;
+
+//--- Class descriptor
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @propertyGenerationList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_propertyGenerationList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_propertyGeneration mProperty_mProperty ;
+  public: inline GGS_propertyGeneration readProperty_mProperty (void) const {
+    return mProperty_mProperty ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_propertyGenerationList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMProperty (const GGS_propertyGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProperty = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_propertyGenerationList_2E_element (const GGS_propertyGeneration & in_mProperty) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_propertyGenerationList_2E_element (const GGS_propertyGenerationList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_propertyGenerationList_2E_element & operator = (const GGS_propertyGenerationList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_propertyGenerationList_2E_element init_21_ (const class GGS_propertyGeneration & inOperand0,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_propertyGenerationList_2E_element extractObject (const GGS_object & inObject,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_propertyGenerationList_2E_element class_func_new (const class GGS_propertyGeneration & inOperand0,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGenerationList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @entityForGeneration reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_entityForGeneration : public GGS_abstractFileGeneration {
+//--------------------------------- Default constructor
+  public: GGS_entityForGeneration (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_entityForGeneration (const class cPtr_entityForGeneration * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_string readProperty_mEntityName (void) const ;
+
+  public: class GGS_string readProperty_mSuperEntityName (void) const ;
+
+  public: class GGS_bool readProperty_mHandlingOpposite (void) const ;
+
+  public: class GGS_propertyGenerationList readProperty_mPropertyGenerationList (void) const ;
+
+  public: class GGS_stringset readProperty_mSignatureSet (void) const ;
+
+  public: class GGS_bool readProperty_mIsGraphicEntity (void) const ;
+
+  public: class GGS_bool readProperty_mIsAbstract (void) const ;
+
+  public: class GGS_stringset readProperty_mOverridenTransients (void) const ;
+
+  public: class GGS_externSwiftDelegateList readProperty_mExternSwiftDelegateList (void) const ;
+
+  public: class GGS_bool readProperty_mHasSubEntity (void) const ;
+
+  public: class GGS_bool readProperty_mCanCopyAndPaste_5F_option (void) const ;
+
+  public: class GGS_bool readProperty_mCannotBeDeleted_5F_option (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_entityForGeneration init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
+                                                                                               const class GGS_string & inOperand1,
+                                                                                               const class GGS_bool & inOperand2,
+                                                                                               const class GGS_propertyGenerationList & inOperand3,
+                                                                                               const class GGS_stringset & inOperand4,
+                                                                                               const class GGS_bool & inOperand5,
+                                                                                               const class GGS_bool & inOperand6,
+                                                                                               const class GGS_stringset & inOperand7,
+                                                                                               const class GGS_externSwiftDelegateList & inOperand8,
+                                                                                               const class GGS_bool & inOperand9,
+                                                                                               const class GGS_bool & inOperand10,
+                                                                                               const class GGS_bool & inOperand11,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_entityForGeneration extractObject (const GGS_object & inObject,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_entityForGeneration class_func_new (const class GGS_string & inOperand0,
+                                                               const class GGS_string & inOperand1,
+                                                               const class GGS_bool & inOperand2,
+                                                               const class GGS_propertyGenerationList & inOperand3,
+                                                               const class GGS_stringset & inOperand4,
+                                                               const class GGS_bool & inOperand5,
+                                                               const class GGS_bool & inOperand6,
+                                                               const class GGS_stringset & inOperand7,
+                                                               const class GGS_externSwiftDelegateList & inOperand8,
+                                                               const class GGS_bool & inOperand9,
+                                                               const class GGS_bool & inOperand10,
+                                                               const class GGS_bool & inOperand11,
+                                                               class Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_entityForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityForGeneration ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @entityForGeneration class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void entityForGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_string & inOperand0,
+                                                                                         const class GGS_string & inOperand1,
+                                                                                         const class GGS_bool & inOperand2,
+                                                                                         const class GGS_propertyGenerationList & inOperand3,
+                                                                                         const class GGS_stringset & inOperand4,
+                                                                                         const class GGS_bool & inOperand5,
+                                                                                         const class GGS_bool & inOperand6,
+                                                                                         const class GGS_stringset & inOperand7,
+                                                                                         const class GGS_externSwiftDelegateList & inOperand8,
+                                                                                         const class GGS_bool & inOperand9,
+                                                                                         const class GGS_bool & inOperand10,
+                                                                                         const class GGS_bool & inOperand11,
+                                                                                         Compiler * inCompiler) ;
+
+
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_string mProperty_mEntityName ;
+  public: GGS_string mProperty_mSuperEntityName ;
+  public: GGS_bool mProperty_mHandlingOpposite ;
+  public: GGS_propertyGenerationList mProperty_mPropertyGenerationList ;
+  public: GGS_stringset mProperty_mSignatureSet ;
+  public: GGS_bool mProperty_mIsGraphicEntity ;
+  public: GGS_bool mProperty_mIsAbstract ;
+  public: GGS_stringset mProperty_mOverridenTransients ;
+  public: GGS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+  public: GGS_bool mProperty_mHasSubEntity ;
+  public: GGS_bool mProperty_mCanCopyAndPaste_5F_option ;
+  public: GGS_bool mProperty_mCannotBeDeleted_5F_option ;
+
+
+//--- Default constructor
+  public: cPtr_entityForGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_entityForGeneration (const GGS_string & in_mEntityName,
+                                    const GGS_string & in_mSuperEntityName,
+                                    const GGS_bool & in_mHandlingOpposite,
+                                    const GGS_propertyGenerationList & in_mPropertyGenerationList,
+                                    const GGS_stringset & in_mSignatureSet,
+                                    const GGS_bool & in_mIsGraphicEntity,
+                                    const GGS_bool & in_mIsAbstract,
+                                    const GGS_stringset & in_mOverridenTransients,
+                                    const GGS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                    const GGS_bool & in_mHasSubEntity,
+                                    const GGS_bool & in_mCanCopyAndPaste_5F_option,
+                                    const GGS_bool & in_mCannotBeDeleted_5F_option,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @entityForGeneration_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_entityForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_entityForGeneration_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_entityForGeneration_2E_weak (const class GGS_entityForGeneration & inSource) ;
+
+  public: GGS_entityForGeneration_2E_weak & operator = (const class GGS_entityForGeneration & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_entityForGeneration_2E_weak init_nil (void) {
+    GGS_entityForGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_entityForGeneration bang_entityForGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_entityForGeneration unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_entityForGeneration_2E_weak extractObject (const GGS_object & inObject,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_entityForGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_entityForGeneration_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityForGeneration_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @outletDeclarationList_2E_element struct

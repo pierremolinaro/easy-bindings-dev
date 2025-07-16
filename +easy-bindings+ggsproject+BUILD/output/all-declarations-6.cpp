@@ -1340,7 +1340,8 @@ GGS_transientDependencyListForGeneration_2E_element::GGS_transientDependencyList
 mProperty_mDependency (),
 mProperty_mFunctionArgumentName (),
 mProperty_mFunctionArgumentTypeString (),
-mProperty_mDefaultValueAsString () {
+mProperty_mDefaultValueAsString (),
+mProperty_mProtocolName () {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1349,7 +1350,8 @@ GGS_transientDependencyListForGeneration_2E_element::GGS_transientDependencyList
 mProperty_mDependency (inSource.mProperty_mDependency),
 mProperty_mFunctionArgumentName (inSource.mProperty_mFunctionArgumentName),
 mProperty_mFunctionArgumentTypeString (inSource.mProperty_mFunctionArgumentTypeString),
-mProperty_mDefaultValueAsString (inSource.mProperty_mDefaultValueAsString) {
+mProperty_mDefaultValueAsString (inSource.mProperty_mDefaultValueAsString),
+mProperty_mProtocolName (inSource.mProperty_mProtocolName) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1359,23 +1361,26 @@ GGS_transientDependencyListForGeneration_2E_element & GGS_transientDependencyLis
   mProperty_mFunctionArgumentName = inSource.mProperty_mFunctionArgumentName ;
   mProperty_mFunctionArgumentTypeString = inSource.mProperty_mFunctionArgumentTypeString ;
   mProperty_mDefaultValueAsString = inSource.mProperty_mDefaultValueAsString ;
+  mProperty_mProtocolName = inSource.mProperty_mProtocolName ;
   return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GGS_transientDependencyListForGeneration_2E_element GGS_transientDependencyListForGeneration_2E_element::init_21__21__21__21_ (const GGS_observablePropertyAST & in_mDependency,
-                                                                                                                               const GGS_string & in_mFunctionArgumentName,
-                                                                                                                               const GGS_string & in_mFunctionArgumentTypeString,
-                                                                                                                               const GGS_string & in_mDefaultValueAsString,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+GGS_transientDependencyListForGeneration_2E_element GGS_transientDependencyListForGeneration_2E_element::init_21__21__21__21__21_ (const GGS_observablePropertyAST & in_mDependency,
+                                                                                                                                   const GGS_string & in_mFunctionArgumentName,
+                                                                                                                                   const GGS_string & in_mFunctionArgumentTypeString,
+                                                                                                                                   const GGS_string & in_mDefaultValueAsString,
+                                                                                                                                   const GGS_string & in_mProtocolName,
+                                                                                                                                   Compiler * inCompiler
+                                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
   GGS_transientDependencyListForGeneration_2E_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mDependency = in_mDependency ;
   result.mProperty_mFunctionArgumentName = in_mFunctionArgumentName ;
   result.mProperty_mFunctionArgumentTypeString = in_mFunctionArgumentTypeString ;
   result.mProperty_mDefaultValueAsString = in_mDefaultValueAsString ;
+  result.mProperty_mProtocolName = in_mProtocolName ;
   return result ;
 }
 
@@ -1389,11 +1394,13 @@ void GGS_transientDependencyListForGeneration_2E_element::setInitializedProperti
 GGS_transientDependencyListForGeneration_2E_element::GGS_transientDependencyListForGeneration_2E_element (const GGS_observablePropertyAST & inOperand0,
                                                                                                           const GGS_string & inOperand1,
                                                                                                           const GGS_string & inOperand2,
-                                                                                                          const GGS_string & inOperand3) :
+                                                                                                          const GGS_string & inOperand3,
+                                                                                                          const GGS_string & inOperand4) :
 mProperty_mDependency (inOperand0),
 mProperty_mFunctionArgumentName (inOperand1),
 mProperty_mFunctionArgumentTypeString (inOperand2),
-mProperty_mDefaultValueAsString (inOperand3) {
+mProperty_mDefaultValueAsString (inOperand3),
+mProperty_mProtocolName (inOperand4) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1402,6 +1409,7 @@ GGS_transientDependencyListForGeneration_2E_element GGS_transientDependencyListF
                                                                                                                          const GGS_string & in_mFunctionArgumentName,
                                                                                                                          const GGS_string & in_mFunctionArgumentTypeString,
                                                                                                                          const GGS_string & in_mDefaultValueAsString,
+                                                                                                                         const GGS_string & in_mProtocolName,
                                                                                                                          Compiler * inCompiler
                                                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GGS_transientDependencyListForGeneration_2E_element result ;
@@ -1410,13 +1418,14 @@ GGS_transientDependencyListForGeneration_2E_element GGS_transientDependencyListF
   result.mProperty_mFunctionArgumentName = in_mFunctionArgumentName ;
   result.mProperty_mFunctionArgumentTypeString = in_mFunctionArgumentTypeString ;
   result.mProperty_mDefaultValueAsString = in_mDefaultValueAsString ;
+  result.mProperty_mProtocolName = in_mProtocolName ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
 bool GGS_transientDependencyListForGeneration_2E_element::isValid (void) const {
-  return mProperty_mDependency.isValid () && mProperty_mFunctionArgumentName.isValid () && mProperty_mFunctionArgumentTypeString.isValid () && mProperty_mDefaultValueAsString.isValid () ;
+  return mProperty_mDependency.isValid () && mProperty_mFunctionArgumentName.isValid () && mProperty_mFunctionArgumentTypeString.isValid () && mProperty_mDefaultValueAsString.isValid () && mProperty_mProtocolName.isValid () ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1426,6 +1435,7 @@ void GGS_transientDependencyListForGeneration_2E_element::drop (void) {
   mProperty_mFunctionArgumentName.drop () ;
   mProperty_mFunctionArgumentTypeString.drop () ;
   mProperty_mDefaultValueAsString.drop () ;
+  mProperty_mProtocolName.drop () ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1443,6 +1453,8 @@ void GGS_transientDependencyListForGeneration_2E_element::description (String & 
     mProperty_mFunctionArgumentTypeString.description (ioString, inIndentation+1) ;
     ioString.appendCString (", ") ;
     mProperty_mDefaultValueAsString.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mProtocolName.description (ioString, inIndentation+1) ;
   }
   ioString.appendCString (">") ;
 }

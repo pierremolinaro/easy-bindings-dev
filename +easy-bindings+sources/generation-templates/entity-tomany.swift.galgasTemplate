@@ -642,29 +642,8 @@ else
   // Model will change
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-/*  private final class MyPrivateUndoer : NSObject { // For Swift 6
-    let mOldValue : EBReferenceArray <%!ENTITY_NAME%>
-
-    init (_ inOldValue : EBReferenceArray <%!ENTITY_NAME%>) {
-      self.mOldValue = inOldValue
-    }
-  } */
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-//  @objc private final func myPerformUndo (_ inObject : MyPrivateUndoer) {  // For Swift 6
-//    self.setProp (inObject.mOldValue)
-//  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <%!ENTITY_NAME%>) {
   //--- Register old value in undo manager
-  //   self.undoManager?.registerUndo (  // For Swift 6
-  //    withTarget: self,
-  //    selector: #selector (Self.myPerformUndo (_:)),
-  //    object: MyPrivateUndoer (inOldValue)
-  //  )
     self.undoManager?.registerUndo (withTarget: self) { selfTarget in
       selfTarget.setProp (inOldValue) // Ok in Swift 6.2
       // MainActor.assumeIsolated { selfTarget.setProp (inOldValue) }
@@ -694,11 +673,9 @@ else
     for managedObject in inRemovedSet.values {
       self.mResetOppositeRelationship? (managedObject)
     }
-  //---
-    for managedObject in inRemovedSet.values {
+    for managedObject in inAddedSet.values {
       self.mSetOppositeRelationship? (managedObject)
     }
-  //---
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
  }
 %end
@@ -799,7 +776,7 @@ else
 %if not GENERATE_CLASS_StoredArrayOf_ then
 %// StoredArrayOf_%!ENTITY_NAME% is useless.\n%
 else
-%class StoredArrayOf_%!ENTITY_NAME% : ReadWriteArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol, Sendable {
+%class StoredArrayOf_%!ENTITY_NAME% : StandAloneArrayOf_%!ENTITY_NAME%, EBSignatureObserverProtocol, EBDocumentStorablePropertyAndRelationshipProtocol, Sendable {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -875,83 +852,62 @@ else
   //   Undo manager
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  weak final var undoManager : UndoManager? = nil // SOULD BE WEAK
+//  weak final var undoManager : UndoManager? = nil // SOULD BE WEAK
 
 %if HANDLING_OPPOSITE then
 %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //   Opposite relationship management
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
-  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+//  private final var mSetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
+//  private final var mResetOppositeRelationship : Optional < (_ inManagedObject : %!ENTITY_NAME%) -> Void > = nil
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void,
+/*  final func setOppositeRelationShipFunctions (setter inSetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void,
                                                resetter inResetter : @escaping (_ inManagedObject : %!ENTITY_NAME%) -> Void) {
     self.mSetOppositeRelationship = inSetter
     self.mResetOppositeRelationship = inResetter
-  }
+  } */
 
 %end
 %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Model will change
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-/*  private final class MyPrivateUndoer : NSObject { // For Swift 6
-    let mOldValue : EBReferenceArray <%!ENTITY_NAME%>
-
-    init (_ inOldValue : EBReferenceArray <%!ENTITY_NAME%>) {
-      self.mOldValue = inOldValue
-    }
-  } */
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-//  @objc private final func myPerformUndo (_ inObject : MyPrivateUndoer) {  // For Swift 6
-//    self.setProp (inObject.mOldValue)
-//  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <%!ENTITY_NAME%>) {
+/*  override func notifyModelDidChangeFrom (oldValue inOldValue : EBReferenceArray <%!ENTITY_NAME%>) {
   //--- Register old value in undo manager
-  //   self.undoManager?.registerUndo (  // For Swift 6
-  //    withTarget: self,
-  //    selector: #selector (Self.myPerformUndo (_:)),
-  //    object: MyPrivateUndoer (inOldValue)
-  //  )
     self.undoManager?.registerUndo (withTarget: self) { selfTarget in
       selfTarget.setProp (inOldValue) // Ok in Swift 6.2
       // MainActor.assumeIsolated { selfTarget.setProp (inOldValue) }
     }
   //---
     super.notifyModelDidChangeFrom (oldValue: inOldValue)
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Model did change
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func notifyModelDidChange () {
+/*  override func notifyModelDidChange () {
   //--- Notify observers
     self.observedObjectDidChange ()
   //---
     super.notifyModelDidChange ()
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // Update observers
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
+/*  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
                                  addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
     for managedObject in inRemovedSet.values {
       if self.mUsedForSignature {
         managedObject.setSignatureObserver (observer: nil)
       }
 %if HANDLING_OPPOSITE then
-%       self.mResetOppositeRelationship? (managedObject)
+%   //    self.mResetOppositeRelationship? (managedObject) // Done in super method
 %end
 %    }
     for managedObject in inAddedSet.values {
@@ -959,46 +915,61 @@ else
         managedObject.setSignatureObserver (observer: self)
       }
 %if HANDLING_OPPOSITE then
-%      self.mSetOppositeRelationship? (managedObject)
+%   //   self.mSetOppositeRelationship? (managedObject) // Done in super method
 %end
 %    }
   //---
+    super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
+ } */
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  override func updateObservers (removedSet inRemovedSet : EBReferenceSet <%!ENTITY_NAME%>,
+                                 addedSet inAddedSet : EBReferenceSet <%!ENTITY_NAME%>) {
+    if self.mUsedForSignature {
+      for managedObject in inRemovedSet.values {
+        managedObject.setSignatureObserver (observer: nil)
+      }
+      for managedObject in inAddedSet.values {
+        managedObject.setSignatureObserver (observer: self)
+      }
+    }
     super.updateObservers (removedSet: inRemovedSet, addedSet: inAddedSet)
  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override final var selection : EBSelection < [%!ENTITY_NAME%] > {
+/*  override final var selection : EBSelection < [%!ENTITY_NAME%] > {
     return .single (self.mInternalArrayValue.values)
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func setProp (_ inValue : EBReferenceArray <%!ENTITY_NAME%>) {
+/*  override func setProp (_ inValue : EBReferenceArray <%!ENTITY_NAME%>) {
     self.mInternalArrayValue = inValue
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final override var propval : EBReferenceArray <%!ENTITY_NAME%> {
+/*  final override var propval : EBReferenceArray <%!ENTITY_NAME%> {
     return self.mInternalArrayValue
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func remove (_ inObject : %!ENTITY_NAME%) {
+/*  final func remove (_ inObject : %!ENTITY_NAME%) {
     if let idx = self.mInternalArrayValue.firstIndex (of: inObject) {
       self.mInternalArrayValue.remove (at: idx)
     }
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func add (_ inObject : %!ENTITY_NAME%) {
+/*  final func add (_ inObject : %!ENTITY_NAME%) {
     if !self.internalSetValue.contains (inObject) {
       self.mInternalArrayValue.append (inObject)
     }
-  }
+  } */
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //   signature

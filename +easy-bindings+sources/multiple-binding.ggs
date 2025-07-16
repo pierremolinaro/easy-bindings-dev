@@ -287,12 +287,13 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   !@typeKind outType,
   !@location outErrorLocation)
 {
-  self.mProperty.analyzeObservableProperty
-    (inRootObservablePropertyMap,
+  self.mProperty.analyzeObservableProperty (
+    inRootObservablePropertyMap,
     inSemanticContext,
     if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end,
     ?let @propertyKind kind,
     ?let @string unused swiftTypeStringForTransientFunctionArgument,
+    ?let @string unused protocolTypeName,
     ?let @string unused defaultValueAsString
   )
   switch kind
