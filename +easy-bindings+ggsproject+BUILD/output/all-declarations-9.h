@@ -95,7 +95,8 @@ GGS_string filewrapperTemplate_entityGenerationTemplate_entityToManyImplementati
                                                                                            const class GGS_bool & in_GENERATE_5F_CLASS_5F_ProxyArrayOf_5F_,
                                                                                            const class GGS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOfSuperOf_5F_,
                                                                                            const class GGS_bool & in_GENERATE_5F_CLASS_5F_TransientArrayOf_5F_,
-                                                                                           const class GGS_bool & in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_
+                                                                                           const class GGS_bool & in_GENERATE_5F_CLASS_5F_StoredArrayOf_5F_,
+                                                                                           const class GGS_stringset & in_USED_5F_PROTOCOL_5F_SET
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------

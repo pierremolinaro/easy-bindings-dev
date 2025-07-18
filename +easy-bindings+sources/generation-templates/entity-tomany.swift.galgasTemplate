@@ -1055,7 +1055,7 @@ else
       self.setProp (objectArray)
     }
 %for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
-  %    toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by: self.mObserverForWritingPreferences)\n%
+  %    self.toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by: self.mObserverForWritingPreferences)\n%
 end
 %    self.mObserverForWritingPreferences.mEventCallBack = { [weak self] in self?.writeInPreferences () }
  }
