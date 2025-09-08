@@ -1,6 +1,6 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST   
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @transientDeclarationAST : @abstractDeclarationAST {
   public var @lstring mRootEntityName
@@ -78,9 +78,9 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -143,9 +143,9 @@ syntax extension easyBindings_syntax {
   }
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -172,9 +172,9 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
 //  end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SECOND ANALYSIS PHASE
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @transientDeclarationAST.thirdAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -268,9 +268,9 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
 //  end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CODE GENERATION                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @transientPropertyGeneration : @propertyGeneration {
   public var @string mClassName
@@ -279,13 +279,13 @@ class @transientPropertyGeneration : @propertyGeneration {
   public var @bool mGenerate
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @transientPropertyGenerationList {
   public var @transientPropertyGeneration mProperty
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
@@ -294,13 +294,13 @@ override func @transientPropertyGeneration.declarationInSelectionControllerCode(
   result += "  final let " + self.mPropertyName + "_property = EBTransientProperty <" + self.mType.swiftTypeName + "> ()\n\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.initCode() -> @string {
   result  = ""
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.bindPropertyInSelectionController () -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
@@ -343,7 +343,7 @@ override func @transientPropertyGeneration.bindPropertyInSelectionController () 
   result += "  }\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.propertyDeclarationCode(
    let @bool inPreferences,
@@ -370,7 +370,7 @@ override func @transientPropertyGeneration.propertyDeclarationCode(
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @transientPropertyGeneration.configurationCode (let @bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
@@ -399,9 +399,9 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   GENERATION TYPE                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @transientDependencyListForGeneration {
   public let @observablePropertyAST mDependency
@@ -485,9 +485,9 @@ list @transientDependencyListForGeneration {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   GENERATION                            
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 func @observablePropertyAST.generateAddObserverCall (@bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
@@ -537,7 +537,7 @@ func @observablePropertyAST.generateAddObserverCall (@bool inPreferences) -> @st
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 func @observablePropertyAST.generateRemoveObserverCall () -> @string {
   switch self
@@ -586,9 +586,9 @@ func @observablePropertyAST.generateRemoveObserverCall () -> @string {
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //    TRANSIENT ROUTINE GENERATION         
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @transientRoutineGeneration : @abstractFileGeneration {
   private let @string mOwnerName
@@ -650,7 +650,7 @@ class @transientRoutineGeneration : @abstractFileGeneration {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 private filewrapper transientManager in "generation-templates" {
 }{
@@ -664,4 +664,4 @@ private filewrapper transientManager in "generation-templates" {
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

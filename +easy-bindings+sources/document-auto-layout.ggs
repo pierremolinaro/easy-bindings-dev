@@ -1,6 +1,6 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstring mRootEntityName
@@ -13,36 +13,36 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @astAutoLayoutOutletLinkerList mOutletLinkerList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutOutletLinkerList {
   public var @lstring mLinkerName
   public var @lstringlist mOutletNameList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutOutletLinkerGenerationList {
   public var @string mLinkerName
   public var @2stringlist mOutletNameAndTypeNameList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
   !?ioGraph.addEdge (!from: self.mClassName, !to: self.mRootEntityName)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutDocumentDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -123,9 +123,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -148,7 +148,7 @@ override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
@@ -287,9 +287,9 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   GENERATION                            
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @string mDocumentName
@@ -311,7 +311,7 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @autoLayoutOutletLinkerGenerationList mOutletLinkerGenerationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentFileGeneration.generateCodePhase1 (
     let @string unused inOutputDirectory,
@@ -320,7 +320,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCodePhase1 (
     ?!@stringset unused ioGeneratedFileSet) {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
@@ -403,7 +403,7 @@ override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
 }{
@@ -439,4 +439,4 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

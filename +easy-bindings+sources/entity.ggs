@@ -1,6 +1,6 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST   
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @entityDeclarationAST : @abstractDeclarationAST {
   public let @bool mIsAbstract
@@ -15,7 +15,7 @@ class @entityDeclarationAST : @abstractDeclarationAST {
   public let @lstringlist mGraphicOptionArray
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   !?ioGraph.addNode (self.mClassName, self)
@@ -24,15 +24,15 @@ override proc @entityDeclarationAST.enterInPrecedenceGraph (?!@declarationPreced
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @entityDeclarationAST.nodeKey() -> @lstring {
   result = self.mClassName
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -153,9 +153,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SEMANTIC ANALYSIS                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                         ?!@generationStruct unused ioGeneration) {
@@ -174,7 +174,7 @@ override proc @entityDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSem
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct unused ioGeneration) {
@@ -218,7 +218,7 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSemanticContext,
                                                          ?!@generationStruct ioGeneration) {
@@ -323,16 +323,16 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   GENERATION
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @entityListForGeneratingEBManagedObjectContext {
   public var @string mEntityName
   public var @lstringlist mObsoleteEntityNames
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @entityForGeneration : @abstractFileGeneration {
   public let @string mEntityName
@@ -493,7 +493,7 @@ class @entityForGeneration : @abstractFileGeneration {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc generateEBManagedObjectContext (@entityListForGeneratingEBManagedObjectContext inEntityListForGeneration,
                                      @string inOutputDirectory,
@@ -510,7 +510,7 @@ proc generateEBManagedObjectContext (@entityListForGeneratingEBManagedObjectCont
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 private filewrapper entityGenerationTemplate in "generation-templates" {
 }{
@@ -587,4 +587,4 @@ private filewrapper entityGenerationTemplate in "generation-templates" {
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

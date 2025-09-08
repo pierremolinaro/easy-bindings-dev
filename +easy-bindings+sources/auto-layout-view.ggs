@@ -1,11 +1,11 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @astAbstractViewDeclaration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
@@ -13,7 +13,7 @@ class @astComputedHorizontalViewDeclaration : @astAbstractViewDeclaration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
   public let @bool mHasVerticalScroller
@@ -23,19 +23,19 @@ class @astComputedVerticalViewDeclaration : @astAbstractViewDeclaration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astViewDeclarationList {
   public let @lstring mViewName
   public let @astAbstractViewDeclaration mView
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @astAbstractViewInstructionDeclaration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @bool horizontal %initArgLabel
@@ -58,7 +58,7 @@ class @astSeparatorInstructionDeclaration : @astAbstractViewInstructionDeclarati
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astGutterInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @bool horizontal %initArgLabel
@@ -81,20 +81,20 @@ class @astGutterInstructionDeclaration : @astAbstractViewInstructionDeclaration 
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astDividerInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @bool horizontal %initArgLabel
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @optionalHiddenBinding {
   case noBinding
   case binding (@abstractBooleanMultipleBindingExpressionAST hidden)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @astAutoLayoutViewFunctionCallList mFunctionCallList
@@ -103,7 +103,7 @@ class @astHStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
   public let @astNewStackViewDeclarationList mAstNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclaration {
   public let @bool mHasVerticalScroller
@@ -114,25 +114,25 @@ class @astVStackViewInstructionDeclaration : @astAbstractViewInstructionDeclarat
   public let @astNewStackViewDeclarationList mAstNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astNewStackViewDeclarationList {
   public let @lstring mInstanciedStackViewName
   public let @lstring mTypeStackViewName
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astSpaceViewInstruction : @astAbstractViewInstructionDeclaration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astLocalViewInstruction : @astAbstractViewInstructionDeclaration {
   public let @lstring mLocalView
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   public let @lstring mAutoLayoutViewClassName
@@ -149,14 +149,14 @@ class @astComputedViewInstruction : @astAbstractViewInstructionDeclaration {
   public let @bool mOutletIsArray
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewFunctionCallList {
   public let @lstring mFunctionName
   public let @astAutoLayoutViewInstructionParameterList mParameterList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @astAutoLayoutViewInstructionParameterValue {
   case string (@string value)
@@ -166,7 +166,7 @@ enum @astAutoLayoutViewInstructionParameterValue {
   case entity (@lstring entityName)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astAutoLayoutViewInstructionParameterList {
   public let @lstring mParameterName
@@ -174,15 +174,15 @@ list @astAutoLayoutViewInstructionParameterList {
   public let @astAutoLayoutViewInstructionParameterValue mParameter
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @astViewInstructionList {
   public let @astAbstractViewInstructionDeclaration mInstruction
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -582,16 +582,16 @@ syntax extension easyBindings_syntax {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SEMANTIC ANALYSIS                            
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 map @autoLayoutViewDeclarationMap {
   %insertSetter insertKey %errorMessage "the '%K' view is already declared in %L"
   %searchMethod searchKey %errorMessage "there is no '%K' view"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 map @autoLayoutConfiguratorMap {
   public let @string mAutoLayoutOutletTypeName
@@ -599,7 +599,7 @@ map @autoLayoutConfiguratorMap {
   %searchMethod searchKey %errorMessage "there is no '%K' configurator"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 map @autoLayoutOutletMap {
   public let @string mAutoLayoutOutletTypeName
@@ -608,13 +608,13 @@ map @autoLayoutOutletMap {
   %searchMethod searchKey %errorMessage "there is no '%K' outlet"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @implicitViewFunctionGenerationList {
   public let @abstractViewInstructionGeneration mInstruction
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract proc @astAbstractViewDeclaration.checkView(
   let @string inViewName,
@@ -632,7 +632,7 @@ abstract proc @astAbstractViewDeclaration.checkView(
   ?!@autoLayoutOutletMap ioOutletMap,
   !@abstractViewGeneration outGeneration)
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
                                 let @astAutoLayoutViewFunctionMap inFunctionMap,
@@ -766,7 +766,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astComputedHorizontalViewDeclaration.checkView(
                                   let @string unused inViewName,
@@ -823,7 +823,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
   outGeneration = @computedHorizontalViewGeneration (funcCallList, instructionList, self.mNewStackViewDeclarationList)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astComputedVerticalViewDeclaration.checkView(
                                   let @string unused inViewName,
@@ -886,7 +886,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract proc @astAbstractViewInstructionDeclaration.generateViewCode(
                                 let @autoLayoutViewDeclarationMap inViewDeclarationMap,
@@ -903,7 +903,7 @@ abstract proc @astAbstractViewInstructionDeclaration.generateViewCode(
                                 ?!@autoLayoutOutletMap ioOutletMap,
                                 !@abstractViewInstructionGeneration outInstruction)
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astSpaceViewInstruction.generateViewCode(
                                 let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
@@ -922,7 +922,7 @@ override proc @astSpaceViewInstruction.generateViewCode(
   outInstruction = @autoLayoutSpaceViewInstructionGeneration ()
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astDividerInstructionDeclaration.generateViewCode(
                                 let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
@@ -941,7 +941,7 @@ override proc @astDividerInstructionDeclaration.generateViewCode(
   outInstruction = @autoLayoutDividerInstructionGeneration (!horizontal: self.horizontal)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astLocalViewInstruction.generateViewCode(
                                 let @autoLayoutViewDeclarationMap unused inViewDeclarationMap,
@@ -960,7 +960,7 @@ override proc @astLocalViewInstruction.generateViewCode(
   outInstruction = @autoLayoutLocalViewInstructionGeneration (self.mLocalView.string)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astComputedViewInstruction.generateViewCode(
                                 let @autoLayoutViewDeclarationMap inViewDeclarationMap,
@@ -1150,7 +1150,7 @@ override proc @astComputedViewInstruction.generateViewCode(
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc analyzeAutoLayoutBinding (let @bool inPreferences,
               let @propertyMap inRootObservablePropertyMap,
@@ -1337,7 +1337,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc analyzeAutoLayoutEnableBinding(
   let @multipleBindingDescriptor inEnabledBindingDescriptor,
@@ -1373,7 +1373,7 @@ proc analyzeAutoLayoutEnableBinding(
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc analyzeAutoLayoutRunBinding (let @runActionDescriptor inRunActionDescriptor,
                                   ?handlesRunAction: let @bool inHandlesRunAction,
@@ -1422,7 +1422,7 @@ proc analyzeAutoLayoutRunBinding (let @runActionDescriptor inRunActionDescriptor
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc analyzeAutoLayoutRegularBinding(
   ?prefs: let @bool inPreferences,
@@ -1539,7 +1539,7 @@ proc analyzeAutoLayoutRegularBinding(
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         let @autoLayoutViewDeclarationMap inViewDeclarationMap,
@@ -1622,7 +1622,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         let @autoLayoutViewDeclarationMap inViewDeclarationMap,
@@ -1704,14 +1704,14 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   GENERATION                            
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @abstractViewGeneration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @computedHorizontalViewGeneration : @abstractViewGeneration {
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
@@ -1719,7 +1719,7 @@ class @computedHorizontalViewGeneration : @abstractViewGeneration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @computedVerticalViewGeneration : @abstractViewGeneration {
   public let @bool mHasVerticalScroller
@@ -1729,14 +1729,14 @@ class @computedVerticalViewGeneration : @abstractViewGeneration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @viewGenerationList {
   public let @string mViewName
   public let @abstractViewGeneration mView
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @abstractViewInstructionGeneration {
 
@@ -1750,7 +1750,7 @@ abstract class @abstractViewInstructionGeneration {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @autoLayoutViewInstructionGenerationFuncCallList mFuncCallList
@@ -1759,7 +1759,7 @@ class @hStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @bool mHasVerticalScroller
@@ -1770,12 +1770,12 @@ class @vStackViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @astNewStackViewDeclarationList mNewStackViewDeclarationList
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutSpaceViewInstructionGeneration : @abstractViewInstructionGeneration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGeneration {
   public let @bool horizontal %initArgLabel
@@ -1799,7 +1799,7 @@ class @autoLayoutSeparatorInstructionGeneration : @abstractViewInstructionGenera
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutGutterInstructionGeneration : @abstractViewInstructionGeneration {
   public let @bool horizontal %initArgLabel
@@ -1822,19 +1822,19 @@ class @autoLayoutGutterInstructionGeneration : @abstractViewInstructionGeneratio
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutDividerInstructionGeneration : @abstractViewInstructionGeneration {
   public let @bool horizontal %initArgLabel
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutLocalViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @string mLocalView
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutRegularBindingsGenerationList {
   public let @string mBindingName
@@ -1842,35 +1842,35 @@ list @autoLayoutRegularBindingsGenerationList {
   public let @string mBindingOptionsString
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutMultipleBindingGenerationList {
   public let @string mBindingName
   public let @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @autolayoutRunBindingForGeneration {
   case none
   case run (@string targetName, @string actionName, @string targetTypeName)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @autoLayoutViewGraphicControllerBindingGeneration {
   case none
   case binding (@string arrayControllerControllerName)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @autolayoutEnabledBindingForGeneration {
   case none
   case enabled (@abstractBooleanMultipleBindingExpressionForGeneration binding)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGeneration {
   public let @lstring mAutoLayoutViewClassName
@@ -1886,21 +1886,21 @@ class @autoLayoutComputedViewInstructionGeneration : @abstractViewInstructionGen
   public let @bool mOutletIsArray
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationParameterList {
   public let @string mParameterName
   public let @string mParameterValue
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationFuncCallList {
   public let @string mFunctionName
   public let @autoLayoutViewInstructionGenerationParameterList mParameters
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc @autoLayoutViewInstructionGenerationFuncCallList.generate (let @string inIndentation, ?!@string ioStr) {
   for (funcName, parameterList) in self do
@@ -1913,18 +1913,18 @@ proc @autoLayoutViewInstructionGenerationFuncCallList.generate (let @string inIn
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @autoLayoutViewInstructionGenerationList {
   public let @abstractViewInstructionGeneration mInstruction
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract func @abstractViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                            let @string inViewName) -> @string
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                                      let @string inViewName) -> @string {
@@ -1941,7 +1941,7 @@ override func @computedHorizontalViewGeneration.generateViewBuilder (?prefs: let
   result += "  }\n\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @bool inPreferences,
                                                                    let @string inViewName) -> @string {
@@ -1967,7 +1967,7 @@ override func @computedVerticalViewGeneration.generateViewBuilder (?prefs: let @
   result += "  }\n\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutSpaceViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences,
@@ -1976,7 +1976,7 @@ override func @autoLayoutSpaceViewInstructionGeneration.generateViewInstruction 
   result = inIndentation + "let " + inName + " = AutoLayoutFlexibleSpace ()\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutSpaceViewInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool unused inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
@@ -1985,7 +1985,7 @@ override func @autoLayoutSpaceViewInstructionGeneration.generateAppendViewInstru
   result = inIndentation + "_ = " + inReceiverViewName + ".appendFlexibleSpace ()\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutDividerInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences,
@@ -2004,7 +2004,7 @@ override func @autoLayoutDividerInstructionGeneration.generateAppendViewInstruct
   result = inIndentation + "_ = " + inReceiverViewName + ".appendDivider ()\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutLocalViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool unused inPreferences,
@@ -2019,7 +2019,7 @@ override func @autoLayoutLocalViewInstructionGeneration.generateAppendViewInstru
   result = inIndentation + "_ = " + inReceiverViewName + ".appendView (" + self.mLocalView + ")\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutComputedViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences,
@@ -2074,7 +2074,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateViewInstructi
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @autoLayoutComputedViewInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
@@ -2133,7 +2133,7 @@ override func @autoLayoutComputedViewInstructionGeneration.generateAppendViewIns
   result += inIndentation +  "}\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @hStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences,
@@ -2152,7 +2152,7 @@ override func @hStackViewInstructionGeneration.generateViewInstruction (
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @hStackViewInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
@@ -2175,7 +2175,7 @@ override func @hStackViewInstructionGeneration.generateAppendViewInstruction (?p
   result += inIndentation + "}\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @vStackViewInstructionGeneration.generateViewInstruction (
                          ?prefs: let @bool inPreferences,
@@ -2203,7 +2203,7 @@ override func @vStackViewInstructionGeneration.generateViewInstruction (
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?prefs: let @bool inPreferences,
                                              ?receiverView: let @string inReceiverViewName,
@@ -2235,4 +2235,4 @@ override func @vStackViewInstructionGeneration.generateAppendViewInstruction (?p
   result += inIndentation + "}\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

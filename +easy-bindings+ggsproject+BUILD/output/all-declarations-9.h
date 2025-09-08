@@ -435,3 +435,37 @@ GGS_string filewrapperTemplate_computedPropertyManager_computedComputationFuncti
                                                                                         const class GGS_typeKind & in_TRANSIENT_5F_TYPE
                                                                                         COMMA_LOCATION_ARGS) ;
 
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'transientManager'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_1_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_2_transientManager ;
+extern const cDirectoryWrapper gWrapperDirectory_3_transientManager ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'transientManager transientComputationFunctionFile'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_transientManager_transientComputationFunctionFile (class Compiler * inCompiler,
+                                                                                  const class GGS_string & in_OWNER_5F_NAME,
+                                                                                  const class GGS_string & in_TRANSIENT_5F_NAME,
+                                                                                  const class GGS_transientDependencyListForGeneration & in_DEPENDENCY_5F_LIST,
+                                                                                  const class GGS_typeKind & in_TRANSIENT_5F_TYPE,
+                                                                                  const class GGS_string & in_TRANSIENT_5F_FUNCTION_5F_NAME_5F_PREFIX
+                                                                                  COMMA_LOCATION_ARGS) ;
+

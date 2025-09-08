@@ -1,38 +1,38 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SEMANTIC TYPES
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @transientExternTypeList {
   public var @string mTypeName
   public var @bool mIsClass
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @abstractFileGeneration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract proc @abstractFileGeneration.generateCodePhase1 (@string inOutputDirectory,
                                                           @generationStruct inGenerationStruct,
                                                           ?!@stringset ioUsedProtocolSet,
                                                           ?!@stringset ioGeneratedFileSet)
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract proc @abstractFileGeneration.generateCodePhase2 (@string inOutputDirectory,
                                                           @generationStruct inGenerationStruct,
                                                           @stringset inUsedProtocolSet,
                                                           ?!@stringset ioGeneratedFileSet)
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @fileGenerationList {
   public var @abstractFileGeneration mFileGeneration
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 struct @generationStruct {
   public var @validationStubRoutineListForGeneration mValidationStubRoutineListForGeneration = []
@@ -57,9 +57,9 @@ struct @generationStruct {
   public var @stringset mGenerateClass_StoredArrayOf_ = []
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CODE GENERATION
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 proc generateCode (@string inXcodeProjectString,
                    @generationStruct inGeneration,
@@ -120,7 +120,7 @@ proc generateCode (@string inXcodeProjectString,
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 filewrapper standard_properties in "generation-templates/standard-properties" {
 }{
@@ -138,7 +138,7 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 private proc generateStandardProperties (let @string inOutputDirectory,
                                          let @stringlist inPropertyClassList,
@@ -169,7 +169,7 @@ private proc generateStandardProperties (let @string inOutputDirectory,
   generateClassProperty (inOutputDirectory, "NSColor", !transient: false, !?ioGeneratedFileSet)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 private proc generateClassProperty (let @string inOutputDirectory,
                                      let @string inClassPropertyTypeName,
@@ -186,7 +186,7 @@ private proc generateClassProperty (let @string inOutputDirectory,
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 private proc generateScalarProperty (let @string inOutputDirectory,
                                     let @string inScalarPropertyTypeName,
@@ -204,4 +204,4 @@ private proc generateScalarProperty (let @string inOutputDirectory,
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

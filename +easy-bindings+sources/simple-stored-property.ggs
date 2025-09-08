@@ -1,6 +1,6 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST   
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @simpleStoredPropertyList {
   public var @lstring mPropertyTypeName
@@ -8,7 +8,7 @@ list @simpleStoredPropertyList {
   public var @abstractDefaultValue mDefaultValue
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
@@ -20,7 +20,7 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public let @bool standalone %initArgLabel
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarationPrecedenceGraph ioGraph) {
   let node = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
@@ -30,15 +30,15 @@ override proc @atomicPropertyDeclarationAST.enterInPrecedenceGraph (?!@declarati
   self.mDefaultValue.enterDefaultValuePrecedence (node, !?ioGraph)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyDeclarationAST.nodeKey() -> @lstring {
   result = @lstring (self.mClassName.string + " " + self.mPropertyName, self.mPropertyName.location)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -149,9 +149,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
@@ -194,9 +194,9 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
 //  end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   CODE GENERATION                       
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
   private let @bool generateResetMethod %initArgLabel
@@ -209,19 +209,19 @@ class @atomicPropertyGeneration : @propertyGeneration {
   private let @bool mInPreferences
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @atomicPropertyGenerationList {
   public var @atomicPropertyGeneration mProperty
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.prefKeyDefinitionCode() -> @string {
   result = "@MainActor let Preferences_" + self.mPropertyName + " = \"Preferences:" + self.mPropertyName + "\"\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
@@ -230,7 +230,7 @@ override func @atomicPropertyGeneration.declarationInSelectionControllerCode() -
   result += "  final let " + self.mPropertyName + "_property = EBComputedProperty_" + self.mType.swiftTypeName + " ()\n\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
@@ -270,7 +270,6 @@ override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @
   result += "        return .empty\n"
   result += "      }\n"
   result += "    }\n"
-
   result += "    self." + self.mPropertyName + "_property.mWriteModelFunction = { [weak self] (inValue : " + self.mType.swiftTypeName + ") in\n"
   result += "      if let model = self?.selectedArray_property {\n"
   result += "        switch model.selection {\n"
@@ -286,7 +285,7 @@ override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @
   result += "  }\n"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.propertyDeclarationCode (
    let @bool unused inPreferences,
@@ -334,7 +333,7 @@ override func @atomicPropertyGeneration.propertyDeclarationCode (
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.initCode () -> @string {
   if self.standalone then
@@ -347,7 +346,7 @@ override func @atomicPropertyGeneration.initCode () -> @string {
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
   if self.standalone || self.mInPreferences then
@@ -357,4 +356,4 @@ override func @atomicPropertyGeneration.configurationCode (let @bool unused inPr
   end
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------

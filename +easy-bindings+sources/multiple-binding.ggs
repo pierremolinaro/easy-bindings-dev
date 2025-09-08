@@ -1,13 +1,13 @@
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   AST   
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @multipleBindingDescriptor %equatable {
   case noBinding 
   case binding (@abstractBooleanMultipleBindingExpressionAST expression)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 enum @multipleBindingComparisonAST {
   case equal
@@ -18,24 +18,24 @@ enum @multipleBindingComparisonAST {
   case greaterOrEqual
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @abstractBooleanMultipleBindingExpressionAST {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @literalIntMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @luint mValue
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @negateBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @abstractBooleanMultipleBindingExpressionAST mBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
@@ -43,36 +43,36 @@ class @comparisonMultipleBindingExpressionAST : @abstractBooleanMultipleBindingE
   public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @andBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @orBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @xorBooleanMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @abstractBooleanMultipleBindingExpressionAST mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionAST mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @observablePropertyInMultipleBindingExpressionAST : @abstractBooleanMultipleBindingExpressionAST {
   public var @observablePropertyAST mProperty
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SYNTAX
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
 
@@ -182,9 +182,9 @@ syntax extension easyBindings_syntax {
 
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SEMANTIC TYPES                        
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 list @multipleBindingGenerationList {
   public var @string mOutletName
@@ -192,51 +192,51 @@ list @multipleBindingGenerationList {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mBoundObjectExpression
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract class @abstractBooleanMultipleBindingExpressionForGeneration {
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @observablePropertyAsBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @string mObservedModelString
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @booleanMultipleBindingLiteralIntForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @uint mValue
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @negateBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @orBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @xorBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @andBooleanMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
   public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultipleBindingExpressionForGeneration {
   public var @abstractBooleanMultipleBindingExpressionForGeneration mLeftBinding
@@ -244,9 +244,9 @@ class @comparisonMultipleBindingExpressionForGeneration : @abstractBooleanMultip
   public var @abstractBooleanMultipleBindingExpressionForGeneration mRightBinding
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 //   SEMANTIC                              
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract proc @abstractBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -258,7 +258,7 @@ abstract proc @abstractBooleanMultipleBindingExpressionAST.analyzeExpressionForM
   !@typeKind outType,
   !@location outErrorLocation)
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool unused inPreferences,
@@ -275,7 +275,7 @@ override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultip
   outErrorLocation = self.mValue.location
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -314,7 +314,7 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
   outErrorLocation = self.mProperty.location
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -342,7 +342,7 @@ override proc @negateBooleanMultipleBindingExpressionAST.analyzeExpressionForMul
   outEnableExpression = @negateBooleanMultipleBindingExpressionForGeneration (expression)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -385,7 +385,7 @@ override proc @orBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipl
   outEnableExpression = @orBooleanMultipleBindingExpressionForGeneration (leftExpression, rightExpression)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -428,7 +428,7 @@ override proc @xorBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   outEnableExpression = @xorBooleanMultipleBindingExpressionForGeneration (leftExpression, rightExpression)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -471,7 +471,7 @@ override proc @andBooleanMultipleBindingExpressionAST.analyzeExpressionForMultip
   outEnableExpression = @andBooleanMultipleBindingExpressionForGeneration (leftExpression, rightExpression)
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
   ?prefs: let @bool inPreferences,
@@ -518,53 +518,53 @@ override proc @comparisonMultipleBindingExpressionAST.analyzeExpressionForMultip
   )
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 abstract func @abstractBooleanMultipleBindingExpressionForGeneration.expressionString() -> @string
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @booleanMultipleBindingLiteralIntForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".literalInt (" + self.mValue.string + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @observablePropertyAsBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".prop (" + self.mObservedModelString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @negateBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".not (" + self.mBinding.expressionString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @orBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .or, " + self.mRightBinding.expressionString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @xorBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .xor, " + self.mRightBinding.expressionString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @andBooleanMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
   outExpressionString = ".boolcmp (" + self.mLeftBinding.expressionString +  ", .and, " + self.mRightBinding.expressionString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
 override func @comparisonMultipleBindingExpressionForGeneration.expressionString()
   -> @string outExpressionString {
@@ -580,4 +580,4 @@ override func @comparisonMultipleBindingExpressionForGeneration.expressionString
   outExpressionString += ", " + self.mRightBinding.expressionString + ")"
 }
 
-//------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
