@@ -89,7 +89,7 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n%
   %  private final var mObserversOf_%!mProperty.mPropertyName% : EBObservedObserver? = nil\n\n%
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n%
-  %  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : any EBObserverProtocol) {\n%
+  %  final func toMany_%!mProperty.mPropertyName%_StartsBeingObserved (by inObserver : some EBObserverProtocol) {\n%
   %    let relay : EBObservedObserver\n%
   %    if let r = self.mObserversOf_%!mProperty.mPropertyName% {\n%
   %      relay = r\n%
@@ -101,7 +101,7 @@ for (mProperty) in TO_MANY_RELATIONSHIP_LIST do
   %    relay.startsBeingObserved (by: inObserver)\n%
   %  }\n\n%
   %  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n\n%
-  %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : any EBObserverProtocol) {\n%
+  %  final func toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by inObserver : some EBObserverProtocol) {\n%
   %    self.mObserversOf_%!mProperty.mPropertyName%?.stopsBeingObserved (by: inObserver)\n%
   %  }\n\n%
 end

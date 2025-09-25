@@ -288,6 +288,12 @@ struct SettingViewFor_easyBindings_lexique : View {
 
 //--------------------------------------------------------------------------------------------------
 
+#Preview {
+  SettingViewFor_easyBindings_lexique ()
+}
+
+//--------------------------------------------------------------------------------------------------
+
 final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

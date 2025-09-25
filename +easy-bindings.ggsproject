@@ -64,7 +64,7 @@ project (0:0:1) -> "eb" {
   
 //-- Xcode project
   "+easy-bindings+sources/xcode-project.ggs"
-  "+easy-bindings+sources/XcodeProjectNewGeneration.ggs"
+  "+easy-bindings+sources/XcodeProjectGeneration.ggs"
   "+easy-bindings+sources/main-xib.ggs"
 }
 
