@@ -3464,7 +3464,7 @@ void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const GGS_string constinArg
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("graphviz.ggs", 46)) ;
       }
       if (loop_1855) {
-        variant_1855 -- ;
+        variant_1855 -= 1 ;
         GGS_string var_entityName_1973 ;
         {
         var_exploreArray_1751.setter_popLast (var_entityName_1973, inCompiler COMMA_SOURCE_FILE ("graphviz.ggs", 47)) ;
@@ -3745,7 +3745,7 @@ void routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (const GGS_string cons
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("graphviz.ggs", 156)) ;
       }
       if (loop_6967) {
-        variant_6967 -- ;
+        variant_6967 -= 1 ;
         GGS_string var_entityName_7085 ;
         {
         var_exploreArray_6796.setter_popLast (var_entityName_7085, inCompiler COMMA_SOURCE_FILE ("graphviz.ggs", 157)) ;
@@ -5410,7 +5410,7 @@ void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F
           inCompiler->loopRunTimeVariantError (SOURCE_FILE ("auto-layout-view.ggs", 1471)) ;
         }
         if (loop_61623) {
-          variant_61623 -- ;
+          variant_61623 -= 1 ;
           var_continues_61602 = GGS_bool (false) ;
           GGS_lstring var_superOutletClassName_61865 ;
           GGS_autoLayoutViewBindingSpecificationMap var_bindingMap_61900 ;
@@ -7268,7 +7268,7 @@ void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const GG
           inCompiler->loopRunTimeVariantError (SOURCE_FILE ("outlet-declaration.ggs", 451)) ;
         }
         if (loop_17309) {
-          variant_17309 -- ;
+          variant_17309 -= 1 ;
           var_continues_17288 = GGS_bool (false) ;
           GGS_lstring var_superOutletClassName_17541 ;
           GGS_outletBindingSpecificationMap var_bindingMap_17607 ;

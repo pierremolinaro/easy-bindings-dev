@@ -4628,7 +4628,7 @@ void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_sem
             inCompiler->loopRunTimeVariantError (SOURCE_FILE ("selection-controller.ggs", 162)) ;
           }
           if (loop_7282) {
-            variant_7282 -- ;
+            variant_7282 -= 1 ;
             GalgasBool test_13 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_13) {
               const GGS_selectionControllerDeclarationAST temp_14 = this ;
