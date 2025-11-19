@@ -8,17 +8,20 @@
 
 import SwiftUI
 import Combine
-import AppKit
 
 //--------------------------------------------------------------------------------------------------
 
-final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDelegate {
+final class SWIFT_SharedTextModel : NSObject, ObservableObject, Identifiable, NSTextStorageDelegate {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private var mScanner : SWIFT_Scanner
   private let mTextStorage = NSTextStorage ()
-  @Binding var mDocumentString : String
+  var mDocumentString : String {
+    didSet {
+      self.mWriteFileCallback? (self.mTextStorage.string)
+    }
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -30,17 +33,19 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  init (scanner inScanner : SWIFT_Scanner, stringBinding inStringBinding : Binding <String>) {
+  @Published var mBottomViewIsVisible = false
+  var mTopViewSelection = NSRange () // Pas de @Published
+  var mBottomViewSelection = NSRange () // Pas de @Published
+  private var mWriteFileCallback : ((String) -> Void)? = nil
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  init (scanner inScanner : SWIFT_Scanner,
+        initialString inString : String) {
     self.mScanner = inScanner
-    self._mDocumentString = inStringBinding
+    self.mDocumentString = inString
     super.init ()
     noteObjectAllocation (self)
-//     NotificationCenter.default.addObserver (
-//      self,
-//      selector: #selector (Self.textStorageDidProcessEditingNotification),
-//      name: NSTextStorage.didProcessEditingNotification,
-//      object: self.mTextStorage
-//    )
  //--- Add UndoManager observers
     NotificationCenter.default.addObserver (
       self,
@@ -70,7 +75,7 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
   //---
     self.mTextStorage.delegate = self // NSTextStorageDelegate
     self.mScanner.performLexicalColoringAfterUserDefaultChange (textStorage: self.mTextStorage)
-    let attributedStr = NSMutableAttributedString (string: inStringBinding.wrappedValue)
+    let attributedStr = NSMutableAttributedString (string: self.mDocumentString)
     self.mTextStorage.setAttributedString (attributedStr)
   //--- Inutile d'en faire plus, la méthode textStorage (_:didProcessEditing:range:changeInLength)
   //  va être appelée, la classe courante est le délégué du self.mTextStorage (NSTextStorageDelegate)
@@ -106,6 +111,12 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+  func setWriteFileCallback (_ inWriteFileCallback : ((String) -> Void)?) {
+    self.mWriteFileCallback = inWriteFileCallback
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   @objc func userDefaultDidChange () {
     self.mScanner.performLexicalColoringAfterUserDefaultChange (textStorage: self.mTextStorage)
   }
@@ -115,7 +126,6 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   fileprivate func createAndConfigureTextView () -> InternalNSTextView {
-//    print ("createAndConfigureTextView")
   //--- Création du layout manager
     let layoutManager = SWIFT_LayoutManager ()
     layoutManager.allowsNonContiguousLayout = true
@@ -128,10 +138,11 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
     let textContainer = SWIFT_TextContainer (size: greatestSize)
     layoutManager.addTextContainer (textContainer)
   //--- Création de la NSTextView reliée au container
-    let textView = InternalNSTextView (frame: .zero, textContainer: textContainer)
-    textView.mSharedTextModel = self
-  //--- Fixer l'UndoManager de la text view
-    textView.mUndoManager = self.mSharedUndoManager
+    let textView = InternalNSTextView (
+      textContainer: textContainer,
+      sharedTextModel: self,
+      undoManager: self.mSharedUndoManager
+    )
   //---
     return textView
   }
@@ -139,7 +150,6 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   fileprivate func textViewIsDeiniting (_ inTextView : InternalNSTextView) {
-//    print ("textViewIsDeiniting")
     if let lm = inTextView.layoutManager {
       while lm.textContainers.count > 0 {
         lm.removeTextContainer (at: 0)
@@ -175,19 +185,6 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-//  func replaceUndoRedoCommands () -> some Commands {
-//    CommandGroup (replacing: .undoRedo) {
-//      Button ("My Undo") { self.undo () }
-//      .keyboardShortcut ("z", modifiers: .command)
-//      .disabled (!self.mCanUndo)
-//      Button ("My Redo") { self.redo () }
-//      .keyboardShortcut ("z", modifiers: [.shift, .command])
-//      .disabled (!self.mCanRedo)
-//    }
-//  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   func selectionRange (forProposedRange inProposedSelectionRange : NSRange,
                        granularity inGranularity : NSSelectionGranularity,
                        nsTextViewComputedRange inTextViewComputedRange : NSRange) -> NSRange {
@@ -204,20 +201,6 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-//  func textStorage (_ textStorage: NSTextStorage,
-//                    willProcessEditing inEditedMask : NSTextStorageEditActions,
-//                    range inEditedRange : NSRange,
-//                    changeInLength inDelta : Int) { // NSTextStorageDelegate
-//    let textStorageString = self.mTextStorage.string
-//    if self.mDocumentString != textStorageString {
-////      DispatchQueue.main.async {
-//        self.mDocumentString = textStorageString
-////      }
-//    }
-//  }
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   func textStorage (_ textStorage: NSTextStorage,
                     didProcessEditing inEditedMask : NSTextStorageEditActions,
                     range inEditedRange : NSRange,
@@ -229,23 +212,10 @@ final class SWIFT_SharedTextModel : NSObject, ObservableObject, NSTextStorageDel
         changeInLength: inDelta
       )
     }
-//    let textStorageString = self.mTextStorage.string
-//    if self.mDocumentString != textStorageString {
-////      DispatchQueue.main.async {
-////        self.mDocumentString = textStorageString
-////      }
-//    }
+    if self.mDocumentString != self.mTextStorage.string {
+      self.mDocumentString = self.mTextStorage.string
+    }
   }
-
-//  @objc private func textStorageDidProcessEditingNotification () {
-//    print ("textStorageDidProcessEditingNotification")
-//    let textStorageString = self.mTextStorage.string
-//    if self.mDocumentString != textStorageString {
-////      DispatchQueue.main.async {
-//        self.mDocumentString = textStorageString
-////      }
-//    }
-//  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -257,14 +227,15 @@ struct SWIFT_LexicalHilitingTextEditor : NSViewRepresentable {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private var mSharedTextModel : SWIFT_SharedTextModel
-  fileprivate let mTextView : InternalNSTextView
+  @Binding private var mSelectionBinding : NSRange
+  private let mTextView : InternalNSTextView
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  init (_ inSharedTextModel : SWIFT_SharedTextModel) {
-    self.mSharedTextModel = inSharedTextModel
+  init (model inSharedTextModel : SWIFT_SharedTextModel,
+        selectionBinding inSelectionBinding : Binding <NSRange>) {
     self.mTextView = inSharedTextModel.createAndConfigureTextView ()
+    self._mSelectionBinding = inSelectionBinding
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -297,7 +268,7 @@ struct SWIFT_LexicalHilitingTextEditor : NSViewRepresentable {
     self.mTextView.autoresizingMask = [.width]
     self.mTextView.delegate = inContext.coordinator
   //--- ScrollView
-    let scrollView = NSScrollView ()
+    let scrollView = InternalNSScrollView ()
     scrollView.documentView = self.mTextView
     scrollView.hasVerticalScroller = true
     scrollView.autohidesScrollers = true
@@ -309,6 +280,12 @@ struct SWIFT_LexicalHilitingTextEditor : NSViewRepresentable {
     rulerView.scrollView = scrollView
     scrollView.verticalRulerView = rulerView
     scrollView.rulersVisible = true
+  //--- Restore selection
+    self.mTextView.selectedRange = self.mSelectionBinding
+    DispatchQueue.main.async {
+      self.mTextView.scrollRangeToVisible (self.mTextView.selectedRange)
+    }
+  //---
     return scrollView
   }
 
@@ -320,13 +297,51 @@ struct SWIFT_LexicalHilitingTextEditor : NSViewRepresentable {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+  fileprivate func selectionRangeDidChange () {
+    self.mTextView.enclosingScrollView?.verticalRulerView?.layer?.setNeedsDisplay ()
+    if self.mSelectionBinding != self.mTextView.selectedRange {
+      self.mSelectionBinding = self.mTextView.selectedRange
+    }
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 }
 
 //--------------------------------------------------------------------------------------------------
 
-class SyntaxHighlightingTextEditorCoordinator : NSObject, NSTextViewDelegate {
+fileprivate final class InternalNSScrollView : NSScrollView {
 
-  let mParent : SWIFT_LexicalHilitingTextEditor
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  init () {
+    super.init (frame: .zero)
+    noteObjectAllocation (self)
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  required init? (coder: NSCoder) {
+    fatalError ("init(coder:) has not been implemented")
+  }
+  
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  deinit {
+    noteObjectDeallocation (self)
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+}
+
+//--------------------------------------------------------------------------------------------------
+
+final class SyntaxHighlightingTextEditorCoordinator : NSObject, NSTextViewDelegate {
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  private let mParent : SWIFT_LexicalHilitingTextEditor
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -345,8 +360,7 @@ class SyntaxHighlightingTextEditorCoordinator : NSObject, NSTextViewDelegate {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func textViewDidChangeSelection (_ inUnusedNotification : Notification) {  // NSTextViewDelegate
-//    Swift.print ("textViewDidChangeSelection")
-    self.mParent.mTextView.enclosingScrollView?.verticalRulerView?.layer?.setNeedsDisplay ()
+    self.mParent.selectionRangeDidChange ()
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -359,8 +373,17 @@ fileprivate final class InternalNSTextView : NSTextView, NSTextFinderClient {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override init (frame inFrame : NSRect, textContainer inContainer : NSTextContainer?) {
-    super.init (frame: inFrame, textContainer: inContainer)
+  private weak var mSharedTextModel : SWIFT_SharedTextModel?
+  private weak var mUndoManager : UndoManager?
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  init (textContainer inContainer : NSTextContainer?,
+        sharedTextModel inSharedTextModel : SWIFT_SharedTextModel,
+        undoManager inUndoManager : UndoManager) {
+    self.mSharedTextModel = inSharedTextModel
+    self.mUndoManager = inUndoManager
+    super.init (frame: .zero, textContainer: inContainer)
     noteObjectAllocation (self)
   }
 
@@ -379,13 +402,7 @@ fileprivate final class InternalNSTextView : NSTextView, NSTextFinderClient {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var mSharedTextModel : SWIFT_SharedTextModel? = nil
-  var mUndoManager : UndoManager? = nil
-
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   override var undoManager : UndoManager? {
-//    Swift.print ("InternalNSTextView.undoManager \(self.mUndoManager?.description ?? "nil")")
     return self.mUndoManager
   }
 
@@ -431,8 +448,8 @@ fileprivate final class InternalNSTextView : NSTextView, NSTextFinderClient {
     )
     var range = nsTextViewComputedRange
 
-    if let obj = self.mSharedTextModel {
-      range = obj.selectionRange (
+    if let model = self.mSharedTextModel {
+      range = model.selectionRange (
         forProposedRange: inProposedSelectionRange,
         granularity: inGranularity,
         nsTextViewComputedRange: nsTextViewComputedRange
@@ -452,7 +469,7 @@ fileprivate final class SWIFT_TextViewRulerView : NSRulerView {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private weak var mTextView : NSTextView? = nil
-  let mPadding : CGFloat = 5
+  private let mPadding : CGFloat = 5
   private var mLineRangeCacheArray : [NSRange] = []
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -483,12 +500,9 @@ fileprivate final class SWIFT_TextViewRulerView : NSRulerView {
     let str = textView.string as NSString
     self.mLineRangeCacheArray = []
     str.enumerateSubstrings (in: NSRange (location: 0, length: str.length), options: .byLines) { _, range, _, _ in
-//      let nextIndex = range.location + range.length
-//      if nextIndex <= str.length {
-        var lineRange = range
-        lineRange.length += 1
-        self.mLineRangeCacheArray.append (lineRange)
-//      }
+      var lineRange = range
+      lineRange.length += 1
+      self.mLineRangeCacheArray.append (lineRange)
     }
   }
 
@@ -497,23 +511,19 @@ fileprivate final class SWIFT_TextViewRulerView : NSRulerView {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private func lineRangeAndNumber (forCharIndex inCharIndex : Int) -> (NSRange, Int) {
-//    if self.mLineRangeCacheArray.isEmpty {
-//      return (NSRange (), 1)
-//    }else{
-      var low = 0
-      var high = self.mLineRangeCacheArray.count - 1
-      while low <= high {
-        let mid = (low + high) / 2
-        if self.mLineRangeCacheArray [mid].location == inCharIndex {
-          return (self.mLineRangeCacheArray [mid], mid + 1)
-        }else if self.mLineRangeCacheArray [mid].location < inCharIndex {
-          low = mid + 1
-        }else{
-          high = mid - 1
-        }
+    var low = 0
+    var high = self.mLineRangeCacheArray.count - 1
+    while low <= high {
+      let mid = (low + high) / 2
+      if self.mLineRangeCacheArray [mid].location == inCharIndex {
+        return (self.mLineRangeCacheArray [mid], mid + 1)
+      }else if self.mLineRangeCacheArray [mid].location < inCharIndex {
+        low = mid + 1
+      }else{
+        high = mid - 1
       }
-      return (self.mLineRangeCacheArray [self.mLineRangeCacheArray.count - 1], self.mLineRangeCacheArray.count)
-//    }
+    }
+    return (self.mLineRangeCacheArray [self.mLineRangeCacheArray.count - 1], self.mLineRangeCacheArray.count)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

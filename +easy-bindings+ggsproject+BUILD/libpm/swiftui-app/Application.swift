@@ -23,50 +23,58 @@ extension Notification.Name {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-//  @ObservedObject var mSharedTextModel = SWIFT_SharedTextModel (
-//    scanner: ScannerFor_galgasScanner3 (),
-//    string: SOURCE_STRING
-//  )
   @Environment(\.openWindow) private var openWindow
-  private let mAllocationWindowVisibleAtLaunch : Bool
+  @Environment(\.scenePhase) private var scenePhase
+
+//  private let mAllocationWindowVisibleAtLaunch : Bool
+  @State private var mAllocationWindowIsPresented = false
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   init () {
-    self.mAllocationWindowVisibleAtLaunch = UserDefaults.standard.bool (forKey: ENABLE_ALLOCATION_VISIBLE_AT_LAUNCH)
+//    self.mAllocationWindowVisibleAtLaunch = UserDefaults.standard.bool (forKey: ENABLE_ALLOCATION_VISIBLE_AT_LAUNCH)
+//    if self.mAllocationWindowVisibleAtLaunch {
+////      DispatchQueue.main.async {
+////        self.openWindow (id: "AllocationDebug")
+////      }
+//    }
   }
   
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   var body : some Scene {
-    DocumentGroup (newDocument: ProjectDocument()) { file in
-      ProjectDocumentView (document: file.$document)
+    DocumentGroup (newDocument: ProjectDocument ()) { file in
+      ProjectDocumentView (document: file.$document, fileURL: file.fileURL!)
     }
     .commands { MyUndoRedoCommands () }
     .commands {
+//      CommandGroup (after: .newItem) {
+//        Divider ()
+//        Button ("Save All") {  }
+//        .keyboardShortcut ("s", modifiers: [.option, .command])
+//      }
       CommandMenu ("Find") {
-        Button("Find…") {
-          self.sendTextFinderAction (.showFindInterface)
-        }.keyboardShortcut("f", modifiers: .command)
-        Button("Find Next") {
-          self.sendTextFinderAction (.nextMatch)
-        }.keyboardShortcut("g", modifiers: .command)
-        Button("Find Previous") {
-          self.sendTextFinderAction (.previousMatch)
-        }.keyboardShortcut ("g", modifiers: [.shift, .command])
+        Button ("Find…") { self.sendTextFinderAction (.showFindInterface) }
+        .keyboardShortcut("f", modifiers: .command)
+        Button ("Find Next") { self.sendTextFinderAction (.nextMatch) }
+        .keyboardShortcut("g", modifiers: .command)
+        Button ("Find Previous") { self.sendTextFinderAction (.previousMatch) }
+        .keyboardShortcut ("g", modifiers: [.shift, .command])
         Divider()
-        Button("Enter Selection") {
-          self.sendTextFinderAction (.setSearchString)
-        }.keyboardShortcut("e", modifiers: .command)
+        Button ("Enter Selection") { self.sendTextFinderAction (.setSearchString) }
+        .keyboardShortcut ("e", modifiers: .command)
         Divider()
-        Button("Find and Replace…") {
-          self.sendTextFinderAction (.showReplaceInterface)
-        }.keyboardShortcut("r", modifiers: .command)
+        Button ("Find and Replace…") { self.sendTextFinderAction (.showReplaceInterface) }
+        .keyboardShortcut ("r", modifiers: .command)
       }
       CommandMenu ("Debug") {
-        Button("Show Allocation Debug") {
-          self.openWindow (id: "AllocationDebug")
-        }.keyboardShortcut(",", modifiers: [.command, .control])
+        Button ("Show Allocation Debug") {
+          if !self.mAllocationWindowIsPresented {
+            self.mAllocationWindowIsPresented = true
+            self.openWindow (id: "AllocationDebug")
+          }
+        }
+        .keyboardShortcut (",", modifiers: [.command, .option])
       }
     }
     Settings {
@@ -75,7 +83,7 @@ extension Notification.Name {
     WindowGroup (id: "AllocationDebug") {
       AllocationDebugView ()
       .navigationTitle ("Allocation Debug")
-      .frame (minWidth: 400, minHeight: 300)
+      .frame (minWidth: 800, minHeight: 400)
     }
   }
 
@@ -95,15 +103,12 @@ extension Notification.Name {
 
   private func replaceUndoRedoCommands () -> some Commands {
     CommandGroup (replacing: .undoRedo) {
-      Button ("My Undo") { NotificationCenter.default.post (name: .myUndoCommand, object: nil) }
+      Button ("Undo") { NotificationCenter.default.post (name: .myUndoCommand, object: nil) }
       .keyboardShortcut ("z", modifiers: .command)
-//      .disabled (!self.mCanUndo)
-      Button ("My Redo") { NotificationCenter.default.post (name: .myRedoCommand, object: nil) }
+      Button ("Redo") { NotificationCenter.default.post (name: .myRedoCommand, object: nil) }
       .keyboardShortcut ("z", modifiers: [.shift, .command])
-//      .disabled (!self.mCanRedo)
     }
   }
-
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

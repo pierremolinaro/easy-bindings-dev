@@ -21,7 +21,7 @@ struct ProjectDocument : FileDocument {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  static var readableContentTypes : [UTType] { [.galgas3Project] }
+  static let readableContentTypes : [UTType] = [.galgas3Project]
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // MODEL
