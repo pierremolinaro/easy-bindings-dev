@@ -605,7 +605,7 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
     }else if scanningOk && (self.testForInputFromChar (65, toChar:90)) {
       while (loop && scanningOk) {
         scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
-        if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
+        if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
         }else{
           loop = false
         }
@@ -613,10 +613,10 @@ class SWIFT_Lexique_easyBindings_lexique : SWIFT_Lexique {
       loop = true
       tokenCode = easyBindings_lexique_1_Identifier
     }else if scanningOk && (self.testForInputChar (64)) {
-      if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputFromChar (48, toChar:57)) {
+      if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputFromChar (48, toChar:57)) {
         while (loop && scanningOk) {
           scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
-          if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputFromChar (48, toChar:57) || self.testForInputChar (46)) {
+          if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputFromChar (48, toChar:57) || self.testForInputChar (46)) {
           }else{
             loop = false
           }

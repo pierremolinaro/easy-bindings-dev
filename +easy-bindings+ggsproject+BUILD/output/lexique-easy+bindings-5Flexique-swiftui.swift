@@ -7,7 +7,6 @@
 //--------------------------------------------------------------------------------------------------
 
 import SwiftUI
-import AppKit
 
 //--------------------------------------------------------------------------------------------------
 
@@ -294,7 +293,7 @@ struct SettingViewFor_easyBindings_lexique : View {
 
 //--------------------------------------------------------------------------------------------------
 
-final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
+class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -628,74 +627,74 @@ final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
 
  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private var mFont = CustomFont (nsFont: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular))
-  private var mLineHeight : Int = 12
-  private var mDefaultColor : Color = .black
-  private var mColorFor_keywordsStyle : Color = .black
-  private var mBoldFor_keywordsStyle : Bool = false
-  private var mItalicFor_keywordsStyle : Bool = false
-  private var mColorFor_idfStyle : Color = .black
-  private var mBoldFor_idfStyle : Bool = false
-  private var mItalicFor_idfStyle : Bool = false
-  private var mColorFor_IdfStyle : Color = .black
-  private var mBoldFor_IdfStyle : Bool = false
-  private var mItalicFor_IdfStyle : Bool = false
-  private var mColorFor_attributeStyle : Color = .black
-  private var mBoldFor_attributeStyle : Bool = false
-  private var mItalicFor_attributeStyle : Bool = false
-  private var mColorFor_bindingNameStyle : Color = .black
-  private var mBoldFor_bindingNameStyle : Bool = false
-  private var mItalicFor_bindingNameStyle : Bool = false
-  private var mColorFor_reservedBindingNameStyle : Color = .black
-  private var mBoldFor_reservedBindingNameStyle : Bool = false
-  private var mItalicFor_reservedBindingNameStyle : Bool = false
-  private var mColorFor_controllerNameStyle : Color = .black
-  private var mBoldFor_controllerNameStyle : Bool = false
-  private var mItalicFor_controllerNameStyle : Bool = false
-  private var mColorFor_viewNameStyle : Color = .black
-  private var mBoldFor_viewNameStyle : Bool = false
-  private var mItalicFor_viewNameStyle : Bool = false
-  private var mColorFor_integerStyle : Color = .black
-  private var mBoldFor_integerStyle : Bool = false
-  private var mItalicFor_integerStyle : Bool = false
-  private var mColorFor_floatStyle : Color = .black
-  private var mBoldFor_floatStyle : Bool = false
-  private var mItalicFor_floatStyle : Bool = false
-  private var mColorFor_stringStyle : Color = .black
-  private var mBoldFor_stringStyle : Bool = false
-  private var mItalicFor_stringStyle : Bool = false
-  private var mColorFor_delimitersStyle : Color = .black
-  private var mBoldFor_delimitersStyle : Bool = false
-  private var mItalicFor_delimitersStyle : Bool = false
-  private var mColorFor_commentStyle : Color = .black
-  private var mBoldFor_commentStyle : Bool = false
-  private var mItalicFor_commentStyle : Bool = false
-  private var mColorFor_lexical_error : Color = .red
-  private var mBoldFor_lexical_error : Bool = false
-  private var mItalicFor_lexical_error : Bool = false
-  private var mColorFor_template : Color = .gray
-  private var mBoldFor_template : Bool = false
-  private var mItalicFor_template : Bool = false
-  private var mTokenAttributeArray = [[NSAttributedString.Key : Any]?] ()
+  final var mFont = CustomFont (nsFont: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular))
+  final var mLineHeight : Int = 12
+  final var mDefaultColor : Color = .black
+  final var mColorFor_keywordsStyle : Color = .black
+  final var mBoldFor_keywordsStyle : Bool = false
+  final var mItalicFor_keywordsStyle : Bool = false
+  final var mColorFor_idfStyle : Color = .black
+  final var mBoldFor_idfStyle : Bool = false
+  final var mItalicFor_idfStyle : Bool = false
+  final var mColorFor_IdfStyle : Color = .black
+  final var mBoldFor_IdfStyle : Bool = false
+  final var mItalicFor_IdfStyle : Bool = false
+  final var mColorFor_attributeStyle : Color = .black
+  final var mBoldFor_attributeStyle : Bool = false
+  final var mItalicFor_attributeStyle : Bool = false
+  final var mColorFor_bindingNameStyle : Color = .black
+  final var mBoldFor_bindingNameStyle : Bool = false
+  final var mItalicFor_bindingNameStyle : Bool = false
+  final var mColorFor_reservedBindingNameStyle : Color = .black
+  final var mBoldFor_reservedBindingNameStyle : Bool = false
+  final var mItalicFor_reservedBindingNameStyle : Bool = false
+  final var mColorFor_controllerNameStyle : Color = .black
+  final var mBoldFor_controllerNameStyle : Bool = false
+  final var mItalicFor_controllerNameStyle : Bool = false
+  final var mColorFor_viewNameStyle : Color = .black
+  final var mBoldFor_viewNameStyle : Bool = false
+  final var mItalicFor_viewNameStyle : Bool = false
+  final var mColorFor_integerStyle : Color = .black
+  final var mBoldFor_integerStyle : Bool = false
+  final var mItalicFor_integerStyle : Bool = false
+  final var mColorFor_floatStyle : Color = .black
+  final var mBoldFor_floatStyle : Bool = false
+  final var mItalicFor_floatStyle : Bool = false
+  final var mColorFor_stringStyle : Color = .black
+  final var mBoldFor_stringStyle : Bool = false
+  final var mItalicFor_stringStyle : Bool = false
+  final var mColorFor_delimitersStyle : Color = .black
+  final var mBoldFor_delimitersStyle : Bool = false
+  final var mItalicFor_delimitersStyle : Bool = false
+  final var mColorFor_commentStyle : Color = .black
+  final var mBoldFor_commentStyle : Bool = false
+  final var mItalicFor_commentStyle : Bool = false
+  final var mColorFor_lexical_error : Color = .red
+  final var mBoldFor_lexical_error : Bool = false
+  final var mItalicFor_lexical_error : Bool = false
+  final var mColorFor_template : Color = .gray
+  final var mBoldFor_template : Bool = false
+  final var mItalicFor_template : Bool = false
+  final var mTokenAttributeArray = [[NSAttributedString.Key : Any]?] ()
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private func updateTokenStyleArrays (_ ioStyleDidChange : inout Bool) {
+  func updateTokenStyleArrays (_ ioStyleDidChange : inout Bool) {
     ioStyleDidChange = false
     let ud = UserDefaults.standard
-    if let s = ud.string (forKey: "FontFor_galgasScanner3"), let v = CustomFont (rawValue: s) {
+    if let s = ud.string (forKey: "FontFor_easyBindings_lexique"), let v = CustomFont (rawValue: s) {
       if self.mFont != v {
         self.mFont = v
         ioStyleDidChange = true
       }
     }
-    if let s = ud.string (forKey: "LineHeightFor_galgasScanner3"), let v = Int (s) {
+    if let s = ud.string (forKey: "LineHeightFor_easyBindings_lexique"), let v = Int (s) {
       if self.mLineHeight != v {
         self.mLineHeight = v
         ioStyleDidChange = true
       }
     }
-    if let s = ud.string (forKey: "ColorFor_galgasScanner3"), let v = Color (rawValue: s) {
+    if let s = ud.string (forKey: "ColorFor_easyBindings_lexique"), let v = Color (rawValue: s) {
       if self.mDefaultColor != v {
         self.mDefaultColor = v
         ioStyleDidChange = true
@@ -1217,7 +1216,7 @@ final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
       let nsString = inTextStorage.string as NSString
       let fullRange = NSRange (location: 0, length: nsString.length)
     //---- Apply default attributes
-      let tsDelegate : NSTextStorageDelegate? = inTextStorage.delegate
+      let tsDelegate : (any NSTextStorageDelegate)? = inTextStorage.delegate
       inTextStorage.delegate = nil // NSTextStorageDelegate
       inTextStorage.beginEditing ()
       let defaultFont = self.mFont.nsFont
@@ -1338,7 +1337,7 @@ final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
     let start2 = Date ()
     if modificationStart < modificationEnd {
       let modifiedRange = NSRange (location: modificationStart, length: modificationEnd - modificationStart)
-      let tsDelegate : NSTextStorageDelegate? = inTextStorage.delegate
+      let tsDelegate : (any NSTextStorageDelegate)? = inTextStorage.delegate
       inTextStorage.delegate = nil // NSTextStorageDelegate
       inTextStorage.beginEditing ()
       let defaultFont = self.mFont.nsFont
@@ -1402,7 +1401,7 @@ final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
     }else if scanningOk && (self.testForInputFromChar (65, toChar:90)) {
       while (loop && scanningOk) {
         scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
-        if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
+        if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
         }else{
           loop = false
         }
@@ -1410,10 +1409,10 @@ final class ScannerFor_easyBindings_lexique : SWIFT_Scanner {
       loop = true
       tokenCode = easyBindings_lexique_1_Identifier
     }else if scanningOk && (self.testForInputChar (64)) {
-      if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputFromChar (48, toChar:57)) {
+      if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputFromChar (48, toChar:57)) {
         while (loop && scanningOk) {
           scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
-          if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputFromChar (48, toChar:57) || self.testForInputChar (46)) {
+          if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputFromChar (48, toChar:57) || self.testForInputChar (46)) {
           }else{
             loop = false
           }
