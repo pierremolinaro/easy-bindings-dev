@@ -6,31 +6,67 @@ import UniformTypeIdentifiers
 
 //--------------------------------------------------------------------------------------------------
 
+extension Notification.Name {
+  static let myScrollSourceToLocation = Notification.Name ("my.scroll.source.to.location")
+}
+
+//--------------------------------------------------------------------------------------------------
+
+struct ScrollSourceToLineNotificationObject {
+  let location : Int
+}
+
+//--------------------------------------------------------------------------------------------------
+
 struct ProjectDocumentView : View {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  @Binding private var mDocument : ProjectDocument
-  private let mProjectFileURL : URL
-  @StateObject var mProjectTextModel : SWIFT_SharedTextModel
+  enum SidebarSelectedItem : CaseIterable {
+    case fileList, compileLog, issues
+
+    var systemImageName : String {
+      switch self {
+      case .fileList: return "folder"
+      case .compileLog: return "hammer"
+      case .issues: return "exclamationmark.triangle"
+      }
+    }
+
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+  private let mProjectFileURL : URL
+
+  @State private var mSidebarSelectedItem = SidebarSelectedItem.fileList
+  @StateObject var mSharedTextModel : SWIFT_SharedTextModel
+  @StateObject private var mProjectCompiler = ProjectCompiler ()
+
+  @Binding private var mDocument : ProjectDocument
   @StateObject private var mRootDirectoryNode : SWIFT_RootDirectoryNode
+
+  @State private var mSelectedIssue : UUID? = nil
+  @Binding private var mIssues : [SWIFT_Issue]
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   init (document inDocumentBinding : Binding <ProjectDocument>,
-        fileURL inFileURL : URL) {
+        projectFileURL inProjectFileURL : URL,
+        issuesBinding inIssuesBinding : Binding <[SWIFT_Issue]>) {
     self._mDocument = inDocumentBinding
-    self.mProjectFileURL = inFileURL
+    self.mProjectFileURL = inProjectFileURL
+    self._mIssues = inIssuesBinding
     let projectSharedTextModel = SWIFT_SharedTextModel (
-      scanner: scannerFor (extension: inFileURL.pathExtension),
-      initialString: inDocumentBinding.mString.wrappedValue
+      scanner: scannerFor (extension: inProjectFileURL.pathExtension),
+      initialString: inDocumentBinding.mString.wrappedValue,
+      fileURL: inProjectFileURL,
+      issuesBinding: inIssuesBinding
     )
-    self._mProjectTextModel = StateObject (wrappedValue: projectSharedTextModel)
+    self._mSharedTextModel = StateObject (wrappedValue: projectSharedTextModel)
     let rootDirectoryNode = SWIFT_RootDirectoryNode (
-      url: inFileURL.deletingLastPathComponent ().appendingPathComponent ("galgas-sources")
+      url: inProjectFileURL.deletingLastPathComponent ().appendingPathComponent ("galgas-sources"),
+      issuesBinding: inIssuesBinding
     )
     self._mRootDirectoryNode = StateObject (wrappedValue: rootDirectoryNode)
     projectSharedTextModel.setWriteFileCallback (self.projectDocumentStringDidChange)
@@ -55,10 +91,21 @@ struct ProjectDocumentView : View {
       .navigationSplitViewColumnWidth (min: 150, ideal: 250, max: 500)
     }detail: {
       self.detailView
+      .toolbar {
+         ToolbarItemGroup (placement: .principal) {
+           if let fileNodeID = self.mRootDirectoryNode.mSelectedFileNodeID {
+             Text (self.mRootDirectoryNode.fileLastPathComponent (forNodeID: fileNodeID)).font (Font (NSFont.titleBarFont(ofSize: 0)))
+             if self.mRootDirectoryNode.isFileEdited (forNodeID: fileNodeID) {
+               Text ("— Edited").font (Font (NSFont.titleBarFont(ofSize: 0)))
+            }
+          }
+        }
+      }
     }
   //--- Save all edited files
     .onReceive (NotificationCenter.default.publisher (for: Notification.Name.mySaveAllCommand)) { _ in
       self.mRootDirectoryNode.saveAllEditedFiles ()
+      self.mProjectDocumentSaveScheduler.saveProjectDocument (completionHandler: nil)
     }
   }
 
@@ -66,17 +113,97 @@ struct ProjectDocumentView : View {
 
   @ViewBuilder private var sidebarView : some View {
     VStack {
-      Button ("Project") { self.mRootDirectoryNode.mSelectedFileNodeID = nil }
-      ScrollViewReader { (proxy : ScrollViewProxy) in
-        List (selection: self.$mRootDirectoryNode.mSelectedFileNodeID) {
-          ForEach (self.mRootDirectoryNode.mChildren, id: \.self.id) { child in
-            SWIFT_FileNodeView (node: child, selection: self.$mRootDirectoryNode.mSelectedFileNodeID)
+      Picker("", selection: self.$mSidebarSelectedItem) {
+        ForEach (SidebarSelectedItem.allCases, id: \.self) { Image (systemName: $0.systemImageName).tag($0) }
+      }.pickerStyle (.segmented)
+      switch self.mSidebarSelectedItem {
+      case .fileList :
+        VStack {
+          HStack {
+            Spacer ().frame (width: 8)
+            Button ("Project \(self.mProjectFileURL.lastPathComponent)") { self.mRootDirectoryNode.mSelectedFileNodeID = nil }
+            Spacer ()
+          }
+          Divider ()
+          ScrollViewReader { (proxy : ScrollViewProxy) in
+            List (selection: self.$mRootDirectoryNode.mSelectedFileNodeID) {
+              ForEach (self.mRootDirectoryNode.mChildren, id: \.self.id) { child in
+                SWIFT_FileNodeView (node: child, selection: self.$mRootDirectoryNode.mSelectedFileNodeID)
+              }
+            }
+            .onChange (of: self.mRootDirectoryNode.mSelectedFileNodeID) { self.fileSelectionDidChange (proxy) }
+            .listStyle (.sidebar)
+            .frame (minWidth: 400, minHeight: 500)
           }
         }
-        .onChange (of: self.mRootDirectoryNode.mSelectedFileNodeID) { self.fileSelectionDidChange (proxy) }
-        .listStyle (.sidebar)
-        .frame (minWidth: 400, minHeight: 500)
+      case .compileLog :
+        SWIFT_CompileLogView (
+          attributedString: self.mProjectCompiler.compileLog,
+          issueArray: self.mIssues
+        )
+      case .issues:
+        List (self.mIssues, id: \.id, selection: self.$mSelectedIssue) { issue in
+          issue.view
+        }
+        .onChange (of: self.mSelectedIssue) { (_, _) in self.showSelectedIssueInSource () }
       }
+    }
+    .toolbar (removing: .sidebarToggle)
+    .toolbar { self.sidebarViewToolbar () }
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  private func showSelectedIssueInSource () {
+    if let selectedIssueID = self.mSelectedIssue,
+      let idx = self.mIssues.firstIndex (where: { $0.id == selectedIssueID }) {
+      let fileURL = self.mIssues [idx].fileURL
+      if fileURL == self.mProjectFileURL {
+        self.mRootDirectoryNode.mSelectedFileNodeID = nil // Affiche le projet
+      }else{
+        self.mRootDirectoryNode.mSelectedFileNodeID = SWIFT_FileNodeID (url: fileURL)
+      }
+      let object = ScrollSourceToLineNotificationObject (location: self.mIssues [idx].mStartLocation)
+      DispatchQueue.main.async {
+        NotificationCenter.default.post (name: .myScrollSourceToLocation, object: object)
+      }
+    }
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  @ViewBuilder private func sidebarViewToolbar () -> some View {
+    if self.mProjectCompiler.isCompilingProject {
+      ProgressView ().progressViewStyle (.circular).controlSize (.small)
+    }else{
+      Button (action: self.compileProject) { Label ("Compile", systemImage: "hammer") }
+      .help (LocalizedStringKey ("Compile the project"))
+      .keyboardShortcut ("B", modifiers: .command)
+    }
+    Button (action: self.mProjectCompiler.cancelCompilation) { Label ("Stop", systemImage: "stop.circle") }
+    .help (LocalizedStringKey ("Cancel compilation"))
+    .disabled (!self.mProjectCompiler.isCompilingProject)
+    if self.mProjectCompiler.errorCount > 0 {
+      Text ("⚠\(self.mProjectCompiler.errorCount)").foregroundColor(.red).bold()
+    }
+    if self.mProjectCompiler.warningCount > 0 {
+      Text ("⚠\(self.mProjectCompiler.warningCount)").foregroundColor(.orange).bold()
+    }
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  private func compileProject () {
+    self.mRootDirectoryNode.saveAllEditedFiles ()
+    if self.mSidebarSelectedItem == .fileList {
+      self.mSidebarSelectedItem = SidebarSelectedItem.compileLog
+    }
+    self.mIssues.removeAll ()
+    self.mProjectDocumentSaveScheduler.saveProjectDocument {
+      self.mProjectCompiler.compile (
+        projectURL: self.mProjectFileURL,
+        appendIssueCallBack: { self.mIssues.append ($0) }
+      )
     }
   }
 
@@ -85,20 +212,21 @@ struct ProjectDocumentView : View {
   @ViewBuilder private var detailView : some View {
     if let fileNodeID = self.mRootDirectoryNode.mSelectedFileNodeID {
       if let stm = self.mRootDirectoryNode.findOrAddSourceText (forNodeID: fileNodeID) {
-        HStack {
-          Text (self.mRootDirectoryNode.fileLastPathComponent (forNodeID: fileNodeID))
-          if self.mRootDirectoryNode.isFileEdited (forNodeID: fileNodeID) {
-            Text ("— Edited").textScale (.secondary)
-          }
-          Spacer ()
-        }
-        SWIFT_TextSyntaxColoringView (model: stm)
+        SWIFT_TextSyntaxColoringView (
+          model: stm,
+          issueArray: self.mIssues,
+          url: self.mRootDirectoryNode.fileURL (forID: fileNodeID)
+        )
         .id (fileNodeID) // Force le rafraîchissement à chaque changement de fileNodeID
       }else{
         EmptyView ()
       }
-    }else{
-      SWIFT_TextSyntaxColoringView (model: self.mProjectTextModel)
+    }else{ // Edit project file
+      SWIFT_TextSyntaxColoringView (
+        model: self.mSharedTextModel,
+        issueArray: self.mIssues,
+        url: self.mProjectFileURL
+      )
     }
   }
 
@@ -118,7 +246,7 @@ struct ProjectDocumentView : View {
 
 fileprivate final class ProjectDocumentSaveScheduler : ObservableObject {
 
- // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private var mSaveScheduled = false
 
@@ -127,15 +255,33 @@ fileprivate final class ProjectDocumentSaveScheduler : ObservableObject {
   func scheduleProjectDocumentSaveOperation () {
     if !self.mSaveScheduled {
       self.mSaveScheduled = true
-      DispatchQueue.main.asyncAfter (deadline: .now () + AUTOMATIC_SAVE_DELAY) { self.saveProjectDocument () }
+      DispatchQueue.main.asyncAfter (deadline: .now () + AUTOMATIC_SAVE_DELAY) {
+        self.saveProjectDocument (completionHandler: nil)
+      }
     }
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  private func saveProjectDocument () {
-    self.mSaveScheduled = false
-    NSApp.sendAction (#selector(NSDocument.save(_:)), to: nil, from: nil)
+  func saveProjectDocument (completionHandler inCompletionHandler: (() -> Void)?) {
+    if self.mSaveScheduled {
+      self.mSaveScheduled = false
+      if let doc = NSDocumentController.shared.currentDocument {
+        doc.save (
+          to: doc.fileURL!,
+          ofType: doc.fileType!,
+          for: .saveOperation
+        ) { error in
+          if let error = error {
+            print ("Erreur:", error)
+          }else{
+            inCompletionHandler? ()
+          }
+        }
+      }
+    }else{
+      inCompletionHandler? ()
+    }
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

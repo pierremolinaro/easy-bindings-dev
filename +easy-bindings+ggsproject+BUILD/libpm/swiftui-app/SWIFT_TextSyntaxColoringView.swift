@@ -16,21 +16,32 @@ struct SWIFT_TextSyntaxColoringView : View {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   @ObservedObject private var mSharedTextModel : SWIFT_SharedTextModel
+  private let mIssueArray : [SWIFT_Issue]
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  init (model inSharedTextModel : SWIFT_SharedTextModel) {
+  init (model inSharedTextModel : SWIFT_SharedTextModel,
+        issueArray inIssueArray : [SWIFT_Issue],
+        url inSourceFileURL : URL?) {
     self.mSharedTextModel = inSharedTextModel
+    var issueArray = [SWIFT_Issue] ()
+    for issue in inIssueArray {
+      if issue.fileURL == inSourceFileURL {
+        issueArray.append (issue)
+      }
+    }
+    self.mIssueArray = issueArray
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   var body: some View {
     VSplitView {
-//      TextEditor (text: self.$mSharedTextModel.mDocumentString)
       SWIFT_LexicalHilitingTextEditor (
         model: self.mSharedTextModel,
-        selectionBinding: self.$mSharedTextModel.mTopViewSelection
+        selectionBinding: self.$mSharedTextModel.mTopViewSelection,
+        issueArray: self.mIssueArray,
+        installScrollToLineNotificationObserver: true
       )
       .focusedValue (
         \.activeView,
@@ -51,7 +62,9 @@ struct SWIFT_TextSyntaxColoringView : View {
           Spacer ().frame (height: 12)
           SWIFT_LexicalHilitingTextEditor (
             model: self.mSharedTextModel,
-            selectionBinding: self.$mSharedTextModel.mBottomViewSelection
+            selectionBinding: self.$mSharedTextModel.mBottomViewSelection,
+            issueArray: self.mIssueArray,
+            installScrollToLineNotificationObserver: false
           )
           .focusedValue (
             \.activeView,

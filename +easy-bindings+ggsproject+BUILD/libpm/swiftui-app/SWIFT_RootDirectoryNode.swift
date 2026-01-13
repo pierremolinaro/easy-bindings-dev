@@ -20,11 +20,14 @@ final class SWIFT_RootDirectoryNode : ObservableObject {
   @Published var mSelectedFileNodeID : SWIFT_FileNodeID? = nil
   private var mStream : FSEventStreamRef? = nil
 
+  @Binding private var mIssuesBinding : [SWIFT_Issue]
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  init (url inURL : URL) {
+  init (url inURL : URL, issuesBinding inIssuesBinding : Binding <[SWIFT_Issue]>) {
     self.mURL = inURL
     self.mChildren = []
+    self._mIssuesBinding = inIssuesBinding
     noteObjectAllocation (self)
     self.loadChildren ()
     self.startMonitoring ()
@@ -173,7 +176,9 @@ final class SWIFT_RootDirectoryNode : ObservableObject {
              let str = String (data: data, encoding: .utf8) {
       let stm = SWIFT_SharedTextModel (
         scanner: scannerFor (extension: fileURL.pathExtension),
-        initialString: str
+        initialString: str,
+        fileURL: fileURL,
+        issuesBinding: self.$mIssuesBinding
       )
       stm.setWriteFileCallback { str in self.scheduleSave (forNodeID: inID, contents: str) }
       self.mSourceTextDictionary [inID] = stm
@@ -241,6 +246,9 @@ final class SWIFT_RootDirectoryNode : ObservableObject {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func saveAllEditedFiles () {
+  //--- Save project ?
+
+  //--- Save all edited files
     for (fileID, str) in self.mScheduledSaveDictionary {
       if let fileURL = self.fileURL (forID: fileID),
          let data = str.data (using: .utf8) {
