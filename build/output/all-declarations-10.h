@@ -10,6 +10,29 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Routine 'buildAutoLayoutBindingSpecificationMap&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_buildAutoLayoutBindingSpecificationMap_26__3F_ (class GGS_semanticContext & ioArgument0,
+                                                             const class GGS_autoLayoutViewClassBindingSpecificationList constinArgument1,
+                                                             class Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'sortProperties??!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_sortProperties_3F__3F__21_ (const class GGS_string constinArgument0,
+                                         const class GGS_declarationListAST constinArgument1,
+                                         class GGS_declarationListAST & outArgument2,
+                                         class Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Filewrapper 'validationStubExtension'
 //
 //--------------------------------------------------------------------------------------------------
@@ -54,37 +77,6 @@ void routine_generateValidationRoutineStubs_3F__3F__26_ (const class GGS_string 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'actionGenerationTemplate'
-//
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
-extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'actionGenerationTemplate actionGeneration'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class Compiler * inCompiler,
-                                                                          const class GGS_string & in_EXTENDED_5F_CLASS_5F_NAME,
-                                                                          const class GGS_string & in_ACTION_5F_NAME
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
 //Filewrapper 'arrayControllerGenerationTemplate'
 //
 //--------------------------------------------------------------------------------------------------
@@ -117,114 +109,14 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'autoLayoutTableViewControllerGenerationTemplate'
+//Routine 'buildBindingSpecificationMap&?'
 //
 //--------------------------------------------------------------------------------------------------
 
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_autoLayoutTableViewControllerGenerationTemplate ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'autoLayoutTableViewControllerGenerationTemplate autoLayoutTableViewControllerImplementation'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_autoLayoutTableViewControllerImplementation (class Compiler * inCompiler,
-                                                                                                                            const class GGS_string & in_OWNER_5F_NAME,
-                                                                                                                            const class GGS_string & in_TABLE_5F_VIEW_5F_CONTROLLER_5F_NAME,
-                                                                                                                            const class GGS_string & in_MODEL_5F_STRING,
-                                                                                                                            const class GGS_autoLayoutTableViewControllerModelKind & in_MODEL_5F_KIND,
-                                                                                                                            const class GGS_string & in_MODEL_5F_TYPE_5F_NAME,
-                                                                                                                            const class GGS_autoLayoutTableViewControllerBoundColumnListForGeneration & in_BOUND_5F_COLUMNS,
-                                                                                                                            const class GGS_autoLayoutTableViewControllerSortedColumnListForGeneration & in_SORTED_5F_COLUMNS,
-                                                                                                                            const class GGS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                                            const class GGS_stringset & in_OBSERVED_5F_PROPERTIES_5F_FOR_5F_SORTING,
-                                                                                                                            const class GGS__32_stringlist & in_ATTRIBUTE_5F_VALUES
-                                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper 'selectionControllerGenerationTemplate'
-//
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const cDirectoryWrapper gWrapperDirectory_0_selectionControllerGenerationTemplate ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'selectionControllerGenerationTemplate baseSelectionControllerImplementation'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_baseSelectionControllerImplementation (class Compiler * inCompiler,
-                                                                                                            const class GGS_string & in_OWNER_5F_NAME,
-                                                                                                            const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                            const class GGS_string & in_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                            const class GGS_propertyMap & in_SELECTION_5F_OBSERVABLE_5F_PROPERTY_5F_MAP
-                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Filewrapper template 'selectionControllerGenerationTemplate derivedSelectionControllerImplementation'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_string filewrapperTemplate_selectionControllerGenerationTemplate_derivedSelectionControllerImplementation (class Compiler * inCompiler,
-                                                                                                               const class GGS_string & in_OWNER_5F_NAME,
-                                                                                                               const class GGS_string & in_SELECTION_5F_CONTROLLER_5F_NAME,
-                                                                                                               const class GGS_string & in_BASE_5F_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GGS_string & in_DERIVED_5F_ELEMENT_5F_TYPE_5F_NAME,
-                                                                                                               const class GGS_propertyGenerationList & in_PROPERTY_5F_GENERATION_5F_LIST,
-                                                                                                               const class GGS_bool & in_HAS_5F_ATOMIC_5F_PROPERTIES
-                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'generateSelectionControllers??&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_generateSelectionControllers_3F__3F__26_ (const class GGS_selectionControllerForGeneration constinArgument0,
-                                                       const class GGS_string constinArgument1,
-                                                       class GGS_stringset & ioArgument2,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'predefinedDates'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_stringset function_predefinedDates (class Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'predefinedColors'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_stringset function_predefinedColors (class Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+void routine_buildBindingSpecificationMap_26__3F_ (class GGS_semanticContext & ioArgument0,
+                                                   const class GGS_outletClassBindingSpecificationList constinArgument1,
+                                                   class Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -250,19 +142,6 @@ void routine_generateStandardProperties_3F__3F__3F__26_ (const class GGS_string 
                                                          class GGS_stringset & ioArgument3,
                                                          class Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'generateTestFile????'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_generateTestFile_3F__3F__3F__3F_ (const class GGS_string constinArgument0,
-                                               const class GGS_string constinArgument1,
-                                               const class GGS_mainXibDescriptorList constinArgument2,
-                                               const class GGS_string constinArgument3,
-                                               class Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -409,7 +288,7 @@ GGS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class Comp
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper 'testFiles'
+//Filewrapper 'actionGenerationTemplate'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -422,17 +301,128 @@ GGS_string filewrapperTemplate_additionalXcodeFiles_build_5F_command (class Comp
 
 //--------------------------------------------------------------------------------------------------
 
-extern const cDirectoryWrapper gWrapperDirectory_0_testFiles ;
+extern const cDirectoryWrapper gWrapperDirectory_0_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_actionGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_actionGenerationTemplate ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Filewrapper template 'testFiles test_py'
+//Filewrapper template 'actionGenerationTemplate actionGeneration'
 //
 //--------------------------------------------------------------------------------------------------
 
-GGS_string filewrapperTemplate_testFiles_test_5F_py (class Compiler * inCompiler,
-                                                     const class GGS_string & in_BUNDLE_5F_IDENTIFIER,
-                                                     const class GGS_string & in_PROJECT_5F_NAME,
-                                                     const class GGS_stringlist & in_OUTLET_5F_IDENTIFIER_5F_LIST
-                                                     COMMA_LOCATION_ARGS) ;
+GGS_string filewrapperTemplate_actionGenerationTemplate_actionGeneration (class Compiler * inCompiler,
+                                                                          const class GGS_string & in_EXTENDED_5F_CLASS_5F_NAME,
+                                                                          const class GGS_string & in_ACTION_5F_NAME
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeRegularBinding????????&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const class GGS_propertyMap constinArgument0,
+                                                                        const class GGS_propertyMap constinArgument1,
+                                                                        const class GGS_semanticContext constinArgument2,
+                                                                        const class GGS_propertyMap constinArgument3,
+                                                                        const class GGS_lstring constinArgument4,
+                                                                        const class GGS_string constinArgument5,
+                                                                        const class GGS_regularBindingList constinArgument6,
+                                                                        const class GGS_string constinArgument7,
+                                                                        class GGS_regularBindingsGenerationList & ioArgument8,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutBinding???????????????!!!!!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutBinding_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const class GGS_bool constinArgument0,
+                                                                                                                       const class GGS_propertyMap constinArgument1,
+                                                                                                                       const class GGS_propertyMap constinArgument2,
+                                                                                                                       const class GGS_actionMap constinArgument3,
+                                                                                                                       const class GGS_semanticContext constinArgument4,
+                                                                                                                       const class GGS_propertyMap constinArgument5,
+                                                                                                                       const class GGS_actionMap constinArgument6,
+                                                                                                                       const class GGS_string constinArgument7,
+                                                                                                                       const class GGS_lstring constinArgument8,
+                                                                                                                       const class GGS_tableValueBinding constinArgument9,
+                                                                                                                       const class GGS_runActionDescriptor constinArgument10,
+                                                                                                                       const class GGS_multipleBindingDescriptor constinArgument11,
+                                                                                                                       const class GGS_multipleBindingDescriptor constinArgument12,
+                                                                                                                       const class GGS_graphicController constinArgument13,
+                                                                                                                       const class GGS_regularBindingList constinArgument14,
+                                                                                                                       class GGS_autoLayoutRegularBindingsGenerationList & outArgument15,
+                                                                                                                       class GGS_autoLayoutMultipleBindingGenerationList & outArgument16,
+                                                                                                                       class GGS_autolayoutRunBindingForGeneration & outArgument17,
+                                                                                                                       class GGS_string & outArgument18,
+                                                                                                                       class GGS_autoLayoutViewGraphicControllerBindingGeneration & outArgument19,
+                                                                                                                       class Compiler * inCompiler
+                                                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'analyzeAutoLayoutRegularBinding?prefs???????&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F__26_ (const class GGS_bool constinArgument0,
+                                                                                       const class GGS_propertyMap constinArgument1,
+                                                                                       const class GGS_propertyMap constinArgument2,
+                                                                                       const class GGS_semanticContext constinArgument3,
+                                                                                       const class GGS_propertyMap constinArgument4,
+                                                                                       const class GGS_lstring constinArgument5,
+                                                                                       const class GGS_regularBindingList constinArgument6,
+                                                                                       const class GGS_string constinArgument7,
+                                                                                       class GGS_autoLayoutRegularBindingsGenerationList & ioArgument8,
+                                                                                       class Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper 'enumGenerationTemplate'
+//
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const cDirectoryWrapper gWrapperDirectory_0_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_1_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_2_enumGenerationTemplate ;
+extern const cDirectoryWrapper gWrapperDirectory_3_enumGenerationTemplate ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'enumGenerationTemplate enumGenerationInSwift'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_enumGenerationTemplate_enumGenerationInSwift (class Compiler * inCompiler,
+                                                                             const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
+                                                                             const class GGS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST,
+                                                                             const class GGS_bool & in_CASE_5F_ITERABLE
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Filewrapper template 'enumGenerationTemplate enumEBExtensionGenerationInSwift'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_string filewrapperTemplate_enumGenerationTemplate_enumEBExtensionGenerationInSwift (class Compiler * inCompiler,
+                                                                                        const class GGS_string & in_ENUM_5F_TYPE_5F_NAME,
+                                                                                        const class GGS_lstringlist & in_CONSTANT_5F_ORDERED_5F_LIST,
+                                                                                        const class GGS_enumFuncMap & in_FUNCTION_5F_MAP
+                                                                                        COMMA_LOCATION_ARGS) ;
 
