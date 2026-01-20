@@ -18,7 +18,7 @@ maxParallelJobs = 0 # 0 means use host processor count
 if len (sys.argv) > 2 :
   maxParallelJobs = int (sys.argv [2])
 #----------------------------------------------------------------- Get json description dictionary
-jsonFilePath = os.path.normpath (scriptDir + "/../+easy-bindings+ggsproject+BUILD/output/file-list.json")
+jsonFilePath = os.path.normpath (scriptDir + "/../build/output/file-list.json")
 with open (jsonFilePath) as f:
   dictionary = json.loads (f.read ())
 LIBPM_DIRECTORY_PATH = dictionary ["LIBPM_DIRECTORY_PATH"]
@@ -26,6 +26,6 @@ LIBPM_DIRECTORY_PATH = dictionary ["LIBPM_DIRECTORY_PATH"]
 sys.path.append (os.path.abspath (LIBPM_DIRECTORY_PATH + "/python-makefiles"))
 from unix_gcc_tools import buildForUnix
 #----------------------------------------------------------------- Build
-buildForUnix (dictionary, jsonFilePath, "eb", "+easy-bindings+ggsproject+BUILD", goal, maxParallelJobs, maxParallelJobs == 1)
+buildForUnix (dictionary, jsonFilePath, "eb", "build", goal, maxParallelJobs, maxParallelJobs == 1)
 
 #---------------------------------------------------------------------------------------------------
