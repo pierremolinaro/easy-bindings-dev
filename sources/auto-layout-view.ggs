@@ -783,7 +783,7 @@ override proc @astComputedHorizontalViewDeclaration.checkView(
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                                   ?!@autoLayoutOutletMap ioOutletMap,
                                   !@abstractViewGeneration outGeneration) {
-  inClassMap.searchKey (!.new (preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
+  inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   self.mFunctionCallList.checkViewFunctionCallList
      (inSemanticContext.mAutoLayoutHStackFunctionMap,
      inViewDeclarationMap,
@@ -840,7 +840,7 @@ override proc @astComputedVerticalViewDeclaration.checkView(
                                   ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                                   ?!@autoLayoutOutletMap ioOutletMap,
                                   !@abstractViewGeneration outGeneration) {
-  inClassMap.searchKey (!.new (preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
+  inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationList instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList
      (inSemanticContext.mAutoLayoutVStackFunctionMap,
@@ -982,7 +982,7 @@ override proc @astComputedViewInstruction.generateViewCode(
      ?let formalParameterList,
      ?let functionMap
   )
-  inClassMap.searchKey (!.new (preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
+  inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationParameterList parameterList = []
   if formalParameterList.count != self.mParameterList.count then
     error self.mAutoLayoutViewClassName 
@@ -1555,7 +1555,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
-  inClassMap.searchKey (!.new (preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
+  inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationList instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList (
      inSemanticContext.mAutoLayoutHStackFunctionMap,
@@ -1638,7 +1638,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
                         ?!@autoLayoutConfiguratorMap ioConfiguratorMap,
                         ?!@autoLayoutOutletMap ioOutletMap,
                         !@abstractViewInstructionGeneration outInstruction) {
-  inClassMap.searchKey (!.new (preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
+  inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationList instructionList = []
   self.mFunctionCallList.checkViewFunctionCallList (
      inSemanticContext.mAutoLayoutVStackFunctionMap,

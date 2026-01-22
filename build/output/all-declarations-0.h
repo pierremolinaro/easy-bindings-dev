@@ -130,8 +130,6 @@ class GGS__32_lstringlist : public AC_GALGAS_root {
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS__32_lstringlist class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS__32_lstringlist class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                      const class GGS_lstring & inOperand1
                                                                      COMMA_LOCATION_ARGS) ;
@@ -309,12 +307,6 @@ class GGS__32_lstringlist_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS__32_lstringlist_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                      const class GGS_lstring & inOperand1,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -464,8 +456,6 @@ class GGS_regularBindingList : public AC_GALGAS_root {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_regularBindingList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_regularBindingList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                         const class GGS_observablePropertyList & inOperand1,
                                                                         const class GGS_bindingOptionList & inOperand2
@@ -723,8 +713,6 @@ class GGS_bindingOptionList : public AC_GALGAS_root {
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_bindingOptionList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_bindingOptionList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                        const class GGS_abstractDefaultValue & inOperand1
                                                                        COMMA_LOCATION_ARGS) ;
@@ -961,8 +949,6 @@ class GGS_observablePropertyList : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_observablePropertyList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_observablePropertyList class_func_listWithValue (const class GGS_observablePropertyAST & inOperand0
                                                                             COMMA_LOCATION_ARGS) ;
 
@@ -1132,13 +1118,6 @@ class GGS_regularBindingList_2E_element : public AC_GALGAS_root {
   public: static GGS_regularBindingList_2E_element extractObject (const GGS_object & inObject,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_regularBindingList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                         const class GGS_observablePropertyList & inOperand1,
-                                                                         const class GGS_bindingOptionList & inOperand2,
-                                                                         class Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1600,11 +1579,6 @@ class GGS_observablePropertyList_2E_element : public AC_GALGAS_root {
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_observablePropertyList_2E_element class_func_new (const class GGS_observablePropertyAST & inOperand0,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -1780,12 +1754,6 @@ class GGS_bindingOptionList_2E_element : public AC_GALGAS_root {
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_bindingOptionList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                        const class GGS_abstractDefaultValue & inOperand1,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -1950,8 +1918,6 @@ class GGS_outletDeclarationList : public AC_GALGAS_root {
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_outletDeclarationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_outletDeclarationList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                            const class GGS_lstring & inOperand1,
                                                                            const class GGS_tableValueBinding & inOperand2,
@@ -2663,18 +2629,6 @@ class GGS_outletDeclarationList_2E_element : public AC_GALGAS_root {
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_outletDeclarationList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                            const class GGS_lstring & inOperand1,
-                                                                            const class GGS_tableValueBinding & inOperand2,
-                                                                            const class GGS_runActionDescriptor & inOperand3,
-                                                                            const class GGS_multipleBindingDescriptor & inOperand4,
-                                                                            const class GGS_multipleBindingDescriptor & inOperand5,
-                                                                            const class GGS_regularBindingList & inOperand6,
-                                                                            const class GGS_graphicController & inOperand7,
-                                                                            class Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -2824,8 +2778,6 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_root {
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_simpleStoredPropertyList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_simpleStoredPropertyList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                               const class GGS_lstring & inOperand1,
                                                                               const class GGS_abstractDefaultValue & inOperand2
@@ -3032,13 +2984,6 @@ class GGS_simpleStoredPropertyList_2E_element : public AC_GALGAS_root {
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_simpleStoredPropertyList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                               const class GGS_lstring & inOperand1,
-                                                                               const class GGS_abstractDefaultValue & inOperand2,
-                                                                               class Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -3185,8 +3130,6 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_externSwiftFunctionList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_externSwiftFunctionList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                              const class GGS_lstring & inOperand1
                                                                              COMMA_LOCATION_ARGS) ;
@@ -3364,12 +3307,6 @@ class GGS_externSwiftFunctionList_2E_element : public AC_GALGAS_root {
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_externSwiftFunctionList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                              const class GGS_lstring & inOperand1,
-                                                                              class Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -3513,8 +3450,6 @@ class GGS_mainXibDescriptorList : public AC_GALGAS_root {
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_mainXibDescriptorList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_mainXibDescriptorList class_func_listWithValue (const class GGS_mainXibLineDescriptorList & inOperand0
                                                                            COMMA_LOCATION_ARGS) ;
 
@@ -3733,8 +3668,6 @@ class GGS_mainXibLineDescriptorList : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_mainXibLineDescriptorList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_mainXibLineDescriptorList class_func_listWithValue (const class GGS_mainXibElement & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
 
@@ -3883,11 +3816,6 @@ class GGS_mainXibDescriptorList_2E_element : public AC_GALGAS_root {
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_mainXibDescriptorList_2E_element class_func_new (const class GGS_mainXibLineDescriptorList & inOperand0,
-                                                                            class Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -4034,8 +3962,6 @@ class GGS_astViewDeclarationList : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_astViewDeclarationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_astViewDeclarationList class_func_listWithValue (const class GGS_lstring & inOperand0,
                                                                             const class GGS_astAbstractViewDeclaration & inOperand1
                                                                             COMMA_LOCATION_ARGS) ;
@@ -4309,12 +4235,6 @@ class GGS_astViewDeclarationList_2E_element : public AC_GALGAS_root {
   public: static GGS_astViewDeclarationList_2E_element extractObject (const GGS_object & inObject,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_astViewDeclarationList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                             const class GGS_astAbstractViewDeclaration & inOperand1,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -4748,8 +4668,6 @@ class GGS_propertyGenerationList : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_propertyGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_propertyGenerationList class_func_listWithValue (const class GGS_propertyGeneration & inOperand0
                                                                             COMMA_LOCATION_ARGS) ;
 
@@ -5009,11 +4927,6 @@ class GGS_propertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_propertyGenerationList_2E_element class_func_new (const class GGS_propertyGeneration & inOperand0,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -5166,8 +5079,6 @@ class GGS_regularBindingsGenerationList : public AC_GALGAS_root {
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_regularBindingsGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_regularBindingsGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                    const class GGS_string & inOperand1,
                                                                                    const class GGS_boundObjectList & inOperand2,
@@ -5443,8 +5354,6 @@ class GGS_boundObjectList : public AC_GALGAS_root {
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_boundObjectList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_boundObjectList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                      const class GGS_propertyKind & inOperand1
                                                                      COMMA_LOCATION_ARGS) ;
@@ -5644,14 +5553,6 @@ class GGS_regularBindingsGenerationList_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_regularBindingsGenerationList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                    const class GGS_string & inOperand1,
-                                                                                    const class GGS_boundObjectList & inOperand2,
-                                                                                    const class GGS_string & inOperand3,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -5801,8 +5702,6 @@ class GGS_multipleBindingGenerationList : public AC_GALGAS_root {
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_multipleBindingGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_multipleBindingGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                    const class GGS_string & inOperand1,
                                                                                    const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2
@@ -6092,13 +5991,6 @@ class GGS_multipleBindingGenerationList_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_multipleBindingGenerationList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                    const class GGS_string & inOperand1,
-                                                                                    const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand2,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -6251,8 +6143,6 @@ class GGS_actionBindingListForGeneration : public AC_GALGAS_root {
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_actionBindingListForGeneration class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_actionBindingListForGeneration class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                     const class GGS_string & inOperand1,
                                                                                     const class GGS_string & inOperand2,
@@ -6488,14 +6378,6 @@ class GGS_actionBindingListForGeneration_2E_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_actionBindingListForGeneration_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                     const class GGS_string & inOperand1,
-                                                                                     const class GGS_string & inOperand2,
-                                                                                     const class GGS_string & inOperand3,
-                                                                                     class Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -6643,8 +6525,6 @@ class GGS_decoratedOutletMap : public AC_GALGAS_root {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_decoratedOutletMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_decoratedOutletMap class_func_mapWithMapToOverride (const class GGS_decoratedOutletMap & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
 
@@ -6778,12 +6658,6 @@ class GGS_decoratedOutletMap_2E_element : public AC_GALGAS_root {
   public: static GGS_decoratedOutletMap_2E_element extractObject (const GGS_object & inObject,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_decoratedOutletMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                         const class GGS_string & inOperand1,
-                                                                         class Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -7008,8 +6882,6 @@ class GGS_tableViewBindingGenerationList : public AC_GALGAS_root {
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_tableViewBindingGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_tableViewBindingGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                     const class GGS_string & inOperand1
                                                                                     COMMA_LOCATION_ARGS) ;
@@ -7187,12 +7059,6 @@ class GGS_tableViewBindingGenerationList_2E_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_tableViewBindingGenerationList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                     const class GGS_string & inOperand1,
-                                                                                     class Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -7339,8 +7205,6 @@ class GGS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ebViewGraphicControllerBindingGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_ebViewGraphicControllerBindingGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                                   const class GGS_string & inOperand1
                                                                                                   COMMA_LOCATION_ARGS) ;
@@ -7518,12 +7382,6 @@ class GGS_ebViewGraphicControllerBindingGenerationList_2E_element : public AC_GA
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ebViewGraphicControllerBindingGenerationList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                                   const class GGS_string & inOperand1,
-                                                                                                   class Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -7670,8 +7528,6 @@ class GGS_viewGenerationList : public AC_GALGAS_root {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_viewGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_viewGenerationList class_func_listWithValue (const class GGS_string & inOperand0,
                                                                         const class GGS_abstractViewGeneration & inOperand1
                                                                         COMMA_LOCATION_ARGS) ;
@@ -7934,12 +7790,6 @@ class GGS_viewGenerationList_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_viewGenerationList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                         const class GGS_abstractViewGeneration & inOperand1,
-                                                                         class Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -8083,8 +7933,6 @@ class GGS_implicitViewFunctionGenerationList : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_implicitViewFunctionGenerationList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_implicitViewFunctionGenerationList class_func_listWithValue (const class GGS_abstractViewInstructionGeneration & inOperand0
                                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -8325,11 +8173,6 @@ class GGS_implicitViewFunctionGenerationList_2E_element : public AC_GALGAS_root 
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_implicitViewFunctionGenerationList_2E_element class_func_new (const class GGS_abstractViewInstructionGeneration & inOperand0,
-                                                                                         class Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -8477,8 +8320,6 @@ class GGS_autoLayoutConfiguratorMap : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutConfiguratorMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_autoLayoutConfiguratorMap class_func_mapWithMapToOverride (const class GGS_autoLayoutConfiguratorMap & inOperand0
                                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -8612,12 +8453,6 @@ class GGS_autoLayoutConfiguratorMap_2E_element : public AC_GALGAS_root {
   public: static GGS_autoLayoutConfiguratorMap_2E_element extractObject (const GGS_object & inObject,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutConfiguratorMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                                const class GGS_string & inOperand1,
-                                                                                class Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -8846,8 +8681,6 @@ class GGS_autoLayoutOutletMap : public AC_GALGAS_root {
                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutOutletMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_autoLayoutOutletMap class_func_mapWithMapToOverride (const class GGS_autoLayoutOutletMap & inOperand0
                                                                                 COMMA_LOCATION_ARGS) ;
 
@@ -9003,13 +8836,6 @@ class GGS_autoLayoutOutletMap_2E_element : public AC_GALGAS_root {
   public: static GGS_autoLayoutOutletMap_2E_element extractObject (const GGS_object & inObject,
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutOutletMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                          const class GGS_string & inOperand1,
-                                                                          const class GGS_bool & inOperand2,
-                                                                          class Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -9310,8 +9136,6 @@ class GGS_externSwiftDelegateList : public AC_GALGAS_root {
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_externSwiftDelegateList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_externSwiftDelegateList class_func_listWithValue (const class GGS_lstring & inOperand0
                                                                              COMMA_LOCATION_ARGS) ;
 
@@ -9460,11 +9284,6 @@ class GGS_externSwiftDelegateList_2E_element : public AC_GALGAS_root {
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_externSwiftDelegateList_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                              class Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -9544,21 +9363,6 @@ class GGS_entityDeclarationAST : public GGS_abstractDeclarationAST {
   public: static GGS_entityDeclarationAST extractObject (const GGS_object & inObject,
                                                          Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_entityDeclarationAST class_func_new (const class GGS_lstring & inOperand0,
-                                                                const class GGS_bool & inOperand1,
-                                                                const class GGS_lstring & inOperand2,
-                                                                const class GGS_bool & inOperand3,
-                                                                const class GGS_simpleStoredPropertyList & inOperand4,
-                                                                const class GGS_stringset & inOperand5,
-                                                                const class GGS_lstringlist & inOperand6,
-                                                                const class GGS_lstringlist & inOperand7,
-                                                                const class GGS_bool & inOperand8,
-                                                                const class GGS_externSwiftDelegateList & inOperand9,
-                                                                const class GGS_lstringlist & inOperand10,
-                                                                class Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_entityDeclarationAST & inOperand) const ;
@@ -9875,8 +9679,6 @@ class GGS_entityListForGeneratingEBManagedObjectContext : public AC_GALGAS_root 
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_entityListForGeneratingEBManagedObjectContext class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_entityListForGeneratingEBManagedObjectContext class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                                    const class GGS_lstringlist & inOperand1
                                                                                                    COMMA_LOCATION_ARGS) ;
@@ -10054,12 +9856,6 @@ class GGS_entityListForGeneratingEBManagedObjectContext_2E_element : public AC_G
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_entityListForGeneratingEBManagedObjectContext_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                                    const class GGS_lstringlist & inOperand1,
-                                                                                                    class Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -10144,22 +9940,6 @@ class GGS_entityForGeneration : public GGS_abstractFileGeneration {
   public: static GGS_entityForGeneration extractObject (const GGS_object & inObject,
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_entityForGeneration class_func_new (const class GGS_string & inOperand0,
-                                                               const class GGS_string & inOperand1,
-                                                               const class GGS_bool & inOperand2,
-                                                               const class GGS_propertyGenerationList & inOperand3,
-                                                               const class GGS_stringset & inOperand4,
-                                                               const class GGS_bool & inOperand5,
-                                                               const class GGS_bool & inOperand6,
-                                                               const class GGS_stringset & inOperand7,
-                                                               const class GGS_externSwiftDelegateList & inOperand8,
-                                                               const class GGS_bool & inOperand9,
-                                                               const class GGS_bool & inOperand10,
-                                                               const class GGS_bool & inOperand11,
-                                                               class Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_entityForGeneration & inOperand) const ;
@@ -10387,15 +10167,6 @@ class GGS_selectionControllerDeclarationAST : public GGS_abstractDeclarationAST 
   public: static GGS_selectionControllerDeclarationAST extractObject (const GGS_object & inObject,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_selectionControllerDeclarationAST class_func_new (const class GGS_lstring & inOperand0,
-                                                                             const class GGS_lstring & inOperand1,
-                                                                             const class GGS_lstring & inOperand2,
-                                                                             const class GGS_lstring & inOperand3,
-                                                                             const class GGS_lstring & inOperand4,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_selectionControllerDeclarationAST & inOperand) const ;
@@ -10786,8 +10557,6 @@ class GGS_selectionControllerForGeneration : public AC_GALGAS_root {
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_selectionControllerForGeneration class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_selectionControllerForGeneration class_func_listWithValue (const class GGS_string & inOperand0,
                                                                                       const class GGS_string & inOperand1,
                                                                                       const class GGS_string & inOperand2,
@@ -11142,8 +10911,6 @@ class GGS_propertyMap : public AC_GALGAS_root {
                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_propertyMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_propertyMap class_func_mapWithMapToOverride (const class GGS_propertyMap & inOperand0
                                                                         COMMA_LOCATION_ARGS) ;
 
@@ -11365,18 +11132,6 @@ class GGS_selectionControllerForGeneration_2E_element : public AC_GALGAS_root {
   public: static GGS_selectionControllerForGeneration_2E_element extractObject (const GGS_object & inObject,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_selectionControllerForGeneration_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                       const class GGS_string & inOperand1,
-                                                                                       const class GGS_string & inOperand2,
-                                                                                       const class GGS_string & inOperand3,
-                                                                                       const class GGS_string & inOperand4,
-                                                                                       const class GGS_string & inOperand5,
-                                                                                       const class GGS_propertyMap & inOperand6,
-                                                                                       const class GGS_propertyGenerationList & inOperand7,
-                                                                                       class Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -11683,8 +11438,6 @@ class GGS_actionMap : public AC_GALGAS_root {
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_actionMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_actionMap class_func_mapWithMapToOverride (const class GGS_actionMap & inOperand0
                                                                       COMMA_LOCATION_ARGS) ;
 
@@ -11829,14 +11582,6 @@ class GGS_propertyMap_2E_element : public AC_GALGAS_root {
   public: static GGS_propertyMap_2E_element extractObject (const GGS_object & inObject,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_propertyMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                  const class GGS_propertyKind & inOperand1,
-                                                                  const class GGS_actionMap & inOperand2,
-                                                                  const class GGS_bool & inOperand3,
-                                                                  class Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,

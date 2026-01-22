@@ -823,14 +823,6 @@ void GGS_transientDependencyListForGeneration::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_transientDependencyListForGeneration GGS_transientDependencyListForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_transientDependencyListForGeneration result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_transientDependencyListForGeneration GGS_transientDependencyListForGeneration::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_transientDependencyListForGeneration result ;
   result.mArray.setCapacity (16) ; // Build
@@ -1763,14 +1755,6 @@ void GGS_computedPropertyGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_computedPropertyGenerationList GGS_computedPropertyGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_computedPropertyGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_computedPropertyGenerationList GGS_computedPropertyGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_computedPropertyGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -2233,19 +2217,6 @@ GGS_computeRoutineGeneration::GGS_computeRoutineGeneration (const cPtr_computeRo
 GGS_abstractFileGeneration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_computeRoutineGeneration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_computeRoutineGeneration GGS_computeRoutineGeneration::class_func_new (const GGS_string & in_mOwnerName,
-                                                                           const GGS_string & in_mTransientName,
-                                                                           const GGS_typeKind & in_mTransientType,
-                                                                           const GGS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
-  GGS_computeRoutineGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_computeRoutineGeneration (in_mOwnerName, in_mTransientName, in_mTransientType, in_mDependencyList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_string GGS_computeRoutineGeneration::readProperty_mOwnerName (void) const {
@@ -2757,20 +2728,6 @@ GGS_propertyGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_transientPropertyGeneration GGS_transientPropertyGeneration::class_func_new (const GGS_string & in_mPropertyName,
-                                                                                 const GGS_string & in_mClassName,
-                                                                                 const GGS_typeKind & in_mType,
-                                                                                 const GGS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                                 const GGS_bool & in_mGenerate,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_transientPropertyGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_transientPropertyGeneration (in_mPropertyName, in_mClassName, in_mType, in_mDependencyList, in_mGenerate,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_string GGS_transientPropertyGeneration::readProperty_mClassName (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_string () ;
@@ -3221,14 +3178,6 @@ void GGS_transientPropertyGenerationList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_transientPropertyGenerationList GGS_transientPropertyGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_transientPropertyGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5543,20 +5492,6 @@ GGS_abstractFileGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_transientRoutineGeneration GGS_transientRoutineGeneration::class_func_new (const GGS_string & in_mOwnerName,
-                                                                               const GGS_string & in_mTransientName,
-                                                                               const GGS_typeKind & in_mTransientType,
-                                                                               const GGS_string & in_mGeneratedFunctionNamePrefix,
-                                                                               const GGS_transientDependencyListForGeneration & in_mDependencyList,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
-  GGS_transientRoutineGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_transientRoutineGeneration (in_mOwnerName, in_mTransientName, in_mTransientType, in_mGeneratedFunctionNamePrefix, in_mDependencyList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_string GGS_transientRoutineGeneration::readProperty_mOwnerName (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_string () ;
@@ -7029,14 +6964,6 @@ void GGS_toManyPropertyGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_toManyPropertyGenerationList GGS_toManyPropertyGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_toManyPropertyGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_toManyPropertyGenerationList GGS_toManyPropertyGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_toManyPropertyGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -7685,14 +7612,6 @@ void GGS_mainXibLineDescriptorList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibLineDescriptorList GGS_mainXibLineDescriptorList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_mainXibLineDescriptorList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8396,14 +8315,6 @@ GGS_classMap & GGS_classMap::operator = (const GGS_classMap & inSource) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_classMap GGS_classMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_classMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classMap GGS_classMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_classMap result ;
   result.build (THERE) ;
   return result ;
@@ -9120,14 +9031,6 @@ GGS_outletClassMap & GGS_outletClassMap::operator = (const GGS_outletClassMap & 
 //--------------------------------------------------------------------------------------------------
 
 GGS_outletClassMap GGS_outletClassMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_outletClassMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassMap GGS_outletClassMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_outletClassMap result ;
   result.build (THERE) ;
   return result ;
@@ -9988,14 +9891,6 @@ GGS_bindingSpecificationMap GGS_bindingSpecificationMap::init (Compiler * COMMA_
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bindingSpecificationMap GGS_bindingSpecificationMap::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_bindingSpecificationMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_bindingSpecificationMap::getter_hasKey (const GGS_string & inKey
                                                      COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bool result ;
@@ -10564,14 +10459,6 @@ GGS_autolayoutViewClassMap & GGS_autolayoutViewClassMap::operator = (const GGS_a
 //--------------------------------------------------------------------------------------------------
 
 GGS_autolayoutViewClassMap GGS_autolayoutViewClassMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_autolayoutViewClassMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autolayoutViewClassMap GGS_autolayoutViewClassMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_autolayoutViewClassMap result ;
   result.build (THERE) ;
   return result ;
@@ -11554,14 +11441,6 @@ GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::ini
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutBindingSpecificationMap GGS_autoLayoutBindingSpecificationMap::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_autoLayoutBindingSpecificationMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_autoLayoutBindingSpecificationMap::getter_hasKey (const GGS_string & inKey
                                                                COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bool result ;
@@ -12130,14 +12009,6 @@ GGS_astAutoLayoutViewFunctionMap & GGS_astAutoLayoutViewFunctionMap::operator = 
 //--------------------------------------------------------------------------------------------------
 
 GGS_astAutoLayoutViewFunctionMap GGS_astAutoLayoutViewFunctionMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_astAutoLayoutViewFunctionMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionMap GGS_astAutoLayoutViewFunctionMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_astAutoLayoutViewFunctionMap result ;
   result.build (THERE) ;
   return result ;
@@ -12733,14 +12604,6 @@ void GGS_enumerationFunctionListAST::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_enumerationFunctionListAST GGS_enumerationFunctionListAST::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_enumerationFunctionListAST result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13432,14 +13295,6 @@ void GGS_autoLayoutTableViewControllerBoundColumnListAST::description (String & 
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutTableViewControllerBoundColumnListAST GGS_autoLayoutTableViewControllerBoundColumnListAST::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerBoundColumnListAST result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14198,14 +14053,6 @@ void GGS_astAutoLayoutViewInstructionParameterList::description (String & ioStri
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_astAutoLayoutViewInstructionParameterList GGS_astAutoLayoutViewInstructionParameterList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_astAutoLayoutViewInstructionParameterList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_astAutoLayoutViewInstructionParameterList GGS_astAutoLayoutViewInstructionParameterList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_astAutoLayoutViewInstructionParameterList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -14879,14 +14726,6 @@ void GGS_autoLayoutTableViewControllerAttributListAST::description (String & ioS
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutTableViewControllerAttributListAST GGS_autoLayoutTableViewControllerAttributListAST::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerAttributListAST result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15642,18 +15481,6 @@ GGS_propertyGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerPropertyGeneration GGS_autoLayoutTableViewControllerPropertyGeneration::class_func_new (const GGS_string & in_mPropertyName,
-                                                                                                                         const GGS_string & in_mModelString,
-                                                                                                                         const GGS_string & in_mOwnerName,
-                                                                                                                         Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerPropertyGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_autoLayoutTableViewControllerPropertyGeneration (in_mPropertyName, in_mModelString, in_mOwnerName,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_string GGS_autoLayoutTableViewControllerPropertyGeneration::readProperty_mModelString (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_string () ;
@@ -15772,6 +15599,128 @@ GGS_autoLayoutTableViewControllerPropertyGeneration GGS_autoLayoutTableViewContr
       result = *p ;
     }else{
       inCompiler->castError ("autoLayoutTableViewControllerPropertyGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::objectCompare (const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (void) :
+GGS_propertyGeneration_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::operator = (const GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (const GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) :
+GGS_propertyGeneration_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::unwrappedValue (void) const {
+  GGS_autoLayoutTableViewControllerPropertyGeneration result ;
+  if (isValid ()) {
+    const cPtr_autoLayoutTableViewControllerPropertyGeneration * p = (cPtr_autoLayoutTableViewControllerPropertyGeneration *) ptr () ;
+    if (nullptr != p) {
+      result = GGS_autoLayoutTableViewControllerPropertyGeneration (p) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::bang_autoLayoutTableViewControllerPropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_autoLayoutTableViewControllerPropertyGeneration result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_autoLayoutTableViewControllerPropertyGeneration) ;
+      result = GGS_autoLayoutTableViewControllerPropertyGeneration ((cPtr_autoLayoutTableViewControllerPropertyGeneration *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @autoLayoutTableViewControllerPropertyGeneration.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2E_weak ("autoLayoutTableViewControllerPropertyGeneration.weak",
+                                                                                                            & kTypeDescriptor_GALGAS_propertyGeneration_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                                        Compiler * inCompiler
+                                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak result ;
+  const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak * p = (const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("autoLayoutTableViewControllerPropertyGeneration.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

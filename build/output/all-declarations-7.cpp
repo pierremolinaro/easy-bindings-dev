@@ -8,2137 +8,6 @@
 #include "all-declarations-7.h"
 
 //--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (void) :
-mProperty_mUnifiedDeclarationList (),
-mProperty_mBindingSpecificationListMap (),
-mProperty_mAutoLayoutBindingSpecificationList (),
-mProperty_mPreferences (),
-mProperty_mXcodeProject (),
-mProperty_mGraphvizList (),
-mProperty_mAutoLayoutVStackFunctionMap (),
-mProperty_mAutoLayoutHStackFunctionMap (),
-mProperty_mEnumerationFunctionListAST () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS_astDeclarationStruct & inSource) :
-mProperty_mUnifiedDeclarationList (inSource.mProperty_mUnifiedDeclarationList),
-mProperty_mBindingSpecificationListMap (inSource.mProperty_mBindingSpecificationListMap),
-mProperty_mAutoLayoutBindingSpecificationList (inSource.mProperty_mAutoLayoutBindingSpecificationList),
-mProperty_mPreferences (inSource.mProperty_mPreferences),
-mProperty_mXcodeProject (inSource.mProperty_mXcodeProject),
-mProperty_mGraphvizList (inSource.mProperty_mGraphvizList),
-mProperty_mAutoLayoutVStackFunctionMap (inSource.mProperty_mAutoLayoutVStackFunctionMap),
-mProperty_mAutoLayoutHStackFunctionMap (inSource.mProperty_mAutoLayoutHStackFunctionMap),
-mProperty_mEnumerationFunctionListAST (inSource.mProperty_mEnumerationFunctionListAST) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct & GGS_astDeclarationStruct::operator = (const GGS_astDeclarationStruct & inSource) {
-  mProperty_mUnifiedDeclarationList = inSource.mProperty_mUnifiedDeclarationList ;
-  mProperty_mBindingSpecificationListMap = inSource.mProperty_mBindingSpecificationListMap ;
-  mProperty_mAutoLayoutBindingSpecificationList = inSource.mProperty_mAutoLayoutBindingSpecificationList ;
-  mProperty_mPreferences = inSource.mProperty_mPreferences ;
-  mProperty_mXcodeProject = inSource.mProperty_mXcodeProject ;
-  mProperty_mGraphvizList = inSource.mProperty_mGraphvizList ;
-  mProperty_mAutoLayoutVStackFunctionMap = inSource.mProperty_mAutoLayoutVStackFunctionMap ;
-  mProperty_mAutoLayoutHStackFunctionMap = inSource.mProperty_mAutoLayoutHStackFunctionMap ;
-  mProperty_mEnumerationFunctionListAST = inSource.mProperty_mEnumerationFunctionListAST ;
-  return *this ;
-}
-
-//---Synthetized initializer -----------------------------------------------------------------------
-
-GGS_astDeclarationStruct GGS_astDeclarationStruct::init (Compiler * inCompiler
-                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_astDeclarationStruct result ;
-  result.setInitializedProperties (inCompiler) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::setInitializedProperties (Compiler * inCompiler) {
-GGS_declarationListAST temp_0 = GGS_declarationListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 15)) ;
-  mProperty_mUnifiedDeclarationList = temp_0 ;
-GGS_outletClassBindingSpecificationList temp_1 = GGS_outletClassBindingSpecificationList::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 16)) ;
-  mProperty_mBindingSpecificationListMap = temp_1 ;
-GGS_autoLayoutViewClassBindingSpecificationList temp_2 = GGS_autoLayoutViewClassBindingSpecificationList::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 17)) ;
-  mProperty_mAutoLayoutBindingSpecificationList = temp_2 ;
-  mProperty_mPreferences = GGS_prefDeclaration::init (inCompiler COMMA_HERE) ;
-  mProperty_mXcodeProject = GGS_string::makeEmptyString ().getter_nowhere (SOURCE_FILE ("grammar-syntax.ggs", 19)) ;
-GGS_lstringlist temp_3 = GGS_lstringlist::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 20)) ;
-  mProperty_mGraphvizList = temp_3 ;
-  mProperty_mAutoLayoutVStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
-  mProperty_mAutoLayoutHStackFunctionMap = GGS_astAutoLayoutViewFunctionMap::init (inCompiler COMMA_HERE) ;
-GGS_enumerationFunctionListAST temp_4 = GGS_enumerationFunctionListAST::init (inCompiler COMMA_SOURCE_FILE ("grammar-syntax.ggs", 23)) ;
-  mProperty_mEnumerationFunctionListAST = temp_4 ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct::GGS_astDeclarationStruct (const GGS_declarationListAST & inOperand0,
-                                                    const GGS_outletClassBindingSpecificationList & inOperand1,
-                                                    const GGS_autoLayoutViewClassBindingSpecificationList & inOperand2,
-                                                    const GGS_prefDeclaration & inOperand3,
-                                                    const GGS_lstring & inOperand4,
-                                                    const GGS_lstringlist & inOperand5,
-                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand6,
-                                                    const GGS_astAutoLayoutViewFunctionMap & inOperand7,
-                                                    const GGS_enumerationFunctionListAST & inOperand8) :
-mProperty_mUnifiedDeclarationList (inOperand0),
-mProperty_mBindingSpecificationListMap (inOperand1),
-mProperty_mAutoLayoutBindingSpecificationList (inOperand2),
-mProperty_mPreferences (inOperand3),
-mProperty_mXcodeProject (inOperand4),
-mProperty_mGraphvizList (inOperand5),
-mProperty_mAutoLayoutVStackFunctionMap (inOperand6),
-mProperty_mAutoLayoutHStackFunctionMap (inOperand7),
-mProperty_mEnumerationFunctionListAST (inOperand8) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct GGS_astDeclarationStruct::class_func_new (Compiler * inCompiler
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_astDeclarationStruct result ;
-  result.setInitializedProperties (inCompiler) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_astDeclarationStruct::isValid (void) const {
-  return mProperty_mUnifiedDeclarationList.isValid () && mProperty_mBindingSpecificationListMap.isValid () && mProperty_mAutoLayoutBindingSpecificationList.isValid () && mProperty_mPreferences.isValid () && mProperty_mXcodeProject.isValid () && mProperty_mGraphvizList.isValid () && mProperty_mAutoLayoutVStackFunctionMap.isValid () && mProperty_mAutoLayoutHStackFunctionMap.isValid () && mProperty_mEnumerationFunctionListAST.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::drop (void) {
-  mProperty_mUnifiedDeclarationList.drop () ;
-  mProperty_mBindingSpecificationListMap.drop () ;
-  mProperty_mAutoLayoutBindingSpecificationList.drop () ;
-  mProperty_mPreferences.drop () ;
-  mProperty_mXcodeProject.drop () ;
-  mProperty_mGraphvizList.drop () ;
-  mProperty_mAutoLayoutVStackFunctionMap.drop () ;
-  mProperty_mAutoLayoutHStackFunctionMap.drop () ;
-  mProperty_mEnumerationFunctionListAST.drop () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_astDeclarationStruct::description (String & ioString,
-                                            const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @astDeclarationStruct:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_mUnifiedDeclarationList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mBindingSpecificationListMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutBindingSpecificationList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mPreferences.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mXcodeProject.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mGraphvizList.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutVStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mAutoLayoutHStackFunctionMap.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mEnumerationFunctionListAST.description (ioString, inIndentation+1) ;
-  }
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//     @astDeclarationStruct generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astDeclarationStruct ("astDeclarationStruct",
-                                                                         nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_astDeclarationStruct::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_astDeclarationStruct ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_astDeclarationStruct::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_astDeclarationStruct (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astDeclarationStruct GGS_astDeclarationStruct::extractObject (const GGS_object & inObject,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  GGS_astDeclarationStruct result ;
-  const GGS_astDeclarationStruct * p = (const GGS_astDeclarationStruct *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_astDeclarationStruct *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("astDeclarationStruct", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @arrayControllerDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_arrayControllerDeclarationAST::objectCompare (const GGS_arrayControllerDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerDeclarationAST::GGS_arrayControllerDeclarationAST (void) :
-GGS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_arrayControllerDeclarationAST GGS_arrayControllerDeclarationAST::
-init_21__21__21__21_ (const GGS_lstring & in_mClassName,
-                      const GGS_lstring & in_mControllerName,
-                      const GGS_arrayControllerBoundModelAST & in_mModel,
-                      const GGS_lstring & in_mToManyPropertyName,
-                      Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) {
-  cPtr_arrayControllerDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_arrayControllerDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->arrayControllerDeclarationAST_init_21__21__21__21_ (in_mClassName, in_mControllerName, in_mModel, in_mToManyPropertyName, inCompiler) ;
-  const GGS_arrayControllerDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_arrayControllerDeclarationAST::
-arrayControllerDeclarationAST_init_21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                                    const GGS_lstring & in_mControllerName,
-                                                    const GGS_arrayControllerBoundModelAST & in_mModel,
-                                                    const GGS_lstring & in_mToManyPropertyName,
-                                                    Compiler * /* inCompiler */) {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mControllerName = in_mControllerName ;
-  mProperty_mModel = in_mModel ;
-  mProperty_mToManyPropertyName = in_mToManyPropertyName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerDeclarationAST::GGS_arrayControllerDeclarationAST (const cPtr_arrayControllerDeclarationAST * inSourcePtr) :
-GGS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_arrayControllerDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerDeclarationAST GGS_arrayControllerDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                                     const GGS_lstring & in_mControllerName,
-                                                                                     const GGS_arrayControllerBoundModelAST & in_mModel,
-                                                                                     const GGS_lstring & in_mToManyPropertyName,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_arrayControllerDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_arrayControllerDeclarationAST (in_mClassName, in_mControllerName, in_mModel, in_mToManyPropertyName,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_arrayControllerDeclarationAST::readProperty_mControllerName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    return p->mProperty_mControllerName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerDeclarationAST::setProperty_mControllerName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    p->mProperty_mControllerName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerBoundModelAST GGS_arrayControllerDeclarationAST::readProperty_mModel (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_arrayControllerBoundModelAST () ;
-  }else{
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    return p->mProperty_mModel ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerDeclarationAST::setProperty_mModel (const GGS_arrayControllerBoundModelAST & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    p->mProperty_mModel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_arrayControllerDeclarationAST::readProperty_mToManyPropertyName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    return p->mProperty_mToManyPropertyName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerDeclarationAST::setProperty_mToManyPropertyName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerDeclarationAST * p = (cPtr_arrayControllerDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerDeclarationAST) ;
-    p->mProperty_mToManyPropertyName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @arrayControllerDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_arrayControllerDeclarationAST::cPtr_arrayControllerDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mControllerName (),
-mProperty_mModel (),
-mProperty_mToManyPropertyName () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_arrayControllerDeclarationAST::cPtr_arrayControllerDeclarationAST (const GGS_lstring & in_mClassName,
-                                                                        const GGS_lstring & in_mControllerName,
-                                                                        const GGS_arrayControllerBoundModelAST & in_mModel,
-                                                                        const GGS_lstring & in_mToManyPropertyName,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
-mProperty_mControllerName (),
-mProperty_mModel (),
-mProperty_mToManyPropertyName () {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mControllerName = in_mControllerName ;
-  mProperty_mModel = in_mModel ;
-  mProperty_mToManyPropertyName = in_mToManyPropertyName ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_arrayControllerDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerDeclarationAST ;
-}
-
-void cPtr_arrayControllerDeclarationAST::description (String & ioString,
-                                                      const int32_t inIndentation) const {
-  ioString.appendCString ("[@arrayControllerDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mControllerName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mModel.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mToManyPropertyName.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_arrayControllerDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_arrayControllerDeclarationAST (mProperty_mClassName, mProperty_mControllerName, mProperty_mModel, mProperty_mToManyPropertyName, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_arrayControllerDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mControllerName.printNonNullClassInstanceProperties ("mControllerName") ;
-    mProperty_mModel.printNonNullClassInstanceProperties ("mModel") ;
-    mProperty_mToManyPropertyName.printNonNullClassInstanceProperties ("mToManyPropertyName") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @arrayControllerDeclarationAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_arrayControllerDeclarationAST ("arrayControllerDeclarationAST",
-                                                                                  & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_arrayControllerDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_arrayControllerDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_arrayControllerDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerDeclarationAST GGS_arrayControllerDeclarationAST::extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GGS_arrayControllerDeclarationAST result ;
-  const GGS_arrayControllerDeclarationAST * p = (const GGS_arrayControllerDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_arrayControllerDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @arrayControllerGeneration reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_arrayControllerGeneration::objectCompare (const GGS_arrayControllerGeneration & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerGeneration::GGS_arrayControllerGeneration (void) :
-GGS_abstractFileGeneration () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_arrayControllerGeneration GGS_arrayControllerGeneration::
-init_21__21__21__21__21__21_ (const GGS_string & in_mOwnerName,
-                              const GGS_lstring & in_mControllerName,
-                              const GGS_string & in_mModelTypeName,
-                              const GGS_arrayControllerModelKind & in_mArrayControllerModelKind,
-                              const GGS_string & in_mElementTypeName,
-                              const GGS_bool & in_mElementTypeIsGraphic,
-                              Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) {
-  cPtr_arrayControllerGeneration * object = nullptr ;
-  macroMyNew (object, cPtr_arrayControllerGeneration (inCompiler COMMA_THERE)) ;
-  object->arrayControllerGeneration_init_21__21__21__21__21__21_ (in_mOwnerName, in_mControllerName, in_mModelTypeName, in_mArrayControllerModelKind, in_mElementTypeName, in_mElementTypeIsGraphic, inCompiler) ;
-  const GGS_arrayControllerGeneration result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_arrayControllerGeneration::
-arrayControllerGeneration_init_21__21__21__21__21__21_ (const GGS_string & in_mOwnerName,
-                                                        const GGS_lstring & in_mControllerName,
-                                                        const GGS_string & in_mModelTypeName,
-                                                        const GGS_arrayControllerModelKind & in_mArrayControllerModelKind,
-                                                        const GGS_string & in_mElementTypeName,
-                                                        const GGS_bool & in_mElementTypeIsGraphic,
-                                                        Compiler * /* inCompiler */) {
-  mProperty_mOwnerName = in_mOwnerName ;
-  mProperty_mControllerName = in_mControllerName ;
-  mProperty_mModelTypeName = in_mModelTypeName ;
-  mProperty_mArrayControllerModelKind = in_mArrayControllerModelKind ;
-  mProperty_mElementTypeName = in_mElementTypeName ;
-  mProperty_mElementTypeIsGraphic = in_mElementTypeIsGraphic ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerGeneration::GGS_arrayControllerGeneration (const cPtr_arrayControllerGeneration * inSourcePtr) :
-GGS_abstractFileGeneration (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_arrayControllerGeneration) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerGeneration GGS_arrayControllerGeneration::class_func_new (const GGS_string & in_mOwnerName,
-                                                                             const GGS_lstring & in_mControllerName,
-                                                                             const GGS_string & in_mModelTypeName,
-                                                                             const GGS_arrayControllerModelKind & in_mArrayControllerModelKind,
-                                                                             const GGS_string & in_mElementTypeName,
-                                                                             const GGS_bool & in_mElementTypeIsGraphic,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) {
-  GGS_arrayControllerGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_arrayControllerGeneration (in_mOwnerName, in_mControllerName, in_mModelTypeName, in_mArrayControllerModelKind, in_mElementTypeName, in_mElementTypeIsGraphic,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_arrayControllerGeneration::readProperty_mOwnerName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mOwnerName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mOwnerName (const GGS_string & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mOwnerName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_arrayControllerGeneration::readProperty_mControllerName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mControllerName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mControllerName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mControllerName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_arrayControllerGeneration::readProperty_mModelTypeName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mModelTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mModelTypeName (const GGS_string & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mModelTypeName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerModelKind GGS_arrayControllerGeneration::readProperty_mArrayControllerModelKind (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_arrayControllerModelKind () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mArrayControllerModelKind ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mArrayControllerModelKind (const GGS_arrayControllerModelKind & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mArrayControllerModelKind = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_arrayControllerGeneration::readProperty_mElementTypeName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mElementTypeName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mElementTypeName (const GGS_string & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mElementTypeName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_arrayControllerGeneration::readProperty_mElementTypeIsGraphic (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    return p->mProperty_mElementTypeIsGraphic ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_arrayControllerGeneration::setProperty_mElementTypeIsGraphic (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_arrayControllerGeneration * p = (cPtr_arrayControllerGeneration *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_arrayControllerGeneration) ;
-    p->mProperty_mElementTypeIsGraphic = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @arrayControllerGeneration class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_arrayControllerGeneration::cPtr_arrayControllerGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractFileGeneration (inCompiler COMMA_THERE),
-mProperty_mOwnerName (),
-mProperty_mControllerName (),
-mProperty_mModelTypeName (),
-mProperty_mArrayControllerModelKind (),
-mProperty_mElementTypeName (),
-mProperty_mElementTypeIsGraphic () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_arrayControllerGeneration::cPtr_arrayControllerGeneration (const GGS_string & in_mOwnerName,
-                                                                const GGS_lstring & in_mControllerName,
-                                                                const GGS_string & in_mModelTypeName,
-                                                                const GGS_arrayControllerModelKind & in_mArrayControllerModelKind,
-                                                                const GGS_string & in_mElementTypeName,
-                                                                const GGS_bool & in_mElementTypeIsGraphic,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) :
-cPtr_abstractFileGeneration (inCompiler COMMA_THERE),
-mProperty_mOwnerName (),
-mProperty_mControllerName (),
-mProperty_mModelTypeName (),
-mProperty_mArrayControllerModelKind (),
-mProperty_mElementTypeName (),
-mProperty_mElementTypeIsGraphic () {
-  mProperty_mOwnerName = in_mOwnerName ;
-  mProperty_mControllerName = in_mControllerName ;
-  mProperty_mModelTypeName = in_mModelTypeName ;
-  mProperty_mArrayControllerModelKind = in_mArrayControllerModelKind ;
-  mProperty_mElementTypeName = in_mElementTypeName ;
-  mProperty_mElementTypeIsGraphic = in_mElementTypeIsGraphic ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_arrayControllerGeneration::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerGeneration ;
-}
-
-void cPtr_arrayControllerGeneration::description (String & ioString,
-                                                  const int32_t inIndentation) const {
-  ioString.appendCString ("[@arrayControllerGeneration:") ;
-  mProperty_mOwnerName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mControllerName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mModelTypeName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mArrayControllerModelKind.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mElementTypeName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mElementTypeIsGraphic.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_arrayControllerGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_arrayControllerGeneration (mProperty_mOwnerName, mProperty_mControllerName, mProperty_mModelTypeName, mProperty_mArrayControllerModelKind, mProperty_mElementTypeName, mProperty_mElementTypeIsGraphic, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_arrayControllerGeneration::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractFileGeneration::printNonNullClassInstanceProperties () ;
-    mProperty_mOwnerName.printNonNullClassInstanceProperties ("mOwnerName") ;
-    mProperty_mControllerName.printNonNullClassInstanceProperties ("mControllerName") ;
-    mProperty_mModelTypeName.printNonNullClassInstanceProperties ("mModelTypeName") ;
-    mProperty_mArrayControllerModelKind.printNonNullClassInstanceProperties ("mArrayControllerModelKind") ;
-    mProperty_mElementTypeName.printNonNullClassInstanceProperties ("mElementTypeName") ;
-    mProperty_mElementTypeIsGraphic.printNonNullClassInstanceProperties ("mElementTypeIsGraphic") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @arrayControllerGeneration generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_arrayControllerGeneration ("arrayControllerGeneration",
-                                                                              & kTypeDescriptor_GALGAS_abstractFileGeneration) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_arrayControllerGeneration::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_arrayControllerGeneration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_arrayControllerGeneration::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_arrayControllerGeneration (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerGeneration GGS_arrayControllerGeneration::extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  GGS_arrayControllerGeneration result ;
-  const GGS_arrayControllerGeneration * p = (const GGS_arrayControllerGeneration *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_arrayControllerGeneration *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("arrayControllerGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @outletClassDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_outletClassDeclarationAST::objectCompare (const GGS_outletClassDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassDeclarationAST::GGS_outletClassDeclarationAST (void) :
-GGS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_outletClassDeclarationAST GGS_outletClassDeclarationAST::
-init_21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                      const GGS_bool & in_mUserDefined,
-                                      const GGS_lstring & in_mSuperClassName,
-                                      const GGS_bool & in_mHasRunAction,
-                                      const GGS_bool & in_mHasEnabled,
-                                      const GGS_bool & in_mHandlesTableValueBinding,
-                                      const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                      const GGS_bool & in_mHasHidden,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) {
-  cPtr_outletClassDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_outletClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->outletClassDeclarationAST_init_21__21__21__21__21__21__21__21_ (in_mClassName, in_mUserDefined, in_mSuperClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding, in_mHandlesGraphicControllerBinding, in_mHasHidden, inCompiler) ;
-  const GGS_outletClassDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_outletClassDeclarationAST::
-outletClassDeclarationAST_init_21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                                                const GGS_bool & in_mUserDefined,
-                                                                const GGS_lstring & in_mSuperClassName,
-                                                                const GGS_bool & in_mHasRunAction,
-                                                                const GGS_bool & in_mHasEnabled,
-                                                                const GGS_bool & in_mHandlesTableValueBinding,
-                                                                const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                const GGS_bool & in_mHasHidden,
-                                                                Compiler * /* inCompiler */) {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mUserDefined = in_mUserDefined ;
-  mProperty_mSuperClassName = in_mSuperClassName ;
-  mProperty_mHasRunAction = in_mHasRunAction ;
-  mProperty_mHasEnabled = in_mHasEnabled ;
-  mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  mProperty_mHandlesGraphicControllerBinding = in_mHandlesGraphicControllerBinding ;
-  mProperty_mHasHidden = in_mHasHidden ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassDeclarationAST::GGS_outletClassDeclarationAST (const cPtr_outletClassDeclarationAST * inSourcePtr) :
-GGS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_outletClassDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassDeclarationAST GGS_outletClassDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                             const GGS_bool & in_mUserDefined,
-                                                                             const GGS_lstring & in_mSuperClassName,
-                                                                             const GGS_bool & in_mHasRunAction,
-                                                                             const GGS_bool & in_mHasEnabled,
-                                                                             const GGS_bool & in_mHandlesTableValueBinding,
-                                                                             const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                             const GGS_bool & in_mHasHidden,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) {
-  GGS_outletClassDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_outletClassDeclarationAST (in_mClassName, in_mUserDefined, in_mSuperClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding, in_mHandlesGraphicControllerBinding, in_mHasHidden,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mUserDefined (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mUserDefined ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mUserDefined (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mUserDefined = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_outletClassDeclarationAST::readProperty_mSuperClassName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mSuperClassName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mSuperClassName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mSuperClassName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mHasRunAction (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mHasRunAction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mHasRunAction (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mHasRunAction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mHasEnabled (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mHasEnabled ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mHasEnabled (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mHasEnabled = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mHandlesTableValueBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mHandlesTableValueBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mHandlesTableValueBinding (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mHandlesTableValueBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mHandlesGraphicControllerBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mHandlesGraphicControllerBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mHandlesGraphicControllerBinding (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mHandlesGraphicControllerBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_outletClassDeclarationAST::readProperty_mHasHidden (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    return p->mProperty_mHasHidden ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_outletClassDeclarationAST::setProperty_mHasHidden (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_outletClassDeclarationAST * p = (cPtr_outletClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_outletClassDeclarationAST) ;
-    p->mProperty_mHasHidden = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @outletClassDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_outletClassDeclarationAST::cPtr_outletClassDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mUserDefined (),
-mProperty_mSuperClassName (),
-mProperty_mHasRunAction (),
-mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding (),
-mProperty_mHandlesGraphicControllerBinding (),
-mProperty_mHasHidden () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_outletClassDeclarationAST::cPtr_outletClassDeclarationAST (const GGS_lstring & in_mClassName,
-                                                                const GGS_bool & in_mUserDefined,
-                                                                const GGS_lstring & in_mSuperClassName,
-                                                                const GGS_bool & in_mHasRunAction,
-                                                                const GGS_bool & in_mHasEnabled,
-                                                                const GGS_bool & in_mHandlesTableValueBinding,
-                                                                const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                const GGS_bool & in_mHasHidden,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
-mProperty_mUserDefined (),
-mProperty_mSuperClassName (),
-mProperty_mHasRunAction (),
-mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding (),
-mProperty_mHandlesGraphicControllerBinding (),
-mProperty_mHasHidden () {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mUserDefined = in_mUserDefined ;
-  mProperty_mSuperClassName = in_mSuperClassName ;
-  mProperty_mHasRunAction = in_mHasRunAction ;
-  mProperty_mHasEnabled = in_mHasEnabled ;
-  mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  mProperty_mHandlesGraphicControllerBinding = in_mHandlesGraphicControllerBinding ;
-  mProperty_mHasHidden = in_mHasHidden ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_outletClassDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassDeclarationAST ;
-}
-
-void cPtr_outletClassDeclarationAST::description (String & ioString,
-                                                  const int32_t inIndentation) const {
-  ioString.appendCString ("[@outletClassDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_outletClassDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_outletClassDeclarationAST (mProperty_mClassName, mProperty_mUserDefined, mProperty_mSuperClassName, mProperty_mHasRunAction, mProperty_mHasEnabled, mProperty_mHandlesTableValueBinding, mProperty_mHandlesGraphicControllerBinding, mProperty_mHasHidden, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_outletClassDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mUserDefined.printNonNullClassInstanceProperties ("mUserDefined") ;
-    mProperty_mSuperClassName.printNonNullClassInstanceProperties ("mSuperClassName") ;
-    mProperty_mHasRunAction.printNonNullClassInstanceProperties ("mHasRunAction") ;
-    mProperty_mHasEnabled.printNonNullClassInstanceProperties ("mHasEnabled") ;
-    mProperty_mHandlesTableValueBinding.printNonNullClassInstanceProperties ("mHandlesTableValueBinding") ;
-    mProperty_mHandlesGraphicControllerBinding.printNonNullClassInstanceProperties ("mHandlesGraphicControllerBinding") ;
-    mProperty_mHasHidden.printNonNullClassInstanceProperties ("mHasHidden") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @outletClassDeclarationAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_outletClassDeclarationAST ("outletClassDeclarationAST",
-                                                                              & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_outletClassDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_outletClassDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_outletClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_outletClassDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassDeclarationAST GGS_outletClassDeclarationAST::extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
-  GGS_outletClassDeclarationAST result ;
-  const GGS_outletClassDeclarationAST * p = (const GGS_outletClassDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_outletClassDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("outletClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @autoLayoutDocumentDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_autoLayoutDocumentDeclarationAST::objectCompare (const GGS_autoLayoutDocumentDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutDocumentDeclarationAST::GGS_autoLayoutDocumentDeclarationAST (void) :
-GGS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_autoLayoutDocumentDeclarationAST GGS_autoLayoutDocumentDeclarationAST::
-init_21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                          const GGS_lstring & in_mRootEntityName,
-                                          const GGS_lstring & in_mMainViewName,
-                                          const GGS_outletDeclarationList & in_mOutletDeclarationList,
-                                          const GGS_lstringlist & in_mActionDeclarationList,
-                                          const GGS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                          const GGS_astViewDeclarationList & in_mViewDeclarationList,
-                                          const GGS_string & in_mCustomSuperClassName,
-                                          const GGS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
-                                          Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) {
-  cPtr_autoLayoutDocumentDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_autoLayoutDocumentDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->autoLayoutDocumentDeclarationAST_init_21__21__21__21__21__21__21__21__21_ (in_mClassName, in_mRootEntityName, in_mMainViewName, in_mOutletDeclarationList, in_mActionDeclarationList, in_mArrayControllerBindingListAST, in_mViewDeclarationList, in_mCustomSuperClassName, in_mOutletLinkerList, inCompiler) ;
-  const GGS_autoLayoutDocumentDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_autoLayoutDocumentDeclarationAST::
-autoLayoutDocumentDeclarationAST_init_21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                                                           const GGS_lstring & in_mRootEntityName,
-                                                                           const GGS_lstring & in_mMainViewName,
-                                                                           const GGS_outletDeclarationList & in_mOutletDeclarationList,
-                                                                           const GGS_lstringlist & in_mActionDeclarationList,
-                                                                           const GGS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                                           const GGS_astViewDeclarationList & in_mViewDeclarationList,
-                                                                           const GGS_string & in_mCustomSuperClassName,
-                                                                           const GGS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
-                                                                           Compiler * /* inCompiler */) {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mRootEntityName = in_mRootEntityName ;
-  mProperty_mMainViewName = in_mMainViewName ;
-  mProperty_mOutletDeclarationList = in_mOutletDeclarationList ;
-  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
-  mProperty_mArrayControllerBindingListAST = in_mArrayControllerBindingListAST ;
-  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
-  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
-  mProperty_mOutletLinkerList = in_mOutletLinkerList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutDocumentDeclarationAST::GGS_autoLayoutDocumentDeclarationAST (const cPtr_autoLayoutDocumentDeclarationAST * inSourcePtr) :
-GGS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutDocumentDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutDocumentDeclarationAST GGS_autoLayoutDocumentDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                                           const GGS_lstring & in_mRootEntityName,
-                                                                                           const GGS_lstring & in_mMainViewName,
-                                                                                           const GGS_outletDeclarationList & in_mOutletDeclarationList,
-                                                                                           const GGS_lstringlist & in_mActionDeclarationList,
-                                                                                           const GGS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                                                           const GGS_astViewDeclarationList & in_mViewDeclarationList,
-                                                                                           const GGS_string & in_mCustomSuperClassName,
-                                                                                           const GGS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutDocumentDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_autoLayoutDocumentDeclarationAST (in_mClassName, in_mRootEntityName, in_mMainViewName, in_mOutletDeclarationList, in_mActionDeclarationList, in_mArrayControllerBindingListAST, in_mViewDeclarationList, in_mCustomSuperClassName, in_mOutletLinkerList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_autoLayoutDocumentDeclarationAST::readProperty_mRootEntityName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mRootEntityName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_autoLayoutDocumentDeclarationAST::readProperty_mMainViewName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mMainViewName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletDeclarationList GGS_autoLayoutDocumentDeclarationAST::readProperty_mOutletDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_outletDeclarationList () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mOutletDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstringlist GGS_autoLayoutDocumentDeclarationAST::readProperty_mActionDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstringlist () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mActionDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerBindingListAST GGS_autoLayoutDocumentDeclarationAST::readProperty_mArrayControllerBindingListAST (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_arrayControllerBindingListAST () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mArrayControllerBindingListAST ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astViewDeclarationList GGS_autoLayoutDocumentDeclarationAST::readProperty_mViewDeclarationList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astViewDeclarationList () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mViewDeclarationList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_autoLayoutDocumentDeclarationAST::readProperty_mCustomSuperClassName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mCustomSuperClassName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutOutletLinkerList GGS_autoLayoutDocumentDeclarationAST::readProperty_mOutletLinkerList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutOutletLinkerList () ;
-  }else{
-    cPtr_autoLayoutDocumentDeclarationAST * p = (cPtr_autoLayoutDocumentDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutDocumentDeclarationAST) ;
-    return p->mProperty_mOutletLinkerList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @autoLayoutDocumentDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutDocumentDeclarationAST::cPtr_autoLayoutDocumentDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mRootEntityName (),
-mProperty_mMainViewName (),
-mProperty_mOutletDeclarationList (),
-mProperty_mActionDeclarationList (),
-mProperty_mArrayControllerBindingListAST (),
-mProperty_mViewDeclarationList (),
-mProperty_mCustomSuperClassName (),
-mProperty_mOutletLinkerList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutDocumentDeclarationAST::cPtr_autoLayoutDocumentDeclarationAST (const GGS_lstring & in_mClassName,
-                                                                              const GGS_lstring & in_mRootEntityName,
-                                                                              const GGS_lstring & in_mMainViewName,
-                                                                              const GGS_outletDeclarationList & in_mOutletDeclarationList,
-                                                                              const GGS_lstringlist & in_mActionDeclarationList,
-                                                                              const GGS_arrayControllerBindingListAST & in_mArrayControllerBindingListAST,
-                                                                              const GGS_astViewDeclarationList & in_mViewDeclarationList,
-                                                                              const GGS_string & in_mCustomSuperClassName,
-                                                                              const GGS_astAutoLayoutOutletLinkerList & in_mOutletLinkerList,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
-mProperty_mRootEntityName (),
-mProperty_mMainViewName (),
-mProperty_mOutletDeclarationList (),
-mProperty_mActionDeclarationList (),
-mProperty_mArrayControllerBindingListAST (),
-mProperty_mViewDeclarationList (),
-mProperty_mCustomSuperClassName (),
-mProperty_mOutletLinkerList () {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mRootEntityName = in_mRootEntityName ;
-  mProperty_mMainViewName = in_mMainViewName ;
-  mProperty_mOutletDeclarationList = in_mOutletDeclarationList ;
-  mProperty_mActionDeclarationList = in_mActionDeclarationList ;
-  mProperty_mArrayControllerBindingListAST = in_mArrayControllerBindingListAST ;
-  mProperty_mViewDeclarationList = in_mViewDeclarationList ;
-  mProperty_mCustomSuperClassName = in_mCustomSuperClassName ;
-  mProperty_mOutletLinkerList = in_mOutletLinkerList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_autoLayoutDocumentDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST ;
-}
-
-void cPtr_autoLayoutDocumentDeclarationAST::description (String & ioString,
-                                                         const int32_t inIndentation) const {
-  ioString.appendCString ("[@autoLayoutDocumentDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mRootEntityName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mMainViewName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOutletDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mActionDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mArrayControllerBindingListAST.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mViewDeclarationList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mCustomSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOutletLinkerList.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_autoLayoutDocumentDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_autoLayoutDocumentDeclarationAST (mProperty_mClassName, mProperty_mRootEntityName, mProperty_mMainViewName, mProperty_mOutletDeclarationList, mProperty_mActionDeclarationList, mProperty_mArrayControllerBindingListAST, mProperty_mViewDeclarationList, mProperty_mCustomSuperClassName, mProperty_mOutletLinkerList, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_autoLayoutDocumentDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mRootEntityName.printNonNullClassInstanceProperties ("mRootEntityName") ;
-    mProperty_mMainViewName.printNonNullClassInstanceProperties ("mMainViewName") ;
-    mProperty_mOutletDeclarationList.printNonNullClassInstanceProperties ("mOutletDeclarationList") ;
-    mProperty_mActionDeclarationList.printNonNullClassInstanceProperties ("mActionDeclarationList") ;
-    mProperty_mArrayControllerBindingListAST.printNonNullClassInstanceProperties ("mArrayControllerBindingListAST") ;
-    mProperty_mViewDeclarationList.printNonNullClassInstanceProperties ("mViewDeclarationList") ;
-    mProperty_mCustomSuperClassName.printNonNullClassInstanceProperties ("mCustomSuperClassName") ;
-    mProperty_mOutletLinkerList.printNonNullClassInstanceProperties ("mOutletLinkerList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @autoLayoutDocumentDeclarationAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST ("autoLayoutDocumentDeclarationAST",
-                                                                                     & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_autoLayoutDocumentDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutDocumentDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_autoLayoutDocumentDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_autoLayoutDocumentDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutDocumentDeclarationAST GGS_autoLayoutDocumentDeclarationAST::extractObject (const GGS_object & inObject,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutDocumentDeclarationAST result ;
-  const GGS_autoLayoutDocumentDeclarationAST * p = (const GGS_autoLayoutDocumentDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_autoLayoutDocumentDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutDocumentDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @autoLayoutViewClassDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_autoLayoutViewClassDeclarationAST::objectCompare (const GGS_autoLayoutViewClassDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST::GGS_autoLayoutViewClassDeclarationAST (void) :
-GGS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST GGS_autoLayoutViewClassDeclarationAST::
-init_21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                              const GGS_bool & in_mUserDefined,
-                                              const GGS_lstring & in_mSuperClassName,
-                                              const GGS_bool & in_mHasRunAction,
-                                              const GGS_bool & in_mHasEnabled,
-                                              const GGS_bool & in_mHandlesTableValueBinding,
-                                              const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                              const GGS_bool & in_mHasHidden,
-                                              const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                              const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  cPtr_autoLayoutViewClassDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_autoLayoutViewClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->autoLayoutViewClassDeclarationAST_init_21__21__21__21__21__21__21__21__21__21_ (in_mClassName, in_mUserDefined, in_mSuperClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding, in_mHandlesGraphicControllerBinding, in_mHasHidden, in_mParameterList, in_mAutoLayoutViewFunctionMap, inCompiler) ;
-  const GGS_autoLayoutViewClassDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_autoLayoutViewClassDeclarationAST::
-autoLayoutViewClassDeclarationAST_init_21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
-                                                                                const GGS_bool & in_mUserDefined,
-                                                                                const GGS_lstring & in_mSuperClassName,
-                                                                                const GGS_bool & in_mHasRunAction,
-                                                                                const GGS_bool & in_mHasEnabled,
-                                                                                const GGS_bool & in_mHandlesTableValueBinding,
-                                                                                const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                const GGS_bool & in_mHasHidden,
-                                                                                const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                                                                Compiler * /* inCompiler */) {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mUserDefined = in_mUserDefined ;
-  mProperty_mSuperClassName = in_mSuperClassName ;
-  mProperty_mHasRunAction = in_mHasRunAction ;
-  mProperty_mHasEnabled = in_mHasEnabled ;
-  mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  mProperty_mHandlesGraphicControllerBinding = in_mHandlesGraphicControllerBinding ;
-  mProperty_mHasHidden = in_mHasHidden ;
-  mProperty_mParameterList = in_mParameterList ;
-  mProperty_mAutoLayoutViewFunctionMap = in_mAutoLayoutViewFunctionMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST::GGS_autoLayoutViewClassDeclarationAST (const cPtr_autoLayoutViewClassDeclarationAST * inSourcePtr) :
-GGS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutViewClassDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST GGS_autoLayoutViewClassDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                                             const GGS_bool & in_mUserDefined,
-                                                                                             const GGS_lstring & in_mSuperClassName,
-                                                                                             const GGS_bool & in_mHasRunAction,
-                                                                                             const GGS_bool & in_mHasEnabled,
-                                                                                             const GGS_bool & in_mHandlesTableValueBinding,
-                                                                                             const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                             const GGS_bool & in_mHasHidden,
-                                                                                             const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                             const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutViewClassDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_autoLayoutViewClassDeclarationAST (in_mClassName, in_mUserDefined, in_mSuperClassName, in_mHasRunAction, in_mHasEnabled, in_mHandlesTableValueBinding, in_mHandlesGraphicControllerBinding, in_mHasHidden, in_mParameterList, in_mAutoLayoutViewFunctionMap,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mUserDefined (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mUserDefined ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mUserDefined (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mUserDefined = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_autoLayoutViewClassDeclarationAST::readProperty_mSuperClassName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mSuperClassName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mSuperClassName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mSuperClassName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mHasRunAction (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasRunAction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mHasRunAction (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasRunAction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mHasEnabled (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasEnabled ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mHasEnabled (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasEnabled = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesTableValueBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesTableValueBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mHandlesTableValueBinding (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesTableValueBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mHandlesGraphicControllerBinding (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHandlesGraphicControllerBinding ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mHandlesGraphicControllerBinding (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHandlesGraphicControllerBinding = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_autoLayoutViewClassDeclarationAST::readProperty_mHasHidden (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mHasHidden ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mHasHidden (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mHasHidden = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterList GGS_autoLayoutViewClassDeclarationAST::readProperty_mParameterList (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_autoLayoutClassParameterList () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mParameterList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mParameterList (const GGS_autoLayoutClassParameterList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mParameterList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionMap GGS_autoLayoutViewClassDeclarationAST::readProperty_mAutoLayoutViewFunctionMap (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_astAutoLayoutViewFunctionMap () ;
-  }else{
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    return p->mProperty_mAutoLayoutViewFunctionMap ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_autoLayoutViewClassDeclarationAST::setProperty_mAutoLayoutViewFunctionMap (const GGS_astAutoLayoutViewFunctionMap & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_autoLayoutViewClassDeclarationAST * p = (cPtr_autoLayoutViewClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_autoLayoutViewClassDeclarationAST) ;
-    p->mProperty_mAutoLayoutViewFunctionMap = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @autoLayoutViewClassDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutViewClassDeclarationAST::cPtr_autoLayoutViewClassDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mUserDefined (),
-mProperty_mSuperClassName (),
-mProperty_mHasRunAction (),
-mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding (),
-mProperty_mHandlesGraphicControllerBinding (),
-mProperty_mHasHidden (),
-mProperty_mParameterList (),
-mProperty_mAutoLayoutViewFunctionMap () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_autoLayoutViewClassDeclarationAST::cPtr_autoLayoutViewClassDeclarationAST (const GGS_lstring & in_mClassName,
-                                                                                const GGS_bool & in_mUserDefined,
-                                                                                const GGS_lstring & in_mSuperClassName,
-                                                                                const GGS_bool & in_mHasRunAction,
-                                                                                const GGS_bool & in_mHasEnabled,
-                                                                                const GGS_bool & in_mHandlesTableValueBinding,
-                                                                                const GGS_bool & in_mHandlesGraphicControllerBinding,
-                                                                                const GGS_bool & in_mHasHidden,
-                                                                                const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
-mProperty_mUserDefined (),
-mProperty_mSuperClassName (),
-mProperty_mHasRunAction (),
-mProperty_mHasEnabled (),
-mProperty_mHandlesTableValueBinding (),
-mProperty_mHandlesGraphicControllerBinding (),
-mProperty_mHasHidden (),
-mProperty_mParameterList (),
-mProperty_mAutoLayoutViewFunctionMap () {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mUserDefined = in_mUserDefined ;
-  mProperty_mSuperClassName = in_mSuperClassName ;
-  mProperty_mHasRunAction = in_mHasRunAction ;
-  mProperty_mHasEnabled = in_mHasEnabled ;
-  mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  mProperty_mHandlesGraphicControllerBinding = in_mHandlesGraphicControllerBinding ;
-  mProperty_mHasHidden = in_mHasHidden ;
-  mProperty_mParameterList = in_mParameterList ;
-  mProperty_mAutoLayoutViewFunctionMap = in_mAutoLayoutViewFunctionMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_autoLayoutViewClassDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-void cPtr_autoLayoutViewClassDeclarationAST::description (String & ioString,
-                                                          const int32_t inIndentation) const {
-  ioString.appendCString ("[@autoLayoutViewClassDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mUserDefined.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mSuperClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasRunAction.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasEnabled.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesTableValueBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHandlesGraphicControllerBinding.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mHasHidden.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mParameterList.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mAutoLayoutViewFunctionMap.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_autoLayoutViewClassDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_autoLayoutViewClassDeclarationAST (mProperty_mClassName, mProperty_mUserDefined, mProperty_mSuperClassName, mProperty_mHasRunAction, mProperty_mHasEnabled, mProperty_mHandlesTableValueBinding, mProperty_mHandlesGraphicControllerBinding, mProperty_mHasHidden, mProperty_mParameterList, mProperty_mAutoLayoutViewFunctionMap, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_autoLayoutViewClassDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mUserDefined.printNonNullClassInstanceProperties ("mUserDefined") ;
-    mProperty_mSuperClassName.printNonNullClassInstanceProperties ("mSuperClassName") ;
-    mProperty_mHasRunAction.printNonNullClassInstanceProperties ("mHasRunAction") ;
-    mProperty_mHasEnabled.printNonNullClassInstanceProperties ("mHasEnabled") ;
-    mProperty_mHandlesTableValueBinding.printNonNullClassInstanceProperties ("mHandlesTableValueBinding") ;
-    mProperty_mHandlesGraphicControllerBinding.printNonNullClassInstanceProperties ("mHandlesGraphicControllerBinding") ;
-    mProperty_mHasHidden.printNonNullClassInstanceProperties ("mHasHidden") ;
-    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
-    mProperty_mAutoLayoutViewFunctionMap.printNonNullClassInstanceProperties ("mAutoLayoutViewFunctionMap") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @autoLayoutViewClassDeclarationAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ("autoLayoutViewClassDeclarationAST",
-                                                                                      & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_autoLayoutViewClassDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_autoLayoutViewClassDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_autoLayoutViewClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_autoLayoutViewClassDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutViewClassDeclarationAST GGS_autoLayoutViewClassDeclarationAST::extractObject (const GGS_object & inObject,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutViewClassDeclarationAST result ;
-  const GGS_autoLayoutViewClassDeclarationAST * p = (const GGS_autoLayoutViewClassDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_autoLayoutViewClassDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("autoLayoutViewClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @transientClassDeclarationAST reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_transientClassDeclarationAST::objectCompare (const GGS_transientClassDeclarationAST & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_transientClassDeclarationAST::GGS_transientClassDeclarationAST (void) :
-GGS_abstractDeclarationAST () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_transientClassDeclarationAST GGS_transientClassDeclarationAST::
-init_21__21_ (const GGS_lstring & in_mClassName,
-              const GGS_bool & in_mIsClass,
-              Compiler * inCompiler
-              COMMA_LOCATION_ARGS) {
-  cPtr_transientClassDeclarationAST * object = nullptr ;
-  macroMyNew (object, cPtr_transientClassDeclarationAST (inCompiler COMMA_THERE)) ;
-  object->transientClassDeclarationAST_init_21__21_ (in_mClassName, in_mIsClass, inCompiler) ;
-  const GGS_transientClassDeclarationAST result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_transientClassDeclarationAST::
-transientClassDeclarationAST_init_21__21_ (const GGS_lstring & in_mClassName,
-                                           const GGS_bool & in_mIsClass,
-                                           Compiler * /* inCompiler */) {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mIsClass = in_mIsClass ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_transientClassDeclarationAST::GGS_transientClassDeclarationAST (const cPtr_transientClassDeclarationAST * inSourcePtr) :
-GGS_abstractDeclarationAST (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_transientClassDeclarationAST) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_transientClassDeclarationAST GGS_transientClassDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                                   const GGS_bool & in_mIsClass,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_transientClassDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_transientClassDeclarationAST (in_mClassName, in_mIsClass,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_transientClassDeclarationAST::readProperty_mIsClass (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bool () ;
-  }else{
-    cPtr_transientClassDeclarationAST * p = (cPtr_transientClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientClassDeclarationAST) ;
-    return p->mProperty_mIsClass ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_transientClassDeclarationAST::setProperty_mIsClass (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_transientClassDeclarationAST * p = (cPtr_transientClassDeclarationAST *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_transientClassDeclarationAST) ;
-    p->mProperty_mIsClass = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @transientClassDeclarationAST class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_transientClassDeclarationAST::cPtr_transientClassDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
-mProperty_mIsClass () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_transientClassDeclarationAST::cPtr_transientClassDeclarationAST (const GGS_lstring & in_mClassName,
-                                                                      const GGS_bool & in_mIsClass,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) :
-cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
-mProperty_mIsClass () {
-  mProperty_mClassName = in_mClassName ;
-  mProperty_mIsClass = in_mIsClass ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * cPtr_transientClassDeclarationAST::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientClassDeclarationAST ;
-}
-
-void cPtr_transientClassDeclarationAST::description (String & ioString,
-                                                     const int32_t inIndentation) const {
-  ioString.appendCString ("[@transientClassDeclarationAST:") ;
-  mProperty_mClassName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mIsClass.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_transientClassDeclarationAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_transientClassDeclarationAST (mProperty_mClassName, mProperty_mIsClass, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_transientClassDeclarationAST::printNonNullClassInstanceProperties (void) const {
-    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
-    mProperty_mIsClass.printNonNullClassInstanceProperties ("mIsClass") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//     @transientClassDeclarationAST generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_transientClassDeclarationAST ("transientClassDeclarationAST",
-                                                                                 & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_transientClassDeclarationAST::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_transientClassDeclarationAST ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_transientClassDeclarationAST::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_transientClassDeclarationAST (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_transientClassDeclarationAST GGS_transientClassDeclarationAST::extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) {
-  GGS_transientClassDeclarationAST result ;
-  const GGS_transientClassDeclarationAST * p = (const GGS_transientClassDeclarationAST *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_transientClassDeclarationAST *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("transientClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 // @toOneRelationshipAST reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -2207,21 +76,6 @@ GGS_toOneRelationshipAST::GGS_toOneRelationshipAST (const cPtr_toOneRelationship
 GGS_abstractDeclarationAST (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_toOneRelationshipAST) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_toOneRelationshipAST GGS_toOneRelationshipAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                   const GGS_lstring & in_mDestinationEntityName,
-                                                                   const GGS_lstring & in_mToOneRelationshipName,
-                                                                   const GGS_toOneOppositeRelationship & in_mOpposite,
-                                                                   const GGS_bool & in_mUsedForSignature,
-                                                                   const GGS_bool & in_mWeak,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  GGS_toOneRelationshipAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_toOneRelationshipAST (in_mClassName, in_mDestinationEntityName, in_mToOneRelationshipName, in_mOpposite, in_mUsedForSignature, in_mWeak,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_toOneRelationshipAST::readProperty_mDestinationEntityName (void) const {
@@ -2516,18 +370,6 @@ GGS_astAbstractViewDeclaration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_astComputedHorizontalViewDeclaration GGS_astComputedHorizontalViewDeclaration::class_func_new (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                                   const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                                   const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_astComputedHorizontalViewDeclaration result ;
-  macroMyNew (result.mObjectPtr, cPtr_astComputedHorizontalViewDeclaration (in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_astAutoLayoutViewFunctionCallList GGS_astComputedHorizontalViewDeclaration::readProperty_mFunctionCallList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_astAutoLayoutViewFunctionCallList () ;
@@ -2732,20 +574,6 @@ GGS_astComputedVerticalViewDeclaration::GGS_astComputedVerticalViewDeclaration (
 GGS_astAbstractViewDeclaration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedVerticalViewDeclaration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::class_func_new (const GGS_bool & in_mHasVerticalScroller,
-                                                                                               const GGS_lstring & in_mConfiguratorName,
-                                                                                               const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                               const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                               const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_astComputedVerticalViewDeclaration result ;
-  macroMyNew (result.mObjectPtr, cPtr_astComputedVerticalViewDeclaration (in_mHasVerticalScroller, in_mConfiguratorName, in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_astComputedVerticalViewDeclaration::readProperty_mHasVerticalScroller (void) const {
@@ -2993,21 +821,6 @@ GGS_astVStackViewInstructionDeclaration::GGS_astVStackViewInstructionDeclaration
 GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_astVStackViewInstructionDeclaration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::class_func_new (const GGS_bool & in_mHasVerticalScroller,
-                                                                                                 const GGS_lstring & in_mConfiguratorName,
-                                                                                                 const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                                                 const GGS_astViewInstructionList & in_mInstructionList,
-                                                                                                 const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
-                                                                                                 const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_astVStackViewInstructionDeclaration result ;
-  macroMyNew (result.mObjectPtr, cPtr_astVStackViewInstructionDeclaration (in_mHasVerticalScroller, in_mConfiguratorName, in_mFunctionCallList, in_mInstructionList, in_mOptionalHiddenBinding, in_mAstNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_astVStackViewInstructionDeclaration::readProperty_mHasVerticalScroller (void) const {
@@ -3261,16 +1074,6 @@ GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_astLocalViewInstruction GGS_astLocalViewInstruction::class_func_new (const GGS_lstring & in_mLocalView,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) {
-  GGS_astLocalViewInstruction result ;
-  macroMyNew (result.mObjectPtr, cPtr_astLocalViewInstruction (in_mLocalView,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_astLocalViewInstruction::readProperty_mLocalView (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -3458,27 +1261,6 @@ GGS_astComputedViewInstruction::GGS_astComputedViewInstruction (const cPtr_astCo
 GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedViewInstruction) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_astComputedViewInstruction GGS_astComputedViewInstruction::class_func_new (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                               const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
-                                                                               const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
-                                                                               const GGS_tableValueBinding & in_mTableValueBinding,
-                                                                               const GGS_runActionDescriptor & in_mRunActionDescriptor,
-                                                                               const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
-                                                                               const GGS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
-                                                                               const GGS_graphicController & in_mGraphicController,
-                                                                               const GGS_regularBindingList & in_mRegularBindingList,
-                                                                               const GGS_lstring & in_mConfiguratorName,
-                                                                               const GGS_lstring & in_mOutletName,
-                                                                               const GGS_bool & in_mOutletIsArray,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
-  GGS_astComputedViewInstruction result ;
-  macroMyNew (result.mObjectPtr, cPtr_astComputedViewInstruction (in_mAutoLayoutViewClassName, in_mParameterList, in_mFunctionCallList, in_mTableValueBinding, in_mRunActionDescriptor, in_mEnabledBindingDescriptor, in_mHiddenBindingDescriptor, in_mGraphicController, in_mRegularBindingList, in_mConfiguratorName, in_mOutletName, in_mOutletIsArray,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_astComputedViewInstruction::readProperty_mAutoLayoutViewClassName (void) const {
@@ -3852,18 +1634,6 @@ GGS_abstractViewGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_computedHorizontalViewGeneration GGS_computedHorizontalViewGeneration::class_func_new (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                           const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                           const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_computedHorizontalViewGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_computedHorizontalViewGeneration (in_mFuncCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_computedHorizontalViewGeneration::readProperty_mFuncCallList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
@@ -4068,20 +1838,6 @@ GGS_computedVerticalViewGeneration::GGS_computedVerticalViewGeneration (const cP
 GGS_abstractViewGeneration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_computedVerticalViewGeneration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_computedVerticalViewGeneration GGS_computedVerticalViewGeneration::class_func_new (const GGS_bool & in_mHasVerticalScroller,
-                                                                                       const GGS_lstring & in_mConfiguratorName,
-                                                                                       const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                       const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                       const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_computedVerticalViewGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_computedVerticalViewGeneration (in_mHasVerticalScroller, in_mConfiguratorName, in_mFuncCallList, in_mInstructionList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_computedVerticalViewGeneration::readProperty_mHasVerticalScroller (void) const {
@@ -4325,19 +2081,6 @@ GGS_abstractViewInstructionGeneration (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_hStackViewInstructionGeneration GGS_hStackViewInstructionGeneration::class_func_new (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                         const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                         const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                         const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_hStackViewInstructionGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_hStackViewInstructionGeneration (in_mFuncCallList, in_mInstructionList, in_mMultipleBindingGenerationList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_hStackViewInstructionGeneration::readProperty_mFuncCallList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
@@ -4564,21 +2307,6 @@ GGS_vStackViewInstructionGeneration::GGS_vStackViewInstructionGeneration (const 
 GGS_abstractViewInstructionGeneration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_vStackViewInstructionGeneration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_vStackViewInstructionGeneration GGS_vStackViewInstructionGeneration::class_func_new (const GGS_bool & in_mHasVerticalScroller,
-                                                                                         const GGS_lstring & in_mConfiguratorName,
-                                                                                         const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
-                                                                                         const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
-                                                                                         const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                         const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_vStackViewInstructionGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_vStackViewInstructionGeneration (in_mHasVerticalScroller, in_mConfiguratorName, in_mFuncCallList, in_mInstructionList, in_mMultipleBindingGenerationList, in_mNewStackViewDeclarationList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_vStackViewInstructionGeneration::readProperty_mHasVerticalScroller (void) const {
@@ -4860,26 +2588,6 @@ GGS_autoLayoutComputedViewInstructionGeneration::GGS_autoLayoutComputedViewInstr
 GGS_abstractViewInstructionGeneration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_autoLayoutComputedViewInstructionGeneration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutComputedViewInstructionGeneration GGS_autoLayoutComputedViewInstructionGeneration::class_func_new (const GGS_lstring & in_mAutoLayoutViewClassName,
-                                                                                                                 const GGS_autoLayoutViewInstructionGenerationParameterList & in_mParameterList,
-                                                                                                                 const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFunctionCallList,
-                                                                                                                 const GGS_autoLayoutRegularBindingsGenerationList & in_mRegularBindingsGenerationList,
-                                                                                                                 const GGS_autoLayoutMultipleBindingGenerationList & in_mMultipleBindingGenerationList,
-                                                                                                                 const GGS_autolayoutRunBindingForGeneration & in_mRunBindingGeneration,
-                                                                                                                 const GGS_string & in_mTableViewBindingGeneration,
-                                                                                                                 const GGS_autoLayoutViewGraphicControllerBindingGeneration & in_mEBViewGraphicControllerBindingGeneration,
-                                                                                                                 const GGS_string & in_mConfiguratorName,
-                                                                                                                 const GGS_string & in_mOutletName,
-                                                                                                                 const GGS_bool & in_mOutletIsArray,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutComputedViewInstructionGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_autoLayoutComputedViewInstructionGeneration (in_mAutoLayoutViewClassName, in_mParameterList, in_mFunctionCallList, in_mRegularBindingsGenerationList, in_mMultipleBindingGenerationList, in_mRunBindingGeneration, in_mTableViewBindingGeneration, in_mEBViewGraphicControllerBindingGeneration, in_mConfiguratorName, in_mOutletName, in_mOutletIsArray,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_autoLayoutComputedViewInstructionGeneration::readProperty_mAutoLayoutViewClassName (void) const {
@@ -5234,18 +2942,6 @@ GGS_abstractDeclarationAST (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_enumerationDeclarationAST GGS_enumerationDeclarationAST::class_func_new (const GGS_lstring & in_mClassName,
-                                                                             const GGS_lstringlist & in_mEnumConstantNameList,
-                                                                             const GGS_bool & in_mCaseIterable,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) {
-  GGS_enumerationDeclarationAST result ;
-  macroMyNew (result.mObjectPtr, cPtr_enumerationDeclarationAST (in_mClassName, in_mEnumConstantNameList, in_mCaseIterable,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstringlist GGS_enumerationDeclarationAST::readProperty_mEnumConstantNameList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstringlist () ;
@@ -5419,19 +3115,6 @@ mProperty_mValue_31_ (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_lstringlist_2E_element GGS__32_lstringlist_2E_element::class_func_new (const GGS_lstring & in_mValue0,
-                                                                               const GGS_lstring & in_mValue1,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS__32_lstringlist_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mValue_30_ = in_mValue0 ;
-  result.mProperty_mValue_31_ = in_mValue1 ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS__32_lstringlist_2E_element::isValid (void) const {
   return mProperty_mValue_30_.isValid () && mProperty_mValue_31_.isValid () ;
 }
@@ -5555,21 +3238,6 @@ mProperty_mBindingOptionList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_regularBindingList_2E_element GGS_regularBindingList_2E_element::class_func_new (const GGS_lstring & in_mBindingName,
-                                                                                     const GGS_observablePropertyList & in_mObservablePropertyList,
-                                                                                     const GGS_bindingOptionList & in_mBindingOptionList,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_regularBindingList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mBindingName = in_mBindingName ;
-  result.mProperty_mObservablePropertyList = in_mObservablePropertyList ;
-  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_regularBindingList_2E_element::isValid (void) const {
   return mProperty_mBindingName.isValid () && mProperty_mObservablePropertyList.isValid () && mProperty_mBindingOptionList.isValid () ;
 }
@@ -5682,17 +3350,6 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_computedPropertyGenerationList_2E_element GGS_computedPropertyGenerationList_2E_element::class_func_new (const GGS_computedPropertyGeneration & in_mProperty,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_computedPropertyGenerationList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mProperty = in_mProperty ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_computedPropertyGenerationList_2E_element::isValid (void) const {
   return mProperty_mProperty.isValid () ;
 }
@@ -5795,17 +3452,6 @@ void GGS_toManyRelationshipOptionAST_2E_hasOpposite::setInitializedProperties (C
 
 GGS_toManyRelationshipOptionAST_2E_hasOpposite::GGS_toManyRelationshipOptionAST_2E_hasOpposite (const GGS_lstring & inOperand0) :
 mProperty_oppositeName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_toManyRelationshipOptionAST_2E_hasOpposite GGS_toManyRelationshipOptionAST_2E_hasOpposite::class_func_new (const GGS_lstring & in_oppositeName,
-                                                                                                               Compiler * inCompiler
-                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST_2E_hasOpposite result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_oppositeName = in_oppositeName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6034,17 +3680,6 @@ mProperty_masterPropertyName (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_toManyRelationshipOptionAST_2E_hasDependance GGS_toManyRelationshipOptionAST_2E_hasDependance::class_func_new (const GGS_lstring & in_masterPropertyName,
-                                                                                                                   Compiler * inCompiler
-                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_toManyRelationshipOptionAST_2E_hasDependance result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_masterPropertyName = in_masterPropertyName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_toManyRelationshipOptionAST_2E_hasDependance::isValid (void) const {
   return mProperty_masterPropertyName.isValid () ;
 }
@@ -6269,17 +3904,6 @@ mProperty_mProperty (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_toManyPropertyGenerationList_2E_element GGS_toManyPropertyGenerationList_2E_element::class_func_new (const GGS_toManyPropertyGeneration & in_mProperty,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_toManyPropertyGenerationList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mProperty = in_mProperty ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_toManyPropertyGenerationList_2E_element::isValid (void) const {
   return mProperty_mProperty.isValid () ;
 }
@@ -6382,17 +4006,6 @@ void GGS_mainXibElement_2E_text::setInitializedProperties (Compiler * /* inCompi
 
 GGS_mainXibElement_2E_text::GGS_mainXibElement_2E_text (const GGS_lstring & inOperand0) :
 mProperty_text (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_text GGS_mainXibElement_2E_text::class_func_new (const GGS_lstring & in_text,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_mainXibElement_2E_text result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_text = in_text ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6624,19 +4237,6 @@ GGS_mainXibElement_2E_outlet::GGS_mainXibElement_2E_outlet (const GGS_lstring & 
                                                             const GGS_lstring & inOperand1) :
 mProperty_outletType (inOperand0),
 mProperty_outletName (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_mainXibElement_2E_outlet GGS_mainXibElement_2E_outlet::class_func_new (const GGS_lstring & in_outletType,
-                                                                           const GGS_lstring & in_outletName,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_mainXibElement_2E_outlet result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_outletType = in_outletType ;
-  result.mProperty_outletName = in_outletName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6889,23 +4489,6 @@ mProperty_mSortPropertyName (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element::class_func_new (const GGS_bool & in_mEditable,
-                                                                                                                                               const GGS_lstring & in_mPropertyName,
-                                                                                                                                               const GGS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
-                                                                                                                                               const GGS_lstring & in_mSortPropertyName,
-                                                                                                                                               Compiler * inCompiler
-                                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mEditable = in_mEditable ;
-  result.mProperty_mPropertyName = in_mPropertyName ;
-  result.mProperty_mColumnParameterListAST = in_mColumnParameterListAST ;
-  result.mProperty_mSortPropertyName = in_mSortPropertyName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element::isValid (void) const {
   return mProperty_mEditable.isValid () && mProperty_mPropertyName.isValid () && mProperty_mColumnParameterListAST.isValid () && mProperty_mSortPropertyName.isValid () ;
 }
@@ -7028,19 +4611,6 @@ mProperty_mAttributeValue (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutTableViewControllerAttributListAST_2E_element GGS_autoLayoutTableViewControllerAttributListAST_2E_element::class_func_new (const GGS_lstring & in_mAttributeName,
-                                                                                                                                         const GGS_abstractDefaultValue & in_mAttributeValue,
-                                                                                                                                         Compiler * inCompiler
-                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutTableViewControllerAttributListAST_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mAttributeName = in_mAttributeName ;
-  result.mProperty_mAttributeValue = in_mAttributeValue ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autoLayoutTableViewControllerAttributListAST_2E_element::isValid (void) const {
   return mProperty_mAttributeName.isValid () && mProperty_mAttributeValue.isValid () ;
 }
@@ -7146,17 +4716,6 @@ void GGS_classKind_2E_document::setInitializedProperties (Compiler * /* inCompil
 
 GGS_classKind_2E_document::GGS_classKind_2E_document (const GGS_lstring & inOperand0) :
 mProperty_rootEntityName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classKind_2E_document GGS_classKind_2E_document::class_func_new (const GGS_lstring & in_rootEntityName,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_classKind_2E_document result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_rootEntityName = in_rootEntityName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7409,25 +4968,6 @@ mProperty_mClassKind (inOperand1),
 mProperty_mPropertyMap (inOperand2),
 mProperty_mActionMap (inOperand3),
 mProperty_mPropertyGenerationList (inOperand4) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_classMap_2E_element GGS_classMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                 const GGS_classKind & in_mClassKind,
-                                                                 const GGS_propertyMap & in_mPropertyMap,
-                                                                 const GGS_actionMap & in_mActionMap,
-                                                                 const GGS_propertyGenerationList & in_mPropertyGenerationList,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_classMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mClassKind = in_mClassKind ;
-  result.mProperty_mPropertyMap = in_mPropertyMap ;
-  result.mProperty_mActionMap = in_mActionMap ;
-  result.mProperty_mPropertyGenerationList = in_mPropertyGenerationList ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7685,23 +5225,6 @@ mProperty_typeName (inOperand0),
 mProperty_accessibility (inOperand1),
 mProperty_graphic (inOperand2),
 mProperty_optionKind (inOperand3) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_toMany GGS_propertyKind_2E_toMany::class_func_new (const GGS_lstring & in_typeName,
-                                                                       const GGS_propertyAccessibility & in_accessibility,
-                                                                       const GGS_bool & in_graphic,
-                                                                       const GGS_toManyRelationshipOptionAST & in_optionKind,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_toMany result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_accessibility = in_accessibility ;
-  result.mProperty_graphic = in_graphic ;
-  result.mProperty_optionKind = in_optionKind ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7967,25 +5490,6 @@ mProperty_isWeak (inOperand4) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_propertyKind_2E_toOne GGS_propertyKind_2E_toOne::class_func_new (const GGS_lstring & in_typeName,
-                                                                     const GGS_propertyAccessibility & in_accessibility,
-                                                                     const GGS_bool & in_graphic,
-                                                                     const GGS_toOneOppositeRelationship & in_opposite,
-                                                                     const GGS_bool & in_isWeak,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_toOne result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_accessibility = in_accessibility ;
-  result.mProperty_graphic = in_graphic ;
-  result.mProperty_opposite = in_opposite ;
-  result.mProperty_isWeak = in_isWeak ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_propertyKind_2E_toOne::isValid (void) const {
   return mProperty_typeName.isValid () && mProperty_accessibility.isValid () && mProperty_graphic.isValid () && mProperty_opposite.isValid () && mProperty_isWeak.isValid () ;
 }
@@ -8225,19 +5729,6 @@ GGS_propertyKind_2E_arrayController::GGS_propertyKind_2E_arrayController (const 
                                                                           const GGS_bool & inOperand1) :
 mProperty_typeName (inOperand0),
 mProperty_graphic (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyKind_2E_arrayController GGS_propertyKind_2E_arrayController::class_func_new (const GGS_lstring & in_typeName,
-                                                                                         const GGS_bool & in_graphic,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind_2E_arrayController result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_typeName = in_typeName ;
-  result.mProperty_graphic = in_graphic ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8601,21 +6092,6 @@ mProperty_mDefaultValue (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_simpleStoredPropertyList_2E_element GGS_simpleStoredPropertyList_2E_element::class_func_new (const GGS_lstring & in_mPropertyTypeName,
-                                                                                                 const GGS_lstring & in_mPropertyName,
-                                                                                                 const GGS_abstractDefaultValue & in_mDefaultValue,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_simpleStoredPropertyList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mPropertyTypeName = in_mPropertyTypeName ;
-  result.mProperty_mPropertyName = in_mPropertyName ;
-  result.mProperty_mDefaultValue = in_mDefaultValue ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_simpleStoredPropertyList_2E_element::isValid (void) const {
   return mProperty_mPropertyTypeName.isValid () && mProperty_mPropertyName.isValid () && mProperty_mDefaultValue.isValid () ;
 }
@@ -8749,23 +6225,6 @@ mProperty_mBindingOptionList (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutViewClassBindingSpecificationList_2E_element GGS_autoLayoutViewClassBindingSpecificationList_2E_element::class_func_new (const GGS_lstring & in_mOutletClassName,
-                                                                                                                                       const GGS_lstring & in_mBindingName,
-                                                                                                                                       const GGS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
-                                                                                                                                       const GGS_controllerBindingOptionList & in_mBindingOptionList,
-                                                                                                                                       Compiler * inCompiler
-                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutViewClassBindingSpecificationList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOutletClassName = in_mOutletClassName ;
-  result.mProperty_mBindingName = in_mBindingName ;
-  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
-  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autoLayoutViewClassBindingSpecificationList_2E_element::isValid (void) const {
   return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
 }
@@ -8891,21 +6350,6 @@ GGS_autoLayoutBindingSpecificationMap_2E_element::GGS_autoLayoutBindingSpecifica
 mProperty_lkey (inOperand0),
 mProperty_mOutletSuperClassName (inOperand1),
 mProperty_mBindingMap (inOperand2) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutBindingSpecificationMap_2E_element GGS_autoLayoutBindingSpecificationMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                                                   const GGS_lstring & in_mOutletSuperClassName,
-                                                                                                                   const GGS_autoLayoutViewBindingSpecificationMap & in_mBindingMap,
-                                                                                                                   Compiler * inCompiler
-                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutBindingSpecificationMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mOutletSuperClassName = in_mOutletSuperClassName ;
-  result.mProperty_mBindingMap = in_mBindingMap ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9154,21 +6598,6 @@ mProperty_mControllerBindingOptionList (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutViewBindingSpecificationMap_2E_element GGS_autoLayoutViewBindingSpecificationMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                                                           const GGS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
-                                                                                                                           const GGS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionList,
-                                                                                                                           Compiler * inCompiler
-                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutViewBindingSpecificationMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mOutletBindingSpecificationModelList = in_mOutletBindingSpecificationModelList ;
-  result.mProperty_mControllerBindingOptionList = in_mControllerBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autoLayoutViewBindingSpecificationMap_2E_element::isValid (void) const {
   return mProperty_lkey.isValid () && mProperty_mOutletBindingSpecificationModelList.isValid () && mProperty_mControllerBindingOptionList.isValid () ;
 }
@@ -9399,17 +6828,6 @@ mProperty_mPropertyDeclaration (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_declarationListAST_2E_element GGS_declarationListAST_2E_element::class_func_new (const GGS_abstractDeclarationAST & in_mPropertyDeclaration,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_declarationListAST_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mPropertyDeclaration = in_mPropertyDeclaration ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_declarationListAST_2E_element::isValid (void) const {
   return mProperty_mPropertyDeclaration.isValid () ;
 }
@@ -9523,19 +6941,6 @@ mProperty_mCallerName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftFunctionList_2E_element GGS_externSwiftFunctionList_2E_element::class_func_new (const GGS_lstring & in_mExternSwiftFunctionName,
-                                                                                               const GGS_lstring & in_mCallerName,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_externSwiftFunctionList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mExternSwiftFunctionName = in_mExternSwiftFunctionName ;
-  result.mProperty_mCallerName = in_mCallerName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_externSwiftFunctionList_2E_element::isValid (void) const {
   return mProperty_mExternSwiftFunctionName.isValid () && mProperty_mCallerName.isValid () ;
 }
@@ -9641,17 +7046,6 @@ void GGS_externFunctionMap_2E_element::setInitializedProperties (Compiler * /* i
 
 GGS_externFunctionMap_2E_element::GGS_externFunctionMap_2E_element (const GGS_lstring & inOperand0) :
 mProperty_lkey (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_externFunctionMap_2E_element GGS_externFunctionMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_externFunctionMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9887,19 +7281,6 @@ mProperty_mHiddenSelectionViewBindingDescriptor (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_arrayControllerBindingListAST_2E_element GGS_arrayControllerBindingListAST_2E_element::class_func_new (const GGS_lstring & in_mControllerName,
-                                                                                                           const GGS_multipleBindingDescriptor & in_mHiddenSelectionViewBindingDescriptor,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_arrayControllerBindingListAST_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mControllerName = in_mControllerName ;
-  result.mProperty_mHiddenSelectionViewBindingDescriptor = in_mHiddenSelectionViewBindingDescriptor ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_arrayControllerBindingListAST_2E_element::isValid (void) const {
   return mProperty_mControllerName.isValid () && mProperty_mHiddenSelectionViewBindingDescriptor.isValid () ;
 }
@@ -10005,17 +7386,6 @@ void GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship::setInitializedP
 
 GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship::GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship (const GGS_lstring & inOperand0) :
 mProperty_rootEntityName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship::class_func_new (const GGS_lstring & in_rootEntityName,
-                                                                                                                                       Compiler * inCompiler
-                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_arrayControllerBoundModelAST_2E_rootToManyRelationship result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_rootEntityName = in_rootEntityName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10251,19 +7621,6 @@ mProperty_mOptionTypeName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_controllerBindingOptionList_2E_element GGS_controllerBindingOptionList_2E_element::class_func_new (const GGS_lstring & in_mOptionName,
-                                                                                                       const GGS_lstring & in_mOptionTypeName,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_controllerBindingOptionList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOptionName = in_mOptionName ;
-  result.mProperty_mOptionTypeName = in_mOptionTypeName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_controllerBindingOptionList_2E_element::isValid (void) const {
   return mProperty_mOptionName.isValid () && mProperty_mOptionTypeName.isValid () ;
 }
@@ -10376,19 +7733,6 @@ GGS_outletClassBindingSpecificationModelList_2E_element::GGS_outletClassBindingS
                                                                                                                   const GGS_bool & inOperand1) :
 mProperty_mModelTypeName (inOperand0),
 mProperty_mModelShouldBeWritableProperty (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletClassBindingSpecificationModelList_2E_element GGS_outletClassBindingSpecificationModelList_2E_element::class_func_new (const GGS_lstring & in_mModelTypeName,
-                                                                                                                                 const GGS_bool & in_mModelShouldBeWritableProperty,
-                                                                                                                                 Compiler * inCompiler
-                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletClassBindingSpecificationModelList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mModelTypeName = in_mModelTypeName ;
-  result.mProperty_mModelShouldBeWritableProperty = in_mModelShouldBeWritableProperty ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10523,23 +7867,6 @@ mProperty_mBindingOptionList (inOperand3) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_outletClassBindingSpecificationList_2E_element GGS_outletClassBindingSpecificationList_2E_element::class_func_new (const GGS_lstring & in_mOutletClassName,
-                                                                                                                       const GGS_lstring & in_mBindingName,
-                                                                                                                       const GGS_outletClassBindingSpecificationModelList & in_mOutletClassBindingSpecificationModelList,
-                                                                                                                       const GGS_controllerBindingOptionList & in_mBindingOptionList,
-                                                                                                                       Compiler * inCompiler
-                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletClassBindingSpecificationList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOutletClassName = in_mOutletClassName ;
-  result.mProperty_mBindingName = in_mBindingName ;
-  result.mProperty_mOutletClassBindingSpecificationModelList = in_mOutletClassBindingSpecificationModelList ;
-  result.mProperty_mBindingOptionList = in_mBindingOptionList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_outletClassBindingSpecificationList_2E_element::isValid (void) const {
   return mProperty_mOutletClassName.isValid () && mProperty_mBindingName.isValid () && mProperty_mOutletClassBindingSpecificationModelList.isValid () && mProperty_mBindingOptionList.isValid () ;
 }
@@ -10665,21 +7992,6 @@ GGS_bindingSpecificationMap_2E_element::GGS_bindingSpecificationMap_2E_element (
 mProperty_lkey (inOperand0),
 mProperty_mOutletSuperClassName (inOperand1),
 mProperty_mBindingMap (inOperand2) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bindingSpecificationMap_2E_element GGS_bindingSpecificationMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                               const GGS_lstring & in_mOutletSuperClassName,
-                                                                                               const GGS_outletBindingSpecificationMap & in_mBindingMap,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bindingSpecificationMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mOutletSuperClassName = in_mOutletSuperClassName ;
-  result.mProperty_mBindingMap = in_mBindingMap ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10921,19 +8233,6 @@ mProperty_mOptionName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_controllerBindingOptionDecoratedList_2E_element GGS_controllerBindingOptionDecoratedList_2E_element::class_func_new (const GGS_typeKind & in_mOptionType,
-                                                                                                                         const GGS_lstring & in_mOptionName,
-                                                                                                                         Compiler * inCompiler
-                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_controllerBindingOptionDecoratedList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOptionType = in_mOptionType ;
-  result.mProperty_mOptionName = in_mOptionName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_controllerBindingOptionDecoratedList_2E_element::isValid (void) const {
   return mProperty_mOptionType.isValid () && mProperty_mOptionName.isValid () ;
 }
@@ -11053,21 +8352,6 @@ GGS_outletBindingSpecificationMap_2E_element::GGS_outletBindingSpecificationMap_
 mProperty_lkey (inOperand0),
 mProperty_mOutletBindingSpecificationModelList (inOperand1),
 mProperty_mControllerBindingOptionList (inOperand2) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletBindingSpecificationMap_2E_element GGS_outletBindingSpecificationMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                                           const GGS_outletBindingSpecificationModelList & in_mOutletBindingSpecificationModelList,
-                                                                                                           const GGS_controllerBindingOptionDecoratedList & in_mControllerBindingOptionList,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletBindingSpecificationMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mOutletBindingSpecificationModelList = in_mOutletBindingSpecificationModelList ;
-  result.mProperty_mControllerBindingOptionList = in_mControllerBindingOptionList ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11351,31 +8635,6 @@ mProperty_mUserDefined (inOperand7) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_outletClassMap_2E_element GGS_outletClassMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                             const GGS_lstring & in_mSuperClassName,
-                                                                             const GGS_bool & in_mHandlesRunAction,
-                                                                             const GGS_bool & in_mHandlesTableValueBinding,
-                                                                             const GGS_bool & in_mHandleEnabledBinding,
-                                                                             const GGS_bool & in_mHandleHiddenBinding,
-                                                                             const GGS_bool & in_mHandleGraphicControllerBinding,
-                                                                             const GGS_bool & in_mUserDefined,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletClassMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mSuperClassName = in_mSuperClassName ;
-  result.mProperty_mHandlesRunAction = in_mHandlesRunAction ;
-  result.mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  result.mProperty_mHandleEnabledBinding = in_mHandleEnabledBinding ;
-  result.mProperty_mHandleHiddenBinding = in_mHandleHiddenBinding ;
-  result.mProperty_mHandleGraphicControllerBinding = in_mHandleGraphicControllerBinding ;
-  result.mProperty_mUserDefined = in_mUserDefined ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_outletClassMap_2E_element::isValid (void) const {
   return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () ;
 }
@@ -11621,17 +8880,6 @@ mProperty_mExternSwiftDelegateName (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftDelegateList_2E_element GGS_externSwiftDelegateList_2E_element::class_func_new (const GGS_lstring & in_mExternSwiftDelegateName,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_externSwiftDelegateList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mExternSwiftDelegateName = in_mExternSwiftDelegateName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_externSwiftDelegateList_2E_element::isValid (void) const {
   return mProperty_mExternSwiftDelegateName.isValid () ;
 }
@@ -11741,19 +8989,6 @@ GGS_astAutoLayoutOutletLinkerList_2E_element::GGS_astAutoLayoutOutletLinkerList_
                                                                                             const GGS_lstringlist & inOperand1) :
 mProperty_mLinkerName (inOperand0),
 mProperty_mOutletNameList (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutOutletLinkerList_2E_element GGS_astAutoLayoutOutletLinkerList_2E_element::class_func_new (const GGS_lstring & in_mLinkerName,
-                                                                                                           const GGS_lstringlist & in_mOutletNameList,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_astAutoLayoutOutletLinkerList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mLinkerName = in_mLinkerName ;
-  result.mProperty_mOutletNameList = in_mOutletNameList ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11870,19 +9105,6 @@ GGS_runActionDescriptor_2E_action::GGS_runActionDescriptor_2E_action (const GGS_
                                                                       const GGS_lstring & inOperand1) :
 mProperty_target (inOperand0),
 mProperty_action (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_runActionDescriptor_2E_action GGS_runActionDescriptor_2E_action::class_func_new (const GGS_lstring & in_target,
-                                                                                     const GGS_lstring & in_action,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_runActionDescriptor_2E_action result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_target = in_target ;
-  result.mProperty_action = in_action ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12144,17 +9366,6 @@ mProperty_lkey (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_actionMap_2E_element GGS_actionMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_actionMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_actionMap_2E_element::isValid (void) const {
   return mProperty_lkey.isValid () ;
 }
@@ -12375,17 +9586,6 @@ void GGS_autoLayoutClassParameterType_2E_typeEnum::setInitializedProperties (Com
 
 GGS_autoLayoutClassParameterType_2E_typeEnum::GGS_autoLayoutClassParameterType_2E_typeEnum (const GGS_lstring & inOperand0) :
 mProperty_name (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutClassParameterType_2E_typeEnum GGS_autoLayoutClassParameterType_2E_typeEnum::class_func_new (const GGS_lstring & in_name,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterType_2E_typeEnum result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_name = in_name ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12648,19 +9848,6 @@ mProperty_mParameterType (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autoLayoutClassParameterList_2E_element GGS_autoLayoutClassParameterList_2E_element::class_func_new (const GGS_lstring & in_mParameterName,
-                                                                                                         const GGS_autoLayoutClassParameterType & in_mParameterType,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autoLayoutClassParameterList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mParameterName = in_mParameterName ;
-  result.mProperty_mParameterType = in_mParameterType ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autoLayoutClassParameterList_2E_element::isValid (void) const {
   return mProperty_mParameterName.isValid () && mProperty_mParameterType.isValid () ;
 }
@@ -12773,19 +9960,6 @@ GGS_astAutoLayoutViewFunctionMap_2E_element::GGS_astAutoLayoutViewFunctionMap_2E
                                                                                           const GGS_autoLayoutClassParameterList & inOperand1) :
 mProperty_lkey (inOperand0),
 mProperty_mFomalParameterList (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astAutoLayoutViewFunctionMap_2E_element GGS_astAutoLayoutViewFunctionMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                                         const GGS_autoLayoutClassParameterList & in_mFomalParameterList,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_astAutoLayoutViewFunctionMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mFomalParameterList = in_mFomalParameterList ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13080,35 +10254,6 @@ mProperty_mAutoLayoutViewFunctionMap (inOperand9) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_autolayoutViewClassMap_2E_element GGS_autolayoutViewClassMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                             const GGS_lstring & in_mSuperClassName,
-                                                                                             const GGS_bool & in_mHandlesRunAction,
-                                                                                             const GGS_bool & in_mHandlesTableValueBinding,
-                                                                                             const GGS_bool & in_mHandleEnabledBinding,
-                                                                                             const GGS_bool & in_mHandleHiddenBinding,
-                                                                                             const GGS_bool & in_mHandleGraphicControllerBinding,
-                                                                                             const GGS_bool & in_mUserDefined,
-                                                                                             const GGS_autoLayoutClassParameterList & in_mParameterList,
-                                                                                             const GGS_astAutoLayoutViewFunctionMap & in_mAutoLayoutViewFunctionMap,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_autolayoutViewClassMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mSuperClassName = in_mSuperClassName ;
-  result.mProperty_mHandlesRunAction = in_mHandlesRunAction ;
-  result.mProperty_mHandlesTableValueBinding = in_mHandlesTableValueBinding ;
-  result.mProperty_mHandleEnabledBinding = in_mHandleEnabledBinding ;
-  result.mProperty_mHandleHiddenBinding = in_mHandleHiddenBinding ;
-  result.mProperty_mHandleGraphicControllerBinding = in_mHandleGraphicControllerBinding ;
-  result.mProperty_mUserDefined = in_mUserDefined ;
-  result.mProperty_mParameterList = in_mParameterList ;
-  result.mProperty_mAutoLayoutViewFunctionMap = in_mAutoLayoutViewFunctionMap ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_autolayoutViewClassMap_2E_element::isValid (void) const {
   return mProperty_lkey.isValid () && mProperty_mSuperClassName.isValid () && mProperty_mHandlesRunAction.isValid () && mProperty_mHandlesTableValueBinding.isValid () && mProperty_mHandleEnabledBinding.isValid () && mProperty_mHandleHiddenBinding.isValid () && mProperty_mHandleGraphicControllerBinding.isValid () && mProperty_mUserDefined.isValid () && mProperty_mParameterList.isValid () && mProperty_mAutoLayoutViewFunctionMap.isValid () ;
 }
@@ -13367,19 +10512,6 @@ mProperty_mOptionValue (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bindingOptionList_2E_element GGS_bindingOptionList_2E_element::class_func_new (const GGS_lstring & in_mOptionName,
-                                                                                   const GGS_abstractDefaultValue & in_mOptionValue,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_bindingOptionList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOptionName = in_mOptionName ;
-  result.mProperty_mOptionValue = in_mOptionValue ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_bindingOptionList_2E_element::isValid (void) const {
   return mProperty_mOptionName.isValid () && mProperty_mOptionValue.isValid () ;
 }
@@ -13485,17 +10617,6 @@ void GGS_tableValueBinding_2E_tableValueBinding::setInitializedProperties (Compi
 
 GGS_tableValueBinding_2E_tableValueBinding::GGS_tableValueBinding_2E_tableValueBinding (const GGS_lstring & inOperand0) :
 mProperty_controllerName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_tableValueBinding_2E_tableValueBinding GGS_tableValueBinding_2E_tableValueBinding::class_func_new (const GGS_lstring & in_controllerName,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_tableValueBinding_2E_tableValueBinding result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_controllerName = in_controllerName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13754,19 +10875,6 @@ GGS_graphicController_2E_defined::GGS_graphicController_2E_defined (const GGS_ls
                                                                     const GGS_lstring & inOperand1) :
 mProperty_controller (inOperand0),
 mProperty_propertyName (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_graphicController_2E_defined GGS_graphicController_2E_defined::class_func_new (const GGS_lstring & in_controller,
-                                                                                   const GGS_lstring & in_propertyName,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_graphicController_2E_defined result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_controller = in_controller ;
-  result.mProperty_propertyName = in_propertyName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14047,31 +11155,6 @@ mProperty_mGraphicController (inOperand7) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_outletDeclarationList_2E_element GGS_outletDeclarationList_2E_element::class_func_new (const GGS_lstring & in_mOutletTypeName,
-                                                                                           const GGS_lstring & in_mOutletName,
-                                                                                           const GGS_tableValueBinding & in_mTableValueBindingDescriptor,
-                                                                                           const GGS_runActionDescriptor & in_mRunDescriptor,
-                                                                                           const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
-                                                                                           const GGS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
-                                                                                           const GGS_regularBindingList & in_mRegularBindingList,
-                                                                                           const GGS_graphicController & in_mGraphicController,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_outletDeclarationList_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mOutletTypeName = in_mOutletTypeName ;
-  result.mProperty_mOutletName = in_mOutletName ;
-  result.mProperty_mTableValueBindingDescriptor = in_mTableValueBindingDescriptor ;
-  result.mProperty_mRunDescriptor = in_mRunDescriptor ;
-  result.mProperty_mEnabledBindingDescriptor = in_mEnabledBindingDescriptor ;
-  result.mProperty_mHiddenBindingDescriptor = in_mHiddenBindingDescriptor ;
-  result.mProperty_mRegularBindingList = in_mRegularBindingList ;
-  result.mProperty_mGraphicController = in_mGraphicController ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_outletDeclarationList_2E_element::isValid (void) const {
   return mProperty_mOutletTypeName.isValid () && mProperty_mOutletName.isValid () && mProperty_mTableValueBindingDescriptor.isValid () && mProperty_mRunDescriptor.isValid () && mProperty_mEnabledBindingDescriptor.isValid () && mProperty_mHiddenBindingDescriptor.isValid () && mProperty_mRegularBindingList.isValid () && mProperty_mGraphicController.isValid () ;
 }
@@ -14202,19 +11285,6 @@ GGS_decoratedOutletMap_2E_element::GGS_decoratedOutletMap_2E_element (const GGS_
                                                                       const GGS_string & inOperand1) :
 mProperty_lkey (inOperand0),
 mProperty_mOutletTypeName (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_decoratedOutletMap_2E_element GGS_decoratedOutletMap_2E_element::class_func_new (const GGS_lstring & in_lkey,
-                                                                                     const GGS_string & in_mOutletTypeName,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_decoratedOutletMap_2E_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_lkey = in_lkey ;
-  result.mProperty_mOutletTypeName = in_mOutletTypeName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14446,17 +11516,6 @@ mProperty_propertyName (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_observablePropertyAST_2E_rootProperty GGS_observablePropertyAST_2E_rootProperty::class_func_new (const GGS_lstring & in_propertyName,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyAST_2E_rootProperty result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_propertyName = in_propertyName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_observablePropertyAST_2E_rootProperty::isValid (void) const {
   return mProperty_propertyName.isValid () ;
 }
@@ -14684,19 +11743,6 @@ GGS_observablePropertyAST_2E_rootPropertyWithOption::GGS_observablePropertyAST_2
                                                                                                           const GGS_lstring & inOperand1) :
 mProperty_propertyName (inOperand0),
 mProperty_optionName (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_observablePropertyAST_2E_rootPropertyWithOption GGS_observablePropertyAST_2E_rootPropertyWithOption::class_func_new (const GGS_lstring & in_propertyName,
-                                                                                                                         const GGS_lstring & in_optionName,
-                                                                                                                         Compiler * inCompiler
-                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyAST_2E_rootPropertyWithOption result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_propertyName = in_propertyName ;
-  result.mProperty_optionName = in_optionName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14935,19 +11981,6 @@ mProperty_propertyName (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_observablePropertyAST_2E_rootPropertyRelationship GGS_observablePropertyAST_2E_rootPropertyRelationship::class_func_new (const GGS_lstring & in_relationshipName,
-                                                                                                                             const GGS_lstring & in_propertyName,
-                                                                                                                             Compiler * inCompiler
-                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyAST_2E_rootPropertyRelationship result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_relationshipName = in_relationshipName ;
-  result.mProperty_propertyName = in_propertyName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_observablePropertyAST_2E_rootPropertyRelationship::isValid (void) const {
   return mProperty_relationshipName.isValid () && mProperty_propertyName.isValid () ;
 }
@@ -15171,17 +12204,6 @@ void GGS_observablePropertyAST_2E_rootPropertyNone::setInitializedProperties (Co
 
 GGS_observablePropertyAST_2E_rootPropertyNone::GGS_observablePropertyAST_2E_rootPropertyNone (const GGS_lstring & inOperand0) :
 mProperty_relationshipName (inOperand0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_observablePropertyAST_2E_rootPropertyNone GGS_observablePropertyAST_2E_rootPropertyNone::class_func_new (const GGS_lstring & in_relationshipName,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyAST_2E_rootPropertyNone result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_relationshipName = in_relationshipName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15410,17 +12432,6 @@ mProperty_propertyName (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_observablePropertyAST_2E_selfProperty GGS_observablePropertyAST_2E_selfProperty::class_func_new (const GGS_lstring & in_propertyName,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyAST_2E_selfProperty result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_propertyName = in_propertyName ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_observablePropertyAST_2E_selfProperty::isValid (void) const {
   return mProperty_propertyName.isValid () ;
 }
@@ -15479,6 +12490,3676 @@ GGS_observablePropertyAST_2E_selfProperty GGS_observablePropertyAST_2E_selfPrope
       result = *p ;
     }else{
       inCompiler->castError ("observablePropertyAST.selfProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfProperty_3F_::GGS_observablePropertyAST_2E_selfProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfProperty_3F_::GGS_observablePropertyAST_2E_selfProperty_3F_ (const GGS_observablePropertyAST_2E_selfProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfProperty_3F_ GGS_observablePropertyAST_2E_selfProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfProperty_3F_::description (String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfProperty_3F_ ("observablePropertyAST.selfProperty?",
+                                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfProperty_3F_ GGS_observablePropertyAST_2E_selfProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                            Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfProperty_3F_ * p = (const GGS_observablePropertyAST_2E_selfProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption::GGS_observablePropertyAST_2E_selfPropertyWithOption (void) :
+mProperty_propertyName (),
+mProperty_optionName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption::GGS_observablePropertyAST_2E_selfPropertyWithOption (const GGS_observablePropertyAST_2E_selfPropertyWithOption & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_optionName (inSource.mProperty_optionName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption & GGS_observablePropertyAST_2E_selfPropertyWithOption::operator = (const GGS_observablePropertyAST_2E_selfPropertyWithOption & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_optionName = inSource.mProperty_optionName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption GGS_observablePropertyAST_2E_selfPropertyWithOption::init_21__21_ (const GGS_lstring & in_propertyName,
+                                                                                                                       const GGS_lstring & in_optionName,
+                                                                                                                       Compiler * inCompiler
+                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyWithOption result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_optionName = in_optionName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyWithOption::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption::GGS_observablePropertyAST_2E_selfPropertyWithOption (const GGS_lstring & inOperand0,
+                                                                                                          const GGS_lstring & inOperand1) :
+mProperty_propertyName (inOperand0),
+mProperty_optionName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyWithOption::isValid (void) const {
+  return mProperty_propertyName.isValid () && mProperty_optionName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyWithOption::drop (void) {
+  mProperty_propertyName.drop () ;
+  mProperty_optionName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyWithOption::description (String & ioString,
+                                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfPropertyWithOption:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_optionName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyWithOption generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyWithOption ("observablePropertyAST.selfPropertyWithOption",
+                                                                                                    nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyWithOption::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyWithOption ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyWithOption::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyWithOption (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption GGS_observablePropertyAST_2E_selfPropertyWithOption::extractObject (const GGS_object & inObject,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyWithOption result ;
+  const GGS_observablePropertyAST_2E_selfPropertyWithOption * p = (const GGS_observablePropertyAST_2E_selfPropertyWithOption *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyWithOption *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyWithOption", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfPropertyWithOption_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_selfPropertyWithOption & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfPropertyWithOption () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::description (String & ioString,
+                                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyWithOption? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyWithOption_3F_ ("observablePropertyAST.selfPropertyWithOption?",
+                                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyWithOption_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ * p = (const GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyWithOption?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray::GGS_observablePropertyAST_2E_selfPropertyArray (void) :
+mProperty_propertyName (),
+mProperty_elementPropertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray::GGS_observablePropertyAST_2E_selfPropertyArray (const GGS_observablePropertyAST_2E_selfPropertyArray & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_elementPropertyName (inSource.mProperty_elementPropertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray & GGS_observablePropertyAST_2E_selfPropertyArray::operator = (const GGS_observablePropertyAST_2E_selfPropertyArray & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_elementPropertyName = inSource.mProperty_elementPropertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray GGS_observablePropertyAST_2E_selfPropertyArray::init_21__21_ (const GGS_lstring & in_propertyName,
+                                                                                                             const GGS_lstring & in_elementPropertyName,
+                                                                                                             Compiler * inCompiler
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyArray result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_elementPropertyName = in_elementPropertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyArray::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray::GGS_observablePropertyAST_2E_selfPropertyArray (const GGS_lstring & inOperand0,
+                                                                                                const GGS_lstring & inOperand1) :
+mProperty_propertyName (inOperand0),
+mProperty_elementPropertyName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyArray::isValid (void) const {
+  return mProperty_propertyName.isValid () && mProperty_elementPropertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyArray::drop (void) {
+  mProperty_propertyName.drop () ;
+  mProperty_elementPropertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyArray::description (String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfPropertyArray:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_elementPropertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyArray generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyArray ("observablePropertyAST.selfPropertyArray",
+                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyArray::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyArray ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyArray::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyArray (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray GGS_observablePropertyAST_2E_selfPropertyArray::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyArray result ;
+  const GGS_observablePropertyAST_2E_selfPropertyArray * p = (const GGS_observablePropertyAST_2E_selfPropertyArray *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyArray *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyArray", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfPropertyArray_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray_3F_::GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray_3F_::GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (const GGS_observablePropertyAST_2E_selfPropertyArray & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray_3F_ GGS_observablePropertyAST_2E_selfPropertyArray_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfPropertyArray_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyArray_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyArray_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyArray_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfPropertyArray () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyArray_3F_::description (String & ioString,
+                                                                      const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyArray? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyArray_3F_ ("observablePropertyAST.selfPropertyArray?",
+                                                                                                   nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyArray_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyArray_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyArray_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyArray_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyArray_3F_ GGS_observablePropertyAST_2E_selfPropertyArray_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                      Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyArray_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfPropertyArray_3F_ * p = (const GGS_observablePropertyAST_2E_selfPropertyArray_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyArray_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyArray?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject::GGS_observablePropertyAST_2E_selfPropertyObject (void) :
+mProperty_propertyName (),
+mProperty_elementPropertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject::GGS_observablePropertyAST_2E_selfPropertyObject (const GGS_observablePropertyAST_2E_selfPropertyObject & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_elementPropertyName (inSource.mProperty_elementPropertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject & GGS_observablePropertyAST_2E_selfPropertyObject::operator = (const GGS_observablePropertyAST_2E_selfPropertyObject & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_elementPropertyName = inSource.mProperty_elementPropertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject GGS_observablePropertyAST_2E_selfPropertyObject::init_21__21_ (const GGS_lstring & in_propertyName,
+                                                                                                               const GGS_lstring & in_elementPropertyName,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyObject result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_elementPropertyName = in_elementPropertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyObject::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject::GGS_observablePropertyAST_2E_selfPropertyObject (const GGS_lstring & inOperand0,
+                                                                                                  const GGS_lstring & inOperand1) :
+mProperty_propertyName (inOperand0),
+mProperty_elementPropertyName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyObject::isValid (void) const {
+  return mProperty_propertyName.isValid () && mProperty_elementPropertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyObject::drop (void) {
+  mProperty_propertyName.drop () ;
+  mProperty_elementPropertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyObject::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfPropertyObject:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_elementPropertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyObject generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyObject ("observablePropertyAST.selfPropertyObject",
+                                                                                                nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyObject::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyObject ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyObject::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyObject (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject GGS_observablePropertyAST_2E_selfPropertyObject::extractObject (const GGS_object & inObject,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyObject result ;
+  const GGS_observablePropertyAST_2E_selfPropertyObject * p = (const GGS_observablePropertyAST_2E_selfPropertyObject *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyObject *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyObject", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfPropertyObject_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject_3F_::GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject_3F_::GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (const GGS_observablePropertyAST_2E_selfPropertyObject & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject_3F_ GGS_observablePropertyAST_2E_selfPropertyObject_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfPropertyObject_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyObject_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyObject_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyObject_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfPropertyObject () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyObject_3F_::description (String & ioString,
+                                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyObject? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyObject_3F_ ("observablePropertyAST.selfPropertyObject?",
+                                                                                                    nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyObject_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyObject_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyObject_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyObject_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyObject_3F_ GGS_observablePropertyAST_2E_selfPropertyObject_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyObject_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfPropertyObject_3F_ * p = (const GGS_observablePropertyAST_2E_selfPropertyObject_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyObject_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyObject?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone::GGS_observablePropertyAST_2E_selfPropertyNone (void) :
+mProperty_propertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone::GGS_observablePropertyAST_2E_selfPropertyNone (const GGS_observablePropertyAST_2E_selfPropertyNone & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone & GGS_observablePropertyAST_2E_selfPropertyNone::operator = (const GGS_observablePropertyAST_2E_selfPropertyNone & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone GGS_observablePropertyAST_2E_selfPropertyNone::init_21_ (const GGS_lstring & in_propertyName,
+                                                                                                       Compiler * inCompiler
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyNone result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyNone::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone::GGS_observablePropertyAST_2E_selfPropertyNone (const GGS_lstring & inOperand0) :
+mProperty_propertyName (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyNone::isValid (void) const {
+  return mProperty_propertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyNone::drop (void) {
+  mProperty_propertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyNone::description (String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfPropertyNone:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyNone generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyNone ("observablePropertyAST.selfPropertyNone",
+                                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyNone::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyNone ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyNone::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyNone (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone GGS_observablePropertyAST_2E_selfPropertyNone::extractObject (const GGS_object & inObject,
+                                                                                                            Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyNone result ;
+  const GGS_observablePropertyAST_2E_selfPropertyNone * p = (const GGS_observablePropertyAST_2E_selfPropertyNone *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyNone *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyNone", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfPropertyNone_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone_3F_::GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone_3F_::GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (const GGS_observablePropertyAST_2E_selfPropertyNone & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone_3F_ GGS_observablePropertyAST_2E_selfPropertyNone_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfPropertyNone_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyNone_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfPropertyNone_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyNone_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfPropertyNone () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfPropertyNone_3F_::description (String & ioString,
+                                                                     const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfPropertyNone? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyNone_3F_ ("observablePropertyAST.selfPropertyNone?",
+                                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfPropertyNone_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfPropertyNone_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfPropertyNone_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfPropertyNone_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfPropertyNone_3F_ GGS_observablePropertyAST_2E_selfPropertyNone_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfPropertyNone_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfPropertyNone_3F_ * p = (const GGS_observablePropertyAST_2E_selfPropertyNone_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfPropertyNone_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfPropertyNone?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty::GGS_observablePropertyAST_2E_prefsProperty (void) :
+mProperty_propertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty::GGS_observablePropertyAST_2E_prefsProperty (const GGS_observablePropertyAST_2E_prefsProperty & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty & GGS_observablePropertyAST_2E_prefsProperty::operator = (const GGS_observablePropertyAST_2E_prefsProperty & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty GGS_observablePropertyAST_2E_prefsProperty::init_21_ (const GGS_lstring & in_propertyName,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsProperty result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsProperty::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty::GGS_observablePropertyAST_2E_prefsProperty (const GGS_lstring & inOperand0) :
+mProperty_propertyName (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsProperty::isValid (void) const {
+  return mProperty_propertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsProperty::drop (void) {
+  mProperty_propertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsProperty::description (String & ioString,
+                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.prefsProperty:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.prefsProperty generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsProperty ("observablePropertyAST.prefsProperty",
+                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_prefsProperty::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsProperty ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_prefsProperty::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_prefsProperty (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty GGS_observablePropertyAST_2E_prefsProperty::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsProperty result ;
+  const GGS_observablePropertyAST_2E_prefsProperty * p = (const GGS_observablePropertyAST_2E_prefsProperty *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_prefsProperty *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.prefsProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_prefsProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty_3F_::GGS_observablePropertyAST_2E_prefsProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty_3F_::GGS_observablePropertyAST_2E_prefsProperty_3F_ (const GGS_observablePropertyAST_2E_prefsProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty_3F_ GGS_observablePropertyAST_2E_prefsProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_prefsProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_prefsProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsProperty_3F_::description (String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.prefsProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsProperty_3F_ ("observablePropertyAST.prefsProperty?",
+                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_prefsProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_prefsProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_prefsProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsProperty_3F_ GGS_observablePropertyAST_2E_prefsProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_prefsProperty_3F_ * p = (const GGS_observablePropertyAST_2E_prefsProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_prefsProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.prefsProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption::GGS_observablePropertyAST_2E_prefsPropertyWithOption (void) :
+mProperty_propertyName (),
+mProperty_optionName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption::GGS_observablePropertyAST_2E_prefsPropertyWithOption (const GGS_observablePropertyAST_2E_prefsPropertyWithOption & inSource) :
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_optionName (inSource.mProperty_optionName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption & GGS_observablePropertyAST_2E_prefsPropertyWithOption::operator = (const GGS_observablePropertyAST_2E_prefsPropertyWithOption & inSource) {
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_optionName = inSource.mProperty_optionName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption GGS_observablePropertyAST_2E_prefsPropertyWithOption::init_21__21_ (const GGS_lstring & in_propertyName,
+                                                                                                                         const GGS_lstring & in_optionName,
+                                                                                                                         Compiler * inCompiler
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsPropertyWithOption result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_optionName = in_optionName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsPropertyWithOption::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption::GGS_observablePropertyAST_2E_prefsPropertyWithOption (const GGS_lstring & inOperand0,
+                                                                                                            const GGS_lstring & inOperand1) :
+mProperty_propertyName (inOperand0),
+mProperty_optionName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsPropertyWithOption::isValid (void) const {
+  return mProperty_propertyName.isValid () && mProperty_optionName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsPropertyWithOption::drop (void) {
+  mProperty_propertyName.drop () ;
+  mProperty_optionName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsPropertyWithOption::description (String & ioString,
+                                                                        const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.prefsPropertyWithOption:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_optionName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.prefsPropertyWithOption generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsPropertyWithOption ("observablePropertyAST.prefsPropertyWithOption",
+                                                                                                     nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_prefsPropertyWithOption::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsPropertyWithOption ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_prefsPropertyWithOption::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_prefsPropertyWithOption (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption GGS_observablePropertyAST_2E_prefsPropertyWithOption::extractObject (const GGS_object & inObject,
+                                                                                                                          Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsPropertyWithOption result ;
+  const GGS_observablePropertyAST_2E_prefsPropertyWithOption * p = (const GGS_observablePropertyAST_2E_prefsPropertyWithOption *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_prefsPropertyWithOption *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.prefsPropertyWithOption", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_prefsPropertyWithOption_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (const GGS_observablePropertyAST_2E_prefsPropertyWithOption & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_prefsPropertyWithOption () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::description (String & ioString,
+                                                                            const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.prefsPropertyWithOption? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ ("observablePropertyAST.prefsPropertyWithOption?",
+                                                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                  Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ result ;
+  const GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ * p = (const GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.prefsPropertyWithOption?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty::GGS_observablePropertyAST_2E_selfControllerProperty (void) :
+mProperty_controllerName (),
+mProperty_propertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty::GGS_observablePropertyAST_2E_selfControllerProperty (const GGS_observablePropertyAST_2E_selfControllerProperty & inSource) :
+mProperty_controllerName (inSource.mProperty_controllerName),
+mProperty_propertyName (inSource.mProperty_propertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty & GGS_observablePropertyAST_2E_selfControllerProperty::operator = (const GGS_observablePropertyAST_2E_selfControllerProperty & inSource) {
+  mProperty_controllerName = inSource.mProperty_controllerName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty GGS_observablePropertyAST_2E_selfControllerProperty::init_21__21_ (const GGS_lstring & in_controllerName,
+                                                                                                                       const GGS_lstring & in_propertyName,
+                                                                                                                       Compiler * inCompiler
+                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerProperty result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_controllerName = in_controllerName ;
+  result.mProperty_propertyName = in_propertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerProperty::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty::GGS_observablePropertyAST_2E_selfControllerProperty (const GGS_lstring & inOperand0,
+                                                                                                          const GGS_lstring & inOperand1) :
+mProperty_controllerName (inOperand0),
+mProperty_propertyName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerProperty::isValid (void) const {
+  return mProperty_controllerName.isValid () && mProperty_propertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerProperty::drop (void) {
+  mProperty_controllerName.drop () ;
+  mProperty_propertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerProperty::description (String & ioString,
+                                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfControllerProperty:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_controllerName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerProperty generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerProperty ("observablePropertyAST.selfControllerProperty",
+                                                                                                    nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerProperty::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerProperty ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerProperty::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerProperty (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty GGS_observablePropertyAST_2E_selfControllerProperty::extractObject (const GGS_object & inObject,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerProperty result ;
+  const GGS_observablePropertyAST_2E_selfControllerProperty * p = (const GGS_observablePropertyAST_2E_selfControllerProperty *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerProperty *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfControllerProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty_3F_::GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty_3F_::GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty_3F_ GGS_observablePropertyAST_2E_selfControllerProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfControllerProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfControllerProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerProperty_3F_::description (String & ioString,
+                                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerProperty_3F_ ("observablePropertyAST.selfControllerProperty?",
+                                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerProperty_3F_ GGS_observablePropertyAST_2E_selfControllerProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfControllerProperty_3F_ * p = (const GGS_observablePropertyAST_2E_selfControllerProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty (void) :
+mProperty_controllerName (),
+mProperty_propertyName (),
+mProperty_secondaryPropertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & inSource) :
+mProperty_controllerName (inSource.mProperty_controllerName),
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_secondaryPropertyName (inSource.mProperty_secondaryPropertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::operator = (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & inSource) {
+  mProperty_controllerName = inSource.mProperty_controllerName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_secondaryPropertyName = inSource.mProperty_secondaryPropertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::init_21__21__21_ (const GGS_lstring & in_controllerName,
+                                                                                                                                             const GGS_lstring & in_propertyName,
+                                                                                                                                             const GGS_lstring & in_secondaryPropertyName,
+                                                                                                                                             Compiler * inCompiler
+                                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerSecondaryProperty result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_controllerName = in_controllerName ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_secondaryPropertyName = in_secondaryPropertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty (const GGS_lstring & inOperand0,
+                                                                                                                            const GGS_lstring & inOperand1,
+                                                                                                                            const GGS_lstring & inOperand2) :
+mProperty_controllerName (inOperand0),
+mProperty_propertyName (inOperand1),
+mProperty_secondaryPropertyName (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::isValid (void) const {
+  return mProperty_controllerName.isValid () && mProperty_propertyName.isValid () && mProperty_secondaryPropertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::drop (void) {
+  mProperty_controllerName.drop () ;
+  mProperty_propertyName.drop () ;
+  mProperty_secondaryPropertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::description (String & ioString,
+                                                                                const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfControllerSecondaryProperty:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_controllerName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_secondaryPropertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerSecondaryProperty generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerSecondaryProperty ("observablePropertyAST.selfControllerSecondaryProperty",
+                                                                                                             nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerSecondaryProperty ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerSecondaryProperty (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty GGS_observablePropertyAST_2E_selfControllerSecondaryProperty::extractObject (const GGS_object & inObject,
+                                                                                                                                          Compiler * inCompiler
+                                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerSecondaryProperty result ;
+  const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty * p = (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerSecondaryProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfControllerSecondaryProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfControllerSecondaryProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::description (String & ioString,
+                                                                                    const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerSecondaryProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ ("observablePropertyAST.selfControllerSecondaryProperty?",
+                                                                                                                 nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                                  Compiler * inCompiler
+                                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ * p = (const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerSecondaryProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties::GGS_observablePropertyAST_2E_selfControllerAllProperties (void) :
+mProperty_controllerName (),
+mProperty_propertyName (),
+mProperty_secondaryPropertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties::GGS_observablePropertyAST_2E_selfControllerAllProperties (const GGS_observablePropertyAST_2E_selfControllerAllProperties & inSource) :
+mProperty_controllerName (inSource.mProperty_controllerName),
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_secondaryPropertyName (inSource.mProperty_secondaryPropertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties & GGS_observablePropertyAST_2E_selfControllerAllProperties::operator = (const GGS_observablePropertyAST_2E_selfControllerAllProperties & inSource) {
+  mProperty_controllerName = inSource.mProperty_controllerName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_secondaryPropertyName = inSource.mProperty_secondaryPropertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties GGS_observablePropertyAST_2E_selfControllerAllProperties::init_21__21__21_ (const GGS_lstring & in_controllerName,
+                                                                                                                                     const GGS_lstring & in_propertyName,
+                                                                                                                                     const GGS_lstring & in_secondaryPropertyName,
+                                                                                                                                     Compiler * inCompiler
+                                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerAllProperties result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_controllerName = in_controllerName ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_secondaryPropertyName = in_secondaryPropertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerAllProperties::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties::GGS_observablePropertyAST_2E_selfControllerAllProperties (const GGS_lstring & inOperand0,
+                                                                                                                    const GGS_lstring & inOperand1,
+                                                                                                                    const GGS_lstring & inOperand2) :
+mProperty_controllerName (inOperand0),
+mProperty_propertyName (inOperand1),
+mProperty_secondaryPropertyName (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerAllProperties::isValid (void) const {
+  return mProperty_controllerName.isValid () && mProperty_propertyName.isValid () && mProperty_secondaryPropertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerAllProperties::drop (void) {
+  mProperty_controllerName.drop () ;
+  mProperty_propertyName.drop () ;
+  mProperty_secondaryPropertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerAllProperties::description (String & ioString,
+                                                                            const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfControllerAllProperties:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_controllerName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_secondaryPropertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerAllProperties generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerAllProperties ("observablePropertyAST.selfControllerAllProperties",
+                                                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerAllProperties::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerAllProperties ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerAllProperties::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerAllProperties (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties GGS_observablePropertyAST_2E_selfControllerAllProperties::extractObject (const GGS_object & inObject,
+                                                                                                                                  Compiler * inCompiler
+                                                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerAllProperties result ;
+  const GGS_observablePropertyAST_2E_selfControllerAllProperties * p = (const GGS_observablePropertyAST_2E_selfControllerAllProperties *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerAllProperties *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerAllProperties", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfControllerAllProperties_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (const GGS_observablePropertyAST_2E_selfControllerAllProperties & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfControllerAllProperties () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::description (String & ioString,
+                                                                                const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerAllProperties? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerAllProperties_3F_ ("observablePropertyAST.selfControllerAllProperties?",
+                                                                                                             nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerAllProperties_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                          Compiler * inCompiler
+                                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ * p = (const GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerAllProperties?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty::GGS_observablePropertyAST_2E_selfControllerOneProperty (void) :
+mProperty_controllerName (),
+mProperty_propertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty::GGS_observablePropertyAST_2E_selfControllerOneProperty (const GGS_observablePropertyAST_2E_selfControllerOneProperty & inSource) :
+mProperty_controllerName (inSource.mProperty_controllerName),
+mProperty_propertyName (inSource.mProperty_propertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty & GGS_observablePropertyAST_2E_selfControllerOneProperty::operator = (const GGS_observablePropertyAST_2E_selfControllerOneProperty & inSource) {
+  mProperty_controllerName = inSource.mProperty_controllerName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty GGS_observablePropertyAST_2E_selfControllerOneProperty::init_21__21_ (const GGS_lstring & in_controllerName,
+                                                                                                                             const GGS_lstring & in_propertyName,
+                                                                                                                             Compiler * inCompiler
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerOneProperty result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_controllerName = in_controllerName ;
+  result.mProperty_propertyName = in_propertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerOneProperty::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty::GGS_observablePropertyAST_2E_selfControllerOneProperty (const GGS_lstring & inOperand0,
+                                                                                                                const GGS_lstring & inOperand1) :
+mProperty_controllerName (inOperand0),
+mProperty_propertyName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerOneProperty::isValid (void) const {
+  return mProperty_controllerName.isValid () && mProperty_propertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerOneProperty::drop (void) {
+  mProperty_controllerName.drop () ;
+  mProperty_propertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerOneProperty::description (String & ioString,
+                                                                          const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.selfControllerOneProperty:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_controllerName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerOneProperty generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerOneProperty ("observablePropertyAST.selfControllerOneProperty",
+                                                                                                       nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerOneProperty::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerOneProperty ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerOneProperty::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerOneProperty (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty GGS_observablePropertyAST_2E_selfControllerOneProperty::extractObject (const GGS_object & inObject,
+                                                                                                                              Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerOneProperty result ;
+  const GGS_observablePropertyAST_2E_selfControllerOneProperty * p = (const GGS_observablePropertyAST_2E_selfControllerOneProperty *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerOneProperty *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerOneProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_selfControllerOneProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (const GGS_observablePropertyAST_2E_selfControllerOneProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_selfControllerOneProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::description (String & ioString,
+                                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.selfControllerOneProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerOneProperty_3F_ ("observablePropertyAST.selfControllerOneProperty?",
+                                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_selfControllerOneProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                      Compiler * inCompiler
+                                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ * p = (const GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.selfControllerOneProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty::GGS_observablePropertyAST_2E_superProperty (void) :
+mProperty_superEntityName (),
+mProperty_propertyName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty::GGS_observablePropertyAST_2E_superProperty (const GGS_observablePropertyAST_2E_superProperty & inSource) :
+mProperty_superEntityName (inSource.mProperty_superEntityName),
+mProperty_propertyName (inSource.mProperty_propertyName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty & GGS_observablePropertyAST_2E_superProperty::operator = (const GGS_observablePropertyAST_2E_superProperty & inSource) {
+  mProperty_superEntityName = inSource.mProperty_superEntityName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty GGS_observablePropertyAST_2E_superProperty::init_21__21_ (const GGS_lstring & in_superEntityName,
+                                                                                                     const GGS_lstring & in_propertyName,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superProperty result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_superEntityName = in_superEntityName ;
+  result.mProperty_propertyName = in_propertyName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superProperty::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty::GGS_observablePropertyAST_2E_superProperty (const GGS_lstring & inOperand0,
+                                                                                        const GGS_lstring & inOperand1) :
+mProperty_superEntityName (inOperand0),
+mProperty_propertyName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superProperty::isValid (void) const {
+  return mProperty_superEntityName.isValid () && mProperty_propertyName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superProperty::drop (void) {
+  mProperty_superEntityName.drop () ;
+  mProperty_propertyName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superProperty::description (String & ioString,
+                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.superProperty:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_superEntityName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.superProperty generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_superProperty ("observablePropertyAST.superProperty",
+                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_superProperty::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_superProperty ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_superProperty::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_superProperty (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty GGS_observablePropertyAST_2E_superProperty::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superProperty result ;
+  const GGS_observablePropertyAST_2E_superProperty * p = (const GGS_observablePropertyAST_2E_superProperty *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_superProperty *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.superProperty", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_superProperty_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty_3F_::GGS_observablePropertyAST_2E_superProperty_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty_3F_::GGS_observablePropertyAST_2E_superProperty_3F_ (const GGS_observablePropertyAST_2E_superProperty & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty_3F_ GGS_observablePropertyAST_2E_superProperty_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_superProperty_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superProperty_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superProperty_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superProperty_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_superProperty () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superProperty_3F_::description (String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.superProperty? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_superProperty_3F_ ("observablePropertyAST.superProperty?",
+                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_superProperty_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_superProperty_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_superProperty_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_superProperty_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superProperty_3F_ GGS_observablePropertyAST_2E_superProperty_3F_::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superProperty_3F_ result ;
+  const GGS_observablePropertyAST_2E_superProperty_3F_ * p = (const GGS_observablePropertyAST_2E_superProperty_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_superProperty_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.superProperty?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue (void) :
+mProperty_superEntityName (),
+mProperty_propertyName (),
+mProperty_defaultValue () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & inSource) :
+mProperty_superEntityName (inSource.mProperty_superEntityName),
+mProperty_propertyName (inSource.mProperty_propertyName),
+mProperty_defaultValue (inSource.mProperty_defaultValue) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::operator = (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & inSource) {
+  mProperty_superEntityName = inSource.mProperty_superEntityName ;
+  mProperty_propertyName = inSource.mProperty_propertyName ;
+  mProperty_defaultValue = inSource.mProperty_defaultValue ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::init_21__21__21_ (const GGS_lstring & in_superEntityName,
+                                                                                                                                         const GGS_lstring & in_propertyName,
+                                                                                                                                         const GGS_abstractDefaultValue & in_defaultValue,
+                                                                                                                                         Compiler * inCompiler
+                                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superPropertyWithDefaultValue result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_superEntityName = in_superEntityName ;
+  result.mProperty_propertyName = in_propertyName ;
+  result.mProperty_defaultValue = in_defaultValue ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue (const GGS_lstring & inOperand0,
+                                                                                                                        const GGS_lstring & inOperand1,
+                                                                                                                        const GGS_abstractDefaultValue & inOperand2) :
+mProperty_superEntityName (inOperand0),
+mProperty_propertyName (inOperand1),
+mProperty_defaultValue (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::isValid (void) const {
+  return mProperty_superEntityName.isValid () && mProperty_propertyName.isValid () && mProperty_defaultValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::drop (void) {
+  mProperty_superEntityName.drop () ;
+  mProperty_propertyName.drop () ;
+  mProperty_defaultValue.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::description (String & ioString,
+                                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @observablePropertyAST.superPropertyWithDefaultValue:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_superEntityName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_propertyName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_defaultValue.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.superPropertyWithDefaultValue generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_superPropertyWithDefaultValue ("observablePropertyAST.superPropertyWithDefaultValue",
+                                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_superPropertyWithDefaultValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_superPropertyWithDefaultValue (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue GGS_observablePropertyAST_2E_superPropertyWithDefaultValue::extractObject (const GGS_object & inObject,
+                                                                                                                                      Compiler * inCompiler
+                                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superPropertyWithDefaultValue result ;
+  const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue * p = (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.superPropertyWithDefaultValue", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @observablePropertyAST_2E_superPropertyWithDefaultValue_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::init_nil (void) {
+  GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_observablePropertyAST_2E_superPropertyWithDefaultValue () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::description (String & ioString,
+                                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @observablePropertyAST.superPropertyWithDefaultValue? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ ("observablePropertyAST.superPropertyWithDefaultValue?",
+                                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                                              Compiler * inCompiler
+                                                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ result ;
+  const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ * p = (const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("observablePropertyAST.superPropertyWithDefaultValue?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne::GGS_toOneOppositeRelationship_2E_oppositeIsToOne (void) :
+mProperty_oppositeRelationshipName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne::GGS_toOneOppositeRelationship_2E_oppositeIsToOne (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne & inSource) :
+mProperty_oppositeRelationshipName (inSource.mProperty_oppositeRelationshipName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne & GGS_toOneOppositeRelationship_2E_oppositeIsToOne::operator = (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne & inSource) {
+  mProperty_oppositeRelationshipName = inSource.mProperty_oppositeRelationshipName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne GGS_toOneOppositeRelationship_2E_oppositeIsToOne::init_21_ (const GGS_lstring & in_oppositeRelationshipName,
+                                                                                                             Compiler * inCompiler
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToOne result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_oppositeRelationshipName = in_oppositeRelationshipName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToOne::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne::GGS_toOneOppositeRelationship_2E_oppositeIsToOne (const GGS_lstring & inOperand0) :
+mProperty_oppositeRelationshipName (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_toOneOppositeRelationship_2E_oppositeIsToOne::objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_oppositeRelationshipName.objectCompare (inOperand.mProperty_oppositeRelationshipName) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToOne::isValid (void) const {
+  return mProperty_oppositeRelationshipName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToOne::drop (void) {
+  mProperty_oppositeRelationshipName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToOne::description (String & ioString,
+                                                                    const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @toOneOppositeRelationship.oppositeIsToOne:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_oppositeRelationshipName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @toOneOppositeRelationship.oppositeIsToOne generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToOne ("toOneOppositeRelationship.oppositeIsToOne",
+                                                                                                 nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_toOneOppositeRelationship_2E_oppositeIsToOne::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToOne ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toOneOppositeRelationship_2E_oppositeIsToOne::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toOneOppositeRelationship_2E_oppositeIsToOne (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne GGS_toOneOppositeRelationship_2E_oppositeIsToOne::extractObject (const GGS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToOne result ;
+  const GGS_toOneOppositeRelationship_2E_oppositeIsToOne * p = (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toOneOppositeRelationship_2E_oppositeIsToOne *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOneOppositeRelationship.oppositeIsToOne", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @toOneOppositeRelationship_2E_oppositeIsToOne_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::init_nil (void) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_toOneOppositeRelationship_2E_oppositeIsToOne () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mState < inOperand.mState) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mState > inOperand.mState) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else if (mState == OptionalState::valuated) {
+      result = mValue.objectCompare (inOperand.mValue) ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::description (String & ioString,
+                                                                        const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @toOneOppositeRelationship.oppositeIsToOne? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ ("toOneOppositeRelationship.oppositeIsToOne?",
+                                                                                                     nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                          Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ result ;
+  const GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ * p = (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOneOppositeRelationship.oppositeIsToOne?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany::GGS_toOneOppositeRelationship_2E_oppositeIsToMany (void) :
+mProperty_oppositeRelationshipName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany::GGS_toOneOppositeRelationship_2E_oppositeIsToMany (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany & inSource) :
+mProperty_oppositeRelationshipName (inSource.mProperty_oppositeRelationshipName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany & GGS_toOneOppositeRelationship_2E_oppositeIsToMany::operator = (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany & inSource) {
+  mProperty_oppositeRelationshipName = inSource.mProperty_oppositeRelationshipName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany GGS_toOneOppositeRelationship_2E_oppositeIsToMany::init_21_ (const GGS_lstring & in_oppositeRelationshipName,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToMany result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_oppositeRelationshipName = in_oppositeRelationshipName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToMany::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany::GGS_toOneOppositeRelationship_2E_oppositeIsToMany (const GGS_lstring & inOperand0) :
+mProperty_oppositeRelationshipName (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_toOneOppositeRelationship_2E_oppositeIsToMany::objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany & inOperand) const {
+   ComparisonResult result = ComparisonResult::operandEqual ;
+  if (result == ComparisonResult::operandEqual) {
+    result = mProperty_oppositeRelationshipName.objectCompare (inOperand.mProperty_oppositeRelationshipName) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToMany::isValid (void) const {
+  return mProperty_oppositeRelationshipName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToMany::drop (void) {
+  mProperty_oppositeRelationshipName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToMany::description (String & ioString,
+                                                                     const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @toOneOppositeRelationship.oppositeIsToMany:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_oppositeRelationshipName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @toOneOppositeRelationship.oppositeIsToMany generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToMany ("toOneOppositeRelationship.oppositeIsToMany",
+                                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_toOneOppositeRelationship_2E_oppositeIsToMany::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToMany ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toOneOppositeRelationship_2E_oppositeIsToMany::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toOneOppositeRelationship_2E_oppositeIsToMany (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany GGS_toOneOppositeRelationship_2E_oppositeIsToMany::extractObject (const GGS_object & inObject,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToMany result ;
+  const GGS_toOneOppositeRelationship_2E_oppositeIsToMany * p = (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toOneOppositeRelationship_2E_oppositeIsToMany *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOneOppositeRelationship.oppositeIsToMany", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @toOneOppositeRelationship_2E_oppositeIsToMany_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::init_nil (void) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_toOneOppositeRelationship_2E_oppositeIsToMany () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mState < inOperand.mState) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mState > inOperand.mState) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else if (mState == OptionalState::valuated) {
+      result = mValue.objectCompare (inOperand.mValue) ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::description (String & ioString,
+                                                                         const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @toOneOppositeRelationship.oppositeIsToMany? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ ("toOneOppositeRelationship.oppositeIsToMany?",
+                                                                                                      nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_::extractObject (const GGS_object & inObject,
+                                                                                                                            Compiler * inCompiler
+                                                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ result ;
+  const GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ * p = (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOneOppositeRelationship.oppositeIsToMany?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element::GGS_astViewDeclarationList_2E_element (void) :
+mProperty_mViewName (),
+mProperty_mView () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element::GGS_astViewDeclarationList_2E_element (const GGS_astViewDeclarationList_2E_element & inSource) :
+mProperty_mViewName (inSource.mProperty_mViewName),
+mProperty_mView (inSource.mProperty_mView) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element & GGS_astViewDeclarationList_2E_element::operator = (const GGS_astViewDeclarationList_2E_element & inSource) {
+  mProperty_mViewName = inSource.mProperty_mViewName ;
+  mProperty_mView = inSource.mProperty_mView ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element GGS_astViewDeclarationList_2E_element::init_21__21_ (const GGS_lstring & in_mViewName,
+                                                                                           const GGS_astAbstractViewDeclaration & in_mView,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_astViewDeclarationList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mViewName = in_mViewName ;
+  result.mProperty_mView = in_mView ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astViewDeclarationList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element::GGS_astViewDeclarationList_2E_element (const GGS_lstring & inOperand0,
+                                                                              const GGS_astAbstractViewDeclaration & inOperand1) :
+mProperty_mViewName (inOperand0),
+mProperty_mView (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_astViewDeclarationList_2E_element::isValid (void) const {
+  return mProperty_mViewName.isValid () && mProperty_mView.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astViewDeclarationList_2E_element::drop (void) {
+  mProperty_mViewName.drop () ;
+  mProperty_mView.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astViewDeclarationList_2E_element::description (String & ioString,
+                                                         const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @astViewDeclarationList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mViewName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mView.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @astViewDeclarationList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astViewDeclarationList_2E_element ("astViewDeclarationList.element",
+                                                                                      nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astViewDeclarationList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astViewDeclarationList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astViewDeclarationList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astViewDeclarationList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewDeclarationList_2E_element GGS_astViewDeclarationList_2E_element::extractObject (const GGS_object & inObject,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_astViewDeclarationList_2E_element result ;
+  const GGS_astViewDeclarationList_2E_element * p = (const GGS_astViewDeclarationList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astViewDeclarationList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astViewDeclarationList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element::GGS_astNewStackViewDeclarationList_2E_element (void) :
+mProperty_mInstanciedStackViewName (),
+mProperty_mTypeStackViewName () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element::GGS_astNewStackViewDeclarationList_2E_element (const GGS_astNewStackViewDeclarationList_2E_element & inSource) :
+mProperty_mInstanciedStackViewName (inSource.mProperty_mInstanciedStackViewName),
+mProperty_mTypeStackViewName (inSource.mProperty_mTypeStackViewName) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element & GGS_astNewStackViewDeclarationList_2E_element::operator = (const GGS_astNewStackViewDeclarationList_2E_element & inSource) {
+  mProperty_mInstanciedStackViewName = inSource.mProperty_mInstanciedStackViewName ;
+  mProperty_mTypeStackViewName = inSource.mProperty_mTypeStackViewName ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element GGS_astNewStackViewDeclarationList_2E_element::init_21__21_ (const GGS_lstring & in_mInstanciedStackViewName,
+                                                                                                           const GGS_lstring & in_mTypeStackViewName,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_astNewStackViewDeclarationList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mInstanciedStackViewName = in_mInstanciedStackViewName ;
+  result.mProperty_mTypeStackViewName = in_mTypeStackViewName ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astNewStackViewDeclarationList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element::GGS_astNewStackViewDeclarationList_2E_element (const GGS_lstring & inOperand0,
+                                                                                              const GGS_lstring & inOperand1) :
+mProperty_mInstanciedStackViewName (inOperand0),
+mProperty_mTypeStackViewName (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_astNewStackViewDeclarationList_2E_element::isValid (void) const {
+  return mProperty_mInstanciedStackViewName.isValid () && mProperty_mTypeStackViewName.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astNewStackViewDeclarationList_2E_element::drop (void) {
+  mProperty_mInstanciedStackViewName.drop () ;
+  mProperty_mTypeStackViewName.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_astNewStackViewDeclarationList_2E_element::description (String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @astNewStackViewDeclarationList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mInstanciedStackViewName.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mTypeStackViewName.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @astNewStackViewDeclarationList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astNewStackViewDeclarationList_2E_element ("astNewStackViewDeclarationList.element",
+                                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astNewStackViewDeclarationList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astNewStackViewDeclarationList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astNewStackViewDeclarationList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astNewStackViewDeclarationList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList_2E_element GGS_astNewStackViewDeclarationList_2E_element::extractObject (const GGS_object & inObject,
+                                                                                                            Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_astNewStackViewDeclarationList_2E_element result ;
+  const GGS_astNewStackViewDeclarationList_2E_element * p = (const GGS_astNewStackViewDeclarationList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astNewStackViewDeclarationList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astNewStackViewDeclarationList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

@@ -145,14 +145,6 @@ void GGS__32_lstringlist::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS__32_lstringlist GGS__32_lstringlist::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS__32_lstringlist result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS__32_lstringlist GGS__32_lstringlist::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS__32_lstringlist result ;
   result.mArray.setCapacity (16) ; // Build
@@ -763,14 +755,6 @@ void GGS_regularBindingList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_regularBindingList GGS_regularBindingList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_regularBindingList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1445,14 +1429,6 @@ void GGS_observablePropertyList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_observablePropertyList GGS_observablePropertyList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_observablePropertyList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_observablePropertyList GGS_observablePropertyList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_observablePropertyList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -1986,14 +1962,6 @@ void GGS_bindingOptionList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bindingOptionList GGS_bindingOptionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_bindingOptionList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2643,14 +2611,6 @@ void GGS_outletDeclarationList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_outletDeclarationList GGS_outletDeclarationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_outletDeclarationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3689,14 +3649,6 @@ void GGS_simpleStoredPropertyList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_simpleStoredPropertyList GGS_simpleStoredPropertyList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_simpleStoredPropertyList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_simpleStoredPropertyList GGS_simpleStoredPropertyList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_simpleStoredPropertyList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -4374,14 +4326,6 @@ void GGS_externSwiftFunctionList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftFunctionList GGS_externSwiftFunctionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_externSwiftFunctionList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_externSwiftFunctionList GGS_externSwiftFunctionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_externSwiftFunctionList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -4982,14 +4926,6 @@ void GGS_mainXibDescriptorList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_mainXibDescriptorList GGS_mainXibDescriptorList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_mainXibDescriptorList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_mainXibDescriptorList GGS_mainXibDescriptorList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_mainXibDescriptorList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -5523,14 +5459,6 @@ void GGS_astViewDeclarationList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_astViewDeclarationList GGS_astViewDeclarationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_astViewDeclarationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6355,14 +6283,6 @@ void GGS_propertyGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_propertyGenerationList GGS_propertyGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_propertyGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_propertyGenerationList GGS_propertyGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_propertyGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -6910,14 +6830,6 @@ void GGS_regularBindingsGenerationList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_regularBindingsGenerationList GGS_regularBindingsGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_regularBindingsGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7676,14 +7588,6 @@ void GGS_multipleBindingGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_multipleBindingGenerationList GGS_multipleBindingGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_multipleBindingGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_multipleBindingGenerationList GGS_multipleBindingGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_multipleBindingGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -8375,14 +8279,6 @@ void GGS_actionBindingListForGeneration::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_actionBindingListForGeneration GGS_actionBindingListForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_actionBindingListForGeneration result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_actionBindingListForGeneration GGS_actionBindingListForGeneration::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_actionBindingListForGeneration result ;
   result.mArray.setCapacity (16) ; // Build
@@ -9032,14 +8928,6 @@ GGS_decoratedOutletMap GGS_decoratedOutletMap::init (Compiler * COMMA_LOCATION_A
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_decoratedOutletMap GGS_decoratedOutletMap::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_decoratedOutletMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_decoratedOutletMap::getter_hasKey (const GGS_string & inKey
                                                 COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bool result ;
@@ -9621,14 +9509,6 @@ void GGS_tableViewBindingGenerationList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_tableViewBindingGenerationList GGS_tableViewBindingGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_tableViewBindingGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10240,14 +10120,6 @@ void GGS_ebViewGraphicControllerBindingGenerationList::description (String & ioS
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ebViewGraphicControllerBindingGenerationList GGS_ebViewGraphicControllerBindingGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_ebViewGraphicControllerBindingGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ebViewGraphicControllerBindingGenerationList GGS_ebViewGraphicControllerBindingGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_ebViewGraphicControllerBindingGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -10855,14 +10727,6 @@ void GGS_viewGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_viewGenerationList GGS_viewGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_viewGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_viewGenerationList GGS_viewGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_viewGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -11463,14 +11327,6 @@ void GGS_implicitViewFunctionGenerationList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_implicitViewFunctionGenerationList GGS_implicitViewFunctionGenerationList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_implicitViewFunctionGenerationList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_implicitViewFunctionGenerationList GGS_implicitViewFunctionGenerationList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_implicitViewFunctionGenerationList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -11903,14 +11759,6 @@ GGS_autoLayoutConfiguratorMap & GGS_autoLayoutConfiguratorMap::operator = (const
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutConfiguratorMap GGS_autoLayoutConfiguratorMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutConfiguratorMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutConfiguratorMap GGS_autoLayoutConfiguratorMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_autoLayoutConfiguratorMap result ;
   result.build (THERE) ;
   return result ;
@@ -12398,14 +12246,6 @@ GGS_autoLayoutOutletMap & GGS_autoLayoutOutletMap::operator = (const GGS_autoLay
 //--------------------------------------------------------------------------------------------------
 
 GGS_autoLayoutOutletMap GGS_autoLayoutOutletMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_autoLayoutOutletMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_autoLayoutOutletMap GGS_autoLayoutOutletMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_autoLayoutOutletMap result ;
   result.build (THERE) ;
   return result ;
@@ -13174,14 +13014,6 @@ void GGS_externSwiftDelegateList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_externSwiftDelegateList GGS_externSwiftDelegateList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_externSwiftDelegateList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_externSwiftDelegateList GGS_externSwiftDelegateList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_externSwiftDelegateList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -13841,14 +13673,6 @@ void GGS_entityListForGeneratingEBManagedObjectContext::description (String & io
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_entityListForGeneratingEBManagedObjectContext GGS_entityListForGeneratingEBManagedObjectContext::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_entityListForGeneratingEBManagedObjectContext result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_entityListForGeneratingEBManagedObjectContext GGS_entityListForGeneratingEBManagedObjectContext::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_entityListForGeneratingEBManagedObjectContext result ;
   result.mArray.setCapacity (16) ; // Build
@@ -14405,27 +14229,6 @@ GGS_entityForGeneration::GGS_entityForGeneration (const cPtr_entityForGeneration
 GGS_abstractFileGeneration (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_entityForGeneration) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_entityForGeneration GGS_entityForGeneration::class_func_new (const GGS_string & in_mEntityName,
-                                                                 const GGS_string & in_mSuperEntityName,
-                                                                 const GGS_bool & in_mHandlingOpposite,
-                                                                 const GGS_propertyGenerationList & in_mPropertyGenerationList,
-                                                                 const GGS_stringset & in_mSignatureSet,
-                                                                 const GGS_bool & in_mIsGraphicEntity,
-                                                                 const GGS_bool & in_mIsAbstract,
-                                                                 const GGS_stringset & in_mOverridenTransients,
-                                                                 const GGS_externSwiftDelegateList & in_mExternSwiftDelegateList,
-                                                                 const GGS_bool & in_mHasSubEntity,
-                                                                 const GGS_bool & in_mCanCopyAndPaste_5F_option,
-                                                                 const GGS_bool & in_mCannotBeDeleted_5F_option,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
-  GGS_entityForGeneration result ;
-  macroMyNew (result.mObjectPtr, cPtr_entityForGeneration (in_mEntityName, in_mSuperEntityName, in_mHandlingOpposite, in_mPropertyGenerationList, in_mSignatureSet, in_mIsGraphicEntity, in_mIsAbstract, in_mOverridenTransients, in_mExternSwiftDelegateList, in_mHasSubEntity, in_mCanCopyAndPaste_5F_option, in_mCannotBeDeleted_5F_option,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_string GGS_entityForGeneration::readProperty_mEntityName (void) const {
@@ -15413,14 +15216,6 @@ void GGS_selectionControllerForGeneration::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_selectionControllerForGeneration GGS_selectionControllerForGeneration::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_selectionControllerForGeneration result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_selectionControllerForGeneration GGS_selectionControllerForGeneration::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_selectionControllerForGeneration result ;
   result.mArray.setCapacity (16) ; // Build
@@ -16343,14 +16138,6 @@ GGS_propertyMap & GGS_propertyMap::operator = (const GGS_propertyMap & inSource)
 //--------------------------------------------------------------------------------------------------
 
 GGS_propertyMap GGS_propertyMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_propertyMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_propertyMap GGS_propertyMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_propertyMap result ;
   result.build (THERE) ;
   return result ;

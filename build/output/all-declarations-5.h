@@ -9,251 +9,6 @@
 #include "all-declarations-4.h"
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @autolayoutEnabledBindingForGeneration_2E_enabled struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autolayoutEnabledBindingForGeneration_2E_enabled : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_abstractBooleanMultipleBindingExpressionForGeneration mProperty_binding ;
-  public: inline GGS_abstractBooleanMultipleBindingExpressionForGeneration readProperty_binding (void) const {
-    return mProperty_binding ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setBinding (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_binding = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (const GGS_abstractBooleanMultipleBindingExpressionForGeneration & in_binding) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled & operator = (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled init_21_ (const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autolayoutEnabledBindingForGeneration_2E_enabled class_func_new (const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & inOperand0,
-                                                                                            class Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration_2E_enabled ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: autolayoutEnabledBindingForGeneration.enabled? optional
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ : public AC_GALGAS_root {
-//--------------------------------- Private property
-  private: GGS_autolayoutEnabledBindingForGeneration_2E_enabled mValue ;
-  private: OptionalState mState ;
-
-//--------------------------------- Default constructor
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (void) ;
-
-//--------------------------------- Constructor from unwrapped type
-  public: GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ (const GGS_autolayoutEnabledBindingForGeneration_2E_enabled & inSource) ;
-
-//--------------------------------- Constructor from weak type
-
-//--------------------------------- nil initializer
-  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ init_nil (void) ;
-
-  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
-
-  public: bool isValuated (void) const ;
-  public: inline GGS_autolayoutEnabledBindingForGeneration_2E_enabled unwrappedValue (void) const {
-    return mValue ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
-  }
-
-  
-//--- Methods that every type should implement
-  public: virtual bool isValid (void) const override ;
-  
-  public: virtual void drop (void) override ;
-
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autolayoutEnabledBindingForGeneration_2E_enabled_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutViewInstructionGenerationParameterList_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutViewInstructionGenerationParameterList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_string mProperty_mParameterName ;
-  public: inline GGS_string readProperty_mParameterName (void) const {
-    return mProperty_mParameterName ;
-  }
-
-  public: GGS_string mProperty_mParameterValue ;
-  public: inline GGS_string readProperty_mParameterValue (void) const {
-    return mProperty_mParameterValue ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutViewInstructionGenerationParameterList_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMParameterName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mParameterName = inValue ;
-  }
-
-  public: inline void setter_setMParameterValue (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mParameterValue = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_autoLayoutViewInstructionGenerationParameterList_2E_element (const GGS_string & in_mParameterName,
-                                                                           const GGS_string & in_mParameterValue) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_autoLayoutViewInstructionGenerationParameterList_2E_element (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & operator = (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_autoLayoutViewInstructionGenerationParameterList_2E_element init_21__21_ (const class GGS_string & inOperand0,
-                                                                                               const class GGS_string & inOperand1,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autoLayoutViewInstructionGenerationParameterList_2E_element extractObject (const GGS_object & inObject,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutViewInstructionGenerationParameterList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                                       const class GGS_string & inOperand1,
-                                                                                                       class Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutViewInstructionGenerationParameterList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
 // Phase 1: @autoLayoutComputedViewInstructionGeneration reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -311,21 +66,6 @@ class GGS_autoLayoutComputedViewInstructionGeneration : public GGS_abstractViewI
   public: static GGS_autoLayoutComputedViewInstructionGeneration extractObject (const GGS_object & inObject,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutComputedViewInstructionGeneration class_func_new (const class GGS_lstring & inOperand0,
-                                                                                       const class GGS_autoLayoutViewInstructionGenerationParameterList & inOperand1,
-                                                                                       const class GGS_autoLayoutViewInstructionGenerationFuncCallList & inOperand2,
-                                                                                       const class GGS_autoLayoutRegularBindingsGenerationList & inOperand3,
-                                                                                       const class GGS_autoLayoutMultipleBindingGenerationList & inOperand4,
-                                                                                       const class GGS_autolayoutRunBindingForGeneration & inOperand5,
-                                                                                       const class GGS_string & inOperand6,
-                                                                                       const class GGS_autoLayoutViewGraphicControllerBindingGeneration & inOperand7,
-                                                                                       const class GGS_string & inOperand8,
-                                                                                       const class GGS_string & inOperand9,
-                                                                                       const class GGS_bool & inOperand10,
-                                                                                       class Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_autoLayoutComputedViewInstructionGeneration & inOperand) const ;
@@ -567,13 +307,6 @@ class GGS_enumerationDeclarationAST : public GGS_abstractDeclarationAST {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_enumerationDeclarationAST class_func_new (const class GGS_lstring & inOperand0,
-                                                                     const class GGS_lstringlist & inOperand1,
-                                                                     const class GGS_bool & inOperand2,
-                                                                     class Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumerationDeclarationAST & inOperand) const ;
 
@@ -793,12 +526,6 @@ class GGS_enumConstantMap_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_enumConstantMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                      const class GGS_uint & inOperand1,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -964,12 +691,6 @@ class GGS_enumFunAssociationSortedList_2E_element : public AC_GALGAS_root {
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_enumFunAssociationSortedList_2E_element class_func_new (const class GGS_uint & inOperand0,
-                                                                                   const class GGS_string & inOperand1,
-                                                                                   class Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -1055,12 +776,6 @@ class GGS_enumFuncMap_2E_element : public AC_GALGAS_root {
   public: static GGS_enumFuncMap_2E_element extractObject (const GGS_object & inObject,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_enumFuncMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                  const class GGS_enumFunAssociationSortedList & inOperand1,
-                                                                  class Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1203,14 +918,6 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
   public: static GGS_enumForGeneration extractObject (const GGS_object & inObject,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_enumForGeneration class_func_new (const class GGS_string & inOperand0,
-                                                             const class GGS_lstringlist & inOperand1,
-                                                             const class GGS_enumFuncMap & inOperand2,
-                                                             const class GGS_bool & inOperand3,
-                                                             class Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumForGeneration & inOperand) const ;
@@ -1582,4 +1289,669 @@ class Lexique_easyBindings_5F_lexique : public Lexique {
   protected: virtual String styleNameForIndex (const uint32_t inStyleIndex) const override ;
   protected: virtual uint32_t styleIndexForTerminal (const int32_t inTerminalIndex) const override ;
 } ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @prefDeclaration struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_prefDeclaration : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_outletDeclarationList mProperty_mOutletDeclarationList ;
+  public: inline GGS_outletDeclarationList readProperty_mOutletDeclarationList (void) const {
+    return mProperty_mOutletDeclarationList ;
+  }
+
+  public: GGS_simpleStoredPropertyList mProperty_mSimpleStoredAttributeList ;
+  public: inline GGS_simpleStoredPropertyList readProperty_mSimpleStoredAttributeList (void) const {
+    return mProperty_mSimpleStoredAttributeList ;
+  }
+
+  public: GGS_lstringlist mProperty_mActionDeclarationList ;
+  public: inline GGS_lstringlist readProperty_mActionDeclarationList (void) const {
+    return mProperty_mActionDeclarationList ;
+  }
+
+  public: GGS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public: inline GGS_externSwiftFunctionList readProperty_mExternSwiftFunctionList (void) const {
+    return mProperty_mExternSwiftFunctionList ;
+  }
+
+  public: GGS_stringset mProperty_mSignatureList ;
+  public: inline GGS_stringset readProperty_mSignatureList (void) const {
+    return mProperty_mSignatureList ;
+  }
+
+  public: GGS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+  public: inline GGS_mainXibDescriptorList readProperty_mMainXibDescriptorList (void) const {
+    return mProperty_mMainXibDescriptorList ;
+  }
+
+  public: GGS_astViewDeclarationList mProperty_mViewDeclarationList ;
+  public: inline GGS_astViewDeclarationList readProperty_mViewDeclarationList (void) const {
+    return mProperty_mViewDeclarationList ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_prefDeclaration (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMOutletDeclarationList (const GGS_outletDeclarationList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mOutletDeclarationList = inValue ;
+  }
+
+  public: inline void setter_setMSimpleStoredAttributeList (const GGS_simpleStoredPropertyList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSimpleStoredAttributeList = inValue ;
+  }
+
+  public: inline void setter_setMActionDeclarationList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mActionDeclarationList = inValue ;
+  }
+
+  public: inline void setter_setMExternSwiftFunctionList (const GGS_externSwiftFunctionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mExternSwiftFunctionList = inValue ;
+  }
+
+  public: inline void setter_setMSignatureList (const GGS_stringset & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSignatureList = inValue ;
+  }
+
+  public: inline void setter_setMMainXibDescriptorList (const GGS_mainXibDescriptorList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMainXibDescriptorList = inValue ;
+  }
+
+  public: inline void setter_setMViewDeclarationList (const GGS_astViewDeclarationList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mViewDeclarationList = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_prefDeclaration (const GGS_outletDeclarationList & in_mOutletDeclarationList,
+                               const GGS_simpleStoredPropertyList & in_mSimpleStoredAttributeList,
+                               const GGS_lstringlist & in_mActionDeclarationList,
+                               const GGS_externSwiftFunctionList & in_mExternSwiftFunctionList,
+                               const GGS_stringset & in_mSignatureList,
+                               const GGS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                               const GGS_astViewDeclarationList & in_mViewDeclarationList) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_prefDeclaration (const GGS_prefDeclaration & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_prefDeclaration & operator = (const GGS_prefDeclaration & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_prefDeclaration init (Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_prefDeclaration extractObject (const GGS_object & inObject,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefDeclaration ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @prefsDeclarationAST reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_prefsDeclarationAST : public GGS_abstractDeclarationAST {
+//--------------------------------- Default constructor
+  public: GGS_prefsDeclarationAST (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_prefsDeclarationAST (const class cPtr_prefsDeclarationAST * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_prefDeclaration readProperty_mDeclaration (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_prefsDeclarationAST init_21__21_ (const class GGS_lstring & inOperand0,
+                                                       const class GGS_prefDeclaration & inOperand1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_prefsDeclarationAST extractObject (const GGS_object & inObject,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_prefsDeclarationAST & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefsDeclarationAST ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @prefsDeclarationAST class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void prefsDeclarationAST_init_21__21_ (const class GGS_lstring & inOperand0,
+                                                 const class GGS_prefDeclaration & inOperand1,
+                                                 Compiler * inCompiler) ;
+
+
+//--- Extension getter nodeKey
+  public: virtual class GGS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method enterInPrecedenceGraph
+  public: virtual void method_enterInPrecedenceGraph (class GGS_declarationPrecedenceGraph & arg_ioGraph,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method firstAnalysisPhase
+  public: virtual void method_firstAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
+           class GGS_generationStruct & arg_ioGeneration,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method fourthAnalysisPhase
+  public: virtual void method_fourthAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
+           class GGS_generationStruct & arg_ioGeneration,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_prefDeclaration mProperty_mDeclaration ;
+
+
+//--- Default constructor
+  public: cPtr_prefsDeclarationAST (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_prefsDeclarationAST (const GGS_lstring & in_mClassName,
+                                    const GGS_prefDeclaration & in_mDeclaration,
+                                    Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @prefsDeclarationAST_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_prefsDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_prefsDeclarationAST_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_prefsDeclarationAST_2E_weak (const class GGS_prefsDeclarationAST & inSource) ;
+
+  public: GGS_prefsDeclarationAST_2E_weak & operator = (const class GGS_prefsDeclarationAST & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_prefsDeclarationAST_2E_weak init_nil (void) {
+    GGS_prefsDeclarationAST_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_prefsDeclarationAST bang_prefsDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_prefsDeclarationAST unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_prefsDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_prefsDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_prefsDeclarationAST_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefsDeclarationAST_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @preferencesForGeneration reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_preferencesForGeneration : public GGS_abstractFileGeneration {
+//--------------------------------- Default constructor
+  public: GGS_preferencesForGeneration (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_preferencesForGeneration (const class cPtr_preferencesForGeneration * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_propertyGenerationList readProperty_mPropertyListForGeneration (void) const ;
+
+  public: class GGS_mainXibDescriptorList readProperty_mMainXibDescriptorList (void) const ;
+
+  public: class GGS_regularBindingsGenerationList readProperty_mRegularBindingsGenerationList (void) const ;
+
+  public: class GGS_multipleBindingGenerationList readProperty_mMultipleBindingGenerationList (void) const ;
+
+  public: class GGS_actionBindingListForGeneration readProperty_mActionBindingListForGeneration (void) const ;
+
+  public: class GGS_decoratedOutletMap readProperty_mOutletMap (void) const ;
+
+  public: class GGS_externSwiftFunctionList readProperty_mExternSwiftFunctionList (void) const ;
+
+  public: class GGS_tableViewBindingGenerationList readProperty_mTableViewBindingGenerationList (void) const ;
+
+  public: class GGS_ebViewGraphicControllerBindingGenerationList readProperty_mEBViewBindingGenerationList (void) const ;
+
+  public: class GGS_viewGenerationList readProperty_mViewGenerationList (void) const ;
+
+  public: class GGS_implicitViewFunctionGenerationList readProperty_mImplicitViewFunctionGenerationList (void) const ;
+
+  public: class GGS_autoLayoutConfiguratorMap readProperty_mConfiguratorMap (void) const ;
+
+  public: class GGS_autoLayoutOutletMap readProperty_mAutoLayoutOutletMap (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_preferencesForGeneration init_21__21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_propertyGenerationList & inOperand0,
+                                                                                                        const class GGS_mainXibDescriptorList & inOperand1,
+                                                                                                        const class GGS_regularBindingsGenerationList & inOperand2,
+                                                                                                        const class GGS_multipleBindingGenerationList & inOperand3,
+                                                                                                        const class GGS_actionBindingListForGeneration & inOperand4,
+                                                                                                        const class GGS_decoratedOutletMap & inOperand5,
+                                                                                                        const class GGS_externSwiftFunctionList & inOperand6,
+                                                                                                        const class GGS_tableViewBindingGenerationList & inOperand7,
+                                                                                                        const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand8,
+                                                                                                        const class GGS_viewGenerationList & inOperand9,
+                                                                                                        const class GGS_implicitViewFunctionGenerationList & inOperand10,
+                                                                                                        const class GGS_autoLayoutConfiguratorMap & inOperand11,
+                                                                                                        const class GGS_autoLayoutOutletMap & inOperand12,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_preferencesForGeneration extractObject (const GGS_object & inObject,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_preferencesForGeneration & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_preferencesForGeneration ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @preferencesForGeneration class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void preferencesForGeneration_init_21__21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_propertyGenerationList & inOperand0,
+                                                                                                  const class GGS_mainXibDescriptorList & inOperand1,
+                                                                                                  const class GGS_regularBindingsGenerationList & inOperand2,
+                                                                                                  const class GGS_multipleBindingGenerationList & inOperand3,
+                                                                                                  const class GGS_actionBindingListForGeneration & inOperand4,
+                                                                                                  const class GGS_decoratedOutletMap & inOperand5,
+                                                                                                  const class GGS_externSwiftFunctionList & inOperand6,
+                                                                                                  const class GGS_tableViewBindingGenerationList & inOperand7,
+                                                                                                  const class GGS_ebViewGraphicControllerBindingGenerationList & inOperand8,
+                                                                                                  const class GGS_viewGenerationList & inOperand9,
+                                                                                                  const class GGS_implicitViewFunctionGenerationList & inOperand10,
+                                                                                                  const class GGS_autoLayoutConfiguratorMap & inOperand11,
+                                                                                                  const class GGS_autoLayoutOutletMap & inOperand12,
+                                                                                                  Compiler * inCompiler) ;
+
+
+//--- Extension method generateCodePhase1
+  public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           class GGS_stringset & arg_ioUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateCodePhase2
+  public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
+           const class GGS_generationStruct arg_inGenerationStruct,
+           const class GGS_stringset arg_inUsedProtocolSet,
+           class GGS_stringset & arg_ioGeneratedFileSet,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_propertyGenerationList mProperty_mPropertyListForGeneration ;
+  public: GGS_mainXibDescriptorList mProperty_mMainXibDescriptorList ;
+  public: GGS_regularBindingsGenerationList mProperty_mRegularBindingsGenerationList ;
+  public: GGS_multipleBindingGenerationList mProperty_mMultipleBindingGenerationList ;
+  public: GGS_actionBindingListForGeneration mProperty_mActionBindingListForGeneration ;
+  public: GGS_decoratedOutletMap mProperty_mOutletMap ;
+  public: GGS_externSwiftFunctionList mProperty_mExternSwiftFunctionList ;
+  public: GGS_tableViewBindingGenerationList mProperty_mTableViewBindingGenerationList ;
+  public: GGS_ebViewGraphicControllerBindingGenerationList mProperty_mEBViewBindingGenerationList ;
+  public: GGS_viewGenerationList mProperty_mViewGenerationList ;
+  public: GGS_implicitViewFunctionGenerationList mProperty_mImplicitViewFunctionGenerationList ;
+  public: GGS_autoLayoutConfiguratorMap mProperty_mConfiguratorMap ;
+  public: GGS_autoLayoutOutletMap mProperty_mAutoLayoutOutletMap ;
+
+
+//--- Default constructor
+  public: cPtr_preferencesForGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_preferencesForGeneration (const GGS_propertyGenerationList & in_mPropertyListForGeneration,
+                                         const GGS_mainXibDescriptorList & in_mMainXibDescriptorList,
+                                         const GGS_regularBindingsGenerationList & in_mRegularBindingsGenerationList,
+                                         const GGS_multipleBindingGenerationList & in_mMultipleBindingGenerationList,
+                                         const GGS_actionBindingListForGeneration & in_mActionBindingListForGeneration,
+                                         const GGS_decoratedOutletMap & in_mOutletMap,
+                                         const GGS_externSwiftFunctionList & in_mExternSwiftFunctionList,
+                                         const GGS_tableViewBindingGenerationList & in_mTableViewBindingGenerationList,
+                                         const GGS_ebViewGraphicControllerBindingGenerationList & in_mEBViewBindingGenerationList,
+                                         const GGS_viewGenerationList & in_mViewGenerationList,
+                                         const GGS_implicitViewFunctionGenerationList & in_mImplicitViewFunctionGenerationList,
+                                         const GGS_autoLayoutConfiguratorMap & in_mConfiguratorMap,
+                                         const GGS_autoLayoutOutletMap & in_mAutoLayoutOutletMap,
+                                         Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @preferencesForGeneration_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_preferencesForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_preferencesForGeneration_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_preferencesForGeneration_2E_weak (const class GGS_preferencesForGeneration & inSource) ;
+
+  public: GGS_preferencesForGeneration_2E_weak & operator = (const class GGS_preferencesForGeneration & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_preferencesForGeneration_2E_weak init_nil (void) {
+    GGS_preferencesForGeneration_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_preferencesForGeneration bang_preferencesForGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_preferencesForGeneration unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_preferencesForGeneration_2E_weak extractObject (const GGS_object & inObject,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_preferencesForGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_preferencesForGeneration_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_preferencesForGeneration_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @entityStrongReferenceGraph graph
+//--------------------------------------------------------------------------------------------------
+
+class GGS_entityStrongReferenceGraph : public AC_GALGAS_graph {
+//--------------------------------- Default constructor
+  public: GGS_entityStrongReferenceGraph (void) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_entityStrongReferenceGraph init (Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_entityStrongReferenceGraph extractObject (const GGS_object & inObject,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_addNode (class GGS_lstring inArgument0,
+                                                class GGS_string inArgument1,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_circularities (class GGS_stringlist & outArgument0,
+                                                      class GGS_lstringlist & outArgument1
+                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_depthFirstTopologicalSort (class GGS_stringlist & outArgument0,
+                                                                  class GGS_lstringlist & outArgument1,
+                                                                  class GGS_stringlist & outArgument2,
+                                                                  class GGS_lstringlist & outArgument3,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_nodesWithNoPredecessor (class GGS_stringlist & outArgument0,
+                                                               class GGS_lstringlist & outArgument1
+                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_nodesWithNoSuccessor (class GGS_stringlist & outArgument0,
+                                                             class GGS_lstringlist & outArgument1
+                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_topologicalSort (class GGS_stringlist & outArgument0,
+                                                        class GGS_lstringlist & outArgument1,
+                                                        class GGS_stringlist & outArgument2,
+                                                        class GGS_lstringlist & outArgument3,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_accessibleNodesFrom (const class GGS_lstringlist & constinOperand0,
+                                                                             const class GGS_stringset & constinOperand1,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringlist getter_nodeList (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_entityStrongReferenceGraph getter_reversedGraph (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_entityStrongReferenceGraph getter_subgraphFromNodes (const class GGS_lstringlist & constinOperand0,
+                                                                                          const class GGS_stringset & constinOperand1,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_entityStrongReferenceGraph ;
 
