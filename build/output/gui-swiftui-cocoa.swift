@@ -89,7 +89,7 @@ let gPopUpData_easyBindings_lexique : [[UInt16]] = [
 //   Block Comment for 'easyBindings_lexique' lexique
 //--------------------------------------------------------------------------------------------------
 
-let gBlockComment_easyBindings_lexique : String? = "//"
+let gLineComment_easyBindings_lexique : String? = "//"
 
 
 //--------------------------------------------------------------------------------------------------

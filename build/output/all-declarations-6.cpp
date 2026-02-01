@@ -5427,61 +5427,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_0 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_include COMMA_SOURCE_FILE ("grammar-syntax.ggs", 40)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("grammar-syntax.ggs", 41)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("grammar-syntax.ggs", 42)) ;
-    } break ;
-    case 3: {
-      nt_autolayout_5F_class_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      nt_graphviz_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_enum_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_enum_5F_function_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_entity_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_class_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 9: {
-      nt_preferences_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 10: {
-      nt_document_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 11: {
-      nt_outlet_5F_class_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 12: {
-      nt_outlet_5F_binding_5F_specification_parse (inCompiler) ;
-    } break ;
-    case 13: {
-      nt_xcode_5F_project_parse (inCompiler) ;
-    } break ;
-    case 14: {
-      nt_main_5F_xib_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol_i0_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
@@ -5571,33 +5516,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_opti
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_1 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("regular-binding.ggs", 23)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("regular-binding.ggs", 25)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("regular-binding.ggs", 26)) ;
-      nt_explicit_5F_value_parse (inCompiler) ;
-      if (select_easyBindings_5F_syntax_2 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("regular-binding.ggs", 30)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("regular-binding.ggs", 32)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_1 (inCompiler)) {
   case 1: {
@@ -5674,47 +5592,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_
   }
   ioArgument_ioDeclarationAST.mProperty_mPreferences.mProperty_mSignatureList.plusAssignOperation(var_signatureList_2028, inCompiler  COMMA_SOURCE_FILE ("preferences.ggs", 80)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.ggs", 81)) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_preferences_5F_declaration_i2_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("preferences.ggs", 48)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("preferences.ggs", 50)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_3 (inCompiler)) {
-    case 2: {
-      nt_stack_5F_view_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_action_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_outlet_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_transient_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_extern_5F_swift_5F_func_parse (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_toMany_5F_relationship_parse (inCompiler) ;
-    } break ;
-    case 9: {
-      nt_controller_5F_declaration_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("preferences.ggs", 81)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -5923,106 +5800,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i3_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("entity.ggs", 46)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_5 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphic COMMA_SOURCE_FILE ("entity.ggs", 53)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_6 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_handlingOpposite COMMA_SOURCE_FILE ("entity.ggs", 60)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("entity.ggs", 63)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 64)) ;
-  switch (select_easyBindings_5F_syntax_7 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("entity.ggs", 68)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 70)) ;
-      if (select_easyBindings_5F_syntax_8 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("entity.ggs", 73)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("entity.ggs", 75)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_9 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("entity.ggs", 81)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("entity.ggs", 82)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("entity.ggs", 84)) ;
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    switch (select_easyBindings_5F_syntax_10 (inCompiler)) {
-    case 2: {
-      nt_simple_5F_stored_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_transient_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      nt_toMany_5F_relationship_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_toOne_5F_relationship_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_action_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      nt_controller_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 8: {
-      nt_extern_5F_swift_5F_delegate_parse (inCompiler) ;
-    } break ;
-    case 9: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphic COMMA_SOURCE_FILE ("entity.ggs", 107)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("entity.ggs", 108)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("entity.ggs", 110)) ;
-    } break ;
-    default:
-      repeatFlag_1 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("entity.ggs", 115)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_declaration_i3_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_4 (inCompiler)) {
   case 1: {
@@ -6135,15 +5912,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_dec
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphviz COMMA_SOURCE_FILE ("graphviz.ggs", 10)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("graphviz.ggs", 11)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("graphviz.ggs", 13)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphviz COMMA_SOURCE_FILE ("graphviz.ggs", 10)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("graphviz.ggs", 11)) ;
@@ -6172,20 +5940,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_selectionControllerDeclarationAST::init_21__21__21__21__21_ (constinArgument_inCurrentEntity, var_selectionControllerName_2071, var_modelControllerName_2131, var_propertyName_2192, var_selectionEntityName_2014, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("selection-controller.ggs", 49)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i5_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_selectionController COMMA_SOURCE_FILE ("selection-controller.ggs", 41)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 42)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 43)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("selection-controller.ggs", 44)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("selection-controller.ggs", 45)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("selection-controller.ggs", 46)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("selection-controller.ggs", 47)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("selection-controller.ggs", 48)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6236,26 +5990,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i6_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 97)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("computed-property.ggs", 99)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("computed-property.ggs", 100)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    nt_observable_5F_property_parse (inCompiler) ;
-    if (select_easyBindings_5F_syntax_11 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("computed-property.ggs", 106)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("computed-property.ggs", 108)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i6_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_computed COMMA_SOURCE_FILE ("computed-property.ggs", 97)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("computed-property.ggs", 98)) ;
@@ -6290,17 +6024,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   GGS_observablePropertyList temp_0 = GGS_observablePropertyList::init (inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 104)) ;
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_5574, var_transientName_5625, temp_0, GGS_bool (false), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 99)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i7_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_abstract COMMA_SOURCE_FILE ("transient-property.ggs", 94)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 95)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 96)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 97)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 98)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6356,35 +6079,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_de
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, constinArgument_inRootEntity, var_transientTypeName_6311, var_transientName_6362, var_dependanceList_6427, var_isOverriding_6163, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 134)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_transient_5F_declaration_i8_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_12 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_override COMMA_SOURCE_FILE ("transient-property.ggs", 119)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property.ggs", 122)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property.ggs", 123)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("transient-property.ggs", 124)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("transient-property.ggs", 125)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    nt_observable_5F_property_parse (inCompiler) ;
-    if (select_easyBindings_5F_syntax_13 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("transient-property.ggs", 131)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property.ggs", 133)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6569,41 +6263,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relat
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i9_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.ggs", 57)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_14 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-many-relationship.ggs", 64)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 95)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 96)) ;
-  switch (select_easyBindings_5F_syntax_15 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-many-relationship.ggs", 102)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-many-relationship.ggs", 103)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 104)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_dependsFrom COMMA_SOURCE_FILE ("to-many-relationship.ggs", 107)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("to-many-relationship.ggs", 108)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 109)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-many-relationship.ggs", 110)) ;
-  } break ;
-  case 3: {
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-many-relationship.ggs", 115)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toMany_5F_relationship_i9_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-many-relationship.ggs", 57)) ;
   bool repeatFlag_0 = true ;
@@ -6688,39 +6347,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i10
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i10_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.ggs", 33)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.ggs", 34)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_17 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.ggs", 37)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.ggs", 38)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("main-xib.ggs", 41)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.ggs", 44)) ;
-      nt_main_5F_xib_5F_line_parse (inCompiler) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("main-xib.ggs", 47)) ;
-    } break ;
-    default:
-      break ;
-    }
-    if (select_easyBindings_5F_syntax_16 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.ggs", 50)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("main-xib.ggs", 52)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_i10_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_mainxib COMMA_SOURCE_FILE ("main-xib.ggs", 33)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("main-xib.ggs", 34)) ;
@@ -6786,31 +6412,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_
       repeatFlag_1 = false ;
     }
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i11_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_19 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("main-xib.ggs", 63)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("main-xib.ggs", 64)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("main-xib.ggs", 69)) ;
-    } break ;
-    default:
-      break ;
-    }
-    if (select_easyBindings_5F_syntax_18 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("main-xib.ggs", 73)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6940,79 +6541,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutTableViewControllerDeclarationAST::init_21__21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2962, var_isRoot_3354, constinArgument_inRootEntity, var_relationshipName_3494, var_arrayControllerBoundColumnListAST_3569, var_arrayControllerAttributListAST_3032, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 121)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i12_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableViewController COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 63)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 64)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 66)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 68)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 69)) ;
-    nt_explicit_5F_value_parse (inCompiler) ;
-    if (select_easyBindings_5F_syntax_20 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 73)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 75)) ;
-  switch (select_easyBindings_5F_syntax_21 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 79)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 82)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 85)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 86)) ;
-  switch (select_easyBindings_5F_syntax_22 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 89)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 91)) ;
-    bool repeatFlag_1 = true ;
-    while (repeatFlag_1) {
-      if (select_easyBindings_5F_syntax_23 (inCompiler) == 2) {
-        switch (select_easyBindings_5F_syntax_24 (inCompiler)) {
-        case 1: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_column COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 96)) ;
-        } break ;
-        case 2: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_editableColumn COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 99)) ;
-        } break ;
-        default:
-          break ;
-        }
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 102)) ;
-        nt_view_5F_actual_5F_parameter_5F_list_parse (inCompiler) ;
-        switch (select_easyBindings_5F_syntax_25 (inCompiler)) {
-        case 1: {
-        } break ;
-        case 2: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_sortkey COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 109)) ;
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 110)) ;
-        } break ;
-        default:
-          break ;
-        }
-      }else{
-        repeatFlag_1 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-table-view-controller.ggs", 119)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -7225,26 +6753,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i13_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 51)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_26 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("simple-stored-property.ggs", 58)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 89)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 90)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 94)) ;
-  nt_explicit_5F_value_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 96)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i13_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 51)) ;
   bool repeatFlag_0 = true ;
@@ -7285,19 +6793,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_store
   {
   ioArgument_ioAttributeList.setter_append (var_attributeTypeName_5009, var_attributeName_5060, var_defaultValue_5138, inCompiler COMMA_SOURCE_FILE ("simple-stored-property.ggs", 141)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_standalone COMMA_SOURCE_FILE ("simple-stored-property.ggs", 122)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("simple-stored-property.ggs", 123)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 124)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("simple-stored-property.ggs", 125)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("simple-stored-property.ggs", 126)) ;
-  nt_explicit_5F_value_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("simple-stored-property.ggs", 128)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -7347,30 +6842,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_proxyDeclarationAST::init_21__21__21__21__21__21_ (constinArgument_inCurrentEntity, var_proxyKind_1966, var_proxyTypeName_2142, var_proxyName_2189, var_toOnePropertyName_2240, var_propertyName_2299, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("proxy.ggs", 65)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i15_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_27 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("proxy.ggs", 51)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("proxy.ggs", 54)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_proxy COMMA_SOURCE_FILE ("proxy.ggs", 57)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("proxy.ggs", 58)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 59)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("proxy.ggs", 60)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 61)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("proxy.ggs", 62)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("proxy.ggs", 63)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("proxy.ggs", 64)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -7446,43 +6917,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_val
   default:
     break ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_explicit_5F_value_i16_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_28 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("explicit-default-value.ggs", 55)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("explicit-default-value.ggs", 58)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.ggs", 61)) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("explicit-default-value.ggs", 64)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("explicit-default-value.ggs", 65)) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_double COMMA_SOURCE_FILE ("explicit-default-value.ggs", 68)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("explicit-default-value.ggs", 71)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.ggs", 74)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("explicit-default-value.ggs", 77)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("explicit-default-value.ggs", 78)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("explicit-default-value.ggs", 79)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -7602,62 +7036,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i17_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 22)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_30 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 27)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 30)) ;
-    } break ;
-    default:
-      break ;
-    }
-    switch (select_easyBindings_5F_syntax_31 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 35)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 37)) ;
-    } break ;
-    default:
-      break ;
-    }
-    if (select_easyBindings_5F_syntax_29 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 42)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  switch (select_easyBindings_5F_syntax_32 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 47)) ;
-    bool repeatFlag_1 = true ;
-    while (repeatFlag_1) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 49)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 50)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 51)) ;
-      if (select_easyBindings_5F_syntax_33 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 54)) ;
-      }else{
-        repeatFlag_1 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 56)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i17_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("auto-layout-view-binding-specification.ggs", 22)) ;
   bool repeatFlag_0 = true ;
@@ -7732,22 +7110,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  nt_booleanMultipleBindingComparison_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_34 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 87)) ;
-      nt_booleanMultipleBindingComparison_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingComparison_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
@@ -7809,43 +7171,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   default:
     break ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_35 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 99)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 103)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 107)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 111)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 115)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 119)) ;
-    nt_booleanMultipleBindingTerm_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -7914,29 +7239,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  nt_booleanMultipleBindingOperand_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_36 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 133)) ;
-      nt_booleanMultipleBindingOperand_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 137)) ;
-      nt_booleanMultipleBindingOperand_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_booleanMultipleBindingOperand_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
@@ -7969,13 +7271,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  nt_observable_5F_property_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   nt_observable_5F_property_indexing (inCompiler) ;
 }
@@ -7993,14 +7288,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 157)) ;
-  nt_booleanMultipleBindingOperand_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 157)) ;
   nt_booleanMultipleBindingOperand_indexing (inCompiler) ;
@@ -8014,15 +7301,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 167)) ;
   nt_booleanMultipleBindingExpression_ (outArgument_outBinding, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 169)) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 167)) ;
-  nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("multiple-binding.ggs", 169)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8045,13 +7323,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultiple
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.ggs", 177)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("multiple-binding.ggs", 177)) ;
 }
@@ -8070,17 +7341,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   {
   ioArgument_ioExternSwiftFunctionList.setter_append (var_externFunctionName_819, var_callerName_886, inCompiler COMMA_SOURCE_FILE ("extern-swift-func.ggs", 26)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i25_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externFunc COMMA_SOURCE_FILE ("extern-swift-func.ggs", 21)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("extern-swift-func.ggs", 22)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_calledBy COMMA_SOURCE_FILE ("extern-swift-func.ggs", 23)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("extern-swift-func.ggs", 24)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("extern-swift-func.ggs", 25)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8139,38 +7399,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_d
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_arrayControllerDeclarationAST::init_21__21__21__21_ (constinArgument_inCurrentEntity, var_controllerName_2691, var_model_2758, var_relationshipName_2972, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("array-controller.ggs", 87)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_controller_5F_declaration_i26_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_arrayController COMMA_SOURCE_FILE ("array-controller.ggs", 61)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("array-controller.ggs", 62)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("array-controller.ggs", 65)) ;
-  switch (select_easyBindings_5F_syntax_37 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("array-controller.ggs", 67)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("array-controller.ggs", 70)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("array-controller.ggs", 73)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("array-controller.ggs", 74)) ;
-  switch (select_easyBindings_5F_syntax_38 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("array-controller.ggs", 78)) ;
-    nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("array-controller.ggs", 86)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8285,66 +7513,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
   {
   ioArgument_ioControllerTemplateList.setter_append (var_outletClassName_1443, var_bindingName_1493, var_outletClassBindingSpecificationModelList_1564, var_bindingOptionList_2156, inCompiler COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 76)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i27_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_binding COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 36)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 37)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 38)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 39)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_40 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 44)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 47)) ;
-    } break ;
-    default:
-      break ;
-    }
-    switch (select_easyBindings_5F_syntax_41 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 52)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 54)) ;
-    } break ;
-    default:
-      break ;
-    }
-    if (select_easyBindings_5F_syntax_39 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 59)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  switch (select_easyBindings_5F_syntax_42 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 64)) ;
-    bool repeatFlag_1 = true ;
-    while (repeatFlag_1) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 66)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 67)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 68)) ;
-      if (select_easyBindings_5F_syntax_43 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 71)) ;
-      }else{
-        repeatFlag_1 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 73)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-binding-specification.ggs", 75)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8480,58 +7648,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("outlet-class.ggs", 41)) ;
-  } break ;
-  case 2: {
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-class.ggs", 46)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("outlet-class.ggs", 47)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.ggs", 48)) ;
-  switch (select_easyBindings_5F_syntax_45 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("outlet-class.ggs", 53)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-class.ggs", 54)) ;
-  } break ;
-  default:
-    break ;
-  }
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_46 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-class.ggs", 63)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-class.ggs", 66)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-class.ggs", 69)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-class.ggs", 72)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("outlet-class.ggs", 75)) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-class.ggs", 78)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   switch (select_easyBindings_5F_syntax_44 (inCompiler)) {
   case 1: {
@@ -8592,15 +7708,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift
   {
   ioArgument_ioExternSwiftDelegateList.setter_append (var_externDelegateName_793, inCompiler COMMA_SOURCE_FILE ("extern-delegate.ggs", 23)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i29_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_externDelegate COMMA_SOURCE_FILE ("extern-delegate.ggs", 20)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("extern-delegate.ggs", 21)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("extern-delegate.ggs", 22)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8709,68 +7816,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_dec
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i30_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.ggs", 52)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 53)) ;
-  switch (select_easyBindings_5F_syntax_47 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 58)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 59)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("document-auto-layout.ggs", 62)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 63)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("document-auto-layout.ggs", 64)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("document-auto-layout.ggs", 65)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 66)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_48 (inCompiler)) {
-    case 2: {
-      nt_stack_5F_view_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_action_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      nt_transient_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      nt_outlet_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      nt_controller_5F_declaration_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_linker COMMA_SOURCE_FILE ("document-auto-layout.ggs", 85)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 86)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 87)) ;
-      bool repeatFlag_1 = true ;
-      while (repeatFlag_1) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 90)) ;
-        if (select_easyBindings_5F_syntax_49 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 93)) ;
-        }else{
-          repeatFlag_1 = false ;
-        }
-      }
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 95)) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("document-auto-layout.ggs", 98)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_document_5F_declaration_i30_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autoLayoutDocument COMMA_SOURCE_FILE ("document-auto-layout.ggs", 52)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("document-auto-layout.ggs", 53)) ;
@@ -8863,15 +7908,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_projec
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i31_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.ggs", 12)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("xcode-project.ggs", 13)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("xcode-project.ggs", 14)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_xcode_5F_project_i31_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_xcodeproject COMMA_SOURCE_FILE ("xcode-project.ggs", 12)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("xcode-project.ggs", 13)) ;
@@ -8889,15 +7925,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_decla
   {
   ioArgument_ioActionDeclarationList.setter_append (var_actionName_796, inCompiler COMMA_SOURCE_FILE ("run-action.ggs", 22)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_action_5F_declaration_i32_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_action COMMA_SOURCE_FILE ("run-action.ggs", 19)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("run-action.ggs", 20)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("run-action.ggs", 21)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -8927,17 +7954,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 84)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 85)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 86)) ;
-  nt_autolayout_5F_formal_5F_parameter_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 88)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 84)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 85)) ;
@@ -8961,17 +7977,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   {
   ioArgument_ioDeclarationAST.mProperty_mAutoLayoutHStackFunctionMap.setter_insertKey (var_mangledName_3687, var_parameterList_3667, inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 100)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i34_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 95)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 96)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 97)) ;
-  nt_autolayout_5F_formal_5F_parameter_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 99)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -9092,84 +8097,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_c
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_autoLayoutViewClassDeclarationAST::init_21__21__21__21__21__21__21__21__21__21_ (var_outletClassName_4170, var_userDefined_4005, var_superClassName_4382, var_hasRunAction_4515, var_hasEnabled_4550, var_handlesTableViewBinding_4615, var_handlesGraphicControllerBinding_4661, var_hasHidden_4583, var_parameterList_4225, var_astAutoLayoutViewFunctionMap_5051, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 163)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i35_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_50 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_extern COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 108)) ;
-  } break ;
-  case 2: {
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_autolayout COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 113)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 114)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 115)) ;
-  switch (select_easyBindings_5F_syntax_51 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    nt_autolayout_5F_formal_5F_parameter_5F_list_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_52 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 126)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 127)) ;
-  } break ;
-  default:
-    break ;
-  }
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_53 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 136)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 139)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 142)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 145)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 148)) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 152)) ;
-  bool repeatFlag_1 = true ;
-  while (repeatFlag_1) {
-    switch (select_easyBindings_5F_syntax_54 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 155)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 156)) ;
-      nt_autolayout_5F_formal_5F_parameter_5F_list_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      nt_auto_5F_layout_5F_view_5F_binding_5F_specification_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_1 = false ;
-      break ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 162)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -9361,48 +8288,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_f
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i36_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
-  switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 189)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 191)) ;
-      switch (select_easyBindings_5F_syntax_57 (inCompiler)) {
-      case 1: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 193)) ;
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_menuItem COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 196)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 199)) ;
-      } break ;
-      case 4: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 202)) ;
-      } break ;
-      default:
-        break ;
-      }
-      if (select_easyBindings_5F_syntax_56 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 216)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 219)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i36_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view-class.ggs", 185)) ;
   switch (select_easyBindings_5F_syntax_55 (inCompiler)) {
@@ -9462,17 +8347,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_decla
   {
   ioArgument_ioOutletDeclarationList.setter_append (var_outletTypeName_1775, var_outletName_1814, var_tableValueBinding_1872, var_runActionDescriptor_1938, var_enabledBindingDescriptor_2012, var_hiddenBindingDescriptor_2091, var_regularBindingList_2226, var_graphicController_2161, inCompiler COMMA_SOURCE_FILE ("outlet-declaration.ggs", 56)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_declaration_i37_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("outlet-declaration.ggs", 46)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("outlet-declaration.ggs", 47)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.ggs", 48)) ;
-  nt_outlet_5F_binding_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 55)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -9646,77 +8520,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_bindi
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i38_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_58 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_tableValue COMMA_SOURCE_FILE ("outlet-declaration.ggs", 85)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.ggs", 89)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("outlet-declaration.ggs", 92)) ;
-      switch (select_easyBindings_5F_syntax_59 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("outlet-declaration.ggs", 100)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 102)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.ggs", 104)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 105)) ;
-      } break ;
-      default:
-        break ;
-      }
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.ggs", 107)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("outlet-declaration.ggs", 111)) ;
-      nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("outlet-declaration.ggs", 119)) ;
-      nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_bindingName COMMA_SOURCE_FILE ("outlet-declaration.ggs", 127)) ;
-      bool repeatFlag_1 = true ;
-      while (repeatFlag_1) {
-        nt_observable_5F_property_parse (inCompiler) ;
-        if (select_easyBindings_5F_syntax_60 (inCompiler) == 2) {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 133)) ;
-        }else{
-          repeatFlag_1 = false ;
-        }
-      }
-      nt_binding_5F_option_5F_list_parse (inCompiler) ;
-    } break ;
-    case 7: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphicController COMMA_SOURCE_FILE ("outlet-declaration.ggs", 143)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("outlet-declaration.ggs", 144)) ;
-      switch (select_easyBindings_5F_syntax_61 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("outlet-declaration.ggs", 149)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("outlet-declaration.ggs", 150)) ;
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_outlet_5F_binding_i38_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
@@ -9810,26 +8613,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declar
   {
   ioArgument_ioDeclarationAST.mProperty_mUnifiedDeclarationList.setter_append (GGS_transientClassDeclarationAST::init_21__21_ (var_propertyTypeName_1389, var_isClass_1251, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("transient-property-class.ggs", 42)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_class_5F_declaration_i39_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_transient COMMA_SOURCE_FILE ("transient-property-class.ggs", 30)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_property COMMA_SOURCE_FILE ("transient-property-class.ggs", 31)) ;
-  switch (select_easyBindings_5F_syntax_62 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_class COMMA_SOURCE_FILE ("transient-property-class.ggs", 34)) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_struct COMMA_SOURCE_FILE ("transient-property-class.ggs", 37)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("transient-property-class.ggs", 40)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("transient-property-class.ggs", 41)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -10042,160 +8825,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_p
   default:
     break ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_observable_5F_property_i40_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  switch (select_easyBindings_5F_syntax_63 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_root COMMA_SOURCE_FILE ("observable-property.ggs", 45)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 46)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 47)) ;
-    switch (select_easyBindings_5F_syntax_64 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 51)) ;
-      switch (select_easyBindings_5F_syntax_65 (inCompiler)) {
-      case 1: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 53)) ;
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.ggs", 56)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 57)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 58)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_none COMMA_SOURCE_FILE ("observable-property.ggs", 63)) ;
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_self COMMA_SOURCE_FILE ("observable-property.ggs", 68)) ;
-    switch (select_easyBindings_5F_syntax_66 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 72)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 73)) ;
-      switch (select_easyBindings_5F_syntax_67 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 77)) ;
-        switch (select_easyBindings_5F_syntax_68 (inCompiler)) {
-        case 1: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.ggs", 79)) ;
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 80)) ;
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 81)) ;
-        } break ;
-        case 2: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_one COMMA_SOURCE_FILE ("observable-property.ggs", 87)) ;
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 88)) ;
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 89)) ;
-        } break ;
-        case 3: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_none COMMA_SOURCE_FILE ("observable-property.ggs", 95)) ;
-        } break ;
-        case 4: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 98)) ;
-        } break ;
-        default:
-          break ;
-        }
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_prefs COMMA_SOURCE_FILE ("observable-property.ggs", 104)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 105)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 106)) ;
-    switch (select_easyBindings_5F_syntax_69 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 110)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 111)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("observable-property.ggs", 115)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 116)) ;
-    switch (select_easyBindings_5F_syntax_70 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_one COMMA_SOURCE_FILE ("observable-property.ggs", 118)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 119)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 120)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 123)) ;
-      switch (select_easyBindings_5F_syntax_71 (inCompiler)) {
-      case 1: {
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 127)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 128)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 135)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_all COMMA_SOURCE_FILE ("observable-property.ggs", 136)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 137)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 138)) ;
-      } break ;
-      default:
-        break ;
-      }
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_signature COMMA_SOURCE_FILE ("observable-property.ggs", 147)) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_version COMMA_SOURCE_FILE ("observable-property.ggs", 150)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_versionShouldChange COMMA_SOURCE_FILE ("observable-property.ggs", 153)) ;
-  } break ;
-  case 8: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_super COMMA_SOURCE_FILE ("observable-property.ggs", 156)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 157)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("observable-property.ggs", 158)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("observable-property.ggs", 159)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("observable-property.ggs", 160)) ;
-    switch (select_easyBindings_5F_syntax_72 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_default COMMA_SOURCE_FILE ("observable-property.ggs", 167)) ;
-      nt_explicit_5F_value_parse (inCompiler) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -10447,45 +9076,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relati
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i41_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_73 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("to-one-relationship.ggs", 50)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 65)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 66)) ;
-  switch (select_easyBindings_5F_syntax_74 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_inverse COMMA_SOURCE_FILE ("to-one-relationship.ggs", 71)) ;
-    switch (select_easyBindings_5F_syntax_75 (inCompiler)) {
-    case 1: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 73)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 74)) ;
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toMany COMMA_SOURCE_FILE ("to-one-relationship.ggs", 77)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("to-one-relationship.ggs", 78)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("to-one-relationship.ggs", 82)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_toOne_5F_relationship_i41_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_toOne COMMA_SOURCE_FILE ("to-one-relationship.ggs", 45)) ;
   bool repeatFlag_0 = true ;
@@ -10576,40 +9166,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 192)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 193)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 194)) ;
-  switch (select_easyBindings_5F_syntax_76 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_withVScroller COMMA_SOURCE_FILE ("auto-layout-view.ggs", 199)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_77 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 206)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_configurator COMMA_SOURCE_FILE ("auto-layout-view.ggs", 207)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 208)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 209)) ;
-  } break ;
-  default:
-    break ;
-  }
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 213)) ;
-  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 223)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 192)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 193)) ;
@@ -10668,19 +9224,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 239)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 240)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 241)) ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 244)) ;
-  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 249)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_stackView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 239)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 240)) ;
@@ -10713,21 +9256,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_
       repeatFlag_1 = false ;
     }
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i44_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_78 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 263)) ;
-      nt_view_5F_actual_5F_parameter_5F_list_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -10820,44 +9348,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i45_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_easyBindings_5F_syntax_79 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_newView COMMA_SOURCE_FILE ("auto-layout-view.ggs", 277)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 278)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 280)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_viewName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 281)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 282)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 283)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_separator COMMA_SOURCE_FILE ("auto-layout-view.ggs", 286)) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_gutter COMMA_SOURCE_FILE ("auto-layout-view.ggs", 289)) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_divider COMMA_SOURCE_FILE ("auto-layout-view.ggs", 292)) ;
-    } break ;
-    case 6: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.ggs", 295)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 296)) ;
-    } break ;
-    case 7: {
-      nt_view_5F_instruction_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i45_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
@@ -10905,13 +9395,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i46_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("auto-layout-view.ggs", 311)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i46_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_space COMMA_SOURCE_FILE ("auto-layout-view.ggs", 311)) ;
 }
@@ -10925,13 +9408,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   GGS_astComputedViewInstruction var_instruction_13515 ;
   nt_computed_5F_view_5F_instruction_ (ioArgument_ioStackViewInstances, var_instruction_13515, inCompiler) ;
   outArgument_outInstruction = var_instruction_13515 ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i47_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  nt_computed_5F_view_5F_instruction_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -11037,68 +9513,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_vie
     break ;
   }
   outArgument_outInstruction = GGS_astComputedViewInstruction::init_21__21__21__21__21__21__21__21__21__21__21__21_ (var_viewClassName_13847, var_instanciationParameterList_13913, var_autoLayoutViewFunctionCallList_15076, var_tableValueBinding_14755, var_runActionDescriptor_14802, var_enabledBindingDescriptor_14857, var_hiddenBindingDescriptor_14917, var_graphicController_14968, var_regularBindingList_15014, var_configuratorName_14110, var_outletName_14144, var_outletIsArray_14169, inCompiler COMMA_HERE) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i48_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 327)) ;
-  switch (select_easyBindings_5F_syntax_80 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    nt_view_5F_actual_5F_parameter_5F_list_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_81 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 342)) ;
-    switch (select_easyBindings_5F_syntax_82 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outlet COMMA_SOURCE_FILE ("auto-layout-view.ggs", 347)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 348)) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_outletArray COMMA_SOURCE_FILE ("auto-layout-view.ggs", 351)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 352)) ;
-    } break ;
-    default:
-      break ;
-    }
-    switch (select_easyBindings_5F_syntax_83 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_configurator COMMA_SOURCE_FILE ("auto-layout-view.ggs", 358)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 359)) ;
-    } break ;
-    default:
-      break ;
-    }
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 361)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_84 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 379)) ;
-    nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-    nt_outlet_5F_binding_parse (inCompiler) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 387)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -11332,107 +9746,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i49_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 410)) ;
-  switch (select_easyBindings_5F_syntax_85 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 414)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 415)) ;
-      switch (select_easyBindings_5F_syntax_87 (inCompiler)) {
-      case 1: {
-        nt_view_5F_instruction_parse (inCompiler) ;
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_entity COMMA_SOURCE_FILE ("auto-layout-view.ggs", 420)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 421)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_menuItem COMMA_SOURCE_FILE ("auto-layout-view.ggs", 424)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.ggs", 425)) ;
-        switch (select_easyBindings_5F_syntax_88 (inCompiler)) {
-        case 1: {
-        } break ;
-        case 2: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_run COMMA_SOURCE_FILE ("auto-layout-view.ggs", 430)) ;
-          switch (select_easyBindings_5F_syntax_89 (inCompiler)) {
-          case 1: {
-          } break ;
-          case 2: {
-            inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_controllerName COMMA_SOURCE_FILE ("auto-layout-view.ggs", 435)) ;
-            inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 436)) ;
-          } break ;
-          default:
-            break ;
-          }
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 438)) ;
-        } break ;
-        default:
-          break ;
-        }
-        switch (select_easyBindings_5F_syntax_90 (inCompiler)) {
-        case 1: {
-        } break ;
-        case 2: {
-          inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enabled COMMA_SOURCE_FILE ("auto-layout-view.ggs", 445)) ;
-          nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-        } break ;
-        default:
-          break ;
-        }
-      } break ;
-      case 4: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_view COMMA_SOURCE_FILE ("auto-layout-view.ggs", 455)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 456)) ;
-      } break ;
-      case 5: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_yes COMMA_SOURCE_FILE ("auto-layout-view.ggs", 462)) ;
-      } break ;
-      case 6: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_no COMMA_SOURCE_FILE ("auto-layout-view.ggs", 465)) ;
-      } break ;
-      case 7: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.ggs", 468)) ;
-      } break ;
-      case 8: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 471)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_integer COMMA_SOURCE_FILE ("auto-layout-view.ggs", 472)) ;
-      } break ;
-      case 9: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("auto-layout-view.ggs", 475)) ;
-      } break ;
-      case 10: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 478)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 479)) ;
-      } break ;
-      case 11: {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("auto-layout-view.ggs", 482)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 483)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 484)) ;
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 485)) ;
-      } break ;
-      default:
-        break ;
-      }
-      if (select_easyBindings_5F_syntax_86 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 493)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 496)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i49_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 410)) ;
   switch (select_easyBindings_5F_syntax_85 (inCompiler)) {
@@ -11593,48 +9906,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i50_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 503)) ;
-  switch (select_easyBindings_5F_syntax_91 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_withVScroller COMMA_SOURCE_FILE ("auto-layout-view.ggs", 508)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_easyBindings_5F_syntax_92 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 515)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_configurator COMMA_SOURCE_FILE ("auto-layout-view.ggs", 516)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("auto-layout-view.ggs", 517)) ;
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 518)) ;
-  } break ;
-  default:
-    break ;
-  }
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_93 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view.ggs", 525)) ;
-    nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 529)) ;
-  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 546)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i50_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_vStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 503)) ;
   switch (select_easyBindings_5F_syntax_91 (inCompiler)) {
@@ -11705,27 +9976,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruc
   nt_view_5F_instruction_5F_list_ (GGS_bool (true), ioArgument_ioStackViewInstances, var_astNewStackViewDeclarationList_22025, var_instructionList_22069, inCompiler) ;
   outArgument_outInstruction = GGS_astHStackViewInstructionDeclaration::init_21__21__21__21_ (var_functionCallList_21645, var_instructionList_22069, var_optionalHiddenBinding_21694, var_astNewStackViewDeclarationList_22025, inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 578)) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_view_5F_instruction_i51_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hStack COMMA_SOURCE_FILE ("auto-layout-view.ggs", 553)) ;
-  nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (inCompiler) ;
-  switch (select_easyBindings_5F_syntax_94 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_hidden COMMA_SOURCE_FILE ("auto-layout-view.ggs", 559)) ;
-    nt_booleanMultipleBindingExpression_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 563)) ;
-  nt_view_5F_instruction_5F_list_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("auto-layout-view.ggs", 578)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -11801,34 +10051,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declara
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declaration_i52_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("enumeration.ggs", 39)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("enumeration.ggs", 40)) ;
-  switch (select_easyBindings_5F_syntax_95 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__40_attribute COMMA_SOURCE_FILE ("enumeration.ggs", 45)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("enumeration.ggs", 51)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("enumeration.ggs", 54)) ;
-    if (select_easyBindings_5F_syntax_96 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("enumeration.ggs", 57)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("enumeration.ggs", 59)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_declaration_i52_indexing (Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("enumeration.ggs", 39)) ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("enumeration.ggs", 40)) ;
@@ -11888,30 +10110,6 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_functio
   {
   ioArgument_ioDeclarationAST.mProperty_mEnumerationFunctionListAST.setter_append (var_enumName_2379, var_funcName_2433, var_associationList_2473, inCompiler COMMA_SOURCE_FILE ("enumeration.ggs", 82)) ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i53_parse (Lexique_easyBindings_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_func COMMA_SOURCE_FILE ("enumeration.ggs", 66)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_enum COMMA_SOURCE_FILE ("enumeration.ggs", 67)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("enumeration.ggs", 68)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("enumeration.ggs", 69)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("enumeration.ggs", 70)) ;
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("enumeration.ggs", 71)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_easyBindings_5F_syntax_97 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("enumeration.ggs", 75)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("enumeration.ggs", 76)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("enumeration.ggs", 77)) ;
-      inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("enumeration.ggs", 78)) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("enumeration.ggs", 81)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -13961,6 +12159,1771 @@ GGS_transientClassDeclarationAST GGS_transientClassDeclarationAST::extractObject
       result = *p ;
     }else{
       inCompiler->castError ("transientClassDeclarationAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @toOneRelationshipAST reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_toOneRelationshipAST::objectCompare (const GGS_toOneRelationshipAST & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneRelationshipAST::GGS_toOneRelationshipAST (void) :
+GGS_abstractDeclarationAST () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_toOneRelationshipAST GGS_toOneRelationshipAST::
+init_21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
+                              const GGS_lstring & in_mDestinationEntityName,
+                              const GGS_lstring & in_mToOneRelationshipName,
+                              const GGS_toOneOppositeRelationship & in_mOpposite,
+                              const GGS_bool & in_mUsedForSignature,
+                              const GGS_bool & in_mWeak,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) {
+  cPtr_toOneRelationshipAST * object = nullptr ;
+  macroMyNew (object, cPtr_toOneRelationshipAST (inCompiler COMMA_THERE)) ;
+  object->toOneRelationshipAST_init_21__21__21__21__21__21_ (in_mClassName, in_mDestinationEntityName, in_mToOneRelationshipName, in_mOpposite, in_mUsedForSignature, in_mWeak, inCompiler) ;
+  const GGS_toOneRelationshipAST result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_toOneRelationshipAST::
+toOneRelationshipAST_init_21__21__21__21__21__21_ (const GGS_lstring & in_mClassName,
+                                                   const GGS_lstring & in_mDestinationEntityName,
+                                                   const GGS_lstring & in_mToOneRelationshipName,
+                                                   const GGS_toOneOppositeRelationship & in_mOpposite,
+                                                   const GGS_bool & in_mUsedForSignature,
+                                                   const GGS_bool & in_mWeak,
+                                                   Compiler * /* inCompiler */) {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mDestinationEntityName = in_mDestinationEntityName ;
+  mProperty_mToOneRelationshipName = in_mToOneRelationshipName ;
+  mProperty_mOpposite = in_mOpposite ;
+  mProperty_mUsedForSignature = in_mUsedForSignature ;
+  mProperty_mWeak = in_mWeak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneRelationshipAST::GGS_toOneRelationshipAST (const cPtr_toOneRelationshipAST * inSourcePtr) :
+GGS_abstractDeclarationAST (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_toOneRelationshipAST) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_toOneRelationshipAST::readProperty_mDestinationEntityName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    return p->mProperty_mDestinationEntityName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneRelationshipAST::setProperty_mDestinationEntityName (const GGS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    p->mProperty_mDestinationEntityName = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_toOneRelationshipAST::readProperty_mToOneRelationshipName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    return p->mProperty_mToOneRelationshipName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneRelationshipAST::setProperty_mToOneRelationshipName (const GGS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    p->mProperty_mToOneRelationshipName = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneOppositeRelationship GGS_toOneRelationshipAST::readProperty_mOpposite (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_toOneOppositeRelationship () ;
+  }else{
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    return p->mProperty_mOpposite ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneRelationshipAST::setProperty_mOpposite (const GGS_toOneOppositeRelationship & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    p->mProperty_mOpposite = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_toOneRelationshipAST::readProperty_mUsedForSignature (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    return p->mProperty_mUsedForSignature ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneRelationshipAST::setProperty_mUsedForSignature (const GGS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    p->mProperty_mUsedForSignature = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_toOneRelationshipAST::readProperty_mWeak (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    return p->mProperty_mWeak ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_toOneRelationshipAST::setProperty_mWeak (const GGS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_toOneRelationshipAST * p = (cPtr_toOneRelationshipAST *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_toOneRelationshipAST) ;
+    p->mProperty_mWeak = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @toOneRelationshipAST class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_toOneRelationshipAST::cPtr_toOneRelationshipAST (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractDeclarationAST (inCompiler COMMA_THERE),
+mProperty_mDestinationEntityName (),
+mProperty_mToOneRelationshipName (),
+mProperty_mOpposite (),
+mProperty_mUsedForSignature (),
+mProperty_mWeak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_toOneRelationshipAST::cPtr_toOneRelationshipAST (const GGS_lstring & in_mClassName,
+                                                      const GGS_lstring & in_mDestinationEntityName,
+                                                      const GGS_lstring & in_mToOneRelationshipName,
+                                                      const GGS_toOneOppositeRelationship & in_mOpposite,
+                                                      const GGS_bool & in_mUsedForSignature,
+                                                      const GGS_bool & in_mWeak,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) :
+cPtr_abstractDeclarationAST (in_mClassName, inCompiler COMMA_THERE),
+mProperty_mDestinationEntityName (),
+mProperty_mToOneRelationshipName (),
+mProperty_mOpposite (),
+mProperty_mUsedForSignature (),
+mProperty_mWeak () {
+  mProperty_mClassName = in_mClassName ;
+  mProperty_mDestinationEntityName = in_mDestinationEntityName ;
+  mProperty_mToOneRelationshipName = in_mToOneRelationshipName ;
+  mProperty_mOpposite = in_mOpposite ;
+  mProperty_mUsedForSignature = in_mUsedForSignature ;
+  mProperty_mWeak = in_mWeak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_toOneRelationshipAST::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneRelationshipAST ;
+}
+
+void cPtr_toOneRelationshipAST::description (String & ioString,
+                                             const int32_t inIndentation) const {
+  ioString.appendCString ("[@toOneRelationshipAST:") ;
+  mProperty_mClassName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mDestinationEntityName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mToOneRelationshipName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mOpposite.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mUsedForSignature.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mWeak.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_toOneRelationshipAST::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_toOneRelationshipAST (mProperty_mClassName, mProperty_mDestinationEntityName, mProperty_mToOneRelationshipName, mProperty_mOpposite, mProperty_mUsedForSignature, mProperty_mWeak, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_toOneRelationshipAST::printNonNullClassInstanceProperties (void) const {
+    cPtr_abstractDeclarationAST::printNonNullClassInstanceProperties () ;
+    mProperty_mDestinationEntityName.printNonNullClassInstanceProperties ("mDestinationEntityName") ;
+    mProperty_mToOneRelationshipName.printNonNullClassInstanceProperties ("mToOneRelationshipName") ;
+    mProperty_mOpposite.printNonNullClassInstanceProperties ("mOpposite") ;
+    mProperty_mUsedForSignature.printNonNullClassInstanceProperties ("mUsedForSignature") ;
+    mProperty_mWeak.printNonNullClassInstanceProperties ("mWeak") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @toOneRelationshipAST generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_toOneRelationshipAST ("toOneRelationshipAST",
+                                                                         & kTypeDescriptor_GALGAS_abstractDeclarationAST) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_toOneRelationshipAST::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_toOneRelationshipAST ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_toOneRelationshipAST::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_toOneRelationshipAST (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_toOneRelationshipAST GGS_toOneRelationshipAST::extractObject (const GGS_object & inObject,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  GGS_toOneRelationshipAST result ;
+  const GGS_toOneRelationshipAST * p = (const GGS_toOneRelationshipAST *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_toOneRelationshipAST *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("toOneRelationshipAST", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @astComputedHorizontalViewDeclaration reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_astComputedHorizontalViewDeclaration::objectCompare (const GGS_astComputedHorizontalViewDeclaration & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedHorizontalViewDeclaration::GGS_astComputedHorizontalViewDeclaration (void) :
+GGS_astAbstractViewDeclaration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_astComputedHorizontalViewDeclaration GGS_astComputedHorizontalViewDeclaration::
+init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                  const GGS_astViewInstructionList & in_mInstructionList,
+                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
+  cPtr_astComputedHorizontalViewDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astComputedHorizontalViewDeclaration (inCompiler COMMA_THERE)) ;
+  object->astComputedHorizontalViewDeclaration_init_21__21__21_ (in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
+  const GGS_astComputedHorizontalViewDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_astComputedHorizontalViewDeclaration::
+astComputedHorizontalViewDeclaration_init_21__21__21_ (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                       const GGS_astViewInstructionList & in_mInstructionList,
+                                                       const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                       Compiler * /* inCompiler */) {
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedHorizontalViewDeclaration::GGS_astComputedHorizontalViewDeclaration (const cPtr_astComputedHorizontalViewDeclaration * inSourcePtr) :
+GGS_astAbstractViewDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedHorizontalViewDeclaration) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutViewFunctionCallList GGS_astComputedHorizontalViewDeclaration::readProperty_mFunctionCallList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astAutoLayoutViewFunctionCallList () ;
+  }else{
+    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
+    return p->mProperty_mFunctionCallList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewInstructionList GGS_astComputedHorizontalViewDeclaration::readProperty_mInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astViewInstructionList () ;
+  }else{
+    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList GGS_astComputedHorizontalViewDeclaration::readProperty_mNewStackViewDeclarationList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astNewStackViewDeclarationList () ;
+  }else{
+    cPtr_astComputedHorizontalViewDeclaration * p = (cPtr_astComputedHorizontalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedHorizontalViewDeclaration) ;
+    return p->mProperty_mNewStackViewDeclarationList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @astComputedHorizontalViewDeclaration class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedHorizontalViewDeclaration::cPtr_astComputedHorizontalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedHorizontalViewDeclaration::cPtr_astComputedHorizontalViewDeclaration (const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                      const GGS_astViewInstructionList & in_mInstructionList,
+                                                                                      const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_astComputedHorizontalViewDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
+}
+
+void cPtr_astComputedHorizontalViewDeclaration::description (String & ioString,
+                                                             const int32_t inIndentation) const {
+  ioString.appendCString ("[@astComputedHorizontalViewDeclaration:") ;
+  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astComputedHorizontalViewDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_astComputedHorizontalViewDeclaration (mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_astComputedHorizontalViewDeclaration::printNonNullClassInstanceProperties (void) const {
+    cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
+    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @astComputedHorizontalViewDeclaration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ("astComputedHorizontalViewDeclaration",
+                                                                                         & kTypeDescriptor_GALGAS_astAbstractViewDeclaration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astComputedHorizontalViewDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedHorizontalViewDeclaration ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astComputedHorizontalViewDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astComputedHorizontalViewDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedHorizontalViewDeclaration GGS_astComputedHorizontalViewDeclaration::extractObject (const GGS_object & inObject,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_astComputedHorizontalViewDeclaration result ;
+  const GGS_astComputedHorizontalViewDeclaration * p = (const GGS_astComputedHorizontalViewDeclaration *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astComputedHorizontalViewDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astComputedHorizontalViewDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @astComputedVerticalViewDeclaration reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_astComputedVerticalViewDeclaration::objectCompare (const GGS_astComputedVerticalViewDeclaration & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedVerticalViewDeclaration::GGS_astComputedVerticalViewDeclaration (void) :
+GGS_astAbstractViewDeclaration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::
+init_21__21__21__21__21_ (const GGS_bool & in_mHasVerticalScroller,
+                          const GGS_lstring & in_mConfiguratorName,
+                          const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                          const GGS_astViewInstructionList & in_mInstructionList,
+                          const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                          Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) {
+  cPtr_astComputedVerticalViewDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astComputedVerticalViewDeclaration (inCompiler COMMA_THERE)) ;
+  object->astComputedVerticalViewDeclaration_init_21__21__21__21__21_ (in_mHasVerticalScroller, in_mConfiguratorName, in_mFunctionCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
+  const GGS_astComputedVerticalViewDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_astComputedVerticalViewDeclaration::
+astComputedVerticalViewDeclaration_init_21__21__21__21__21_ (const GGS_bool & in_mHasVerticalScroller,
+                                                             const GGS_lstring & in_mConfiguratorName,
+                                                             const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                             const GGS_astViewInstructionList & in_mInstructionList,
+                                                             const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                             Compiler * /* inCompiler */) {
+  mProperty_mHasVerticalScroller = in_mHasVerticalScroller ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedVerticalViewDeclaration::GGS_astComputedVerticalViewDeclaration (const cPtr_astComputedVerticalViewDeclaration * inSourcePtr) :
+GGS_astAbstractViewDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedVerticalViewDeclaration) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_astComputedVerticalViewDeclaration::readProperty_mHasVerticalScroller (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
+    return p->mProperty_mHasVerticalScroller ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astComputedVerticalViewDeclaration::readProperty_mConfiguratorName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
+    return p->mProperty_mConfiguratorName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutViewFunctionCallList GGS_astComputedVerticalViewDeclaration::readProperty_mFunctionCallList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astAutoLayoutViewFunctionCallList () ;
+  }else{
+    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
+    return p->mProperty_mFunctionCallList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewInstructionList GGS_astComputedVerticalViewDeclaration::readProperty_mInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astViewInstructionList () ;
+  }else{
+    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList GGS_astComputedVerticalViewDeclaration::readProperty_mNewStackViewDeclarationList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astNewStackViewDeclarationList () ;
+  }else{
+    cPtr_astComputedVerticalViewDeclaration * p = (cPtr_astComputedVerticalViewDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedVerticalViewDeclaration) ;
+    return p->mProperty_mNewStackViewDeclarationList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @astComputedVerticalViewDeclaration class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedVerticalViewDeclaration::cPtr_astComputedVerticalViewDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
+mProperty_mHasVerticalScroller (),
+mProperty_mConfiguratorName (),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedVerticalViewDeclaration::cPtr_astComputedVerticalViewDeclaration (const GGS_bool & in_mHasVerticalScroller,
+                                                                                  const GGS_lstring & in_mConfiguratorName,
+                                                                                  const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                  const GGS_astViewInstructionList & in_mInstructionList,
+                                                                                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewDeclaration (inCompiler COMMA_THERE),
+mProperty_mHasVerticalScroller (),
+mProperty_mConfiguratorName (),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+  mProperty_mHasVerticalScroller = in_mHasVerticalScroller ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_astComputedVerticalViewDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
+}
+
+void cPtr_astComputedVerticalViewDeclaration::description (String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("[@astComputedVerticalViewDeclaration:") ;
+  mProperty_mHasVerticalScroller.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astComputedVerticalViewDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_astComputedVerticalViewDeclaration (mProperty_mHasVerticalScroller, mProperty_mConfiguratorName, mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_astComputedVerticalViewDeclaration::printNonNullClassInstanceProperties (void) const {
+    cPtr_astAbstractViewDeclaration::printNonNullClassInstanceProperties () ;
+    mProperty_mHasVerticalScroller.printNonNullClassInstanceProperties ("mHasVerticalScroller") ;
+    mProperty_mConfiguratorName.printNonNullClassInstanceProperties ("mConfiguratorName") ;
+    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @astComputedVerticalViewDeclaration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ("astComputedVerticalViewDeclaration",
+                                                                                       & kTypeDescriptor_GALGAS_astAbstractViewDeclaration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astComputedVerticalViewDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedVerticalViewDeclaration ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astComputedVerticalViewDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astComputedVerticalViewDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedVerticalViewDeclaration GGS_astComputedVerticalViewDeclaration::extractObject (const GGS_object & inObject,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_astComputedVerticalViewDeclaration result ;
+  const GGS_astComputedVerticalViewDeclaration * p = (const GGS_astComputedVerticalViewDeclaration *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astComputedVerticalViewDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astComputedVerticalViewDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @astVStackViewInstructionDeclaration reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_astVStackViewInstructionDeclaration::objectCompare (const GGS_astVStackViewInstructionDeclaration & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astVStackViewInstructionDeclaration::GGS_astVStackViewInstructionDeclaration (void) :
+GGS_astAbstractViewInstructionDeclaration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::
+init_21__21__21__21__21__21_ (const GGS_bool & in_mHasVerticalScroller,
+                              const GGS_lstring & in_mConfiguratorName,
+                              const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                              const GGS_astViewInstructionList & in_mInstructionList,
+                              const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
+                              const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) {
+  cPtr_astVStackViewInstructionDeclaration * object = nullptr ;
+  macroMyNew (object, cPtr_astVStackViewInstructionDeclaration (inCompiler COMMA_THERE)) ;
+  object->astVStackViewInstructionDeclaration_init_21__21__21__21__21__21_ (in_mHasVerticalScroller, in_mConfiguratorName, in_mFunctionCallList, in_mInstructionList, in_mOptionalHiddenBinding, in_mAstNewStackViewDeclarationList, inCompiler) ;
+  const GGS_astVStackViewInstructionDeclaration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_astVStackViewInstructionDeclaration::
+astVStackViewInstructionDeclaration_init_21__21__21__21__21__21_ (const GGS_bool & in_mHasVerticalScroller,
+                                                                  const GGS_lstring & in_mConfiguratorName,
+                                                                  const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                  const GGS_astViewInstructionList & in_mInstructionList,
+                                                                  const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
+                                                                  const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
+                                                                  Compiler * /* inCompiler */) {
+  mProperty_mHasVerticalScroller = in_mHasVerticalScroller ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
+  mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astVStackViewInstructionDeclaration::GGS_astVStackViewInstructionDeclaration (const cPtr_astVStackViewInstructionDeclaration * inSourcePtr) :
+GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astVStackViewInstructionDeclaration) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_astVStackViewInstructionDeclaration::readProperty_mHasVerticalScroller (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mHasVerticalScroller ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astVStackViewInstructionDeclaration::readProperty_mConfiguratorName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mConfiguratorName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutViewFunctionCallList GGS_astVStackViewInstructionDeclaration::readProperty_mFunctionCallList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astAutoLayoutViewFunctionCallList () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mFunctionCallList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astViewInstructionList GGS_astVStackViewInstructionDeclaration::readProperty_mInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astViewInstructionList () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_optionalHiddenBinding GGS_astVStackViewInstructionDeclaration::readProperty_mOptionalHiddenBinding (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_optionalHiddenBinding () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mOptionalHiddenBinding ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList GGS_astVStackViewInstructionDeclaration::readProperty_mAstNewStackViewDeclarationList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astNewStackViewDeclarationList () ;
+  }else{
+    cPtr_astVStackViewInstructionDeclaration * p = (cPtr_astVStackViewInstructionDeclaration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astVStackViewInstructionDeclaration) ;
+    return p->mProperty_mAstNewStackViewDeclarationList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @astVStackViewInstructionDeclaration class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astVStackViewInstructionDeclaration::cPtr_astVStackViewInstructionDeclaration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mHasVerticalScroller (),
+mProperty_mConfiguratorName (),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mOptionalHiddenBinding (),
+mProperty_mAstNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astVStackViewInstructionDeclaration::cPtr_astVStackViewInstructionDeclaration (const GGS_bool & in_mHasVerticalScroller,
+                                                                                    const GGS_lstring & in_mConfiguratorName,
+                                                                                    const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                    const GGS_astViewInstructionList & in_mInstructionList,
+                                                                                    const GGS_optionalHiddenBinding & in_mOptionalHiddenBinding,
+                                                                                    const GGS_astNewStackViewDeclarationList & in_mAstNewStackViewDeclarationList,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mHasVerticalScroller (),
+mProperty_mConfiguratorName (),
+mProperty_mFunctionCallList (),
+mProperty_mInstructionList (),
+mProperty_mOptionalHiddenBinding (),
+mProperty_mAstNewStackViewDeclarationList () {
+  mProperty_mHasVerticalScroller = in_mHasVerticalScroller ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mOptionalHiddenBinding = in_mOptionalHiddenBinding ;
+  mProperty_mAstNewStackViewDeclarationList = in_mAstNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_astVStackViewInstructionDeclaration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
+}
+
+void cPtr_astVStackViewInstructionDeclaration::description (String & ioString,
+                                                            const int32_t inIndentation) const {
+  ioString.appendCString ("[@astVStackViewInstructionDeclaration:") ;
+  mProperty_mHasVerticalScroller.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mOptionalHiddenBinding.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mAstNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astVStackViewInstructionDeclaration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_astVStackViewInstructionDeclaration (mProperty_mHasVerticalScroller, mProperty_mConfiguratorName, mProperty_mFunctionCallList, mProperty_mInstructionList, mProperty_mOptionalHiddenBinding, mProperty_mAstNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_astVStackViewInstructionDeclaration::printNonNullClassInstanceProperties (void) const {
+    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
+    mProperty_mHasVerticalScroller.printNonNullClassInstanceProperties ("mHasVerticalScroller") ;
+    mProperty_mConfiguratorName.printNonNullClassInstanceProperties ("mConfiguratorName") ;
+    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mOptionalHiddenBinding.printNonNullClassInstanceProperties ("mOptionalHiddenBinding") ;
+    mProperty_mAstNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mAstNewStackViewDeclarationList") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @astVStackViewInstructionDeclaration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ("astVStackViewInstructionDeclaration",
+                                                                                        & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astVStackViewInstructionDeclaration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astVStackViewInstructionDeclaration ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astVStackViewInstructionDeclaration::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astVStackViewInstructionDeclaration (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astVStackViewInstructionDeclaration GGS_astVStackViewInstructionDeclaration::extractObject (const GGS_object & inObject,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) {
+  GGS_astVStackViewInstructionDeclaration result ;
+  const GGS_astVStackViewInstructionDeclaration * p = (const GGS_astVStackViewInstructionDeclaration *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astVStackViewInstructionDeclaration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astVStackViewInstructionDeclaration", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @astLocalViewInstruction reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_astLocalViewInstruction::objectCompare (const GGS_astLocalViewInstruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astLocalViewInstruction::GGS_astLocalViewInstruction (void) :
+GGS_astAbstractViewInstructionDeclaration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_astLocalViewInstruction GGS_astLocalViewInstruction::
+init_21_ (const GGS_lstring & in_mLocalView,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
+  cPtr_astLocalViewInstruction * object = nullptr ;
+  macroMyNew (object, cPtr_astLocalViewInstruction (inCompiler COMMA_THERE)) ;
+  object->astLocalViewInstruction_init_21_ (in_mLocalView, inCompiler) ;
+  const GGS_astLocalViewInstruction result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_astLocalViewInstruction::
+astLocalViewInstruction_init_21_ (const GGS_lstring & in_mLocalView,
+                                  Compiler * /* inCompiler */) {
+  mProperty_mLocalView = in_mLocalView ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astLocalViewInstruction::GGS_astLocalViewInstruction (const cPtr_astLocalViewInstruction * inSourcePtr) :
+GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astLocalViewInstruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astLocalViewInstruction::readProperty_mLocalView (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astLocalViewInstruction * p = (cPtr_astLocalViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astLocalViewInstruction) ;
+    return p->mProperty_mLocalView ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @astLocalViewInstruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astLocalViewInstruction::cPtr_astLocalViewInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mLocalView () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astLocalViewInstruction::cPtr_astLocalViewInstruction (const GGS_lstring & in_mLocalView,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mLocalView () {
+  mProperty_mLocalView = in_mLocalView ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_astLocalViewInstruction::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astLocalViewInstruction ;
+}
+
+void cPtr_astLocalViewInstruction::description (String & ioString,
+                                                const int32_t inIndentation) const {
+  ioString.appendCString ("[@astLocalViewInstruction:") ;
+  mProperty_mLocalView.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astLocalViewInstruction::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_astLocalViewInstruction (mProperty_mLocalView, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_astLocalViewInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
+    mProperty_mLocalView.printNonNullClassInstanceProperties ("mLocalView") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @astLocalViewInstruction generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astLocalViewInstruction ("astLocalViewInstruction",
+                                                                            & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astLocalViewInstruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astLocalViewInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astLocalViewInstruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astLocalViewInstruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astLocalViewInstruction GGS_astLocalViewInstruction::extractObject (const GGS_object & inObject,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  GGS_astLocalViewInstruction result ;
+  const GGS_astLocalViewInstruction * p = (const GGS_astLocalViewInstruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astLocalViewInstruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astLocalViewInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @astComputedViewInstruction reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_astComputedViewInstruction::objectCompare (const GGS_astComputedViewInstruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedViewInstruction::GGS_astComputedViewInstruction (void) :
+GGS_astAbstractViewInstructionDeclaration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_astComputedViewInstruction GGS_astComputedViewInstruction::
+init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
+                                                      const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
+                                                      const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                      const GGS_tableValueBinding & in_mTableValueBinding,
+                                                      const GGS_runActionDescriptor & in_mRunActionDescriptor,
+                                                      const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                      const GGS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                      const GGS_graphicController & in_mGraphicController,
+                                                      const GGS_regularBindingList & in_mRegularBindingList,
+                                                      const GGS_lstring & in_mConfiguratorName,
+                                                      const GGS_lstring & in_mOutletName,
+                                                      const GGS_bool & in_mOutletIsArray,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) {
+  cPtr_astComputedViewInstruction * object = nullptr ;
+  macroMyNew (object, cPtr_astComputedViewInstruction (inCompiler COMMA_THERE)) ;
+  object->astComputedViewInstruction_init_21__21__21__21__21__21__21__21__21__21__21__21_ (in_mAutoLayoutViewClassName, in_mParameterList, in_mFunctionCallList, in_mTableValueBinding, in_mRunActionDescriptor, in_mEnabledBindingDescriptor, in_mHiddenBindingDescriptor, in_mGraphicController, in_mRegularBindingList, in_mConfiguratorName, in_mOutletName, in_mOutletIsArray, inCompiler) ;
+  const GGS_astComputedViewInstruction result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_astComputedViewInstruction::
+astComputedViewInstruction_init_21__21__21__21__21__21__21__21__21__21__21__21_ (const GGS_lstring & in_mAutoLayoutViewClassName,
+                                                                                 const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
+                                                                                 const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                                 const GGS_tableValueBinding & in_mTableValueBinding,
+                                                                                 const GGS_runActionDescriptor & in_mRunActionDescriptor,
+                                                                                 const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                                                 const GGS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                                                 const GGS_graphicController & in_mGraphicController,
+                                                                                 const GGS_regularBindingList & in_mRegularBindingList,
+                                                                                 const GGS_lstring & in_mConfiguratorName,
+                                                                                 const GGS_lstring & in_mOutletName,
+                                                                                 const GGS_bool & in_mOutletIsArray,
+                                                                                 Compiler * /* inCompiler */) {
+  mProperty_mAutoLayoutViewClassName = in_mAutoLayoutViewClassName ;
+  mProperty_mParameterList = in_mParameterList ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mTableValueBinding = in_mTableValueBinding ;
+  mProperty_mRunActionDescriptor = in_mRunActionDescriptor ;
+  mProperty_mEnabledBindingDescriptor = in_mEnabledBindingDescriptor ;
+  mProperty_mHiddenBindingDescriptor = in_mHiddenBindingDescriptor ;
+  mProperty_mGraphicController = in_mGraphicController ;
+  mProperty_mRegularBindingList = in_mRegularBindingList ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mOutletName = in_mOutletName ;
+  mProperty_mOutletIsArray = in_mOutletIsArray ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedViewInstruction::GGS_astComputedViewInstruction (const cPtr_astComputedViewInstruction * inSourcePtr) :
+GGS_astAbstractViewInstructionDeclaration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_astComputedViewInstruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astComputedViewInstruction::readProperty_mAutoLayoutViewClassName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mAutoLayoutViewClassName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutViewInstructionParameterList GGS_astComputedViewInstruction::readProperty_mParameterList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astAutoLayoutViewInstructionParameterList () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mParameterList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astAutoLayoutViewFunctionCallList GGS_astComputedViewInstruction::readProperty_mFunctionCallList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astAutoLayoutViewFunctionCallList () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mFunctionCallList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_tableValueBinding GGS_astComputedViewInstruction::readProperty_mTableValueBinding (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_tableValueBinding () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mTableValueBinding ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_runActionDescriptor GGS_astComputedViewInstruction::readProperty_mRunActionDescriptor (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_runActionDescriptor () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mRunActionDescriptor ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingDescriptor GGS_astComputedViewInstruction::readProperty_mEnabledBindingDescriptor (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_multipleBindingDescriptor () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mEnabledBindingDescriptor ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_multipleBindingDescriptor GGS_astComputedViewInstruction::readProperty_mHiddenBindingDescriptor (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_multipleBindingDescriptor () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mHiddenBindingDescriptor ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_graphicController GGS_astComputedViewInstruction::readProperty_mGraphicController (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_graphicController () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mGraphicController ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_regularBindingList GGS_astComputedViewInstruction::readProperty_mRegularBindingList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_regularBindingList () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mRegularBindingList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astComputedViewInstruction::readProperty_mConfiguratorName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mConfiguratorName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_astComputedViewInstruction::readProperty_mOutletName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mOutletName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_astComputedViewInstruction::readProperty_mOutletIsArray (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_astComputedViewInstruction * p = (cPtr_astComputedViewInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_astComputedViewInstruction) ;
+    return p->mProperty_mOutletIsArray ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @astComputedViewInstruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedViewInstruction::cPtr_astComputedViewInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mAutoLayoutViewClassName (),
+mProperty_mParameterList (),
+mProperty_mFunctionCallList (),
+mProperty_mTableValueBinding (),
+mProperty_mRunActionDescriptor (),
+mProperty_mEnabledBindingDescriptor (),
+mProperty_mHiddenBindingDescriptor (),
+mProperty_mGraphicController (),
+mProperty_mRegularBindingList (),
+mProperty_mConfiguratorName (),
+mProperty_mOutletName (),
+mProperty_mOutletIsArray () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_astComputedViewInstruction::cPtr_astComputedViewInstruction (const GGS_lstring & in_mAutoLayoutViewClassName,
+                                                                  const GGS_astAutoLayoutViewInstructionParameterList & in_mParameterList,
+                                                                  const GGS_astAutoLayoutViewFunctionCallList & in_mFunctionCallList,
+                                                                  const GGS_tableValueBinding & in_mTableValueBinding,
+                                                                  const GGS_runActionDescriptor & in_mRunActionDescriptor,
+                                                                  const GGS_multipleBindingDescriptor & in_mEnabledBindingDescriptor,
+                                                                  const GGS_multipleBindingDescriptor & in_mHiddenBindingDescriptor,
+                                                                  const GGS_graphicController & in_mGraphicController,
+                                                                  const GGS_regularBindingList & in_mRegularBindingList,
+                                                                  const GGS_lstring & in_mConfiguratorName,
+                                                                  const GGS_lstring & in_mOutletName,
+                                                                  const GGS_bool & in_mOutletIsArray,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) :
+cPtr_astAbstractViewInstructionDeclaration (inCompiler COMMA_THERE),
+mProperty_mAutoLayoutViewClassName (),
+mProperty_mParameterList (),
+mProperty_mFunctionCallList (),
+mProperty_mTableValueBinding (),
+mProperty_mRunActionDescriptor (),
+mProperty_mEnabledBindingDescriptor (),
+mProperty_mHiddenBindingDescriptor (),
+mProperty_mGraphicController (),
+mProperty_mRegularBindingList (),
+mProperty_mConfiguratorName (),
+mProperty_mOutletName (),
+mProperty_mOutletIsArray () {
+  mProperty_mAutoLayoutViewClassName = in_mAutoLayoutViewClassName ;
+  mProperty_mParameterList = in_mParameterList ;
+  mProperty_mFunctionCallList = in_mFunctionCallList ;
+  mProperty_mTableValueBinding = in_mTableValueBinding ;
+  mProperty_mRunActionDescriptor = in_mRunActionDescriptor ;
+  mProperty_mEnabledBindingDescriptor = in_mEnabledBindingDescriptor ;
+  mProperty_mHiddenBindingDescriptor = in_mHiddenBindingDescriptor ;
+  mProperty_mGraphicController = in_mGraphicController ;
+  mProperty_mRegularBindingList = in_mRegularBindingList ;
+  mProperty_mConfiguratorName = in_mConfiguratorName ;
+  mProperty_mOutletName = in_mOutletName ;
+  mProperty_mOutletIsArray = in_mOutletIsArray ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_astComputedViewInstruction::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedViewInstruction ;
+}
+
+void cPtr_astComputedViewInstruction::description (String & ioString,
+                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("[@astComputedViewInstruction:") ;
+  mProperty_mAutoLayoutViewClassName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mParameterList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mFunctionCallList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mTableValueBinding.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mRunActionDescriptor.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEnabledBindingDescriptor.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mHiddenBindingDescriptor.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mGraphicController.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mRegularBindingList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mConfiguratorName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mOutletName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mOutletIsArray.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_astComputedViewInstruction::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_astComputedViewInstruction (mProperty_mAutoLayoutViewClassName, mProperty_mParameterList, mProperty_mFunctionCallList, mProperty_mTableValueBinding, mProperty_mRunActionDescriptor, mProperty_mEnabledBindingDescriptor, mProperty_mHiddenBindingDescriptor, mProperty_mGraphicController, mProperty_mRegularBindingList, mProperty_mConfiguratorName, mProperty_mOutletName, mProperty_mOutletIsArray, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_astComputedViewInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_astAbstractViewInstructionDeclaration::printNonNullClassInstanceProperties () ;
+    mProperty_mAutoLayoutViewClassName.printNonNullClassInstanceProperties ("mAutoLayoutViewClassName") ;
+    mProperty_mParameterList.printNonNullClassInstanceProperties ("mParameterList") ;
+    mProperty_mFunctionCallList.printNonNullClassInstanceProperties ("mFunctionCallList") ;
+    mProperty_mTableValueBinding.printNonNullClassInstanceProperties ("mTableValueBinding") ;
+    mProperty_mRunActionDescriptor.printNonNullClassInstanceProperties ("mRunActionDescriptor") ;
+    mProperty_mEnabledBindingDescriptor.printNonNullClassInstanceProperties ("mEnabledBindingDescriptor") ;
+    mProperty_mHiddenBindingDescriptor.printNonNullClassInstanceProperties ("mHiddenBindingDescriptor") ;
+    mProperty_mGraphicController.printNonNullClassInstanceProperties ("mGraphicController") ;
+    mProperty_mRegularBindingList.printNonNullClassInstanceProperties ("mRegularBindingList") ;
+    mProperty_mConfiguratorName.printNonNullClassInstanceProperties ("mConfiguratorName") ;
+    mProperty_mOutletName.printNonNullClassInstanceProperties ("mOutletName") ;
+    mProperty_mOutletIsArray.printNonNullClassInstanceProperties ("mOutletIsArray") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @astComputedViewInstruction generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astComputedViewInstruction ("astComputedViewInstruction",
+                                                                               & kTypeDescriptor_GALGAS_astAbstractViewInstructionDeclaration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_astComputedViewInstruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_astComputedViewInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_astComputedViewInstruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_astComputedViewInstruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astComputedViewInstruction GGS_astComputedViewInstruction::extractObject (const GGS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) {
+  GGS_astComputedViewInstruction result ;
+  const GGS_astComputedViewInstruction * p = (const GGS_astComputedViewInstruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_astComputedViewInstruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("astComputedViewInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @computedHorizontalViewGeneration reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_computedHorizontalViewGeneration::objectCompare (const GGS_computedHorizontalViewGeneration & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_computedHorizontalViewGeneration::GGS_computedHorizontalViewGeneration (void) :
+GGS_abstractViewGeneration () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_computedHorizontalViewGeneration GGS_computedHorizontalViewGeneration::
+init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+                  const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
+                  const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
+  cPtr_computedHorizontalViewGeneration * object = nullptr ;
+  macroMyNew (object, cPtr_computedHorizontalViewGeneration (inCompiler COMMA_THERE)) ;
+  object->computedHorizontalViewGeneration_init_21__21__21_ (in_mFuncCallList, in_mInstructionList, in_mNewStackViewDeclarationList, inCompiler) ;
+  const GGS_computedHorizontalViewGeneration result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_computedHorizontalViewGeneration::
+computedHorizontalViewGeneration_init_21__21__21_ (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+                                                   const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
+                                                   const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                   Compiler * /* inCompiler */) {
+  mProperty_mFuncCallList = in_mFuncCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_computedHorizontalViewGeneration::GGS_computedHorizontalViewGeneration (const cPtr_computedHorizontalViewGeneration * inSourcePtr) :
+GGS_abstractViewGeneration (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_computedHorizontalViewGeneration) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationFuncCallList GGS_computedHorizontalViewGeneration::readProperty_mFuncCallList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_autoLayoutViewInstructionGenerationFuncCallList () ;
+  }else{
+    cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_computedHorizontalViewGeneration) ;
+    return p->mProperty_mFuncCallList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_autoLayoutViewInstructionGenerationList GGS_computedHorizontalViewGeneration::readProperty_mInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_autoLayoutViewInstructionGenerationList () ;
+  }else{
+    cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_computedHorizontalViewGeneration) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_astNewStackViewDeclarationList GGS_computedHorizontalViewGeneration::readProperty_mNewStackViewDeclarationList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_astNewStackViewDeclarationList () ;
+  }else{
+    cPtr_computedHorizontalViewGeneration * p = (cPtr_computedHorizontalViewGeneration *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_computedHorizontalViewGeneration) ;
+    return p->mProperty_mNewStackViewDeclarationList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @computedHorizontalViewGeneration class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_computedHorizontalViewGeneration::cPtr_computedHorizontalViewGeneration (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractViewGeneration (inCompiler COMMA_THERE),
+mProperty_mFuncCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_computedHorizontalViewGeneration::cPtr_computedHorizontalViewGeneration (const GGS_autoLayoutViewInstructionGenerationFuncCallList & in_mFuncCallList,
+                                                                              const GGS_autoLayoutViewInstructionGenerationList & in_mInstructionList,
+                                                                              const GGS_astNewStackViewDeclarationList & in_mNewStackViewDeclarationList,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) :
+cPtr_abstractViewGeneration (inCompiler COMMA_THERE),
+mProperty_mFuncCallList (),
+mProperty_mInstructionList (),
+mProperty_mNewStackViewDeclarationList () {
+  mProperty_mFuncCallList = in_mFuncCallList ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mNewStackViewDeclarationList = in_mNewStackViewDeclarationList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_computedHorizontalViewGeneration::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_computedHorizontalViewGeneration ;
+}
+
+void cPtr_computedHorizontalViewGeneration::description (String & ioString,
+                                                         const int32_t inIndentation) const {
+  ioString.appendCString ("[@computedHorizontalViewGeneration:") ;
+  mProperty_mFuncCallList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mNewStackViewDeclarationList.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_computedHorizontalViewGeneration::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_computedHorizontalViewGeneration (mProperty_mFuncCallList, mProperty_mInstructionList, mProperty_mNewStackViewDeclarationList, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_computedHorizontalViewGeneration::printNonNullClassInstanceProperties (void) const {
+    cPtr_abstractViewGeneration::printNonNullClassInstanceProperties () ;
+    mProperty_mFuncCallList.printNonNullClassInstanceProperties ("mFuncCallList") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mNewStackViewDeclarationList.printNonNullClassInstanceProperties ("mNewStackViewDeclarationList") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @computedHorizontalViewGeneration generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_computedHorizontalViewGeneration ("computedHorizontalViewGeneration",
+                                                                                     & kTypeDescriptor_GALGAS_abstractViewGeneration) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_computedHorizontalViewGeneration::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_computedHorizontalViewGeneration ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_computedHorizontalViewGeneration::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_computedHorizontalViewGeneration (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_computedHorizontalViewGeneration GGS_computedHorizontalViewGeneration::extractObject (const GGS_object & inObject,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_computedHorizontalViewGeneration result ;
+  const GGS_computedHorizontalViewGeneration * p = (const GGS_computedHorizontalViewGeneration *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_computedHorizontalViewGeneration *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("computedHorizontalViewGeneration", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

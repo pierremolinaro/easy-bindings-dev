@@ -303,8 +303,8 @@ class ScannerFor_easyBindings_lexique : AbstractScanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final override func blockComment () -> String? {
-    return gBlockComment_easyBindings_lexique
+  final override func lineComment () -> String? {
+    return gLineComment_easyBindings_lexique
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

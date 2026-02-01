@@ -856,15 +856,11 @@ class cParser_easyBindings_5F_syntax {
   protected: virtual void nt_action_5F_declaration_ (class GGS_lstringlist & ioArgument0,
                                                      class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_action_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_action_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_ (class GGS_stringset & ioArgument0,
                                                                       class GGS_astAutoLayoutViewFunctionCallList & outArgument1,
                                                                       class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -872,14 +868,10 @@ class cParser_easyBindings_5F_syntax {
                                                                                   class GGS_autoLayoutViewClassBindingSpecificationList & ioArgument1,
                                                                                   class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_auto_5F_layout_5F_view_5F_binding_5F_specification_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_auto_5F_layout_5F_view_5F_binding_5F_specification_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_autolayout_5F_class_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                                   class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_autolayout_5F_class_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_autolayout_5F_class_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -888,57 +880,41 @@ class cParser_easyBindings_5F_syntax {
                                                                          class GGS_lstring & outArgument2,
                                                                          class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_autolayout_5F_formal_5F_parameter_5F_list_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_autolayout_5F_formal_5F_parameter_5F_list_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_binding_5F_option_5F_list_ (class GGS_bindingOptionList & outArgument0,
                                                          class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_binding_5F_option_5F_list_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_binding_5F_option_5F_list_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingComparison_ (class GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                 class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_booleanMultipleBindingComparison_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_booleanMultipleBindingComparison_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingExpression_ (class GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                 class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_booleanMultipleBindingExpression_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingExpression_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingOperand_ (class GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                              class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_booleanMultipleBindingOperand_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_booleanMultipleBindingOperand_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingTerm_ (class GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                           class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_booleanMultipleBindingTerm_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_booleanMultipleBindingTerm_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_class_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                     class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_class_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_class_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_computed_5F_view_5F_instruction_ (class GGS_stringset & ioArgument0,
                                                                class GGS_astComputedViewInstruction & outArgument1,
                                                                class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_computed_5F_view_5F_instruction_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_computed_5F_view_5F_instruction_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -948,84 +924,60 @@ class cParser_easyBindings_5F_syntax {
                                                          class GGS_astDeclarationStruct & ioArgument3,
                                                          class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_controller_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_controller_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_document_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                        class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_document_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_document_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_entity_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                      class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_entity_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_entity_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_enum_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                    class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_enum_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_enum_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_enum_5F_function_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                                class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_enum_5F_function_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_enum_5F_function_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_explicit_5F_value_ (class GGS_abstractDefaultValue & outArgument0,
                                                  class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_explicit_5F_value_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_explicit_5F_value_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_extern_5F_swift_5F_delegate_ (class GGS_externSwiftDelegateList & ioArgument0,
                                                            class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_extern_5F_swift_5F_delegate_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_extern_5F_swift_5F_delegate_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_extern_5F_swift_5F_func_ (class GGS_externSwiftFunctionList & ioArgument0,
                                                        class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_extern_5F_swift_5F_func_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_extern_5F_swift_5F_func_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_graphviz_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                        class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_graphviz_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_graphviz_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_main_5F_xib_ (class GGS_mainXibDescriptorList & ioArgument0,
                                            class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_main_5F_xib_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_main_5F_xib_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_main_5F_xib_5F_line_ (class GGS_mainXibLineDescriptorList & outArgument0,
                                                    class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_main_5F_xib_5F_line_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_main_5F_xib_5F_line_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_observable_5F_property_ (class GGS_observablePropertyAST & outArgument0,
                                                       class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_observable_5F_property_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_observable_5F_property_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1037,35 +989,25 @@ class cParser_easyBindings_5F_syntax {
                                                  class GGS_regularBindingList & outArgument5,
                                                  class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_outlet_5F_binding_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_outlet_5F_binding_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_outlet_5F_binding_5F_specification_ (class GGS_outletClassBindingSpecificationList & ioArgument0,
                                                                   class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_outlet_5F_binding_5F_specification_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_outlet_5F_binding_5F_specification_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_outlet_5F_class_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                               class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_outlet_5F_class_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_outlet_5F_class_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_outlet_5F_declaration_ (class GGS_outletDeclarationList & ioArgument0,
                                                      class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_outlet_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_outlet_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_preferences_5F_declaration_ (class GGS_astDeclarationStruct & ioArgument0,
                                                           class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_preferences_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_preferences_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1075,22 +1017,16 @@ class cParser_easyBindings_5F_syntax {
                                                                class GGS_astDeclarationStruct & ioArgument3,
                                                                class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_simple_5F_stored_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_simple_5F_stored_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_stack_5F_view_5F_declaration_ (class GGS_astViewDeclarationList & ioArgument0,
                                                             class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_stack_5F_view_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_stack_5F_view_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_start_5F_symbol_ (class GGS_astDeclarationStruct & ioArgument0,
                                                class GGS_location & outArgument1,
                                                class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_start_5F_symbol_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_start_5F_symbol_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1099,15 +1035,11 @@ class cParser_easyBindings_5F_syntax {
                                                       class GGS_astDeclarationStruct & ioArgument2,
                                                       class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_toMany_5F_relationship_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_toMany_5F_relationship_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_toOne_5F_relationship_ (const class GGS_lstring constinArgument0,
                                                      class GGS_astDeclarationStruct & ioArgument1,
                                                      class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_toOne_5F_relationship_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_toOne_5F_relationship_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1116,23 +1048,17 @@ class cParser_easyBindings_5F_syntax {
                                                         class GGS_astDeclarationStruct & ioArgument2,
                                                         class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_transient_5F_declaration_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_transient_5F_declaration_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_view_5F_actual_5F_parameter_5F_list_ (class GGS_stringset & ioArgument0,
                                                                    class GGS_astAutoLayoutViewInstructionParameterList & outArgument1,
                                                                    class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_view_5F_actual_5F_parameter_5F_list_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_view_5F_actual_5F_parameter_5F_list_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_view_5F_instruction_ (class GGS_stringset & ioArgument0,
                                                    class GGS_astAbstractViewInstructionDeclaration & outArgument1,
                                                    class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_view_5F_instruction_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_view_5F_instruction_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1142,14 +1068,10 @@ class cParser_easyBindings_5F_syntax {
                                                            class GGS_astViewInstructionList & ioArgument3,
                                                            class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_view_5F_instruction_5F_list_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_view_5F_instruction_5F_list_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_xcode_5F_project_ (class GGS_lstring & ioArgument0,
                                                 class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
-
-  protected: virtual void nt_xcode_5F_project_parse (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
   protected: virtual void nt_xcode_5F_project_indexing (class Lexique_easyBindings_5F_lexique * inLexique) = 0 ;
 
@@ -1159,35 +1081,35 @@ class cParser_easyBindings_5F_syntax {
                                                                    GGS_location & outArgument1,
                                                                    Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_start_5F_symbol_i0_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_start_5F_symbol_i0_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_ (GGS_bindingOptionList & outArgument0,
                                                                              Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_binding_5F_option_5F_list_i1_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_preferences_5F_declaration_i2_ (GGS_astDeclarationStruct & ioArgument0,
                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_preferences_5F_declaration_i2_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_preferences_5F_declaration_i2_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_preferences_5F_declaration_i2_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_entity_5F_declaration_i3_ (GGS_astDeclarationStruct & ioArgument0,
                                                                          Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_entity_5F_declaration_i3_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_entity_5F_declaration_i3_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_entity_5F_declaration_i3_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_ (GGS_astDeclarationStruct & ioArgument0,
                                                                            Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1197,7 +1119,7 @@ class cParser_easyBindings_5F_syntax {
                                                                              GGS_astDeclarationStruct & ioArgument3,
                                                                              Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i5_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i5_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i5_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1206,7 +1128,7 @@ class cParser_easyBindings_5F_syntax {
                                                                             GGS_astDeclarationStruct & ioArgument2,
                                                                             Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i6_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i6_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i6_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1215,7 +1137,7 @@ class cParser_easyBindings_5F_syntax {
                                                                             GGS_astDeclarationStruct & ioArgument2,
                                                                             Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i7_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i7_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i7_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1224,7 +1146,7 @@ class cParser_easyBindings_5F_syntax {
                                                                             GGS_astDeclarationStruct & ioArgument2,
                                                                             Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i8_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i8_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_transient_5F_declaration_i8_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1233,21 +1155,21 @@ class cParser_easyBindings_5F_syntax {
                                                                           GGS_astDeclarationStruct & ioArgument2,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i9_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i9_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_toMany_5F_relationship_i9_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_main_5F_xib_i10_ (GGS_mainXibDescriptorList & ioArgument0,
                                                                 Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i10_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_main_5F_xib_i10_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_main_5F_xib_i10_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i11_ (GGS_mainXibLineDescriptorList & outArgument0,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i11_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i11_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_main_5F_xib_5F_line_i11_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1257,7 +1179,7 @@ class cParser_easyBindings_5F_syntax {
                                                                               GGS_astDeclarationStruct & ioArgument3,
                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i12_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i12_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i12_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1267,7 +1189,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                     GGS_astDeclarationStruct & ioArgument3,
                                                                                     Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i13_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i13_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i13_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1277,7 +1199,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                     GGS_astDeclarationStruct & ioArgument3,
                                                                                     Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_simple_5F_stored_5F_declaration_i14_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1287,14 +1209,14 @@ class cParser_easyBindings_5F_syntax {
                                                                               GGS_astDeclarationStruct & ioArgument3,
                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i15_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i15_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i15_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i16_ (GGS_abstractDefaultValue & outArgument0,
                                                                       Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i16_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i16_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_explicit_5F_value_i16_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1302,63 +1224,63 @@ class cParser_easyBindings_5F_syntax {
                                                                                                        GGS_autoLayoutViewClassBindingSpecificationList & ioArgument1,
                                                                                                        Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i17_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i17_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_view_5F_binding_5F_specification_i17_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingExpression_i18_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingComparison_i19_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingTerm_i20_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                   Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i21_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                   Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i22_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                   Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i23_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_ (GGS_abstractBooleanMultipleBindingExpressionAST & outArgument0,
                                                                                   Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_booleanMultipleBindingOperand_i24_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i25_ (GGS_externSwiftFunctionList & ioArgument0,
                                                                             Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i25_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i25_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_func_i25_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1368,70 +1290,70 @@ class cParser_easyBindings_5F_syntax {
                                                                               GGS_astDeclarationStruct & ioArgument3,
                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i26_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i26_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_controller_5F_declaration_i26_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i27_ (GGS_outletClassBindingSpecificationList & ioArgument0,
                                                                                        Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i27_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i27_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_5F_specification_i27_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_ (GGS_astDeclarationStruct & ioArgument0,
                                                                                    Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_class_5F_declaration_i28_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i29_ (GGS_externSwiftDelegateList & ioArgument0,
                                                                                 Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i29_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i29_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_extern_5F_swift_5F_delegate_i29_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_document_5F_declaration_i30_ (GGS_astDeclarationStruct & ioArgument0,
                                                                             Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_document_5F_declaration_i30_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_document_5F_declaration_i30_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_document_5F_declaration_i30_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i31_ (GGS_lstring & ioArgument0,
                                                                      Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i31_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i31_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_xcode_5F_project_i31_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i32_ (GGS_lstringlist & ioArgument0,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i32_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i32_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_action_5F_declaration_i32_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_ (GGS_astDeclarationStruct & ioArgument0,
                                                                                        Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i33_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i34_ (GGS_astDeclarationStruct & ioArgument0,
                                                                                        Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i34_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i34_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i34_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i35_ (GGS_astDeclarationStruct & ioArgument0,
                                                                                        Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i35_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i35_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_class_5F_declaration_i35_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1440,14 +1362,14 @@ class cParser_easyBindings_5F_syntax {
                                                                                               GGS_lstring & outArgument2,
                                                                                               Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i36_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i36_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_autolayout_5F_formal_5F_parameter_5F_list_i36_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_declaration_i37_ (GGS_outletDeclarationList & ioArgument0,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_outlet_5F_declaration_i37_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_outlet_5F_declaration_i37_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_declaration_i37_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1459,21 +1381,21 @@ class cParser_easyBindings_5F_syntax {
                                                                       GGS_regularBindingList & outArgument5,
                                                                       Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_i38_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_i38_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_outlet_5F_binding_i38_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_class_5F_declaration_i39_ (GGS_astDeclarationStruct & ioArgument0,
                                                                          Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_class_5F_declaration_i39_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_class_5F_declaration_i39_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_class_5F_declaration_i39_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_observable_5F_property_i40_ (GGS_observablePropertyAST & outArgument0,
                                                                            Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_observable_5F_property_i40_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_observable_5F_property_i40_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_observable_5F_property_i40_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1481,21 +1403,21 @@ class cParser_easyBindings_5F_syntax {
                                                                           GGS_astDeclarationStruct & ioArgument1,
                                                                           Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i41_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i41_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_toOne_5F_relationship_i41_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_ (GGS_astViewDeclarationList & ioArgument0,
                                                                                  Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i42_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_ (GGS_astViewDeclarationList & ioArgument0,
                                                                                  Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_stack_5F_view_5F_declaration_i43_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1503,7 +1425,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                            GGS_astAutoLayoutViewFunctionCallList & outArgument1,
                                                                                            Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i44_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i44_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_auto_5F_layout_5F_func_5F_call_5F_list_i44_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1513,7 +1435,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                 GGS_astViewInstructionList & ioArgument3,
                                                                                 Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i45_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i45_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_instruction_5F_list_i45_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1521,7 +1443,7 @@ class cParser_easyBindings_5F_syntax {
                                                                         GGS_astAbstractViewInstructionDeclaration & outArgument1,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i46_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i46_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i46_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1529,7 +1451,7 @@ class cParser_easyBindings_5F_syntax {
                                                                         GGS_astAbstractViewInstructionDeclaration & outArgument1,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i47_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i47_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i47_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1537,7 +1459,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                     GGS_astComputedViewInstruction & outArgument1,
                                                                                     Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i48_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i48_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_computed_5F_view_5F_instruction_i48_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1545,7 +1467,7 @@ class cParser_easyBindings_5F_syntax {
                                                                                         GGS_astAutoLayoutViewInstructionParameterList & outArgument1,
                                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i49_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i49_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_actual_5F_parameter_5F_list_i49_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1553,7 +1475,7 @@ class cParser_easyBindings_5F_syntax {
                                                                         GGS_astAbstractViewInstructionDeclaration & outArgument1,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i50_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i50_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i50_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1561,21 +1483,21 @@ class cParser_easyBindings_5F_syntax {
                                                                         GGS_astAbstractViewInstructionDeclaration & outArgument1,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i51_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i51_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_view_5F_instruction_i51_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_enum_5F_declaration_i52_ (GGS_astDeclarationStruct & ioArgument0,
                                                                         Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_enum_5F_declaration_i52_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_enum_5F_declaration_i52_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_enum_5F_declaration_i52_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
   protected: void rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i53_ (GGS_astDeclarationStruct & ioArgument0,
                                                                                     Lexique_easyBindings_5F_lexique * inLexique) ;
 
-  protected: void rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i53_parse (Lexique_easyBindings_5F_lexique * inLexique) ;
+/*  protected: void rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i53_parse (Lexique_easyBindings_5F_lexique * inLexique) ; */
 
   protected: void rule_easyBindings_5F_syntax_enum_5F_function_5F_declaration_i53_indexing (Lexique_easyBindings_5F_lexique * inLexique) ;
 
@@ -1788,7 +1710,7 @@ class cParser_easyBindings_5F_syntax {
 class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 //------------------------------------- 'action_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_action_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_action_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_action_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1799,7 +1721,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'auto_layout_func_call_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_auto_5F_layout_5F_func_5F_call_5F_list_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1811,7 +1733,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'auto_layout_view_binding_specification' non terminal
 //--- 'parse' label
-  public: virtual void nt_auto_5F_layout_5F_view_5F_binding_5F_specification_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_auto_5F_layout_5F_view_5F_binding_5F_specification_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_auto_5F_layout_5F_view_5F_binding_5F_specification_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1823,7 +1745,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'autolayout_class_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_autolayout_5F_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_autolayout_5F_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_autolayout_5F_class_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1834,7 +1756,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'autolayout_formal_parameter_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_autolayout_5F_formal_5F_parameter_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_autolayout_5F_formal_5F_parameter_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_autolayout_5F_formal_5F_parameter_5F_list_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1847,7 +1769,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'binding_option_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_binding_5F_option_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_binding_5F_option_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_binding_5F_option_5F_list_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1858,7 +1780,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'booleanMultipleBindingComparison' non terminal
 //--- 'parse' label
-  public: virtual void nt_booleanMultipleBindingComparison_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_booleanMultipleBindingComparison_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_booleanMultipleBindingComparison_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1869,7 +1791,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'booleanMultipleBindingExpression' non terminal
 //--- 'parse' label
-  public: virtual void nt_booleanMultipleBindingExpression_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_booleanMultipleBindingExpression_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_booleanMultipleBindingExpression_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1880,7 +1802,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'booleanMultipleBindingOperand' non terminal
 //--- 'parse' label
-  public: virtual void nt_booleanMultipleBindingOperand_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_booleanMultipleBindingOperand_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_booleanMultipleBindingOperand_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1891,7 +1813,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'booleanMultipleBindingTerm' non terminal
 //--- 'parse' label
-  public: virtual void nt_booleanMultipleBindingTerm_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_booleanMultipleBindingTerm_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_booleanMultipleBindingTerm_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1902,7 +1824,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'class_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_class_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1913,7 +1835,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'computed_view_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_computed_5F_view_5F_instruction_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_computed_5F_view_5F_instruction_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_computed_5F_view_5F_instruction_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1925,7 +1847,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'controller_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_controller_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_controller_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_controller_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1939,7 +1861,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'document_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_document_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_document_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_document_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1950,7 +1872,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'entity_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_entity_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_entity_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_entity_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1961,7 +1883,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'enum_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_enum_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_enum_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_enum_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1972,7 +1894,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'enum_function_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_enum_5F_function_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_enum_5F_function_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_enum_5F_function_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1983,7 +1905,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'explicit_value' non terminal
 //--- 'parse' label
-  public: virtual void nt_explicit_5F_value_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_explicit_5F_value_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_explicit_5F_value_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -1994,7 +1916,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'extern_swift_delegate' non terminal
 //--- 'parse' label
-  public: virtual void nt_extern_5F_swift_5F_delegate_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_extern_5F_swift_5F_delegate_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_extern_5F_swift_5F_delegate_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2005,7 +1927,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'extern_swift_func' non terminal
 //--- 'parse' label
-  public: virtual void nt_extern_5F_swift_5F_func_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_extern_5F_swift_5F_func_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_extern_5F_swift_5F_func_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2016,7 +1938,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'graphviz_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_graphviz_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_graphviz_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_graphviz_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2027,7 +1949,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'main_xib' non terminal
 //--- 'parse' label
-  public: virtual void nt_main_5F_xib_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_main_5F_xib_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_main_5F_xib_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2038,7 +1960,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'main_xib_line' non terminal
 //--- 'parse' label
-  public: virtual void nt_main_5F_xib_5F_line_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_main_5F_xib_5F_line_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_main_5F_xib_5F_line_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2049,7 +1971,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'observable_property' non terminal
 //--- 'parse' label
-  public: virtual void nt_observable_5F_property_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_observable_5F_property_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_observable_5F_property_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2060,7 +1982,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'outlet_binding' non terminal
 //--- 'parse' label
-  public: virtual void nt_outlet_5F_binding_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_outlet_5F_binding_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_outlet_5F_binding_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2076,7 +1998,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'outlet_binding_specification' non terminal
 //--- 'parse' label
-  public: virtual void nt_outlet_5F_binding_5F_specification_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_outlet_5F_binding_5F_specification_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_outlet_5F_binding_5F_specification_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2087,7 +2009,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'outlet_class_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_outlet_5F_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_outlet_5F_class_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_outlet_5F_class_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2098,7 +2020,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'outlet_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_outlet_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_outlet_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_outlet_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2109,7 +2031,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'preferences_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_preferences_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_preferences_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_preferences_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2120,7 +2042,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'simple_stored_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_simple_5F_stored_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_simple_5F_stored_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_simple_5F_stored_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2134,7 +2056,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'stack_view_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_stack_5F_view_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_stack_5F_view_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_stack_5F_view_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2145,7 +2067,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'start_symbol' non terminal
 //--- 'parse' label
-  public: virtual void nt_start_5F_symbol_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_start_5F_symbol_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_start_5F_symbol_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2183,7 +2105,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'toMany_relationship' non terminal
 //--- 'parse' label
-  public: virtual void nt_toMany_5F_relationship_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_toMany_5F_relationship_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_toMany_5F_relationship_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2196,7 +2118,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'toOne_relationship' non terminal
 //--- 'parse' label
-  public: virtual void nt_toOne_5F_relationship_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_toOne_5F_relationship_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_toOne_5F_relationship_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2208,7 +2130,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'transient_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_transient_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_transient_5F_declaration_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_transient_5F_declaration_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2221,7 +2143,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'view_actual_parameter_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_view_5F_actual_5F_parameter_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_view_5F_actual_5F_parameter_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_view_5F_actual_5F_parameter_5F_list_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2233,7 +2155,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'view_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_view_5F_instruction_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_view_5F_instruction_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_view_5F_instruction_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2245,7 +2167,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'view_instruction_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_view_5F_instruction_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_view_5F_instruction_5F_list_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_view_5F_instruction_5F_list_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;
@@ -2259,7 +2181,7 @@ class cGrammar_easyBindings_5F_grammar : public cParser_easyBindings_5F_syntax {
 
 //------------------------------------- 'xcode_project' non terminal
 //--- 'parse' label
-  public: virtual void nt_xcode_5F_project_parse (Lexique_easyBindings_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_xcode_5F_project_parse (Lexique_easyBindings_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_xcode_5F_project_indexing (Lexique_easyBindings_5F_lexique * inCompiler) ;

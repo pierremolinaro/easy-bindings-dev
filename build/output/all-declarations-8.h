@@ -310,3 +310,39 @@ void routine_generateEBManagedObjectContext_3F__3F__26_ (const class GGS_entityL
                                                          class Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'graphvizAnalysis???'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_graphvizAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
+                                           const class GGS_semanticContext constinArgument1,
+                                           const class GGS_lstringlist constinArgument2,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'graphvizRootEntityAnalysis???'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_graphvizRootEntityAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
+                                                     const class GGS_semanticContext constinArgument1,
+                                                     const class GGS_string constinArgument2,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'graphvizRootEntityStrongAnalysis???'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_graphvizRootEntityStrongAnalysis_3F__3F__3F_ (const class GGS_string constinArgument0,
+                                                           const class GGS_semanticContext constinArgument1,
+                                                           const class GGS_string constinArgument2,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
