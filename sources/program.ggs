@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------------------------
-//   PROGRAM                               
+//   PROGRAM
 //------------------------------------------------------------------------------------------------
 
 struct @semanticContext {
@@ -85,7 +85,7 @@ case ."eb"
   end
 //---------------------------------------- Semantic Analysis, graphviz
   if @uint.errorCount == 0 then
-    graphvizAnalysis (inSourceFile.stringByDeletingLastPathComponent (), semanticContext, declarationStruct.mGraphvizList)
+    graphvizAnalysis (inSourceFile.string.deletingLastPathComponent, semanticContext, declarationStruct.mGraphvizList)
   end
 //---------------------------------------- Generate code
   if @uint.errorCount == 0 then

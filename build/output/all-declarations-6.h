@@ -58,7 +58,7 @@ class GGS_selectionControllerPropertyGeneration : public GGS_propertyGeneration 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -198,7 +198,7 @@ class GGS_selectionControllerPropertyGeneration_2E_weak : public GGS_propertyGen
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -525,8 +525,8 @@ class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -539,7 +539,7 @@ class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2518,8 +2518,8 @@ class GGS_astDeclarationStruct : public AC_GALGAS_root {
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -2532,7 +2532,7 @@ class GGS_astDeclarationStruct : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 

@@ -5374,12 +5374,12 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_start_5F_symbol
     switch (select_easyBindings_5F_syntax_0 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_include COMMA_SOURCE_FILE ("grammar-syntax.ggs", 40)) ;
-      GGS_lstring var_filePath_1817 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_filePath_1781 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("grammar-syntax.ggs", 41)) ;
       inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("grammar-syntax.ggs", 42)) ;
-      GGS_lstring var_sourceFile_1847 = GGS_lstring::init_21__21_ (var_filePath_1817.readProperty_string ().getter_absolutePathFromPath (GGS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)).getter_stringByDeletingLastPathComponent (SOURCE_FILE ("grammar-syntax.ggs", 44)) COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)), var_filePath_1817.readProperty_location (), inCompiler COMMA_HERE) ;
-      GGS_location joker_2077 ; // Joker input parameter
-      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile_1847, ioArgument_ioDeclarationAST, joker_2077  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 47)) ;
+      GGS_lstring var_sourceFile_1811 = GGS_lstring::init_21__21_ (var_filePath_1781.readProperty_string ().getter_absolutePathFromPath (GGS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)).getter_deletingLastPathComponent (SOURCE_FILE ("grammar-syntax.ggs", 44)) COMMA_SOURCE_FILE ("grammar-syntax.ggs", 44)), var_filePath_1781.readProperty_location (), inCompiler COMMA_HERE) ;
+      GGS_location joker_2033 ; // Joker input parameter
+      cGrammar_easyBindings_5F_grammar::_performSourceFileParsing_ (inCompiler, var_sourceFile_1811, ioArgument_ioDeclarationAST, joker_2033  COMMA_SOURCE_FILE ("grammar-syntax.ggs", 47)) ;
     } break ;
     case 3: {
       nt_autolayout_5F_class_5F_declaration_ (ioArgument_ioDeclarationAST, inCompiler) ;
@@ -5902,10 +5902,10 @@ void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_entity_5F_decla
 void cParser_easyBindings_5F_syntax::rule_easyBindings_5F_syntax_graphviz_5F_declaration_i4_ (GGS_astDeclarationStruct & ioArgument_ioDeclarationAST,
                                                                                               Lexique_easyBindings_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_graphviz COMMA_SOURCE_FILE ("graphviz.ggs", 10)) ;
-  GGS_lstring var_entityName_475 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_entityName_473 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken_Identifier COMMA_SOURCE_FILE ("graphviz.ggs", 11)) ;
   {
-  ioArgument_ioDeclarationAST.mProperty_mGraphvizList.setter_append (var_entityName_475, inCompiler COMMA_SOURCE_FILE ("graphviz.ggs", 12)) ;
+  ioArgument_ioDeclarationAST.mProperty_mGraphvizList.setter_append (var_entityName_473, inCompiler COMMA_SOURCE_FILE ("graphviz.ggs", 12)) ;
   }
   inCompiler->acceptTerminal (Lexique_easyBindings_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("graphviz.ggs", 13)) ;
 }

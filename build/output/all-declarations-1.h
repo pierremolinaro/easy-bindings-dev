@@ -65,7 +65,7 @@ class GGS_computedPropertyDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -212,7 +212,7 @@ class GGS_computedPropertyDeclarationAST_2E_weak : public GGS_abstractDeclaratio
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -326,80 +326,80 @@ class GGS_typeKind : public AC_GALGAS_root {
   public: static class GGS_typeKind class_func_uint_33__32_Type (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_typeKind & inOperand) const ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractClassType (class GGS_string & outArgument0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: void method_extractClassType (class GGS_string & outArgument0,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractEntityType (class GGS_string & outArgument0,
-                                                          class GGS_bool & outArgument1,
+  public: void method_extractEntityType (class GGS_string & outArgument0,
+                                         class GGS_bool & outArgument1,
+                                         Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) const ;
+
+  public: void method_extractEnumType (class GGS_string & outArgument0,
+                                       class GGS_enumConstantMap & outArgument1,
+                                       class GGS_enumFuncMap & outArgument2,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
+
+  public: void method_extractTransientPropertyExternType (class GGS_string & outArgument0,
                                                           Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_extractEnumType (class GGS_string & outArgument0,
-                                                        class GGS_enumConstantMap & outArgument1,
-                                                        class GGS_enumFuncMap & outArgument2,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_extractTransientPropertyExternType (class GGS_string & outArgument0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_typeKind_2E_classType_3F_ getter_getClassType (LOCATION_ARGS) const ;
+  public: class GGS_typeKind_2E_classType_3F_ getter_getClassType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_typeKind_2E_entityType_3F_ getter_getEntityType (LOCATION_ARGS) const ;
+  public: class GGS_typeKind_2E_entityType_3F_ getter_getEntityType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_typeKind_2E_enumType_3F_ getter_getEnumType (LOCATION_ARGS) const ;
+  public: class GGS_typeKind_2E_enumType_3F_ getter_getEnumType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_typeKind_2E_transientPropertyExternType_3F_ getter_getTransientPropertyExternType (LOCATION_ARGS) const ;
+  public: class GGS_typeKind_2E_transientPropertyExternType_3F_ getter_getTransientPropertyExternType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isBezierPathArrayType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isBezierPathArrayType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isBezierPathType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isBezierPathType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isBoolType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isBoolType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isClassType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isClassType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isColorType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isColorType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isDataType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isDataType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isDateType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isDateType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isDoubleType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isDoubleType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEntityType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEntityType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEnumType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEnumType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isFontType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isFontType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isIntegerType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isIntegerType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isStringType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isStringType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTransientPropertyExternType (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isUint_33__32_Type (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -458,8 +458,8 @@ class GGS_typeKind_2E_classType : public AC_GALGAS_root {
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_typeKind_2E_classType & inOperand) const ;
 
@@ -474,7 +474,7 @@ class GGS_typeKind_2E_classType : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -553,7 +553,7 @@ class GGS_typeKind_2E_classType_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -623,8 +623,8 @@ class GGS_typeKind_2E_entityType : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_typeKind_2E_entityType & inOperand) const ;
 
@@ -639,7 +639,7 @@ class GGS_typeKind_2E_entityType : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -718,7 +718,7 @@ class GGS_typeKind_2E_entityType_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -858,64 +858,64 @@ class GGS_enumConstantMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uint constinArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_uint constinArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMIndexForKey (class GGS_uint constinArgument0,
-                                                        class GGS_string constinArgument1,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
+  public: void setter_setMIndexForKey (class GGS_uint constinArgument0,
+                                       class GGS_string constinArgument1,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uint & outArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_uint & outArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mIndexForKey (const class GGS_string & constinOperand0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
+  public: class GGS_uint getter_mIndexForKey (const class GGS_string & constinOperand0,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_enumConstantMap getter_overriddenMap (Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumConstantMap getter_overriddenMap (Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_enumConstantMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumConstantMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_enumConstantMap ;
   friend class DownEnumerator_enumConstantMap ;
@@ -1058,64 +1058,64 @@ class GGS_enumFuncMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_enumFunAssociationSortedList constinArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_enumFunAssociationSortedList constinArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMAssociationSortedListForKey (class GGS_enumFunAssociationSortedList constinArgument0,
-                                                                        class GGS_string constinArgument1,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
+  public: void setter_setMAssociationSortedListForKey (class GGS_enumFunAssociationSortedList constinArgument0,
+                                                       class GGS_string constinArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_enumFunAssociationSortedList & outArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_enumFunAssociationSortedList & outArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_enumFunAssociationSortedList getter_mAssociationSortedListForKey (const class GGS_string & constinOperand0,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumFunAssociationSortedList getter_mAssociationSortedListForKey (const class GGS_string & constinOperand0,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_enumFuncMap getter_overriddenMap (Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumFuncMap getter_overriddenMap (Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_enumFuncMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumFuncMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_enumFuncMap ;
   friend class DownEnumerator_enumFuncMap ;
@@ -1199,8 +1199,8 @@ class GGS_typeKind_2E_enumType : public AC_GALGAS_root {
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_typeKind_2E_enumType & inOperand) const ;
 
@@ -1215,7 +1215,7 @@ class GGS_typeKind_2E_enumType : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1294,7 +1294,7 @@ class GGS_typeKind_2E_enumType_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1353,8 +1353,8 @@ class GGS_typeKind_2E_transientPropertyExternType : public AC_GALGAS_root {
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_typeKind_2E_transientPropertyExternType & inOperand) const ;
 
@@ -1369,7 +1369,7 @@ class GGS_typeKind_2E_transientPropertyExternType : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1448,7 +1448,7 @@ class GGS_typeKind_2E_transientPropertyExternType_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1596,158 +1596,158 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_transientDependencyListForGeneration inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_transientDependencyListForGeneration inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_observablePropertyAST & inOperand0,
-                                                    const class GGS_string & inOperand1,
-                                                    const class GGS_string & inOperand2,
-                                                    const class GGS_string & inOperand3,
-                                                    const class GGS_string & inOperand4
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_observablePropertyAST & inOperand0,
+                                   const class GGS_string & inOperand1,
+                                   const class GGS_string & inOperand2,
+                                   const class GGS_string & inOperand3,
+                                   const class GGS_string & inOperand4
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_transientDependencyListForGeneration_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_transientDependencyListForGeneration_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_transientDependencyListForGeneration add_operation (const GGS_transientDependencyListForGeneration & inOperand,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const ;
+  public: GGS_transientDependencyListForGeneration add_operation (const GGS_transientDependencyListForGeneration & inOperand,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_observablePropertyAST constinArgument0,
-                                               class GGS_string constinArgument1,
-                                               class GGS_string constinArgument2,
-                                               class GGS_string constinArgument3,
-                                               class GGS_string constinArgument4,
+  public: void setter_append (class GGS_observablePropertyAST constinArgument0,
+                              class GGS_string constinArgument1,
+                              class GGS_string constinArgument2,
+                              class GGS_string constinArgument3,
+                              class GGS_string constinArgument4,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+  public: void setter_insertAtIndex (class GGS_observablePropertyAST constinArgument0,
+                                     class GGS_string constinArgument1,
+                                     class GGS_string constinArgument2,
+                                     class GGS_string constinArgument3,
+                                     class GGS_string constinArgument4,
+                                     class GGS_uint constinArgument5,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popFirst (class GGS_observablePropertyAST & outArgument0,
+                                class GGS_string & outArgument1,
+                                class GGS_string & outArgument2,
+                                class GGS_string & outArgument3,
+                                class GGS_string & outArgument4,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popLast (class GGS_observablePropertyAST & outArgument0,
+                               class GGS_string & outArgument1,
+                               class GGS_string & outArgument2,
+                               class GGS_string & outArgument3,
+                               class GGS_string & outArgument4,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_observablePropertyAST & outArgument0,
+                                     class GGS_string & outArgument1,
+                                     class GGS_string & outArgument2,
+                                     class GGS_string & outArgument3,
+                                     class GGS_string & outArgument4,
+                                     class GGS_uint constinArgument5,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMDefaultValueAsStringAtIndex (class GGS_string constinArgument0,
+                                                       class GGS_uint constinArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMDependencyAtIndex (class GGS_observablePropertyAST constinArgument0,
+                                             class GGS_uint constinArgument1,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMFunctionArgumentNameAtIndex (class GGS_string constinArgument0,
+                                                       class GGS_uint constinArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMFunctionArgumentTypeStringAtIndex (class GGS_string constinArgument0,
+                                                             class GGS_uint constinArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMProtocolNameAtIndex (class GGS_string constinArgument0,
+                                               class GGS_uint constinArgument1,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_observablePropertyAST constinArgument0,
-                                                      class GGS_string constinArgument1,
-                                                      class GGS_string constinArgument2,
-                                                      class GGS_string constinArgument3,
-                                                      class GGS_string constinArgument4,
-                                                      class GGS_uint constinArgument5,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_observablePropertyAST & outArgument0,
-                                                 class GGS_string & outArgument1,
-                                                 class GGS_string & outArgument2,
-                                                 class GGS_string & outArgument3,
-                                                 class GGS_string & outArgument4,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_observablePropertyAST & outArgument0,
-                                                class GGS_string & outArgument1,
-                                                class GGS_string & outArgument2,
-                                                class GGS_string & outArgument3,
-                                                class GGS_string & outArgument4,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_observablePropertyAST & outArgument0,
-                                                      class GGS_string & outArgument1,
-                                                      class GGS_string & outArgument2,
-                                                      class GGS_string & outArgument3,
-                                                      class GGS_string & outArgument4,
-                                                      class GGS_uint constinArgument5,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMDefaultValueAsStringAtIndex (class GGS_string constinArgument0,
-                                                                        class GGS_uint constinArgument1,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMDependencyAtIndex (class GGS_observablePropertyAST constinArgument0,
-                                                              class GGS_uint constinArgument1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMFunctionArgumentNameAtIndex (class GGS_string constinArgument0,
-                                                                        class GGS_uint constinArgument1,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMFunctionArgumentTypeStringAtIndex (class GGS_string constinArgument0,
-                                                                              class GGS_uint constinArgument1,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMProtocolNameAtIndex (class GGS_string constinArgument0,
-                                                                class GGS_uint constinArgument1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_observablePropertyAST & outArgument0,
-                                              class GGS_string & outArgument1,
-                                              class GGS_string & outArgument2,
-                                              class GGS_string & outArgument3,
-                                              class GGS_string & outArgument4,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_observablePropertyAST & outArgument0,
+                             class GGS_string & outArgument1,
+                             class GGS_string & outArgument2,
+                             class GGS_string & outArgument3,
+                             class GGS_string & outArgument4,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_observablePropertyAST & outArgument0,
-                                             class GGS_string & outArgument1,
-                                             class GGS_string & outArgument2,
-                                             class GGS_string & outArgument3,
-                                             class GGS_string & outArgument4,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_observablePropertyAST & outArgument0,
+                            class GGS_string & outArgument1,
+                            class GGS_string & outArgument2,
+                            class GGS_string & outArgument3,
+                            class GGS_string & outArgument4,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_string getter_mDefaultValueAsStringAtIndex (const class GGS_uint & constinOperand0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_string getter_mDefaultValueAsStringAtIndex (const class GGS_uint & constinOperand0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_observablePropertyAST getter_mDependencyAtIndex (const class GGS_uint & constinOperand0,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const ;
+  public: class GGS_observablePropertyAST getter_mDependencyAtIndex (const class GGS_uint & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_string getter_mFunctionArgumentNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_string getter_mFunctionArgumentNameAtIndex (const class GGS_uint & constinOperand0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_string getter_mFunctionArgumentTypeStringAtIndex (const class GGS_uint & constinOperand0,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const ;
+  public: class GGS_string getter_mFunctionArgumentTypeStringAtIndex (const class GGS_uint & constinOperand0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_string getter_mProtocolNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_string getter_mProtocolNameAtIndex (const class GGS_uint & constinOperand0,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientDependencyListForGeneration getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientDependencyListForGeneration getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientDependencyListForGeneration getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientDependencyListForGeneration getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientDependencyListForGeneration getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientDependencyListForGeneration getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_transientDependencyListForGeneration ;
   friend class DownEnumerator_transientDependencyListForGeneration ;
@@ -1853,8 +1853,8 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -1867,7 +1867,7 @@ class GGS_transientDependencyListForGeneration_2E_element : public AC_GALGAS_roo
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1932,7 +1932,7 @@ class GGS_computedPropertyGeneration : public GGS_propertyGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2081,7 +2081,7 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2213,90 +2213,90 @@ class GGS_computedPropertyGenerationList : public AC_GALGAS_root {
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_computedPropertyGenerationList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_computedPropertyGenerationList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_computedPropertyGeneration & inOperand0
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_computedPropertyGeneration & inOperand0
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_computedPropertyGenerationList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_computedPropertyGenerationList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_computedPropertyGenerationList add_operation (const GGS_computedPropertyGenerationList & inOperand,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
+  public: GGS_computedPropertyGenerationList add_operation (const GGS_computedPropertyGenerationList & inOperand,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_computedPropertyGeneration constinArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_computedPropertyGeneration constinArgument0,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_computedPropertyGeneration constinArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_computedPropertyGeneration constinArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_computedPropertyGeneration & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_computedPropertyGeneration & outArgument0,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_computedPropertyGeneration & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+  public: void setter_popLast (class GGS_computedPropertyGeneration & outArgument0,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_computedPropertyGeneration & outArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_removeAtIndex (class GGS_computedPropertyGeneration & outArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyAtIndex (class GGS_computedPropertyGeneration constinArgument0,
-                                                            class GGS_uint constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMPropertyAtIndex (class GGS_computedPropertyGeneration constinArgument0,
+                                           class GGS_uint constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_computedPropertyGeneration & outArgument0,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_computedPropertyGeneration & outArgument0,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_computedPropertyGeneration & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_computedPropertyGeneration & outArgument0,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_computedPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_computedPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_computedPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const ;
+  public: class GGS_computedPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_computedPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_computedPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_computedPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const ;
+  public: class GGS_computedPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_computedPropertyGenerationList ;
   friend class DownEnumerator_computedPropertyGenerationList ;
@@ -2358,8 +2358,8 @@ class GGS_computedPropertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -2372,7 +2372,7 @@ class GGS_computedPropertyGenerationList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2436,7 +2436,7 @@ class GGS_computeRoutineGeneration : public GGS_abstractFileGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2578,7 +2578,7 @@ class GGS_computeRoutineGeneration_2E_weak : public GGS_abstractFileGeneration_2
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2647,7 +2647,7 @@ class GGS_transientDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2797,7 +2797,7 @@ class GGS_transientDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -2862,7 +2862,7 @@ class GGS_transientPropertyGeneration : public GGS_propertyGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3011,7 +3011,7 @@ class GGS_transientPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3143,90 +3143,90 @@ class GGS_transientPropertyGenerationList : public AC_GALGAS_root {
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_transientPropertyGenerationList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_transientPropertyGenerationList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_transientPropertyGeneration & inOperand0
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_transientPropertyGeneration & inOperand0
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_transientPropertyGenerationList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_transientPropertyGenerationList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_transientPropertyGenerationList add_operation (const GGS_transientPropertyGenerationList & inOperand,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
+  public: GGS_transientPropertyGenerationList add_operation (const GGS_transientPropertyGenerationList & inOperand,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_transientPropertyGeneration constinArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_transientPropertyGeneration constinArgument0,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_transientPropertyGeneration constinArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_transientPropertyGeneration constinArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_transientPropertyGeneration & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_transientPropertyGeneration & outArgument0,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_transientPropertyGeneration & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+  public: void setter_popLast (class GGS_transientPropertyGeneration & outArgument0,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_transientPropertyGeneration & outArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_removeAtIndex (class GGS_transientPropertyGeneration & outArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyAtIndex (class GGS_transientPropertyGeneration constinArgument0,
-                                                            class GGS_uint constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMPropertyAtIndex (class GGS_transientPropertyGeneration constinArgument0,
+                                           class GGS_uint constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_transientPropertyGeneration & outArgument0,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_transientPropertyGeneration & outArgument0,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_transientPropertyGeneration & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_transientPropertyGeneration & outArgument0,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_transientPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_transientPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_transientPropertyGenerationList ;
   friend class DownEnumerator_transientPropertyGenerationList ;
@@ -3288,8 +3288,8 @@ class GGS_transientPropertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -3302,7 +3302,7 @@ class GGS_transientPropertyGenerationList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3419,8 +3419,8 @@ class GGS_observablePropertyAST_2E_prefsPropertyWithOption : public AC_GALGAS_ro
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -3433,7 +3433,7 @@ class GGS_observablePropertyAST_2E_prefsPropertyWithOption : public AC_GALGAS_ro
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3510,7 +3510,7 @@ class GGS_observablePropertyAST_2E_prefsPropertyWithOption_3F_ : public AC_GALGA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3569,8 +3569,8 @@ class GGS_observablePropertyAST_2E_prefsProperty : public AC_GALGAS_root {
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -3583,7 +3583,7 @@ class GGS_observablePropertyAST_2E_prefsProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3660,7 +3660,7 @@ class GGS_observablePropertyAST_2E_prefsProperty_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3719,8 +3719,8 @@ class GGS_observablePropertyAST_2E_rootPropertyNone : public AC_GALGAS_root {
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -3733,7 +3733,7 @@ class GGS_observablePropertyAST_2E_rootPropertyNone : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3810,7 +3810,7 @@ class GGS_observablePropertyAST_2E_rootPropertyNone_3F_ : public AC_GALGAS_root 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3880,8 +3880,8 @@ class GGS_observablePropertyAST_2E_rootPropertyRelationship : public AC_GALGAS_r
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -3894,7 +3894,7 @@ class GGS_observablePropertyAST_2E_rootPropertyRelationship : public AC_GALGAS_r
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -3971,7 +3971,7 @@ class GGS_observablePropertyAST_2E_rootPropertyRelationship_3F_ : public AC_GALG
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4041,8 +4041,8 @@ class GGS_observablePropertyAST_2E_rootPropertyWithOption : public AC_GALGAS_roo
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4055,7 +4055,7 @@ class GGS_observablePropertyAST_2E_rootPropertyWithOption : public AC_GALGAS_roo
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4132,7 +4132,7 @@ class GGS_observablePropertyAST_2E_rootPropertyWithOption_3F_ : public AC_GALGAS
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4191,8 +4191,8 @@ class GGS_observablePropertyAST_2E_rootProperty : public AC_GALGAS_root {
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4205,7 +4205,7 @@ class GGS_observablePropertyAST_2E_rootProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4282,7 +4282,7 @@ class GGS_observablePropertyAST_2E_rootProperty_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4363,8 +4363,8 @@ class GGS_observablePropertyAST_2E_selfControllerAllProperties : public AC_GALGA
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4377,7 +4377,7 @@ class GGS_observablePropertyAST_2E_selfControllerAllProperties : public AC_GALGA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4454,7 +4454,7 @@ class GGS_observablePropertyAST_2E_selfControllerAllProperties_3F_ : public AC_G
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4524,8 +4524,8 @@ class GGS_observablePropertyAST_2E_selfControllerOneProperty : public AC_GALGAS_
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4538,7 +4538,7 @@ class GGS_observablePropertyAST_2E_selfControllerOneProperty : public AC_GALGAS_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4615,7 +4615,7 @@ class GGS_observablePropertyAST_2E_selfControllerOneProperty_3F_ : public AC_GAL
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4685,8 +4685,8 @@ class GGS_observablePropertyAST_2E_selfControllerProperty : public AC_GALGAS_roo
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4699,7 +4699,7 @@ class GGS_observablePropertyAST_2E_selfControllerProperty : public AC_GALGAS_roo
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4776,7 +4776,7 @@ class GGS_observablePropertyAST_2E_selfControllerProperty_3F_ : public AC_GALGAS
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4857,8 +4857,8 @@ class GGS_observablePropertyAST_2E_selfControllerSecondaryProperty : public AC_G
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4871,7 +4871,7 @@ class GGS_observablePropertyAST_2E_selfControllerSecondaryProperty : public AC_G
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -4948,7 +4948,7 @@ class GGS_observablePropertyAST_2E_selfControllerSecondaryProperty_3F_ : public 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5018,8 +5018,8 @@ class GGS_observablePropertyAST_2E_selfPropertyArray : public AC_GALGAS_root {
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5032,7 +5032,7 @@ class GGS_observablePropertyAST_2E_selfPropertyArray : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5109,7 +5109,7 @@ class GGS_observablePropertyAST_2E_selfPropertyArray_3F_ : public AC_GALGAS_root
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5168,8 +5168,8 @@ class GGS_observablePropertyAST_2E_selfPropertyNone : public AC_GALGAS_root {
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5182,7 +5182,7 @@ class GGS_observablePropertyAST_2E_selfPropertyNone : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5259,7 +5259,7 @@ class GGS_observablePropertyAST_2E_selfPropertyNone_3F_ : public AC_GALGAS_root 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5329,8 +5329,8 @@ class GGS_observablePropertyAST_2E_selfPropertyObject : public AC_GALGAS_root {
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5343,7 +5343,7 @@ class GGS_observablePropertyAST_2E_selfPropertyObject : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5420,7 +5420,7 @@ class GGS_observablePropertyAST_2E_selfPropertyObject_3F_ : public AC_GALGAS_roo
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5490,8 +5490,8 @@ class GGS_observablePropertyAST_2E_selfPropertyWithOption : public AC_GALGAS_roo
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5504,7 +5504,7 @@ class GGS_observablePropertyAST_2E_selfPropertyWithOption : public AC_GALGAS_roo
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5581,7 +5581,7 @@ class GGS_observablePropertyAST_2E_selfPropertyWithOption_3F_ : public AC_GALGAS
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5640,8 +5640,8 @@ class GGS_observablePropertyAST_2E_selfProperty : public AC_GALGAS_root {
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5654,7 +5654,7 @@ class GGS_observablePropertyAST_2E_selfProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5731,7 +5731,7 @@ class GGS_observablePropertyAST_2E_selfProperty_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5790,8 +5790,8 @@ class GGS_observablePropertyAST_2E_selfWithoutProperty : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5804,7 +5804,7 @@ class GGS_observablePropertyAST_2E_selfWithoutProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5881,7 +5881,7 @@ class GGS_observablePropertyAST_2E_selfWithoutProperty_3F_ : public AC_GALGAS_ro
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -5940,8 +5940,8 @@ class GGS_observablePropertyAST_2E_signatureProperty : public AC_GALGAS_root {
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -5954,7 +5954,7 @@ class GGS_observablePropertyAST_2E_signatureProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6031,7 +6031,7 @@ class GGS_observablePropertyAST_2E_signatureProperty_3F_ : public AC_GALGAS_root
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6112,8 +6112,8 @@ class GGS_observablePropertyAST_2E_superPropertyWithDefaultValue : public AC_GAL
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -6126,7 +6126,7 @@ class GGS_observablePropertyAST_2E_superPropertyWithDefaultValue : public AC_GAL
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6203,7 +6203,7 @@ class GGS_observablePropertyAST_2E_superPropertyWithDefaultValue_3F_ : public AC
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6273,8 +6273,8 @@ class GGS_observablePropertyAST_2E_superProperty : public AC_GALGAS_root {
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -6287,7 +6287,7 @@ class GGS_observablePropertyAST_2E_superProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6364,7 +6364,7 @@ class GGS_observablePropertyAST_2E_superProperty_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6423,8 +6423,8 @@ class GGS_observablePropertyAST_2E_versionProperty : public AC_GALGAS_root {
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -6437,7 +6437,7 @@ class GGS_observablePropertyAST_2E_versionProperty : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6514,7 +6514,7 @@ class GGS_observablePropertyAST_2E_versionProperty_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6573,8 +6573,8 @@ class GGS_observablePropertyAST_2E_versionShouldChangeProperty : public AC_GALGA
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -6587,7 +6587,7 @@ class GGS_observablePropertyAST_2E_versionShouldChangeProperty : public AC_GALGA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6664,7 +6664,7 @@ class GGS_observablePropertyAST_2E_versionShouldChangeProperty_3F_ : public AC_G
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6748,7 +6748,7 @@ class GGS_transientRoutineGeneration : public GGS_abstractFileGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6893,7 +6893,7 @@ class GGS_transientRoutineGeneration_2E_weak : public GGS_abstractFileGeneration
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -6961,39 +6961,39 @@ class GGS_toManyRelationshipOptionAST : public AC_GALGAS_root {
   public: static class GGS_toManyRelationshipOptionAST class_func_none (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractHasDependance (class GGS_lstring & outArgument0,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_extractHasDependance (class GGS_lstring & outArgument0,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractHasOpposite (class GGS_lstring & outArgument0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
+  public: void method_extractHasOpposite (class GGS_lstring & outArgument0,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
+  public: class GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
+  public: class GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isHasDependance (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNone (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7052,8 +7052,8 @@ class GGS_toManyRelationshipOptionAST_2E_hasDependance : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -7066,7 +7066,7 @@ class GGS_toManyRelationshipOptionAST_2E_hasDependance : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7143,7 +7143,7 @@ class GGS_toManyRelationshipOptionAST_2E_hasDependance_3F_ : public AC_GALGAS_ro
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7202,8 +7202,8 @@ class GGS_toManyRelationshipOptionAST_2E_hasOpposite : public AC_GALGAS_root {
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -7216,7 +7216,7 @@ class GGS_toManyRelationshipOptionAST_2E_hasOpposite : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7293,7 +7293,7 @@ class GGS_toManyRelationshipOptionAST_2E_hasOpposite_3F_ : public AC_GALGAS_root
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7363,7 +7363,7 @@ class GGS_toManyRelationshipAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7514,7 +7514,7 @@ class GGS_toManyRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_w
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7584,40 +7584,40 @@ class GGS_toManyRelationshipOptionGeneration : public AC_GALGAS_root {
   public: static class GGS_toManyRelationshipOptionGeneration class_func_none (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractHasDependance (class GGS_string & outArgument0,
-                                                             class GGS_string & outArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_extractHasDependance (class GGS_string & outArgument0,
+                                            class GGS_string & outArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractHasOpposite (class GGS_string & outArgument0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) const ;
+  public: void method_extractHasOpposite (class GGS_string & outArgument0,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
+  public: class GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_ getter_getHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
+  public: class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ getter_getHasOpposite (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isHasDependance (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isHasDependance (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isHasOpposite (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNone (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7687,8 +7687,8 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasDependance : public AC_GALGAS
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -7701,7 +7701,7 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasDependance : public AC_GALGAS
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7778,7 +7778,7 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasDependance_3F_ : public AC_GA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7837,8 +7837,8 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite : public AC_GALGAS_r
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -7851,7 +7851,7 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite : public AC_GALGAS_r
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7928,7 +7928,7 @@ class GGS_toManyRelationshipOptionGeneration_2E_hasOpposite_3F_ : public AC_GALG
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -7998,8 +7998,8 @@ class GGS_propertyKind_2E_arrayController : public AC_GALGAS_root {
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -8012,7 +8012,7 @@ class GGS_propertyKind_2E_arrayController : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8089,7 +8089,7 @@ class GGS_propertyKind_2E_arrayController_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8155,33 +8155,33 @@ class GGS_propertyAccessibility : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractTransient (class GGS_bool & outArgument0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: void method_extractTransient (class GGS_bool & outArgument0,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_propertyAccessibility_2E_transient_3F_ getter_getTransient (LOCATION_ARGS) const ;
+  public: class GGS_propertyAccessibility_2E_transient_3F_ getter_getTransient (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isComputed (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isComputed (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isStored (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isStored (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTransient (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTransient (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8251,8 +8251,8 @@ class GGS_propertyKind_2E_property : public AC_GALGAS_root {
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -8265,7 +8265,7 @@ class GGS_propertyKind_2E_property : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8342,7 +8342,7 @@ class GGS_propertyKind_2E_property_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8401,8 +8401,8 @@ class GGS_propertyKind_2E_selectionController : public AC_GALGAS_root {
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -8415,7 +8415,7 @@ class GGS_propertyKind_2E_selectionController : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8492,7 +8492,7 @@ class GGS_propertyKind_2E_selectionController_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8584,8 +8584,8 @@ class GGS_propertyKind_2E_toMany : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -8598,7 +8598,7 @@ class GGS_propertyKind_2E_toMany : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8675,7 +8675,7 @@ class GGS_propertyKind_2E_toMany_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8743,41 +8743,41 @@ class GGS_toOneOppositeRelationship : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_toOneOppositeRelationship & inOperand) const ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractOppositeIsToMany (class GGS_lstring & outArgument0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: void method_extractOppositeIsToMany (class GGS_lstring & outArgument0,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractOppositeIsToOne (class GGS_lstring & outArgument0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
+  public: void method_extractOppositeIsToOne (class GGS_lstring & outArgument0,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ getter_getOppositeIsToMany (LOCATION_ARGS) const ;
+  public: class GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ getter_getOppositeIsToMany (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ getter_getOppositeIsToOne (LOCATION_ARGS) const ;
+  public: class GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ getter_getOppositeIsToOne (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNone (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isNone (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isOppositeIsToMany (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isOppositeIsToMany (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isOppositeIsToOne (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isOppositeIsToOne (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8880,8 +8880,8 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -8894,7 +8894,7 @@ class GGS_propertyKind_2E_toOne : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -8971,7 +8971,7 @@ class GGS_propertyKind_2E_toOne_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9041,7 +9041,7 @@ class GGS_toManyPropertyGeneration : public GGS_propertyGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9196,7 +9196,7 @@ class GGS_toManyPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_we
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9328,90 +9328,90 @@ class GGS_toManyPropertyGenerationList : public AC_GALGAS_root {
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_toManyPropertyGenerationList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_toManyPropertyGenerationList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_toManyPropertyGeneration & inOperand0
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_toManyPropertyGeneration & inOperand0
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_toManyPropertyGenerationList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_toManyPropertyGenerationList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_toManyPropertyGenerationList add_operation (const GGS_toManyPropertyGenerationList & inOperand,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: GGS_toManyPropertyGenerationList add_operation (const GGS_toManyPropertyGenerationList & inOperand,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_toManyPropertyGeneration constinArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_toManyPropertyGeneration constinArgument0,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_toManyPropertyGeneration constinArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_toManyPropertyGeneration constinArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_toManyPropertyGeneration & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_toManyPropertyGeneration & outArgument0,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_toManyPropertyGeneration & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+  public: void setter_popLast (class GGS_toManyPropertyGeneration & outArgument0,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_toManyPropertyGeneration & outArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_removeAtIndex (class GGS_toManyPropertyGeneration & outArgument0,
+                                     class GGS_uint constinArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyAtIndex (class GGS_toManyPropertyGeneration constinArgument0,
-                                                            class GGS_uint constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMPropertyAtIndex (class GGS_toManyPropertyGeneration constinArgument0,
+                                           class GGS_uint constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_toManyPropertyGeneration & outArgument0,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_toManyPropertyGeneration & outArgument0,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_toManyPropertyGeneration & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_toManyPropertyGeneration & outArgument0,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const ;
+  public: class GGS_toManyPropertyGeneration getter_mPropertyAtIndex (const class GGS_uint & constinOperand0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_toManyPropertyGenerationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_toManyPropertyGenerationList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_toManyPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_toManyPropertyGenerationList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_toManyPropertyGenerationList ;
   friend class DownEnumerator_toManyPropertyGenerationList ;
@@ -9473,8 +9473,8 @@ class GGS_toManyPropertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -9487,7 +9487,7 @@ class GGS_toManyPropertyGenerationList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9540,7 +9540,7 @@ class GGS_atomicClassDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9673,7 +9673,7 @@ class GGS_atomicClassDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9740,38 +9740,38 @@ class GGS_mainXibElement : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractOutlet (class GGS_lstring & outArgument0,
-                                                      class GGS_lstring & outArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_extractOutlet (class GGS_lstring & outArgument0,
+                                     class GGS_lstring & outArgument1,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractText (class GGS_lstring & outArgument0,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const ;
+  public: void method_extractText (class GGS_lstring & outArgument0,
+                                   Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_mainXibElement_2E_outlet_3F_ getter_getOutlet (LOCATION_ARGS) const ;
+  public: class GGS_mainXibElement_2E_outlet_3F_ getter_getOutlet (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_mainXibElement_2E_text_3F_ getter_getText (LOCATION_ARGS) const ;
+  public: class GGS_mainXibElement_2E_text_3F_ getter_getText (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isOutlet (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isOutlet (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isText (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isText (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9830,8 +9830,8 @@ class GGS_mainXibLineDescriptorList_2E_element : public AC_GALGAS_root {
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -9844,7 +9844,7 @@ class GGS_mainXibLineDescriptorList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -9914,8 +9914,8 @@ class GGS_mainXibElement_2E_outlet : public AC_GALGAS_root {
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -9928,7 +9928,7 @@ class GGS_mainXibElement_2E_outlet : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10005,7 +10005,7 @@ class GGS_mainXibElement_2E_outlet_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10064,8 +10064,8 @@ class GGS_mainXibElement_2E_text : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -10078,7 +10078,7 @@ class GGS_mainXibElement_2E_text : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10155,7 +10155,7 @@ class GGS_mainXibElement_2E_text_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10311,105 +10311,105 @@ class GGS_classMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_classKind constinArgument1,
-                                                  class GGS_propertyMap constinArgument2,
-                                                  class GGS_actionMap constinArgument3,
-                                                  class GGS_propertyGenerationList constinArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_classKind constinArgument1,
+                                 class GGS_propertyMap constinArgument2,
+                                 class GGS_actionMap constinArgument3,
+                                 class GGS_propertyGenerationList constinArgument4,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_replace (class GGS_classMap_2E_element constinArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+  public: void setter_replace (class GGS_classMap_2E_element constinArgument0,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMActionMapForKey (class GGS_actionMap constinArgument0,
-                                                            class GGS_string constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMActionMapForKey (class GGS_actionMap constinArgument0,
+                                           class GGS_string constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMClassKindForKey (class GGS_classKind constinArgument0,
-                                                            class GGS_string constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMClassKindForKey (class GGS_classKind constinArgument0,
+                                           class GGS_string constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyGenerationListForKey (class GGS_propertyGenerationList constinArgument0,
-                                                                         class GGS_string constinArgument1,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
+  public: void setter_setMPropertyGenerationListForKey (class GGS_propertyGenerationList constinArgument0,
+                                                        class GGS_string constinArgument1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyMapForKey (class GGS_propertyMap constinArgument0,
-                                                              class GGS_string constinArgument1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: void setter_setMPropertyMapForKey (class GGS_propertyMap constinArgument0,
+                                             class GGS_string constinArgument1,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_classKind & outArgument1,
-                                                  class GGS_propertyMap & outArgument2,
-                                                  class GGS_actionMap & outArgument3,
-                                                  class GGS_propertyGenerationList & outArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_classKind & outArgument1,
+                                 class GGS_propertyMap & outArgument2,
+                                 class GGS_actionMap & outArgument3,
+                                 class GGS_propertyGenerationList & outArgument4,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_actionMap getter_mActionMapForKey (const class GGS_string & constinOperand0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_actionMap getter_mActionMapForKey (const class GGS_string & constinOperand0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_classKind getter_mClassKindForKey (const class GGS_string & constinOperand0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_classKind getter_mClassKindForKey (const class GGS_string & constinOperand0,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_propertyGenerationList getter_mPropertyGenerationListForKey (const class GGS_string & constinOperand0,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_propertyMap getter_mPropertyMapForKey (const class GGS_string & constinOperand0,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_classMap getter_overriddenMap (Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_classMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+  public: class GGS_propertyGenerationList getter_mPropertyGenerationListForKey (const class GGS_string & constinOperand0,
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_classMap_2E_element readSubscript__3F_searchKey (const class GGS_lstring & in0,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const ;
+  public: class GGS_propertyMap getter_mPropertyMapForKey (const class GGS_string & constinOperand0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_classMap getter_overriddenMap (Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: class GGS_classMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_classMap_2E_element readSubscript__3F_searchKey (const class GGS_lstring & in0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_classMap ;
   friend class DownEnumerator_classMap ;
@@ -10491,50 +10491,50 @@ class GGS_classKind : public AC_GALGAS_root {
   public: static class GGS_classKind class_func_prefs (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractAtomic (class GGS_typeKind & outArgument0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_extractAtomic (class GGS_typeKind & outArgument0,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractDocument (class GGS_lstring & outArgument0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_extractDocument (class GGS_lstring & outArgument0,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractEntity (class GGS_string & outArgument0,
-                                                      class GGS_bool & outArgument1,
-                                                      class GGS_bool & outArgument2,
-                                                      class GGS_bool & outArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_extractEntity (class GGS_string & outArgument0,
+                                     class GGS_bool & outArgument1,
+                                     class GGS_bool & outArgument2,
+                                     class GGS_bool & outArgument3,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_classKind_2E_atomic_3F_ getter_getAtomic (LOCATION_ARGS) const ;
+  public: class GGS_classKind_2E_atomic_3F_ getter_getAtomic (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_classKind_2E_document_3F_ getter_getDocument (LOCATION_ARGS) const ;
+  public: class GGS_classKind_2E_document_3F_ getter_getDocument (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_classKind_2E_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
+  public: class GGS_classKind_2E_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isAtomic (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isAtomic (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isDocument (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isDocument (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isPrefs (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isPrefs (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10637,8 +10637,8 @@ class GGS_classMap_2E_element : public AC_GALGAS_root {
                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -10651,7 +10651,7 @@ class GGS_classMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10728,7 +10728,7 @@ class GGS_classMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -10883,130 +10883,130 @@ class GGS_outletClassMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring constinArgument1,
-                                                  class GGS_bool constinArgument2,
-                                                  class GGS_bool constinArgument3,
-                                                  class GGS_bool constinArgument4,
-                                                  class GGS_bool constinArgument5,
-                                                  class GGS_bool constinArgument6,
-                                                  class GGS_bool constinArgument7,
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring constinArgument1,
+                                 class GGS_bool constinArgument2,
+                                 class GGS_bool constinArgument3,
+                                 class GGS_bool constinArgument4,
+                                 class GGS_bool constinArgument5,
+                                 class GGS_bool constinArgument6,
+                                 class GGS_bool constinArgument7,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMHandleEnabledBindingForKey (class GGS_bool constinArgument0,
+                                                      class GGS_string constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMHandleGraphicControllerBindingForKey (class GGS_bool constinArgument0,
+                                                                class GGS_string constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMHandleHiddenBindingForKey (class GGS_bool constinArgument0,
+                                                     class GGS_string constinArgument1,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMHandlesRunActionForKey (class GGS_bool constinArgument0,
+                                                  class GGS_string constinArgument1,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleEnabledBindingForKey (class GGS_bool constinArgument0,
-                                                                       class GGS_string constinArgument1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: void setter_setMHandlesTableValueBindingForKey (class GGS_bool constinArgument0,
+                                                          class GGS_string constinArgument1,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleGraphicControllerBindingForKey (class GGS_bool constinArgument0,
-                                                                                 class GGS_string constinArgument1,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_setMSuperClassNameForKey (class GGS_lstring constinArgument0,
+                                                class GGS_string constinArgument1,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleHiddenBindingForKey (class GGS_bool constinArgument0,
-                                                                      class GGS_string constinArgument1,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesRunActionForKey (class GGS_bool constinArgument0,
-                                                                   class GGS_string constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesTableValueBindingForKey (class GGS_bool constinArgument0,
-                                                                           class GGS_string constinArgument1,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSuperClassNameForKey (class GGS_lstring constinArgument0,
-                                                                 class GGS_string constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUserDefinedForKey (class GGS_bool constinArgument0,
-                                                              class GGS_string constinArgument1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: void setter_setMUserDefinedForKey (class GGS_bool constinArgument0,
+                                             class GGS_string constinArgument1,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_bool & outArgument2,
-                                                  class GGS_bool & outArgument3,
-                                                  class GGS_bool & outArgument4,
-                                                  class GGS_bool & outArgument5,
-                                                  class GGS_bool & outArgument6,
-                                                  class GGS_bool & outArgument7,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_bool & outArgument2,
+                                 class GGS_bool & outArgument3,
+                                 class GGS_bool & outArgument4,
+                                 class GGS_bool & outArgument5,
+                                 class GGS_bool & outArgument6,
+                                 class GGS_bool & outArgument7,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleGraphicControllerBindingForKey (const class GGS_string & constinOperand0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleHiddenBindingForKey (const class GGS_string & constinOperand0,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandlesRunActionForKey (const class GGS_string & constinOperand0,
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+  public: class GGS_bool getter_mHandlesTableValueBindingForKey (const class GGS_string & constinOperand0,
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mSuperClassNameForKey (const class GGS_string & constinOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_mUserDefinedForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleGraphicControllerBindingForKey (const class GGS_string & constinOperand0,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleHiddenBindingForKey (const class GGS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesRunActionForKey (const class GGS_string & constinOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesTableValueBindingForKey (const class GGS_string & constinOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mSuperClassNameForKey (const class GGS_string & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mUserDefinedForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_outletClassMap getter_overriddenMap (Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletClassMap getter_overriddenMap (Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_outletClassMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletClassMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletClassMap ;
   friend class DownEnumerator_outletClassMap ;
@@ -11145,8 +11145,8 @@ class GGS_outletClassMap_2E_element : public AC_GALGAS_root {
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -11159,7 +11159,7 @@ class GGS_outletClassMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -11236,7 +11236,7 @@ class GGS_outletClassMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -11376,81 +11376,81 @@ class GGS_bindingSpecificationMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring constinArgument1,
-                                                  class GGS_outletBindingSpecificationMap constinArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring constinArgument1,
+                                 class GGS_outletBindingSpecificationMap constinArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_outletBindingSpecificationMap & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_removeKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_outletBindingSpecificationMap & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMBindingMapForKey (class GGS_outletBindingSpecificationMap constinArgument0,
-                                                             class GGS_string constinArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+  public: void setter_setMBindingMapForKey (class GGS_outletBindingSpecificationMap constinArgument0,
+                                            class GGS_string constinArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMOutletSuperClassNameForKey (class GGS_lstring constinArgument0,
-                                                                       class GGS_string constinArgument1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: void setter_setMOutletSuperClassNameForKey (class GGS_lstring constinArgument0,
+                                                      class GGS_string constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_outletBindingSpecificationMap & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_outletBindingSpecificationMap & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_outletBindingSpecificationMap getter_mBindingMapForKey (const class GGS_string & constinOperand0,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstring getter_mOutletSuperClassNameForKey (const class GGS_string & constinOperand0,
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationMap getter_mBindingMapForKey (const class GGS_string & constinOperand0,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOutletSuperClassNameForKey (const class GGS_string & constinOperand0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_bindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_bindingSpecificationMap ;
   friend class DownEnumerator_bindingSpecificationMap ;
@@ -11593,75 +11593,75 @@ class GGS_outletBindingSpecificationMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_outletBindingSpecificationModelList constinArgument1,
-                                                  class GGS_controllerBindingOptionDecoratedList constinArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_outletBindingSpecificationModelList constinArgument1,
+                                 class GGS_controllerBindingOptionDecoratedList constinArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMControllerBindingOptionListForKey (class GGS_controllerBindingOptionDecoratedList constinArgument0,
-                                                                              class GGS_string constinArgument1,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+  public: void setter_setMControllerBindingOptionListForKey (class GGS_controllerBindingOptionDecoratedList constinArgument0,
+                                                             class GGS_string constinArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMOutletBindingSpecificationModelListForKey (class GGS_outletBindingSpecificationModelList constinArgument0,
-                                                                                      class GGS_string constinArgument1,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_setMOutletBindingSpecificationModelListForKey (class GGS_outletBindingSpecificationModelList constinArgument0,
+                                                                     class GGS_string constinArgument1,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_outletBindingSpecificationModelList & outArgument1,
-                                                  class GGS_controllerBindingOptionDecoratedList & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_outletBindingSpecificationModelList & outArgument1,
+                                 class GGS_controllerBindingOptionDecoratedList & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_controllerBindingOptionDecoratedList getter_mControllerBindingOptionListForKey (const class GGS_string & constinOperand0,
-                                                                                                                     Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_controllerBindingOptionDecoratedList getter_mControllerBindingOptionListForKey (const class GGS_string & constinOperand0,
+                                                                                                    Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationModelList getter_mOutletBindingSpecificationModelListForKey (const class GGS_string & constinOperand0,
-                                                                                                                            Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationModelList getter_mOutletBindingSpecificationModelListForKey (const class GGS_string & constinOperand0,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                      Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_outletBindingSpecificationMap ;
   friend class DownEnumerator_outletBindingSpecificationMap ;
@@ -11745,8 +11745,8 @@ class GGS_bindingSpecificationMap_2E_element : public AC_GALGAS_root {
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -11759,7 +11759,7 @@ class GGS_bindingSpecificationMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -11836,7 +11836,7 @@ class GGS_bindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -11997,152 +11997,152 @@ class GGS_autolayoutViewClassMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring constinArgument1,
-                                                  class GGS_bool constinArgument2,
-                                                  class GGS_bool constinArgument3,
-                                                  class GGS_bool constinArgument4,
-                                                  class GGS_bool constinArgument5,
-                                                  class GGS_bool constinArgument6,
-                                                  class GGS_bool constinArgument7,
-                                                  class GGS_autoLayoutClassParameterList constinArgument8,
-                                                  class GGS_astAutoLayoutViewFunctionMap constinArgument9,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring constinArgument1,
+                                 class GGS_bool constinArgument2,
+                                 class GGS_bool constinArgument3,
+                                 class GGS_bool constinArgument4,
+                                 class GGS_bool constinArgument5,
+                                 class GGS_bool constinArgument6,
+                                 class GGS_bool constinArgument7,
+                                 class GGS_autoLayoutClassParameterList constinArgument8,
+                                 class GGS_astAutoLayoutViewFunctionMap constinArgument9,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMAutoLayoutViewFunctionMapForKey (class GGS_astAutoLayoutViewFunctionMap constinArgument0,
-                                                                            class GGS_string constinArgument1,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: void setter_setMAutoLayoutViewFunctionMapForKey (class GGS_astAutoLayoutViewFunctionMap constinArgument0,
+                                                           class GGS_string constinArgument1,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleEnabledBindingForKey (class GGS_bool constinArgument0,
-                                                                       class GGS_string constinArgument1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: void setter_setMHandleEnabledBindingForKey (class GGS_bool constinArgument0,
+                                                      class GGS_string constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleGraphicControllerBindingForKey (class GGS_bool constinArgument0,
-                                                                                 class GGS_string constinArgument1,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandleHiddenBindingForKey (class GGS_bool constinArgument0,
-                                                                      class GGS_string constinArgument1,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesRunActionForKey (class GGS_bool constinArgument0,
-                                                                   class GGS_string constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMHandlesTableValueBindingForKey (class GGS_bool constinArgument0,
-                                                                           class GGS_string constinArgument1,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterListForKey (class GGS_autoLayoutClassParameterList constinArgument0,
+  public: void setter_setMHandleGraphicControllerBindingForKey (class GGS_bool constinArgument0,
                                                                 class GGS_string constinArgument1,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMSuperClassNameForKey (class GGS_lstring constinArgument0,
-                                                                 class GGS_string constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_setMHandleHiddenBindingForKey (class GGS_bool constinArgument0,
+                                                     class GGS_string constinArgument1,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMUserDefinedForKey (class GGS_bool constinArgument0,
-                                                              class GGS_string constinArgument1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: void setter_setMHandlesRunActionForKey (class GGS_bool constinArgument0,
+                                                  class GGS_string constinArgument1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMHandlesTableValueBindingForKey (class GGS_bool constinArgument0,
+                                                          class GGS_string constinArgument1,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMParameterListForKey (class GGS_autoLayoutClassParameterList constinArgument0,
+                                               class GGS_string constinArgument1,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMSuperClassNameForKey (class GGS_lstring constinArgument0,
+                                                class GGS_string constinArgument1,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMUserDefinedForKey (class GGS_bool constinArgument0,
+                                             class GGS_string constinArgument1,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_bool & outArgument2,
-                                                  class GGS_bool & outArgument3,
-                                                  class GGS_bool & outArgument4,
-                                                  class GGS_bool & outArgument5,
-                                                  class GGS_bool & outArgument6,
-                                                  class GGS_bool & outArgument7,
-                                                  class GGS_autoLayoutClassParameterList & outArgument8,
-                                                  class GGS_astAutoLayoutViewFunctionMap & outArgument9,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_bool & outArgument2,
+                                 class GGS_bool & outArgument3,
+                                 class GGS_bool & outArgument4,
+                                 class GGS_bool & outArgument5,
+                                 class GGS_bool & outArgument6,
+                                 class GGS_bool & outArgument7,
+                                 class GGS_autoLayoutClassParameterList & outArgument8,
+                                 class GGS_astAutoLayoutViewFunctionMap & outArgument9,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_astAutoLayoutViewFunctionMap getter_mAutoLayoutViewFunctionMapForKey (const class GGS_string & constinOperand0,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleGraphicControllerBindingForKey (const class GGS_string & constinOperand0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandleHiddenBindingForKey (const class GGS_string & constinOperand0,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_mHandlesRunActionForKey (const class GGS_string & constinOperand0,
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+  public: class GGS_bool getter_mHandlesTableValueBindingForKey (const class GGS_string & constinOperand0,
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewFunctionMap getter_mAutoLayoutViewFunctionMapForKey (const class GGS_string & constinOperand0,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleEnabledBindingForKey (const class GGS_string & constinOperand0,
+  public: class GGS_autoLayoutClassParameterList getter_mParameterListForKey (const class GGS_string & constinOperand0,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleGraphicControllerBindingForKey (const class GGS_string & constinOperand0,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mSuperClassNameForKey (const class GGS_string & constinOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandleHiddenBindingForKey (const class GGS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_mUserDefinedForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesRunActionForKey (const class GGS_string & constinOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mHandlesTableValueBindingForKey (const class GGS_string & constinOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_mParameterListForKey (const class GGS_string & constinOperand0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mSuperClassNameForKey (const class GGS_string & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mUserDefinedForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autolayoutViewClassMap getter_overriddenMap (Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autolayoutViewClassMap getter_overriddenMap (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_autolayoutViewClassMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autolayoutViewClassMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autolayoutViewClassMap ;
   friend class DownEnumerator_autolayoutViewClassMap ;
@@ -12281,107 +12281,107 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_root {
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutClassParameterList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_autoLayoutClassParameterList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
-                                                    const class GGS_autoLayoutClassParameterType & inOperand1
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_lstring & inOperand0,
+                                   const class GGS_autoLayoutClassParameterType & inOperand1
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutClassParameterList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_autoLayoutClassParameterList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_autoLayoutClassParameterList add_operation (const GGS_autoLayoutClassParameterList & inOperand,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: GGS_autoLayoutClassParameterList add_operation (const GGS_autoLayoutClassParameterList & inOperand,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_lstring constinArgument0,
-                                               class GGS_autoLayoutClassParameterType constinArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_lstring constinArgument0,
+                              class GGS_autoLayoutClassParameterType constinArgument1,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_lstring constinArgument0,
-                                                      class GGS_autoLayoutClassParameterType constinArgument1,
-                                                      class GGS_uint constinArgument2,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_lstring constinArgument0,
+                                     class GGS_autoLayoutClassParameterType constinArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_lstring & outArgument0,
-                                                 class GGS_autoLayoutClassParameterType & outArgument1,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_lstring & outArgument0,
+                                class GGS_autoLayoutClassParameterType & outArgument1,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_lstring & outArgument0,
-                                                class GGS_autoLayoutClassParameterType & outArgument1,
+  public: void setter_popLast (class GGS_lstring & outArgument0,
+                               class GGS_autoLayoutClassParameterType & outArgument1,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_lstring & outArgument0,
+                                     class GGS_autoLayoutClassParameterType & outArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMParameterNameAtIndex (class GGS_lstring constinArgument0,
+                                                class GGS_uint constinArgument1,
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_lstring & outArgument0,
-                                                      class GGS_autoLayoutClassParameterType & outArgument1,
-                                                      class GGS_uint constinArgument2,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterNameAtIndex (class GGS_lstring constinArgument0,
-                                                                 class GGS_uint constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterTypeAtIndex (class GGS_autoLayoutClassParameterType constinArgument0,
-                                                                 class GGS_uint constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_setMParameterTypeAtIndex (class GGS_autoLayoutClassParameterType constinArgument0,
+                                                class GGS_uint constinArgument1,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_lstring & outArgument0,
-                                              class GGS_autoLayoutClassParameterType & outArgument1,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_lstring & outArgument0,
+                             class GGS_autoLayoutClassParameterType & outArgument1,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_lstring & outArgument0,
-                                             class GGS_autoLayoutClassParameterType & outArgument1,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_lstring & outArgument0,
+                            class GGS_autoLayoutClassParameterType & outArgument1,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mParameterNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mParameterNameAtIndex (const class GGS_uint & constinOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutClassParameterList ;
   friend class DownEnumerator_autoLayoutClassParameterList ;
@@ -12521,64 +12521,64 @@ class GGS_astAutoLayoutViewFunctionMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_autoLayoutClassParameterList constinArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_autoLayoutClassParameterList constinArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMFomalParameterListForKey (class GGS_autoLayoutClassParameterList constinArgument0,
-                                                                     class GGS_string constinArgument1,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public: void setter_setMFomalParameterListForKey (class GGS_autoLayoutClassParameterList constinArgument0,
+                                                    class GGS_string constinArgument1,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_autoLayoutClassParameterList & outArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_autoLayoutClassParameterList & outArgument1,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterList getter_mFomalParameterListForKey (const class GGS_string & constinOperand0,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterList getter_mFomalParameterListForKey (const class GGS_string & constinOperand0,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewFunctionMap getter_overriddenMap (Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewFunctionMap getter_overriddenMap (Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutViewFunctionMap ;
   friend class DownEnumerator_astAutoLayoutViewFunctionMap ;
@@ -12739,8 +12739,8 @@ class GGS_autolayoutViewClassMap_2E_element : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -12753,7 +12753,7 @@ class GGS_autolayoutViewClassMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -12830,7 +12830,7 @@ class GGS_autolayoutViewClassMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -12970,81 +12970,81 @@ class GGS_autoLayoutBindingSpecificationMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring constinArgument1,
-                                                  class GGS_autoLayoutViewBindingSpecificationMap constinArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring constinArgument1,
+                                 class GGS_autoLayoutViewBindingSpecificationMap constinArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_autoLayoutViewBindingSpecificationMap & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_removeKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_autoLayoutViewBindingSpecificationMap & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMBindingMapForKey (class GGS_autoLayoutViewBindingSpecificationMap constinArgument0,
-                                                             class GGS_string constinArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+  public: void setter_setMBindingMapForKey (class GGS_autoLayoutViewBindingSpecificationMap constinArgument0,
+                                            class GGS_string constinArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMOutletSuperClassNameForKey (class GGS_lstring constinArgument0,
-                                                                       class GGS_string constinArgument1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: void setter_setMOutletSuperClassNameForKey (class GGS_lstring constinArgument0,
+                                                      class GGS_string constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_lstring & outArgument1,
-                                                  class GGS_autoLayoutViewBindingSpecificationMap & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_lstring & outArgument1,
+                                 class GGS_autoLayoutViewBindingSpecificationMap & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_autoLayoutViewBindingSpecificationMap getter_mBindingMapForKey (const class GGS_string & constinOperand0,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstring getter_mOutletSuperClassNameForKey (const class GGS_string & constinOperand0,
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutViewBindingSpecificationMap getter_mBindingMapForKey (const class GGS_string & constinOperand0,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mOutletSuperClassNameForKey (const class GGS_string & constinOperand0,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutBindingSpecificationMap ;
   friend class DownEnumerator_autoLayoutBindingSpecificationMap ;
@@ -13187,75 +13187,75 @@ class GGS_autoLayoutViewBindingSpecificationMap : public AC_GALGAS_root {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_outletBindingSpecificationModelList constinArgument1,
-                                                  class GGS_controllerBindingOptionDecoratedList constinArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_insertKey (class GGS_lstring constinArgument0,
+                                 class GGS_outletBindingSpecificationModelList constinArgument1,
+                                 class GGS_controllerBindingOptionDecoratedList constinArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMControllerBindingOptionListForKey (class GGS_controllerBindingOptionDecoratedList constinArgument0,
-                                                                              class GGS_string constinArgument1,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+  public: void setter_setMControllerBindingOptionListForKey (class GGS_controllerBindingOptionDecoratedList constinArgument0,
+                                                             class GGS_string constinArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMOutletBindingSpecificationModelListForKey (class GGS_outletBindingSpecificationModelList constinArgument0,
-                                                                                      class GGS_string constinArgument1,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_setMOutletBindingSpecificationModelListForKey (class GGS_outletBindingSpecificationModelList constinArgument0,
+                                                                     class GGS_string constinArgument1,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_outletBindingSpecificationModelList & outArgument1,
-                                                  class GGS_controllerBindingOptionDecoratedList & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_searchKey (class GGS_lstring constinArgument0,
+                                 class GGS_outletBindingSpecificationModelList & outArgument1,
+                                 class GGS_controllerBindingOptionDecoratedList & outArgument2,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                               const class GGS_uint & constinOperand1
+                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_stringset getter_keySet (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_levels (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_controllerBindingOptionDecoratedList getter_mControllerBindingOptionListForKey (const class GGS_string & constinOperand0,
-                                                                                                                     Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS_controllerBindingOptionDecoratedList getter_mControllerBindingOptionListForKey (const class GGS_string & constinOperand0,
+                                                                                                    Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_outletBindingSpecificationModelList getter_mOutletBindingSpecificationModelListForKey (const class GGS_string & constinOperand0,
-                                                                                                                            Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) const ;
+  public: class GGS_outletBindingSpecificationModelList getter_mOutletBindingSpecificationModelListForKey (const class GGS_string & constinOperand0,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutViewBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutViewBindingSpecificationMap getter_overriddenMap (Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutViewBindingSpecificationMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutViewBindingSpecificationMap ;
   friend class DownEnumerator_autoLayoutViewBindingSpecificationMap ;
@@ -13339,8 +13339,8 @@ class GGS_autoLayoutBindingSpecificationMap_2E_element : public AC_GALGAS_root {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -13353,7 +13353,7 @@ class GGS_autoLayoutBindingSpecificationMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -13430,7 +13430,7 @@ class GGS_autoLayoutBindingSpecificationMap_2E_element_3F_ : public AC_GALGAS_ro
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -13500,8 +13500,8 @@ class GGS_astAutoLayoutViewFunctionMap_2E_element : public AC_GALGAS_root {
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -13514,7 +13514,7 @@ class GGS_astAutoLayoutViewFunctionMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -13591,7 +13591,7 @@ class GGS_astAutoLayoutViewFunctionMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -13731,124 +13731,124 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_root {
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_enumerationFunctionListAST inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_enumerationFunctionListAST inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
-                                                    const class GGS_lstring & inOperand1,
-                                                    const class GGS__32_lstringlist & inOperand2
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_lstring & inOperand0,
+                                   const class GGS_lstring & inOperand1,
+                                   const class GGS__32_lstringlist & inOperand2
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_enumerationFunctionListAST_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_enumerationFunctionListAST_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_enumerationFunctionListAST add_operation (const GGS_enumerationFunctionListAST & inOperand,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) const ;
+  public: GGS_enumerationFunctionListAST add_operation (const GGS_enumerationFunctionListAST & inOperand,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_lstring constinArgument0,
-                                               class GGS_lstring constinArgument1,
-                                               class GGS__32_lstringlist constinArgument2,
+  public: void setter_append (class GGS_lstring constinArgument0,
+                              class GGS_lstring constinArgument1,
+                              class GGS__32_lstringlist constinArgument2,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+  public: void setter_insertAtIndex (class GGS_lstring constinArgument0,
+                                     class GGS_lstring constinArgument1,
+                                     class GGS__32_lstringlist constinArgument2,
+                                     class GGS_uint constinArgument3,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popFirst (class GGS_lstring & outArgument0,
+                                class GGS_lstring & outArgument1,
+                                class GGS__32_lstringlist & outArgument2,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popLast (class GGS_lstring & outArgument0,
+                               class GGS_lstring & outArgument1,
+                               class GGS__32_lstringlist & outArgument2,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_lstring & outArgument0,
+                                     class GGS_lstring & outArgument1,
+                                     class GGS__32_lstringlist & outArgument2,
+                                     class GGS_uint constinArgument3,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMAssociationListAtIndex (class GGS__32_lstringlist constinArgument0,
+                                                  class GGS_uint constinArgument1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMEnumNameAtIndex (class GGS_lstring constinArgument0,
+                                           class GGS_uint constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMFunctionNameAtIndex (class GGS_lstring constinArgument0,
+                                               class GGS_uint constinArgument1,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_lstring constinArgument0,
-                                                      class GGS_lstring constinArgument1,
-                                                      class GGS__32_lstringlist constinArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_lstring & outArgument0,
-                                                 class GGS_lstring & outArgument1,
-                                                 class GGS__32_lstringlist & outArgument2,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_lstring & outArgument0,
-                                                class GGS_lstring & outArgument1,
-                                                class GGS__32_lstringlist & outArgument2,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_lstring & outArgument0,
-                                                      class GGS_lstring & outArgument1,
-                                                      class GGS__32_lstringlist & outArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMAssociationListAtIndex (class GGS__32_lstringlist constinArgument0,
-                                                                   class GGS_uint constinArgument1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMEnumNameAtIndex (class GGS_lstring constinArgument0,
-                                                            class GGS_uint constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMFunctionNameAtIndex (class GGS_lstring constinArgument0,
-                                                                class GGS_uint constinArgument1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_lstring & outArgument0,
-                                              class GGS_lstring & outArgument1,
-                                              class GGS__32_lstringlist & outArgument2,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_lstring & outArgument0,
+                             class GGS_lstring & outArgument1,
+                             class GGS__32_lstringlist & outArgument2,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_lstring & outArgument0,
-                                             class GGS_lstring & outArgument1,
-                                             class GGS__32_lstringlist & outArgument2,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_lstring & outArgument0,
+                            class GGS_lstring & outArgument1,
+                            class GGS__32_lstringlist & outArgument2,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS__32_lstringlist getter_mAssociationListAtIndex (const class GGS_uint & constinOperand0,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) const ;
+  public: class GGS__32_lstringlist getter_mAssociationListAtIndex (const class GGS_uint & constinOperand0,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mEnumNameAtIndex (const class GGS_uint & constinOperand0,
+  public: class GGS_lstring getter_mEnumNameAtIndex (const class GGS_uint & constinOperand0,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_lstring getter_mFunctionNameAtIndex (const class GGS_uint & constinOperand0,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
+
+  public: class GGS_enumerationFunctionListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: class GGS_enumerationFunctionListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mFunctionNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_enumerationFunctionListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_enumerationFunctionListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_enumerationFunctionListAST getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_enumerationFunctionListAST getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_enumerationFunctionListAST ;
   friend class DownEnumerator_enumerationFunctionListAST ;
@@ -13932,8 +13932,8 @@ class GGS_enumerationFunctionListAST_2E_element : public AC_GALGAS_root {
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -13946,7 +13946,7 @@ class GGS_enumerationFunctionListAST_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -14090,141 +14090,141 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_roo
                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_bool & inOperand0,
-                                                    const class GGS_lstring & inOperand1,
-                                                    const class GGS_astAutoLayoutViewInstructionParameterList & inOperand2,
-                                                    const class GGS_lstring & inOperand3
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_bool & inOperand0,
+                                   const class GGS_lstring & inOperand1,
+                                   const class GGS_astAutoLayoutViewInstructionParameterList & inOperand2,
+                                   const class GGS_lstring & inOperand3
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_autoLayoutTableViewControllerBoundColumnListAST add_operation (const GGS_autoLayoutTableViewControllerBoundColumnListAST & inOperand,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: GGS_autoLayoutTableViewControllerBoundColumnListAST add_operation (const GGS_autoLayoutTableViewControllerBoundColumnListAST & inOperand,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_bool constinArgument0,
-                                               class GGS_lstring constinArgument1,
-                                               class GGS_astAutoLayoutViewInstructionParameterList constinArgument2,
-                                               class GGS_lstring constinArgument3,
+  public: void setter_append (class GGS_bool constinArgument0,
+                              class GGS_lstring constinArgument1,
+                              class GGS_astAutoLayoutViewInstructionParameterList constinArgument2,
+                              class GGS_lstring constinArgument3,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+  public: void setter_insertAtIndex (class GGS_bool constinArgument0,
+                                     class GGS_lstring constinArgument1,
+                                     class GGS_astAutoLayoutViewInstructionParameterList constinArgument2,
+                                     class GGS_lstring constinArgument3,
+                                     class GGS_uint constinArgument4,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popFirst (class GGS_bool & outArgument0,
+                                class GGS_lstring & outArgument1,
+                                class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                class GGS_lstring & outArgument3,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+  public: void setter_popLast (class GGS_bool & outArgument0,
+                               class GGS_lstring & outArgument1,
+                               class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                               class GGS_lstring & outArgument3,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_bool & outArgument0,
+                                     class GGS_lstring & outArgument1,
+                                     class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                                     class GGS_lstring & outArgument3,
+                                     class GGS_uint constinArgument4,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMColumnParameterListASTAtIndex (class GGS_astAutoLayoutViewInstructionParameterList constinArgument0,
+                                                         class GGS_uint constinArgument1,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMEditableAtIndex (class GGS_bool constinArgument0,
+                                           class GGS_uint constinArgument1,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMPropertyNameAtIndex (class GGS_lstring constinArgument0,
+                                               class GGS_uint constinArgument1,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_bool constinArgument0,
-                                                      class GGS_lstring constinArgument1,
-                                                      class GGS_astAutoLayoutViewInstructionParameterList constinArgument2,
-                                                      class GGS_lstring constinArgument3,
-                                                      class GGS_uint constinArgument4,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_bool & outArgument0,
-                                                 class GGS_lstring & outArgument1,
-                                                 class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
-                                                 class GGS_lstring & outArgument3,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_bool & outArgument0,
-                                                class GGS_lstring & outArgument1,
-                                                class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
-                                                class GGS_lstring & outArgument3,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_bool & outArgument0,
-                                                      class GGS_lstring & outArgument1,
-                                                      class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
-                                                      class GGS_lstring & outArgument3,
-                                                      class GGS_uint constinArgument4,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMColumnParameterListASTAtIndex (class GGS_astAutoLayoutViewInstructionParameterList constinArgument0,
-                                                                          class GGS_uint constinArgument1,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMEditableAtIndex (class GGS_bool constinArgument0,
-                                                            class GGS_uint constinArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMPropertyNameAtIndex (class GGS_lstring constinArgument0,
-                                                                class GGS_uint constinArgument1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSortPropertyNameAtIndex (class GGS_lstring constinArgument0,
-                                                                    class GGS_uint constinArgument1,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
+  public: void setter_setMSortPropertyNameAtIndex (class GGS_lstring constinArgument0,
+                                                   class GGS_uint constinArgument1,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_bool & outArgument0,
-                                              class GGS_lstring & outArgument1,
-                                              class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
-                                              class GGS_lstring & outArgument3,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_bool & outArgument0,
+                             class GGS_lstring & outArgument1,
+                             class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                             class GGS_lstring & outArgument3,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_bool & outArgument0,
-                                             class GGS_lstring & outArgument1,
-                                             class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
-                                             class GGS_lstring & outArgument3,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_bool & outArgument0,
+                            class GGS_lstring & outArgument1,
+                            class GGS_astAutoLayoutViewInstructionParameterList & outArgument2,
+                            class GGS_lstring & outArgument3,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListASTAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                                      Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList getter_mColumnParameterListASTAtIndex (const class GGS_uint & constinOperand0,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mEditableAtIndex (const class GGS_uint & constinOperand0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const ;
+  public: class GGS_bool getter_mEditableAtIndex (const class GGS_uint & constinOperand0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mPropertyNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mPropertyNameAtIndex (const class GGS_uint & constinOperand0,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mSortPropertyNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mSortPropertyNameAtIndex (const class GGS_uint & constinOperand0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerBoundColumnListAST getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutTableViewControllerBoundColumnListAST ;
   friend class DownEnumerator_autoLayoutTableViewControllerBoundColumnListAST ;
@@ -14367,124 +14367,124 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_root {
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_astAutoLayoutViewInstructionParameterList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_astAutoLayoutViewInstructionParameterList inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
-                                                    const class GGS_autoLayoutClassParameterType & inOperand1,
-                                                    const class GGS_astAutoLayoutViewInstructionParameterValue & inOperand2
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_lstring & inOperand0,
+                                   const class GGS_autoLayoutClassParameterType & inOperand1,
+                                   const class GGS_astAutoLayoutViewInstructionParameterValue & inOperand2
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_astAutoLayoutViewInstructionParameterList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_astAutoLayoutViewInstructionParameterList_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_astAutoLayoutViewInstructionParameterList add_operation (const GGS_astAutoLayoutViewInstructionParameterList & inOperand,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: GGS_astAutoLayoutViewInstructionParameterList add_operation (const GGS_astAutoLayoutViewInstructionParameterList & inOperand,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_lstring constinArgument0,
-                                               class GGS_autoLayoutClassParameterType constinArgument1,
-                                               class GGS_astAutoLayoutViewInstructionParameterValue constinArgument2,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_lstring constinArgument0,
+                              class GGS_autoLayoutClassParameterType constinArgument1,
+                              class GGS_astAutoLayoutViewInstructionParameterValue constinArgument2,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_lstring constinArgument0,
-                                                      class GGS_autoLayoutClassParameterType constinArgument1,
-                                                      class GGS_astAutoLayoutViewInstructionParameterValue constinArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_lstring constinArgument0,
+                                     class GGS_autoLayoutClassParameterType constinArgument1,
+                                     class GGS_astAutoLayoutViewInstructionParameterValue constinArgument2,
+                                     class GGS_uint constinArgument3,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_lstring & outArgument0,
-                                                 class GGS_autoLayoutClassParameterType & outArgument1,
-                                                 class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_lstring & outArgument0,
+                                class GGS_autoLayoutClassParameterType & outArgument1,
+                                class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_lstring & outArgument0,
-                                                class GGS_autoLayoutClassParameterType & outArgument1,
-                                                class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+  public: void setter_popLast (class GGS_lstring & outArgument0,
+                               class GGS_autoLayoutClassParameterType & outArgument1,
+                               class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_lstring & outArgument0,
+                                     class GGS_autoLayoutClassParameterType & outArgument1,
+                                     class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+                                     class GGS_uint constinArgument3,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMParameterAtIndex (class GGS_astAutoLayoutViewInstructionParameterValue constinArgument0,
+                                            class GGS_uint constinArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMParameterNameAtIndex (class GGS_lstring constinArgument0,
+                                                class GGS_uint constinArgument1,
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_lstring & outArgument0,
-                                                      class GGS_autoLayoutClassParameterType & outArgument1,
-                                                      class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterAtIndex (class GGS_astAutoLayoutViewInstructionParameterValue constinArgument0,
-                                                             class GGS_uint constinArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterNameAtIndex (class GGS_lstring constinArgument0,
-                                                                 class GGS_uint constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMParameterTypeAtIndex (class GGS_autoLayoutClassParameterType constinArgument0,
-                                                                 class GGS_uint constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_setMParameterTypeAtIndex (class GGS_autoLayoutClassParameterType constinArgument0,
+                                                class GGS_uint constinArgument1,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_lstring & outArgument0,
-                                              class GGS_autoLayoutClassParameterType & outArgument1,
-                                              class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_lstring & outArgument0,
+                             class GGS_autoLayoutClassParameterType & outArgument1,
+                             class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_lstring & outArgument0,
-                                             class GGS_autoLayoutClassParameterType & outArgument1,
-                                             class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_lstring & outArgument0,
+                            class GGS_autoLayoutClassParameterType & outArgument1,
+                            class GGS_astAutoLayoutViewInstructionParameterValue & outArgument2,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue getter_mParameterAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue getter_mParameterAtIndex (const class GGS_uint & constinOperand0,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mParameterNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mParameterNameAtIndex (const class GGS_uint & constinOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterType getter_mParameterTypeAtIndex (const class GGS_uint & constinOperand0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                        Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                      Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                        Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_astAutoLayoutViewInstructionParameterList ;
   friend class DownEnumerator_astAutoLayoutViewInstructionParameterList ;
@@ -14579,8 +14579,8 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element : public AC
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -14593,7 +14593,7 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST_2E_element : public AC
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -14679,64 +14679,64 @@ class GGS_astAutoLayoutViewInstructionParameterValue : public AC_GALGAS_root {
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractEntity (class GGS_lstring & outArgument0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_extractEntity (class GGS_lstring & outArgument0,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractEnumFunc (class GGS_lstring & outArgument0,
-                                                        class GGS_lstring & outArgument1,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_extractEnumFunc (class GGS_lstring & outArgument0,
+                                       class GGS_lstring & outArgument1,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractMenuItem (class GGS_string & outArgument0,
-                                                        class GGS_runActionDescriptor & outArgument1,
-                                                        class GGS_multipleBindingDescriptor & outArgument2,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_extractMenuItem (class GGS_string & outArgument0,
+                                       class GGS_runActionDescriptor & outArgument1,
+                                       class GGS_multipleBindingDescriptor & outArgument2,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractString (class GGS_string & outArgument0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_extractString (class GGS_string & outArgument0,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_extractViewFunc (class GGS_astAbstractViewInstructionDeclaration & outArgument0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_extractViewFunc (class GGS_astAbstractViewInstructionDeclaration & outArgument0,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue_2E_entity_3F_ getter_getEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_ getter_getEnumFunc (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc_3F_ getter_getEnumFunc (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ getter_getMenuItem (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem_3F_ getter_getMenuItem (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_ getter_getString (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue_2E_string_3F_ getter_getString (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_ getter_getViewFunc (LOCATION_ARGS) const ;
+  public: class GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc_3F_ getter_getViewFunc (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEnumFunc (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isMenuItem (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isMenuItem (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isString (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isString (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isViewFunc (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isViewFunc (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -14817,45 +14817,45 @@ class GGS_autoLayoutClassParameterType : public AC_GALGAS_root {
   public: static class GGS_autoLayoutClassParameterType class_func_typeView (LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_autoLayoutClassParameterType & inOperand) const ;
 
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_extractTypeEnum (class GGS_lstring & outArgument0,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_extractTypeEnum (class GGS_lstring & outArgument0,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ getter_getTypeEnum (LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutClassParameterType_2E_typeEnum_3F_ getter_getTypeEnum (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isEntity (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isMenuItem (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isMenuItem (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeBool (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeBool (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeEnum (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeEnum (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeInt (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeInt (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeString (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeString (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeStringArray (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeStringArray (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTypeView (LOCATION_ARGS) const ;
+  public: class GGS_bool getter_isTypeView (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -14936,8 +14936,8 @@ class GGS_astAutoLayoutViewInstructionParameterList_2E_element : public AC_GALGA
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -14950,7 +14950,7 @@ class GGS_astAutoLayoutViewInstructionParameterList_2E_element : public AC_GALGA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -15086,107 +15086,107 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_root {
                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: void plusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST inOperand,
+                                    class Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
-                                                    const class GGS_abstractDefaultValue & inOperand1
-                                                    COMMA_LOCATION_ARGS) ;
+  public: void addAssignOperation (const class GGS_lstring & inOperand0,
+                                   const class GGS_abstractDefaultValue & inOperand1
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
+  public: void plusPlusAssignOperation (const GGS_autoLayoutTableViewControllerAttributListAST_2E_element & inOperand
+                                        COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_autoLayoutTableViewControllerAttributListAST add_operation (const GGS_autoLayoutTableViewControllerAttributListAST & inOperand,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: GGS_autoLayoutTableViewControllerAttributListAST add_operation (const GGS_autoLayoutTableViewControllerAttributListAST & inOperand,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_lstring constinArgument0,
-                                               class GGS_abstractDefaultValue constinArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
+  public: void setter_append (class GGS_lstring constinArgument0,
+                              class GGS_abstractDefaultValue constinArgument1,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_lstring constinArgument0,
-                                                      class GGS_abstractDefaultValue constinArgument1,
-                                                      class GGS_uint constinArgument2,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: void setter_insertAtIndex (class GGS_lstring constinArgument0,
+                                     class GGS_abstractDefaultValue constinArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_lstring & outArgument0,
-                                                 class GGS_abstractDefaultValue & outArgument1,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: void setter_popFirst (class GGS_lstring & outArgument0,
+                                class GGS_abstractDefaultValue & outArgument1,
+                                Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_lstring & outArgument0,
-                                                class GGS_abstractDefaultValue & outArgument1,
+  public: void setter_popLast (class GGS_lstring & outArgument0,
+                               class GGS_abstractDefaultValue & outArgument1,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+  public: void setter_removeAtIndex (class GGS_lstring & outArgument0,
+                                     class GGS_abstractDefaultValue & outArgument1,
+                                     class GGS_uint constinArgument2,
+                                     Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+  public: void setter_setMAttributeNameAtIndex (class GGS_lstring constinArgument0,
+                                                class GGS_uint constinArgument1,
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_lstring & outArgument0,
-                                                      class GGS_abstractDefaultValue & outArgument1,
-                                                      class GGS_uint constinArgument2,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMAttributeNameAtIndex (class GGS_lstring constinArgument0,
-                                                                 class GGS_uint constinArgument1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMAttributeValueAtIndex (class GGS_abstractDefaultValue constinArgument0,
-                                                                  class GGS_uint constinArgument1,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
+  public: void setter_setMAttributeValueAtIndex (class GGS_abstractDefaultValue constinArgument0,
+                                                 class GGS_uint constinArgument1,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_lstring & outArgument0,
-                                              class GGS_abstractDefaultValue & outArgument1,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  public: void method_first (class GGS_lstring & outArgument0,
+                             class GGS_abstractDefaultValue & outArgument1,
+                             Compiler * inCompiler
+                             COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_lstring & outArgument0,
-                                             class GGS_abstractDefaultValue & outArgument1,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_last (class GGS_lstring & outArgument0,
+                            class GGS_abstractDefaultValue & outArgument1,
+                            Compiler * inCompiler
+                            COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+  public: class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mAttributeNameAtIndex (const class GGS_uint & constinOperand0,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstring getter_mAttributeNameAtIndex (const class GGS_uint & constinOperand0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_abstractDefaultValue getter_mAttributeValueAtIndex (const class GGS_uint & constinOperand0,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_abstractDefaultValue getter_mAttributeValueAtIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+  public: class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerAttributListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerAttributListAST getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerAttributListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerAttributListAST getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_autoLayoutTableViewControllerAttributListAST getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) const ;
+  public: class GGS_autoLayoutTableViewControllerAttributListAST getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_autoLayoutTableViewControllerAttributListAST ;
   friend class DownEnumerator_autoLayoutTableViewControllerAttributListAST ;
@@ -15259,8 +15259,8 @@ class GGS_autoLayoutTableViewControllerAttributListAST_2E_element : public AC_GA
                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -15273,7 +15273,7 @@ class GGS_autoLayoutTableViewControllerAttributListAST_2E_element : public AC_GA
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -15340,7 +15340,7 @@ class GGS_autoLayoutTableViewControllerDeclarationAST : public GGS_abstractDecla
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -15493,7 +15493,7 @@ class GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak : public GGS_abstr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -15548,7 +15548,7 @@ class GGS_autoLayoutTableViewControllerPropertyGeneration : public GGS_propertyG
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -15685,7 +15685,7 @@ class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak : public GGS_p
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 

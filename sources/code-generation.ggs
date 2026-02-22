@@ -42,7 +42,7 @@ struct @generationStruct {
   public var @bool mGenerateEBManagedAutoLayoutDocumentSwift = false
   public var @stringset mNeededOutletClasses = []
   public var @mainXibDescriptorList mMainXibDescriptorList = []
- 
+
   public var @stringset mToOneClassImplementations = []
   public var @stringset mToManyClassImplementations = []
 
@@ -64,7 +64,7 @@ struct @generationStruct {
 proc generateCode (@string inXcodeProjectString,
                    @generationStruct inGeneration,
                    @string inSourceFile) {
-  let outputDirectory = inSourceFile.stringByDeletingLastPathComponent
+  let outputDirectory = inSourceFile.deletingLastPathComponent
   let projectName = inSourceFile.lastPathComponent.deletingPathExtension
   let fileOutputDirectory = outputDirectory + "/../" + projectName
   var @stringset generatedFileSet = ()

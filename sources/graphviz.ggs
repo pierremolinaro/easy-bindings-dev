@@ -5,20 +5,20 @@
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <graphviz_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $graphviz$
     $Identifier$ (?let @lstring entityName)
     !?ioDeclarationAST.mGraphvizList.append (entityName)
     $;$
  }
- 
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
 //------------------------------------------------------------------------------------------------
-//   SEMANTIC TYPES                        
+//   SEMANTIC TYPES
 //------------------------------------------------------------------------------------------------
 
 proc graphvizAnalysis (
@@ -58,7 +58,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
     for (propertyName, propertyKind, 2*) in propertyMap do
       switch propertyKind
       case property (type, accessibility) :
-        switch accessibility 
+        switch accessibility
         case stored :
           node += "|" + type.swiftTypeName + " " + propertyName
         case transient (*) :
@@ -102,7 +102,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
-            !?arrowList.append ("  " + entityName + ":" + propertyName 
+            !?arrowList.append ("  " + entityName + ":" + propertyName
                + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           case oppositeIsToMany (*) : // No generation
           case oppositeIsToOne (oppositeName) :
@@ -111,7 +111,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
               !?exploreArray.append (typeName)
             end
             if propertyName.string > oppositeName.string then
-              !?arrowList.append ("  " + entityName + ":" + propertyName 
+              !?arrowList.append ("  " + entityName + ":" + propertyName
                    + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=onormal]")
             end
           end
@@ -133,8 +133,8 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
   end
   s += "}\n"
   let filePath = inSourceFileDirectory + "/models/graph-" + inRootEntityName + ".dot"
-  let temp = filePath.stringByDeletingLastPathComponent ; temp.makeDirectory ()
-//  filePath.stringByDeletingLastPathComponent ().makeDirectory ()
+  let temp = filePath.deletingLastPathComponent ; temp.makeDirectory ()
+//  filePath.deletingLastPathComponent ().makeDirectory ()
 }
 
 //------------------------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
   end
   s += "}\n"
   var filePath = inSourceFileDirectory + "/models/strong-" + inRootEntityName + ".dot"
-  let temp = filePath.stringByDeletingLastPathComponent ; temp.makeDirectory ()
+  let temp = filePath.deletingLastPathComponent ; temp.makeDirectory ()
   s.writeToFileWhenDifferentContents (filePath, ?*)
 //-- Print graph
   filePath = inSourceFileDirectory + "/models/strong-dep-" + inRootEntityName + ".dot"
@@ -242,7 +242,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     end
   end
 //-- Check no circularities
-  if undefinedNodeList.count == 0 then 
+  if undefinedNodeList.count == 0 then
     entityStrongReferenceGraph.circularities (?*, ?let @lstringlist unsortedNodeList)
     if unsortedNodeList.count > 0 then
       var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.count

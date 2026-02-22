@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------------------------
-//   GRAMMAR                               
+//   GRAMMAR
 //------------------------------------------------------------------------------------------------
 
 grammar easyBindings_grammar "SLR" {
@@ -8,7 +8,7 @@ grammar easyBindings_grammar "SLR" {
 }
 
 //------------------------------------------------------------------------------------------------
-//   AST   
+//   AST
 //------------------------------------------------------------------------------------------------
 
 struct @astDeclarationStruct {
@@ -30,7 +30,7 @@ struct @astDeclarationStruct {
 syntax easyBindings_syntax (easyBindings_lexique) {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <start_symbol>(
     ?!@astDeclarationStruct ioDeclarationAST,
     !@location outEndOfFile)
@@ -41,7 +41,7 @@ syntax easyBindings_syntax (easyBindings_lexique) {
       $literal_string$ (?let @lstring filePath)
       $;$
       let sourceFile = @lstring (
-        filePath.string.absolutePathFromPath (@string.stringWithSourceFilePath.stringByDeletingLastPathComponent ),
+        filePath.string.absolutePathFromPath (@string.stringWithSourceFilePath.deletingLastPathComponent ),
         filePath.location
       )
       grammar easyBindings_grammar (!?ioDeclarationAST, ?*) in sourceFile

@@ -81,7 +81,7 @@ class GGS_autoLayoutComputedViewInstructionGeneration : public GGS_abstractViewI
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -242,7 +242,7 @@ class GGS_autoLayoutComputedViewInstructionGeneration_2E_weak : public GGS_abstr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -321,7 +321,7 @@ class GGS_enumerationDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -457,7 +457,7 @@ class GGS_enumerationDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -527,8 +527,8 @@ class GGS_enumConstantMap_2E_element : public AC_GALGAS_root {
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumConstantMap_2E_element & inOperand) const ;
 
@@ -543,7 +543,7 @@ class GGS_enumConstantMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -622,7 +622,7 @@ class GGS_enumConstantMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -692,8 +692,8 @@ class GGS_enumFunAssociationSortedList_2E_element : public AC_GALGAS_root {
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumFunAssociationSortedList_2E_element & inOperand) const ;
 
@@ -708,7 +708,7 @@ class GGS_enumFunAssociationSortedList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -778,8 +778,8 @@ class GGS_enumFuncMap_2E_element : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumFuncMap_2E_element & inOperand) const ;
 
@@ -794,7 +794,7 @@ class GGS_enumFuncMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -873,7 +873,7 @@ class GGS_enumFuncMap_2E_element_3F_ : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -933,7 +933,7 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1075,7 +1075,7 @@ class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1400,8 +1400,8 @@ class GGS_prefDeclaration : public AC_GALGAS_root {
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -1414,7 +1414,7 @@ class GGS_prefDeclaration : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1466,7 +1466,7 @@ class GGS_prefsDeclarationAST : public GGS_abstractDeclarationAST {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1604,7 +1604,7 @@ class GGS_prefsDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_wea
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1691,7 +1691,7 @@ class GGS_preferencesForGeneration : public GGS_abstractFileGeneration {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1860,7 +1860,7 @@ class GGS_preferencesForGeneration_2E_weak : public GGS_abstractFileGeneration_2
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
@@ -1892,62 +1892,62 @@ class GGS_entityStrongReferenceGraph : public AC_GALGAS_graph {
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_addNode (class GGS_lstring inArgument0,
-                                                class GGS_string inArgument1,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
+  public: void setter_addNode (class GGS_lstring inArgument0,
+                               class GGS_string inArgument1,
+                               Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_circularities (class GGS_stringlist & outArgument0,
-                                                      class GGS_lstringlist & outArgument1
-                                                      COMMA_LOCATION_ARGS) const ;
+  public: void method_circularities (class GGS_stringlist & outArgument0,
+                                     class GGS_lstringlist & outArgument1
+                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_depthFirstTopologicalSort (class GGS_stringlist & outArgument0,
-                                                                  class GGS_lstringlist & outArgument1,
-                                                                  class GGS_stringlist & outArgument2,
-                                                                  class GGS_lstringlist & outArgument3,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+  public: void method_depthFirstTopologicalSort (class GGS_stringlist & outArgument0,
+                                                 class GGS_lstringlist & outArgument1,
+                                                 class GGS_stringlist & outArgument2,
+                                                 class GGS_lstringlist & outArgument3,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_nodesWithNoPredecessor (class GGS_stringlist & outArgument0,
-                                                               class GGS_lstringlist & outArgument1
-                                                               COMMA_LOCATION_ARGS) const ;
+  public: void method_nodesWithNoPredecessor (class GGS_stringlist & outArgument0,
+                                              class GGS_lstringlist & outArgument1
+                                              COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_nodesWithNoSuccessor (class GGS_stringlist & outArgument0,
-                                                             class GGS_lstringlist & outArgument1
-                                                             COMMA_LOCATION_ARGS) const ;
+  public: void method_nodesWithNoSuccessor (class GGS_stringlist & outArgument0,
+                                            class GGS_lstringlist & outArgument1
+                                            COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_topologicalSort (class GGS_stringlist & outArgument0,
-                                                        class GGS_lstringlist & outArgument1,
-                                                        class GGS_stringlist & outArgument2,
-                                                        class GGS_lstringlist & outArgument3,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const ;
+  public: void method_topologicalSort (class GGS_stringlist & outArgument0,
+                                       class GGS_lstringlist & outArgument1,
+                                       class GGS_stringlist & outArgument2,
+                                       class GGS_lstringlist & outArgument3,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_accessibleNodesFrom (const class GGS_lstringlist & constinOperand0,
-                                                                             const class GGS_stringset & constinOperand1,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
+  public: class GGS_lstringlist getter_accessibleNodesFrom (const class GGS_lstringlist & constinOperand0,
+                                                            const class GGS_stringset & constinOperand1,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_stringlist getter_nodeList (LOCATION_ARGS) const ;
+  public: class GGS_stringlist getter_nodeList (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_entityStrongReferenceGraph getter_reversedGraph (LOCATION_ARGS) const ;
+  public: class GGS_entityStrongReferenceGraph getter_reversedGraph (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_entityStrongReferenceGraph getter_subgraphFromNodes (const class GGS_lstringlist & constinOperand0,
-                                                                                          const class GGS_stringset & constinOperand1,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) const ;
+  public: class GGS_entityStrongReferenceGraph getter_subgraphFromNodes (const class GGS_lstringlist & constinOperand0,
+                                                                         const class GGS_stringset & constinOperand1,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
