@@ -180,29 +180,25 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
                                                          ?!@generationStruct unused ioGeneration) {
   if self.mSuperEntityName.string != "" then
   //-- Search for super entity property map
-    ioSemanticContext.mClassMap.searchKey
-      (self.mSuperEntityName,
+    ioSemanticContext.mClassMap.searchKey (
+      self.mSuperEntityName,
       ?*,
       ?let @propertyMap inheritedPropertyMap,
       ?2*
     )  
   //-- Search for current entity property map
-    ioSemanticContext.mClassMap.searchKey
-      (self.mClassName,
+    ioSemanticContext.mClassMap.searchKey (
+      self.mClassName,
       ?*,
       ?let @propertyMap propertyMap,
       ?2*
     )
   //-- Merge properties
     var newPropertyMap = inheritedPropertyMap
-//    for (lkey 3*) in inheritedPropertyMap do
-//        message "  inherit '" + lkey + "'\n"
-//    end
     for (lkey, kind, actionMap, isOverriding) in propertyMap do
       if isOverriding then
         inheritedPropertyMap.searchKey (lkey, ?3*)
       else
-//        message "  insert '" + lkey + "'\n"
         !?newPropertyMap.insertKey (lkey, kind, actionMap, false)
       end
     end
@@ -210,11 +206,6 @@ override proc @entityDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSe
     var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     entry.mPropertyMap = newPropertyMap
     !?ioSemanticContext.mClassMap.replace (!with: entry)
-//    with self.mClassName in !?ioSemanticContext.mClassMap 
-//      %errorMessage searchKey
-//    do
-//      mPropertyMap = newPropertyMap
-//    end
   end
 }
 
