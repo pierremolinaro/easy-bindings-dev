@@ -84,14 +84,14 @@ syntax extension easyBindings_syntax {
     while
       $tableValue$
       if tableValueBinding != .noTableValueBinding then
-        error .here : "duplicated $tableValue binding"
+        error (.here : "duplicated $tableValue binding")
       end
       $controllerName$ (?let @lstring controllerName)
       tableValueBinding = .tableValueBinding (!controllerName: controllerName)
     while
       $run$
       if runActionDescriptor != .noAction then
-        error .here : "duplicated $run binding"
+        error (.here : "duplicated $run binding")
       end
       let @lstring runTargetName
       select
@@ -110,7 +110,7 @@ syntax extension easyBindings_syntax {
     while
       $enabled$
       if enabledBindingDescriptor != .noBinding then
-        error .here : "duplicated $enabled binding"
+        error (.here : "duplicated $enabled binding")
       end
       <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       enabledBindingDescriptor = .binding (!expression:bindingExpression)
@@ -118,7 +118,7 @@ syntax extension easyBindings_syntax {
     while
       $hidden$
       if hiddenBindingDescriptor != .noBinding then
-        error .here : "duplicated $hidden binding"
+        error (.here : "duplicated $hidden binding")
       end
       <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       hiddenBindingDescriptor = .binding (!expression:bindingExpression)
@@ -152,7 +152,7 @@ syntax extension easyBindings_syntax {
       if graphicController.isNone then
         graphicController = .defined (!controller:graphicControllerName, !propertyName: propertyName)
       else
-        error graphicControllerName : "binding already defined"
+        error (graphicControllerName : "binding already defined")
       end   
     end
   }
@@ -230,7 +230,7 @@ proc analyzeOutlets(
     case none :
     case defined (@lstring controllerName, @lstring propertyName) :
       if not handleGraphicControllerBinding then
-        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding"
+        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $graphicController binding")
       else
         inObservablePropertyMap.searchKey
           (controllerName,
@@ -239,15 +239,15 @@ proc analyzeOutlets(
         )
         switch kind 
         case property (2*) :
-          error controllerName : "the bound model should be an array controller"
+          error (controllerName : "the bound model should be an array controller")
         case toMany (4*) :
-          error controllerName : "the bound model should be an array controller"
+          error (controllerName : "the bound model should be an array controller")
         case toOne (5*) :
-          error controllerName : "the bound model should be an array controller"
+          error (controllerName : "the bound model should be an array controller")
         case arrayController (entityName, graphic) :
           if propertyName.string == "" then
             if not graphic then
-              error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
+              error (controllerName : "the controlled entity (" + entityName + ") should be a graphic entity")
             end
           else
             inSemanticContext.mClassMap.searchKey
@@ -259,21 +259,21 @@ proc analyzeOutlets(
             observablePropertyMap.searchKey (propertyName, ?let propertyKind, ?2*)
             switch propertyKind 
             case property (2*) :
-              error controllerName : "the bound model should be a toMany property"
+              error (controllerName : "the bound model should be a toMany property")
             case toMany (kEntityName, *, isGraphic, *) :
               if not isGraphic then
-                error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
+                error (controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity")
               end
             case toOne (5*) :
-              error controllerName : "the bound model should be a toMany property"
+              error (controllerName : "the bound model should be a toMany property")
             case arrayController (2*) :
-              error controllerName : "the bound model should be a toMany property"
+              error (controllerName : "the bound model should be a toMany property")
             case selectionController (*) :
-              error controllerName : "the bound model should be a toMany property"
+              error (controllerName : "the bound model should be a toMany property")
             end
          end
         case selectionController (*) :
-          error controllerName : "the bound model should be an array controller"
+          error (controllerName : "the bound model should be an array controller")
         end
         !?outEBViewGraphicControllerBindingGenerationList.append (
           outlet_mOutletName.string,
@@ -286,7 +286,7 @@ proc analyzeOutlets(
     case noTableValueBinding :
     case tableValueBinding (@lstring controllerName) :
       if not handlesTableViewBinding then
-        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding"
+        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding")
       else
         inObservablePropertyMap.searchKey
           (controllerName,
@@ -294,7 +294,7 @@ proc analyzeOutlets(
           ?2*
         )
         if not kind.isArrayController then
-          error controllerName : "the bound model should be an array controller"
+          error (controllerName : "the bound model should be an array controller")
         end
         !?outTableViewBindingGenerationList.append (
           outlet_mOutletName.string,
@@ -307,7 +307,7 @@ proc analyzeOutlets(
     case noAction :
     case action (@lstring target, @lstring action) :
       if not handlesRunAction then
-        error outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action"
+        error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle run action")
       elsif target.string == "self" then
         inActionMap.searchKey (action)
         !?outTargetActionList.append (
@@ -347,10 +347,10 @@ proc analyzeOutlets(
         ?let @location errorLocation
       )
       if not handlesEnabledBinding then
-        error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+        error (errorLocation : "cet outlet n'accepte pas le binding $enabled")
       end
       if not type.isBoolType then
-        error errorLocation : "expression is not boolean"
+        error (errorLocation : "expression is not boolean")
       end
       !?outMultipleBindingGenerationList.append (
         !outlet_mOutletName.string,
@@ -373,10 +373,10 @@ proc analyzeOutlets(
         ?let @location errorLocation
       )
       if not type.isBoolType then
-        error errorLocation : "expression is not boolean"
+        error (errorLocation : "expression is not boolean")
       end
       if not handlesHiddenBinding then
-        error errorLocation : "cet outlet n'accepte pas le binding $hidden"
+        error (errorLocation : "cet outlet n'accepte pas le binding $hidden")
       end
       !?outMultipleBindingGenerationList.append (
         !outlet_mOutletName.string,
@@ -429,13 +429,13 @@ proc analyzeRegularBinding(
       switch kind
       case property (2*) : // Ok
       case toMany (4*) :
-        error mObservableProperty.location :"a toMany property cannot be bound"
+        error (mObservableProperty.location :"a toMany property cannot be bound")
       case toOne (5*) :
-        error mObservableProperty.location :"a toOne property cannot be bound"
+        error (mObservableProperty.location :"a toOne property cannot be bound")
       case arrayController (2*) :
-        error mObservableProperty.location :"an array controller cannot be bound"
+        error (mObservableProperty.location :"an array controller cannot be bound")
       case selectionController (*) :
-        error mObservableProperty.location :"a selection controller cannot be bound"
+        error (mObservableProperty.location :"a selection controller cannot be bound")
       end
       !?boundModelListForGeneration.append (
         mObservableProperty.modelStringForSelf (inSelfSwiftName),
@@ -467,20 +467,21 @@ proc analyzeRegularBinding(
       end
     end
     if continues then
-      error mBindingName : "this binding is not defined"
+      error (mBindingName : "this binding is not defined")
     elsif boundModelTypeList.count != outletBindingSpecificationModelList.count then
-      error mBindingName
+      error (mBindingName
       : outletBindingSpecificationModelList.count .string
         + " model(s) required for this binding (found: "
         + boundModelTypeList.count + ")"
+      )
     else
       for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
-          error found_mErrorLocation : "the model is transient and the binding requires an writable model"
+          error (found_mErrorLocation : "the model is transient and the binding requires an writable model")
         end
         if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
         elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
-          error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName
+          error (found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName)
         end
       end
     end
@@ -496,12 +497,12 @@ proc analyzeRegularBinding(
           s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName
         end
       end
-      error mBindingName : s
+      error (mBindingName : s)
     else
       for (controller_mOptionType, controller_mOptionName) in controllerBindingOptionDecoratedList,
           (binding_mOptionName, binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
-          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
+          error (binding_mOptionName : "the option name should be '" + controller_mOptionName + "'")
         end
         binding_mOptionValue.analyzeDefaultValueType (
           [@(controller_mOptionType)],

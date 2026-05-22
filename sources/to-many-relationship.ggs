@@ -64,33 +64,33 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "customStore" then
         if customStore then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         customStore = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         generateDirectAccess = true
       else
-        error attributeName : "unknow attribute" fixit (
+        error (attributeName : "unknow attribute" fixit
           %replaceBy "@signature", %replaceBy "@customStore",
           %replaceBy "@generateDirectAccess", %replaceBy "@generateDirectRead"
         )
       end
     end
     if generateDirectAccess && generateDirectRead then
-      error .here : "@generateDirectAccess implies @generateDirectRead"
+      error (.here : "@generateDirectAccess implies @generateDirectRead")
     end
     $Identifier$ (?let destinationEntityName)
     $identifier$ (?let relationshipName)
@@ -142,11 +142,11 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
     case prefs :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case atomic (*) :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case document (*) :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case entity (*, graphic, *, handleOpposite) :
       let kind = @propertyKind.toMany (
         !typeName: self.mDestinationEntityName,
@@ -156,7 +156,7 @@ override proc @toManyRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSe
       )
 //      if not handleOpposite, not self.mOption.isHasOpposite then
       if not handleOpposite, self.mOption.isHasOpposite then
-        error self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
+        error (self.mToManyRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship")
       end
       !?entry.mPropertyMap.insertKey (self.mToManyRelationshipName, kind, (), false)
     //-- Current class is preferences ?

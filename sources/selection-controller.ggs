@@ -71,16 +71,16 @@ override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semantic
     entry.mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
     switch propertyKind
     case property (2*) :
-      error self.mModelControllerName : "an array controller is required here"
+      error (self.mModelControllerName : "an array controller is required here")
     case toMany (4*) :
-      error self.mModelControllerName : "an array controller is required here"
+      error (self.mModelControllerName : "an array controller is required here")
     case toOne (5*) :
-      error self.mModelControllerName : "an array controller is required here"
+      error (self.mModelControllerName : "an array controller is required here")
     case selectionController (*) :
-      error self.mModelControllerName : "an array controller is required here"
+      error (self.mModelControllerName : "an array controller is required here")
     case arrayController (2*) :
       if self.mModelControllerPropertyName.string != "selectedArray" then
-        error self.mModelControllerPropertyName : "'selectedArray' is required here"
+        error (self.mModelControllerPropertyName : "'selectedArray' is required here")
       end
       let kind = @propertyKind.selectionController (!typeName: self.mSelectionEntityName)
       !?entry.mPropertyMap.insertKey (self.mSelectionControllerName, kind, (), false)
@@ -171,7 +171,7 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
          case entity (@string superOfSuperEntity, 3*) :
             testedTypeName = superOfSuperEntity
             if testedTypeName == "" then
-              error self.mSelectionEntityName : "This entity is not descendant of " + typeName
+              error (self.mSelectionEntityName : "This entity is not descendant of " + typeName)
             end
          end
        end

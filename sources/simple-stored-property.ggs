@@ -58,33 +58,33 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "generateResetMethod" then
         if generateResetMethod then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         generateResetMethod = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         generateDirectAccess = true
       else
-        error attributeName : "unknow attribute" fixit (
+        error (attributeName : "unknow attribute" fixit
           %replaceBy "@signature", %replaceBy "@generateResetMethod",
           %replaceBy "@generateDirectRead", %replaceBy "@generateDirectAccess"
         )
       end
     end
     if generateDirectAccess && generateDirectRead then
-      error .here : "@generateDirectAccess implies @generateDirectRead"
+      error (.here : "@generateDirectAccess implies @generateDirectRead")
     end
     $Identifier$ (?let @lstring attributeTypeName)
     $identifier$ (?let @lstring attributeName)
@@ -167,7 +167,7 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
     )
     switch classKind
     case prefs :
-      error self.mPropertyTypeName : "an atomic class is required here"
+      error (self.mPropertyTypeName : "an atomic class is required here")
     case atomic (kind) :
       !?entry.mPropertyMap.insertKey (self.mPropertyName, .property (!type: kind, !accessibility: .stored), (), false)
     //-- Analyze default value
@@ -186,9 +186,9 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
       )
       )
     case document (*) :
-      error self.mPropertyTypeName : "an atomic class is required here"
+      error (self.mPropertyTypeName : "an atomic class is required here")
     case entity (4*) :
-      error self.mPropertyTypeName : "an atomic class is required here"
+      error (self.mPropertyTypeName : "an atomic class is required here")
     end
   !?ioSemanticContext.mClassMap.replace (!with: entry)
 //  end

@@ -228,7 +228,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     for (node) in undefinedNodeList do
       s += "\n -- " + node
     end
-    error .nowhere : s
+    error (.nowhere : s)
   end
 //-- Check accessibility
   if undefinedNodeList.count == 0 then
@@ -237,7 +237,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
     let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
     for (node) in nodeList do
       if not accessibleNodeSet.hasKey (node) then
-        error .nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName
+        error (.nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName)
       end
     end
   end

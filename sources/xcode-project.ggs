@@ -13,9 +13,9 @@ syntax extension easyBindings_syntax {
     $literal_string$ (?let @lstring xcodeProjectString)
     $;$
     if xcodeProjectString.string == "" then
-      error xcodeProjectString : "string should not be empty"
+      error (xcodeProjectString : "string should not be empty")
     elsif ioXcodeProjectString.string != "" then
-      error xcodeProjectString : "Xcode project already defined"
+      error (xcodeProjectString : "Xcode project already defined")
     else
       ioXcodeProjectString = xcodeProjectString
     end

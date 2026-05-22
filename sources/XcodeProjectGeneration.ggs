@@ -272,7 +272,7 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
       !?self.addBuildFile (!fileRef:resource_FileRef, !fileName:f, ?buildRef:let @string buildRef)
       !?ioResourceFileBuildRefs.append (buildRef)
     else
-      error @location.nowhere : "unhandled extension for file '" + f + "'"
+      error (@location.nowhere : "unhandled extension for file '" + f + "'")
     end
   end
   !?self.mGroupList.append (outGroupRef, inGroupName, inGroupPath, childrenRefs)

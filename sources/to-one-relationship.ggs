@@ -50,16 +50,16 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         usedForSignature = true
       elsif attributeName.string == "weak" then
         if isWeak then
-          error attributeName : "duplicated attribute" fixit ( %remove )
+          error (attributeName : "duplicated attribute" fixit %remove )
         end
         isWeak = true
       else
-        error attributeName : "unknow attribute" fixit ( %replaceBy "@signature", %replaceBy "@weak" )
+        error (attributeName : "unknow attribute" fixit %replaceBy "@signature", %replaceBy "@weak" )
       end
     end
     $Identifier$ (?let @lstring destinationEntityName)
@@ -107,11 +107,11 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
     ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?3*)
     switch classKind
     case prefs :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case atomic (*) :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case document (*) :
-      error self.mDestinationEntityName : "an entity is required here"
+      error (self.mDestinationEntityName : "an entity is required here")
     case entity (*, graphic, *, handleOpposite) :
       let kind = @propertyKind.toOne (
         !typeName: self.mDestinationEntityName,
@@ -121,7 +121,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
         !isWeak: self.mWeak
       )
       if self.mOpposite != .none, not handleOpposite then
-        error self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship"
+        error (self.mToOneRelationshipName : "the '" + self.mDestinationEntityName + "' entity does not handle opposite relationship")
       end
       !?entry.mPropertyMap.insertKey (self.mToOneRelationshipName, kind, (), false)
     end

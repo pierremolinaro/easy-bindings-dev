@@ -127,7 +127,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
       for (str) in availableCallers do
         s += "\n  - " + str
       end
-      error mCallerName : s
+      error (mCallerName : s)
     end
   end
 //-- Get preference property map
@@ -184,7 +184,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     !?viewGenerationList.append (viewName, viewGeneration)
   end
   if not viewDeclarationMap.hasKey ("mPrefsMainView") then
-    error .nowhere : "Preferences should define 'mPrefsMainView' stack view"
+    error (.nowhere : "Preferences should define 'mPrefsMainView' stack view")
   end
 //-- Code generation
   !?ioGeneration.mFileGenerationList.append (

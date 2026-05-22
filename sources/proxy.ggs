@@ -90,7 +90,7 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
     ioSemanticContext.mClassMap.searchKey (self.mProxyTypeName, ?let proxyKind, ?3*)
     switch proxyKind
     case prefs :
-      error self.mProxyTypeName : "an atomic type is required here"
+      error (self.mProxyTypeName : "an atomic type is required here")
     case entity (*, @bool isGraphic, 2*) :
       switch self.mProxyKind 
       case toManyProxy :
@@ -102,10 +102,10 @@ override proc @proxyDeclarationAST.firstAnalysisPhase(
       )
       !?entry.mPropertyMap.insertKey (self.mProxyName, k, (), false)
       case propertyProxy :
-        error self.mProxyTypeName : "this type should be an entity"
+        error (self.mProxyTypeName : "this type should be an entity")
       end
     case document (*) :
-      error self.mProxyTypeName : "an atomic type is required here"
+      error (self.mProxyTypeName : "an atomic type is required here")
     case atomic (type) :
       !?entry.mPropertyMap.insertKey (self.mProxyName, .property (!type: type, !accessibility: .stored), (), false)
     end
@@ -122,13 +122,13 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
     entry.mPropertyMap.searchKey (self.mToOneRelationshipName, ?let relationshipKind, ?2*)
     switch relationshipKind
     case arrayController (2*) :
-      error self.mToOneRelationshipName : "a toOne relationship is required here"
+      error (self.mToOneRelationshipName : "a toOne relationship is required here")
     case selectionController (*) :
-      error self.mToOneRelationshipName : "a toOne relationship is required here"
+      error (self.mToOneRelationshipName : "a toOne relationship is required here")
     case property (2*) :
-      error self.mToOneRelationshipName : "a toOne relationship is required here"
+      error (self.mToOneRelationshipName : "a toOne relationship is required here")
     case toMany (4*) :
-      error self.mToOneRelationshipName : "a toOne relationship is required here"
+      error (self.mToOneRelationshipName : "a toOne relationship is required here")
     case toOne (toOneTypeName, 4*) :
       ioSemanticContext.mClassMap.searchKey (toOneTypeName, ?*, ?let propertyMap, ?2*)
       propertyMap.searchKey (self.mPropertyName, ?let propertyKind, ?2*)
@@ -143,7 +143,7 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
         )
         )
         if self.mProxyKind != .propertyProxy then
-          error self.mPropertyName : "this property is not atomic"
+          error (self.mPropertyName : "this property is not atomic")
         end
       case toMany (toManyTypeName, 3*) :
         ioSemanticContext.mClassMap.searchKey (toManyTypeName, ?4*)
@@ -157,28 +157,28 @@ override proc @proxyDeclarationAST.secondAnalysisPhase (?!@semanticContext ioSem
         )
         !?ioGeneration.mGenerateClass_ProxyArrayOf_.insert (toManyTypeName)
         if self.mProxyKind != .toManyProxy then
-          error self.mPropertyName : "this property is not atomic"
+          error (self.mPropertyName : "this property is not atomic")
         end
       case toOne (5*) :
         switch self.mProxyKind
         case propertyProxy :
-          error self.mPropertyName : "an atomic property is required here"
+          error (self.mPropertyName : "an atomic property is required here")
         case toManyProxy :
-          error self.mPropertyName : "a toMany property is required here"
+          error (self.mPropertyName : "a toMany property is required here")
         end
       case arrayController (2*) :
         switch self.mProxyKind
         case propertyProxy :
-          error self.mPropertyName : "an atomic property is required here"
+          error (self.mPropertyName : "an atomic property is required here")
         case toManyProxy :
-          error self.mPropertyName : "a toMany property is required here"
+          error (self.mPropertyName : "a toMany property is required here")
         end
       case selectionController (*) :
         switch self.mProxyKind
         case propertyProxy :
-          error self.mPropertyName : "an atomic property is required here"
+          error (self.mPropertyName : "an atomic property is required here")
         case toManyProxy :
-          error self.mPropertyName : "a toMany property is required here"
+          error (self.mPropertyName : "a toMany property is required here")
         end
       end
     end

@@ -155,7 +155,7 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
     ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
     switch classKind
     case prefs :
-      error self.mTransientTypeName : "an atomic class is required here"
+      error (self.mTransientTypeName : "an atomic class is required here")
     case atomic (kind) :
       !?entry.mPropertyMap.insertKey (
         self.mTransientName,
@@ -164,9 +164,9 @@ override proc @transientDeclarationAST.firstAnalysisPhase(
         self.mIsOverriding
       )
     case document (*) :
-      error self.mTransientTypeName : "an atomic class is required here"
+      error (self.mTransientTypeName : "an atomic class is required here")
     case entity (4*) :
-      error self.mTransientTypeName : "an atomic class is required here"
+      error (self.mTransientTypeName : "an atomic class is required here")
     end
   !?ioSemanticContext.mClassMap.replace (!with: entry)
 //  end
@@ -185,13 +185,13 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
   let @typeKind typeKind
   switch classKind
   case prefs :
-    error self.mTransientTypeName: "an atomic class is required here" spoil (typeKind)
+    error (self.mTransientTypeName: "an atomic class is required here" spoil typeKind)
   case atomic (@typeKind kind) :
     typeKind = kind
   case document (*) :
-    error self.mTransientTypeName: "an atomic class is required here" spoil (typeKind)
+    error (self.mTransientTypeName: "an atomic class is required here" spoil typeKind)
   case entity (4*) :
-    error self.mTransientTypeName: "an atomic class is required here" spoil (typeKind)
+    error (self.mTransientTypeName: "an atomic class is required here" spoil typeKind)
   end
 //-- Root properties
   let @propertyMap rootProperties
@@ -220,9 +220,9 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
     case toMany (4*) :
     case toOne (5*) :
     case arrayController (2*) :
-      error mObservableProperty.location : "only an atomic property can be observed"
+      error (mObservableProperty.location : "only an atomic property can be observed")
     case selectionController (*) :
-      error mObservableProperty.location : "only an atomic property can be observed"
+      error (mObservableProperty.location : "only an atomic property can be observed")
     end
     !?dependencies.append (
       mObservableProperty,

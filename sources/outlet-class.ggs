@@ -124,19 +124,19 @@ override proc @outletClassDeclarationAST.firstAnalysisPhase(
       ?*
     )
     if self.mHasRunAction & hasRunAction then
-      error self.mClassName : "$run binding already defined in superclass"
+      error (self.mClassName : "$run binding already defined in superclass")
     end
     if self.mHandlesTableValueBinding & handlesTableValueBinding then
-      error self.mClassName : "$tableview binding already defined in superclass"
+      error (self.mClassName : "$tableview binding already defined in superclass")
     end
     if self.mHasEnabled & hasEnabled then
-      error self.mClassName : "$enabled binding already defined in superclass"
+      error (self.mClassName : "$enabled binding already defined in superclass")
     end
     if self.mHasHidden & hasHidden then
-      error self.mClassName : "$hidden binding already defined in superclass"
+      error (self.mClassName : "$hidden binding already defined in superclass")
     end
     if self.mHandlesGraphicControllerBinding & handlesGraphicControllerBinding then
-      error self.mClassName : "$graphicController binding already defined in superclass"
+      error (self.mClassName : "$graphicController binding already defined in superclass")
     end
     !?ioSemanticContext.mOutletClassMap.insertKey (
       self.mClassName,

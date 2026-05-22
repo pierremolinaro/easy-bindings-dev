@@ -78,7 +78,7 @@ proc sortProperties(
   outSortedDeclarationListAST = []
   if declarationPrecedenceGraph.undefinedNodeCount > 0 then
     for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList do
-      error mValue : "the property " + mValue.string + " is not defined"
+      error (mValue : "the property " + mValue.string + " is not defined")
     end
   else
     declarationPrecedenceGraph.topologicalSort
@@ -94,9 +94,9 @@ proc sortProperties(
       for (declaration) in  unsortedSemanticDeclarationListAST do
         s += "\n-  " + declaration.nodeKey
       end
-      error .nowhere : s
+      error (.nowhere : s)
       for (declaration) in  unsortedSemanticDeclarationListAST do
-        error declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here"
+        error (declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here")
       end
     end
   end

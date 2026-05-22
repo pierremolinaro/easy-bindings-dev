@@ -109,7 +109,7 @@ syntax extension easyBindings_syntax {
       !?graphicOptionArray.append (graphicOption)
       $;$
       if not graphicEntity then
-        error graphicOption : "only a graphic entity accepts a graphic option"
+        error (graphicOption : "only a graphic entity accepts a graphic option")
       end
     end
     $}$
@@ -231,14 +231,14 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
     )
     switch superClassKind
     case prefs :
-      error self.mSuperEntityName : "prefs cannot be a super entity"
+      error (self.mSuperEntityName : "prefs cannot be a super entity")
     case atomic (*) :
-      error self.mSuperEntityName : "an atomic class cannot be a super entity"
+      error (self.mSuperEntityName : "an atomic class cannot be a super entity")
     case document (*) :
-      error self.mSuperEntityName : "a document cannot be a super entity"
+      error (self.mSuperEntityName : "a document cannot be a super entity")
     case entity (*, @bool isGraphic, @bool isAbstract, *) :
       if isGraphic & not self.mIsGraphicEntity then
-        error self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic"
+        error (self.mClassName : "this entity should be declared with 'graphic', as super entity is graphic")
       end
       if isAbstract & not self.mIsAbstract then // Check all abstract properties are defined
         for superProperty in superPropertyMap do
@@ -249,12 +249,14 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
               let typeName = propertyKind.typeName
               let superTypeName = superProperty.mKind.typeName
               if typeName != superTypeName then
-                error propertyMap.locationForKey (superProperty.lkey)
+                error (propertyMap.locationForKey (superProperty.lkey)
                   : "type '" + superTypeName + "' is required by declaration in super entity"
+                )
               end
             else
-              error self.mClassName
+              error (self.mClassName
                 : "transient '" + superProperty.lkey + "' should be defined, it is declared abstract in super entity"
+              )
             end
           end
         end
@@ -268,16 +270,16 @@ override proc @entityDeclarationAST.fourthAnalysisPhase (?!@semanticContext ioSe
   for (graphicOption) in self.mGraphicOptionArray do
     if graphicOption.string == "canCopyAndPaste" then
       if canCopyAndPaste_option then
-        error graphicOption : "duplicated option"
+        error (graphicOption : "duplicated option")
       end
       canCopyAndPaste_option = true
     elsif graphicOption.string == "cannotBeDeleted" then
       if cannotBeDeleted_option then
-        error graphicOption : "duplicated option"
+        error (graphicOption : "duplicated option")
       end
      cannotBeDeleted_option = true
     else
-      error graphicOption : "unkown graphic option" fixit (
+      error (graphicOption : "unkown graphic option" fixit 
          %replaceBy "acceptedTranslation",
          %replaceBy "canCopyAndPaste",
          %replaceBy "cannotBeDeleted"

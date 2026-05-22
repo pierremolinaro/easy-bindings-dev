@@ -3600,88 +3600,88 @@ GGS_string extensionGetter_transientComputeFunctionCall (const GGS_transientDepe
   }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("unwSelf.") ;
   }
-  GGS_string var_uwself_18669 = temp_0 ;
+  GGS_string var_uwself_18679 = temp_0 ;
   result_result = GGS_string::makeEmptyString () ;
-  GGS_string var_ident_18759 = GGS_string ("        ") ;
+  GGS_string var_ident_18769 = GGS_string ("        ") ;
   const GGS_transientDependencyListForGeneration temp_2 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_18817 (temp_2) ;
-  GGS_uint index_18782 (uint32_t (0)) ;
-  while (enumerator_18817.hasCurrentObject ()) {
+  UpEnumerator_transientDependencyListForGeneration enumerator_18827 (temp_2) ;
+  GGS_uint index_18792 (uint32_t (0)) ;
+  while (enumerator_18827.hasCurrentObject ()) {
     GalgasBool test_3 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_3) {
-      test_3 = GGS_bool (ComparisonKind::notEqual, enumerator_18817.current_mDefaultValueAsString (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
+      test_3 = GGS_bool (ComparisonKind::notEqual, enumerator_18827.current_mDefaultValueAsString (HERE).objectCompare (GGS_string::makeEmptyString ())).boolEnum () ;
       if (GalgasBool::boolTrue == test_3) {
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("var s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (index_18782.getter_string (SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (extensionGetter_modelStringForSelf (enumerator_18817.current_mDependency (HERE), var_uwself_18669, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 424)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("switch s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (index_18782.getter_string (SOURCE_FILE ("transient-property.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (GGS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 425)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("case .single :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 426)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("  ()\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 427)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 427)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("case .empty, .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 428)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 428)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("  s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (index_18782.getter_string (SOURCE_FILE ("transient-property.ggs", 429)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (" = .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (enumerator_18817.current_mDefaultValueAsString (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 429)) ;
-        result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 430)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 430)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("var s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (index_18792.getter_string (SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (extensionGetter_modelStringForSelf (enumerator_18827.current_mDependency (HERE), var_uwself_18679, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 424)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 424)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("switch s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (index_18792.getter_string (SOURCE_FILE ("transient-property.ggs", 425)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)).add_operation (GGS_string (" {\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 425)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 425)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("case .single :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 426)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 426)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("  ()\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 427)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 427)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("case .empty, .multiple :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 428)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 428)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("  s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (index_18792.getter_string (SOURCE_FILE ("transient-property.ggs", 429)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (" = .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (enumerator_18827.current_mDefaultValueAsString (HERE), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 429)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 429)) ;
+        result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 430)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 430)) ;
       }
     }
     if (GalgasBool::boolFalse == test_3) {
-      result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("let s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (index_18782.getter_string (SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (extensionGetter_modelStringForSelf (enumerator_18817.current_mDependency (HERE), var_uwself_18669, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 432)) ;
+      result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("let s"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (index_18792.getter_string (SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (" = "), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (extensionGetter_modelStringForSelf (enumerator_18827.current_mDependency (HERE), var_uwself_18679, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string (".selection"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 432)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 432)) ;
     }
-    enumerator_18817.gotoNextObject () ;
-    index_18782.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 422)) ;
+    enumerator_18827.gotoNextObject () ;
+    index_18792.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 422)) ;
   }
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("switch ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 435)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 435)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("switch ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 435)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 435)) ;
   const GGS_transientDependencyListForGeneration temp_4 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_19461 (temp_4) ;
-  GGS_uint index_19455 (uint32_t (0)) ;
-  while (enumerator_19461.hasCurrentObject ()) {
-    result_result.plusAssignOperation(GGS_string ("s").add_operation (index_19455.getter_string (SOURCE_FILE ("transient-property.ggs", 438)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 438)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 438)) ;
-    enumerator_19461.gotoNextObject () ;
-    if (enumerator_19461.hasCurrentObject ()) {
+  UpEnumerator_transientDependencyListForGeneration enumerator_19471 (temp_4) ;
+  GGS_uint index_19465 (uint32_t (0)) ;
+  while (enumerator_19471.hasCurrentObject ()) {
+    result_result.plusAssignOperation(GGS_string ("s").add_operation (index_19465.getter_string (SOURCE_FILE ("transient-property.ggs", 438)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 438)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 438)) ;
+    enumerator_19471.gotoNextObject () ;
+    if (enumerator_19471.hasCurrentObject ()) {
       result_result.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 440)) ;
     }
-    index_19455.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 436)) ;
+    index_19465.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 436)) ;
   }
   result_result.plusAssignOperation(GGS_string (") {\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 442)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 443)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 443)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 443)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 443)) ;
   const GGS_transientDependencyListForGeneration temp_5 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_19615 (temp_5) ;
-  GGS_uint index_19609 (uint32_t (0)) ;
-  while (enumerator_19615.hasCurrentObject ()) {
-    result_result.plusAssignOperation(GGS_string (".single (let v").add_operation (index_19609.getter_string (SOURCE_FILE ("transient-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
-    enumerator_19615.gotoNextObject () ;
-    if (enumerator_19615.hasCurrentObject ()) {
+  UpEnumerator_transientDependencyListForGeneration enumerator_19625 (temp_5) ;
+  GGS_uint index_19619 (uint32_t (0)) ;
+  while (enumerator_19625.hasCurrentObject ()) {
+    result_result.plusAssignOperation(GGS_string (".single (let v").add_operation (index_19619.getter_string (SOURCE_FILE ("transient-property.ggs", 446)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 446)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 446)) ;
+    enumerator_19625.gotoNextObject () ;
+    if (enumerator_19625.hasCurrentObject ()) {
       result_result.plusAssignOperation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 448)) ;
     }
-    index_19609.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 444)) ;
+    index_19619.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 444)) ;
   }
   result_result.plusAssignOperation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 450)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("  return .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 451)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 451)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("  return .single ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 451)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 451)) ;
   result_result.plusAssignOperation(constinArgument_inFunctionNamePrefix.add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inOwnerName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (GGS_string ("_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)).add_operation (constinArgument_inTransientName, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 452)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 452)) ;
   result_result.plusAssignOperation(GGS_string (" ("), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 453)) ;
   const GGS_transientDependencyListForGeneration temp_6 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_19913 (temp_6) ;
-  GGS_uint index_19907 (uint32_t (0)) ;
-  while (enumerator_19913.hasCurrentObject ()) {
-    result_result.plusAssignOperation(GGS_string ("v").add_operation (index_19907.getter_string (SOURCE_FILE ("transient-property.ggs", 456)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 456)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 456)) ;
-    enumerator_19913.gotoNextObject () ;
-    if (enumerator_19913.hasCurrentObject ()) {
+  UpEnumerator_transientDependencyListForGeneration enumerator_19923 (temp_6) ;
+  GGS_uint index_19917 (uint32_t (0)) ;
+  while (enumerator_19923.hasCurrentObject ()) {
+    result_result.plusAssignOperation(GGS_string ("v").add_operation (index_19917.getter_string (SOURCE_FILE ("transient-property.ggs", 456)), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 456)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 456)) ;
+    enumerator_19923.gotoNextObject () ;
+    if (enumerator_19923.hasCurrentObject ()) {
       result_result.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 458)) ;
     }
-    index_19907.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 454)) ;
+    index_19917.increment_operation (inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 454)) ;
   }
   result_result.plusAssignOperation(GGS_string ("))\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 460)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 461)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 461)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("case ("), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 461)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 461)) ;
   const GGS_transientDependencyListForGeneration temp_7 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_20066 (temp_7) ;
-  while (enumerator_20066.hasCurrentObject ()) {
+  UpEnumerator_transientDependencyListForGeneration enumerator_20076 (temp_7) ;
+  while (enumerator_20076.hasCurrentObject ()) {
     result_result.plusAssignOperation(GGS_string (".multiple"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 464)) ;
-    enumerator_20066.gotoNextObject () ;
-    if (enumerator_20066.hasCurrentObject ()) {
+    enumerator_20076.gotoNextObject () ;
+    if (enumerator_20076.hasCurrentObject ()) {
       result_result.plusAssignOperation(GGS_string (",\n              "), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 466)) ;
     }
   }
   result_result.plusAssignOperation(GGS_string (") :\n"), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 468)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("  return .multiple\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 469)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 469)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("default :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 470)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 470)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 471)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 471)) ;
-  result_result.plusAssignOperation(var_ident_18759.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 472)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 472)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("  return .multiple\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 469)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 469)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("default :\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 470)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 470)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("  return .empty\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 471)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 471)) ;
+  result_result.plusAssignOperation(var_ident_18769.add_operation (GGS_string ("}\n"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 472)), inCompiler  COMMA_SOURCE_FILE ("transient-property.ggs", 472)) ;
 //---
   return result_result ;
 }
@@ -3700,13 +3700,13 @@ GGS_bool extensionGetter_needs_5F_unwSelf (const GGS_transientDependencyListForG
   GGS_bool result_result ; // Returned variable
   result_result = GGS_bool (false) ;
   const GGS_transientDependencyListForGeneration temp_0 = inObject ;
-  UpEnumerator_transientDependencyListForGeneration enumerator_20534 (temp_0) ;
+  UpEnumerator_transientDependencyListForGeneration enumerator_20544 (temp_0) ;
   bool bool_1 = result_result.operator_not (SOURCE_FILE ("transient-property.ggs", 479)).isValidAndTrue () ;
-  if (enumerator_20534.hasCurrentObject () && bool_1) {
-    while (enumerator_20534.hasCurrentObject () && bool_1) {
-      result_result = extensionGetter_needs_5F_unwSelf (enumerator_20534.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 480)) ;
-      enumerator_20534.gotoNextObject () ;
-      if (enumerator_20534.hasCurrentObject ()) {
+  if (enumerator_20544.hasCurrentObject () && bool_1) {
+    while (enumerator_20544.hasCurrentObject () && bool_1) {
+      result_result = extensionGetter_needs_5F_unwSelf (enumerator_20544.current_mDependency (HERE), constinArgument_inPreferences, inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 480)) ;
+      enumerator_20544.gotoNextObject () ;
+      if (enumerator_20544.hasCurrentObject ()) {
         bool_1 = result_result.operator_not (SOURCE_FILE ("transient-property.ggs", 479)).isValidAndTrue () ;
       }
     }
@@ -5067,171 +5067,171 @@ GGS_string extensionGetter_generateAddObserverCall (const GGS_observableProperty
   }else if (GalgasBool::boolFalse == test_1) {
     temp_0 = GGS_string ("self.") ;
   }
-  GGS_string var_prefix_21070 = temp_0 ;
+  GGS_string var_prefix_21080 = temp_0 ;
   const GGS_observablePropertyAST temp_2 = inObject ;
   switch (temp_2.enumValue ()) {
   case GGS_observablePropertyAST::Enumeration::invalid:
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerProperty:
     {
-      GGS_lstring extractedValue_21187_controllerName_0 ;
-      GGS_lstring extractedValue_21212_propertyName_1 ;
-      temp_2.getAssociatedValuesFor_selfControllerProperty (extractedValue_21187_controllerName_0, extractedValue_21212_propertyName_1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_21187_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (extractedValue_21212_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)) ;
+      GGS_lstring extractedValue_21197_controllerName_0 ;
+      GGS_lstring extractedValue_21222_propertyName_1 ;
+      temp_2.getAssociatedValuesFor_selfControllerProperty (extractedValue_21197_controllerName_0, extractedValue_21222_propertyName_1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_21197_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (extractedValue_21222_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 496)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerSecondaryProperty:
     {
-      GGS_lstring extractedValue_21377_controllerName_0 ;
-      GGS_lstring extractedValue_21402_propertyName_1 ;
-      GGS_lstring extractedValue_21425_secondaryPropertyName_2 ;
-      temp_2.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_21377_controllerName_0, extractedValue_21402_propertyName_1, extractedValue_21425_secondaryPropertyName_2) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_21377_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (extractedValue_21402_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (extractedValue_21425_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)) ;
+      GGS_lstring extractedValue_21387_controllerName_0 ;
+      GGS_lstring extractedValue_21412_propertyName_1 ;
+      GGS_lstring extractedValue_21435_secondaryPropertyName_2 ;
+      temp_2.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_21387_controllerName_0, extractedValue_21412_propertyName_1, extractedValue_21435_secondaryPropertyName_2) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_21387_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (extractedValue_21412_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (extractedValue_21435_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 498)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerAllProperties:
     {
-      GGS_lstring extractedValue_21634_controllerName_0 ;
-      GGS_lstring extractedValue_21659_propertyName_1 ;
-      GGS_lstring extractedValue_21682_secondaryPropertyName_2 ;
-      temp_2.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_21634_controllerName_0, extractedValue_21659_propertyName_1, extractedValue_21682_secondaryPropertyName_2) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_21634_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (extractedValue_21659_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (extractedValue_21682_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)) ;
+      GGS_lstring extractedValue_21644_controllerName_0 ;
+      GGS_lstring extractedValue_21669_propertyName_1 ;
+      GGS_lstring extractedValue_21692_secondaryPropertyName_2 ;
+      temp_2.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_21644_controllerName_0, extractedValue_21669_propertyName_1, extractedValue_21692_secondaryPropertyName_2) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_21644_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (extractedValue_21669_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (extractedValue_21692_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 500)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerOneProperty:
     {
-      GGS_lstring extractedValue_21887_controllerName_0 ;
-      GGS_lstring extractedValue_21912_propertyName_1 ;
-      temp_2.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_21887_controllerName_0, extractedValue_21912_propertyName_1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_21887_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (extractedValue_21912_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (GGS_string ("_property.<<4>>"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)) ;
+      GGS_lstring extractedValue_21897_controllerName_0 ;
+      GGS_lstring extractedValue_21922_propertyName_1 ;
+      temp_2.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_21897_controllerName_0, extractedValue_21922_propertyName_1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_21897_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (extractedValue_21922_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)).add_operation (GGS_string ("_property.<<4>>"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 502)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfWithoutProperty:
     {
-      GGS_location extractedValue_22043__0 ;
-      temp_2.getAssociatedValuesFor_selfWithoutProperty (extractedValue_22043__0) ;
+      GGS_location extractedValue_22053__0 ;
+      temp_2.getAssociatedValuesFor_selfWithoutProperty (extractedValue_22053__0) ;
       result_result = GGS_string::makeEmptyString () ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfProperty:
     {
-      GGS_lstring extractedValue_22126_masterName_0 ;
-      temp_2.getAssociatedValuesFor_selfProperty (extractedValue_22126_masterName_0) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_22126_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 506)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 506)) ;
+      GGS_lstring extractedValue_22136_masterName_0 ;
+      temp_2.getAssociatedValuesFor_selfProperty (extractedValue_22136_masterName_0) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_22136_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 506)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 506)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyWithOption:
     {
-      GGS_lstring extractedValue_22254_masterName_0 ;
-      GGS_lstring extractedValue_22266__1 ;
-      temp_2.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_22254_masterName_0, extractedValue_22266__1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_22254_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 508)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 508)) ;
+      GGS_lstring extractedValue_22264_masterName_0 ;
+      GGS_lstring extractedValue_22276__1 ;
+      temp_2.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_22264_masterName_0, extractedValue_22276__1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_22264_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 508)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 508)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyArray:
     {
-      GGS_lstring extractedValue_22380_masterName_0 ;
-      GGS_lstring extractedValue_22401_elementPropertyName_1 ;
-      temp_2.getAssociatedValuesFor_selfPropertyArray (extractedValue_22380_masterName_0, extractedValue_22401_elementPropertyName_1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_22380_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (extractedValue_22401_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)) ;
+      GGS_lstring extractedValue_22390_masterName_0 ;
+      GGS_lstring extractedValue_22411_elementPropertyName_1 ;
+      temp_2.getAssociatedValuesFor_selfPropertyArray (extractedValue_22390_masterName_0, extractedValue_22411_elementPropertyName_1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_22390_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (extractedValue_22411_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 510)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyObject:
     {
-      GGS_lstring extractedValue_22569_masterName_0 ;
-      GGS_lstring extractedValue_22590_elementPropertyName_1 ;
-      temp_2.getAssociatedValuesFor_selfPropertyObject (extractedValue_22569_masterName_0, extractedValue_22590_elementPropertyName_1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_22569_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (extractedValue_22590_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)) ;
+      GGS_lstring extractedValue_22579_masterName_0 ;
+      GGS_lstring extractedValue_22600_elementPropertyName_1 ;
+      temp_2.getAssociatedValuesFor_selfPropertyObject (extractedValue_22579_masterName_0, extractedValue_22600_elementPropertyName_1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_22579_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (extractedValue_22600_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 512)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyNone:
     {
-      GGS_lstring extractedValue_22758_masterName_0 ;
-      temp_2.getAssociatedValuesFor_selfPropertyNone (extractedValue_22758_masterName_0) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_22758_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 514)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 514)) ;
+      GGS_lstring extractedValue_22768_masterName_0 ;
+      temp_2.getAssociatedValuesFor_selfPropertyNone (extractedValue_22768_masterName_0) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_22768_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 514)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 514)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsProperty:
     {
-      GGS_lstring extractedValue_22877_propertyName_0 ;
-      temp_2.getAssociatedValuesFor_prefsProperty (extractedValue_22877_propertyName_0) ;
-      result_result = GGS_string ("preferences_").add_operation (extractedValue_22877_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 516)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 516)) ;
+      GGS_lstring extractedValue_22887_propertyName_0 ;
+      temp_2.getAssociatedValuesFor_prefsProperty (extractedValue_22887_propertyName_0) ;
+      result_result = GGS_string ("preferences_").add_operation (extractedValue_22887_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 516)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 516)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsPropertyWithOption:
     {
-      GGS_lstring extractedValue_23012_propertyName_0 ;
-      GGS_lstring extractedValue_23026__1 ;
-      temp_2.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_23012_propertyName_0, extractedValue_23026__1) ;
-      result_result = GGS_string ("preferences_").add_operation (extractedValue_23012_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 518)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 518)) ;
+      GGS_lstring extractedValue_23022_propertyName_0 ;
+      GGS_lstring extractedValue_23036__1 ;
+      temp_2.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_23022_propertyName_0, extractedValue_23036__1) ;
+      result_result = GGS_string ("preferences_").add_operation (extractedValue_23022_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 518)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 518)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootProperty:
     {
-      GGS_lstring extractedValue_23139_masterName_0 ;
-      temp_2.getAssociatedValuesFor_rootProperty (extractedValue_23139_masterName_0) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23139_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 520)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 520)) ;
+      GGS_lstring extractedValue_23149_masterName_0 ;
+      temp_2.getAssociatedValuesFor_rootProperty (extractedValue_23149_masterName_0) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23149_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 520)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 520)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyNone:
     {
-      GGS_lstring extractedValue_23266_masterName_0 ;
-      temp_2.getAssociatedValuesFor_rootPropertyNone (extractedValue_23266_masterName_0) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23266_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 522)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 522)) ;
+      GGS_lstring extractedValue_23276_masterName_0 ;
+      temp_2.getAssociatedValuesFor_rootPropertyNone (extractedValue_23276_masterName_0) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23276_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 522)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 522)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyWithOption:
     {
-      GGS_lstring extractedValue_23399_masterName_0 ;
-      GGS_lstring extractedValue_23420_optionName_1 ;
-      temp_2.getAssociatedValuesFor_rootPropertyWithOption (extractedValue_23399_masterName_0, extractedValue_23420_optionName_1) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23399_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (extractedValue_23420_optionName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)) ;
+      GGS_lstring extractedValue_23409_masterName_0 ;
+      GGS_lstring extractedValue_23430_optionName_1 ;
+      temp_2.getAssociatedValuesFor_rootPropertyWithOption (extractedValue_23409_masterName_0, extractedValue_23430_optionName_1) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23409_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (extractedValue_23430_optionName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 524)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyRelationship:
     {
-      GGS_lstring extractedValue_23583_relationshipName_0 ;
-      GGS_lstring extractedValue_23610_propertyName_1 ;
-      temp_2.getAssociatedValuesFor_rootPropertyRelationship (extractedValue_23583_relationshipName_0, extractedValue_23610_propertyName_1) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23583_relationshipName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (extractedValue_23610_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)) ;
+      GGS_lstring extractedValue_23593_relationshipName_0 ;
+      GGS_lstring extractedValue_23620_propertyName_1 ;
+      temp_2.getAssociatedValuesFor_rootPropertyRelationship (extractedValue_23593_relationshipName_0, extractedValue_23620_propertyName_1) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_23593_relationshipName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (extractedValue_23620_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)).add_operation (GGS_string ("_StartsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 526)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_signatureProperty:
     {
-      GGS_location extractedValue_23765__0 ;
-      temp_2.getAssociatedValuesFor_signatureProperty (extractedValue_23765__0) ;
+      GGS_location extractedValue_23775__0 ;
+      temp_2.getAssociatedValuesFor_signatureProperty (extractedValue_23775__0) ;
       result_result = GGS_string ("<< ligne 243 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_versionProperty:
     {
-      GGS_location extractedValue_23825__0 ;
-      temp_2.getAssociatedValuesFor_versionProperty (extractedValue_23825__0) ;
+      GGS_location extractedValue_23835__0 ;
+      temp_2.getAssociatedValuesFor_versionProperty (extractedValue_23835__0) ;
       result_result = GGS_string ("<< ligne 245 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_versionShouldChangeProperty:
     {
-      GGS_location extractedValue_23897__0 ;
-      temp_2.getAssociatedValuesFor_versionShouldChangeProperty (extractedValue_23897__0) ;
+      GGS_location extractedValue_23907__0 ;
+      temp_2.getAssociatedValuesFor_versionShouldChangeProperty (extractedValue_23907__0) ;
       result_result = GGS_string ("<< ligne 247 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superProperty:
     {
-      GGS_lstring extractedValue_23955__0 ;
-      GGS_lstring extractedValue_23967_propertyName_1 ;
-      temp_2.getAssociatedValuesFor_superProperty (extractedValue_23955__0, extractedValue_23967_propertyName_1) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_23967_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 534)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 534)) ;
+      GGS_lstring extractedValue_23965__0 ;
+      GGS_lstring extractedValue_23977_propertyName_1 ;
+      temp_2.getAssociatedValuesFor_superProperty (extractedValue_23965__0, extractedValue_23977_propertyName_1) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_23977_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 534)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 534)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superPropertyWithDefaultValue:
     {
-      GGS_lstring extractedValue_24097__0 ;
-      GGS_lstring extractedValue_24109_propertyName_1 ;
-      GGS_abstractDefaultValue extractedValue_24123__2 ;
-      temp_2.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_24097__0, extractedValue_24109_propertyName_1, extractedValue_24123__2) ;
-      result_result = var_prefix_21070.add_operation (extractedValue_24109_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 536)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 536)) ;
+      GGS_lstring extractedValue_24107__0 ;
+      GGS_lstring extractedValue_24119_propertyName_1 ;
+      GGS_abstractDefaultValue extractedValue_24133__2 ;
+      temp_2.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_24107__0, extractedValue_24119_propertyName_1, extractedValue_24133__2) ;
+      result_result = var_prefix_21080.add_operation (extractedValue_24119_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 536)).add_operation (GGS_string ("_property.startsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 536)) ;
     }
     break ;
   }
@@ -5256,164 +5256,164 @@ GGS_string extensionGetter_generateRemoveObserverCall (const GGS_observablePrope
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerProperty:
     {
-      GGS_lstring extractedValue_24440_controllerName_0 ;
-      GGS_lstring extractedValue_24465_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfControllerProperty (extractedValue_24440_controllerName_0, extractedValue_24465_propertyName_1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_24440_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (extractedValue_24465_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)) ;
+      GGS_lstring extractedValue_24450_controllerName_0 ;
+      GGS_lstring extractedValue_24475_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfControllerProperty (extractedValue_24450_controllerName_0, extractedValue_24475_propertyName_1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_24450_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (extractedValue_24475_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 545)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerSecondaryProperty:
     {
-      GGS_lstring extractedValue_24630_controllerName_0 ;
-      GGS_lstring extractedValue_24655_propertyName_1 ;
-      GGS_lstring extractedValue_24678_secondaryPropertyName_2 ;
-      temp_0.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_24630_controllerName_0, extractedValue_24655_propertyName_1, extractedValue_24678_secondaryPropertyName_2) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_24630_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (extractedValue_24655_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (extractedValue_24678_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)) ;
+      GGS_lstring extractedValue_24640_controllerName_0 ;
+      GGS_lstring extractedValue_24665_propertyName_1 ;
+      GGS_lstring extractedValue_24688_secondaryPropertyName_2 ;
+      temp_0.getAssociatedValuesFor_selfControllerSecondaryProperty (extractedValue_24640_controllerName_0, extractedValue_24665_propertyName_1, extractedValue_24688_secondaryPropertyName_2) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_24640_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (extractedValue_24665_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (extractedValue_24688_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 547)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerAllProperties:
     {
-      GGS_lstring extractedValue_24887_controllerName_0 ;
-      GGS_lstring extractedValue_24912_propertyName_1 ;
-      GGS_lstring extractedValue_24935_secondaryPropertyName_2 ;
-      temp_0.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_24887_controllerName_0, extractedValue_24912_propertyName_1, extractedValue_24935_secondaryPropertyName_2) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_24887_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (extractedValue_24912_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (extractedValue_24935_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)) ;
+      GGS_lstring extractedValue_24897_controllerName_0 ;
+      GGS_lstring extractedValue_24922_propertyName_1 ;
+      GGS_lstring extractedValue_24945_secondaryPropertyName_2 ;
+      temp_0.getAssociatedValuesFor_selfControllerAllProperties (extractedValue_24897_controllerName_0, extractedValue_24922_propertyName_1, extractedValue_24945_secondaryPropertyName_2) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_24897_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (extractedValue_24922_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (extractedValue_24945_secondaryPropertyName_2.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 549)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfControllerOneProperty:
     {
-      GGS_lstring extractedValue_25140_controllerName_0 ;
-      GGS_lstring extractedValue_25165_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_25140_controllerName_0, extractedValue_25165_propertyName_1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_25140_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (extractedValue_25165_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (GGS_string ("_property.toMany_<<5>>_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)) ;
+      GGS_lstring extractedValue_25150_controllerName_0 ;
+      GGS_lstring extractedValue_25175_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfControllerOneProperty (extractedValue_25150_controllerName_0, extractedValue_25175_propertyName_1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_25150_controllerName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (extractedValue_25175_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)).add_operation (GGS_string ("_property.toMany_<<5>>_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 551)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfWithoutProperty:
     {
-      GGS_location extractedValue_25322__0 ;
-      temp_0.getAssociatedValuesFor_selfWithoutProperty (extractedValue_25322__0) ;
+      GGS_location extractedValue_25332__0 ;
+      temp_0.getAssociatedValuesFor_selfWithoutProperty (extractedValue_25332__0) ;
       result_result = GGS_string::makeEmptyString () ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfProperty:
     {
-      GGS_lstring extractedValue_25405_masterName_0 ;
-      temp_0.getAssociatedValuesFor_selfProperty (extractedValue_25405_masterName_0) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_25405_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 555)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 555)) ;
+      GGS_lstring extractedValue_25415_masterName_0 ;
+      temp_0.getAssociatedValuesFor_selfProperty (extractedValue_25415_masterName_0) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_25415_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 555)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 555)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyWithOption:
     {
-      GGS_lstring extractedValue_25533_masterName_0 ;
-      GGS_lstring extractedValue_25545__1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_25533_masterName_0, extractedValue_25545__1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_25533_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 557)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 557)) ;
+      GGS_lstring extractedValue_25543_masterName_0 ;
+      GGS_lstring extractedValue_25555__1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyWithOption (extractedValue_25543_masterName_0, extractedValue_25555__1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_25543_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 557)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 557)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyArray:
     {
-      GGS_lstring extractedValue_25659_masterName_0 ;
-      GGS_lstring extractedValue_25680_elementPropertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyArray (extractedValue_25659_masterName_0, extractedValue_25680_elementPropertyName_1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_25659_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (extractedValue_25680_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)) ;
+      GGS_lstring extractedValue_25669_masterName_0 ;
+      GGS_lstring extractedValue_25690_elementPropertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyArray (extractedValue_25669_masterName_0, extractedValue_25690_elementPropertyName_1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_25669_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (extractedValue_25690_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 559)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyObject:
     {
-      GGS_lstring extractedValue_25848_masterName_0 ;
-      GGS_lstring extractedValue_25869_elementPropertyName_1 ;
-      temp_0.getAssociatedValuesFor_selfPropertyObject (extractedValue_25848_masterName_0, extractedValue_25869_elementPropertyName_1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_25848_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (extractedValue_25869_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)) ;
+      GGS_lstring extractedValue_25858_masterName_0 ;
+      GGS_lstring extractedValue_25879_elementPropertyName_1 ;
+      temp_0.getAssociatedValuesFor_selfPropertyObject (extractedValue_25858_masterName_0, extractedValue_25879_elementPropertyName_1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_25858_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (extractedValue_25879_elementPropertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 561)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_selfPropertyNone:
     {
-      GGS_lstring extractedValue_26035_masterName_0 ;
-      temp_0.getAssociatedValuesFor_selfPropertyNone (extractedValue_26035_masterName_0) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_26035_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 563)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 563)) ;
+      GGS_lstring extractedValue_26045_masterName_0 ;
+      temp_0.getAssociatedValuesFor_selfPropertyNone (extractedValue_26045_masterName_0) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_26045_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 563)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 563)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsProperty:
     {
-      GGS_lstring extractedValue_26154_propertyName_0 ;
-      temp_0.getAssociatedValuesFor_prefsProperty (extractedValue_26154_propertyName_0) ;
-      result_result = GGS_string ("preferences_").add_operation (extractedValue_26154_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 565)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 565)) ;
+      GGS_lstring extractedValue_26164_propertyName_0 ;
+      temp_0.getAssociatedValuesFor_prefsProperty (extractedValue_26164_propertyName_0) ;
+      result_result = GGS_string ("preferences_").add_operation (extractedValue_26164_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 565)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 565)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_prefsPropertyWithOption:
     {
-      GGS_lstring extractedValue_26288_propertyName_0 ;
-      GGS_lstring extractedValue_26302__1 ;
-      temp_0.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_26288_propertyName_0, extractedValue_26302__1) ;
-      result_result = GGS_string ("preferences_").add_operation (extractedValue_26288_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 567)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 567)) ;
+      GGS_lstring extractedValue_26298_propertyName_0 ;
+      GGS_lstring extractedValue_26312__1 ;
+      temp_0.getAssociatedValuesFor_prefsPropertyWithOption (extractedValue_26298_propertyName_0, extractedValue_26312__1) ;
+      result_result = GGS_string ("preferences_").add_operation (extractedValue_26298_propertyName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 567)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 567)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootProperty:
     {
-      GGS_lstring extractedValue_26414_masterName_0 ;
-      temp_0.getAssociatedValuesFor_rootProperty (extractedValue_26414_masterName_0) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26414_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 569)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 569)) ;
+      GGS_lstring extractedValue_26424_masterName_0 ;
+      temp_0.getAssociatedValuesFor_rootProperty (extractedValue_26424_masterName_0) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26424_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 569)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 569)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyWithOption:
     {
-      GGS_lstring extractedValue_26546_masterName_0 ;
-      GGS_lstring extractedValue_26567_optionName_1 ;
-      temp_0.getAssociatedValuesFor_rootPropertyWithOption (extractedValue_26546_masterName_0, extractedValue_26567_optionName_1) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26546_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (extractedValue_26567_optionName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)) ;
+      GGS_lstring extractedValue_26556_masterName_0 ;
+      GGS_lstring extractedValue_26577_optionName_1 ;
+      temp_0.getAssociatedValuesFor_rootPropertyWithOption (extractedValue_26556_masterName_0, extractedValue_26577_optionName_1) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26556_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (GGS_string ("_property."), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (extractedValue_26577_optionName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 571)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyNone:
     {
-      GGS_lstring extractedValue_26721_masterName_0 ;
-      temp_0.getAssociatedValuesFor_rootPropertyNone (extractedValue_26721_masterName_0) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26721_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 573)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 573)) ;
+      GGS_lstring extractedValue_26731_masterName_0 ;
+      temp_0.getAssociatedValuesFor_rootPropertyNone (extractedValue_26731_masterName_0) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26731_masterName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 573)).add_operation (GGS_string ("_property.stopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 573)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_rootPropertyRelationship:
     {
-      GGS_lstring extractedValue_26855_relationshipName_0 ;
-      GGS_lstring extractedValue_26882_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_rootPropertyRelationship (extractedValue_26855_relationshipName_0, extractedValue_26882_propertyName_1) ;
-      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26855_relationshipName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (extractedValue_26882_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)) ;
+      GGS_lstring extractedValue_26865_relationshipName_0 ;
+      GGS_lstring extractedValue_26892_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_rootPropertyRelationship (extractedValue_26865_relationshipName_0, extractedValue_26892_propertyName_1) ;
+      result_result = GGS_string ("self.rootObject.").add_operation (extractedValue_26865_relationshipName_0.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (GGS_string ("_property.toMany_"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (extractedValue_26892_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)).add_operation (GGS_string ("_StopsBeingObserved"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 575)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_signatureProperty:
     {
-      GGS_location extractedValue_27036__0 ;
-      temp_0.getAssociatedValuesFor_signatureProperty (extractedValue_27036__0) ;
+      GGS_location extractedValue_27046__0 ;
+      temp_0.getAssociatedValuesFor_signatureProperty (extractedValue_27046__0) ;
       result_result = GGS_string ("<< ligne 270 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_versionProperty:
     {
-      GGS_location extractedValue_27096__0 ;
-      temp_0.getAssociatedValuesFor_versionProperty (extractedValue_27096__0) ;
+      GGS_location extractedValue_27106__0 ;
+      temp_0.getAssociatedValuesFor_versionProperty (extractedValue_27106__0) ;
       result_result = GGS_string ("<< ligne 272 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_versionShouldChangeProperty:
     {
-      GGS_location extractedValue_27168__0 ;
-      temp_0.getAssociatedValuesFor_versionShouldChangeProperty (extractedValue_27168__0) ;
+      GGS_location extractedValue_27178__0 ;
+      temp_0.getAssociatedValuesFor_versionShouldChangeProperty (extractedValue_27178__0) ;
       result_result = GGS_string ("<< ligne 274 >>") ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superProperty:
     {
-      GGS_lstring extractedValue_27226__0 ;
-      GGS_lstring extractedValue_27238_propertyName_1 ;
-      temp_0.getAssociatedValuesFor_superProperty (extractedValue_27226__0, extractedValue_27238_propertyName_1) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_27238_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 583)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 583)) ;
+      GGS_lstring extractedValue_27236__0 ;
+      GGS_lstring extractedValue_27248_propertyName_1 ;
+      temp_0.getAssociatedValuesFor_superProperty (extractedValue_27236__0, extractedValue_27248_propertyName_1) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_27248_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 583)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 583)) ;
     }
     break ;
   case GGS_observablePropertyAST::Enumeration::enum_superPropertyWithDefaultValue:
     {
-      GGS_lstring extractedValue_27366__0 ;
-      GGS_lstring extractedValue_27378_propertyName_1 ;
-      GGS_abstractDefaultValue extractedValue_27392__2 ;
-      temp_0.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_27366__0, extractedValue_27378_propertyName_1, extractedValue_27392__2) ;
-      result_result = GGS_string ("self.").add_operation (extractedValue_27378_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 585)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 585)) ;
+      GGS_lstring extractedValue_27376__0 ;
+      GGS_lstring extractedValue_27388_propertyName_1 ;
+      GGS_abstractDefaultValue extractedValue_27402__2 ;
+      temp_0.getAssociatedValuesFor_superPropertyWithDefaultValue (extractedValue_27376__0, extractedValue_27388_propertyName_1, extractedValue_27402__2) ;
+      result_result = GGS_string ("self.").add_operation (extractedValue_27388_propertyName_1.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 585)).add_operation (GGS_string ("_property.removeEBObserver"), inCompiler COMMA_SOURCE_FILE ("transient-property.ggs", 585)) ;
     }
     break ;
   }

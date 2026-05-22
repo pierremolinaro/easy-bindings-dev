@@ -74,11 +74,11 @@ case ."eb"
     for (enumTypeName, 2*) in semanticContext.mEnumerationFunctionListAST do
       semanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
       if not type.isAtomic then
-        error enumTypeName : "this type should be an enum type"
+        error (enumTypeName : "this type should be an enum type")
       else
         type.extractAtomic (?kind:let typeKind)
         if not typeKind.isEnumType then
-          error enumTypeName : "this type should be an enum type"
+          error (enumTypeName : "this type should be an enum type")
         end
       end
     end

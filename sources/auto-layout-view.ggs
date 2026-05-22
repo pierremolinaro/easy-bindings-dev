@@ -295,7 +295,7 @@ syntax extension easyBindings_syntax {
       $view$
       $identifier$ (?let localViewName)
       if not ioStackViewInstances.hasKey (localViewName.string) then
-        error localViewName : "the view is not instancied"
+        error (localViewName : "the view is not instancied")
       end
       !?ioInstructionList.append (@astLocalViewInstruction (localViewName))
     while
@@ -455,7 +455,7 @@ syntax extension easyBindings_syntax {
           $view$
           $identifier$ (?let viewName)
           if not ioStackViewInstances.hasKey (viewName.string) then
-            error viewName : "view is not instancied"
+            error (viewName : "view is not instancied")
           end
           !?outParameterList.append (parameterName, .typeView, .string (!value: viewName.string))
         or
@@ -660,8 +660,9 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
     inFunctionMap.searchKey (@(mangleName, functionName.location), ?let formalParameterList)
     var @autoLayoutViewInstructionGenerationParameterList parameterList = []
     if formalParameterList.count != actualParameterList.count then
-      error functionName 
+      error (functionName 
       : formalParameterList.count .string + " parameter(s) required, " + actualParameterList.count + " provided"
+      )
     else
       for (name, type, value) in actualParameterList, (formalName, formalType) in formalParameterList do
         if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = type.getTypeEnum then
@@ -669,13 +670,13 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
           if let atomicTypeKind = typeKind.getAtomic, let atomicEnumType = atomicTypeKind.kind.getEnumType then
             atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
-            error formalTypeEnum.name : "this type name is not an enum"
+            error (formalTypeEnum.name : "this type name is not an enum")
           end
         elsif type != formalType then
-          error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
+          error (name : "the formal parameter requires " + formalType + ", actual parameter is " + type)
         end
         if name.string != formalName.string then
-          error name : "the parameter name should be '" + formalName + "'"
+          error (name : "the parameter name should be '" + formalName + "'")
         end
         switch value
         case viewFunc (instruction) :
@@ -705,7 +706,7 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
         case entity (entityName) :
           inClassMap.searchKey (entityName, ?let classKind, ?3*)
           if not classKind.isEntity then
-            error entityName: "an entity is required here"
+            error (entityName: "an entity is required here")
           end
           !?parameterList.append (name, entityName.string + ".self")
         case menuItem (title, run, enabledBinding) :
@@ -748,14 +749,14 @@ proc @astAutoLayoutViewFunctionCallList.checkViewFunctionCallList(
         case enumFunc (enumTypeName, funcName) :
           inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
           if not type.isAtomic then
-            error enumTypeName : "this type should be an enum type"
+            error (enumTypeName : "this type should be an enum type")
           else
             type.extractAtomic (?kind:let @typeKind typeKind)
             if typeKind.isEnumType then
               typeKind.extractEnumType (?2*, ?funcMap:let funcMap)
               funcMap.searchKey (funcName, ?*)
             else
-              error enumTypeName : "this type should be an enum type"
+              error (enumTypeName : "this type should be an enum type")
             end
           end
           !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
@@ -985,8 +986,9 @@ override proc @astComputedViewInstruction.generateViewCode(
   inClassMap.searchKey (!@(preferencesName (), .nowhere), ?2*, ?let preferencesActionMap, ?*)
   var @autoLayoutViewInstructionGenerationParameterList parameterList = []
   if formalParameterList.count != self.mParameterList.count then
-    error self.mAutoLayoutViewClassName 
+    error (self.mAutoLayoutViewClassName 
     : formalParameterList.count .string + " parameter(s) required, " + self.mParameterList.count + " provided"
+    )
   else
     for (name, type, value) in self.mParameterList, (formalName, formalType) in formalParameterList do
       if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = type.getTypeEnum then
@@ -994,13 +996,13 @@ override proc @astComputedViewInstruction.generateViewCode(
         if let atomicTypeKind = typeKind.getAtomic, let enumKind = atomicTypeKind.kind.getEnumType then
           enumKind.constantMap.searchKey (actualTypeEnum.name, ?*)
         else
-          error formalTypeEnum.name : "this type name is not an enum"
+          error (formalTypeEnum.name : "this type name is not an enum")
         end
       elsif type != formalType then
-        error name : "the formal parameter requires " + formalType + ", actual parameter is " + type
+        error (name : "the formal parameter requires " + formalType + ", actual parameter is " + type)
       end
       if name.string != formalName.string then
-        error name : "the parameter name should be '" + formalName + "'"
+        error (name : "the parameter name should be '" + formalName + "'")
       end
       switch value
         case viewFunc (instruction) :
@@ -1024,7 +1026,7 @@ override proc @astComputedViewInstruction.generateViewCode(
       case entity (entityName) :
         inClassMap.searchKey (entityName, ?let classKind, ?3*)
         if not classKind.isEntity then
-          error entityName: "an entity is required here"
+          error (entityName: "an entity is required here")
         end
         !?parameterList.append (name, entityName.string + ".self")
       case string (stringValue) :
@@ -1069,14 +1071,14 @@ override proc @astComputedViewInstruction.generateViewCode(
       case enumFunc (enumTypeName, funcName) :
         inSemanticContext.mClassMap.searchKey (enumTypeName, ?let type, ?3*)
         if not type.isAtomic then
-          error enumTypeName : "this type should be an enum type"
+          error (enumTypeName : "this type should be an enum type")
         else
           type.extractAtomic (?kind:let typeKind)
           if typeKind.isEnumType then
             typeKind.extractEnumType (?2*, ?funcMap:let funcMap)
             funcMap.searchKey (funcName, ?*)
           else
-            error enumTypeName : "this type should be an enum type"
+            error (enumTypeName : "this type should be an enum type")
           end
         end
         !?parameterList.append (name, enumTypeName.string + "." + funcName + " ()")
@@ -1194,7 +1196,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
   case none :
   case defined (@lstring controllerName, @lstring propertyName) :
     if not handleGraphicControllerBinding then
-      error inTypeName : "the '" + inTypeName + "' type does not handle the $graphicController binding"
+      error (inTypeName : "the '" + inTypeName + "' type does not handle the $graphicController binding")
     else
       inObservablePropertyMap.searchKey
         (controllerName,
@@ -1203,15 +1205,15 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
       )
       switch kind 
       case property (2*) :
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       case toMany (4*) :
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       case toOne (5*) :
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       case arrayController (entityName, graphic) :
         if propertyName.string == "" then
           if not graphic then
-            error controllerName : "the controlled entity (" + entityName + ") should be a graphic entity"
+            error (controllerName : "the controlled entity (" + entityName + ") should be a graphic entity")
           end
         else
           inSemanticContext.mClassMap.searchKey
@@ -1223,21 +1225,21 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
           observablePropertyMap.searchKey (propertyName, ?let propertyKind, ?2*)
           switch propertyKind 
           case property (2*) :
-            error controllerName : "the bound model should be a toMany property"
+            error (controllerName : "the bound model should be a toMany property")
           case toMany (kEntityName, *, isGraphic, *) :
             if not isGraphic then
-              error controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity"
+              error (controllerName : "the controlled entity (" + kEntityName + ") should be a graphic entity")
             end
           case toOne (5*) :
-            error controllerName : "the bound model should be a toMany property"
+            error (controllerName : "the bound model should be a toMany property")
           case arrayController (2*) :
-            error controllerName : "the bound model should be a toMany property"
+            error (controllerName : "the bound model should be a toMany property")
           case selectionController (*) :
-            error controllerName : "the bound model should be a toMany property"
+            error (controllerName : "the bound model should be a toMany property")
           end
        end
       case selectionController (*) :
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       end
       outEBViewGraphicControllerBindingGeneration = .binding (!arrayControllerControllerName: controllerName.string)
     end
@@ -1247,7 +1249,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
   case noTableValueBinding :
   case tableValueBinding (@lstring controllerName) :
     if not handlesTableViewBinding then
-      error inTypeName : "the '" + inTypeName + "' type does not handle the $tableView binding"
+      error (inTypeName : "the '" + inTypeName + "' type does not handle the $tableView binding")
     elsif inPreferences then
       inPreferencesPropertyMap.searchKey
         (controllerName,
@@ -1255,7 +1257,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
         ?2*
       )
       if not kind.isArrayController then
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       end
       outTableViewBindingGeneration = controllerName.string
     else
@@ -1265,7 +1267,7 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
         ?2*
       )
       if not kind.isArrayController then
-        error controllerName : "the bound model should be an array controller"
+        error (controllerName : "the bound model should be an array controller")
       end
       outTableViewBindingGeneration = controllerName.string
     end
@@ -1313,10 +1315,10 @@ proc analyzeAutoLayoutBinding (let @bool inPreferences,
       ?let @location errorLocation
     )
     if not type.isBoolType then
-      error errorLocation : "expression is not boolean"
+      error (errorLocation : "expression is not boolean")
     end
     if not handlesHiddenBinding then
-      error errorLocation : "cet outlet n'accepte pas le binding $hidden"
+      error (errorLocation : "cet outlet n'accepte pas le binding $hidden")
     end
     !?outMultipleBindingGenerationList.append (
       !"hidden",
@@ -1364,10 +1366,10 @@ proc analyzeAutoLayoutEnableBinding(
       ?let @location errorLocation
     )
     if not inHandlesEnabledBinding then
-      error errorLocation : "cet outlet n'accepte pas le binding $enabled"
+      error (errorLocation : "cet outlet n'accepte pas le binding $enabled")
     end
     if not type.isBoolType then
-      error errorLocation : "expression is not boolean"
+      error (errorLocation : "expression is not boolean")
     end
     outEnabledBindingGeneration = .enabled (!binding: enableExpression)
   end
@@ -1389,8 +1391,8 @@ proc analyzeAutoLayoutRunBinding (let @runActionDescriptor inRunActionDescriptor
     outRunBindingGeneration = .none
   case action (@lstring target, @lstring action) :
     if not inHandlesRunAction then
-      error inTypeName : "the '" + inTypeName + "' type does not handle run action"
-      spoil (outRunBindingGeneration)
+      error (inTypeName : "the '" + inTypeName + "' type does not handle run action"
+      spoil outRunBindingGeneration)
     elsif target.string == "self" then
       inActionMap.searchKey (action)
       outRunBindingGeneration = .run (
@@ -1452,13 +1454,13 @@ proc analyzeAutoLayoutRegularBinding(
       switch kind
       case property (2*) : // Ok
       case toMany (4*) :
-        error mObservableProperty.location :"a toMany property cannot be bound"
+        error (mObservableProperty.location :"a toMany property cannot be bound")
       case toOne (5*) :
-        error mObservableProperty.location :"a toOne property cannot be bound"
+        error (mObservableProperty.location :"a toOne property cannot be bound")
       case arrayController (2*) :
-        error mObservableProperty.location :"an array controller cannot be bound"
+        error (mObservableProperty.location :"an array controller cannot be bound")
       case selectionController (*) :
-        error mObservableProperty.location :"a selection controller cannot be bound"
+        error (mObservableProperty.location :"a selection controller cannot be bound")
       end
       !?boundModelListForGeneration.append (mObservableProperty.modelStringForSelf (inSelfSwiftName), kind)
       !?boundModelTypeList.append (kind, mObservableProperty.location )
@@ -1487,20 +1489,21 @@ proc analyzeAutoLayoutRegularBinding(
       end
     end
     if continues then
-      error mBindingName : "this binding is not defined"
+      error (mBindingName : "this binding is not defined")
     elsif boundModelTypeList.count != outletBindingSpecificationModelList.count then
-      error mBindingName
+      error (mBindingName
       : outletBindingSpecificationModelList.count .string
         + " model(s) required for this binding (found: "
         + boundModelTypeList.count + ")"
+      )
     else
       for (required_mModelType, required_mModelShouldBeWritableProperty) in outletBindingSpecificationModelList, (found_mKind, found_mErrorLocation) in boundModelTypeList do
         if required_mModelShouldBeWritableProperty && found_mKind.isTransient then
-          error found_mErrorLocation : "the model is transient and the binding requires an writable model"
+          error (found_mErrorLocation : "the model is transient and the binding requires an writable model")
         end
         if required_mModelType.isEnumType && found_mKind.isEnumType then // Ok
         elsif required_mModelType.swiftTypeName != found_mKind.swiftTypeName then
-          error found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName
+          error (found_mErrorLocation : "the model type should be " + required_mModelType.swiftTypeName)
         end
       end
     end
@@ -1516,11 +1519,11 @@ proc analyzeAutoLayoutRegularBinding(
           s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName
         end
       end
-      error mBindingName : s
+      error (mBindingName : s)
     else
       for (controller_mOptionType, controller_mOptionName) in controllerBindingOptionDecoratedList, (binding_mOptionName, binding_mOptionValue) in mBindingOptionList do
         if controller_mOptionName.string != binding_mOptionName.string then
-          error binding_mOptionName : "the option name should be '" + controller_mOptionName + "'"
+          error (binding_mOptionName : "the option name should be '" + controller_mOptionName + "'")
         end
         binding_mOptionValue.analyzeDefaultValueType (
           [@(controller_mOptionType)],
@@ -1589,7 +1592,7 @@ override proc @astHStackViewInstructionDeclaration.generateViewCode(
       ?let @location errorLocation
     )
     if not type.isBoolType then
-      error errorLocation : "expression is not boolean"
+      error (errorLocation : "expression is not boolean")
     end
     !?multipleBindingGenerationList.append (
       !"hidden",
@@ -1672,7 +1675,7 @@ override proc @astVStackViewInstructionDeclaration.generateViewCode(
       ?let @location errorLocation
     )
     if not type.isBoolType then
-      error errorLocation : "expression is not boolean"
+      error (errorLocation : "expression is not boolean")
     end
     !?multipleBindingGenerationList.append ("hidden", hiddenExpression)
   end

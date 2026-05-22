@@ -151,7 +151,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
       rootProperties.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
@@ -167,17 +167,17 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
         )
       )
       case toOne (5*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case arrayController (2*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case selectionController (*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       end
     else
       entry.mPropertyMap.searchKey (self.mToManyPropertyName, ?let classKind, ?2*)
       switch classKind
       case property (2*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case toMany (typeName, *, graphic, *) :
         let kind = @propertyKind.arrayController (
           !typeName: typeName,
@@ -192,11 +192,11 @@ override proc @autoLayoutTableViewControllerDeclarationAST.firstAnalysisPhase (
       )
       )
       case toOne (5*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case arrayController (2*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       case selectionController (*) :
-        error self.mRootEntityName : "a toMany relationship is required here"
+        error (self.mRootEntityName : "a toMany relationship is required here")
       end
     end
   !?ioSemanticContext.mClassMap.replace (!with: entry)
@@ -224,9 +224,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   var @2stringlist attributeListForGeneration = []
   for (name, value) in self.mTableViewControllerAttributListAST do
     if not attributes.hasKey (name.string) then
-      error name : "unknown attribute"
+      error (name : "unknown attribute")
     elsif definedAttributes.hasKey (name.string) then
-      error name : "attribute multiply defined"
+      error (name : "attribute multiply defined")
     else
       !?definedAttributes.insert (name.string)
     end
@@ -235,7 +235,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   end
   for s in attributes do
     if not definedAttributes.hasKey (s) then
-      error self.mControllerName : "attribute '" + s + "' not defined"
+      error (self.mControllerName : "attribute '" + s + "' not defined")
     end
   end
 //-----
@@ -267,9 +267,9 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
   let @string elementTypeName
   switch boundModelClassKind
   case property (2*) :
-    error self.mToManyPropertyName
+    error (self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
+      spoil graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   case toMany (typeName, accessibility, isGraphic, *) :
     elementTypeName = typeName
     graphic = isGraphic
@@ -279,17 +279,17 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     end
     ioSemanticContext.mClassMap.searchKey (typeName, ?*, ?propertyMap, ?*, ?*)
   case toOne (5*) :
-    error self.mToManyPropertyName
+    error (self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
+      spoil graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   case arrayController (2*) :
-    error self.mToManyPropertyName
+    error (self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
+      spoil graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   case selectionController (*) :
-    error self.mToManyPropertyName
+    error (self.mToManyPropertyName
       : "a toMany property is required here"
-      spoil (graphic, arrayControllerModelKind, propertyMap, elementTypeName)
+      spoil graphic, arrayControllerModelKind, propertyMap, elementTypeName)
   end
   var @autoLayoutTableViewControllerBoundColumnListForGeneration arrayControllerBoundColumnListForGeneration = []
   var @autoLayoutTableViewControllerSortedColumnListForGeneration arrayControllerSortedColumnListForGeneration = []
@@ -303,26 +303,26 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
     !?formalArgumentList.append ("contentAlignment".nowhere , .typeEnum (!name: "TextAlignment".nowhere ))
     var @2stringlist actualParameterList = []
     if formalArgumentList.count != columnParameterList.count then
-      error propertyName : columnParameterList.count .string + " parameter(s), " + formalArgumentList.count + " required"
+      error (propertyName : columnParameterList.count .string + " parameter(s), " + formalArgumentList.count + " required")
     else
       for (formalName, formalType) in formalArgumentList, (actualName, actualType, actualParameter) in columnParameterList do
         if formalName.string != actualName.string then
-          error actualName : "required argument name: " + formalName
+          error (actualName : "required argument name: " + formalName)
         end
         if let formalTypeEnum = formalType.getTypeEnum, let actualTypeEnum = actualType.getTypeEnum then
           ioSemanticContext.mClassMap.searchKey (formalTypeEnum.name, ?let typeKind, ?3*)
           if let atomicTypeKind = typeKind.getAtomic, let atomicEnumType = atomicTypeKind.kind.getEnumType then
             atomicEnumType.constantMap.searchKey (actualTypeEnum.name, ?*)
           else
-            error formalTypeEnum.name : "this type name is not an enum"
+            error (formalTypeEnum.name : "this type name is not an enum")
           end
         elsif actualType != formalType then
-          error actualName : "the formal parameter requires " + formalType + ", actual parameter is " + actualType
+          error (actualName : "the formal parameter requires " + formalType + ", actual parameter is " + actualType)
         end
         if let actualString = actualParameter.getString then
           !?actualParameterList.append (formalName.string, actualString.value)
         else
-          error actualName :"parameter value is not string convertible"
+          error (actualName :"parameter value is not string convertible")
         end
       end
     end
@@ -334,7 +334,7 @@ override proc @autoLayoutTableViewControllerDeclarationAST.thirdAnalysisPhase(
         ?2*
       )
       if not sortPropertyKind.isComparable then
-        error sortPropertyName : "this property is not comparable"
+        error (sortPropertyName : "this property is not comparable")
       end 
       !?arrayControllerSortedColumnListForGeneration.append (  
         !propertyName.string,
