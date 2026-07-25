@@ -11219,7 +11219,7 @@ static const GALGAS_TypeDescriptor * functionArgs_preferencesName [1] = {
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_preferencesName (Compiler * inCompiler,
-                                                             const cObjectArray & /* inEffectiveParameterArray */,
+                                                             const GALGAS_ObjectArray & /* inEffectiveParameterArray */,
                                                              const GGS_location & /* inErrorLocation */
                                                              COMMA_LOCATION_ARGS) {
   return function_preferencesName (inCompiler COMMA_THERE).getter_object (THERE) ;

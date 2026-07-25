@@ -6184,7 +6184,7 @@ static const GALGAS_TypeDescriptor * functionArgs_predefinedDates [1] = {
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_predefinedDates (Compiler * inCompiler,
-                                                             const cObjectArray & /* inEffectiveParameterArray */,
+                                                             const GALGAS_ObjectArray & /* inEffectiveParameterArray */,
                                                              const GGS_location & /* inErrorLocation */
                                                              COMMA_LOCATION_ARGS) {
   return function_predefinedDates (inCompiler COMMA_THERE).getter_object (THERE) ;
@@ -6378,7 +6378,7 @@ static const GALGAS_TypeDescriptor * functionArgs_predefinedColors [1] = {
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_predefinedColors (Compiler * inCompiler,
-                                                              const cObjectArray & /* inEffectiveParameterArray */,
+                                                              const GALGAS_ObjectArray & /* inEffectiveParameterArray */,
                                                               const GGS_location & /* inErrorLocation */
                                                               COMMA_LOCATION_ARGS) {
   return function_predefinedColors (inCompiler COMMA_THERE).getter_object (THERE) ;
