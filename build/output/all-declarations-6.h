@@ -115,7 +115,7 @@ class cPtr_selectionControllerPropertyGeneration : public cPtr_propertyGeneratio
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -145,7 +145,7 @@ class GGS_selectionControllerPropertyGeneration_2E_weak : public GGS_propertyGen
 //--------------------------------- nil initializer
   public: inline static GGS_selectionControllerPropertyGeneration_2E_weak init_nil (void) {
     GGS_selectionControllerPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 

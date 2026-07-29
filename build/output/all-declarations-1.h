@@ -129,7 +129,7 @@ class cPtr_computedPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -159,7 +159,7 @@ class GGS_computedPropertyDeclarationAST_2E_weak : public GGS_abstractDeclaratio
 //--------------------------------- nil initializer
   public: inline static GGS_computedPropertyDeclarationAST_2E_weak init_nil (void) {
     GGS_computedPropertyDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1562,10 +1562,10 @@ class GGS_transientDependencyListForGeneration : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_transientDependencyListForGeneration (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_transientDependencyListForGeneration (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_observablePropertyAST & in_mDependency,
                                                  const class GGS_string & in_mFunctionArgumentName,
                                                  const class GGS_string & in_mFunctionArgumentTypeString,
@@ -1998,7 +1998,7 @@ class cPtr_computedPropertyGeneration : public cPtr_propertyGeneration {
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2028,7 +2028,7 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 //--------------------------------- nil initializer
   public: inline static GGS_computedPropertyGeneration_2E_weak init_nil (void) {
     GGS_computedPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2187,10 +2187,10 @@ class GGS_computedPropertyGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_computedPropertyGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_computedPropertyGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_computedPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -2495,7 +2495,7 @@ class cPtr_computeRoutineGeneration : public cPtr_abstractFileGeneration {
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2525,7 +2525,7 @@ class GGS_computeRoutineGeneration_2E_weak : public GGS_abstractFileGeneration_2
 //--------------------------------- nil initializer
   public: inline static GGS_computeRoutineGeneration_2E_weak init_nil (void) {
     GGS_computeRoutineGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2714,7 +2714,7 @@ class cPtr_transientDeclarationAST : public cPtr_abstractDeclarationAST {
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2744,7 +2744,7 @@ class GGS_transientDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E
 //--------------------------------- nil initializer
   public: inline static GGS_transientDeclarationAST_2E_weak init_nil (void) {
     GGS_transientDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2928,7 +2928,7 @@ class cPtr_transientPropertyGeneration : public cPtr_propertyGeneration {
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2958,7 +2958,7 @@ class GGS_transientPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E
 //--------------------------------- nil initializer
   public: inline static GGS_transientPropertyGeneration_2E_weak init_nil (void) {
     GGS_transientPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3117,10 +3117,10 @@ class GGS_transientPropertyGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_transientPropertyGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_transientPropertyGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_transientPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -6810,7 +6810,7 @@ class cPtr_transientRoutineGeneration : public cPtr_abstractFileGeneration {
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6840,7 +6840,7 @@ class GGS_transientRoutineGeneration_2E_weak : public GGS_abstractFileGeneration
 //--------------------------------- nil initializer
   public: inline static GGS_transientRoutineGeneration_2E_weak init_nil (void) {
     GGS_transientRoutineGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7431,7 +7431,7 @@ class cPtr_toManyRelationshipAST : public cPtr_abstractDeclarationAST {
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7461,7 +7461,7 @@ class GGS_toManyRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_w
 //--------------------------------- nil initializer
   public: inline static GGS_toManyRelationshipAST_2E_weak init_nil (void) {
     GGS_toManyRelationshipAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9113,7 +9113,7 @@ class cPtr_toManyPropertyGeneration : public cPtr_propertyGeneration {
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9143,7 +9143,7 @@ class GGS_toManyPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_we
 //--------------------------------- nil initializer
   public: inline static GGS_toManyPropertyGeneration_2E_weak init_nil (void) {
     GGS_toManyPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9302,10 +9302,10 @@ class GGS_toManyPropertyGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_toManyPropertyGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_toManyPropertyGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_toManyPropertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -9590,7 +9590,7 @@ class cPtr_atomicClassDeclarationAST : public cPtr_abstractDeclarationAST {
                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9620,7 +9620,7 @@ class GGS_atomicClassDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_
 //--------------------------------- nil initializer
   public: inline static GGS_atomicClassDeclarationAST_2E_weak init_nil (void) {
     GGS_atomicClassDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -12253,10 +12253,10 @@ class GGS_autoLayoutClassParameterList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_autoLayoutClassParameterList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_autoLayoutClassParameterList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mParameterName,
                                                  const class GGS_autoLayoutClassParameterType & in_mParameterType
                                                  COMMA_LOCATION_ARGS) ;
@@ -13701,10 +13701,10 @@ class GGS_enumerationFunctionListAST : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_enumerationFunctionListAST (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_enumerationFunctionListAST (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mEnumName,
                                                  const class GGS_lstring & in_mFunctionName,
                                                  const class GGS__32_lstringlist & in_mAssociationList
@@ -14058,10 +14058,10 @@ class GGS_autoLayoutTableViewControllerBoundColumnListAST : public AC_GALGAS_roo
 
 
 //--- List constructor for graph
-  public: GGS_autoLayoutTableViewControllerBoundColumnListAST (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_autoLayoutTableViewControllerBoundColumnListAST (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_bool & in_mEditable,
                                                  const class GGS_lstring & in_mPropertyName,
                                                  const class GGS_astAutoLayoutViewInstructionParameterList & in_mColumnParameterListAST,
@@ -14337,10 +14337,10 @@ class GGS_astAutoLayoutViewInstructionParameterList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_astAutoLayoutViewInstructionParameterList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_astAutoLayoutViewInstructionParameterList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mParameterName,
                                                  const class GGS_autoLayoutClassParameterType & in_mParameterType,
                                                  const class GGS_astAutoLayoutViewInstructionParameterValue & in_mParameter
@@ -15058,10 +15058,10 @@ class GGS_autoLayoutTableViewControllerAttributListAST : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_autoLayoutTableViewControllerAttributListAST (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_autoLayoutTableViewControllerAttributListAST (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mAttributeName,
                                                  const class GGS_abstractDefaultValue & in_mAttributeValue
                                                  COMMA_LOCATION_ARGS) ;
@@ -15410,7 +15410,7 @@ class cPtr_autoLayoutTableViewControllerDeclarationAST : public cPtr_abstractDec
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -15440,7 +15440,7 @@ class GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak : public GGS_abstr
 //--------------------------------- nil initializer
   public: inline static GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak init_nil (void) {
     GGS_autoLayoutTableViewControllerDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -15602,7 +15602,7 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -15613,83 +15613,4 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
   public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @autoLayoutTableViewControllerPropertyGeneration_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak (const class GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) ;
-
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & operator = (const class GGS_autoLayoutTableViewControllerPropertyGeneration & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak init_nil (void) {
-    GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration bang_autoLayoutTableViewControllerPropertyGeneration_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_autoLayoutTableViewControllerPropertyGeneration unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_autoLayoutTableViewControllerPropertyGeneration_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_autoLayoutTableViewControllerPropertyGeneration_2E_weak ;
 

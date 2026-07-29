@@ -107,10 +107,10 @@ class GGS__32_lstringlist : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS__32_lstringlist (const capCollectionElementArray & inSharedArray) ;
+  public: GGS__32_lstringlist (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mValue_30_,
                                                  const class GGS_lstring & in_mValue_31_
                                                  COMMA_LOCATION_ARGS) ;
@@ -432,10 +432,10 @@ class GGS_regularBindingList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_regularBindingList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_regularBindingList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mBindingName,
                                                  const class GGS_observablePropertyList & in_mObservablePropertyList,
                                                  const class GGS_bindingOptionList & in_mBindingOptionList
@@ -690,10 +690,10 @@ class GGS_bindingOptionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_bindingOptionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_bindingOptionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOptionName,
                                                  const class GGS_abstractDefaultValue & in_mOptionValue
                                                  COMMA_LOCATION_ARGS) ;
@@ -927,10 +927,10 @@ class GGS_observablePropertyList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_observablePropertyList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_observablePropertyList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_observablePropertyAST & in_mObservableProperty
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -1654,7 +1654,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractDefaultValue ;
 // Phase 2: pointer class for @abstractDefaultValue class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractDefaultValue : public acStrongPtr_class {
+class cPtr_abstractDefaultValue : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -1889,10 +1889,10 @@ class GGS_outletDeclarationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_outletDeclarationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_outletDeclarationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mOutletTypeName,
                                                  const class GGS_lstring & in_mOutletName,
                                                  const class GGS_tableValueBinding & in_mTableValueBindingDescriptor,
@@ -2754,10 +2754,10 @@ class GGS_simpleStoredPropertyList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_simpleStoredPropertyList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_simpleStoredPropertyList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mPropertyTypeName,
                                                  const class GGS_lstring & in_mPropertyName,
                                                  const class GGS_abstractDefaultValue & in_mDefaultValue
@@ -3107,10 +3107,10 @@ class GGS_externSwiftFunctionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_externSwiftFunctionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_externSwiftFunctionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mExternSwiftFunctionName,
                                                  const class GGS_lstring & in_mCallerName
                                                  COMMA_LOCATION_ARGS) ;
@@ -3428,10 +3428,10 @@ class GGS_mainXibDescriptorList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_mainXibDescriptorList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_mainXibDescriptorList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_mainXibLineDescriptorList & in_mLine
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -3646,10 +3646,10 @@ class GGS_mainXibLineDescriptorList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_mainXibLineDescriptorList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_mainXibLineDescriptorList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_mainXibElement & in_mElement
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -3939,10 +3939,10 @@ class GGS_astViewDeclarationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_astViewDeclarationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_astViewDeclarationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mViewName,
                                                  const class GGS_astAbstractViewDeclaration & in_mView
                                                  COMMA_LOCATION_ARGS) ;
@@ -4130,7 +4130,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_astAbstractViewDeclara
 // Phase 2: pointer class for @astAbstractViewDeclaration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_astAbstractViewDeclaration : public acStrongPtr_class {
+class cPtr_astAbstractViewDeclaration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -4315,7 +4315,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractDeclarationAST
 // Phase 2: pointer class for @abstractDeclarationAST class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractDeclarationAST : public acStrongPtr_class {
+class cPtr_abstractDeclarationAST : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -4393,7 +4393,7 @@ class GGS_abstractDeclarationAST_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- nil initializer
   public: inline static GGS_abstractDeclarationAST_2E_weak init_nil (void) {
     GGS_abstractDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4506,7 +4506,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractFileGeneration
 // Phase 2: pointer class for @abstractFileGeneration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractFileGeneration : public acStrongPtr_class {
+class cPtr_abstractFileGeneration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -4646,10 +4646,10 @@ class GGS_propertyGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_propertyGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_propertyGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_propertyGeneration & in_mProperty
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -4822,7 +4822,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyGeneration ;
 // Phase 2: pointer class for @propertyGeneration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_propertyGeneration : public acStrongPtr_class {
+class cPtr_propertyGeneration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -5054,10 +5054,10 @@ class GGS_regularBindingsGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_regularBindingsGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_regularBindingsGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mOutletName,
                                                  const class GGS_string & in_mBindingName,
                                                  const class GGS_boundObjectList & in_mBoundObjectList,
@@ -5331,10 +5331,10 @@ class GGS_boundObjectList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_boundObjectList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_boundObjectList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mBoundObjectString,
                                                  const class GGS_propertyKind & in_mKind
                                                  COMMA_LOCATION_ARGS) ;
@@ -5678,10 +5678,10 @@ class GGS_multipleBindingGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_multipleBindingGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_multipleBindingGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mOutletName,
                                                  const class GGS_string & in_mBindingName,
                                                  const class GGS_abstractBooleanMultipleBindingExpressionForGeneration & in_mBoundObjectExpression
@@ -5888,7 +5888,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractBooleanMultipl
 // Phase 2: pointer class for @abstractBooleanMultipleBindingExpressionForGeneration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public acStrongPtr_class {
+class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -6118,10 +6118,10 @@ class GGS_actionBindingListForGeneration : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_actionBindingListForGeneration (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_actionBindingListForGeneration (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mOutletName,
                                                  const class GGS_string & in_mTargetName,
                                                  const class GGS_string & in_mActionName,
@@ -6859,10 +6859,10 @@ class GGS_tableViewBindingGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_tableViewBindingGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_tableViewBindingGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mTableValueBindingOutletName,
                                                  const class GGS_string & in_mTableValueBindingControllerName
                                                  COMMA_LOCATION_ARGS) ;
@@ -7182,10 +7182,10 @@ class GGS_ebViewGraphicControllerBindingGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_ebViewGraphicControllerBindingGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_ebViewGraphicControllerBindingGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mEBViewOutletName,
                                                  const class GGS_string & in_mArrayControllerControllerName
                                                  COMMA_LOCATION_ARGS) ;
@@ -7505,10 +7505,10 @@ class GGS_viewGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_viewGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_viewGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mViewName,
                                                  const class GGS_abstractViewGeneration & in_mView
                                                  COMMA_LOCATION_ARGS) ;
@@ -7696,7 +7696,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractViewGeneration
 // Phase 2: pointer class for @abstractViewGeneration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractViewGeneration : public acStrongPtr_class {
+class cPtr_abstractViewGeneration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -7911,10 +7911,10 @@ class GGS_implicitViewFunctionGenerationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_implicitViewFunctionGenerationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_implicitViewFunctionGenerationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_abstractViewInstructionGeneration & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -8083,7 +8083,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_abstractViewInstructio
 // Phase 2: pointer class for @abstractViewInstructionGeneration class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_abstractViewInstructionGeneration : public acStrongPtr_class {
+class cPtr_abstractViewInstructionGeneration : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -8955,7 +8955,7 @@ class GGS_abstractFileGeneration_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- nil initializer
   public: inline static GGS_abstractFileGeneration_2E_weak init_nil (void) {
     GGS_abstractFileGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9114,10 +9114,10 @@ class GGS_externSwiftDelegateList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_externSwiftDelegateList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_externSwiftDelegateList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mExternSwiftDelegateName
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -9465,7 +9465,7 @@ class cPtr_entityDeclarationAST : public cPtr_abstractDeclarationAST {
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9495,7 +9495,7 @@ class GGS_entityDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 //--------------------------------- nil initializer
   public: inline static GGS_entityDeclarationAST_2E_weak init_nil (void) {
     GGS_entityDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9656,10 +9656,10 @@ class GGS_entityListForGeneratingEBManagedObjectContext : public AC_GALGAS_root 
 
 
 //--- List constructor for graph
-  public: GGS_entityListForGeneratingEBManagedObjectContext (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_entityListForGeneratingEBManagedObjectContext (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mEntityName,
                                                  const class GGS_lstringlist & in_mObsoleteEntityNames
                                                  COMMA_LOCATION_ARGS) ;
@@ -10038,7 +10038,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10068,7 +10068,7 @@ class GGS_entityForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_wea
 //--------------------------------- nil initializer
   public: inline static GGS_entityForGeneration_2E_weak init_nil (void) {
     GGS_entityForGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10246,7 +10246,7 @@ class cPtr_selectionControllerDeclarationAST : public cPtr_abstractDeclarationAS
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10276,7 +10276,7 @@ class GGS_selectionControllerDeclarationAST_2E_weak : public GGS_abstractDeclara
 //--------------------------------- nil initializer
   public: inline static GGS_selectionControllerDeclarationAST_2E_weak init_nil (void) {
     GGS_selectionControllerDeclarationAST_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10355,7 +10355,7 @@ class GGS_propertyGeneration_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- nil initializer
   public: inline static GGS_propertyGeneration_2E_weak init_nil (void) {
     GGS_propertyGeneration_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10528,10 +10528,10 @@ class GGS_selectionControllerForGeneration : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_selectionControllerForGeneration (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_selectionControllerForGeneration (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_string & in_mOwnerName,
                                                  const class GGS_string & in_mSelectionControllerName,
                                                  const class GGS_string & in_mBoundControllerName,

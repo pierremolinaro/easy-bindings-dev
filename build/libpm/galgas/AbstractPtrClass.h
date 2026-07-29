@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------------------------------
 //
-//  CollectionElementArray                                                                    
+//  AbstractPtrClass : Base class for GALGAS class                                                    
 //
 //  This file is part of libpm library                                                           
 //
-//  Copyright (C) 2010, ..., 2026 Pierre Molinaro.
+//  Copyright (C) 2008, ..., 2026 Pierre Molinaro.
 //
 //  e-mail : pierre@pcmolinaro.name
 //
@@ -23,37 +23,28 @@
 //--------------------------------------------------------------------------------------------------
 
 #include "SharedObject.h"
+#include "ComparisonResult.h"
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_object ;
-class GGS_objectlist ;
-class Compiler ;
+class String ;
+class GALGAS_TypeDescriptor ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GALGAS_ObjectArray final {
-//--- Default constructor
-  public: GALGAS_ObjectArray (const GGS_objectlist & inObjectList,
-                              Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
+class AbstractPtrClass : public SharedObject {
+  public: AbstractPtrClass (LOCATION_ARGS) ;
 
-//--- Virtual destructor
-  public: ~ GALGAS_ObjectArray (void) ;
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const = 0 ;
 
-//--- No copy
-  private: GALGAS_ObjectArray (const GALGAS_ObjectArray & inSource) ;
-  private: GALGAS_ObjectArray & operator = (const GALGAS_ObjectArray & inSource) ;
+  public: virtual ComparisonResult dynamicObjectCompare (const AbstractPtrClass * /* inOperandPtr */) const {
+    return ComparisonResult::invalid ;
+  }
 
-//--- Object count
-  public: inline uint32_t count (void) const { return mCount ; }
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const = 0 ;
 
-//--- Object at index
-  public: GGS_object objectAtIndex (const uint32_t inIndex COMMA_LOCATION_ARGS) const ;
-
-//--- Attributes
-  private: GGS_object * mArray ;
-  private: uint32_t mCount ;
+  public: virtual AbstractPtrClass * duplicate (class Compiler * COMMA_UNUSED_LOCATION_ARGS) const = 0 ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
