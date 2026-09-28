@@ -17,12 +17,12 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
                                                                  Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSwiftDefaultValueAsString = GGS_string::makeEmptyString () ;
-  GGS_bool var_found_4854 = GGS_bool (false) ;
-  UpEnumerator_typeKindList enumerator_4875 (constinArgument_inAttributeActualTypeList) ;
-  bool bool_0 = var_found_4854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 142)).isValidAndTrue () ;
-  if (enumerator_4875.hasCurrentObject () && bool_0) {
-    while (enumerator_4875.hasCurrentObject () && bool_0) {
-      switch (enumerator_4875.current_mType (HERE).enumValue ()) {
+  GGS_bool var_found_4881 = GGS_bool (false) ;
+  UpEnumerator_typeKindList enumerator_4902 (constinArgument_inAttributeActualTypeList) ;
+  bool bool_0 = var_found_4881.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 143)).isValidAndTrue () ;
+  if (enumerator_4902.hasCurrentObject () && bool_0) {
+    while (enumerator_4902.hasCurrentObject () && bool_0) {
+      switch (enumerator_4902.current_mType (HERE).enumValue ()) {
       case GGS_typeKind::Enumeration::invalid:
         break ;
       case GGS_typeKind::Enumeration::enum_integerType:
@@ -36,8 +36,8 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
             temp_2 = GGS_string::makeEmptyString () ;
           }
           const GGS_integerAsDefaultValue temp_4 = this ;
-          outArgument_outSwiftDefaultValueAsString = temp_2.add_operation (temp_4.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 145)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 145)) ;
-          var_found_4854 = GGS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = temp_2.add_operation (temp_4.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 146)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 146)) ;
+          var_found_4881 = GGS_bool (true) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_uint_33__32_Type:
@@ -49,19 +49,19 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
             if (GalgasBool::boolTrue == test_5) {
               const GGS_integerAsDefaultValue temp_7 = this ;
               GenericArray <FixItDescription> fixItArray8 ;
-              inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("Uint32 value should be ≥ 0"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 149)) ;
+              inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("Uint32 value should be ≥ 0"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 150)) ;
             }
           }
           const GGS_integerAsDefaultValue temp_9 = this ;
-          outArgument_outSwiftDefaultValueAsString = temp_9.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 151)) ;
-          var_found_4854 = GGS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = temp_9.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 152)) ;
+          var_found_4881 = GGS_bool (true) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_fontType:
         {
           const GGS_integerAsDefaultValue temp_10 = this ;
-          outArgument_outSwiftDefaultValueAsString = GGS_string ("NSFont.systemFont (ofSize: ").add_operation (temp_10.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 154)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 154)).add_operation (GGS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 154)) ;
-          var_found_4854 = GGS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = GGS_string ("NSFont.systemFont (ofSize: ").add_operation (temp_10.readProperty_mValue ().readProperty_uint ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 155)), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 155)).add_operation (GGS_string (".0)"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 155)) ;
+          var_found_4881 = GGS_bool (true) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_boolType:
@@ -81,20 +81,22 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
         break ;
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         break ;
+      case GGS_typeKind::Enumeration::enum_canariLengthType:
+        break ;
       }
-      enumerator_4875.gotoNextObject () ;
-      if (enumerator_4875.hasCurrentObject ()) {
-        bool_0 = var_found_4854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 142)).isValidAndTrue () ;
+      enumerator_4902.gotoNextObject () ;
+      if (enumerator_4902.hasCurrentObject ()) {
+        bool_0 = var_found_4881.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 143)).isValidAndTrue () ;
       }
     }
   }
   GalgasBool test_11 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_11) {
-    test_11 = var_found_4854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 163)).boolEnum () ;
+    test_11 = var_found_4881.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 165)).boolEnum () ;
     if (GalgasBool::boolTrue == test_11) {
       const GGS_integerAsDefaultValue temp_12 = this ;
       GenericArray <FixItDescription> fixItArray13 ;
-      inCompiler->emitSemanticError (temp_12.readProperty_mValue ().readProperty_location (), GGS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 164)) ;
+      inCompiler->emitSemanticError (temp_12.readProperty_mValue ().readProperty_location (), GGS_string ("only an integer attribute can be initialized by an integer constant"), fixItArray13  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 166)) ;
     }
   }
 }
@@ -109,19 +111,19 @@ void cPtr_doubleAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
                                                                 Compiler * inCompiler
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSwiftDefaultValueAsString = GGS_string::makeEmptyString () ;
-  GGS_bool var_found_6161 = GGS_bool (false) ;
-  UpEnumerator_typeKindList enumerator_6182 (constinArgument_inAttributeActualTypeList) ;
-  bool bool_0 = var_found_6161.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 179)).isValidAndTrue () ;
-  if (enumerator_6182.hasCurrentObject () && bool_0) {
-    while (enumerator_6182.hasCurrentObject () && bool_0) {
-      switch (enumerator_6182.current_mType (HERE).enumValue ()) {
+  GGS_bool var_found_6216 = GGS_bool (false) ;
+  UpEnumerator_typeKindList enumerator_6237 (constinArgument_inAttributeActualTypeList) ;
+  bool bool_0 = var_found_6216.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 181)).isValidAndTrue () ;
+  if (enumerator_6237.hasCurrentObject () && bool_0) {
+    while (enumerator_6237.hasCurrentObject () && bool_0) {
+      switch (enumerator_6237.current_mType (HERE).enumValue ()) {
       case GGS_typeKind::Enumeration::invalid:
         break ;
       case GGS_typeKind::Enumeration::enum_doubleType:
         {
           const GGS_doubleAsDefaultValue temp_1 = this ;
-          outArgument_outSwiftDefaultValueAsString = temp_1.readProperty_mValue ().readProperty_double ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 182)) ;
-          var_found_6161 = GGS_bool (true) ;
+          outArgument_outSwiftDefaultValueAsString = temp_1.readProperty_mValue ().readProperty_double ().getter_string (SOURCE_FILE ("explicit-default-value.galgas4", 184)) ;
+          var_found_6216 = GGS_bool (true) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_boolType:
@@ -143,20 +145,22 @@ void cPtr_doubleAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
         break ;
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         break ;
+      case GGS_typeKind::Enumeration::enum_canariLengthType:
+        break ;
       }
-      enumerator_6182.gotoNextObject () ;
-      if (enumerator_6182.hasCurrentObject ()) {
-        bool_0 = var_found_6161.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 179)).isValidAndTrue () ;
+      enumerator_6237.gotoNextObject () ;
+      if (enumerator_6237.hasCurrentObject ()) {
+        bool_0 = var_found_6216.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 181)).isValidAndTrue () ;
       }
     }
   }
   GalgasBool test_2 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_2) {
-    test_2 = var_found_6161.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 192)).boolEnum () ;
+    test_2 = var_found_6216.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 195)).boolEnum () ;
     if (GalgasBool::boolTrue == test_2) {
       const GGS_doubleAsDefaultValue temp_3 = this ;
       GenericArray <FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_3.readProperty_mValue ().readProperty_location (), GGS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 193)) ;
+      inCompiler->emitSemanticError (temp_3.readProperty_mValue ().readProperty_location (), GGS_string ("only a double attribute can be initialized by a floating point constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 196)) ;
     }
   }
 }
@@ -171,19 +175,26 @@ void cPtr_stringAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
                                                                 Compiler * inCompiler
                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSwiftDefaultValueAsString = GGS_string::makeEmptyString () ;
-  GGS_bool var_found_7129 = GGS_bool (false) ;
-  UpEnumerator_typeKindList enumerator_7150 (constinArgument_inAttributeActualTypeList) ;
-  bool bool_0 = var_found_7129.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 208)).isValidAndTrue () ;
-  if (enumerator_7150.hasCurrentObject () && bool_0) {
-    while (enumerator_7150.hasCurrentObject () && bool_0) {
-      switch (enumerator_7150.current_mType (HERE).enumValue ()) {
+  GGS_bool var_found_7212 = GGS_bool (false) ;
+  UpEnumerator_typeKindList enumerator_7233 (constinArgument_inAttributeActualTypeList) ;
+  bool bool_0 = var_found_7212.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 211)).isValidAndTrue () ;
+  if (enumerator_7233.hasCurrentObject () && bool_0) {
+    while (enumerator_7233.hasCurrentObject () && bool_0) {
+      switch (enumerator_7233.current_mType (HERE).enumValue ()) {
       case GGS_typeKind::Enumeration::invalid:
+        break ;
+      case GGS_typeKind::Enumeration::enum_canariLengthType:
+        {
+          const GGS_stringAsDefaultValue temp_1 = this ;
+          outArgument_outSwiftDefaultValueAsString = temp_1.readProperty_mValue ().readProperty_string () ;
+          var_found_7212 = GGS_bool (true) ;
+        }
         break ;
       case GGS_typeKind::Enumeration::enum_stringType:
         {
-          const GGS_stringAsDefaultValue temp_1 = this ;
-          outArgument_outSwiftDefaultValueAsString = GGS_string ("\"").add_operation (temp_1.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 211)).add_operation (GGS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 211)) ;
-          var_found_7129 = GGS_bool (true) ;
+          const GGS_stringAsDefaultValue temp_2 = this ;
+          outArgument_outSwiftDefaultValueAsString = GGS_string ("\"").add_operation (temp_2.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 217)).add_operation (GGS_string ("\""), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 217)) ;
+          var_found_7212 = GGS_bool (true) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_boolType:
@@ -206,19 +217,19 @@ void cPtr_stringAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         break ;
       }
-      enumerator_7150.gotoNextObject () ;
-      if (enumerator_7150.hasCurrentObject ()) {
-        bool_0 = var_found_7129.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 208)).isValidAndTrue () ;
+      enumerator_7233.gotoNextObject () ;
+      if (enumerator_7233.hasCurrentObject ()) {
+        bool_0 = var_found_7212.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 211)).isValidAndTrue () ;
       }
     }
   }
-  GalgasBool test_2 = GalgasBool::boolTrue ;
-  if (GalgasBool::boolTrue == test_2) {
-    test_2 = var_found_7129.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 221)).boolEnum () ;
-    if (GalgasBool::boolTrue == test_2) {
-      const GGS_stringAsDefaultValue temp_3 = this ;
-      GenericArray <FixItDescription> fixItArray4 ;
-      inCompiler->emitSemanticError (temp_3.readProperty_mValue ().readProperty_location (), GGS_string ("only a string attribute can be initialized by a string constant"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 222)) ;
+  GalgasBool test_3 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_3) {
+    test_3 = var_found_7212.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 227)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_3) {
+      const GGS_stringAsDefaultValue temp_4 = this ;
+      GenericArray <FixItDescription> fixItArray5 ;
+      inCompiler->emitSemanticError (temp_4.readProperty_mValue ().readProperty_location (), GGS_string ("only a string attribute can be initialized by a string constant"), fixItArray5  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 228)) ;
     }
   }
 }
@@ -232,13 +243,13 @@ void cPtr_stringAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
 static GGS_stringset onceFunction_predefinedDates (Compiler * inCompiler
                                                    COMMA_UNUSED_LOCATION_ARGS) {
   GGS_stringset result_result ; // Returned variable
-  GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 231)) ;
+  GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 237)) ;
   result_result = temp_0 ;
   {
-  result_result.setter_insert (GGS_string ("now"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 232)) ;
+  result_result.setter_insert (GGS_string ("now"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 238)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("distantPast"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 233)) ;
+  result_result.setter_insert (GGS_string ("distantPast"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 239)) ;
   }
 //---
   return result_result ;
@@ -309,130 +320,130 @@ C_galgas_function_descriptor functionDescriptor_predefinedDates ("predefinedDate
 static GGS_stringset onceFunction_predefinedColors (Compiler * inCompiler
                                                     COMMA_UNUSED_LOCATION_ARGS) {
   GGS_stringset result_result ; // Returned variable
-  GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 239)) ;
+  GGS_stringset temp_0 = GGS_stringset::init (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 245)) ;
   result_result = temp_0 ;
   {
-  result_result.setter_insert (GGS_string ("black"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 240)) ;
+  result_result.setter_insert (GGS_string ("black"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 246)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("blue"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 241)) ;
+  result_result.setter_insert (GGS_string ("blue"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 247)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("brown"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 242)) ;
+  result_result.setter_insert (GGS_string ("brown"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 248)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("clear"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 243)) ;
+  result_result.setter_insert (GGS_string ("clear"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 249)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("control"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 244)) ;
+  result_result.setter_insert (GGS_string ("control"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 250)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("controlDarkShadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 245)) ;
+  result_result.setter_insert (GGS_string ("controlDarkShadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 251)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("controlHighlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 246)) ;
+  result_result.setter_insert (GGS_string ("controlHighlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 252)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("controlLightHighlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 247)) ;
+  result_result.setter_insert (GGS_string ("controlLightHighlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 253)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("controlShadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 248)) ;
+  result_result.setter_insert (GGS_string ("controlShadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 254)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("controlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 249)) ;
+  result_result.setter_insert (GGS_string ("controlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 255)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("cyan"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 250)) ;
+  result_result.setter_insert (GGS_string ("cyan"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 256)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("darkGray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 251)) ;
+  result_result.setter_insert (GGS_string ("darkGray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 257)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("disabledControlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 252)) ;
+  result_result.setter_insert (GGS_string ("disabledControlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 258)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("gray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 253)) ;
+  result_result.setter_insert (GGS_string ("gray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 259)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("green"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 254)) ;
+  result_result.setter_insert (GGS_string ("green"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 260)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("grid"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 255)) ;
+  result_result.setter_insert (GGS_string ("grid"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 261)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("header"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 256)) ;
+  result_result.setter_insert (GGS_string ("header"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 262)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("headerText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 257)) ;
+  result_result.setter_insert (GGS_string ("headerText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 263)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("highlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 258)) ;
+  result_result.setter_insert (GGS_string ("highlight"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 264)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("keyboardFocusIndicator"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 259)) ;
+  result_result.setter_insert (GGS_string ("keyboardFocusIndicator"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 265)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("knob"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 260)) ;
+  result_result.setter_insert (GGS_string ("knob"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 266)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("lightGray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 261)) ;
+  result_result.setter_insert (GGS_string ("lightGray"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 267)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("magenta"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 262)) ;
+  result_result.setter_insert (GGS_string ("magenta"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 268)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("orange"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 263)) ;
+  result_result.setter_insert (GGS_string ("orange"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 269)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("purple"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 264)) ;
+  result_result.setter_insert (GGS_string ("purple"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 270)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("red"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 265)) ;
+  result_result.setter_insert (GGS_string ("red"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 271)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("scrollBar"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 266)) ;
+  result_result.setter_insert (GGS_string ("scrollBar"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 272)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedControl"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 267)) ;
+  result_result.setter_insert (GGS_string ("selectedControl"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 273)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedControlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 268)) ;
+  result_result.setter_insert (GGS_string ("selectedControlText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 274)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedKnob"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 269)) ;
+  result_result.setter_insert (GGS_string ("selectedKnob"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 275)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedMenuItem"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 270)) ;
+  result_result.setter_insert (GGS_string ("selectedMenuItem"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 276)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedMenuItemText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 271)) ;
+  result_result.setter_insert (GGS_string ("selectedMenuItemText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 277)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedTextBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 272)) ;
+  result_result.setter_insert (GGS_string ("selectedTextBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 278)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("selectedText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 273)) ;
+  result_result.setter_insert (GGS_string ("selectedText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 279)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("shadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 274)) ;
+  result_result.setter_insert (GGS_string ("shadow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 280)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("textBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 275)) ;
+  result_result.setter_insert (GGS_string ("textBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 281)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("white"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 276)) ;
+  result_result.setter_insert (GGS_string ("white"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 282)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("windowBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 277)) ;
+  result_result.setter_insert (GGS_string ("windowBackground"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 283)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("windowFrame"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 278)) ;
+  result_result.setter_insert (GGS_string ("windowFrame"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 284)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("windowFrameText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 279)) ;
+  result_result.setter_insert (GGS_string ("windowFrameText"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 285)) ;
   }
   {
-  result_result.setter_insert (GGS_string ("yellow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 280)) ;
+  result_result.setter_insert (GGS_string ("yellow"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 286)) ;
   }
 //---
   return result_result ;
@@ -504,21 +515,21 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
                                                                     Compiler * inCompiler
                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outSwiftDefaultValueAsString = GGS_string::makeEmptyString () ;
-  GGS_bool var_found_9854 = GGS_bool (false) ;
-  UpEnumerator_typeKindList enumerator_9875 (constinArgument_inAttributeActualTypeList) ;
-  bool bool_0 = var_found_9854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 291)).isValidAndTrue () ;
-  if (enumerator_9875.hasCurrentObject () && bool_0) {
-    while (enumerator_9875.hasCurrentObject () && bool_0) {
-      switch (enumerator_9875.current_mType (HERE).enumValue ()) {
+  GGS_bool var_found_10040 = GGS_bool (false) ;
+  UpEnumerator_typeKindList enumerator_10061 (constinArgument_inAttributeActualTypeList) ;
+  bool bool_0 = var_found_10040.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 297)).isValidAndTrue () ;
+  if (enumerator_10061.hasCurrentObject () && bool_0) {
+    while (enumerator_10061.hasCurrentObject () && bool_0) {
+      switch (enumerator_10061.current_mType (HERE).enumValue ()) {
       case GGS_typeKind::Enumeration::invalid:
         break ;
       case GGS_typeKind::Enumeration::enum_dateType:
         {
-          var_found_9854 = GGS_bool (true) ;
+          var_found_10040 = GGS_bool (true) ;
           GalgasBool test_1 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_1) {
             const GGS_identifierAsDefaultValue temp_2 = this ;
-            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 295)).getter_hasKey (temp_2.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 295)).boolEnum () ;
+            test_1 = function_predefinedDates (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 301)).getter_hasKey (temp_2.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 301)).boolEnum () ;
             if (GalgasBool::boolTrue == test_1) {
               GalgasBool test_3 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_3) {
@@ -540,7 +551,7 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
                 if (GalgasBool::boolFalse == test_5) {
                   const GGS_identifierAsDefaultValue temp_7 = this ;
                   GenericArray <FixItDescription> fixItArray8 ;
-                  inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 301)) ;
+                  inCompiler->emitSemanticError (temp_7.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 307)) ;
                 }
               }
             }
@@ -548,13 +559,13 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
           if (GalgasBool::boolFalse == test_1) {
             const GGS_identifierAsDefaultValue temp_9 = this ;
             GenericArray <FixItDescription> fixItArray10 ;
-            inCompiler->emitSemanticError (temp_9.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 304)) ;
+            inCompiler->emitSemanticError (temp_9.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined date"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 310)) ;
           }
         }
         break ;
       case GGS_typeKind::Enumeration::enum_bezierPathType:
         {
-          var_found_9854 = GGS_bool (true) ;
+          var_found_10040 = GGS_bool (true) ;
           GalgasBool test_11 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_11) {
             const GGS_identifierAsDefaultValue temp_12 = this ;
@@ -566,13 +577,13 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
           if (GalgasBool::boolFalse == test_11) {
             const GGS_identifierAsDefaultValue temp_13 = this ;
             GenericArray <FixItDescription> fixItArray14 ;
-            inCompiler->emitSemanticError (temp_13.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default NSBezierPath"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 311)) ;
+            inCompiler->emitSemanticError (temp_13.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default NSBezierPath"), fixItArray14  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 317)) ;
           }
         }
         break ;
       case GGS_typeKind::Enumeration::enum_bezierPathArrayType:
         {
-          var_found_9854 = GGS_bool (true) ;
+          var_found_10040 = GGS_bool (true) ;
           GalgasBool test_15 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_15) {
             const GGS_identifierAsDefaultValue temp_16 = this ;
@@ -584,64 +595,64 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
           if (GalgasBool::boolFalse == test_15) {
             const GGS_identifierAsDefaultValue temp_17 = this ;
             GenericArray <FixItDescription> fixItArray18 ;
-            inCompiler->emitSemanticError (temp_17.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default BezierPathArray"), fixItArray18  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 318)) ;
+            inCompiler->emitSemanticError (temp_17.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default BezierPathArray"), fixItArray18  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 324)) ;
           }
         }
         break ;
       case GGS_typeKind::Enumeration::enum_enumType:
         {
-          GGS_string extractedValue_10955_enumTypeName_0 ;
-          GGS_enumConstantMap extractedValue_10986_constantMap_1 ;
-          GGS_enumFuncMap extractedValue_10999__2 ;
-          enumerator_9875.current_mType (HERE).getAssociatedValuesFor_enumType (extractedValue_10955_enumTypeName_0, extractedValue_10986_constantMap_1, extractedValue_10999__2) ;
-          var_found_9854 = GGS_bool (true) ;
+          GGS_string extractedValue_11141_enumTypeName_0 ;
+          GGS_enumConstantMap extractedValue_11172_constantMap_1 ;
+          GGS_enumFuncMap extractedValue_11185__2 ;
+          enumerator_10061.current_mType (HERE).getAssociatedValuesFor_enumType (extractedValue_11141_enumTypeName_0, extractedValue_11172_constantMap_1, extractedValue_11185__2) ;
+          var_found_10040 = GGS_bool (true) ;
           GalgasBool test_19 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_19) {
             const GGS_identifierAsDefaultValue temp_20 = this ;
-            test_19 = extractedValue_10986_constantMap_1.getter_hasKey (temp_20.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 322)).boolEnum () ;
+            test_19 = extractedValue_11172_constantMap_1.getter_hasKey (temp_20.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 328)).boolEnum () ;
             if (GalgasBool::boolTrue == test_19) {
               const GGS_identifierAsDefaultValue temp_21 = this ;
-              outArgument_outSwiftDefaultValueAsString = extractedValue_10955_enumTypeName_0.add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 323)).add_operation (temp_21.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 323)) ;
+              outArgument_outSwiftDefaultValueAsString = extractedValue_11141_enumTypeName_0.add_operation (GGS_string ("."), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 329)).add_operation (temp_21.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 329)) ;
             }
           }
           if (GalgasBool::boolFalse == test_19) {
             const GGS_identifierAsDefaultValue temp_22 = this ;
             const GGS_identifierAsDefaultValue temp_23 = this ;
             GenericArray <FixItDescription> fixItArray24 ;
-            inCompiler->emitSemanticError (temp_22.readProperty_mValue ().readProperty_location (), GGS_string ("the '").add_operation (extractedValue_10955_enumTypeName_0, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 326)).add_operation (GGS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 326)).add_operation (temp_23.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 326)).add_operation (GGS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 326)), fixItArray24  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 325)) ;
+            inCompiler->emitSemanticError (temp_22.readProperty_mValue ().readProperty_location (), GGS_string ("the '").add_operation (extractedValue_11141_enumTypeName_0, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 332)).add_operation (GGS_string ("' enumeration does not define '"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 332)).add_operation (temp_23.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 332)).add_operation (GGS_string ("' constant"), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 332)), fixItArray24  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 331)) ;
             outArgument_outSwiftDefaultValueAsString.drop () ; // Release error dropped variable
           }
         }
         break ;
       case GGS_typeKind::Enumeration::enum_entityType:
         {
-          GGS_string extractedValue_11370__0 ;
-          GGS_bool extractedValue_11370__1 ;
-          enumerator_9875.current_mType (HERE).getAssociatedValuesFor_entityType (extractedValue_11370__0, extractedValue_11370__1) ;
+          GGS_string extractedValue_11556__0 ;
+          GGS_bool extractedValue_11556__1 ;
+          enumerator_10061.current_mType (HERE).getAssociatedValuesFor_entityType (extractedValue_11556__0, extractedValue_11556__1) ;
           const GGS_identifierAsDefaultValue temp_25 = this ;
           GenericArray <FixItDescription> fixItArray26 ;
-          inCompiler->emitSemanticError (temp_25.readProperty_mValue ().readProperty_location (), GGS_string ("invalid entity type"), fixItArray26  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 330)) ;
+          inCompiler->emitSemanticError (temp_25.readProperty_mValue ().readProperty_location (), GGS_string ("invalid entity type"), fixItArray26  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 336)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_classType:
         {
-          GGS_string extractedValue_11446__0 ;
-          enumerator_9875.current_mType (HERE).getAssociatedValuesFor_classType (extractedValue_11446__0) ;
+          GGS_string extractedValue_11632__0 ;
+          enumerator_10061.current_mType (HERE).getAssociatedValuesFor_classType (extractedValue_11632__0) ;
           const GGS_identifierAsDefaultValue temp_27 = this ;
           GenericArray <FixItDescription> fixItArray28 ;
-          inCompiler->emitSemanticError (temp_27.readProperty_mValue ().readProperty_location (), GGS_string ("invalid class type"), fixItArray28  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 332)) ;
+          inCompiler->emitSemanticError (temp_27.readProperty_mValue ().readProperty_location (), GGS_string ("invalid class type"), fixItArray28  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 338)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_boolType:
         {
           const GGS_identifierAsDefaultValue temp_29 = this ;
           GenericArray <FixItDescription> fixItArray30 ;
-          inCompiler->emitSemanticError (temp_29.readProperty_mValue ().readProperty_location (), GGS_string ("invalid bool type"), fixItArray30  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 334)) ;
+          inCompiler->emitSemanticError (temp_29.readProperty_mValue ().readProperty_location (), GGS_string ("invalid bool type"), fixItArray30  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 340)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_dataType:
         {
-          var_found_9854 = GGS_bool (true) ;
+          var_found_10040 = GGS_bool (true) ;
           GalgasBool test_31 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_31) {
             const GGS_identifierAsDefaultValue temp_32 = this ;
@@ -653,87 +664,94 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
           if (GalgasBool::boolFalse == test_31) {
             const GGS_identifierAsDefaultValue temp_33 = this ;
             GenericArray <FixItDescription> fixItArray34 ;
-            inCompiler->emitSemanticError (temp_33.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default Data"), fixItArray34  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 340)) ;
+            inCompiler->emitSemanticError (temp_33.readProperty_mValue ().readProperty_location (), GGS_string ("only 'empty' is accepted as default Data"), fixItArray34  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 346)) ;
           }
+        }
+        break ;
+      case GGS_typeKind::Enumeration::enum_canariLengthType:
+        {
+          const GGS_identifierAsDefaultValue temp_35 = this ;
+          GenericArray <FixItDescription> fixItArray36 ;
+          inCompiler->emitSemanticError (temp_35.readProperty_mValue ().readProperty_location (), GGS_string ("invalid CanariLength type"), fixItArray36  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 349)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_doubleType:
         {
-          const GGS_identifierAsDefaultValue temp_35 = this ;
-          GenericArray <FixItDescription> fixItArray36 ;
-          inCompiler->emitSemanticError (temp_35.readProperty_mValue ().readProperty_location (), GGS_string ("invalid double type"), fixItArray36  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 343)) ;
+          const GGS_identifierAsDefaultValue temp_37 = this ;
+          GenericArray <FixItDescription> fixItArray38 ;
+          inCompiler->emitSemanticError (temp_37.readProperty_mValue ().readProperty_location (), GGS_string ("invalid double type"), fixItArray38  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 351)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_integerType:
         {
-          const GGS_identifierAsDefaultValue temp_37 = this ;
-          GenericArray <FixItDescription> fixItArray38 ;
-          inCompiler->emitSemanticError (temp_37.readProperty_mValue ().readProperty_location (), GGS_string ("invalid integer type"), fixItArray38  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 345)) ;
+          const GGS_identifierAsDefaultValue temp_39 = this ;
+          GenericArray <FixItDescription> fixItArray40 ;
+          inCompiler->emitSemanticError (temp_39.readProperty_mValue ().readProperty_location (), GGS_string ("invalid integer type"), fixItArray40  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 353)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_uint_33__32_Type:
         {
-          const GGS_identifierAsDefaultValue temp_39 = this ;
-          GenericArray <FixItDescription> fixItArray40 ;
-          inCompiler->emitSemanticError (temp_39.readProperty_mValue ().readProperty_location (), GGS_string ("invalid UInt32 type"), fixItArray40  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 347)) ;
+          const GGS_identifierAsDefaultValue temp_41 = this ;
+          GenericArray <FixItDescription> fixItArray42 ;
+          inCompiler->emitSemanticError (temp_41.readProperty_mValue ().readProperty_location (), GGS_string ("invalid UInt32 type"), fixItArray42  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 355)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_stringType:
         {
-          const GGS_identifierAsDefaultValue temp_41 = this ;
-          GenericArray <FixItDescription> fixItArray42 ;
-          inCompiler->emitSemanticError (temp_41.readProperty_mValue ().readProperty_location (), GGS_string ("invalid string type"), fixItArray42  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 349)) ;
+          const GGS_identifierAsDefaultValue temp_43 = this ;
+          GenericArray <FixItDescription> fixItArray44 ;
+          inCompiler->emitSemanticError (temp_43.readProperty_mValue ().readProperty_location (), GGS_string ("invalid string type"), fixItArray44  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 357)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_fontType:
         {
-          const GGS_identifierAsDefaultValue temp_43 = this ;
-          GenericArray <FixItDescription> fixItArray44 ;
-          inCompiler->emitSemanticError (temp_43.readProperty_mValue ().readProperty_location (), GGS_string ("invalid font type"), fixItArray44  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 351)) ;
+          const GGS_identifierAsDefaultValue temp_45 = this ;
+          GenericArray <FixItDescription> fixItArray46 ;
+          inCompiler->emitSemanticError (temp_45.readProperty_mValue ().readProperty_location (), GGS_string ("invalid font type"), fixItArray46  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 359)) ;
         }
         break ;
       case GGS_typeKind::Enumeration::enum_colorType:
         {
-          GalgasBool test_45 = GalgasBool::boolTrue ;
-          if (GalgasBool::boolTrue == test_45) {
-            const GGS_identifierAsDefaultValue temp_46 = this ;
-            test_45 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 353)).getter_hasKey (temp_46.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 353)).boolEnum () ;
-            if (GalgasBool::boolTrue == test_45) {
-              const GGS_identifierAsDefaultValue temp_47 = this ;
-              outArgument_outSwiftDefaultValueAsString = GGS_string ("NSColor.").add_operation (temp_47.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 354)) ;
-              var_found_9854 = GGS_bool (true) ;
+          GalgasBool test_47 = GalgasBool::boolTrue ;
+          if (GalgasBool::boolTrue == test_47) {
+            const GGS_identifierAsDefaultValue temp_48 = this ;
+            test_47 = function_predefinedColors (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 361)).getter_hasKey (temp_48.readProperty_mValue ().readProperty_string () COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 361)).boolEnum () ;
+            if (GalgasBool::boolTrue == test_47) {
+              const GGS_identifierAsDefaultValue temp_49 = this ;
+              outArgument_outSwiftDefaultValueAsString = GGS_string ("NSColor.").add_operation (temp_49.readProperty_mValue ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 362)) ;
+              var_found_10040 = GGS_bool (true) ;
             }
           }
-          if (GalgasBool::boolFalse == test_45) {
-            const GGS_identifierAsDefaultValue temp_48 = this ;
-            GenericArray <FixItDescription> fixItArray49 ;
-            inCompiler->emitSemanticError (temp_48.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined color"), fixItArray49  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 357)) ;
+          if (GalgasBool::boolFalse == test_47) {
+            const GGS_identifierAsDefaultValue temp_50 = this ;
+            GenericArray <FixItDescription> fixItArray51 ;
+            inCompiler->emitSemanticError (temp_50.readProperty_mValue ().readProperty_location (), GGS_string ("unknown predefined color"), fixItArray51  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 365)) ;
           }
         }
         break ;
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         {
-          GGS_string extractedValue_12452__0 ;
-          enumerator_9875.current_mType (HERE).getAssociatedValuesFor_transientPropertyExternType (extractedValue_12452__0) ;
-          const GGS_identifierAsDefaultValue temp_50 = this ;
-          GenericArray <FixItDescription> fixItArray51 ;
-          inCompiler->emitSemanticError (temp_50.readProperty_mValue ().readProperty_location (), GGS_string ("invalid image type"), fixItArray51  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 360)) ;
+          GGS_string extractedValue_12723__0 ;
+          enumerator_10061.current_mType (HERE).getAssociatedValuesFor_transientPropertyExternType (extractedValue_12723__0) ;
+          const GGS_identifierAsDefaultValue temp_52 = this ;
+          GenericArray <FixItDescription> fixItArray53 ;
+          inCompiler->emitSemanticError (temp_52.readProperty_mValue ().readProperty_location (), GGS_string ("invalid image type"), fixItArray53  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 368)) ;
         }
         break ;
       }
-      enumerator_9875.gotoNextObject () ;
-      if (enumerator_9875.hasCurrentObject ()) {
-        bool_0 = var_found_9854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 291)).isValidAndTrue () ;
+      enumerator_10061.gotoNextObject () ;
+      if (enumerator_10061.hasCurrentObject ()) {
+        bool_0 = var_found_10040.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 297)).isValidAndTrue () ;
       }
     }
   }
-  GalgasBool test_52 = GalgasBool::boolTrue ;
-  if (GalgasBool::boolTrue == test_52) {
-    test_52 = var_found_9854.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 363)).boolEnum () ;
-    if (GalgasBool::boolTrue == test_52) {
-      const GGS_identifierAsDefaultValue temp_53 = this ;
-      GenericArray <FixItDescription> fixItArray54 ;
-      inCompiler->emitSemanticError (temp_53.readProperty_mValue ().readProperty_location (), GGS_string ("unknow type for this identifier"), fixItArray54  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 364)) ;
+  GalgasBool test_54 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_54) {
+    test_54 = var_found_10040.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 371)).boolEnum () ;
+    if (GalgasBool::boolTrue == test_54) {
+      const GGS_identifierAsDefaultValue temp_55 = this ;
+      GenericArray <FixItDescription> fixItArray56 ;
+      inCompiler->emitSemanticError (temp_55.readProperty_mValue ().readProperty_location (), GGS_string ("unknow type for this identifier"), fixItArray56  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 372)) ;
     }
   }
 }
@@ -747,89 +765,89 @@ void cPtr_prefsAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKin
                                                                GGS_string & outArgument_outSwiftDefaultValueAsString,
                                                                Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_propertyKind var_kind_12997 ;
+  GGS_propertyKind var_kind_13268 ;
   const GGS_prefsAsDefaultValue temp_0 = this ;
-  GGS_actionMap joker_13003_2 ; // Joker input parameter
-  GGS_bool joker_13003_1 ; // Joker input parameter
-  constinArgument_inPreferencesPropertyMap.method_searchKey (temp_0.readProperty_mPrefPropertyName (), var_kind_12997, joker_13003_2, joker_13003_1, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 377)) ;
-  switch (var_kind_12997.enumValue ()) {
+  GGS_actionMap joker_13274_2 ; // Joker input parameter
+  GGS_bool joker_13274_1 ; // Joker input parameter
+  constinArgument_inPreferencesPropertyMap.method_searchKey (temp_0.readProperty_mPrefPropertyName (), var_kind_13268, joker_13274_2, joker_13274_1, inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 385)) ;
+  switch (var_kind_13268.enumValue ()) {
   case GGS_propertyKind::Enumeration::invalid:
     break ;
   case GGS_propertyKind::Enumeration::enum_property:
     {
-      GGS_typeKind extractedValue_13049_type_0 ;
-      GGS_propertyAccessibility extractedValue_13055__1 ;
-      var_kind_12997.getAssociatedValuesFor_property (extractedValue_13049_type_0, extractedValue_13055__1) ;
-      GGS_bool var_found_13068 = GGS_bool (false) ;
-      UpEnumerator_typeKindList enumerator_13091 (constinArgument_inAttributeActualTypeList) ;
-      bool bool_1 = var_found_13068.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 381)).isValidAndTrue () ;
-      if (enumerator_13091.hasCurrentObject () && bool_1) {
-        while (enumerator_13091.hasCurrentObject () && bool_1) {
-          var_found_13068 = GGS_bool (ComparisonKind::equal, extractedValue_13049_type_0.objectCompare (enumerator_13091.current_mType (HERE))) ;
-          enumerator_13091.gotoNextObject () ;
-          if (enumerator_13091.hasCurrentObject ()) {
-            bool_1 = var_found_13068.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 381)).isValidAndTrue () ;
+      GGS_typeKind extractedValue_13320_type_0 ;
+      GGS_propertyAccessibility extractedValue_13326__1 ;
+      var_kind_13268.getAssociatedValuesFor_property (extractedValue_13320_type_0, extractedValue_13326__1) ;
+      GGS_bool var_found_13339 = GGS_bool (false) ;
+      UpEnumerator_typeKindList enumerator_13362 (constinArgument_inAttributeActualTypeList) ;
+      bool bool_1 = var_found_13339.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 389)).isValidAndTrue () ;
+      if (enumerator_13362.hasCurrentObject () && bool_1) {
+        while (enumerator_13362.hasCurrentObject () && bool_1) {
+          var_found_13339 = GGS_bool (ComparisonKind::equal, extractedValue_13320_type_0.objectCompare (enumerator_13362.current_mType (HERE))) ;
+          enumerator_13362.gotoNextObject () ;
+          if (enumerator_13362.hasCurrentObject ()) {
+            bool_1 = var_found_13339.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 389)).isValidAndTrue () ;
           }
         }
       }
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = var_found_13068.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 384)).boolEnum () ;
+        test_2 = var_found_13339.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 392)).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
           const GGS_prefsAsDefaultValue temp_3 = this ;
           GenericArray <FixItDescription> fixItArray4 ;
-          inCompiler->emitSemanticError (temp_3.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("the atomic property type is not compatible"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 385)) ;
+          inCompiler->emitSemanticError (temp_3.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("the atomic property type is not compatible"), fixItArray4  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 393)) ;
         }
       }
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toMany:
     {
-      GGS_lstring extractedValue_13304__0 ;
-      GGS_propertyAccessibility extractedValue_13304__1 ;
-      GGS_bool extractedValue_13304__2 ;
-      GGS_toManyRelationshipOptionAST extractedValue_13304__3 ;
-      var_kind_12997.getAssociatedValuesFor_toMany (extractedValue_13304__0, extractedValue_13304__1, extractedValue_13304__2, extractedValue_13304__3) ;
+      GGS_lstring extractedValue_13575__0 ;
+      GGS_propertyAccessibility extractedValue_13575__1 ;
+      GGS_bool extractedValue_13575__2 ;
+      GGS_toManyRelationshipOptionAST extractedValue_13575__3 ;
+      var_kind_13268.getAssociatedValuesFor_toMany (extractedValue_13575__0, extractedValue_13575__1, extractedValue_13575__2, extractedValue_13575__3) ;
       const GGS_prefsAsDefaultValue temp_5 = this ;
       GenericArray <FixItDescription> fixItArray6 ;
-      inCompiler->emitSemanticError (temp_5.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 388)) ;
+      inCompiler->emitSemanticError (temp_5.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 396)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_toOne:
     {
-      GGS_lstring extractedValue_13399__0 ;
-      GGS_propertyAccessibility extractedValue_13399__1 ;
-      GGS_bool extractedValue_13399__2 ;
-      GGS_toOneOppositeRelationship extractedValue_13399__3 ;
-      GGS_bool extractedValue_13399__4 ;
-      var_kind_12997.getAssociatedValuesFor_toOne (extractedValue_13399__0, extractedValue_13399__1, extractedValue_13399__2, extractedValue_13399__3, extractedValue_13399__4) ;
+      GGS_lstring extractedValue_13670__0 ;
+      GGS_propertyAccessibility extractedValue_13670__1 ;
+      GGS_bool extractedValue_13670__2 ;
+      GGS_toOneOppositeRelationship extractedValue_13670__3 ;
+      GGS_bool extractedValue_13670__4 ;
+      var_kind_13268.getAssociatedValuesFor_toOne (extractedValue_13670__0, extractedValue_13670__1, extractedValue_13670__2, extractedValue_13670__3, extractedValue_13670__4) ;
       const GGS_prefsAsDefaultValue temp_7 = this ;
       GenericArray <FixItDescription> fixItArray8 ;
-      inCompiler->emitSemanticError (temp_7.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 390)) ;
+      inCompiler->emitSemanticError (temp_7.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray8  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 398)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_arrayController:
     {
-      GGS_lstring extractedValue_13504__0 ;
-      GGS_bool extractedValue_13504__1 ;
-      var_kind_12997.getAssociatedValuesFor_arrayController (extractedValue_13504__0, extractedValue_13504__1) ;
+      GGS_lstring extractedValue_13775__0 ;
+      GGS_bool extractedValue_13775__1 ;
+      var_kind_13268.getAssociatedValuesFor_arrayController (extractedValue_13775__0, extractedValue_13775__1) ;
       const GGS_prefsAsDefaultValue temp_9 = this ;
       GenericArray <FixItDescription> fixItArray10 ;
-      inCompiler->emitSemanticError (temp_9.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 392)) ;
+      inCompiler->emitSemanticError (temp_9.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray10  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 400)) ;
     }
     break ;
   case GGS_propertyKind::Enumeration::enum_selectionController:
     {
-      GGS_string extractedValue_13612__0 ;
-      var_kind_12997.getAssociatedValuesFor_selectionController (extractedValue_13612__0) ;
+      GGS_string extractedValue_13883__0 ;
+      var_kind_13268.getAssociatedValuesFor_selectionController (extractedValue_13883__0) ;
       const GGS_prefsAsDefaultValue temp_11 = this ;
       GenericArray <FixItDescription> fixItArray12 ;
-      inCompiler->emitSemanticError (temp_11.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray12  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 394)) ;
+      inCompiler->emitSemanticError (temp_11.readProperty_mPrefPropertyName ().readProperty_location (), GGS_string ("an atomic property is required here"), fixItArray12  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 402)) ;
     }
     break ;
   }
   const GGS_prefsAsDefaultValue temp_13 = this ;
-  outArgument_outSwiftDefaultValueAsString = GGS_string ("preferences_").add_operation (temp_13.readProperty_mPrefPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 396)) ;
+  outArgument_outSwiftDefaultValueAsString = GGS_string ("preferences_").add_operation (temp_13.readProperty_mPrefPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 404)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -842,9 +860,9 @@ void cPtr_prefsAsDefaultValue::method_enterDefaultValuePrecedence (const GGS_lst
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_prefsAsDefaultValue temp_0 = this ;
   const GGS_prefsAsDefaultValue temp_1 = this ;
-  GGS_lstring var_p_14012 = GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 405)).add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 405)).add_operation (temp_0.readProperty_mPrefPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 405)), temp_1.readProperty_mPrefPropertyName ().readProperty_location (), inCompiler COMMA_HERE) ;
+  GGS_lstring var_p_14283 = GGS_lstring::init_21__21_ (function_preferencesName (inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 413)).add_operation (GGS_string (" "), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 413)).add_operation (temp_0.readProperty_mPrefPropertyName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 413)), temp_1.readProperty_mPrefPropertyName ().readProperty_location (), inCompiler COMMA_HERE) ;
   {
-  ioArgument_ioGraph.setter_addEdge (constinArgument_inNode, var_p_14012 COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 406)) ;
+  ioArgument_ioGraph.setter_addEdge (constinArgument_inNode, var_p_14283 COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 414)) ;
   }
 }
 
@@ -1161,22 +1179,25 @@ void routine_enterAtomicClassesIn_26_declarationList (GGS_declarationListAST & i
   ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("Bool").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 30)), GGS_typeKind::class_func_boolType (SOURCE_FILE ("atomic-class.galgas4", 30)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 30)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSColor").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 32)), GGS_typeKind::class_func_colorType (SOURCE_FILE ("atomic-class.galgas4", 32)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 32)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("CanariLength").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 31)), GGS_typeKind::class_func_canariLengthType (SOURCE_FILE ("atomic-class.galgas4", 31)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 31)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSFont").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 33)), GGS_typeKind::class_func_fontType (SOURCE_FILE ("atomic-class.galgas4", 33)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 33)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSColor").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 33)), GGS_typeKind::class_func_colorType (SOURCE_FILE ("atomic-class.galgas4", 33)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 33)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("Date").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 34)), GGS_typeKind::class_func_dateType (SOURCE_FILE ("atomic-class.galgas4", 34)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 34)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSFont").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 34)), GGS_typeKind::class_func_fontType (SOURCE_FILE ("atomic-class.galgas4", 34)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 34)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("Data").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 35)), GGS_typeKind::class_func_dataType (SOURCE_FILE ("atomic-class.galgas4", 35)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 35)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("Date").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 35)), GGS_typeKind::class_func_dateType (SOURCE_FILE ("atomic-class.galgas4", 35)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 35)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSBezierPath").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 36)), GGS_typeKind::class_func_bezierPathType (SOURCE_FILE ("atomic-class.galgas4", 36)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 36)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("Data").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 36)), GGS_typeKind::class_func_dataType (SOURCE_FILE ("atomic-class.galgas4", 36)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 36)) ;
   }
   {
-  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("BezierPathArray").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 37)), GGS_typeKind::class_func_bezierPathArrayType (SOURCE_FILE ("atomic-class.galgas4", 37)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 37)) ;
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("NSBezierPath").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 37)), GGS_typeKind::class_func_bezierPathType (SOURCE_FILE ("atomic-class.galgas4", 37)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 37)) ;
+  }
+  {
+  ioArgument_ioDeclarationListAST.setter_append (GGS_atomicClassDeclarationAST::init_21__21_ (GGS_string ("BezierPathArray").getter_nowhere (SOURCE_FILE ("atomic-class.galgas4", 38)), GGS_typeKind::class_func_bezierPathArrayType (SOURCE_FILE ("atomic-class.galgas4", 38)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 38)) ;
   }
 }
 
@@ -1192,8 +1213,8 @@ void cPtr_atomicClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
   {
   const GGS_atomicClassDeclarationAST temp_0 = this ;
   const GGS_atomicClassDeclarationAST temp_1 = this ;
-  GGS_propertyGenerationList temp_2 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 53)) ;
-  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (temp_1.readProperty_mKind ()  COMMA_SOURCE_FILE ("atomic-class.galgas4", 50)), GGS_propertyMap::init (inCompiler COMMA_HERE), GGS_actionMap::init (inCompiler COMMA_HERE), temp_2, inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 48)) ;
+  GGS_propertyGenerationList temp_2 = GGS_propertyGenerationList::init (inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 54)) ;
+  ioArgument_ioSemanticContext.mProperty_mClassMap.setter_insertKey (temp_0.readProperty_mClassName (), GGS_classKind::class_func_atomic (temp_1.readProperty_mKind ()  COMMA_SOURCE_FILE ("atomic-class.galgas4", 51)), GGS_propertyMap::init (inCompiler COMMA_HERE), GGS_actionMap::init (inCompiler COMMA_HERE), temp_2, inCompiler COMMA_SOURCE_FILE ("atomic-class.galgas4", 49)) ;
   }
 }
 
@@ -8225,62 +8246,65 @@ void routine_generateStandardProperties_3F__3F__3F__26_ (const GGS_string consti
                                                          Compiler * inCompiler
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("UInt32"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 148)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("CanariLength"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 148)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Int"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 149)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("UInt32"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 149)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Bool"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 150)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Int"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 150)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Double"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 151)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Bool"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 151)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("String"), GGS_bool (false), GGS_string ("localizedStandardCompare"), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 152)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Double"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 152)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Data"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 153)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("String"), GGS_bool (false), GGS_string ("localizedStandardCompare"), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 153)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Date"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 154)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Data"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 154)) ;
   }
   {
-  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("BezierPathArray"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 155)) ;
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("Date"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 155)) ;
   }
-  UpEnumerator_stringlist enumerator_6523 (constinArgument_inPropertyClassList) ;
-  while (enumerator_6523.hasCurrentObject ()) {
+  {
+  routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, GGS_string ("BezierPathArray"), GGS_bool (false), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 156)) ;
+  }
+  UpEnumerator_stringlist enumerator_6629 (constinArgument_inPropertyClassList) ;
+  while (enumerator_6629.hasCurrentObject ()) {
     {
-    routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_6523.current_mValue (HERE), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 158)) ;
+    routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_6629.current_mValue (HERE), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 159)) ;
     }
-    enumerator_6523.gotoNextObject () ;
+    enumerator_6629.gotoNextObject () ;
   }
-  UpEnumerator_transientExternTypeList enumerator_6693 (constinArgument_inTransientPropertyExternTypeList) ;
-  while (enumerator_6693.hasCurrentObject ()) {
+  UpEnumerator_transientExternTypeList enumerator_6799 (constinArgument_inTransientPropertyExternTypeList) ;
+  while (enumerator_6799.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
-      test_0 = enumerator_6693.current_mIsClass (HERE).boolEnum () ;
+      test_0 = enumerator_6799.current_mIsClass (HERE).boolEnum () ;
       if (GalgasBool::boolTrue == test_0) {
         {
-        routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_6693.current_mTypeName (HERE), GGS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 162)) ;
+        routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, enumerator_6799.current_mTypeName (HERE), GGS_bool (true), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 163)) ;
         }
       }
     }
     if (GalgasBool::boolFalse == test_0) {
       {
-      routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, enumerator_6693.current_mTypeName (HERE), GGS_bool (true), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 164)) ;
+      routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (constinArgument_inOutputDirectory, enumerator_6799.current_mTypeName (HERE), GGS_bool (true), GGS_string::makeEmptyString (), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 165)) ;
       }
     }
-    enumerator_6693.gotoNextObject () ;
+    enumerator_6799.gotoNextObject () ;
   }
   {
-  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSBezierPath"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 167)) ;
+  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSBezierPath"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 168)) ;
   }
   {
-  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSFont"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 168)) ;
+  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSFont"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 169)) ;
   }
   {
-  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSColor"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 169)) ;
+  routine_generateClassProperty_3F__3F__3F_transient_26_ (constinArgument_inOutputDirectory, GGS_string ("NSColor"), GGS_bool (false), ioArgument_ioGeneratedFileSet, inCompiler  COMMA_SOURCE_FILE ("code-generation.galgas4", 170)) ;
   }
 }
 
@@ -8297,13 +8321,13 @@ void routine_generateClassProperty_3F__3F__3F_transient_26_ (const GGS_string co
                                                              GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                              Compiler * inCompiler
                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string var_contents_7682 = GGS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.galgas4", 178))) ;
-  GGS_string var_fileName_7804 = GGS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 180)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 180)) ;
+  GGS_string var_contents_7788 = GGS_string (filewrapperTemplate_standard_5F_properties_classProperty (inCompiler, constinArgument_inClassPropertyTypeName, constinArgument_inTransient COMMA_SOURCE_FILE ("code-generation.galgas4", 179))) ;
+  GGS_string var_fileName_7910 = GGS_string ("property-").add_operation (constinArgument_inClassPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 181)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 181)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_7804, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 181)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_7910, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 182)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7804, var_contents_7682, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 182)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_7910, var_contents_7788, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 183)) ;
   }
 }
 
@@ -8321,13 +8345,13 @@ void routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (const GGS_stri
                                                                   GGS_stringset & ioArgument_ioGeneratedFileSet,
                                                                   Compiler * inCompiler
                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string var_contents_8447 = GGS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.galgas4", 196))) ;
-  GGS_string var_fileName_8591 = GGS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 198)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 198)) ;
+  GGS_string var_contents_8553 = GGS_string (filewrapperTemplate_standard_5F_properties_scalarProperty (inCompiler, constinArgument_inScalarPropertyTypeName, constinArgument_inTransient, constinArgument_inComparisonMethod COMMA_SOURCE_FILE ("code-generation.galgas4", 197))) ;
+  GGS_string var_fileName_8697 = GGS_string ("property-").add_operation (constinArgument_inScalarPropertyTypeName, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 199)).add_operation (GGS_string (".swift"), inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 199)) ;
   {
-  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_8591, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 199)) ;
+  ioArgument_ioGeneratedFileSet.setter_insert (var_fileName_8697, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 200)) ;
   }
   {
-  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_8591, var_contents_8447, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 200)) ;
+  GGS_string::class_method_generateFile (constinArgument_inOutputDirectory, var_fileName_8697, var_contents_8553, inCompiler COMMA_SOURCE_FILE ("code-generation.galgas4", 201)) ;
   }
 }
 

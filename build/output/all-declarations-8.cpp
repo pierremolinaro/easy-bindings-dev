@@ -9081,18 +9081,18 @@ GGS_bool extensionGetter_isAbstract (const GGS_propertyMap_2E_element & inObject
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_propertyMap_2E_element temp_1 = inObject ;
-    const GGS_propertyKind_2E_property var_prop_4618 = temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 119)).unwrappedValue () ;
-    if (!temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 119)).isValuated ()) {
+    const GGS_propertyKind_2E_property var_prop_4643 = temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 120)).unwrappedValue () ;
+    if (!temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 120)).isValuated ()) {
       test_0 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_0) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = var_prop_4618.readProperty_accessibility ().getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas4", 120)).boolEnum () ;
+        test_2 = var_prop_4643.readProperty_accessibility ().getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas4", 121)).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
-          GGS_bool var_ab_4756 ;
-          var_prop_4618.readProperty_accessibility ().method_extractTransient (var_ab_4756, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas4", 121)) ;
-          result_result = var_ab_4756 ;
+          GGS_bool var_ab_4781 ;
+          var_prop_4643.readProperty_accessibility ().method_extractTransient (var_ab_4781, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas4", 122)) ;
+          result_result = var_ab_4781 ;
         }
       }
     }
@@ -13526,6 +13526,8 @@ void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKind
         break ;
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         break ;
+      case GGS_typeKind::Enumeration::enum_canariLengthType:
+        break ;
       }
       enumerator_3896.gotoNextObject () ;
       if (enumerator_3896.hasCurrentObject ()) {
@@ -13535,11 +13537,11 @@ void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKind
   }
   GalgasBool test_4 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_4) {
-    test_4 = var_found_3875.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 126)).boolEnum () ;
+    test_4 = var_found_3875.operator_not (SOURCE_FILE ("explicit-default-value.galgas4", 127)).boolEnum () ;
     if (GalgasBool::boolTrue == test_4) {
       const GGS_boolAsDefaultValue temp_5 = this ;
       GenericArray <FixItDescription> fixItArray6 ;
-      inCompiler->emitSemanticError (temp_5.readProperty_mValue ().readProperty_location (), GGS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 127)) ;
+      inCompiler->emitSemanticError (temp_5.readProperty_mValue ().readProperty_location (), GGS_string ("only a boolean attribute can be initialized by YES or NO"), fixItArray6  COMMA_SOURCE_FILE ("explicit-default-value.galgas4", 128)) ;
     }
   }
 }

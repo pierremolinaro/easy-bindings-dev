@@ -110,7 +110,7 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in  inAttributeActualTypeList while not found do
+  for (mType) in inAttributeActualTypeList while not found do
     switch mType
     case boolType :
       outSwiftDefaultValueAsString = if self.mValue.bool then "true" else "false" end
@@ -121,6 +121,7 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
     case classType (*) :
     case enumType (3*) :
     case transientPropertyExternType (*) :
+    case canariLengthType :
     end
   end
   if not found then
@@ -158,6 +159,7 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
     case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
+    case canariLengthType :
     end
   end
   if not found then
@@ -187,6 +189,7 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
     case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
+    case canariLengthType :
     end
   end
   if not found then
@@ -207,6 +210,9 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
   var @bool found = false
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
+    case canariLengthType :
+      outSwiftDefaultValueAsString = self.mValue.string
+      found = true
     case stringType :
       outSwiftDefaultValueAsString = "\""+ self.mValue.string + "\""
       found = true
@@ -339,6 +345,8 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
       else
         error (self.mValue : "only 'empty' is accepted as default Data")
       end
+    case canariLengthType :
+      error (self.mValue : "invalid CanariLength type") 
     case doubleType :
       error (self.mValue : "invalid double type") 
     case integerType :
