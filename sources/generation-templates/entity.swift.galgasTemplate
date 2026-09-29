@@ -235,13 +235,13 @@ if IS_GRAPHIC_ENTITY & not IS_ABSTRACT then
   //  Snap to grid
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func snapToGrid (_ inGrid : Int) {
+  override func snapToGrid (_ inGrid : CanariLength) {
     self.snapToGrid_%!ENTITY_NAME% (inGrid)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override func canSnapToGrid (_ inGrid : Int) -> Bool {
+  override func canSnapToGrid (_ inGrid : CanariLength) -> Bool {
     return self.canSnapToGrid_%!ENTITY_NAME% (inGrid)
   }
 
