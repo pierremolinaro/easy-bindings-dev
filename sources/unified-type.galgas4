@@ -6,6 +6,10 @@ func @typeKind.typeName() -> @string {
   switch self
   case canariLengthType :
     result = "CanariLength"
+  case canariLengthUnitType :
+    result = "CanariLengthUnit"
+  case canariAngleType :
+    result = "CanariAngle"
   case boolType :
     result = "Bool"
   case integerType :
@@ -43,7 +47,7 @@ func @typeKind.typeName() -> @string {
 
 func @typeKind.isComparable() -> @bool outResult {
   switch self
-  case canariLengthType, boolType, integerType, uint32Type, doubleType, stringType, dateType, dataType :
+  case canariAngleType, canariLengthType, canariLengthUnitType, boolType, integerType, uint32Type, doubleType, stringType, dateType, dataType :
     outResult = true
   case fontType, colorType, bezierPathType, bezierPathArrayType :
     outResult = false
@@ -62,8 +66,8 @@ func @typeKind.isComparable() -> @bool outResult {
 
 func @typeKind.isGraphic() -> @bool outResult {
   switch self
-  case canariLengthType, boolType, integerType, uint32Type, doubleType, stringType, dateType,
-       dataType, bezierPathType, bezierPathArrayType :
+  case canariLengthType, canariLengthUnitType, boolType, integerType, uint32Type, doubleType, stringType, dateType,
+       dataType, bezierPathType, bezierPathArrayType, canariAngleType :
     outResult = false
   case fontType, colorType :
     outResult = false
@@ -122,7 +126,9 @@ func @propertyKind.swiftTypeName () -> @string {
 
 func @typeKind.swiftTypeName() -> @string outResult {
   switch self
+  case canariAngleType : outResult = "CanariAngle"
   case canariLengthType : outResult = "CanariLength"
+  case canariLengthUnitType : outResult = "CanariLengthUnit"
   case integerType : outResult = "Int"
   case uint32Type : outResult = "UInt32"
   case stringType : outResult = "String"

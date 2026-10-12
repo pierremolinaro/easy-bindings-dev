@@ -121,7 +121,7 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
     case classType (*) :
     case enumType (3*) :
     case transientPropertyExternType (*) :
-    case canariLengthType :
+    case canariLengthType, canariLengthUnitType, canariAngleType :
     end
   end
   if not found then
@@ -140,11 +140,16 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
-  for (mType) in  inAttributeActualTypeList while not found do
+  for (mType) in inAttributeActualTypeList while not found do
     switch mType
     case integerType :
       outSwiftDefaultValueAsString = if self.mNegative then "-" else "" end + self.mValue.uint.string
       found = true
+    case canariAngleType :
+      outSwiftDefaultValueAsString  = ".degree (Double ("
+      outSwiftDefaultValueAsString += if self.mNegative then "-" else "" end + self.mValue.uint.string
+      outSwiftDefaultValueAsString += ") / 1000.0)"
+     found = true
     case uint32Type :
       if self.mNegative then
         error (self.mValue : "Uint32 value should be ≥ 0")
@@ -159,7 +164,7 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
     case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
-    case canariLengthType :
+    case canariLengthType, canariLengthUnitType :
     end
   end
   if not found then
@@ -189,7 +194,7 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
     case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
-    case canariLengthType :
+    case canariLengthType, canariLengthUnitType, canariAngleType :
     end
   end
   if not found then
@@ -210,7 +215,7 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
   var @bool found = false
   for (mType) in  inAttributeActualTypeList while not found do
     switch mType
-    case canariLengthType :
+    case canariLengthType, canariLengthUnitType :
       outSwiftDefaultValueAsString = self.mValue.string
       found = true
     case stringType :
@@ -222,6 +227,7 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
     case enumType (3*) :
     case classType (*) :
     case transientPropertyExternType (*) :
+    case canariAngleType :
     end
   end
   if not found then
@@ -347,6 +353,10 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
       end
     case canariLengthType :
       error (self.mValue : "invalid CanariLength type") 
+    case canariAngleType :
+      error (self.mValue : "invalid CanariAngle type") 
+    case canariLengthUnitType :
+      error (self.mValue : "invalid CanariLengthUnit type") 
     case doubleType :
       error (self.mValue : "invalid double type") 
     case integerType :

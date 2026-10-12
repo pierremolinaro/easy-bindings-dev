@@ -29,6 +29,8 @@ proc enterAtomicClassesIn (?!declarationList: @declarationListAST ioDeclarationL
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("UInt32".nowhere , .uint32Type))
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("Bool".nowhere , .boolType))
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("CanariLength".nowhere , .canariLengthType))
+  !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("CanariLengthUnit".nowhere , .canariLengthUnitType))
+  !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("CanariAngle".nowhere , .canariAngleType))
 
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("NSColor".nowhere , .colorType))
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("NSFont".nowhere , .fontType))

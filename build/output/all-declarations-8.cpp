@@ -9081,18 +9081,18 @@ GGS_bool extensionGetter_isAbstract (const GGS_propertyMap_2E_element & inObject
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_propertyMap_2E_element temp_1 = inObject ;
-    const GGS_propertyKind_2E_property var_prop_4643 = temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 120)).unwrappedValue () ;
-    if (!temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 120)).isValuated ()) {
+    const GGS_propertyKind_2E_property var_prop_4695 = temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 122)).unwrappedValue () ;
+    if (!temp_1.readProperty_mKind ().getter_getProperty (SOURCE_FILE ("semantic-analysis.galgas4", 122)).isValuated ()) {
       test_0 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_0) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = var_prop_4643.readProperty_accessibility ().getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas4", 121)).boolEnum () ;
+        test_2 = var_prop_4695.readProperty_accessibility ().getter_isTransient (SOURCE_FILE ("semantic-analysis.galgas4", 123)).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
-          GGS_bool var_ab_4781 ;
-          var_prop_4643.readProperty_accessibility ().method_extractTransient (var_ab_4781, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas4", 122)) ;
-          result_result = var_ab_4781 ;
+          GGS_bool var_ab_4833 ;
+          var_prop_4695.readProperty_accessibility ().method_extractTransient (var_ab_4833, inCompiler COMMA_SOURCE_FILE ("semantic-analysis.galgas4", 124)) ;
+          result_result = var_ab_4833 ;
         }
       }
     }
@@ -13527,6 +13527,8 @@ void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKind
       case GGS_typeKind::Enumeration::enum_transientPropertyExternType:
         break ;
       case GGS_typeKind::Enumeration::enum_canariLengthType:
+      case GGS_typeKind::Enumeration::enum_canariLengthUnitType:
+      case GGS_typeKind::Enumeration::enum_canariAngleType:
         break ;
       }
       enumerator_3896.gotoNextObject () ;

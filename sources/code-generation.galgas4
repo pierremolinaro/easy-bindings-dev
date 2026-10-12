@@ -146,6 +146,8 @@ private proc generateStandardProperties (let @string inOutputDirectory,
                                          ?!@stringset ioGeneratedFileSet) {
 //-- Add scalar property types
   generateScalarProperty (inOutputDirectory, "CanariLength", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "CanariLengthUnit", !transient: false, "", !?ioGeneratedFileSet)
+  generateScalarProperty (inOutputDirectory, "CanariAngle", !transient: false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "UInt32", !transient: false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "Int", !transient: false, "", !?ioGeneratedFileSet)
   generateScalarProperty (inOutputDirectory, "Bool", !transient: false, "", !?ioGeneratedFileSet)

@@ -72,7 +72,9 @@ enum @propertyAccessibility {
 
 enum @typeKind %equatable {
   case boolType 
+  case canariAngleType
   case canariLengthType 
+  case canariLengthUnitType 
   case integerType 
   case uint32Type 
   case doubleType

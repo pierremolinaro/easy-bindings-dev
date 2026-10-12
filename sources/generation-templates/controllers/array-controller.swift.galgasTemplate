@@ -378,7 +378,7 @@ end
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func setBackgroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {
+  final func setBackgroundImageAffineTransform (_ inAffineTransform : CanariAffinity) {
      for ebView in self.mEBGraphicViews {
        ebView.mBackgroundImageAffineTransform = inAffineTransform
      }
@@ -386,7 +386,7 @@ end
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final func setForegroundImageAffineTransform (_ inAffineTransform : NSAffineTransform) {
+  final func setForegroundImageAffineTransform (_ inAffineTransform : CanariAffinity) {
      for ebView in self.mEBGraphicViews {
        ebView.mForegroundImageAffineTransform = inAffineTransform
      }
@@ -990,7 +990,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func rotate90Clockwise () {
-    let r = CanariRect (points: Array (self.mRotate90PointSet))
+    let r = CanariRect (Array (self.mRotate90PointSet))
     var userSet = EBReferenceSet <EBManagedObject> ()
     for object in self.selectedArray.values {
       object.rotate90Clockwise (from: r.center, userSet: &userSet)
@@ -1000,7 +1000,7 @@ if ELEMENT_TYPE_IS_GRAPHIC then
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func rotate90CounterClockwise () {
-    let r = CanariRect (points: Array (self.mRotate90PointSet))
+    let r = CanariRect (Array (self.mRotate90PointSet))
     var userSet = EBReferenceSet <EBManagedObject> ()
     for object in self.selectedArray.values {
       object.rotate90CounterClockwise (from: r.center, userSet: &userSet)

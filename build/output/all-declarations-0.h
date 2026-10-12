@@ -342,7 +342,9 @@ class GGS_typeKind : public AC_GALGAS_root {
   public: enum class Enumeration {
     invalid,
     enum_boolType,
+    enum_canariAngleType,
     enum_canariLengthType,
+    enum_canariLengthUnitType,
     enum_integerType,
     enum_uint_33__32_Type,
     enum_doubleType,
@@ -405,7 +407,11 @@ class GGS_typeKind : public AC_GALGAS_root {
 
   public: static class GGS_typeKind class_func_boolType (LOCATION_ARGS) ;
 
+  public: static class GGS_typeKind class_func_canariAngleType (LOCATION_ARGS) ;
+
   public: static class GGS_typeKind class_func_canariLengthType (LOCATION_ARGS) ;
+
+  public: static class GGS_typeKind class_func_canariLengthUnitType (LOCATION_ARGS) ;
 
   public: static class GGS_typeKind class_func_classType (const class GGS_string & inOperand0
                                                           COMMA_LOCATION_ARGS) ;
@@ -483,7 +489,11 @@ class GGS_typeKind : public AC_GALGAS_root {
 
   public: class GGS_bool getter_isBoolType (LOCATION_ARGS) const ;
 
+  public: class GGS_bool getter_isCanariAngleType (LOCATION_ARGS) const ;
+
   public: class GGS_bool getter_isCanariLengthType (LOCATION_ARGS) const ;
+
+  public: class GGS_bool getter_isCanariLengthUnitType (LOCATION_ARGS) const ;
 
   public: class GGS_bool getter_isClassType (LOCATION_ARGS) const ;
 
