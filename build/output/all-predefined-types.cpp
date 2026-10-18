@@ -149,10 +149,10 @@ class CollectionElementPtr__32_stringlist : public CollectionElementPtr {
                                                COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr__32_stringlist (const GGS__32_stringlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -585,7 +585,7 @@ void GGS__32_stringlist::setter_setMValue_30_AtIndex (GGS_string inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS__32_stringlist::getter_mValue_30_AtIndex (const GGS_uint & inIndex,
                                                          Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const {
@@ -624,7 +624,7 @@ void GGS__32_stringlist::setter_setMValue_31_AtIndex (GGS_string inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS__32_stringlist::getter_mValue_31_AtIndex (const GGS_uint & inIndex,
                                                          Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) const {
@@ -776,10 +776,10 @@ class CollectionElementPtr_lstringlist : public CollectionElementPtr {
                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_lstringlist (const GGS_lstringlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -1187,7 +1187,7 @@ void GGS_lstringlist::setter_setMValueAtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_lstringlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                    Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
@@ -1367,10 +1367,10 @@ class CollectionElementPtr_stringlist : public CollectionElementPtr {
                                            COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_stringlist (const GGS_stringlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -1778,7 +1778,7 @@ void GGS_stringlist::setter_setMValueAtIndex (GGS_string inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_stringlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
@@ -2518,10 +2518,10 @@ class CollectionElementPtr_functionlist : public CollectionElementPtr {
                                              COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_functionlist (const GGS_functionlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -2929,7 +2929,7 @@ void GGS_functionlist::setter_setMValueAtIndex (GGS_function inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_function GGS_functionlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                      Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) const {
@@ -3069,10 +3069,10 @@ class CollectionElementPtr_luintlist : public CollectionElementPtr {
                                           COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_luintlist (const GGS_luintlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3480,7 +3480,7 @@ void GGS_luintlist::setter_setMValueAtIndex (GGS_luint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_luintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) const {
@@ -3620,10 +3620,10 @@ class CollectionElementPtr_objectlist : public CollectionElementPtr {
                                            COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_objectlist (const GGS_objectlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4031,7 +4031,7 @@ void GGS_objectlist::setter_setMValueAtIndex (GGS_object inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_object GGS_objectlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
@@ -4171,10 +4171,10 @@ class CollectionElementPtr_typelist : public CollectionElementPtr {
                                          COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_typelist (const GGS_typelist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4582,7 +4582,7 @@ void GGS_typelist::setter_setMValueAtIndex (GGS_type inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_type GGS_typelist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const {
@@ -4722,10 +4722,10 @@ class CollectionElementPtr_uintlist : public CollectionElementPtr {
                                          COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_uintlist (const GGS_uintlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -5133,7 +5133,7 @@ void GGS_uintlist::setter_setMValueAtIndex (GGS_uint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_uint GGS_uintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const {
@@ -5273,10 +5273,10 @@ class CollectionElementPtr_uint_36__34_list : public CollectionElementPtr {
                                                  COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_uint_36__34_list (const GGS_uint_36__34_list_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -5684,7 +5684,7 @@ void GGS_uint_36__34_list::setter_setMValueAtIndex (GGS_uint_36__34_ inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_uint_36__34_ GGS_uint_36__34_list::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
@@ -5824,10 +5824,10 @@ class CollectionElementPtr_bigintlist : public CollectionElementPtr {
                                            COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_bigintlist (const GGS_bigintlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -6235,7 +6235,7 @@ void GGS_bigintlist::setter_setMValueAtIndex (GGS_bigint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bigint GGS_bigintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) const {
@@ -6375,10 +6375,10 @@ class CollectionElementPtr_lbigintlist : public CollectionElementPtr {
                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_lbigintlist (const GGS_lbigintlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -6786,7 +6786,7 @@ void GGS_lbigintlist::setter_setMValueAtIndex (GGS_lbigint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lbigint GGS_lbigintlist::getter_mValueAtIndex (const GGS_uint & inIndex,
                                                    Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {

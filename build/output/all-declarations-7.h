@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration prefKeyDefinitionCode'
+//Extension func '@propertyGeneration prefKeyDefinitionCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ class GGS_string callExtensionGetter_prefKeyDefinitionCode (const cPtr_propertyG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration declarationInSelectionControllerCode'
+//Extension func '@propertyGeneration declarationInSelectionControllerCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ class GGS_string callExtensionGetter_declarationInSelectionControllerCode (const
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyGeneration bindPropertyInSelectionController'
+//Extension func '@propertyGeneration bindPropertyInSelectionController'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ class GGS_string callExtensionGetter_bindPropertyInSelectionController (const cP
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@propertyGeneration propertyDeclarationCode'
+//Abstract extension func '@propertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ class GGS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_p
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@propertyGeneration configurationCode'
+//Abstract extension func '@propertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -64,7 +64,7 @@ class GGS_string callExtensionGetter_configurationCode (const class cPtr_propert
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@propertyGeneration initCode'
+//Abstract extension func '@propertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 

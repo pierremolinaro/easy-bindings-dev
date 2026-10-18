@@ -726,7 +726,7 @@ void GGS_optionalHiddenBinding::method_extractBinding (GGS_abstractBooleanMultip
   if (mEnum != Enumeration::enum_binding) {
     outAssociatedValue_hidden.drop () ;
     String s ;
-    s.appendCString ("method @optionalHiddenBinding.binding invoked with an invalid enum value") ;
+    s.appendCString ("proc @optionalHiddenBinding.binding invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_optionalHiddenBinding_2E_binding *) mAssociatedValues.associatedValuesPointer () ;
@@ -1707,7 +1707,7 @@ void GGS_tableValueBinding::method_extractTableValueBinding (GGS_lstring & outAs
   if (mEnum != Enumeration::enum_tableValueBinding) {
     outAssociatedValue_controllerName.drop () ;
     String s ;
-    s.appendCString ("method @tableValueBinding.tableValueBinding invoked with an invalid enum value") ;
+    s.appendCString ("proc @tableValueBinding.tableValueBinding invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_tableValueBinding_2E_tableValueBinding *) mAssociatedValues.associatedValuesPointer () ;
@@ -1874,7 +1874,7 @@ void GGS_runActionDescriptor::method_extractAction (GGS_lstring & outAssociatedV
     outAssociatedValue_target.drop () ;
     outAssociatedValue_action.drop () ;
     String s ;
-    s.appendCString ("method @runActionDescriptor.action invoked with an invalid enum value") ;
+    s.appendCString ("proc @runActionDescriptor.action invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_runActionDescriptor_2E_action *) mAssociatedValues.associatedValuesPointer () ;
@@ -2044,7 +2044,7 @@ void GGS_graphicController::method_extractDefined (GGS_lstring & outAssociatedVa
     outAssociatedValue_controller.drop () ;
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @graphicController.defined invoked with an invalid enum value") ;
+    s.appendCString ("proc @graphicController.defined invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_graphicController_2E_defined *) mAssociatedValues.associatedValuesPointer () ;
@@ -2364,7 +2364,7 @@ void GGS_astAutoLayoutViewInstructionParameterValue::method_extractString (GGS_s
   if (mEnum != Enumeration::enum_string) {
     outAssociatedValue_value.drop () ;
     String s ;
-    s.appendCString ("method @astAutoLayoutViewInstructionParameterValue.string invoked with an invalid enum value") ;
+    s.appendCString ("proc @astAutoLayoutViewInstructionParameterValue.string invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_astAutoLayoutViewInstructionParameterValue_2E_string *) mAssociatedValues.associatedValuesPointer () ;
@@ -2384,7 +2384,7 @@ void GGS_astAutoLayoutViewInstructionParameterValue::method_extractMenuItem (GGS
     outAssociatedValue_run.drop () ;
     outAssociatedValue_enabled.drop () ;
     String s ;
-    s.appendCString ("method @astAutoLayoutViewInstructionParameterValue.menuItem invoked with an invalid enum value") ;
+    s.appendCString ("proc @astAutoLayoutViewInstructionParameterValue.menuItem invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_astAutoLayoutViewInstructionParameterValue_2E_menuItem *) mAssociatedValues.associatedValuesPointer () ;
@@ -2404,7 +2404,7 @@ void GGS_astAutoLayoutViewInstructionParameterValue::method_extractEnumFunc (GGS
     outAssociatedValue_enumTypeName.drop () ;
     outAssociatedValue_enumFuncName.drop () ;
     String s ;
-    s.appendCString ("method @astAutoLayoutViewInstructionParameterValue.enumFunc invoked with an invalid enum value") ;
+    s.appendCString ("proc @astAutoLayoutViewInstructionParameterValue.enumFunc invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_astAutoLayoutViewInstructionParameterValue_2E_enumFunc *) mAssociatedValues.associatedValuesPointer () ;
@@ -2421,7 +2421,7 @@ void GGS_astAutoLayoutViewInstructionParameterValue::method_extractViewFunc (GGS
   if (mEnum != Enumeration::enum_viewFunc) {
     outAssociatedValue_instruction.drop () ;
     String s ;
-    s.appendCString ("method @astAutoLayoutViewInstructionParameterValue.viewFunc invoked with an invalid enum value") ;
+    s.appendCString ("proc @astAutoLayoutViewInstructionParameterValue.viewFunc invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_astAutoLayoutViewInstructionParameterValue_2E_viewFunc *) mAssociatedValues.associatedValuesPointer () ;
@@ -2437,7 +2437,7 @@ void GGS_astAutoLayoutViewInstructionParameterValue::method_extractEntity (GGS_l
   if (mEnum != Enumeration::enum_entity) {
     outAssociatedValue_entityName.drop () ;
     String s ;
-    s.appendCString ("method @astAutoLayoutViewInstructionParameterValue.entity invoked with an invalid enum value") ;
+    s.appendCString ("proc @astAutoLayoutViewInstructionParameterValue.entity invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_astAutoLayoutViewInstructionParameterValue_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
@@ -3159,7 +3159,7 @@ GGS_abstractViewInstructionGeneration GGS_abstractViewInstructionGeneration::ext
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@astAbstractViewDeclaration checkView'
+//Abstract extension proc '@astAbstractViewDeclaration checkView'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3182,7 +3182,7 @@ void callExtensionMethod_checkView (cPtr_astAbstractViewDeclaration * inObject,
                                     COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outGeneration.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_astAbstractViewDeclaration) ;
     inObject->method_checkView (constin_inViewName, constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outGeneration, inCompiler COMMA_THERE) ;
@@ -3190,7 +3190,7 @@ void callExtensionMethod_checkView (cPtr_astAbstractViewDeclaration * inObject,
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@astAutoLayoutViewFunctionCallList checkViewFunctionCallList'
+//Extension proc '@astAutoLayoutViewFunctionCallList checkViewFunctionCallList'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3459,7 +3459,7 @@ void extensionMethod_checkViewFunctionCallList (const GGS_astAutoLayoutViewFunct
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@astAbstractViewInstructionDeclaration generateViewCode'
+//Abstract extension proc '@astAbstractViewInstructionDeclaration generateViewCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3481,7 +3481,7 @@ void callExtensionMethod_generateViewCode (cPtr_astAbstractViewInstructionDeclar
                                            COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outInstruction.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_astAbstractViewInstructionDeclaration) ;
     inObject->method_generateViewCode (constin_inViewDeclarationMap, constin_inPreferences, constin_inRootObservablePropertyMap, constin_inPreferencesPropertyMap, constin_inSemanticContext, constin_inObservablePropertyMap, constin_inActionMap, constin_inReceiverSwiftTypeName, constin_inClassMap, io_ioImplicitViewFunctionGenerationList, io_ioConfiguratorMap, io_ioOutletMap, out_outInstruction, inCompiler COMMA_THERE) ;
@@ -3720,10 +3720,10 @@ class CollectionElementPtr_autoLayoutViewInstructionGenerationFuncCallList : pub
                                                                                 COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutViewInstructionGenerationFuncCallList (const GGS_autoLayoutViewInstructionGenerationFuncCallList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4156,7 +4156,7 @@ void GGS_autoLayoutViewInstructionGenerationFuncCallList::setter_setMFunctionNam
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutViewInstructionGenerationFuncCallList::getter_mFunctionNameAtIndex (const GGS_uint & inIndex,
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const {
@@ -4195,7 +4195,7 @@ void GGS_autoLayoutViewInstructionGenerationFuncCallList::setter_setMParametersA
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_autoLayoutViewInstructionGenerationParameterList GGS_autoLayoutViewInstructionGenerationFuncCallList::getter_mParametersAtIndex (const GGS_uint & inIndex,
                                                                                                                                      Compiler * inCompiler
                                                                                                                                      COMMA_LOCATION_ARGS) const {
@@ -4326,10 +4326,10 @@ class CollectionElementPtr_autoLayoutViewInstructionGenerationList : public Coll
                                                                         COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutViewInstructionGenerationList (const GGS_autoLayoutViewInstructionGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4737,7 +4737,7 @@ void GGS_autoLayoutViewInstructionGenerationList::setter_setMInstructionAtIndex 
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_abstractViewInstructionGeneration GGS_autoLayoutViewInstructionGenerationList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                                                Compiler * inCompiler
                                                                                                                COMMA_LOCATION_ARGS) const {
@@ -5090,7 +5090,7 @@ GGS_computedVerticalViewGeneration_2E_weak GGS_computedVerticalViewGeneration_2E
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewInstructionGeneration generateViewInstruction'
+//Abstract extension func '@abstractViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5109,7 +5109,7 @@ GGS_string callExtensionGetter_generateViewInstruction (const cPtr_abstractViewI
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewInstructionGeneration generateAppendViewInstruction'
+//Abstract extension func '@abstractViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5261,10 +5261,10 @@ class CollectionElementPtr_autoLayoutMultipleBindingGenerationList : public Coll
                                                                         COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutMultipleBindingGenerationList (const GGS_autoLayoutMultipleBindingGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -5697,7 +5697,7 @@ void GGS_autoLayoutMultipleBindingGenerationList::setter_setMBindingNameAtIndex 
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutMultipleBindingGenerationList::getter_mBindingNameAtIndex (const GGS_uint & inIndex,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
@@ -5736,7 +5736,7 @@ void GGS_autoLayoutMultipleBindingGenerationList::setter_setMBoundObjectExpressi
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_abstractBooleanMultipleBindingExpressionForGeneration GGS_autoLayoutMultipleBindingGenerationList::getter_mBoundObjectExpressionAtIndex (const GGS_uint & inIndex,
                                                                                                                                              Compiler * inCompiler
                                                                                                                                              COMMA_LOCATION_ARGS) const {
@@ -7478,10 +7478,10 @@ class CollectionElementPtr_autoLayoutRegularBindingsGenerationList : public Coll
                                                                         COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutRegularBindingsGenerationList (const GGS_autoLayoutRegularBindingsGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -7939,7 +7939,7 @@ void GGS_autoLayoutRegularBindingsGenerationList::setter_setMBindingNameAtIndex 
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutRegularBindingsGenerationList::getter_mBindingNameAtIndex (const GGS_uint & inIndex,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
@@ -7978,7 +7978,7 @@ void GGS_autoLayoutRegularBindingsGenerationList::setter_setMBoundObjectListAtIn
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_boundObjectList GGS_autoLayoutRegularBindingsGenerationList::getter_mBoundObjectListAtIndex (const GGS_uint & inIndex,
                                                                                                  Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) const {
@@ -8017,7 +8017,7 @@ void GGS_autoLayoutRegularBindingsGenerationList::setter_setMBindingOptionsStrin
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutRegularBindingsGenerationList::getter_mBindingOptionsStringAtIndex (const GGS_uint & inIndex,
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const {
@@ -8161,10 +8161,10 @@ class CollectionElementPtr_boundObjectList : public CollectionElementPtr {
                                                 COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_boundObjectList (const GGS_boundObjectList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -8597,7 +8597,7 @@ void GGS_boundObjectList::setter_setMBoundObjectStringAtIndex (GGS_string inOper
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_boundObjectList::getter_mBoundObjectStringAtIndex (const GGS_uint & inIndex,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
@@ -8636,7 +8636,7 @@ void GGS_boundObjectList::setter_setMKindAtIndex (GGS_propertyKind inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_propertyKind GGS_boundObjectList::getter_mKindAtIndex (const GGS_uint & inIndex,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
@@ -8802,7 +8802,7 @@ void GGS_autolayoutRunBindingForGeneration::method_extractRun (GGS_string & outA
     outAssociatedValue_actionName.drop () ;
     outAssociatedValue_targetTypeName.drop () ;
     String s ;
-    s.appendCString ("method @autolayoutRunBindingForGeneration.run invoked with an invalid enum value") ;
+    s.appendCString ("proc @autolayoutRunBindingForGeneration.run invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_autolayoutRunBindingForGeneration_2E_run *) mAssociatedValues.associatedValuesPointer () ;
@@ -8948,7 +8948,7 @@ void GGS_autoLayoutViewGraphicControllerBindingGeneration::method_extractBinding
   if (mEnum != Enumeration::enum_binding) {
     outAssociatedValue_arrayControllerControllerName.drop () ;
     String s ;
-    s.appendCString ("method @autoLayoutViewGraphicControllerBindingGeneration.binding invoked with an invalid enum value") ;
+    s.appendCString ("proc @autoLayoutViewGraphicControllerBindingGeneration.binding invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_autoLayoutViewGraphicControllerBindingGeneration_2E_binding *) mAssociatedValues.associatedValuesPointer () ;
@@ -9088,7 +9088,7 @@ void GGS_autolayoutEnabledBindingForGeneration::method_extractEnabled (GGS_abstr
   if (mEnum != Enumeration::enum_enabled) {
     outAssociatedValue_binding.drop () ;
     String s ;
-    s.appendCString ("method @autolayoutEnabledBindingForGeneration.enabled invoked with an invalid enum value") ;
+    s.appendCString ("proc @autolayoutEnabledBindingForGeneration.enabled invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_autolayoutEnabledBindingForGeneration_2E_enabled *) mAssociatedValues.associatedValuesPointer () ;
@@ -9200,10 +9200,10 @@ class CollectionElementPtr_autoLayoutViewInstructionGenerationParameterList : pu
                                                                                  COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutViewInstructionGenerationParameterList (const GGS_autoLayoutViewInstructionGenerationParameterList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -9636,7 +9636,7 @@ void GGS_autoLayoutViewInstructionGenerationParameterList::setter_setMParameterN
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutViewInstructionGenerationParameterList::getter_mParameterNameAtIndex (const GGS_uint & inIndex,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const {
@@ -9675,7 +9675,7 @@ void GGS_autoLayoutViewInstructionGenerationParameterList::setter_setMParameterV
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_autoLayoutViewInstructionGenerationParameterList::getter_mParameterValueAtIndex (const GGS_uint & inIndex,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
@@ -9918,7 +9918,7 @@ GGS_autoLayoutComputedViewInstructionGeneration_2E_weak GGS_autoLayoutComputedVi
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@autoLayoutViewInstructionGenerationFuncCallList generate'
+//Extension proc '@autoLayoutViewInstructionGenerationFuncCallList generate'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9947,7 +9947,7 @@ void extensionMethod_generate (const GGS_autoLayoutViewInstructionGenerationFunc
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractViewGeneration generateViewBuilder'
+//Abstract extension func '@abstractViewGeneration generateViewBuilder'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9976,10 +9976,10 @@ class CollectionElementPtr_outletBindingModelList : public CollectionElementPtr 
                                                        COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_outletBindingModelList (const GGS_outletBindingModelList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -10412,7 +10412,7 @@ void GGS_outletBindingModelList::setter_setMKindAtIndex (GGS_propertyKind inOper
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_propertyKind GGS_outletBindingModelList::getter_mKindAtIndex (const GGS_uint & inIndex,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) const {
@@ -10451,7 +10451,7 @@ void GGS_outletBindingModelList::setter_setMErrorLocationAtIndex (GGS_location i
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_outletBindingModelList::getter_mErrorLocationAtIndex (const GGS_uint & inIndex,
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) const {
@@ -10708,10 +10708,10 @@ class CollectionElementPtr_transientDependencyListForGeneration : public Collect
                                                                      COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_transientDependencyListForGeneration (const GGS_transientDependencyListForGeneration_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -11219,7 +11219,7 @@ void GGS_transientDependencyListForGeneration::setter_setMDependencyAtIndex (GGS
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_observablePropertyAST GGS_transientDependencyListForGeneration::getter_mDependencyAtIndex (const GGS_uint & inIndex,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const {
@@ -11258,7 +11258,7 @@ void GGS_transientDependencyListForGeneration::setter_setMFunctionArgumentNameAt
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_transientDependencyListForGeneration::getter_mFunctionArgumentNameAtIndex (const GGS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
@@ -11297,7 +11297,7 @@ void GGS_transientDependencyListForGeneration::setter_setMFunctionArgumentTypeSt
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_transientDependencyListForGeneration::getter_mFunctionArgumentTypeStringAtIndex (const GGS_uint & inIndex,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
@@ -11336,7 +11336,7 @@ void GGS_transientDependencyListForGeneration::setter_setMDefaultValueAsStringAt
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_transientDependencyListForGeneration::getter_mDefaultValueAsStringAtIndex (const GGS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
@@ -11375,7 +11375,7 @@ void GGS_transientDependencyListForGeneration::setter_setMProtocolNameAtIndex (G
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_transientDependencyListForGeneration::getter_mProtocolNameAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
@@ -11664,10 +11664,10 @@ class CollectionElementPtr_transientPropertyGenerationList : public CollectionEl
                                                                 COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_transientPropertyGenerationList (const GGS_transientPropertyGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -12075,7 +12075,7 @@ void GGS_transientPropertyGenerationList::setter_setMPropertyAtIndex (GGS_transi
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_transientPropertyGeneration GGS_transientPropertyGenerationList::getter_mPropertyAtIndex (const GGS_uint & inIndex,
                                                                                               Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) const {
@@ -13071,10 +13071,10 @@ class CollectionElementPtr_transientExternTypeList : public CollectionElementPtr
                                                         COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_transientExternTypeList (const GGS_transientExternTypeList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -13507,7 +13507,7 @@ void GGS_transientExternTypeList::setter_setMTypeNameAtIndex (GGS_string inOpera
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_transientExternTypeList::getter_mTypeNameAtIndex (const GGS_uint & inIndex,
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) const {
@@ -13546,7 +13546,7 @@ void GGS_transientExternTypeList::setter_setMIsClassAtIndex (GGS_bool inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_transientExternTypeList::getter_mIsClassAtIndex (const GGS_uint & inIndex,
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
@@ -13667,7 +13667,7 @@ GGS_transientExternTypeList GGS_transientExternTypeList::extractObject (const GG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractFileGeneration generateCodePhase1'
+//Abstract extension proc '@abstractFileGeneration generateCodePhase1'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13679,7 +13679,7 @@ void callExtensionMethod_generateCodePhase_31_ (cPtr_abstractFileGeneration * in
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
     inObject->method_generateCodePhase_31_ (constin_inOutputDirectory, constin_inGenerationStruct, io_ioUsedProtocolSet, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
@@ -13687,7 +13687,7 @@ void callExtensionMethod_generateCodePhase_31_ (cPtr_abstractFileGeneration * in
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractFileGeneration generateCodePhase2'
+//Abstract extension proc '@abstractFileGeneration generateCodePhase2'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13699,7 +13699,7 @@ void callExtensionMethod_generateCodePhase_32_ (cPtr_abstractFileGeneration * in
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractFileGeneration) ;
     inObject->method_generateCodePhase_32_ (constin_inOutputDirectory, constin_inGenerationStruct, constin_inUsedProtocolSet, io_ioGeneratedFileSet, inCompiler COMMA_THERE) ;
@@ -13717,10 +13717,10 @@ class CollectionElementPtr_fileGenerationList : public CollectionElementPtr {
                                                    COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_fileGenerationList (const GGS_fileGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -14128,7 +14128,7 @@ void GGS_fileGenerationList::setter_setMFileGenerationAtIndex (GGS_abstractFileG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_abstractFileGeneration GGS_fileGenerationList::getter_mFileGenerationAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
@@ -14248,10 +14248,10 @@ class CollectionElementPtr_entityListForGeneratingEBManagedObjectContext : publi
                                                                               COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_entityListForGeneratingEBManagedObjectContext (const GGS_entityListForGeneratingEBManagedObjectContext_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -14684,7 +14684,7 @@ void GGS_entityListForGeneratingEBManagedObjectContext::setter_setMEntityNameAtI
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_entityListForGeneratingEBManagedObjectContext::getter_mEntityNameAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -14723,7 +14723,7 @@ void GGS_entityListForGeneratingEBManagedObjectContext::setter_setMObsoleteEntit
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstringlist GGS_entityListForGeneratingEBManagedObjectContext::getter_mObsoleteEntityNamesAtIndex (const GGS_uint & inIndex,
                                                                                                        Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const {

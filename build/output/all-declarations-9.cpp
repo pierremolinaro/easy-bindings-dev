@@ -8,7 +8,7 @@
 #include "all-declarations-9.h"
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@integerAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@integerAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -120,7 +120,7 @@ void cPtr_integerAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeK
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@doubleAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@doubleAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_doubleAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -186,7 +186,7 @@ void cPtr_doubleAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKi
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@stringAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@stringAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_stringAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -529,7 +529,7 @@ C_galgas_function_descriptor functionDescriptor_predefinedColors ("predefinedCol
                                                                   functionArgs_predefinedColors) ;
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@identifierAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@identifierAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -794,7 +794,7 @@ void cPtr_identifierAsDefaultValue::method_analyzeDefaultValueType (const GGS_ty
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@prefsAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@prefsAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_prefsAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,
@@ -888,7 +888,7 @@ void cPtr_prefsAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKin
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@prefsAsDefaultValue enterDefaultValuePrecedence'
+//Overriding extension proc '@prefsAsDefaultValue enterDefaultValuePrecedence'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_prefsAsDefaultValue::method_enterDefaultValuePrecedence (const GGS_lstring constinArgument_inNode,
@@ -1015,7 +1015,7 @@ GGS_string filewrapperTemplate_predefinedOutletClasses_sourceFile (Compiler * /*
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutViewClassDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@autoLayoutViewClassDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutViewClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -1042,7 +1042,7 @@ void cPtr_autoLayoutViewClassDeclarationAST::method_enterInPrecedenceGraph (GGS_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutViewClassDeclarationAST nodeKey'
+//Overriding extension func '@autoLayoutViewClassDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1057,7 +1057,7 @@ GGS_lstring cPtr_autoLayoutViewClassDeclarationAST::getter_nodeKey (Compiler */*
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutViewClassDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@autoLayoutViewClassDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutViewClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -1162,7 +1162,7 @@ void cPtr_autoLayoutViewClassDeclarationAST::method_firstAnalysisPhase (GGS_sema
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@atomicClassDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@atomicClassDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -1177,7 +1177,7 @@ void cPtr_atomicClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicClassDeclarationAST nodeKey'
+//Overriding extension func '@atomicClassDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1246,7 +1246,7 @@ void routine_enterAtomicClassesIn_26_declarationList (GGS_declarationListAST & i
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@atomicClassDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@atomicClassDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -2440,7 +2440,7 @@ void routine_buildBindingSpecificationMap_26__3F_ (GGS_semanticContext & ioArgum
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@arrayControllerDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@arrayControllerDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_arrayControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -2494,7 +2494,7 @@ void cPtr_arrayControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_decl
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@arrayControllerDeclarationAST nodeKey'
+//Overriding extension func '@arrayControllerDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2511,7 +2511,7 @@ GGS_lstring cPtr_arrayControllerDeclarationAST::getter_nodeKey (Compiler * inCom
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@arrayControllerDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@arrayControllerDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_arrayControllerDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -2691,7 +2691,7 @@ void cPtr_arrayControllerDeclarationAST::method_firstAnalysisPhase (GGS_semantic
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@arrayControllerDeclarationAST thirdAnalysisPhase'
+//Overriding extension proc '@arrayControllerDeclarationAST thirdAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_arrayControllerDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -2825,7 +2825,7 @@ void cPtr_arrayControllerDeclarationAST::method_thirdAnalysisPhase (GGS_semantic
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@arrayControllerPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@arrayControllerPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2866,7 +2866,7 @@ GGS_string cPtr_arrayControllerPropertyGeneration::getter_propertyDeclarationCod
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@arrayControllerPropertyGeneration initCode'
+//Overriding extension func '@arrayControllerPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2881,7 +2881,7 @@ GGS_string cPtr_arrayControllerPropertyGeneration::getter_initCode (Compiler */*
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@arrayControllerPropertyGeneration configurationCode'
+//Overriding extension func '@arrayControllerPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3086,7 +3086,7 @@ GGS_string filewrapperTemplate_arrayControllerGenerationTemplate_arrayController
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@arrayControllerGeneration generateCodePhase1'
+//Overriding extension proc '@arrayControllerGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_arrayControllerGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument_inOutputDirectory */,
@@ -3098,7 +3098,7 @@ void cPtr_arrayControllerGeneration::method_generateCodePhase_31_ (const GGS_str
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@arrayControllerGeneration generateCodePhase2'
+//Overriding extension proc '@arrayControllerGeneration generateCodePhase2'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_arrayControllerGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
@@ -3122,7 +3122,7 @@ void cPtr_arrayControllerGeneration::method_generateCodePhase_32_ (const GGS_str
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@literalIntMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_literalIntMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool /* constinArgument_inPreferences */,
@@ -3143,7 +3143,7 @@ void cPtr_literalIntMultipleBindingExpressionAST::method_analyzeExpressionForMul
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@observablePropertyInMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3243,7 +3243,7 @@ void cPtr_observablePropertyInMultipleBindingExpressionAST::method_analyzeExpres
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@negateBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_negateBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3271,7 +3271,7 @@ void cPtr_negateBooleanMultipleBindingExpressionAST::method_analyzeExpressionFor
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@orBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3316,7 +3316,7 @@ void cPtr_orBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMult
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@xorBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3361,7 +3361,7 @@ void cPtr_xorBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@andBooleanMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_andBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3406,7 +3406,7 @@ void cPtr_andBooleanMultipleBindingExpressionAST::method_analyzeExpressionForMul
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
+//Overriding extension proc '@comparisonMultipleBindingExpressionAST analyzeExpressionForMultipleBinding'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_comparisonMultipleBindingExpressionAST::method_analyzeExpressionForMultipleBinding (const GGS_bool constinArgument_inPreferences,
@@ -3457,7 +3457,7 @@ void cPtr_comparisonMultipleBindingExpressionAST::method_analyzeExpressionForMul
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@booleanMultipleBindingLiteralIntForGeneration expressionString'
+//Overriding extension func '@booleanMultipleBindingLiteralIntForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3473,7 +3473,7 @@ GGS_string cPtr_booleanMultipleBindingLiteralIntForGeneration::getter_expression
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@observablePropertyAsBooleanMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3489,7 +3489,7 @@ GGS_string cPtr_observablePropertyAsBooleanMultipleBindingExpressionForGeneratio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@negateBooleanMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@negateBooleanMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3505,7 +3505,7 @@ GGS_string cPtr_negateBooleanMultipleBindingExpressionForGeneration::getter_expr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@orBooleanMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@orBooleanMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3522,7 +3522,7 @@ GGS_string cPtr_orBooleanMultipleBindingExpressionForGeneration::getter_expressi
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@xorBooleanMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@xorBooleanMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3539,7 +3539,7 @@ GGS_string cPtr_xorBooleanMultipleBindingExpressionForGeneration::getter_express
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@andBooleanMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@andBooleanMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3556,7 +3556,7 @@ GGS_string cPtr_andBooleanMultipleBindingExpressionForGeneration::getter_express
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@comparisonMultipleBindingExpressionForGeneration expressionString'
+//Overriding extension func '@comparisonMultipleBindingExpressionForGeneration expressionString'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3608,7 +3608,7 @@ GGS_string cPtr_comparisonMultipleBindingExpressionForGeneration::getter_express
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@selectionControllerDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@selectionControllerDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_selectionControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -3632,7 +3632,7 @@ void cPtr_selectionControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@selectionControllerDeclarationAST nodeKey'
+//Overriding extension func '@selectionControllerDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3649,7 +3649,7 @@ GGS_lstring cPtr_selectionControllerDeclarationAST::getter_nodeKey (Compiler * i
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@selectionControllerDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@selectionControllerDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_selectionControllerDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -3747,7 +3747,7 @@ void cPtr_selectionControllerDeclarationAST::method_firstAnalysisPhase (GGS_sema
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@selectionControllerDeclarationAST fourthAnalysisPhase'
+//Overriding extension proc '@selectionControllerDeclarationAST fourthAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -3888,7 +3888,7 @@ void cPtr_selectionControllerDeclarationAST::method_fourthAnalysisPhase (GGS_sem
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@selectionControllerPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@selectionControllerPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3913,7 +3913,7 @@ GGS_string cPtr_selectionControllerPropertyGeneration::getter_propertyDeclaratio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@selectionControllerPropertyGeneration configurationCode'
+//Overriding extension func '@selectionControllerPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3934,7 +3934,7 @@ GGS_string cPtr_selectionControllerPropertyGeneration::getter_configurationCode 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@selectionControllerPropertyGeneration initCode'
+//Overriding extension func '@selectionControllerPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -4327,7 +4327,7 @@ void routine_generateSelectionControllers_3F__3F__26_ (const GGS_selectionContro
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astSeparatorInstructionDeclaration generateViewCode'
+//Overriding extension proc '@astSeparatorInstructionDeclaration generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astSeparatorInstructionDeclaration::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap /* constinArgument_inViewDeclarationMap */,
@@ -4350,7 +4350,7 @@ void cPtr_astSeparatorInstructionDeclaration::method_generateViewCode (const GGS
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astGutterInstructionDeclaration generateViewCode'
+//Overriding extension proc '@astGutterInstructionDeclaration generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astGutterInstructionDeclaration::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap /* constinArgument_inViewDeclarationMap */,
@@ -4373,7 +4373,7 @@ void cPtr_astGutterInstructionDeclaration::method_generateViewCode (const GGS_au
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astComputedHorizontalViewDeclaration checkView'
+//Overriding extension proc '@astComputedHorizontalViewDeclaration checkView'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astComputedHorizontalViewDeclaration::method_checkView (const GGS_string /* constinArgument_inViewName */,
@@ -4417,7 +4417,7 @@ void cPtr_astComputedHorizontalViewDeclaration::method_checkView (const GGS_stri
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astComputedVerticalViewDeclaration checkView'
+//Overriding extension proc '@astComputedVerticalViewDeclaration checkView'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astComputedVerticalViewDeclaration::method_checkView (const GGS_string /* constinArgument_inViewName */,
@@ -4463,7 +4463,7 @@ void cPtr_astComputedVerticalViewDeclaration::method_checkView (const GGS_string
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astSpaceViewInstruction generateViewCode'
+//Overriding extension proc '@astSpaceViewInstruction generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astSpaceViewInstruction::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap /* constinArgument_inViewDeclarationMap */,
@@ -4485,7 +4485,7 @@ void cPtr_astSpaceViewInstruction::method_generateViewCode (const GGS_autoLayout
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astDividerInstructionDeclaration generateViewCode'
+//Overriding extension proc '@astDividerInstructionDeclaration generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astDividerInstructionDeclaration::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap /* constinArgument_inViewDeclarationMap */,
@@ -4508,7 +4508,7 @@ void cPtr_astDividerInstructionDeclaration::method_generateViewCode (const GGS_a
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astLocalViewInstruction generateViewCode'
+//Overriding extension proc '@astLocalViewInstruction generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astLocalViewInstruction::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap /* constinArgument_inViewDeclarationMap */,
@@ -4531,7 +4531,7 @@ void cPtr_astLocalViewInstruction::method_generateViewCode (const GGS_autoLayout
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astComputedViewInstruction generateViewCode'
+//Overriding extension proc '@astComputedViewInstruction generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astComputedViewInstruction::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap constinArgument_inViewDeclarationMap,
@@ -5560,7 +5560,7 @@ void routine_analyzeAutoLayoutRegularBinding_3F_prefs_3F__3F__3F__3F__3F__3F__3F
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astHStackViewInstructionDeclaration generateViewCode'
+//Overriding extension proc '@astHStackViewInstructionDeclaration generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astHStackViewInstructionDeclaration::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap constinArgument_inViewDeclarationMap,
@@ -5633,7 +5633,7 @@ void cPtr_astHStackViewInstructionDeclaration::method_generateViewCode (const GG
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@astVStackViewInstructionDeclaration generateViewCode'
+//Overriding extension proc '@astVStackViewInstructionDeclaration generateViewCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_astVStackViewInstructionDeclaration::method_generateViewCode (const GGS_autoLayoutViewDeclarationMap constinArgument_inViewDeclarationMap,
@@ -5709,7 +5709,7 @@ void cPtr_astVStackViewInstructionDeclaration::method_generateViewCode (const GG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutSeparatorInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutSeparatorInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5737,7 +5737,7 @@ GGS_string cPtr_autoLayoutSeparatorInstructionGeneration::getter_generateViewIns
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutSeparatorInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutSeparatorInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5755,7 +5755,7 @@ GGS_string cPtr_autoLayoutSeparatorInstructionGeneration::getter_generateAppendV
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutGutterInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutGutterInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5783,7 +5783,7 @@ GGS_string cPtr_autoLayoutGutterInstructionGeneration::getter_generateViewInstru
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutGutterInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutGutterInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5801,7 +5801,7 @@ GGS_string cPtr_autoLayoutGutterInstructionGeneration::getter_generateAppendView
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@computedHorizontalViewGeneration generateViewBuilder'
+//Overriding extension func '@computedHorizontalViewGeneration generateViewBuilder'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5835,7 +5835,7 @@ GGS_string cPtr_computedHorizontalViewGeneration::getter_generateViewBuilder (co
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@computedVerticalViewGeneration generateViewBuilder'
+//Overriding extension func '@computedVerticalViewGeneration generateViewBuilder'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5890,7 +5890,7 @@ GGS_string cPtr_computedVerticalViewGeneration::getter_generateViewBuilder (cons
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutSpaceViewInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutSpaceViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5908,7 +5908,7 @@ GGS_string cPtr_autoLayoutSpaceViewInstructionGeneration::getter_generateViewIns
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutSpaceViewInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutSpaceViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5926,7 +5926,7 @@ GGS_string cPtr_autoLayoutSpaceViewInstructionGeneration::getter_generateAppendV
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutDividerInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutDividerInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5954,7 +5954,7 @@ GGS_string cPtr_autoLayoutDividerInstructionGeneration::getter_generateViewInstr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutDividerInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutDividerInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5972,7 +5972,7 @@ GGS_string cPtr_autoLayoutDividerInstructionGeneration::getter_generateAppendVie
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutLocalViewInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutLocalViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5991,7 +5991,7 @@ GGS_string cPtr_autoLayoutLocalViewInstructionGeneration::getter_generateViewIns
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutLocalViewInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutLocalViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6010,7 +6010,7 @@ GGS_string cPtr_autoLayoutLocalViewInstructionGeneration::getter_generateAppendV
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutComputedViewInstructionGeneration generateViewInstruction'
+//Overriding extension func '@autoLayoutComputedViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6141,7 +6141,7 @@ GGS_string cPtr_autoLayoutComputedViewInstructionGeneration::getter_generateView
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutComputedViewInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@autoLayoutComputedViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6277,7 +6277,7 @@ GGS_string cPtr_autoLayoutComputedViewInstructionGeneration::getter_generateAppe
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@hStackViewInstructionGeneration generateViewInstruction'
+//Overriding extension func '@hStackViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6315,7 +6315,7 @@ GGS_string cPtr_hStackViewInstructionGeneration::getter_generateViewInstruction 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@hStackViewInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@hStackViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6358,7 +6358,7 @@ GGS_string cPtr_hStackViewInstructionGeneration::getter_generateAppendViewInstru
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@vStackViewInstructionGeneration generateViewInstruction'
+//Overriding extension func '@vStackViewInstructionGeneration generateViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6417,7 +6417,7 @@ GGS_string cPtr_vStackViewInstructionGeneration::getter_generateViewInstruction 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@vStackViewInstructionGeneration generateAppendViewInstruction'
+//Overriding extension func '@vStackViewInstructionGeneration generateAppendViewInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7147,7 +7147,7 @@ void routine_analyzeRegularBinding_3F__3F__3F__3F__3F__3F__3F__3F__26_ (const GG
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@transientDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@transientDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -7399,7 +7399,7 @@ void cPtr_transientDeclarationAST::method_enterInPrecedenceGraph (GGS_declaratio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientDeclarationAST nodeKey'
+//Overriding extension func '@transientDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7416,7 +7416,7 @@ GGS_lstring cPtr_transientDeclarationAST::getter_nodeKey (Compiler * inCompiler
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@transientDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@transientDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -7481,7 +7481,7 @@ void cPtr_transientDeclarationAST::method_firstAnalysisPhase (GGS_semanticContex
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@transientDeclarationAST thirdAnalysisPhase'
+//Overriding extension proc '@transientDeclarationAST thirdAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -7665,7 +7665,7 @@ void cPtr_transientDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContex
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration declarationInSelectionControllerCode'
+//Overriding extension func '@transientPropertyGeneration declarationInSelectionControllerCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7686,7 +7686,7 @@ GGS_string cPtr_transientPropertyGeneration::getter_declarationInSelectionContro
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration initCode'
+//Overriding extension func '@transientPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7701,7 +7701,7 @@ GGS_string cPtr_transientPropertyGeneration::getter_initCode (Compiler */* inCom
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration bindPropertyInSelectionController'
+//Overriding extension func '@transientPropertyGeneration bindPropertyInSelectionController'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7759,7 +7759,7 @@ GGS_string cPtr_transientPropertyGeneration::getter_bindPropertyInSelectionContr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@transientPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7814,7 +7814,7 @@ GGS_string cPtr_transientPropertyGeneration::getter_propertyDeclarationCode (con
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@transientPropertyGeneration configurationCode'
+//Overriding extension func '@transientPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7887,7 +7887,7 @@ GGS_string cPtr_transientPropertyGeneration::getter_configurationCode (const GGS
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@transientRoutineGeneration generateCodePhase2'
+//Overriding extension proc '@transientRoutineGeneration generateCodePhase2'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientRoutineGeneration::method_generateCodePhase_32_ (const GGS_string /* constinArgument_inOutputDirectory */,
@@ -7899,7 +7899,7 @@ void cPtr_transientRoutineGeneration::method_generateCodePhase_32_ (const GGS_st
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@transientRoutineGeneration generateCodePhase1'
+//Overriding extension proc '@transientRoutineGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_transientRoutineGeneration::method_generateCodePhase_31_ (const GGS_string constinArgument_inOutputDirectory,
@@ -8406,7 +8406,7 @@ void routine_generateScalarProperty_3F__3F__3F_transient_3F__26_ (const GGS_stri
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@enumerationDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@enumerationDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_enumerationDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -8421,7 +8421,7 @@ void cPtr_enumerationDeclarationAST::method_enterInPrecedenceGraph (GGS_declarat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@enumerationDeclarationAST nodeKey'
+//Overriding extension func '@enumerationDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8436,7 +8436,7 @@ GGS_lstring cPtr_enumerationDeclarationAST::getter_nodeKey (Compiler */* inCompi
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@enumerationDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@enumerationDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_enumerationDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,

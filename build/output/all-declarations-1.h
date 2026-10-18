@@ -276,7 +276,7 @@ class GGS_propertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -557,7 +557,7 @@ class GGS_decoratedOutletMap_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -940,7 +940,7 @@ class GGS_autoLayoutOutletMap_2E_element : public AC_GALGAS_root {
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1404,7 +1404,7 @@ class GGS_actionBindingListForGeneration_2E_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2030,7 +2030,7 @@ class GGS_regularBindingsGenerationList_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2375,7 +2375,7 @@ class cPtr_abstractBooleanMultipleBindingExpressionForGeneration : public Abstra
   public: void abstractBooleanMultipleBindingExpressionForGeneration_init (Compiler * inCompiler) ;
 
 
-//--- Extension getter expressionString
+//--- Extension func expressionString
   public: virtual class GGS_string getter_expressionString (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
 //--- Properties
@@ -2468,7 +2468,7 @@ class GGS_multipleBindingGenerationList_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2791,7 +2791,7 @@ class GGS_tableViewBindingGenerationList_2E_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3114,7 +3114,7 @@ class GGS_ebViewGraphicControllerBindingGenerationList_2E_element : public AC_GA
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3438,7 +3438,7 @@ class cPtr_abstractViewGeneration : public AbstractStrongPtrClass {
   public: void abstractViewGeneration_init (Compiler * inCompiler) ;
 
 
-//--- Extension getter generateViewBuilder
+//--- Extension func generateViewBuilder
   public: virtual class GGS_string getter_generateViewBuilder (const class GGS_bool inPreferences,
            const class GGS_string inViewName,
            Compiler * COMMA_LOCATION_ARGS) const = 0 ;
@@ -3522,7 +3522,7 @@ class GGS_viewGenerationList_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3825,13 +3825,13 @@ class cPtr_abstractViewInstructionGeneration : public AbstractStrongPtrClass {
   public: void abstractViewInstructionGeneration_init (Compiler * inCompiler) ;
 
 
-//--- Extension getter generateAppendViewInstruction
+//--- Extension func generateAppendViewInstruction
   public: virtual class GGS_string getter_generateAppendViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inReceiverViewName,
            const class GGS_string inIndentation,
            Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-//--- Extension getter generateViewInstruction
+//--- Extension func generateViewInstruction
   public: virtual class GGS_string getter_generateViewInstruction (const class GGS_bool inPreferences,
            const class GGS_string inName,
            const class GGS_string inIndentation,
@@ -3905,7 +3905,7 @@ class GGS_implicitViewFunctionGenerationList_2E_element : public AC_GALGAS_root 
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -4186,7 +4186,7 @@ class GGS_autoLayoutConfiguratorMap_2E_element : public AC_GALGAS_root {
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -4412,14 +4412,14 @@ class cPtr_autoLayoutDocumentFileGeneration : public cPtr_abstractFileGeneration
                                                                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method generateCodePhase1
+//--- Extension proc generateCodePhase1
   public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            class GGS_stringset & arg_ioUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCodePhase2
+//--- Extension proc generateCodePhase2
   public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            const class GGS_stringset arg_inUsedProtocolSet,
@@ -4892,7 +4892,7 @@ class GGS_simpleStoredPropertyList_2E_element : public AC_GALGAS_root {
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5215,7 +5215,7 @@ class GGS_externSwiftFunctionList_2E_element : public AC_GALGAS_root {
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5399,7 +5399,7 @@ class GGS_prefDeclaration : public AC_GALGAS_root {
                                                     Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5438,19 +5438,19 @@ class cPtr_prefsDeclarationAST : public cPtr_abstractDeclarationAST {
                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter nodeKey
+//--- Extension func nodeKey
   public: virtual class GGS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterInPrecedenceGraph
+//--- Extension proc enterInPrecedenceGraph
   public: virtual void method_enterInPrecedenceGraph (class GGS_declarationPrecedenceGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method firstAnalysisPhase
+//--- Extension proc firstAnalysisPhase
   public: virtual void method_firstAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
            class GGS_generationStruct & arg_ioGeneration,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method fourthAnalysisPhase
+//--- Extension proc fourthAnalysisPhase
   public: virtual void method_fourthAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
            class GGS_generationStruct & arg_ioGeneration,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -5674,14 +5674,14 @@ class cPtr_preferencesForGeneration : public cPtr_abstractFileGeneration {
                                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension method generateCodePhase1
+//--- Extension proc generateCodePhase1
   public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            class GGS_stringset & arg_ioUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCodePhase2
+//--- Extension proc generateCodePhase2
   public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            const class GGS_stringset arg_inUsedProtocolSet,
@@ -6180,7 +6180,7 @@ class GGS_XCodeGroupList_2E_element : public AC_GALGAS_root {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -6791,7 +6791,7 @@ class GGS_XCodeToolTargetList_2E_element : public AC_GALGAS_root {
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7530,7 +7530,7 @@ class GGS_XCodeAppTargetList_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7885,7 +7885,7 @@ class GGS_BuildFileList_2E_element : public AC_GALGAS_root {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8007,14 +8007,14 @@ class cPtr_outletClassDeclarationAST : public cPtr_abstractDeclarationAST {
                                                                                Compiler * inCompiler) ;
 
 
-//--- Extension getter nodeKey
+//--- Extension func nodeKey
   public: virtual class GGS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterInPrecedenceGraph
+//--- Extension proc enterInPrecedenceGraph
   public: virtual void method_enterInPrecedenceGraph (class GGS_declarationPrecedenceGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method firstAnalysisPhase
+//--- Extension proc firstAnalysisPhase
   public: virtual void method_firstAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
            class GGS_generationStruct & arg_ioGeneration,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -8544,7 +8544,7 @@ class GGS_outletClassMap_2E_element : public AC_GALGAS_root {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8740,14 +8740,14 @@ class cPtr_atomicPropertyDeclarationAST : public cPtr_abstractDeclarationAST {
                                                                                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension getter nodeKey
+//--- Extension func nodeKey
   public: virtual class GGS_lstring getter_nodeKey (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterInPrecedenceGraph
+//--- Extension proc enterInPrecedenceGraph
   public: virtual void method_enterInPrecedenceGraph (class GGS_declarationPrecedenceGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method firstAnalysisPhase
+//--- Extension proc firstAnalysisPhase
   public: virtual void method_firstAnalysisPhase (class GGS_semanticContext & arg_ioSemanticContext,
            class GGS_generationStruct & arg_ioGeneration,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -8965,23 +8965,23 @@ class cPtr_atomicPropertyGeneration : public cPtr_propertyGeneration {
                                                                                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension getter bindPropertyInSelectionController
+//--- Extension func bindPropertyInSelectionController
   public: virtual class GGS_string getter_bindPropertyInSelectionController (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter configurationCode
+//--- Extension func configurationCode
   public: virtual class GGS_string getter_configurationCode (const class GGS_bool inPreferences,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter declarationInSelectionControllerCode
+//--- Extension func declarationInSelectionControllerCode
   public: virtual class GGS_string getter_declarationInSelectionControllerCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter initCode
+//--- Extension func initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter prefKeyDefinitionCode
+//--- Extension func prefKeyDefinitionCode
   public: virtual class GGS_string getter_prefKeyDefinitionCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter propertyDeclarationCode
+//--- Extension func propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
            const class GGS_bool inGenerationDirectAccess,
            const class GGS_stringset inOverriddenTransients,
@@ -9374,7 +9374,7 @@ class GGS_atomicPropertyGenerationList_2E_element : public AC_GALGAS_root {
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9665,7 +9665,7 @@ class GGS_declarationListAST_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9921,7 +9921,7 @@ class cPtr_boolAsDefaultValue : public cPtr_abstractDefaultValue {
                                             Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
@@ -10098,7 +10098,7 @@ class cPtr_doubleAsDefaultValue : public cPtr_abstractDefaultValue {
                                               Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
@@ -10280,7 +10280,7 @@ class cPtr_integerAsDefaultValue : public cPtr_abstractDefaultValue {
                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
@@ -10459,7 +10459,7 @@ class cPtr_stringAsDefaultValue : public cPtr_abstractDefaultValue {
                                               Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
@@ -10636,7 +10636,7 @@ class cPtr_identifierAsDefaultValue : public cPtr_abstractDefaultValue {
                                                   Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
@@ -10813,13 +10813,13 @@ class cPtr_prefsAsDefaultValue : public cPtr_abstractDefaultValue {
                                              Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeDefaultValueType
+//--- Extension proc analyzeDefaultValueType
   public: virtual void method_analyzeDefaultValueType (const class GGS_typeKindList arg_inAttributeActualTypeList,
            const class GGS_propertyMap arg_inPreferencesPropertyMap,
            class GGS_string & arg_outSwiftDefaultValueAsString,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterDefaultValuePrecedence
+//--- Extension proc enterDefaultValuePrecedence
   public: virtual void method_enterDefaultValuePrecedence (const class GGS_lstring arg_inNode,
            class GGS_declarationPrecedenceGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -10930,7 +10930,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_prefsAsDefaultValue_2E
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractDefaultValue analyzeDefaultValueType'
+//Abstract extension proc '@abstractDefaultValue analyzeDefaultValueType'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -11168,7 +11168,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_propertyMap ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@abstractDefaultValue enterDefaultValuePrecedence'
+//Extension proc '@abstractDefaultValue enterDefaultValuePrecedence'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -11495,7 +11495,7 @@ class GGS_classKind : public AC_GALGAS_root {
 
   public: static class GGS_classKind class_func_prefs (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -11824,7 +11824,7 @@ class GGS_classMap_2E_element : public AC_GALGAS_root {
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 

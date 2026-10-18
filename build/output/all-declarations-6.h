@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@typeKind typeName' (as function)
+//Extension func '@typeKind typeName' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ class GGS_string extensionGetter_typeName (const class GGS_typeKind & inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyKind typeName' (as function)
+//Extension func '@propertyKind typeName' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -179,14 +179,14 @@ class cPtr_autoLayoutTableViewControllerPropertyGeneration : public cPtr_propert
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter configurationCode
+//--- Extension func configurationCode
   public: virtual class GGS_string getter_configurationCode (const class GGS_bool inPreferences,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter initCode
+//--- Extension func initCode
   public: virtual class GGS_string getter_initCode (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter propertyDeclarationCode
+//--- Extension func propertyDeclarationCode
   public: virtual class GGS_string getter_propertyDeclarationCode (const class GGS_bool inPreferences,
            const class GGS_bool inGenerationDirectAccess,
            const class GGS_stringset inOverriddenTransients,
@@ -401,14 +401,14 @@ class cPtr_autoLayoutTableViewControllerGeneration : public cPtr_abstractFileGen
                                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method generateCodePhase1
+//--- Extension proc generateCodePhase1
   public: virtual void method_generateCodePhase_31_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            class GGS_stringset & arg_ioUsedProtocolSet,
            class GGS_stringset & arg_ioGeneratedFileSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCodePhase2
+//--- Extension proc generateCodePhase2
   public: virtual void method_generateCodePhase_32_ (const class GGS_string arg_inOutputDirectory,
            const class GGS_generationStruct arg_inGenerationStruct,
            const class GGS_stringset arg_inUsedProtocolSet,
@@ -786,7 +786,7 @@ class GGS_XcodeProjectDescriptor : public AC_GALGAS_root {
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1048,7 +1048,7 @@ void extensionSetter_addSettingsToDefaultConfiguration (class GGS_XcodeProjectDe
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor generateAtPath'
+//Extension proc '@XcodeProjectDescriptor generateAtPath'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1106,7 +1106,7 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (clas
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'
+//Abstract extension proc '@abstractDeclarationAST enterInPrecedenceGraph'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1117,7 +1117,7 @@ void callExtensionMethod_enterInPrecedenceGraph (class cPtr_abstractDeclarationA
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractDeclarationAST nodeKey'
+//Abstract extension func '@abstractDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1127,7 +1127,7 @@ class GGS_lstring callExtensionGetter_nodeKey (const class cPtr_abstractDeclarat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractDeclarationAST firstAnalysisPhase'
+//Abstract extension proc '@abstractDeclarationAST firstAnalysisPhase'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1139,7 +1139,7 @@ void callExtensionMethod_firstAnalysisPhase (class cPtr_abstractDeclarationAST *
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@abstractDeclarationAST secondAnalysisPhase'
+//Extension proc '@abstractDeclarationAST secondAnalysisPhase'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1151,7 +1151,7 @@ void callExtensionMethod_secondAnalysisPhase (class cPtr_abstractDeclarationAST 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@abstractDeclarationAST thirdAnalysisPhase'
+//Extension proc '@abstractDeclarationAST thirdAnalysisPhase'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1163,7 +1163,7 @@ void callExtensionMethod_thirdAnalysisPhase (class cPtr_abstractDeclarationAST *
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@abstractDeclarationAST fourthAnalysisPhase'
+//Extension proc '@abstractDeclarationAST fourthAnalysisPhase'
 //
 //--------------------------------------------------------------------------------------------------
 

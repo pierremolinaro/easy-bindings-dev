@@ -128,7 +128,7 @@ void GGS_enumFunAssociationSortedList::setter_popSmallest (GGS_uint & outOperand
   bool found = false ;
   if (isValid ()) {
     if (count () == 0) {
-      inCompiler->onTheFlyRunTimeError ("'popSmallest' method invoked on an empty list" COMMA_THERE) ;
+      inCompiler->onTheFlyRunTimeError ("'popSmallest' proc invoked on an empty list" COMMA_THERE) ;
     }else{
       outOperand0 = mSharedArray (0 COMMA_HERE).mProperty_mIndex ;
       outOperand1 = mSharedArray (0 COMMA_HERE).mProperty_mAssociatedString ;
@@ -151,7 +151,7 @@ void GGS_enumFunAssociationSortedList::setter_popGreatest (GGS_uint & outOperand
   bool found = false ;
   if (isValid ()) {
     if (count () == 0) {
-      inCompiler->onTheFlyRunTimeError ("'popGreatest' method invoked on an empty list" COMMA_THERE) ;
+      inCompiler->onTheFlyRunTimeError ("'popGreatest' proc invoked on an empty list" COMMA_THERE) ;
     }else{
       outOperand0 = mSharedArray.lastObject (HERE).mProperty_mIndex ;
       outOperand1 = mSharedArray.lastObject (HERE).mProperty_mAssociatedString ;
@@ -174,7 +174,7 @@ void GGS_enumFunAssociationSortedList::method_smallest (GGS_uint & outOperand0,
   bool found = false ;
   if (isValid ()) {
     if (count () == 0) {
-      inCompiler->onTheFlyRunTimeError ("'smallest' method invoked on an empty list" COMMA_THERE) ;
+      inCompiler->onTheFlyRunTimeError ("'smallest' proc invoked on an empty list" COMMA_THERE) ;
     }else{
       outOperand0 = mSharedArray (0 COMMA_HERE).mProperty_mIndex ;
       outOperand1 = mSharedArray (0 COMMA_HERE).mProperty_mAssociatedString ;
@@ -196,7 +196,7 @@ void GGS_enumFunAssociationSortedList::method_greatest (GGS_uint & outOperand0,
   bool found = false ;
   if (isValid ()) {
     if (count () == 0) {
-      inCompiler->onTheFlyRunTimeError ("'greatest' method invoked on an empty list" COMMA_THERE) ;
+      inCompiler->onTheFlyRunTimeError ("'greatest' proc invoked on an empty list" COMMA_THERE) ;
     }else{
       outOperand0 = mSharedArray.lastObject (HERE).mProperty_mIndex ;
       outOperand1 = mSharedArray.lastObject (HERE).mProperty_mAssociatedString ;
@@ -2181,10 +2181,10 @@ class CollectionElementPtr_toManyProxyGenerationList : public CollectionElementP
                                                           COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_toManyProxyGenerationList (const GGS_toManyProxyGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -2592,7 +2592,7 @@ void GGS_toManyProxyGenerationList::setter_setMPropertyAtIndex (GGS_toManyProxyG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_toManyProxyGeneration GGS_toManyProxyGenerationList::getter_mPropertyAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
@@ -2833,10 +2833,10 @@ class CollectionElementPtr_atomicProxyGenerationList : public CollectionElementP
                                                           COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_atomicProxyGenerationList (const GGS_atomicProxyGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3244,7 +3244,7 @@ void GGS_atomicProxyGenerationList::setter_setMPropertyAtIndex (GGS_atomicProxyG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_atomicProxyGeneration GGS_atomicProxyGenerationList::getter_mPropertyAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
@@ -3607,10 +3607,10 @@ class CollectionElementPtr_computedPropertyGenerationList : public CollectionEle
                                                                COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_computedPropertyGenerationList (const GGS_computedPropertyGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4018,7 +4018,7 @@ void GGS_computedPropertyGenerationList::setter_setMPropertyAtIndex (GGS_compute
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_computedPropertyGeneration GGS_computedPropertyGenerationList::getter_mPropertyAtIndex (const GGS_uint & inIndex,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const {
@@ -4705,7 +4705,7 @@ void GGS_classKind::method_extractAtomic (GGS_typeKind & outAssociatedValue_kind
   if (mEnum != Enumeration::enum_atomic) {
     outAssociatedValue_kind.drop () ;
     String s ;
-    s.appendCString ("method @classKind.atomic invoked with an invalid enum value") ;
+    s.appendCString ("proc @classKind.atomic invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_classKind_2E_atomic *) mAssociatedValues.associatedValuesPointer () ;
@@ -4721,7 +4721,7 @@ void GGS_classKind::method_extractDocument (GGS_lstring & outAssociatedValue_roo
   if (mEnum != Enumeration::enum_document) {
     outAssociatedValue_rootEntityName.drop () ;
     String s ;
-    s.appendCString ("method @classKind.document invoked with an invalid enum value") ;
+    s.appendCString ("proc @classKind.document invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_classKind_2E_document *) mAssociatedValues.associatedValuesPointer () ;
@@ -4743,7 +4743,7 @@ void GGS_classKind::method_extractEntity (GGS_string & outAssociatedValue_superE
     outAssociatedValue_isAbstract.drop () ;
     outAssociatedValue_handlingOpposite.drop () ;
     String s ;
-    s.appendCString ("method @classKind.entity invoked with an invalid enum value") ;
+    s.appendCString ("proc @classKind.entity invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_classKind_2E_entity *) mAssociatedValues.associatedValuesPointer () ;
@@ -5376,7 +5376,7 @@ void GGS_propertyAccessibility::method_extractTransient (GGS_bool & outAssociate
   if (mEnum != Enumeration::enum_transient) {
     outAssociatedValue_isAbstract.drop () ;
     String s ;
-    s.appendCString ("method @propertyAccessibility.transient invoked with an invalid enum value") ;
+    s.appendCString ("proc @propertyAccessibility.transient invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_propertyAccessibility_2E_transient *) mAssociatedValues.associatedValuesPointer () ;
@@ -5860,7 +5860,7 @@ void GGS_toOneOppositeRelationship::method_extractOppositeIsToOne (GGS_lstring &
   if (mEnum != Enumeration::enum_oppositeIsToOne) {
     outAssociatedValue_oppositeRelationshipName.drop () ;
     String s ;
-    s.appendCString ("method @toOneOppositeRelationship.oppositeIsToOne invoked with an invalid enum value") ;
+    s.appendCString ("proc @toOneOppositeRelationship.oppositeIsToOne invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_toOneOppositeRelationship_2E_oppositeIsToOne *) mAssociatedValues.associatedValuesPointer () ;
@@ -5876,7 +5876,7 @@ void GGS_toOneOppositeRelationship::method_extractOppositeIsToMany (GGS_lstring 
   if (mEnum != Enumeration::enum_oppositeIsToMany) {
     outAssociatedValue_oppositeRelationshipName.drop () ;
     String s ;
-    s.appendCString ("method @toOneOppositeRelationship.oppositeIsToMany invoked with an invalid enum value") ;
+    s.appendCString ("proc @toOneOppositeRelationship.oppositeIsToMany invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_toOneOppositeRelationship_2E_oppositeIsToMany *) mAssociatedValues.associatedValuesPointer () ;
@@ -6285,10 +6285,10 @@ class CollectionElementPtr_toOnePropertyGenerationList : public CollectionElemen
                                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_toOnePropertyGenerationList (const GGS_toOnePropertyGenerationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -6696,7 +6696,7 @@ void GGS_toOnePropertyGenerationList::setter_setMPropertyAtIndex (GGS_toOnePrope
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_toOnePropertyGeneration GGS_toOnePropertyGenerationList::getter_mPropertyAtIndex (const GGS_uint & inIndex,
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {

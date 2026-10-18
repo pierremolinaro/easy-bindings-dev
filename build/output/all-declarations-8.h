@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@propertyMap.element isAbstract' (as function)
+//Extension func '@propertyMap.element isAbstract' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 

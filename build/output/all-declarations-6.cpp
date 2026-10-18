@@ -3197,7 +3197,7 @@ GGS_XcodeProjectDescriptor GGS_XcodeProjectDescriptor::extractObject (const GGS_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addTIFF_file'
+//Extension proc '@XcodeProjectDescriptor addTIFF_file'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3218,7 +3218,7 @@ void extensionSetter_addTIFF_5F_file (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addInfoPlistFile'
+//Extension proc '@XcodeProjectDescriptor addInfoPlistFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3239,7 +3239,7 @@ void extensionSetter_addInfoPlistFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addXIBFile'
+//Extension proc '@XcodeProjectDescriptor addXIBFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3260,7 +3260,7 @@ void extensionSetter_addXIBFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addFrameworkFile'
+//Extension proc '@XcodeProjectDescriptor addFrameworkFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3281,7 +3281,7 @@ void extensionSetter_addFrameworkFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addMFile'
+//Extension proc '@XcodeProjectDescriptor addMFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3302,7 +3302,7 @@ void extensionSetter_addMFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addSwiftFile'
+//Extension proc '@XcodeProjectDescriptor addSwiftFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3323,7 +3323,7 @@ void extensionSetter_addSwiftFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addMMFile'
+//Extension proc '@XcodeProjectDescriptor addMMFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3344,7 +3344,7 @@ void extensionSetter_addMMFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addCppFile'
+//Extension proc '@XcodeProjectDescriptor addCppFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3365,7 +3365,7 @@ void extensionSetter_addCppFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addHeaderFile'
+//Extension proc '@XcodeProjectDescriptor addHeaderFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3386,7 +3386,7 @@ void extensionSetter_addHeaderFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addBuildFile'
+//Extension proc '@XcodeProjectDescriptor addBuildFile'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3408,7 +3408,7 @@ void extensionSetter_addBuildFile (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addToolTarget'
+//Extension proc '@XcodeProjectDescriptor addToolTarget'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3454,7 +3454,7 @@ void extensionSetter_addToolTarget (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addAppTarget'
+//Extension proc '@XcodeProjectDescriptor addAppTarget'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3532,7 +3532,7 @@ void extensionSetter_addAppTarget (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addGroup'
+//Extension proc '@XcodeProjectDescriptor addGroup'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3585,7 +3585,7 @@ void extensionSetter_addGroup (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addGroupWithFiles'
+//Extension proc '@XcodeProjectDescriptor addGroupWithFiles'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3858,7 +3858,7 @@ void extensionSetter_addGroupWithFiles (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor placeGroupAsMainGroup'
+//Extension proc '@XcodeProjectDescriptor placeGroupAsMainGroup'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3874,7 +3874,7 @@ void extensionSetter_placeGroupAsMainGroup (GGS_XcodeProjectDescriptor & ioObjec
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'
+//Extension proc '@XcodeProjectDescriptor addSettingsToDefaultConfiguration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3888,7 +3888,7 @@ void extensionSetter_addSettingsToDefaultConfiguration (GGS_XcodeProjectDescript
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor getReferenceKey'
+//Extension proc '@XcodeProjectDescriptor getReferenceKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -3915,7 +3915,7 @@ void extensionSetter_getReferenceKey (GGS_XcodeProjectDescriptor & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor generateAtPath'
+//Extension proc '@XcodeProjectDescriptor generateAtPath'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -4985,7 +4985,7 @@ GGS_atomicPropertyGeneration GGS_atomicPropertyGeneration::extractObject (const 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractDeclarationAST enterInPrecedenceGraph'
+//Abstract extension proc '@abstractDeclarationAST enterInPrecedenceGraph'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -4994,7 +4994,7 @@ void callExtensionMethod_enterInPrecedenceGraph (cPtr_abstractDeclarationAST * i
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDeclarationAST) ;
     inObject->method_enterInPrecedenceGraph (io_ioGraph, inCompiler COMMA_THERE) ;
@@ -5002,7 +5002,7 @@ void callExtensionMethod_enterInPrecedenceGraph (cPtr_abstractDeclarationAST * i
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@abstractDeclarationAST nodeKey'
+//Abstract extension func '@abstractDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5018,7 +5018,7 @@ GGS_lstring callExtensionGetter_nodeKey (const cPtr_abstractDeclarationAST * inO
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractDeclarationAST firstAnalysisPhase'
+//Abstract extension proc '@abstractDeclarationAST firstAnalysisPhase'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5028,14 +5028,14 @@ void callExtensionMethod_firstAnalysisPhase (cPtr_abstractDeclarationAST * inObj
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractDeclarationAST) ;
     inObject->method_firstAnalysisPhase (io_ioSemanticContext, io_ioGeneration, inCompiler COMMA_THERE) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
-//Extension method '@abstractDeclarationAST secondAnalysisPhase'
+//Extension proc '@abstractDeclarationAST secondAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_secondAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,
@@ -5058,7 +5058,7 @@ void callExtensionMethod_secondAnalysisPhase (cPtr_abstractDeclarationAST * inOb
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@abstractDeclarationAST thirdAnalysisPhase'
+//Extension proc '@abstractDeclarationAST thirdAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,
@@ -5081,7 +5081,7 @@ void callExtensionMethod_thirdAnalysisPhase (cPtr_abstractDeclarationAST * inObj
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@abstractDeclarationAST fourthAnalysisPhase'
+//Extension proc '@abstractDeclarationAST fourthAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_abstractDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & /* ioArgument_ioSemanticContext */,

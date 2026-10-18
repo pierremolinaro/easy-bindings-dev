@@ -8520,7 +8520,7 @@ GGS_autoLayoutTableViewControllerPropertyGeneration GGS_autoLayoutTableViewContr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@XcodeProjectDescriptor addICNS_file'
+//Extension proc '@XcodeProjectDescriptor addICNS_file'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9105,7 +9105,7 @@ GGS_bool extensionGetter_isAbstract (const GGS_propertyMap_2E_element & inObject
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutTableViewControllerDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@autoLayoutTableViewControllerDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -9155,7 +9155,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_enterInPrecedenceG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutTableViewControllerDeclarationAST nodeKey'
+//Overriding extension func '@autoLayoutTableViewControllerDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9172,7 +9172,7 @@ GGS_lstring cPtr_autoLayoutTableViewControllerDeclarationAST::getter_nodeKey (Co
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutTableViewControllerDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@autoLayoutTableViewControllerDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -9351,7 +9351,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_firstAnalysisPhase
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase'
+//Overriding extension proc '@autoLayoutTableViewControllerDeclarationAST thirdAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -9707,7 +9707,7 @@ void cPtr_autoLayoutTableViewControllerDeclarationAST::method_thirdAnalysisPhase
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutTableViewControllerPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@autoLayoutTableViewControllerPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9748,7 +9748,7 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_property
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutTableViewControllerPropertyGeneration configurationCode'
+//Overriding extension func '@autoLayoutTableViewControllerPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9776,7 +9776,7 @@ GGS_string cPtr_autoLayoutTableViewControllerPropertyGeneration::getter_configur
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutTableViewControllerPropertyGeneration initCode'
+//Overriding extension func '@autoLayoutTableViewControllerPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10091,7 +10091,7 @@ GGS_string filewrapperTemplate_autoLayoutTableViewControllerGenerationTemplate_a
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutTableViewControllerGeneration generateCodePhase1'
+//Overriding extension proc '@autoLayoutTableViewControllerGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutTableViewControllerGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument_inOutputDirectory */,
@@ -10103,7 +10103,7 @@ void cPtr_autoLayoutTableViewControllerGeneration::method_generateCodePhase_31_ 
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutTableViewControllerGeneration generateCodePhase2'
+//Overriding extension proc '@autoLayoutTableViewControllerGeneration generateCodePhase2'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutTableViewControllerGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
@@ -10425,7 +10425,7 @@ void routine_generateValidationRoutineStubs_3F__3F__26_ (const GGS_string consti
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@toManyRelationshipAST enterInPrecedenceGraph'
+//Overriding extension proc '@toManyRelationshipAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_toManyRelationshipAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -10471,7 +10471,7 @@ void cPtr_toManyRelationshipAST::method_enterInPrecedenceGraph (GGS_declarationP
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@toManyRelationshipAST nodeKey'
+//Overriding extension func '@toManyRelationshipAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10488,7 +10488,7 @@ GGS_lstring cPtr_toManyRelationshipAST::getter_nodeKey (Compiler * inCompiler
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@toManyRelationshipAST firstAnalysisPhase'
+//Overriding extension proc '@toManyRelationshipAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_toManyRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -10626,7 +10626,7 @@ void cPtr_toManyRelationshipAST::method_firstAnalysisPhase (GGS_semanticContext 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@toManyPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@toManyPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10763,7 +10763,7 @@ GGS_string cPtr_toManyPropertyGeneration::getter_propertyDeclarationCode (const 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@toManyPropertyGeneration initCode'
+//Overriding extension func '@toManyPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10778,7 +10778,7 @@ GGS_string cPtr_toManyPropertyGeneration::getter_initCode (Compiler */* inCompil
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@toManyPropertyGeneration prefKeyDefinitionCode'
+//Overriding extension func '@toManyPropertyGeneration prefKeyDefinitionCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10795,7 +10795,7 @@ GGS_string cPtr_toManyPropertyGeneration::getter_prefKeyDefinitionCode (Compiler
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@toManyPropertyGeneration configurationCode'
+//Overriding extension func '@toManyPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10869,7 +10869,7 @@ GGS_string cPtr_toManyPropertyGeneration::getter_configurationCode (const GGS_bo
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutDocumentDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@autoLayoutDocumentDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutDocumentDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -10889,7 +10889,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_enterInPrecedenceGraph (GGS_d
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@autoLayoutDocumentDeclarationAST nodeKey'
+//Overriding extension func '@autoLayoutDocumentDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10904,7 +10904,7 @@ GGS_lstring cPtr_autoLayoutDocumentDeclarationAST::getter_nodeKey (Compiler */* 
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutDocumentDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@autoLayoutDocumentDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutDocumentDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -10933,7 +10933,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_firstAnalysisPhase (GGS_seman
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutDocumentDeclarationAST fourthAnalysisPhase'
+//Overriding extension proc '@autoLayoutDocumentDeclarationAST fourthAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutDocumentDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -11070,7 +11070,7 @@ void cPtr_autoLayoutDocumentDeclarationAST::method_fourthAnalysisPhase (GGS_sema
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutDocumentFileGeneration generateCodePhase1'
+//Overriding extension proc '@autoLayoutDocumentFileGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutDocumentFileGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument_inOutputDirectory */,
@@ -11082,7 +11082,7 @@ void cPtr_autoLayoutDocumentFileGeneration::method_generateCodePhase_31_ (const 
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@autoLayoutDocumentFileGeneration generateCodePhase2'
+//Overriding extension proc '@autoLayoutDocumentFileGeneration generateCodePhase2'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_autoLayoutDocumentFileGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
@@ -11490,7 +11490,7 @@ GGS_string filewrapperTemplate_autoLayoutDocumentGenerationTemplate_outletLinker
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@prefsDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@prefsDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_prefsDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -11505,7 +11505,7 @@ void cPtr_prefsDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPre
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@prefsDeclarationAST nodeKey'
+//Overriding extension func '@prefsDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -11590,7 +11590,7 @@ C_galgas_function_descriptor functionDescriptor_preferencesName ("preferencesNam
                                                                  functionArgs_preferencesName) ;
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@prefsDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@prefsDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_prefsDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -11619,7 +11619,7 @@ void cPtr_prefsDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & 
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@prefsDeclarationAST fourthAnalysisPhase'
+//Overriding extension proc '@prefsDeclarationAST fourthAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_prefsDeclarationAST::method_fourthAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12118,7 +12118,7 @@ GGS_string filewrapperTemplate_prefsGenerationTemplate_preferences (Compiler * i
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@preferencesForGeneration generateCodePhase1'
+//Overriding extension proc '@preferencesForGeneration generateCodePhase1'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_preferencesForGeneration::method_generateCodePhase_31_ (const GGS_string /* constinArgument_inOutputDirectory */,
@@ -12130,7 +12130,7 @@ void cPtr_preferencesForGeneration::method_generateCodePhase_31_ (const GGS_stri
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@preferencesForGeneration generateCodePhase2'
+//Overriding extension proc '@preferencesForGeneration generateCodePhase2'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_preferencesForGeneration::method_generateCodePhase_32_ (const GGS_string constinArgument_inOutputDirectory,
@@ -12841,7 +12841,7 @@ GGS_string filewrapperTemplate_xcodeProjectGenerationFilewrapper_xcodeproj (Comp
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@outletClassDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@outletClassDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_outletClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -12868,7 +12868,7 @@ void cPtr_outletClassDeclarationAST::method_enterInPrecedenceGraph (GGS_declarat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@outletClassDeclarationAST nodeKey'
+//Overriding extension func '@outletClassDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -12883,7 +12883,7 @@ GGS_lstring cPtr_outletClassDeclarationAST::getter_nodeKey (Compiler */* inCompi
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@outletClassDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@outletClassDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_outletClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -12982,7 +12982,7 @@ void cPtr_outletClassDeclarationAST::method_firstAnalysisPhase (GGS_semanticCont
 }
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@atomicPropertyDeclarationAST enterInPrecedenceGraph'
+//Overriding extension proc '@atomicPropertyDeclarationAST enterInPrecedenceGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicPropertyDeclarationAST::method_enterInPrecedenceGraph (GGS_declarationPrecedenceGraph & ioArgument_ioGraph,
@@ -13010,7 +13010,7 @@ void cPtr_atomicPropertyDeclarationAST::method_enterInPrecedenceGraph (GGS_decla
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyDeclarationAST nodeKey'
+//Overriding extension func '@atomicPropertyDeclarationAST nodeKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13027,7 +13027,7 @@ GGS_lstring cPtr_atomicPropertyDeclarationAST::getter_nodeKey (Compiler * inComp
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@atomicPropertyDeclarationAST firstAnalysisPhase'
+//Overriding extension proc '@atomicPropertyDeclarationAST firstAnalysisPhase'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_atomicPropertyDeclarationAST::method_firstAnalysisPhase (GGS_semanticContext & ioArgument_ioSemanticContext,
@@ -13110,7 +13110,7 @@ void cPtr_atomicPropertyDeclarationAST::method_firstAnalysisPhase (GGS_semanticC
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration prefKeyDefinitionCode'
+//Overriding extension func '@atomicPropertyGeneration prefKeyDefinitionCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13127,7 +13127,7 @@ GGS_string cPtr_atomicPropertyGeneration::getter_prefKeyDefinitionCode (Compiler
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration declarationInSelectionControllerCode'
+//Overriding extension func '@atomicPropertyGeneration declarationInSelectionControllerCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13148,7 +13148,7 @@ GGS_string cPtr_atomicPropertyGeneration::getter_declarationInSelectionControlle
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration bindPropertyInSelectionController'
+//Overriding extension func '@atomicPropertyGeneration bindPropertyInSelectionController'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13221,7 +13221,7 @@ GGS_string cPtr_atomicPropertyGeneration::getter_bindPropertyInSelectionControll
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration propertyDeclarationCode'
+//Overriding extension func '@atomicPropertyGeneration propertyDeclarationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13339,7 +13339,7 @@ GGS_string cPtr_atomicPropertyGeneration::getter_propertyDeclarationCode (const 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration initCode'
+//Overriding extension func '@atomicPropertyGeneration initCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13374,7 +13374,7 @@ GGS_string cPtr_atomicPropertyGeneration::getter_initCode (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 //
-//Overriding extension getter '@atomicPropertyGeneration configurationCode'
+//Overriding extension func '@atomicPropertyGeneration configurationCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13476,7 +13476,7 @@ void routine_sortProperties_3F__3F__21_ (const GGS_string constinArgument_inSour
 
 
 //--------------------------------------------------------------------------------------------------
-//Overriding extension method '@boolAsDefaultValue analyzeDefaultValueType'
+//Overriding extension proc '@boolAsDefaultValue analyzeDefaultValueType'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_boolAsDefaultValue::method_analyzeDefaultValueType (const GGS_typeKindList constinArgument_inAttributeActualTypeList,

@@ -2633,10 +2633,10 @@ class CollectionElementPtr_enumerationFunctionListAST : public CollectionElement
                                                            COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_enumerationFunctionListAST (const GGS_enumerationFunctionListAST_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3094,7 +3094,7 @@ void GGS_enumerationFunctionListAST::setter_setMEnumNameAtIndex (GGS_lstring inO
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_enumerationFunctionListAST::getter_mEnumNameAtIndex (const GGS_uint & inIndex,
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const {
@@ -3133,7 +3133,7 @@ void GGS_enumerationFunctionListAST::setter_setMFunctionNameAtIndex (GGS_lstring
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_enumerationFunctionListAST::getter_mFunctionNameAtIndex (const GGS_uint & inIndex,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const {
@@ -3172,7 +3172,7 @@ void GGS_enumerationFunctionListAST::setter_setMAssociationListAtIndex (GGS__32_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS__32_lstringlist GGS_enumerationFunctionListAST::getter_mAssociationListAtIndex (const GGS_uint & inIndex,
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) const {
@@ -3317,10 +3317,10 @@ class CollectionElementPtr_regularBindingList : public CollectionElementPtr {
                                                    COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_regularBindingList (const GGS_regularBindingList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3778,7 +3778,7 @@ void GGS_regularBindingList::setter_setMBindingNameAtIndex (GGS_lstring inOperan
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_regularBindingList::getter_mBindingNameAtIndex (const GGS_uint & inIndex,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
@@ -3817,7 +3817,7 @@ void GGS_regularBindingList::setter_setMObservablePropertyListAtIndex (GGS_obser
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_observablePropertyList GGS_regularBindingList::getter_mObservablePropertyListAtIndex (const GGS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
@@ -3856,7 +3856,7 @@ void GGS_regularBindingList::setter_setMBindingOptionListAtIndex (GGS_bindingOpt
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bindingOptionList GGS_regularBindingList::getter_mBindingOptionListAtIndex (const GGS_uint & inIndex,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
@@ -3999,10 +3999,10 @@ class CollectionElementPtr_observablePropertyList : public CollectionElementPtr 
                                                        COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_observablePropertyList (const GGS_observablePropertyList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4410,7 +4410,7 @@ void GGS_observablePropertyList::setter_setMObservablePropertyAtIndex (GGS_obser
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_observablePropertyAST GGS_observablePropertyList::getter_mObservablePropertyAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -4530,10 +4530,10 @@ class CollectionElementPtr_bindingOptionList : public CollectionElementPtr {
                                                   COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_bindingOptionList (const GGS_bindingOptionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4966,7 +4966,7 @@ void GGS_bindingOptionList::setter_setMOptionNameAtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_bindingOptionList::getter_mOptionNameAtIndex (const GGS_uint & inIndex,
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
@@ -5005,7 +5005,7 @@ void GGS_bindingOptionList::setter_setMOptionValueAtIndex (GGS_abstractDefaultVa
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_abstractDefaultValue GGS_bindingOptionList::getter_mOptionValueAtIndex (const GGS_uint & inIndex,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
@@ -5472,7 +5472,7 @@ void GGS_observablePropertyAST::method_extractRootProperty (GGS_lstring & outAss
   if (mEnum != Enumeration::enum_rootProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.rootProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.rootProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_rootProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5490,7 +5490,7 @@ void GGS_observablePropertyAST::method_extractRootPropertyWithOption (GGS_lstrin
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.rootPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.rootPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_rootPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -5509,7 +5509,7 @@ void GGS_observablePropertyAST::method_extractRootPropertyRelationship (GGS_lstr
     outAssociatedValue_relationshipName.drop () ;
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.rootPropertyRelationship invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.rootPropertyRelationship invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_rootPropertyRelationship *) mAssociatedValues.associatedValuesPointer () ;
@@ -5526,7 +5526,7 @@ void GGS_observablePropertyAST::method_extractRootPropertyNone (GGS_lstring & ou
   if (mEnum != Enumeration::enum_rootPropertyNone) {
     outAssociatedValue_relationshipName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.rootPropertyNone invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.rootPropertyNone invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_rootPropertyNone *) mAssociatedValues.associatedValuesPointer () ;
@@ -5542,7 +5542,7 @@ void GGS_observablePropertyAST::method_extractSelfWithoutProperty (GGS_location 
   if (mEnum != Enumeration::enum_selfWithoutProperty) {
     outAssociatedValue_issueLocation.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfWithoutProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfWithoutProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfWithoutProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5558,7 +5558,7 @@ void GGS_observablePropertyAST::method_extractSelfProperty (GGS_lstring & outAss
   if (mEnum != Enumeration::enum_selfProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5576,7 +5576,7 @@ void GGS_observablePropertyAST::method_extractSelfPropertyWithOption (GGS_lstrin
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -5595,7 +5595,7 @@ void GGS_observablePropertyAST::method_extractSelfPropertyArray (GGS_lstring & o
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_elementPropertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfPropertyArray invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfPropertyArray invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfPropertyArray *) mAssociatedValues.associatedValuesPointer () ;
@@ -5614,7 +5614,7 @@ void GGS_observablePropertyAST::method_extractSelfPropertyObject (GGS_lstring & 
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_elementPropertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfPropertyObject invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfPropertyObject invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfPropertyObject *) mAssociatedValues.associatedValuesPointer () ;
@@ -5631,7 +5631,7 @@ void GGS_observablePropertyAST::method_extractSelfPropertyNone (GGS_lstring & ou
   if (mEnum != Enumeration::enum_selfPropertyNone) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfPropertyNone invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfPropertyNone invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfPropertyNone *) mAssociatedValues.associatedValuesPointer () ;
@@ -5647,7 +5647,7 @@ void GGS_observablePropertyAST::method_extractPrefsProperty (GGS_lstring & outAs
   if (mEnum != Enumeration::enum_prefsProperty) {
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.prefsProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.prefsProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_prefsProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5665,7 +5665,7 @@ void GGS_observablePropertyAST::method_extractPrefsPropertyWithOption (GGS_lstri
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_optionName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.prefsPropertyWithOption invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.prefsPropertyWithOption invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_prefsPropertyWithOption *) mAssociatedValues.associatedValuesPointer () ;
@@ -5684,7 +5684,7 @@ void GGS_observablePropertyAST::method_extractSelfControllerProperty (GGS_lstrin
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfControllerProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfControllerProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfControllerProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5705,7 +5705,7 @@ void GGS_observablePropertyAST::method_extractSelfControllerSecondaryProperty (G
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_secondaryPropertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfControllerSecondaryProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfControllerSecondaryProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfControllerSecondaryProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5727,7 +5727,7 @@ void GGS_observablePropertyAST::method_extractSelfControllerAllProperties (GGS_l
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_secondaryPropertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfControllerAllProperties invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfControllerAllProperties invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfControllerAllProperties *) mAssociatedValues.associatedValuesPointer () ;
@@ -5747,7 +5747,7 @@ void GGS_observablePropertyAST::method_extractSelfControllerOneProperty (GGS_lst
     outAssociatedValue_controllerName.drop () ;
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.selfControllerOneProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.selfControllerOneProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_selfControllerOneProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5764,7 +5764,7 @@ void GGS_observablePropertyAST::method_extractSignatureProperty (GGS_location & 
   if (mEnum != Enumeration::enum_signatureProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.signatureProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.signatureProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_signatureProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5780,7 +5780,7 @@ void GGS_observablePropertyAST::method_extractVersionProperty (GGS_location & ou
   if (mEnum != Enumeration::enum_versionProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.versionProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.versionProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_versionProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5796,7 +5796,7 @@ void GGS_observablePropertyAST::method_extractVersionShouldChangeProperty (GGS_l
   if (mEnum != Enumeration::enum_versionShouldChangeProperty) {
     outAssociatedValue_location.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.versionShouldChangeProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.versionShouldChangeProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_versionShouldChangeProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5814,7 +5814,7 @@ void GGS_observablePropertyAST::method_extractSuperProperty (GGS_lstring & outAs
     outAssociatedValue_superEntityName.drop () ;
     outAssociatedValue_propertyName.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.superProperty invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.superProperty invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_superProperty *) mAssociatedValues.associatedValuesPointer () ;
@@ -5835,7 +5835,7 @@ void GGS_observablePropertyAST::method_extractSuperPropertyWithDefaultValue (GGS
     outAssociatedValue_propertyName.drop () ;
     outAssociatedValue_defaultValue.drop () ;
     String s ;
-    s.appendCString ("method @observablePropertyAST.superPropertyWithDefaultValue invoked with an invalid enum value") ;
+    s.appendCString ("proc @observablePropertyAST.superPropertyWithDefaultValue invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_observablePropertyAST_2E_superPropertyWithDefaultValue *) mAssociatedValues.associatedValuesPointer () ;
@@ -7189,7 +7189,7 @@ GGS_location extensionGetter_location (const GGS_observablePropertyAST & inObjec
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@observablePropertyAST analyzeObservableProperty'
+//Extension proc '@observablePropertyAST analyzeObservableProperty'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8441,10 +8441,10 @@ class CollectionElementPtr_autoLayoutClassParameterList : public CollectionEleme
                                                              COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_autoLayoutClassParameterList (const GGS_autoLayoutClassParameterList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -8877,7 +8877,7 @@ void GGS_autoLayoutClassParameterList::setter_setMParameterNameAtIndex (GGS_lstr
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_autoLayoutClassParameterList::getter_mParameterNameAtIndex (const GGS_uint & inIndex,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
@@ -8916,7 +8916,7 @@ void GGS_autoLayoutClassParameterList::setter_setMParameterTypeAtIndex (GGS_auto
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_autoLayoutClassParameterType GGS_autoLayoutClassParameterList::getter_mParameterTypeAtIndex (const GGS_uint & inIndex,
                                                                                                  Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) const {
@@ -9246,7 +9246,7 @@ void GGS_autoLayoutClassParameterType::method_extractTypeEnum (GGS_lstring & out
   if (mEnum != Enumeration::enum_typeEnum) {
     outAssociatedValue_name.drop () ;
     String s ;
-    s.appendCString ("method @autoLayoutClassParameterType.typeEnum invoked with an invalid enum value") ;
+    s.appendCString ("proc @autoLayoutClassParameterType.typeEnum invoked with an invalid enum value") ;
     inCompiler->onTheFlyRunTimeError (s COMMA_THERE) ;
   }else{
     const auto ptr = (GGS_autoLayoutClassParameterType_2E_typeEnum *) mAssociatedValues.associatedValuesPointer () ;
