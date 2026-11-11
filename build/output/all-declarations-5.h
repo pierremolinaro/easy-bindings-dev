@@ -9,6 +9,223 @@
 #include "all-declarations-4.h"
 
 //--------------------------------------------------------------------------------------------------
+// Phase 1: @enumerationDeclarationAST_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_enumerationDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_enumerationDeclarationAST_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_enumerationDeclarationAST_2E_weak (const class GGS_enumerationDeclarationAST & inSource) ;
+
+  public: GGS_enumerationDeclarationAST_2E_weak & operator = (const class GGS_enumerationDeclarationAST & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_enumerationDeclarationAST_2E_weak init_nil (void) {
+    GGS_enumerationDeclarationAST_2E_weak result ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_enumerationDeclarationAST bang_enumerationDeclarationAST_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_enumerationDeclarationAST unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+//--------------------------------- GALGAS class functions
+  public: static class GGS_enumerationDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_enumerationDeclarationAST_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumerationDeclarationAST_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @enumConstantMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_enumConstantMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_uint mProperty_mIndex ;
+  public: inline GGS_uint readProperty_mIndex (void) const {
+    return mProperty_mIndex ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_enumConstantMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMIndex (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mIndex = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_enumConstantMap_2E_element (const GGS_lstring & in_lkey,
+                                          const GGS_uint & in_mIndex) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_enumConstantMap_2E_element (const GGS_enumConstantMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_enumConstantMap_2E_element & operator = (const GGS_enumConstantMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_enumConstantMap_2E_element init_21__21_ (const class GGS_lstring & inOperand0,
+                                                              const class GGS_uint & inOperand1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+//--------------------------------- Implementation of func 'description'
+  public: void description (String & ioString,
+                            const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_enumConstantMap_2E_element & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumConstantMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: enumConstantMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_enumConstantMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_enumConstantMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_enumConstantMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_enumConstantMap_2E_element_3F_ (const GGS_enumConstantMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_enumConstantMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_enumConstantMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_enumConstantMap_2E_element_3F_ & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_enumConstantMap_2E_element_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
 // Phase 1: @enumFunAssociationSortedList_2E_element struct
 //--------------------------------------------------------------------------------------------------
 
@@ -60,15 +277,6 @@ class GGS_enumFunAssociationSortedList_2E_element : public AC_GALGAS_root {
                                                                            const class GGS_string & inOperand1,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_enumFunAssociationSortedList_2E_element extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -87,7 +295,7 @@ class GGS_enumFunAssociationSortedList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -146,15 +354,6 @@ class GGS_enumFuncMap_2E_element : public AC_GALGAS_root {
                                                           const class GGS_enumFunAssociationSortedList & inOperand1,
                                                           Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_enumFuncMap_2E_element extractObject (const GGS_object & inObject,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -173,7 +372,7 @@ class GGS_enumFuncMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -228,15 +427,6 @@ class GGS_enumFuncMap_2E_element_3F_ : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_enumFuncMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumFuncMap_2E_element_3F_ & inOperand) const ;
 
@@ -252,7 +442,7 @@ class GGS_enumFuncMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -273,7 +463,7 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 //--------------------------------- Property access
   public: class GGS_string readProperty_mEnumName (void) const ;
 
-  public: class GGS_lstringlist readProperty_mEnumConstantList (void) const ;
+  public: class GGS__5B_lstring_5D_ readProperty_mEnumConstantList (void) const ;
 
   public: class GGS_enumFuncMap readProperty_mEnumFuncMap (void) const ;
 
@@ -283,20 +473,11 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Initializers
   public: static GGS_enumForGeneration init_21__21__21__21_ (const class GGS_string & inOperand0,
-                                                             const class GGS_lstringlist & inOperand1,
+                                                             const class GGS__5B_lstring_5D_ & inOperand1,
                                                              const class GGS_enumFuncMap & inOperand2,
                                                              const class GGS_bool & inOperand3,
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_enumForGeneration extractObject (const GGS_object & inObject,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_enumForGeneration & inOperand) const ;
 
@@ -312,7 +493,7 @@ class GGS_enumForGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -331,7 +512,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 //--------------------------------- Initializers
   public: void enumForGeneration_init_21__21__21__21_ (const class GGS_string & inOperand0,
-                                                       const class GGS_lstringlist & inOperand1,
+                                                       const class GGS__5B_lstring_5D_ & inOperand1,
                                                        const class GGS_enumFuncMap & inOperand2,
                                                        const class GGS_bool & inOperand3,
                                                        Compiler * inCompiler) ;
@@ -353,7 +534,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Properties
   public: GGS_string mProperty_mEnumName ;
-  public: GGS_lstringlist mProperty_mEnumConstantList ;
+  public: GGS__5B_lstring_5D_ mProperty_mEnumConstantList ;
   public: GGS_enumFuncMap mProperty_mEnumFuncMap ;
   public: GGS_bool mProperty_mCaseIterable ;
 
@@ -363,7 +544,7 @@ class cPtr_enumForGeneration : public cPtr_abstractFileGeneration {
 
 //--- Constructor
   public: cPtr_enumForGeneration (const GGS_string & in_mEnumName,
-                                  const GGS_lstringlist & in_mEnumConstantList,
+                                  const GGS__5B_lstring_5D_ & in_mEnumConstantList,
                                   const GGS_enumFuncMap & in_mEnumFuncMap,
                                   const GGS_bool & in_mCaseIterable,
                                   Compiler * inCompiler
@@ -427,15 +608,6 @@ class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_enumForGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_enumForGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -454,7 +626,7 @@ class GGS_enumForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_weak 
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -506,15 +678,6 @@ class GGS_entityDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_entityDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_entityDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -533,7 +696,7 @@ class GGS_entityDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -568,7 +731,7 @@ class GGS_entityForGeneration : public GGS_abstractFileGeneration {
 
   public: class GGS_stringset readProperty_mOverridenTransients (void) const ;
 
-  public: class GGS_externSwiftDelegateList readProperty_mExternSwiftDelegateList (void) const ;
+  public: class GGS__5B_lstring_5D_ readProperty_mExternSwiftDelegateList (void) const ;
 
   public: class GGS_bool readProperty_mHasSubEntity (void) const ;
 
@@ -587,21 +750,12 @@ class GGS_entityForGeneration : public GGS_abstractFileGeneration {
                                                                                                const class GGS_bool & inOperand5,
                                                                                                const class GGS_bool & inOperand6,
                                                                                                const class GGS_stringset & inOperand7,
-                                                                                               const class GGS_externSwiftDelegateList & inOperand8,
+                                                                                               const class GGS__5B_lstring_5D_ & inOperand8,
                                                                                                const class GGS_bool & inOperand9,
                                                                                                const class GGS_bool & inOperand10,
                                                                                                const class GGS_bool & inOperand11,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_entityForGeneration extractObject (const GGS_object & inObject,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_entityForGeneration & inOperand) const ;
 
@@ -617,7 +771,7 @@ class GGS_entityForGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -643,7 +797,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                                                                          const class GGS_bool & inOperand5,
                                                                                          const class GGS_bool & inOperand6,
                                                                                          const class GGS_stringset & inOperand7,
-                                                                                         const class GGS_externSwiftDelegateList & inOperand8,
+                                                                                         const class GGS__5B_lstring_5D_ & inOperand8,
                                                                                          const class GGS_bool & inOperand9,
                                                                                          const class GGS_bool & inOperand10,
                                                                                          const class GGS_bool & inOperand11,
@@ -673,7 +827,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
   public: GGS_bool mProperty_mIsGraphicEntity ;
   public: GGS_bool mProperty_mIsAbstract ;
   public: GGS_stringset mProperty_mOverridenTransients ;
-  public: GGS_externSwiftDelegateList mProperty_mExternSwiftDelegateList ;
+  public: GGS__5B_lstring_5D_ mProperty_mExternSwiftDelegateList ;
   public: GGS_bool mProperty_mHasSubEntity ;
   public: GGS_bool mProperty_mCanCopyAndPaste_5F_option ;
   public: GGS_bool mProperty_mCannotBeDeleted_5F_option ;
@@ -691,7 +845,7 @@ class cPtr_entityForGeneration : public cPtr_abstractFileGeneration {
                                     const GGS_bool & in_mIsGraphicEntity,
                                     const GGS_bool & in_mIsAbstract,
                                     const GGS_stringset & in_mOverridenTransients,
-                                    const GGS_externSwiftDelegateList & in_mExternSwiftDelegateList,
+                                    const GGS__5B_lstring_5D_ & in_mExternSwiftDelegateList,
                                     const GGS_bool & in_mHasSubEntity,
                                     const GGS_bool & in_mCanCopyAndPaste_5F_option,
                                     const GGS_bool & in_mCannotBeDeleted_5F_option,
@@ -756,15 +910,6 @@ class GGS_entityForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_wea
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_entityForGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_entityForGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -783,7 +928,7 @@ class GGS_entityForGeneration_2E_weak : public GGS_abstractFileGeneration_2E_wea
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -835,15 +980,6 @@ class GGS_proxyDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_wea
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_proxyDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_proxyDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -862,7 +998,7 @@ class GGS_proxyDeclarationAST_2E_weak : public GGS_abstractDeclarationAST_2E_wea
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -903,15 +1039,6 @@ class GGS_toManyProxyGeneration : public GGS_propertyGeneration {
                                                                      const class GGS_string & inOperand4,
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toManyProxyGeneration extractObject (const GGS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_toManyProxyGeneration & inOperand) const ;
 
@@ -927,7 +1054,7 @@ class GGS_toManyProxyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1049,15 +1176,6 @@ class GGS_toManyProxyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toManyProxyGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_toManyProxyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -1076,7 +1194,7 @@ class GGS_toManyProxyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak 
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1193,15 +1311,6 @@ class GGS_toManyProxyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS_toManyProxyGenerationList init (Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toManyProxyGenerationList extractObject (const GGS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_toManyProxyGenerationList class_func_listWithValue (const class GGS_toManyProxyGeneration & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
@@ -1294,7 +1403,7 @@ class GGS_toManyProxyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Friend
   friend class UpEnumerator_toManyProxyGenerationList ;
   friend class DownEnumerator_toManyProxyGenerationList ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1342,15 +1451,6 @@ class GGS_toManyProxyGenerationList_2E_element : public AC_GALGAS_root {
   public: static GGS_toManyProxyGenerationList_2E_element init_21_ (const class GGS_toManyProxyGeneration & inOperand0,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toManyProxyGenerationList_2E_element extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -1367,7 +1467,7 @@ class GGS_toManyProxyGenerationList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1408,15 +1508,6 @@ class GGS_atomicProxyGeneration : public GGS_propertyGeneration {
                                                                      const class GGS_string & inOperand4,
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_atomicProxyGeneration extractObject (const GGS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_atomicProxyGeneration & inOperand) const ;
 
@@ -1432,7 +1523,7 @@ class GGS_atomicProxyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1554,15 +1645,6 @@ class GGS_atomicProxyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_atomicProxyGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_atomicProxyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -1581,7 +1663,7 @@ class GGS_atomicProxyGeneration_2E_weak : public GGS_propertyGeneration_2E_weak 
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1698,15 +1780,6 @@ class GGS_atomicProxyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS_atomicProxyGenerationList init (Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_atomicProxyGenerationList extractObject (const GGS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_atomicProxyGenerationList class_func_listWithValue (const class GGS_atomicProxyGeneration & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
@@ -1799,7 +1872,7 @@ class GGS_atomicProxyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Friend
   friend class UpEnumerator_atomicProxyGenerationList ;
   friend class DownEnumerator_atomicProxyGenerationList ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1847,15 +1920,6 @@ class GGS_atomicProxyGenerationList_2E_element : public AC_GALGAS_root {
   public: static GGS_atomicProxyGenerationList_2E_element init_21_ (const class GGS_atomicProxyGeneration & inOperand0,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_atomicProxyGenerationList_2E_element extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -1872,7 +1936,7 @@ class GGS_atomicProxyGenerationList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1924,15 +1988,6 @@ class GGS_computedPropertyDeclarationAST_2E_weak : public GGS_abstractDeclaratio
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computedPropertyDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_computedPropertyDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -1951,7 +2006,7 @@ class GGS_computedPropertyDeclarationAST_2E_weak : public GGS_abstractDeclaratio
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -1992,15 +2047,6 @@ class GGS_computedPropertyGeneration : public GGS_propertyGeneration {
                                                                           const class GGS_bool & inOperand4,
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computedPropertyGeneration extractObject (const GGS_object & inObject,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_computedPropertyGeneration & inOperand) const ;
 
@@ -2016,7 +2062,7 @@ class GGS_computedPropertyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2138,15 +2184,6 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computedPropertyGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_computedPropertyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -2165,7 +2202,7 @@ class GGS_computedPropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2282,15 +2319,6 @@ class GGS_computedPropertyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS_computedPropertyGenerationList init (Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computedPropertyGenerationList extractObject (const GGS_object & inObject,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_computedPropertyGenerationList class_func_listWithValue (const class GGS_computedPropertyGeneration & inOperand0
                                                                                     COMMA_LOCATION_ARGS) ;
@@ -2383,7 +2411,7 @@ class GGS_computedPropertyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Friend
   friend class UpEnumerator_computedPropertyGenerationList ;
   friend class DownEnumerator_computedPropertyGenerationList ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2431,15 +2459,6 @@ class GGS_computedPropertyGenerationList_2E_element : public AC_GALGAS_root {
   public: static GGS_computedPropertyGenerationList_2E_element init_21_ (const class GGS_computedPropertyGeneration & inOperand0,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computedPropertyGenerationList_2E_element extractObject (const GGS_object & inObject,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -2456,7 +2475,7 @@ class GGS_computedPropertyGenerationList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2496,15 +2515,6 @@ class GGS_computeRoutineGeneration : public GGS_abstractFileGeneration {
                                                                     const class GGS_transientDependencyListForGeneration & inOperand3,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computeRoutineGeneration extractObject (const GGS_object & inObject,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_computeRoutineGeneration & inOperand) const ;
 
@@ -2520,7 +2530,7 @@ class GGS_computeRoutineGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2635,15 +2645,6 @@ class GGS_computeRoutineGeneration_2E_weak : public GGS_abstractFileGeneration_2
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_computeRoutineGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_computeRoutineGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -2662,7 +2663,7 @@ class GGS_computeRoutineGeneration_2E_weak : public GGS_abstractFileGeneration_2
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2714,15 +2715,6 @@ class GGS_transientClassDeclarationAST_2E_weak : public GGS_abstractDeclarationA
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_transientClassDeclarationAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_transientClassDeclarationAST_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -2741,7 +2733,7 @@ class GGS_transientClassDeclarationAST_2E_weak : public GGS_abstractDeclarationA
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2789,15 +2781,6 @@ class GGS_classKind_2E_document : public AC_GALGAS_root {
   public: static GGS_classKind_2E_document init_21_ (const class GGS_lstring & inOperand0,
                                                      Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_classKind_2E_document extractObject (const GGS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -2814,7 +2797,7 @@ class GGS_classKind_2E_document : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2870,15 +2853,6 @@ class GGS_classKind_2E_document_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Initializers
 
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_classKind_2E_document_3F_ extractObject (const GGS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
-
-
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
@@ -2891,7 +2865,7 @@ class GGS_classKind_2E_document_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -2972,15 +2946,6 @@ class GGS_classKind_2E_entity : public AC_GALGAS_root {
                                                                const class GGS_bool & inOperand3,
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_classKind_2E_entity extractObject (const GGS_object & inObject,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -2997,7 +2962,7 @@ class GGS_classKind_2E_entity : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3053,15 +3018,6 @@ class GGS_classKind_2E_entity_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Initializers
 
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_classKind_2E_entity_3F_ extractObject (const GGS_object & inObject,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
@@ -3074,12 +3030,76 @@ class GGS_classKind_2E_entity_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_classKind_2E_entity_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension func '@propertyGeneration prefKeyDefinitionCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_prefKeyDefinitionCode (const cPtr_propertyGeneration * inObject,
+                                                            class Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension func '@propertyGeneration declarationInSelectionControllerCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_declarationInSelectionControllerCode (const cPtr_propertyGeneration * inObject,
+                                                                           class Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension func '@propertyGeneration bindPropertyInSelectionController'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_bindPropertyInSelectionController (const cPtr_propertyGeneration * inObject,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension func '@propertyGeneration propertyDeclarationCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_propertyDeclarationCode (const class cPtr_propertyGeneration * inObject,
+                                                              const class GGS_bool constin_inPreferences,
+                                                              const class GGS_bool constin_inGenerationDirectAccess,
+                                                              const class GGS_stringset constin_inOverriddenTransients,
+                                                              class Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension func '@propertyGeneration configurationCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_configurationCode (const class cPtr_propertyGeneration * inObject,
+                                                        const class GGS_bool constin_inPreferences,
+                                                        class Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension func '@propertyGeneration initCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_initCode (const class cPtr_propertyGeneration * inObject,
+                                               class Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @actionMap_2E_element struct
@@ -3122,15 +3142,6 @@ class GGS_actionMap_2E_element : public AC_GALGAS_root {
   public: static GGS_actionMap_2E_element init_21_ (const class GGS_lstring & inOperand0,
                                                     Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_actionMap_2E_element extractObject (const GGS_object & inObject,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -3147,7 +3158,7 @@ class GGS_actionMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3203,15 +3214,6 @@ class GGS_actionMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Initializers
 
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_actionMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
@@ -3224,7 +3226,7 @@ class GGS_actionMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3272,15 +3274,6 @@ class GGS_propertyAccessibility_2E_transient : public AC_GALGAS_root {
   public: static GGS_propertyAccessibility_2E_transient init_21_ (const class GGS_bool & inOperand0,
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_propertyAccessibility_2E_transient extractObject (const GGS_object & inObject,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -3297,7 +3290,7 @@ class GGS_propertyAccessibility_2E_transient : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3353,15 +3346,6 @@ class GGS_propertyAccessibility_2E_transient_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Initializers
 
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_propertyAccessibility_2E_transient_3F_ extractObject (const GGS_object & inObject,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-
 //--------------------------------- Setters
 
 //--------------------------------- Instance Methods
@@ -3374,7 +3358,7 @@ class GGS_propertyAccessibility_2E_transient_3F_ : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3406,15 +3390,6 @@ class GGS_actionFileGeneration : public GGS_abstractFileGeneration {
                                                         const class GGS_string & inOperand1,
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_actionFileGeneration extractObject (const GGS_object & inObject,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_actionFileGeneration & inOperand) const ;
 
@@ -3430,7 +3405,7 @@ class GGS_actionFileGeneration : public GGS_abstractFileGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3539,15 +3514,6 @@ class GGS_actionFileGeneration_2E_weak : public GGS_abstractFileGeneration_2E_we
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_actionFileGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_actionFileGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -3566,7 +3532,7 @@ class GGS_actionFileGeneration_2E_weak : public GGS_abstractFileGeneration_2E_we
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3614,15 +3580,6 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToMany : public AC_GALGAS_root 
   public: static GGS_toOneOppositeRelationship_2E_oppositeIsToMany init_21_ (const class GGS_lstring & inOperand0,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOneOppositeRelationship_2E_oppositeIsToMany extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -3641,7 +3598,7 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToMany : public AC_GALGAS_root 
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3696,15 +3653,6 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ : public AC_GALGAS_r
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ extractObject (const GGS_object & inObject,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ & inOperand) const ;
 
@@ -3720,7 +3668,7 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToMany_3F_ : public AC_GALGAS_r
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3768,15 +3716,6 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToOne : public AC_GALGAS_root {
   public: static GGS_toOneOppositeRelationship_2E_oppositeIsToOne init_21_ (const class GGS_lstring & inOperand0,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOneOppositeRelationship_2E_oppositeIsToOne extractObject (const GGS_object & inObject,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -3795,7 +3734,7 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToOne : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3850,15 +3789,6 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ : public AC_GALGAS_ro
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ & inOperand) const ;
 
@@ -3874,7 +3804,7 @@ class GGS_toOneOppositeRelationship_2E_oppositeIsToOne_3F_ : public AC_GALGAS_ro
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3926,15 +3856,6 @@ class GGS_toOneRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOneRelationshipAST_2E_weak extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_toOneRelationshipAST_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -3953,7 +3874,7 @@ class GGS_toOneRelationshipAST_2E_weak : public GGS_abstractDeclarationAST_2E_we
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -3996,15 +3917,6 @@ class GGS_toOnePropertyGeneration : public GGS_propertyGeneration {
                                                                                const class GGS_bool & inOperand6,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOnePropertyGeneration extractObject (const GGS_object & inObject,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_toOnePropertyGeneration & inOperand) const ;
 
@@ -4020,7 +3932,7 @@ class GGS_toOnePropertyGeneration : public GGS_propertyGeneration {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -4142,15 +4054,6 @@ class GGS_toOnePropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_wea
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOnePropertyGeneration_2E_weak extractObject (const GGS_object & inObject,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_toOnePropertyGeneration_2E_weak class_func_nil (LOCATION_ARGS) ;
 
@@ -4169,7 +4072,7 @@ class GGS_toOnePropertyGeneration_2E_weak : public GGS_propertyGeneration_2E_wea
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -4286,15 +4189,6 @@ class GGS_toOnePropertyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Initializers
   public: static GGS_toOnePropertyGenerationList init (Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOnePropertyGenerationList extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
   public: static class GGS_toOnePropertyGenerationList class_func_listWithValue (const class GGS_toOnePropertyGeneration & inOperand0
                                                                                  COMMA_LOCATION_ARGS) ;
@@ -4387,7 +4281,7 @@ class GGS_toOnePropertyGenerationList : public AC_GALGAS_root {
 //--------------------------------- Friend
   friend class UpEnumerator_toOnePropertyGenerationList ;
   friend class DownEnumerator_toOnePropertyGenerationList ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -4435,15 +4329,6 @@ class GGS_toOnePropertyGenerationList_2E_element : public AC_GALGAS_root {
   public: static GGS_toOnePropertyGenerationList_2E_element init_21_ (const class GGS_toOnePropertyGeneration & inOperand0,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_toOnePropertyGenerationList_2E_element extractObject (const GGS_object & inObject,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
@@ -4460,7 +4345,7 @@ class GGS_toOnePropertyGenerationList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Introspection
   public: const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
+
 } ;
 
 //--------------------------------------------------------------------------------------------------

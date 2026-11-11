@@ -2,7 +2,7 @@
 //   AST   
 //------------------------------------------------------------------------------------------------
 
-enum @toOneOppositeRelationship %equatable {
+enum @toOneOppositeRelationship #equatable {
   case none
   case oppositeIsToOne (@lstring oppositeRelationshipName)
   case oppositeIsToMany (@lstring oppositeRelationshipName)
@@ -50,16 +50,16 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         usedForSignature = true
       elsif attributeName.string == "weak" then
         if isWeak then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         isWeak = true
       else
-        error (attributeName : "unknow attribute" fixit %replaceBy "@signature", %replaceBy "@weak" )
+        error (attributeName : "unknow attribute" fixit #replaceBy "@signature", #replaceBy "@weak" )
       end
     end
     $Identifier$ (?let @lstring destinationEntityName)
@@ -132,7 +132,7 @@ override proc @toOneRelationshipAST.firstAnalysisPhase (?!@semanticContext ioSem
 //------------------------------------------------------------------------------------------------
 
 override proc @toOneRelationshipAST.thirdAnalysisPhase (?!@semanticContext ioSemanticContext,
-                                                        ?!@generationStruct unused ioGeneration) {
+                                                        ?!@generationStruct _ioGeneration) {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
   ioSemanticContext.mClassMap.searchKey (self.mDestinationEntityName, ?let classKind, ?let destinationEntityPropertyMap, ?2*)
   switch classKind
@@ -185,9 +185,9 @@ list @toOnePropertyGenerationList {
 //------------------------------------------------------------------------------------------------
 
 override func @toOnePropertyGeneration.propertyDeclarationCode
-                                                   (let @bool unused inPreferences,
-                                                    let @bool unused inGenerationDirectAccess,
-                                                    let @stringset unused inOverriddenTransients) -> @string {
+                                                   (let @bool _inPreferences,
+                                                    let @bool _inGenerationDirectAccess,
+                                                    let @stringset _inOverriddenTransients) -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   To one property: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"

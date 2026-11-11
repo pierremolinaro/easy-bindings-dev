@@ -106,8 +106,8 @@ end
   //--- Call outlet linkers\n%
      for (mLinkerName mOutletNameAndTypeNameList) in AUTO_LAYOUT_LINKER_LIST do
      %    self.linker_%!mLinkerName% (%
-       for (mValue0 mValue1) in mOutletNameAndTypeNameList
-       do %self.% !mValue0
+       for (entry) in mOutletNameAndTypeNameList
+       do %self.%!entry.mValue0
        between %, %
        end
      %)\n%

@@ -64,28 +64,28 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         usedForSignature = true
       elsif attributeName.string == "customStore" then
         if customStore then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         customStore = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         generateDirectAccess = true
       else
         error (attributeName : "unknow attribute" fixit
-          %replaceBy "@signature", %replaceBy "@customStore",
-          %replaceBy "@generateDirectAccess", %replaceBy "@generateDirectRead"
+          #replaceBy "@signature", #replaceBy "@customStore",
+          #replaceBy "@generateDirectAccess", #replaceBy "@generateDirectRead"
         )
       end
     end
@@ -224,9 +224,9 @@ list @toManyPropertyGenerationList {
 
 //------------------------------------------------------------------------------------------------
 
-override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool unused inPreferences,
-                                                            let @bool unused inGenerationDirectAccess,
-                                                            let @stringset unused inOverriddenTransients) -> @string {
+override func @toManyPropertyGeneration.propertyDeclarationCode (let @bool _inPreferences,
+                                                            let @bool _inGenerationDirectAccess,
+                                                            let @stringset _inOverriddenTransients) -> @string {
   if self.mOption.isHasDependance then
     result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
     result += "  //   To many property: " + self.mPropertyName + "\n"

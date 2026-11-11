@@ -44,10 +44,10 @@ end
     self.selectedArray_property.setDataProvider (model)
 %
   for (mProperty) in PROPERTY_GENERATION_LIST do
-    if (mProperty is == @atomicPropertyGeneration)
-     | (mProperty is == @transientPropertyGeneration)
-     | (mProperty is == @computedPropertyGeneration)
-     | (mProperty is == @atomicProxyGeneration) then
+    if (mProperty is @atomicPropertyGeneration)
+     | (mProperty is @transientPropertyGeneration)
+     | (mProperty is @computedPropertyGeneration)
+     | (mProperty is @atomicProxyGeneration) then
       %    self.bind_property_%!mProperty.mPropertyName% ()\n%
     end
   end
@@ -61,12 +61,12 @@ end
     self.selectedArray_property.setDataProvider (nil)
 %
   for (mProperty) in PROPERTY_GENERATION_LIST do
-    if (mProperty is == @atomicPropertyGeneration)
-     | (mProperty is == @computedPropertyGeneration)
-     | (mProperty is == @transientPropertyGeneration) then
+    if (mProperty is @atomicPropertyGeneration)
+     | (mProperty is @computedPropertyGeneration)
+     | (mProperty is @transientPropertyGeneration) then
       %  //--- %!mProperty.mPropertyName%\n%
       %    self.%!mProperty.mPropertyName%_property.mReadModelFunction = nil \n%
-      if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @computedPropertyGeneration)  then
+      if (mProperty is @atomicPropertyGeneration) | (mProperty is @computedPropertyGeneration)  then
         %    self.%!mProperty.mPropertyName%_property.mWriteModelFunction = nil \n%
        end
       %    self.selectedArray_property.toMany_%!mProperty.mPropertyName%_StopsBeingObserved (by: self.%!mProperty.mPropertyName%_property)\n%

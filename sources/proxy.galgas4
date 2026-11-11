@@ -2,7 +2,7 @@
 //   AST
 //------------------------------------------------------------------------------------------------
 
-enum @proxyKind %equatable {
+enum @proxyKind #equatable {
   case propertyProxy
   case toManyProxy
 }
@@ -42,8 +42,8 @@ syntax extension easyBindings_syntax {
   
   rule <controller_declaration>(
             let @lstring inCurrentEntity,
-            let @lstring unused inRootEntity,
-            ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
+            let @lstring _inRootEntity,
+            ?![@arrayControllerBindingAST] _ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     let @proxyKind proxyKind
@@ -83,7 +83,7 @@ syntax extension easyBindings_syntax {
 
 override proc @proxyDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
+       ?!@generationStruct _ioGeneration)
 {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
 //  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
@@ -227,9 +227,9 @@ override func @toManyProxyGeneration.bindPropertyInSelectionController() -> @str
 //------------------------------------------------------------------------------------------------
 
 override func @toManyProxyGeneration.propertyDeclarationCode(
-   let @bool unused inPreferences,
-   let @bool unused inGenerationDirectAccess,
-   let @stringset unused inOverriddenTransients) -> @string
+   let @bool _inPreferences,
+   let @bool _inGenerationDirectAccess,
+   let @stringset _inOverriddenTransients) -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   ToMany proxy: " + self.mPropertyName + "\n"
@@ -254,7 +254,7 @@ override func @toManyProxyGeneration.propertyDeclarationCode(
 
 //------------------------------------------------------------------------------------------------
 
-override func @toManyProxyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @toManyProxyGeneration.configurationCode (let @bool _inPreferences) -> @string {
   result  = "  //--- ToMany proxy: " + self.mPropertyName + "\n"
   result += "    do{\n"
   result += "      let controller = EBObservablePropertyController (\n"
@@ -361,9 +361,9 @@ override func @atomicProxyGeneration.bindPropertyInSelectionController () -> @st
 //------------------------------------------------------------------------------------------------
 
 override func @atomicProxyGeneration.propertyDeclarationCode(
-   let @bool unused inPreferences,
-   let @bool unused inGenerationDirectAccess,
-   let @stringset unused inOverriddenTransients) -> @string
+   let @bool _inPreferences,
+   let @bool _inGenerationDirectAccess,
+   let @stringset _inOverriddenTransients) -> @string
 {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Atomic proxy property: " + self.mPropertyName + "\n"
@@ -384,7 +384,7 @@ override func @atomicProxyGeneration.propertyDeclarationCode(
 
 //------------------------------------------------------------------------------------------------
 
-override func @atomicProxyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @atomicProxyGeneration.configurationCode (let @bool _inPreferences) -> @string {
   result  = "  //--- Atomic proxy property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + "_property.mReadModelFunction = { [weak self] in\n"
   result += "      if let object = self?." + self.mObservedRelationshipName + "_property {\n"

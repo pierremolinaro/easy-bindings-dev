@@ -1,11 +1,11 @@
 //--------------------------------------------------------------------------------------------------
-//   AST   
+//   AST
 //--------------------------------------------------------------------------------------------------
 
 struct @prefDeclaration {
   public var @outletDeclarationList mOutletDeclarationList = []
   public var @simpleStoredPropertyList mSimpleStoredAttributeList = []
-  public var @lstringlist mActionDeclarationList = []
+  public var [@lstring] mActionDeclarationList = []
   public var @externSwiftFunctionList mExternSwiftFunctionList = []
   public var @stringset mSignatureList = []
   public var @mainXibDescriptorList mMainXibDescriptorList = []
@@ -32,7 +32,7 @@ override func @prefsDeclarationAST.nodeKey() -> @lstring {
 
 //--------------------------------------------------------------------------------------------------
 
-func %once preferencesName () -> @string outResult {
+func #once preferencesName () -> @string outResult {
   outResult = "Preferences"
 }
 
@@ -43,13 +43,13 @@ func %once preferencesName () -> @string outResult {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <preferences_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $prefs$
     let prefs = @lstring (preferencesName (), .here)
     ${$
     var @stringset signatureList = []
-    var @arrayControllerBindingListAST arrayControllerBindingListAST = []
+    var [@arrayControllerBindingAST] arrayControllerBindingListAST = []
     repeat
     while
       var @astViewDeclarationList viewDeclarationList = []
@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
 }
 
 //--------------------------------------------------------------------------------------------------
-//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS
 //--------------------------------------------------------------------------------------------------
 
 override proc @prefsDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
@@ -122,7 +122,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
   var @externFunctionMap externFunctionMap = ()
   for (mExternSwiftFunctionName, mCallerName) in self.mDeclaration.mExternSwiftFunctionList do
     !?externFunctionMap.insertKey (mExternSwiftFunctionName)
-    if not availableCallers.hasKey (mCallerName.string) then
+    if not availableCallers.contains (mCallerName.string) then
       var s = "invalid caller; available callers:"
       for (str) in availableCallers do
         s += "\n  - " + str
@@ -183,7 +183,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
     )
     !?viewGenerationList.append (viewName, viewGeneration)
   end
-  if not viewDeclarationMap.hasKey ("mPrefsMainView") then
+  if not viewDeclarationMap.contains ("mPrefsMainView") then
     error (.nowhere : "Preferences should define 'mPrefsMainView' stack view")
   end
 //-- Code generation
@@ -207,7 +207,7 @@ override proc @prefsDeclarationAST.fourthAnalysisPhase(
 }
 
 //--------------------------------------------------------------------------------------------------
-//   GENERATION                            
+//   GENERATION
 //--------------------------------------------------------------------------------------------------
 
 class @preferencesForGeneration : @abstractFileGeneration {
@@ -250,18 +250,18 @@ private filewrapper prefsGenerationTemplate in "generation-templates" {
 //--------------------------------------------------------------------------------------------------
 
 override proc @preferencesForGeneration.generateCodePhase1 (
-    let @string unused inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    ?!@stringset unused ioUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @string _inOutputDirectory,
+    let @generationStruct _inGenerationStruct,
+    ?!@stringset _ioUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
 override proc @preferencesForGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    @stringset unused inUsedProtocolSet,
+    let @generationStruct _inGenerationStruct,
+    @stringset _inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   let s = filewrapper [prefsGenerationTemplate.preferences:
     self.mPropertyListForGeneration,

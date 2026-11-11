@@ -24,7 +24,7 @@ syntax extension easyBindings_syntax {
 proc graphvizAnalysis (
   let @string inSourceFileDirectory,
   let @semanticContext inSemanticContext,
-  let @lstringlist inGraphvizList)
+  let [@lstring] inGraphvizList)
 {
   if @uint.errorCount == 0 then
     for (rootEntityName) in inGraphvizList do
@@ -40,16 +40,16 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
                                          let @semanticContext inSemanticContext,
                                          let @string inRootEntityName) {
   var @stringset reachableEntityNameSet = [inRootEntityName]
-  var @stringlist exploreArray = [@(inRootEntityName)]
-  var @stringlist nodeList = []
-  var @stringlist arrowList = []
+  var [@string] exploreArray = [inRootEntityName]
+  var [@string] nodeList = []
+  var [@string] arrowList = []
   loop (inSemanticContext.mClassMap.count + 1) while exploreArray.count > 0 do
-    !?exploreArray.popLast (?let @string entityName)
+    !?exploreArray.removeLast (?let @string entityName)
     var node = "  " + entityName + "[label=\"<" + entityName + ">" + entityName
     inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
     entityKind.extractEntity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
-      if not reachableEntityNameSet.hasKey (superEntityName) then
+      if not reachableEntityNameSet.contains (superEntityName) then
         !?reachableEntityNameSet.insert (superEntityName)
         !?exploreArray.append (superEntityName)
       end
@@ -71,21 +71,21 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
          node += "|<" + propertyName + ">[" + typeName + "] " + propertyName
          switch optionKind
          case none :
-           if not reachableEntityNameSet.hasKey (typeName) then
+           if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
            end
            !?arrowList.append ("  " + entityName + ":" + propertyName
              + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
          case hasOpposite (oppositeName) :
-           if not reachableEntityNameSet.hasKey (typeName) then
+           if not reachableEntityNameSet.contains (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
            end
            !?arrowList.append ("  " + entityName + ":" + propertyName
               + " -> " + typeName + ":" + oppositeName + " [dir=both arrowtail=onormal arrowhead=veevee]")
          case hasDependance (*) :
-           if not reachableEntityNameSet.hasKey (typeName) then
+           if not reachableEntityNameSet.contains (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
            end
@@ -98,7 +98,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
           node += "|<" + propertyName + ">" + typeName + "? " + propertyName
           switch opposite
           case none :
-            if not reachableEntityNameSet.hasKey (typeName) then
+            if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
@@ -106,7 +106,7 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
                + " -> " + typeName + ":" + typeName + " [dir=both arrowtail=none arrowhead=onormal]")
           case oppositeIsToMany (*) : // No generation
           case oppositeIsToOne (oppositeName) :
-            if not reachableEntityNameSet.hasKey (typeName) then
+            if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
@@ -139,8 +139,8 @@ private proc graphvizRootEntityAnalysis (let @string inSourceFileDirectory,
 
 //------------------------------------------------------------------------------------------------
 
-graph @entityStrongReferenceGraph (@stringlist) {
-  %insertSetter addNode %errorMessage "the '%K' entity is already declared at %L"
+graph @entityStrongReferenceGraph : @string {
+  #insertSetter addNode #errorMessage "the '%K' entity is already declared at %L"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -149,18 +149,18 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
                                                let @semanticContext inSemanticContext,
                                                let @string inRootEntityName) {
   var @stringset reachableEntityNameSet = [inRootEntityName]
-  var @stringlist exploreArray = [@(inRootEntityName)]
-  var @stringlist nodeList = []
-  var @stringlist arrowList = []
+  var [@string] exploreArray = [inRootEntityName]
+  var [@string] nodeList = []
+  var [@string] arrowList = []
   var @entityStrongReferenceGraph entityStrongReferenceGraph = @()
   loop (inSemanticContext.mClassMap.count + 1) while exploreArray.count > 0 do
-    !?exploreArray.popLast (?let @string entityName)
+    !?exploreArray.removeLast (?let @string entityName)
     !?nodeList.append (entityName)
     !?entityStrongReferenceGraph.addNode (@(entityName, .nowhere), entityName)
     inSemanticContext.mClassMap.searchKey (entityName.nowhere , ?let entityKind, ?let @propertyMap propertyMap, ?2*)
     entityKind.extractEntity (?superEntityName: let superEntityName, ?3*)
     if superEntityName != "" then
-      if not reachableEntityNameSet.hasKey (superEntityName) then
+      if not reachableEntityNameSet.contains (superEntityName) then
         !?reachableEntityNameSet.insert (superEntityName)
         !?exploreArray.append (superEntityName)
       end
@@ -176,7 +176,7 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
         !?arrowList.append (entityName + " -> " + typeName + " [dir=both arrowtail=none arrowhead=veevee]")
         !?entityStrongReferenceGraph.addEdge (!from: @(entityName, .nowhere), !to: @(typeName, .nowhere))
         if accessibility.isStored then
-          if not reachableEntityNameSet.hasKey (typeName) then
+          if not reachableEntityNameSet.contains (typeName) then
              !?reachableEntityNameSet.insert (typeName)
              !?exploreArray.append (typeName)
            end
@@ -189,13 +189,13 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
         if accessibility.isStored then
           switch opposite
           case none :
-            if not reachableEntityNameSet.hasKey (typeName) then
+            if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
           case oppositeIsToMany (*) : // No generation
           case oppositeIsToOne (*) :
-            if not reachableEntityNameSet.hasKey (typeName) then
+            if not reachableEntityNameSet.contains (typeName) then
               !?reachableEntityNameSet.insert (typeName)
               !?exploreArray.append (typeName)
             end
@@ -233,22 +233,24 @@ private proc graphvizRootEntityStrongAnalysis (let @string inSourceFileDirectory
 //-- Check accessibility
   if undefinedNodeList.count == 0 then
     let accessibleNodeList = entityStrongReferenceGraph.accessibleNodesFrom (
-     [@(@(inRootEntityName, .nowhere))], [])
-    let accessibleNodeSet = @stringset.setWithLStringList (accessibleNodeList)
+      [inRootEntityName.nowhere],
+      []
+    )
+    let accessibleNodeSet = @stringset (!lstringArray: accessibleNodeList)
     for (node) in nodeList do
-      if not accessibleNodeSet.hasKey (node) then
+      if not accessibleNodeSet.contains (node) then
         error (.nowhere : node + " entity is not reachable via strong reference from " + inRootEntityName)
       end
     end
   end
 //-- Check no circularities
   if undefinedNodeList.count == 0 then
-    entityStrongReferenceGraph.circularities (?*, ?let @lstringlist unsortedNodeList)
+    entityStrongReferenceGraph.circularities (?*, ?let unsortedNodeList)
     if unsortedNodeList.count > 0 then
       var s = "for " + inRootEntityName + " graph, " + unsortedNodeList.count
       s += " entities are involved in a strong reference cycle"
-      for (node) in unsortedNodeList do
-        s += "\n -- " + node
+      for nodeName in unsortedNodeList do
+        s += "\n -- " + nodeName
       end
       warning .nowhere : s
     end

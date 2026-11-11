@@ -23,49 +23,43 @@ abstract proc @abstractDeclarationAST.firstAnalysisPhase(
 //------------------------------------------------------------------------------------------------
 
 proc @abstractDeclarationAST.secondAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext,
-    ?!@generationStruct unused ioGeneration)
+    ?!@semanticContext _ioSemanticContext,
+    ?!@generationStruct _ioGeneration)
 {
 }
 
 //------------------------------------------------------------------------------------------------
 
 proc @abstractDeclarationAST.thirdAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext,
-    ?!@generationStruct unused ioGeneration)
+    ?!@semanticContext _ioSemanticContext,
+    ?!@generationStruct _ioGeneration)
 {
 }
 
 //------------------------------------------------------------------------------------------------
 
 proc @abstractDeclarationAST.fourthAnalysisPhase(
-    ?!@semanticContext unused ioSemanticContext,
-    ?!@generationStruct unused ioGeneration)
+    ?!@semanticContext _ioSemanticContext,
+    ?!@generationStruct _ioGeneration)
 {
 }
 
 //------------------------------------------------------------------------------------------------
 
-list @declarationListAST {
-  public var @abstractDeclarationAST mPropertyDeclaration
-}
-
-//------------------------------------------------------------------------------------------------
-
-graph @declarationPrecedenceGraph (@declarationListAST) {
-  %insertSetter addNode %errorMessage "the '%K' symbol is already declared at %L"
+graph @declarationPrecedenceGraph : @abstractDeclarationAST {
+  #insertSetter addNode #errorMessage "the '%K' symbol is already declared at %L"
 }
 
 //------------------------------------------------------------------------------------------------
 
 proc sortProperties(
       let @string inSourceFile,
-      let @declarationListAST inDeclarationListAST,
-      !@declarationListAST outSortedDeclarationListAST)
+      let [@abstractDeclarationAST] inDeclarationListAST,
+      ![@abstractDeclarationAST] outSortedDeclarationListAST)
 {
 //----------------------- Enter declarations in graph
   var @declarationPrecedenceGraph declarationPrecedenceGraph = @()
-  for (declaration) in inDeclarationListAST do
+  for declaration in inDeclarationListAST do
     declaration.enterInPrecedenceGraph (!?declarationPrecedenceGraph)
   end
 //----------------------- dot files
@@ -77,8 +71,8 @@ proc sortProperties(
 //-----------------------  Get ordered declaration list
   outSortedDeclarationListAST = []
   if declarationPrecedenceGraph.undefinedNodeCount > 0 then
-    for (mValue) in  declarationPrecedenceGraph.undefinedNodeReferenceList do
-      error (mValue : "the property " + mValue.string + " is not defined")
+    for nodeName in  declarationPrecedenceGraph.undefinedNodeReferenceList do
+      error (nodeName : "the property " + nodeName + " is not defined")
     end
   else
     declarationPrecedenceGraph.topologicalSort
@@ -91,11 +85,11 @@ proc sortProperties(
       var s = "semantic analysis not performed, "
             + unsortedSemanticDeclarationListAST.count
             + " declarations are involved in circular definition:"
-      for (declaration) in  unsortedSemanticDeclarationListAST do
+      for declaration in  unsortedSemanticDeclarationListAST do
         s += "\n-  " + declaration.nodeKey
       end
       error (.nowhere : s)
-      for (declaration) in  unsortedSemanticDeclarationListAST do
+      for declaration in  unsortedSemanticDeclarationListAST do
         error (declaration.nodeKey : "the " + declaration.nodeKey + " property is declared here")
       end
     end

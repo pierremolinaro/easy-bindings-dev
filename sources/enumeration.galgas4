@@ -1,9 +1,9 @@
 //------------------------------------------------------------------------------------------------
-//   AST   
+//   AST
 //------------------------------------------------------------------------------------------------
 
 class @enumerationDeclarationAST : @abstractDeclarationAST {
-  let @lstringlist mEnumConstantNameList
+  let [@lstring] mEnumConstantNameList
   let @bool mCaseIterable
 }
 
@@ -24,7 +24,7 @@ override func @enumerationDeclarationAST.nodeKey() -> @lstring {
 list @enumerationFunctionListAST {
   public var @lstring mEnumName
   public var @lstring mFunctionName
-  public var @2lstringlist mAssociationList
+  public var [@2lstring] mAssociationList
 }
 
 //------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ list @enumerationFunctionListAST {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <enum_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $enum$
     $Identifier$ (?let @lstring enumName)
@@ -44,12 +44,12 @@ syntax extension easyBindings_syntax {
     or
       $@attribute$ (?let attribute)
       if attribute.string != "CaseIterable" then
-        error (attribute : "only @CaseIterable attribute is allowed here" fixit %replaceBy "@CaseIterable" )
+        error (attribute : "only @CaseIterable attribute is allowed here" fixit #replaceBy "@CaseIterable" )
       end
       caseIterable = true
     end
     ${$
-    var @lstringlist enumConstants = []
+    var [@lstring] enumConstants = []
     repeat
       $identifier$ (?let @lstring constantName)
       !?enumConstants.append (constantName)
@@ -61,44 +61,44 @@ syntax extension easyBindings_syntax {
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <enum_function_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $func$
     $enum$
     $Identifier$ (?let @lstring enumName)
-    $.$    
+    $.$
     $identifier$ (?let @lstring funcName)
     ${$
-    var @2lstringlist associationList = []
+    var [@2lstring] associationList = []
     repeat
     while
       $identifier$ (?let @lstring constantName)
       $:$
       $literal_string$ (?let @lstring associatedString)
       $;$
-      !?associationList.append (constantName, associatedString)
-    end 
+      associationList ++= @(constantName, associatedString)
+    end
     $}$
     !?ioDeclarationAST.mEnumerationFunctionListAST.append (enumName, funcName, associationList)
   }
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
 //------------------------------------------------------------------------------------------------
-//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS
 //------------------------------------------------------------------------------------------------
 
-map @enumConstantMap %equatable {
+map @enumConstantMap #equatable {
   public var @uint mIndex
-  %insertSetter insertKey %errorMessage "there is already a '%K' constant"
-  %searchMethod searchKey %errorMessage "the '%K' constant is not defined"
+  #insertSetter insertKey #errorMessage "there is already a '%K' constant"
+  #searchMethod searchKey #errorMessage "the '%K' constant is not defined"
 }
 
 //------------------------------------------------------------------------------------------------
 
-sortedlist @enumFunAssociationSortedList %equatable {
+sortedlist @enumFunAssociationSortedList #equatable {
   public var @uint mIndex
   public var @string mAssociatedString
 }{
@@ -107,10 +107,10 @@ sortedlist @enumFunAssociationSortedList %equatable {
 
 //------------------------------------------------------------------------------------------------
 
-map @enumFuncMap %equatable {
+map @enumFuncMap #equatable {
   public var @enumFunAssociationSortedList mAssociationSortedList
-  %insertSetter insertKey %errorMessage "there is already a '%K' enum function"
-  %searchMethod searchKey %errorMessage "the '%K' enum function is not defined"
+  #insertSetter insertKey #errorMessage "there is already a '%K' enum function"
+  #searchMethod searchKey #errorMessage "the '%K' enum function is not defined"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -128,16 +128,16 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
     if enumTypeName.string == self.mClassName.string then
       var @stringset definedConstantNameSet = []
       var @enumFunAssociationSortedList associationSortedList = []
-      for (constantName, associatedString) in associationList do
-        enumConstantMap.searchKey (constantName, ?let idx)
-        !?associationSortedList.insert (idx, associatedString.string)
-        if definedConstantNameSet.hasKey (constantName) then
-          error (constantName : "Duplicated constant")
+      for association in associationList do
+        enumConstantMap.searchKey (association.mValue0, ?let idx)
+        !?associationSortedList.insert (idx, association.mValue1.string)
+        if definedConstantNameSet.contains (association.mValue0) then
+          error (association.mValue0 : "Duplicated constant")
         end
-        !?definedConstantNameSet.insert (constantName)
+        !?definedConstantNameSet.insert (association.mValue0)
       end
       for (s) in self.mEnumConstantNameList do
-        if not definedConstantNameSet.hasKey (s) then
+        if not definedConstantNameSet.contains (s) then
           error (funcName : "No association for '" + s + "' constant")
         end
       end
@@ -167,7 +167,7 @@ override proc @enumerationDeclarationAST.firstAnalysisPhase(
 
 class @enumForGeneration : @abstractFileGeneration {
   let @string mEnumName
-  let @lstringlist mEnumConstantList
+  let [@lstring] mEnumConstantList
   let @enumFuncMap mEnumFuncMap
   let @bool mCaseIterable
 }
@@ -179,12 +179,12 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
 }{
   template enumGenerationInSwift : "enum.swift.galgasTemplate" (
     @string ENUM_TYPE_NAME,
-    @lstringlist CONSTANT_ORDERED_LIST,
+    [@lstring] CONSTANT_ORDERED_LIST,
     @bool CASE_ITERABLE
   )
   template enumEBExtensionGenerationInSwift : "enum.ebExtension.swift.galgasTemplate" (
     @string ENUM_TYPE_NAME,
-    @lstringlist CONSTANT_ORDERED_LIST,
+    [@lstring] CONSTANT_ORDERED_LIST,
     @enumFuncMap FUNCTION_MAP
   )
 }
@@ -192,18 +192,18 @@ private filewrapper enumGenerationTemplate in "generation-templates" {
 //------------------------------------------------------------------------------------------------
 
 override proc @enumForGeneration.generateCodePhase1 (
-    let @string unused inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    ?!@stringset unused ioUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @string _inOutputDirectory,
+    let @generationStruct _inGenerationStruct,
+    ?!@stringset _ioUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 }
 
 //------------------------------------------------------------------------------------------------
 
 override proc @enumForGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    @stringset unused inUsedProtocolSet,
+    let @generationStruct _inGenerationStruct,
+    @stringset _inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   if self.mEnumConstantList.count > 0 then // Empty list is the generic type "Enum"
     let sA = filewrapper [enumGenerationTemplate.enumGenerationInSwift:

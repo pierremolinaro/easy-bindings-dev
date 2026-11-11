@@ -199,7 +199,7 @@ func @observablePropertyAST.modelStringForSelf (let @string inSelf) -> @string o
     outResult = inSelf + propertyName + "_property"
   case selfPropertyWithOption (@lstring propertyName, @lstring optionName) :
     outResult = inSelf + propertyName + "_property" + "." + optionName + "_property"
-  case selfPropertyArray (@lstring propertyName, @lstring unused elementPropertyName) :
+  case selfPropertyArray (@lstring propertyName, @lstring _elementPropertyName) :
     outResult = inSelf + propertyName + "_property"
   case selfPropertyObject (@lstring propertyName, @lstring elementPropertyName) :
     outResult = inSelf + propertyName + "_property." + elementPropertyName + "_property"
@@ -647,7 +647,7 @@ proc @observablePropertyAST.analyzeObservableProperty (@propertyMap inRootProper
         error (propertyName
           : "unknown option (accepted : 'sortedArray' or 'selectedArray')"
           spoil outKind
-          fixit %replaceBy "sortedArray", %replaceBy "selectedArray" )
+          fixit #replaceBy "sortedArray", #replaceBy "selectedArray" )
       end
     case selectionController (entityName) :
       inSemanticContext.mClassMap.searchKey (
@@ -666,7 +666,7 @@ proc @observablePropertyAST.analyzeObservableProperty (@propertyMap inRootProper
     elsif (propertyName.string == "selectedArray") && (secondaryPropertyName.string == "count") then
       outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
     else
-      error (propertyName : "unknown option" spoil outKind fixit %replaceBy "sortedArray", %replaceBy "selectedArray" )
+      error (propertyName : "unknown option" spoil outKind fixit #replaceBy "sortedArray", #replaceBy "selectedArray" )
     end
     outSwiftTypeStringForTransientFunctionArgument = outKind.swiftTypeName
   case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
@@ -697,7 +697,7 @@ proc @observablePropertyAST.analyzeObservableProperty (@propertyMap inRootProper
     if propertyName.string != "selectedArray" then
       error (propertyName : "unknown property"
         spoil outKind, outSwiftTypeStringForTransientFunctionArgument
-        fixit %replaceBy "selectedArray" )
+        fixit #replaceBy "selectedArray" )
     else
       outKind = .property (!type: .integerType, !accessibility: .transient (!isAbstract: false))
       switch propertyKind

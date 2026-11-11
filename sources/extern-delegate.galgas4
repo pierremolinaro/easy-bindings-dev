@@ -1,12 +1,4 @@
 //------------------------------------------------------------------------------------------------
-//   AST   
-//------------------------------------------------------------------------------------------------
-
-list @externSwiftDelegateList {
-  public var @lstring mExternSwiftDelegateName
-}
-
-//------------------------------------------------------------------------------------------------
 //   SYNTAX
 //------------------------------------------------------------------------------------------------
 
@@ -14,13 +6,11 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <extern_swift_delegate>(
-    ?!@externSwiftDelegateList ioExternSwiftDelegateList)
-  {
+  rule <extern_swift_delegate> (?![@lstring] ioExternSwiftDelegateList) {
     $externDelegate$
     $Identifier$ (?let @lstring externDelegateName)
     $;$
-    !?ioExternSwiftDelegateList.append (externDelegateName)
+    ioExternSwiftDelegateList ++= externDelegateName
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

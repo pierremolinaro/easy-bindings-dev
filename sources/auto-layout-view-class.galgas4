@@ -16,7 +16,7 @@ class @autoLayoutViewClassDeclarationAST : @abstractDeclarationAST {
 
 //------------------------------------------------------------------------------------------------
 
-enum @autoLayoutClassParameterType %equatable {
+enum @autoLayoutClassParameterType #equatable {
   case typeString
   case typeStringArray
   case typeInt
@@ -53,8 +53,8 @@ list @autoLayoutClassParameterList {
 
 map @astAutoLayoutViewFunctionMap {
   public var @autoLayoutClassParameterList mFomalParameterList
-  %insertSetter insertKey %errorMessage "the '%K' function is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' function"
+  #insertSetter insertKey #errorMessage "the '%K' function is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' function"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -231,7 +231,7 @@ syntax extension easyBindings_syntax {
 
 override proc @autoLayoutViewClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
+       ?!@generationStruct _ioGeneration)
 {
   if self.mSuperClassName.string == "" then
     !?ioSemanticContext.mAutolayoutViewClassMap.insertKey (
@@ -302,8 +302,8 @@ map @autolayoutViewClassMap {
   public var @bool mUserDefined
   public var @autoLayoutClassParameterList mParameterList
   public var @astAutoLayoutViewFunctionMap mAutoLayoutViewFunctionMap
-  %insertSetter insertKey %errorMessage "the '%K' outlet class is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' outlet class"
+  #insertSetter insertKey #errorMessage "the '%K' outlet class is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' outlet class"
 }
 
 //------------------------------------------------------------------------------------------------

@@ -35,8 +35,8 @@ syntax extension easyBindings_syntax {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
   rule <controller_declaration> (let @lstring inCurrentEntity,
-                                 let @lstring unused inRootEntity,
-                                 ?!@arrayControllerBindingListAST unused ioArrayControllerBindingListAST,
+                                 let @lstring _inRootEntity,
+                                 ?![@arrayControllerBindingAST] _ioArrayControllerBindingListAST,
                                  ?!@astDeclarationStruct ioDeclarationAST) {
     $selectionController$
     $Identifier$ (?let @lstring selectionEntityName)
@@ -65,7 +65,7 @@ syntax extension easyBindings_syntax {
 //------------------------------------------------------------------------------------------------
 
 override proc @selectionControllerDeclarationAST.firstAnalysisPhase (?!@semanticContext ioSemanticContext,
-                                                                     ?!@generationStruct unused ioGeneration) {
+                                                                     ?!@generationStruct _ioGeneration) {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
 //  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     entry.mPropertyMap.searchKey (self.mModelControllerName, ?let propertyKind, ?2*)
@@ -144,14 +144,14 @@ override proc @selectionControllerDeclarationAST.fourthAnalysisPhase(
        ?let selectionGenerationList
      )
      !?ioGeneration.mSelectionControllerListForGeneration.append (
-       !self.mClassName,
-       !self.mSelectionControllerName.string,
-       !self.mModelControllerName.string,
-       !self.mModelControllerPropertyName.string,
-       !typeName.string,
-       !self.mSelectionEntityName.string,
-       !selectionObservablePropertyMap,
-       !selectionGenerationList
+       self.mClassName,
+       self.mSelectionControllerName.string,
+       self.mModelControllerName.string,
+       self.mModelControllerPropertyName.string,
+       typeName.string,
+       self.mSelectionEntityName.string,
+       selectionObservablePropertyMap,
+       selectionGenerationList
      )
      !?ioGeneration.mToManyClassImplementations.insert (typeName.string)
      if typeName.string != self.mSelectionEntityName.string then
@@ -192,9 +192,9 @@ class @selectionControllerPropertyGeneration : @propertyGeneration {
 //------------------------------------------------------------------------------------------------
 
 override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
-   let @bool unused inPreferences,
-   let @bool unused inGenerationDirectAccess,
-   let @stringset unused inOverriddenTransients) -> @string {
+   let @bool _inPreferences,
+   let @bool _inGenerationDirectAccess,
+   let @stringset _inOverriddenTransients) -> @string {
   result  = "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
   result += "  //   Selection controller: " + self.mPropertyName + "\n"
   result += "  //" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n\n"
@@ -203,7 +203,7 @@ override func @selectionControllerPropertyGeneration.propertyDeclarationCode(
 
 //------------------------------------------------------------------------------------------------
 
-override func @selectionControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @selectionControllerPropertyGeneration.configurationCode (let @bool _inPreferences) -> @string {
   result  = "  //--- Selection controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_selection (model: self." + self.mModelControllerName
     + "." + self.mModelControllerPropertyName + "_property)\n"

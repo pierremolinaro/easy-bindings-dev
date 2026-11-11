@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------------------------
-//   AST   
+//   AST
 //------------------------------------------------------------------------------------------------
 
 abstract class @abstractDefaultValue {
@@ -49,7 +49,7 @@ class @prefsAsDefaultValue : @abstractDefaultValue {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
    rule <explicit_value> (!@abstractDefaultValue outDefaultValue) {
     select
       $yes$
@@ -86,7 +86,7 @@ syntax extension easyBindings_syntax {
 }
 
 //------------------------------------------------------------------------------------------------
-//   SEMANTICS                             
+//   SEMANTICS
 //------------------------------------------------------------------------------------------------
 
 abstract proc @abstractDefaultValue.analyzeDefaultValueType (
@@ -97,15 +97,15 @@ abstract proc @abstractDefaultValue.analyzeDefaultValueType (
 //------------------------------------------------------------------------------------------------
 
 proc @abstractDefaultValue.enterDefaultValuePrecedence(
-   let @lstring unused inNode,
-   ?!@declarationPrecedenceGraph unused ioGraph) {
+   let @lstring _inNode,
+   ?!@declarationPrecedenceGraph _ioGraph) {
 }
 
 //------------------------------------------------------------------------------------------------
-  
+
 override proc @boolAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
-  let @propertyMap unused inPreferencesPropertyMap,
+  let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
@@ -127,15 +127,15 @@ override proc @boolAsDefaultValue.analyzeDefaultValueType (
   if not found then
     error (self.mValue
     : "only a boolean attribute can be initialized by YES or NO"
-    )  
+    )
   end
 }
 
 //------------------------------------------------------------------------------------------------
-  
+
 override proc @integerAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
-  let @propertyMap unused inPreferencesPropertyMap,
+  let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
@@ -169,16 +169,16 @@ override proc @integerAsDefaultValue.analyzeDefaultValueType (
   end
   if not found then
     error (self.mValue
-    : "only an integer attribute can be initialized by an integer constant" 
-    ) 
+    : "only an integer attribute can be initialized by an integer constant"
+    )
   end
 }
 
 //------------------------------------------------------------------------------------------------
-  
+
 override proc @doubleAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
-  let @propertyMap unused inPreferencesPropertyMap,
+  let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
@@ -205,10 +205,10 @@ override proc @doubleAsDefaultValue.analyzeDefaultValueType (
 }
 
 //------------------------------------------------------------------------------------------------
-  
+
 override proc @stringAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
-  let @propertyMap unused inPreferencesPropertyMap,
+  let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
@@ -239,7 +239,7 @@ override proc @stringAsDefaultValue.analyzeDefaultValueType (
 
 //------------------------------------------------------------------------------------------------
 
-func %once predefinedDates() -> @stringset {
+func #once predefinedDates() -> @stringset {
   result = []
   !?result.insert ("now")
   !?result.insert ("distantPast")
@@ -247,7 +247,7 @@ func %once predefinedDates() -> @stringset {
 
 //------------------------------------------------------------------------------------------------
 
-func %once predefinedColors() -> @stringset {
+func #once predefinedColors() -> @stringset {
   result = []
   !?result.insert ("black")
   !?result.insert ("blue")
@@ -292,26 +292,26 @@ func %once predefinedColors() -> @stringset {
   !?result.insert ("yellow")
 }
 //------------------------------------------------------------------------------------------------
-  
+
 override proc @identifierAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
-  let @propertyMap unused inPreferencesPropertyMap,
+  let @propertyMap _inPreferencesPropertyMap,
   !@string outSwiftDefaultValueAsString)
 {
   outSwiftDefaultValueAsString = ""
   var @bool found = false
   for (mType) in inAttributeActualTypeList while not found do
-    switch mType 
+    switch mType
     case dateType :
       found = true
-      if predefinedDates ().hasKey (self.mValue.string) then
+      if predefinedDates ().contains (self.mValue.string) then
         if self.mValue.string == "now" then
           outSwiftDefaultValueAsString = "Date ()"
         elsif self.mValue.string == "distantPast" then
           outSwiftDefaultValueAsString = "Date.distantPast"
         else
           error (self.mValue : "unknown predefined date")
-        end 
+        end
       else
         error (self.mValue : "unknown predefined date")
       end
@@ -327,23 +327,23 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
       if self.mValue.string == "empty" then
         outSwiftDefaultValueAsString = "BezierPathArray ()"
       else
-        error (self.mValue : "only 'empty' is accepted as default BezierPathArray")  
+        error (self.mValue : "only 'empty' is accepted as default BezierPathArray")
       end
     case enumType (@string enumTypeName, @enumConstantMap constantMap, *) :
       found = true
-      if constantMap.hasKey (self.mValue.string) then
+      if constantMap.contains (self.mValue.string) then
         outSwiftDefaultValueAsString = enumTypeName + "." + self.mValue.string
       else
         error (self.mValue
         : "the '" + enumTypeName + "' enumeration does not define '" + self.mValue + "' constant"
-        spoil outSwiftDefaultValueAsString)  
+        spoil outSwiftDefaultValueAsString)
       end
     case entityType (2*) :
-      error (self.mValue : "invalid entity type") 
+      error (self.mValue : "invalid entity type")
     case classType (*) :
-      error (self.mValue : "invalid class type") 
+      error (self.mValue : "invalid class type")
     case boolType :
-      error (self.mValue : "invalid bool type") 
+      error (self.mValue : "invalid bool type")
     case dataType :
       found = true
       if self.mValue.string == "empty" then
@@ -352,27 +352,27 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
         error (self.mValue : "only 'empty' is accepted as default Data")
       end
     case canariLengthType :
-      error (self.mValue : "invalid CanariLength type") 
+      error (self.mValue : "invalid CanariLength type")
     case canariAngleType :
-      error (self.mValue : "invalid CanariAngle type") 
+      error (self.mValue : "invalid CanariAngle type")
     case canariLengthUnitType :
-      error (self.mValue : "invalid CanariLengthUnit type") 
+      error (self.mValue : "invalid CanariLengthUnit type")
     case doubleType :
-      error (self.mValue : "invalid double type") 
+      error (self.mValue : "invalid double type")
     case integerType :
-      error (self.mValue : "invalid integer type") 
+      error (self.mValue : "invalid integer type")
     case uint32Type :
-      error (self.mValue : "invalid UInt32 type")  
+      error (self.mValue : "invalid UInt32 type")
     case stringType :
-      error (self.mValue : "invalid string type")  
+      error (self.mValue : "invalid string type")
     case fontType :
       error (self.mValue : "invalid font type")
     case colorType :
-      if predefinedColors ().hasKey (self.mValue.string) then
+      if predefinedColors ().contains (self.mValue.string) then
         outSwiftDefaultValueAsString = "NSColor." + self.mValue.string
         found = true
       else
-        error (self.mValue : "unknown predefined color") 
+        error (self.mValue : "unknown predefined color")
       end
     case transientPropertyExternType (*) :
       error (self.mValue : "invalid image type")
@@ -381,12 +381,12 @@ override proc @identifierAsDefaultValue.analyzeDefaultValueType (
   if not found then
     error (self.mValue
     : "unknow type for this identifier"
-    ) 
+    )
   end
 }
 
 //------------------------------------------------------------------------------------------------
- 
+
 override proc @prefsAsDefaultValue.analyzeDefaultValueType (
   let @typeKindList inAttributeActualTypeList,
   let @propertyMap inPreferencesPropertyMap,

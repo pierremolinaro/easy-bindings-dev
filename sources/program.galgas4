@@ -16,7 +16,7 @@ struct @semanticContext {
 //------------------------------------------------------------------------------------------------
 
 case ."eb"
-  %errorMessage "a source text file with the .easyBindings extension"
+  #errorMessage "a source text file with the .easyBindings extension"
   grammar easyBindings_grammar
   ?sourceFilePath:@lstring inSourceFile
 {
@@ -24,7 +24,7 @@ case ."eb"
 //---------------------------------------- Parse predefined outlets files
   grammar easyBindings_grammar (!?declarationStruct, ?*) on filewrapper [predefinedOutletClasses.sourceFile:]:""
 //---------------------------------------- Parse source file
-  grammar easyBindings_grammar (!?declarationStruct, ?let @location unused endOfSourceFile) in inSourceFile
+  grammar easyBindings_grammar (!?declarationStruct, ?let @location _endOfSourceFile) in inSourceFile
 //----------------------- Add prefs declaration
   !?declarationStruct.mUnifiedDeclarationList.append (@prefsDeclarationAST (
     @(preferencesName (), .nowhere),
@@ -41,7 +41,7 @@ case ."eb"
   semanticContext.mAutoLayoutHStackFunctionMap = declarationStruct.mAutoLayoutHStackFunctionMap
   semanticContext.mEnumerationFunctionListAST = declarationStruct.mEnumerationFunctionListAST
   var generation = @generationStruct ()
-  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
+  for declaration in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.firstAnalysisPhase (!?semanticContext, !?generation)
   end
 //---------------------------------------- Build binding specification map
@@ -58,15 +58,15 @@ case ."eb"
     )
   end
 //---------------------------------------- Semantic Analysis, second phase
-  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
+  for declaration in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.secondAnalysisPhase (!?semanticContext, !?generation)
   end
 //---------------------------------------- Semantic Analysis, third phase
-  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
+  for declaration in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.thirdAnalysisPhase (!?semanticContext, !?generation)
   end
 //---------------------------------------- Semantic Analysis, fourth phase
-  for (declaration) in sortedDeclarationListAST while @uint.errorCount == 0 do
+  for declaration in sortedDeclarationListAST while @uint.errorCount == 0 do
     declaration.fourthAnalysisPhase (!?semanticContext, !?generation)
   end
 //---------------------------------------- Check enum type is declared for every enum function

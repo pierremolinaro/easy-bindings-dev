@@ -10,7 +10,7 @@ class @arrayControllerDeclarationAST : @abstractDeclarationAST {
 
 //--------------------------------------------------------------------------------------------------
 
-list @arrayControllerBindingListAST {
+struct @arrayControllerBindingAST {
   public var @lstring mControllerName
   public var @multipleBindingDescriptor mHiddenSelectionViewBindingDescriptor
 }
@@ -55,7 +55,7 @@ syntax extension easyBindings_syntax {
   rule <controller_declaration>(
             let @lstring inCurrentEntity,
             let @lstring inRootEntity,
-            ?!@arrayControllerBindingListAST ioArrayControllerBindingListAST,
+            ?![@arrayControllerBindingAST] ioArrayControllerBindingListAST,
             ?!@astDeclarationStruct ioDeclarationAST)
   {
     $arrayController$
@@ -78,9 +78,9 @@ syntax extension easyBindings_syntax {
       $hidden$
        <booleanMultipleBindingExpression> (?let @abstractBooleanMultipleBindingExpressionAST bindingExpression)
       let hiddenSelectionViewBindingDescriptor = @multipleBindingDescriptor.binding (!expression:bindingExpression)
-      !?ioArrayControllerBindingListAST.append (
-        !controllerName,
-        !hiddenSelectionViewBindingDescriptor
+      ioArrayControllerBindingListAST ++= @(
+        controllerName,
+        hiddenSelectionViewBindingDescriptor
       )
     end
     $;$
@@ -103,7 +103,7 @@ syntax extension easyBindings_syntax {
 
 override proc @arrayControllerDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
+       ?!@generationStruct _ioGeneration)
 {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
 //  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
@@ -255,8 +255,8 @@ class @arrayControllerPropertyGeneration : @propertyGeneration {
 //--------------------------------------------------------------------------------------------------
 
 override func @arrayControllerPropertyGeneration.propertyDeclarationCode (let @bool inPreferences,
-                                                            let @bool unused inGenerationDirectAccess,
-                                                            let @stringset unused inOverriddenTransients) -> @string {
+                                                            let @bool _inGenerationDirectAccess,
+                                                            let @stringset _inOverriddenTransients) -> @string {
   if inPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
     result += "//   Array controller: " + self.mPropertyName + "\n"
@@ -278,7 +278,7 @@ override func @arrayControllerPropertyGeneration.initCode() -> @string {
 
 //--------------------------------------------------------------------------------------------------
 
-override func @arrayControllerPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @arrayControllerPropertyGeneration.configurationCode (let @bool _inPreferences) -> @string {
   result  = "  //--- Array controller property: " + self.mPropertyName + "\n"
   result += "    self." + self.mPropertyName + ".bind_model (self." + self.mModelString + "_property, self.undoManager)\n"
 }
@@ -323,19 +323,19 @@ private filewrapper arrayControllerGenerationTemplate in "generation-templates/c
 //--------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCodePhase1 (
-    let @string unused inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    ?!@stringset unused ioUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @string _inOutputDirectory,
+    let @generationStruct _inGenerationStruct,
+    ?!@stringset _ioUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
 override proc @arrayControllerGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    @stringset unused inUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @generationStruct _inGenerationStruct,
+    @stringset _inUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 //-- Build observed property set (for sorting and filtering)
   let s = filewrapper [arrayControllerGenerationTemplate.arrayControllerImplementationInSwift:
     self.mOwnerName,

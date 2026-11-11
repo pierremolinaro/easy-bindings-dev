@@ -64,7 +64,7 @@ end
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   static func convertFromNSObject (object : NSObject) -> %!ENUM_TYPE_NAME% {
-    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST mValueAtIndex !0].string%
+    var result = %!ENUM_TYPE_NAME%.%![CONSTANT_ORDERED_LIST first].string%
     if let number = object as? NSNumber, let v = %!ENUM_TYPE_NAME% (rawValue: number.intValue) {
       result = v
     }

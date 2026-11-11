@@ -4,7 +4,7 @@ mutating proc @XcodeProjectDescriptor.addICNS_file(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mICNS_fileList.append (outFileRef, inFileName)
+  self.mICNS_fileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -13,7 +13,7 @@ mutating proc @XcodeProjectDescriptor.addTIFF_file(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mTIFF_fileList.append (outFileRef, inFileName)
+  self.mTIFF_fileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -22,7 +22,7 @@ mutating proc @XcodeProjectDescriptor.addInfoPlistFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mInfoPlistFileList.append (outFileRef, inFileName)
+  self.mInfoPlistFileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -31,7 +31,7 @@ mutating proc @XcodeProjectDescriptor.addXIBFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mXIB_fileList.append (outFileRef, inFileName)
+  self.mXIB_fileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -40,7 +40,7 @@ mutating proc @XcodeProjectDescriptor.addFrameworkFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mFrameworkFileList.append (outFileRef, inFileName)
+  self.mFrameworkFileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -49,7 +49,7 @@ mutating proc @XcodeProjectDescriptor.addMFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.m_M_FileList.append (outFileRef, inFileName)
+  self.m_M_FileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -58,7 +58,7 @@ mutating proc @XcodeProjectDescriptor.addSwiftFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.m_SwiftFileList.append (outFileRef, inFileName)
+  self.m_SwiftFileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -67,7 +67,7 @@ mutating proc @XcodeProjectDescriptor.addMMFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.m_MM_FileList.append (outFileRef, inFileName)
+  self.m_MM_FileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -76,7 +76,7 @@ mutating proc @XcodeProjectDescriptor.addCppFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mCppFileList.append (outFileRef, inFileName)
+  self.mCppFileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -85,7 +85,7 @@ mutating proc @XcodeProjectDescriptor.addHeaderFile(
   ?fileName:let @string inFileName,
   !fileRef:@string outFileRef) {
   !?self.getReferenceKey (?ref:outFileRef)
-  !?self.mHeaderFileList.append (outFileRef, inFileName)
+  self.mHeaderFileList ++= @(outFileRef, inFileName)
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -103,9 +103,9 @@ mutating proc @XcodeProjectDescriptor.addBuildFile(
 mutating proc @XcodeProjectDescriptor.addToolTarget(
   ?targetName:let @string inTargetName,
   ?productFileName:let @string inProductFileName,
-  ?sources:let @stringlist inSourceList,
-  ?frameworkRefs:let @stringlist inToolFrameworksFileRefList,
-  ?buildConfigurationSettingList:let @stringlist inBuildConfigurationSettingList,
+  ?sources:let [@string] inSourceList,
+  ?frameworkRefs:let [@string] inToolFrameworksFileRefList,
+  ?buildConfigurationSettingList:let [@string] inBuildConfigurationSettingList,
   !targetRef:@string outTargetRef,
   !productFileRef:@string outProductFileRef) {
   !?self.getReferenceKey (?ref: outProductFileRef)
@@ -115,17 +115,17 @@ mutating proc @XcodeProjectDescriptor.addToolTarget(
   !?self.getReferenceKey (?ref: let buildConfigurationRef)
   !?self.getReferenceKey (?ref: let frameworkBuildRef)
   !?self.mToolTargetList.append (
-    !outTargetRef,
-    !inTargetName,
-    !outProductFileRef,
-    !inProductFileName,
-    !inSourceList,
-    !buildPhaseRef,
-    !buildConfigurationListRef,
-    !inBuildConfigurationSettingList,
-    !buildConfigurationRef,
-    !inToolFrameworksFileRefList,
-    !frameworkBuildRef
+    outTargetRef,
+    inTargetName,
+    outProductFileRef,
+    inProductFileName,
+    inSourceList,
+    buildPhaseRef,
+    buildConfigurationListRef,
+    inBuildConfigurationSettingList,
+    buildConfigurationRef,
+    inToolFrameworksFileRefList,
+    frameworkBuildRef
   )
 }
 
@@ -134,12 +134,12 @@ mutating proc @XcodeProjectDescriptor.addToolTarget(
 mutating proc @XcodeProjectDescriptor.addAppTarget(
   ?targetName:let @string inTargetName,
   ?productFileName:let @string inProductFileName,
-  ?sources:let @stringlist inSourceList,
-  ?frameworkFileRefs:let @stringlist inFrameworksFileRefList,
-  ?resourceFileRefs:let @stringlist inResourceFileBuildRefs,
-  ?buildConfigurationSettingList:let @stringlist inBuildConfigurationSettingList,
-  ?dependantTargetList:let @stringlist inDependentTargetRefList,
-  ?productCopyList:let @2stringlist inProductCopyList,
+  ?sources:let [@string] inSourceList,
+  ?frameworkFileRefs:let [@string] inFrameworksFileRefList,
+  ?resourceFileRefs:let [@string] inResourceFileBuildRefs,
+  ?buildConfigurationSettingList:let [@string] inBuildConfigurationSettingList,
+  ?dependantTargetList:let [@string] inDependentTargetRefList,
+  ?productCopyList:let [@2string] inProductCopyList,
   ?infoPList:let @string inInfoPList,
   !productFileRef:@string outProductFileRef)
 {
@@ -150,32 +150,32 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
   !?self.getReferenceKey (?ref: let buildConfigurationRef)
   !?self.getReferenceKey (?ref: let frameworkBuildRef)
   !?self.getReferenceKey (?ref: let resourceBuildRef)
-  var @2stringlist dependentTargets = []
+  var [@2string] dependentTargets = []
   for (ref) in inDependentTargetRefList do
     !?self.getReferenceKey (?ref: let dependencyBuildRef)
-    !?dependentTargets.append (dependencyBuildRef, ref)
+    dependentTargets ++= @(dependencyBuildRef, ref)
   end
-  var @stringlist resourceFileBuildRefs = inResourceFileBuildRefs
-  for (ref, name) in inProductCopyList do
-    !?self.addBuildFile (!fileRef:ref, !fileName:name, ?buildRef:let @string buildRef)
+  var [@string] resourceFileBuildRefs = inResourceFileBuildRefs
+  for (copy) in inProductCopyList do
+    !?self.addBuildFile (!fileRef:copy.mValue0, !fileName:copy.mValue1, ?buildRef:let @string buildRef)
     !?resourceFileBuildRefs.append (buildRef)
   end
   !?self.mAppTargetList.append (
-    !targetRef,
-    !inTargetName,
-    !outProductFileRef,
-    !inProductFileName,
-    !inSourceList,
-    !buildPhaseRef,
-    !buildConfigurationListRef,
-    !inBuildConfigurationSettingList,
-    !buildConfigurationRef,
-    !inFrameworksFileRefList,
-    !frameworkBuildRef,
-    !dependentTargets,
-    !resourceBuildRef,
-    !resourceFileBuildRefs,
-    !inInfoPList
+    targetRef,
+    inTargetName,
+    outProductFileRef,
+    inProductFileName,
+    inSourceList,
+    buildPhaseRef,
+    buildConfigurationListRef,
+    inBuildConfigurationSettingList,
+    buildConfigurationRef,
+    inFrameworksFileRefList,
+    frameworkBuildRef,
+    dependentTargets,
+    resourceBuildRef,
+    resourceFileBuildRefs,
+    inInfoPList
   )
 }
 
@@ -184,7 +184,7 @@ mutating proc @XcodeProjectDescriptor.addAppTarget(
 mutating proc @XcodeProjectDescriptor.addGroup(
   ?groupName:let @string inGroupName,
   ?groupPath:let @string inGroupPath,
-  ?childrenRefs:let @stringlist inChildrenRefs,
+  ?childrenRefs:let [@string] inChildrenRefs,
   !groupRef:@string outGroupRef) {
   if self.mDefaultConfigurationRef == "" then
     !?self.getReferenceKey (?ref: self.mDefaultConfigurationRef)
@@ -205,12 +205,12 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   ?groupName:let @string inGroupName,
   ?groupPath:let @string inGroupPath,
   ?fileNames:let @stringset inFileNames,
-  ?!cppFileRefs:@stringlist ioCppFileBuildRefs,
-  ?!mFileRefs:@stringlist ioMFileBuildRefs,
-  ?!mmFileRefs:@stringlist ioMMFileBuildRefs,
-  ?!swiftFileRefs:@stringlist ioSwiftFileBuildRefs,
-  ?!frameworkFileRefs:@stringlist ioFrameWorkFileBuildRefs,
-  ?!resourceFileRefs:@stringlist ioResourceFileBuildRefs,
+  ?!cppFileRefs:[@string] ioCppFileBuildRefs,
+  ?!mFileRefs:[@string] ioMFileBuildRefs,
+  ?!mmFileRefs:[@string] ioMMFileBuildRefs,
+  ?!swiftFileRefs:[@string] ioSwiftFileBuildRefs,
+  ?!frameworkFileRefs:[@string] ioFrameWorkFileBuildRefs,
+  ?!resourceFileRefs:[@string] ioResourceFileBuildRefs,
   !groupRef:@string outGroupRef) {
   if self.mDefaultConfigurationRef == "" then
     !?self.getReferenceKey (?ref: self.mDefaultConfigurationRef)
@@ -223,7 +223,7 @@ mutating proc @XcodeProjectDescriptor.addGroupWithFiles(
   end
   !?self.getReferenceKey (?ref: outGroupRef)
 //--
-  var @stringlist childrenRefs = []
+  var [@string] childrenRefs = []
   for (f) in inFileNames do
     if f.pathExtension == "cpp" then
       !?self.addCppFile (!fileName:f, ?fileRef:let @string cppFileRef)
@@ -288,7 +288,7 @@ mutating proc @XcodeProjectDescriptor.placeGroupAsMainGroup(
 //---------------------------------------------------------------------------------------------------------------------*
 
 mutating proc @XcodeProjectDescriptor.addSettingsToDefaultConfiguration(
-  ?settingList:let @stringlist inSettingList) {
+  ?settingList:let [@string] inSettingList) {
   self.mDefaultConfigurationSettingList += inSettingList
 }
 
@@ -298,7 +298,7 @@ list @XCodeGroupList {
   public var @string mGroupReference
   public var @string mGroupName
   public var @string mGroupPath
-  public var @stringlist mChildrenRefs
+  public var [@string] mChildrenRefs
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -308,12 +308,12 @@ list @XCodeToolTargetList {
   public var @string mTargetName
   public var @string mProductFileReference
   public var @string mProductFileName
-  public var @stringlist mBuildPhaseRefList
+  public var [@string] mBuildPhaseRefList
   public var @string mBuildPhaseRef
   public var @string mBuildConfigurationListRef
-  public var @stringlist mBuildConfigurationSettingList
+  public var [@string] mBuildConfigurationSettingList
   public var @string mBuildConfigurationRef
-  public var @stringlist mFrameworksFileRefList
+  public var [@string] mFrameworksFileRefList
   public var @string mFrameworkBuildPhaseRef
 }
 
@@ -324,16 +324,16 @@ list @XCodeAppTargetList {
   public var @string mTargetName
   public var @string mProductFileReference
   public var @string mProductFileName
-  public var @stringlist mBuildPhaseRefList
+  public var [@string] mBuildPhaseRefList
   public var @string mBuildPhaseRef
   public var @string mBuildConfigurationListRef
-  public var @stringlist mBuildConfigurationSettingList
+  public var [@string] mBuildConfigurationSettingList
   public var @string mBuildConfigurationRef
-  public var @stringlist mFrameworksFileRefList
+  public var [@string] mFrameworksFileRefList
   public var @string mFrameworkBuildPhaseRef
-  public var @2stringlist mDependentTargets
+  public var [@2string] mDependentTargets
   public var @string mResourceBuildRef
-  public var @stringlist mResourceFileBuildRefs
+  public var [@string] mResourceFileBuildRefs
   public var @string mInfoPListFile
 }
 
@@ -361,27 +361,27 @@ mutating proc @XcodeProjectDescriptor.getReferenceKey (!ref: @string outRef) {
 struct @XcodeProjectDescriptor {
   public var @uint mSequenceNumber = 0
   public var @string mMainGroupReference = ""
-  public var @stringlist mMainGroupChildrenRefs = []
+  public var [@string] mMainGroupChildrenRefs = []
   public var @string mProjectObjectReference = ""
   public var @XCodeGroupList mGroupList = []
   public var @XCodeToolTargetList mToolTargetList = []
   public var @XCodeAppTargetList mAppTargetList = []
-  public var @2stringlist mCppFileList = []
-  public var @2stringlist m_M_FileList = []
-  public var @2stringlist m_MM_FileList = []
-  public var @2stringlist m_SwiftFileList = []
-  public var @2stringlist mFrameworkFileList = []
-  public var @2stringlist mHeaderFileList = []
+  public var [@2string] mCppFileList = []
+  public var [@2string] m_M_FileList = []
+  public var [@2string] m_MM_FileList = []
+  public var [@2string] m_SwiftFileList = []
+  public var [@2string] mFrameworkFileList = []
+  public var [@2string] mHeaderFileList = []
   public var @BuildFileList mBuildFileList = []
 //-- Default configuration
   public var @string mDefaultConfigurationRef = ""
-  public var @stringlist mDefaultConfigurationSettingList = []
+  public var [@string] mDefaultConfigurationSettingList = []
   public var @string mProjectBuildConfigurationRef = ""
 //-- Resource files
-  public var @2stringlist mInfoPlistFileList = []
-  public var @2stringlist mXIB_fileList = []
-  public var @2stringlist mTIFF_fileList = []
-  public var @2stringlist mICNS_fileList = []
+  public var [@2string] mInfoPlistFileList = []
+  public var [@2string] mXIB_fileList = []
+  public var [@2string] mTIFF_fileList = []
+  public var [@2string] mICNS_fileList = []
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
@@ -393,22 +393,22 @@ private filewrapper xcodeProjectGenerationFilewrapper in "generation-templates/x
     @string PROJECT_REF,
     @string MAIN_GROUP_REF,
     @XCodeGroupList GROUPS,
-    @stringlist MAIN_GROUP_CHILDREN_REFS,
+    [@string] MAIN_GROUP_CHILDREN_REFS,
     @XCodeToolTargetList TOOL_TARGET_LIST,
     @XCodeAppTargetList APP_TARGET_LIST,
-    @2stringlist CPP_FILE_LIST,
-    @2stringlist M_FILE_LIST,
-    @2stringlist MM_FILE_LIST,
-    @2stringlist SWIFT_FILE_LIST,
-    @2stringlist FRAMEWORK_FILE_LIST,
-    @2stringlist HEADER_FILE_LIST,
-    @2stringlist PLIST_FILE_LIST,
-    @2stringlist TIFF_FILE_LIST,
-    @2stringlist ICNS_FILE_LIST,
-    @2stringlist XIB_FILE_LIST,
+    [@2string] CPP_FILE_LIST,
+    [@2string] M_FILE_LIST,
+    [@2string] MM_FILE_LIST,
+    [@2string] SWIFT_FILE_LIST,
+    [@2string] FRAMEWORK_FILE_LIST,
+    [@2string] HEADER_FILE_LIST,
+    [@2string] PLIST_FILE_LIST,
+    [@2string] TIFF_FILE_LIST,
+    [@2string] ICNS_FILE_LIST,
+    [@2string] XIB_FILE_LIST,
     @BuildFileList BUILD_FILE_LIST,
     @string DEFAULT_CONFIGURATION_REF,
-    @stringlist DEFAULT_CONFIGURATION_SETTING_LIST,
+    [@string] DEFAULT_CONFIGURATION_SETTING_LIST,
     @string PROJECT_BUILD_DEFAULT_CONFIGURATION_REF
   )
 }

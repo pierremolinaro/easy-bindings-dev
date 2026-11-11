@@ -22,7 +22,7 @@ override func @atomicClassDeclarationAST.nodeKey() -> @lstring {
 //   ENTER ATOMIC CLASSES IN DECLARATION LIST
 //------------------------------------------------------------------------------------------------
 
-proc enterAtomicClassesIn (?!declarationList: @declarationListAST ioDeclarationListAST) {
+proc enterAtomicClassesIn (?!declarationList: [@abstractDeclarationAST] ioDeclarationListAST) {
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("Double".nowhere , .doubleType))
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("String".nowhere , .stringType))
   !?ioDeclarationListAST.append (@atomicClassDeclarationAST ("Int".nowhere , .integerType))
@@ -46,7 +46,7 @@ proc enterAtomicClassesIn (?!declarationList: @declarationListAST ioDeclarationL
 
 override proc @atomicClassDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
+       ?!@generationStruct _ioGeneration)
 {
   !?ioSemanticContext.mClassMap.insertKey (
     self.mClassName,

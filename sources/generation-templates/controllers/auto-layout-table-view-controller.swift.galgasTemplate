@@ -15,8 +15,8 @@ final class Controller_%!OWNER_NAME%_%!TABLE_VIEW_CONTROLLER_NAME% : NSObject, A
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 %
-for (mValue0 mValue1) in ATTRIBUTE_VALUES do
-%  private let %!mValue0% = %!mValue1%\n%
+for (entry) in ATTRIBUTE_VALUES do
+%  private let %!entry.mValue0% = %!entry.mValue1%\n%
 end
 %
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -213,8 +213,8 @@ else
 end
 %,
 %
-for (mValue0 mValue1) in mActualParameterList
-  do %      %!mValue0%: %!mValue1%%
+for (entry) in mActualParameterList
+  do %      %!entry.mValue0%: %!entry.mValue1%%
   between %,\n%
 end
 %

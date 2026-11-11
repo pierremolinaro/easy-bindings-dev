@@ -17,62 +17,62 @@ for (mFileReference mFileName mBuildReference) in BUILD_FILE_LIST do
 end
 %  /*------------------------------------------------------------------ PBXFileReference */
 %
-for (mValue0 mValue1) in CPP_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in CPP_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = sourcecode.cpp.cpp;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in M_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in M_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = sourcecode.c.obj;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in MM_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in MM_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = sourcecode.cpp.objcpp;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in SWIFT_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in SWIFT_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = sourcecode.swift;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in HEADER_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in HEADER_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = sourcecode.c.h;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in FRAMEWORK_FILE_LIST do
-%  %!mValue0% /* %!mValue1% */ = {\n%
+for (entry) in FRAMEWORK_FILE_LIST do
+%  %!entry.mValue0% /* %!entry.mValue1% */ = {\n%
 %    isa = PBXFileReference;\n%
 %    lastKnownFileType = wrapper.framework;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
@@ -94,41 +94,41 @@ for (mTargetRef mTargetName mProductFileReference mProductFileName mBuildPhaseRe
 %    sourceTree = BUILT_PRODUCTS_DIR;\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in PLIST_FILE_LIST do
-%  %!mValue0% = {\n%
+for (entry) in PLIST_FILE_LIST do
+%  %!entry.mValue0% = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = text.plist;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in XIB_FILE_LIST do
-%  %!mValue0% = {\n%
+for (entry) in XIB_FILE_LIST do
+%  %!entry.mValue0% = {\n%
 %    isa = PBXFileReference;\n%
 %    fileEncoding = 4;\n%
 %    lastKnownFileType = wrapper.xib;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in TIFF_FILE_LIST do
-%  %!mValue0% = {\n%
+for (entry) in TIFF_FILE_LIST do
+%  %!entry.mValue0% = {\n%
 %    isa = PBXFileReference;\n%
 %    lastKnownFileType = image.tiff;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
-for (mValue0 mValue1) in ICNS_FILE_LIST do
-%  %!mValue0% = {\n%
+for (entry) in ICNS_FILE_LIST do
+%  %!entry.mValue0% = {\n%
 %    isa = PBXFileReference;\n%
 %    lastKnownFileType = image.icns;\n%
-%    name = %![[mValue1 lastPathComponent] utf8Representation]%;\n%
-%    path = %![mValue1 utf8Representation]%;\n%
+%    name = %![[entry.mValue1 lastPathComponent] utf8Representation]%;\n%
+%    path = %![entry.mValue1 utf8Representation]%;\n%
 %    sourceTree = "<group>";\n%
 %  };\n\n%
 end
@@ -227,8 +227,8 @@ for (mTargetRef mTargetName mProductFileReference mProductFileName mBuildPhaseRe
     );
     dependencies = (
 %
-for (mValue0 mValue1) in mDependentTargets do
-  %      %!mValue0% ,\n%
+for (entry) in mDependentTargets do
+  %      %!entry.mValue0% ,\n%
 end
 %    );
     name = %![mTargetName utf8Representation]%;
@@ -313,10 +313,10 @@ end
  
 %
 for (mTargetRef mTargetName mProductFileReference mProductFileName mBuildPhaseRefList mBuildPhaseRef mBuildConfigurationListRef mBuildConfigurationSettingList mBuildConfigurationRef mFrameworksFileRefList mFrameworkBuildPhaseRef mDependentTargets mResourceBuildRef mResourceFileBuildRefs mInfoPListFile) in APP_TARGET_LIST do
-  for (mValue0 mValue1) in mDependentTargets do
-    %  %!mValue0% = {\n%
+  for (entry) in mDependentTargets do
+    %  %!entry.mValue0% = {\n%
     %    isa = PBXTargetDependency;\n%
-    %    target = %!mValue1%;\n%
+    %    target = %!entry.mValue1%;\n%
     %  };\n\n%
   end
 end

@@ -6,8 +6,8 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
   public let @lstring mRootEntityName
   public let @lstring mMainViewName
   public let @outletDeclarationList mOutletDeclarationList
-  public let @lstringlist mActionDeclarationList
-  public let @arrayControllerBindingListAST mArrayControllerBindingListAST
+  public let [@lstring] mActionDeclarationList
+  public let [@arrayControllerBindingAST] mArrayControllerBindingListAST
   public let @astViewDeclarationList mViewDeclarationList
   public let @string mCustomSuperClassName // Empty String if no custom superclass
   public let @astAutoLayoutOutletLinkerList mOutletLinkerList
@@ -17,14 +17,14 @@ class @autoLayoutDocumentDeclarationAST : @abstractDeclarationAST {
 
 list @astAutoLayoutOutletLinkerList {
   public var @lstring mLinkerName
-  public var @lstringlist mOutletNameList
+  public var [@lstring] mOutletNameList
 }
 
 //--------------------------------------------------------------------------------------------------
 
 list @autoLayoutOutletLinkerGenerationList {
   public var @string mLinkerName
-  public var @2stringlist mOutletNameAndTypeNameList
+  public var [@2string] mOutletNameAndTypeNameList
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ override func @autoLayoutDocumentDeclarationAST.nodeKey() -> @lstring {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <document_declaration> (?!@astDeclarationStruct ioDeclarationAST) {
     $autoLayoutDocument$
     $Identifier$ (?let @lstring documentName)
@@ -65,10 +65,9 @@ syntax extension easyBindings_syntax {
     $viewName$ (?let @lstring mainViewName)
     ${$
     var @outletDeclarationList outletDeclarationList = []
-    var @lstringlist actionDeclarationList = []
-    var @arrayControllerBindingListAST arrayControllerBindingListAST = []
+    var [@lstring] actionDeclarationList = []
+    var [@arrayControllerBindingAST] arrayControllerBindingListAST = []
     var @astViewDeclarationList viewDeclarationList = []
-//    var @astAutoLayoutToolbarItemList autoLayoutToolbarItemList = []
     var @astAutoLayoutOutletLinkerList autoLayoutOutletLinkerList = []
     repeat
     while
@@ -85,7 +84,7 @@ syntax extension easyBindings_syntax {
       $linker$
       $identifier$ (?let linkerName)
       $($
-      var @lstringlist outletNameList = []
+      var [@lstring] outletNameList = []
       repeat
         $identifier$ (?let outletName)
         !?outletNameList.append (outletName)
@@ -124,7 +123,7 @@ syntax extension easyBindings_syntax {
 }
 
 //--------------------------------------------------------------------------------------------------
-//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS
 //--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentDeclarationAST.firstAnalysisPhase(
@@ -173,8 +172,8 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     (self.mRootEntityName,
     ?*,
     ?let rootPropertyMap,
-    ?let unused rootActionMap,
-    ?let unused rootPropertyGenerationList
+    ?let _rootActionMap,
+    ?let _rootPropertyGenerationList
   )
 //-- Analyze outlets and bindings
   analyzeOutlets (
@@ -196,13 +195,13 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
     ?let @ebViewGraphicControllerBindingGenerationList ebViewGraphicControllerBindingGenerationList
   )
 //-- Analyze controller bindings
-  for (controllerName, hiddenBinding) in self.mArrayControllerBindingListAST do
+  for controller in self.mArrayControllerBindingListAST do
   //-- Hidden
-    switch hiddenBinding
+    switch controller.mHiddenSelectionViewBindingDescriptor
     case noBinding :
     case binding (@abstractBooleanMultipleBindingExpressionAST expression) :
-      expression.analyzeExpressionForMultipleBinding
-        (!prefs: false,
+      expression.analyzeExpressionForMultipleBinding (
+        !prefs: false,
         rootPropertyMap,
         ioSemanticContext,
         documentPropertyMap,
@@ -215,9 +214,9 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
         error (errorLocation : "expression is not boolean")
       end
       !?multipleBindingGenerationList.append (
-        !controllerName.string,
-        !"hidden",
-        !hiddenExpression
+        controller.mControllerName.string,
+        "hidden",
+        hiddenExpression
       )
     end
   end
@@ -254,14 +253,14 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
   var @autoLayoutOutletLinkerGenerationList outletLinkerGenerationList = []
   var @stringset linkerNameSet = []
   for (linkerName, ouletNameList) in self.mOutletLinkerList do
-    if linkerNameSet.hasKey (linkerName.string) then
+    if linkerNameSet.contains (linkerName.string) then
       error (linkerName : "duplicated linker name")
     end
     !?linkerNameSet.insert (linkerName.string)
-    var @2stringlist outletNameAndTypeNameList = []
+    var [@2string] outletNameAndTypeNameList = []
     for (outletName) in ouletNameList do
-      autoLayoutOutletMap.searchKey (outletName, ?let outletTypeName, ?let unused outletIsArray)
-      !?outletNameAndTypeNameList.append (outletName.string, outletTypeName)
+      autoLayoutOutletMap.searchKey (outletName, ?let outletTypeName, ?let _outletIsArray)
+      outletNameAndTypeNameList ++= @(outletName.string, outletTypeName)
     end
     !?outletLinkerGenerationList.append (linkerName.string, outletNameAndTypeNameList)
   end
@@ -288,7 +287,7 @@ override proc @autoLayoutDocumentDeclarationAST.fourthAnalysisPhase(
 }
 
 //--------------------------------------------------------------------------------------------------
-//   GENERATION                            
+//   GENERATION
 //--------------------------------------------------------------------------------------------------
 
 class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
@@ -298,8 +297,8 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
   public let @propertyGenerationList mDocumentPropertyGenearionList
   public let @decoratedOutletMap mOutletMap
   public let @autoLayoutOutletMap mAutoLayoutOutletMap
-  public let @actionBindingListForGeneration mTargetActionList 
-  public let @regularBindingsGenerationList mRegularBindingsGenerationList 
+  public let @actionBindingListForGeneration mTargetActionList
+  public let @regularBindingsGenerationList mRegularBindingsGenerationList
   public let @multipleBindingGenerationList multipleBindingGenerationList
   public let @tableViewBindingGenerationList mTableViewBindingGenerationList
   public let @ebViewGraphicControllerBindingGenerationList mEBViewBindingGenerationList
@@ -314,18 +313,18 @@ class @autoLayoutDocumentFileGeneration : @abstractFileGeneration {
 //--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentFileGeneration.generateCodePhase1 (
-    let @string unused inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    ?!@stringset unused ioUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @string _inOutputDirectory,
+    let @generationStruct _inGenerationStruct,
+    ?!@stringset _ioUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
 override proc @autoLayoutDocumentFileGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    @stringset unused inUsedProtocolSet,
+    let @generationStruct _inGenerationStruct,
+    @stringset _inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
   let s = filewrapper [autoLayoutDocumentGenerationTemplate.documentImplementation:
     self.mDocumentName,
@@ -437,7 +436,7 @@ filewrapper autoLayoutDocumentGenerationTemplate in "generation-templates" {
   template outletLinkerImplementation : "linker-auto-layout-outlet.swift.galgasTemplate" (
     @string DOCUMENT_TYPE_NAME,
     @string LINKER_NAME,
-    @2stringlist OUTLET_NAME_AND_TYPE_NAME_LIST
+    [@2string] OUTLET_NAME_AND_TYPE_NAME_LIST
   )
 }
 

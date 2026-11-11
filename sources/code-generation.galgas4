@@ -47,7 +47,7 @@ struct @generationStruct {
   public var @stringset mToManyClassImplementations = []
 
   public var @selectionControllerForGeneration mSelectionControllerListForGeneration = []
-  public var @stringlist mPropertyClassList = []
+  public var [@string] mPropertyClassList = []
   public var @transientExternTypeList mTransientPropertyTypeList = []
 
   public var @stringset mGenerateClass_PreferencesArrayOf_ = []
@@ -141,7 +141,7 @@ filewrapper standard_properties in "generation-templates/standard-properties" {
 //--------------------------------------------------------------------------------------------------
 
 private proc generateStandardProperties (let @string inOutputDirectory,
-                                         let @stringlist inPropertyClassList,
+                                         let [@string] inPropertyClassList,
                                          let @transientExternTypeList inTransientPropertyExternTypeList,
                                          ?!@stringset ioGeneratedFileSet) {
 //-- Add scalar property types

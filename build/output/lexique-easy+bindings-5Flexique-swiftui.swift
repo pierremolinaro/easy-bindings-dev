@@ -14,6 +14,8 @@ struct SettingViewFor_easyBindings_lexique : View {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+  @State private var mUnused = false
+
   @AppStorage("FontFor_easyBindings_lexique")
   private var mFont = CustomFont (nsFont: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular))
 
@@ -172,7 +174,13 @@ struct SettingViewFor_easyBindings_lexique : View {
         Text("1.7").tag(17)
         Text("2.0").tag(20)
       }.pickerStyle(.automatic)
-      ColorPicker ("Default Color", selection: self.$mDefaultColor)
+      LabeledContent ("Default Color") {
+        HStack {
+          ColorPicker ("", selection: self.$mDefaultColor).labelsHidden ()
+          Toggle ("Bold", isOn: self.$mUnused).hidden () // Hidden, unused
+          Toggle ("Italic", isOn: self.$mUnused).hidden () // Hidden, unused
+        }
+      }
       LabeledContent ("Keywords") {
         HStack {
           ColorPicker ("", selection: self.$mColorFor_keywordsStyle).labelsHidden ()

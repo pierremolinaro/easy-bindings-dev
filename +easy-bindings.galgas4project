@@ -1,6 +1,6 @@
 project (0:0:1) -> "eb" {
-  %makefile-unix
-  %MacSwiftApp
-  %applicationBundleBase : "fr.irccyn"
+  #makefile-unix
+  #MacSwiftApp
+  #applicationBundleBase : "fr.irccyn"
 }
 

@@ -2,7 +2,7 @@
 //   AST   
 //--------------------------------------------------------------------------------------------------
 
-enum @multipleBindingDescriptor %equatable {
+enum @multipleBindingDescriptor #equatable {
   case noBinding 
   case binding (@abstractBooleanMultipleBindingExpressionAST expression)
 }
@@ -261,11 +261,11 @@ abstract proc @abstractBooleanMultipleBindingExpressionAST.analyzeExpressionForM
 //--------------------------------------------------------------------------------------------------
 
 override proc @literalIntMultipleBindingExpressionAST.analyzeExpressionForMultipleBinding(
-  ?prefs: let @bool unused inPreferences,
-  let @propertyMap unused inRootObservablePropertyMap,
-  let @semanticContext unused inSemanticContext,
-  let @propertyMap unused inCurrentObservablePropertyMap,
-  let @propertyMap unused inPreferencesObservablePropertyMap,
+  ?prefs: let @bool _inPreferences,
+  let @propertyMap _inRootObservablePropertyMap,
+  let @semanticContext _inSemanticContext,
+  let @propertyMap _inCurrentObservablePropertyMap,
+  let @propertyMap _inPreferencesObservablePropertyMap,
   !@abstractBooleanMultipleBindingExpressionForGeneration outEnableExpression,
   !@typeKind outType,
   !@location outErrorLocation)
@@ -292,9 +292,9 @@ override proc @observablePropertyInMultipleBindingExpressionAST.analyzeExpressio
     inSemanticContext,
     if inPreferences then inPreferencesObservablePropertyMap else inCurrentObservablePropertyMap end,
     ?let @propertyKind kind,
-    ?let @string unused swiftTypeStringForTransientFunctionArgument,
-    ?let @string unused protocolTypeName,
-    ?let @string unused defaultValueAsString
+    ?let @string _swiftTypeStringForTransientFunctionArgument,
+    ?let @string _protocolTypeName,
+    ?let @string _defaultValueAsString
   )
   switch kind
   case property (type, *) :

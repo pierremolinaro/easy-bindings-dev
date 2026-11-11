@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-//  AST    
+//  AST
 //--------------------------------------------------------------------------------------------------
 
 list @bindingOptionList {
@@ -9,7 +9,7 @@ list @bindingOptionList {
 
 //--------------------------------------------------------------------------------------------------
 
-enum @tableValueBinding %equatable {
+enum @tableValueBinding #equatable {
   case noTableValueBinding
   case tableValueBinding (@lstring controllerName)
 }
@@ -35,7 +35,7 @@ list @outletDeclarationList {
 }
 
 //--------------------------------------------------------------------------------------------------
-//  SYNTAX 
+//  SYNTAX
 //--------------------------------------------------------------------------------------------------
 
 syntax extension easyBindings_syntax {
@@ -54,17 +54,17 @@ syntax extension easyBindings_syntax {
                      ?let @regularBindingList regularBindingList)
     $;$
     !?ioOutletDeclarationList.append (
-      !outletTypeName,
-      !outletName,
-      !tableValueBinding,
-      !runActionDescriptor,
-      !enabledBindingDescriptor,
-      !hiddenBindingDescriptor,
-      !regularBindingList,
-      !graphicController
+      outletTypeName,
+      outletName,
+      tableValueBinding,
+      runActionDescriptor,
+      enabledBindingDescriptor,
+      hiddenBindingDescriptor,
+      regularBindingList,
+      graphicController
     )
   }
- 
+
  //--------------------------------------------------------------------------------------------------
 
   rule <outlet_binding> (!@tableValueBinding tableValueBinding,
@@ -74,8 +74,8 @@ syntax extension easyBindings_syntax {
                         !@graphicController graphicController,
                         !@regularBindingList regularBindingList)
 {
-    tableValueBinding = @tableValueBinding.noTableValueBinding 
-    runActionDescriptor = @runActionDescriptor.noAction 
+    tableValueBinding = @tableValueBinding.noTableValueBinding
+    runActionDescriptor = @runActionDescriptor.noAction
     enabledBindingDescriptor = @multipleBindingDescriptor.noBinding
     hiddenBindingDescriptor = @multipleBindingDescriptor.noBinding
     graphicController = @graphicController.none
@@ -134,9 +134,9 @@ syntax extension easyBindings_syntax {
       end
       <binding_option_list> (?let bindingOptions)
       !?regularBindingList.append (
-        !bindingName,
-        !observablePropertyList,
-        !bindingOptions
+        bindingName,
+        observablePropertyList,
+        bindingOptions
       )
   //-- Graphic controller binding
     while
@@ -153,16 +153,16 @@ syntax extension easyBindings_syntax {
         graphicController = .defined (!controller:graphicControllerName, !propertyName: propertyName)
       else
         error (graphicControllerName : "binding already defined")
-      end   
+      end
     end
   }
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 
 //--------------------------------------------------------------------------------------------------
-//  SEMANTICS                              
+//  SEMANTICS
 //--------------------------------------------------------------------------------------------------
 
 list @outletBindingModelList {
@@ -190,7 +190,7 @@ proc analyzeOutlets(
   let @bool inPreferences,
   let @propertyMap inRootObservablePropertyMap,
   let @propertyMap inPreferencesPropertyMap,
-  let @string unused inRootEntityName,
+  let @string _inRootEntityName,
   let @semanticContext inSemanticContext,
   let @outletDeclarationList inOutletDeclarationList,
   let @propertyMap inObservablePropertyMap,
@@ -237,7 +237,7 @@ proc analyzeOutlets(
           ?let @propertyKind kind,
           ?2*
         )
-        switch kind 
+        switch kind
         case property (2*) :
           error (controllerName : "the bound model should be an array controller")
         case toMany (4*) :
@@ -257,7 +257,7 @@ proc analyzeOutlets(
               ?2*
             )
             observablePropertyMap.searchKey (propertyName, ?let propertyKind, ?2*)
-            switch propertyKind 
+            switch propertyKind
             case property (2*) :
               error (controllerName : "the bound model should be a toMany property")
             case toMany (kEntityName, *, isGraphic, *) :
@@ -288,9 +288,9 @@ proc analyzeOutlets(
       if not handlesTableViewBinding then
         error (outlet_mOutletTypeName : "the '" + outlet_mOutletTypeName + "' type does not handle the $tableView binding")
       else
-        inObservablePropertyMap.searchKey
-          (controllerName,
-          ?let @propertyKind unused kind,
+        inObservablePropertyMap.searchKey (
+          controllerName,
+          ?let @propertyKind kind,
           ?2*
         )
         if not kind.isArrayController then
@@ -311,10 +311,10 @@ proc analyzeOutlets(
       elsif target.string == "self" then
         inActionMap.searchKey (action)
         !?outTargetActionList.append (
-          !outlet_mOutletName.string,
-          !"self",
-          !action.string,
-          !inReceiverSwiftTypeName
+          outlet_mOutletName.string,
+          "self",
+          action.string,
+          inReceiverSwiftTypeName
         )
       else // It is a controller
         inObservablePropertyMap.searchKey
@@ -325,10 +325,10 @@ proc analyzeOutlets(
         )
         controllerActionMap.searchKey (action)
         !?outTargetActionList.append (
-          !outlet_mOutletName.string,
-          !if inPreferences then "preferences_" else "" end + target.string,
-          !action.string,
-          !"Controller_" + inReceiverSwiftTypeName + "_" + target
+          outlet_mOutletName.string,
+          if inPreferences then "preferences_" else "" end + target.string,
+          action.string,
+          "Controller_" + inReceiverSwiftTypeName + "_" + target
         )
       end
     end
@@ -353,9 +353,9 @@ proc analyzeOutlets(
         error (errorLocation : "expression is not boolean")
       end
       !?outMultipleBindingGenerationList.append (
-        !outlet_mOutletName.string,
-        !"enabled",
-        !enableExpression
+        outlet_mOutletName.string,
+        "enabled",
+        enableExpression
       )
     end
   //-- Hidden
@@ -379,9 +379,9 @@ proc analyzeOutlets(
         error (errorLocation : "cet outlet n'accepte pas le binding $hidden")
       end
       !?outMultipleBindingGenerationList.append (
-        !outlet_mOutletName.string,
-        !"hidden",
-        !hiddenExpression
+        outlet_mOutletName.string,
+        "hidden",
+        hiddenExpression
       )
     end
   //--------------------------------- Regular bindings
@@ -422,9 +422,9 @@ proc analyzeRegularBinding(
         inSemanticContext,
         inBoundModelPropertyMap,
         ?let @propertyKind kind,
-        ?let @string unused swiftTypeStringForTransientFunctionArgument,
-        ?let @string unused protocolTypeName,
-        ?let @string unused defaultValueAsString
+        ?let @string _swiftTypeStringForTransientFunctionArgument,
+        ?let @string _protocolTypeName,
+        ?let @string _defaultValueAsString
       )
       switch kind
       case property (2*) : // Ok
@@ -455,7 +455,7 @@ proc analyzeRegularBinding(
         ?let superOutletClassName,
         ?let @outletBindingSpecificationMap bindingMap
       )
-      if bindingMap.hasKey (mBindingName.string) then
+      if bindingMap.contains (mBindingName.string) then
         bindingMap.searchKey
           (mBindingName,
           ?outletBindingSpecificationModelList,
@@ -491,7 +491,7 @@ proc analyzeRegularBinding(
       var @string s
       if controllerBindingOptionDecoratedList.count == 0 then
         s = "this binding has no option"
-      else 
+      else
         s = "this binding requires the following options:"
         for (mOptionType, mOptionName) in controllerBindingOptionDecoratedList do
           s += "\n  - " + mOptionName + " : " + mOptionType.swiftTypeName
@@ -514,16 +514,16 @@ proc analyzeRegularBinding(
     end
   //-- Generate binding
     !?ioRegularBindingsGenerationList.append (
-      !inOutletName,
-      !mBindingName.string,
-      !boundModelListForGeneration,
-      !bindingOptionString
+      inOutletName,
+      mBindingName.string,
+      boundModelListForGeneration,
+      bindingOptionString
     )
   end
 }
 
 //---------------------------------------------------------------------------------------------------------------------*
-//   GENERATION TYPES                      
+//   GENERATION TYPES
 //--------------------------------------------------------------------------------------------------
 
 list @boundObjectList {
@@ -553,8 +553,8 @@ list @actionBindingListForGeneration {
 
 map @decoratedOutletMap {
   public var @string mOutletTypeName
-  %insertSetter insertKey %errorMessage "the '%K' outlet is already declared"
-  %searchMethod searchKey %errorMessage "the '%K' outlet is not declared"
+  #insertSetter insertKey #errorMessage "the '%K' outlet is already declared"
+  #searchMethod searchKey #errorMessage "the '%K' outlet is not declared"
 }
 
 //--------------------------------------------------------------------------------------------------

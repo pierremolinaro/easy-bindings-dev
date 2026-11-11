@@ -54,10 +54,10 @@ map @classMap {
   public let @propertyMap mPropertyMap
   public let @actionMap mActionMap
   public let @propertyGenerationList mPropertyGenerationList
-  %insertSetter insertKey %errorMessage "the '%K' class is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' class"
-  %searchSubscript searchKey %errorMessage "there is no '%K' class"
-  %replaceSetter replace %errorMessage "there is no '%K' class"
+  #insertSetter insertKey #errorMessage "the '%K' class is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' class"
+  #searchSubscript searchKey #errorMessage "there is no '%K' class"
+  #replaceSetter replace #errorMessage "there is no '%K' class"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -70,7 +70,7 @@ enum @propertyAccessibility {
 
 //------------------------------------------------------------------------------------------------
 
-enum @typeKind %equatable {
+enum @typeKind #equatable {
   case boolType 
   case canariAngleType
   case canariLengthType 
@@ -111,8 +111,8 @@ map @propertyMap {
   public var @propertyKind mKind
   public var @actionMap mActionMap
   public var @bool mIsOverriding
-  %insertSetter insertKey %errorMessage "the '%K' property is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' property"
+  #insertSetter insertKey #errorMessage "the '%K' property is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' property"
 }
 
 //------------------------------------------------------------------------------------------------

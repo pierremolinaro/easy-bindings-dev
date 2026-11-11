@@ -27,9 +27,7 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <main_xib>(
-    ?!@mainXibDescriptorList ioElementList)
-  {
+  rule <main_xib> (?!@mainXibDescriptorList ioElementList) {
     $mainxib$
     ${$
     repeat
@@ -54,9 +52,7 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <main_xib_line>(
-    !@mainXibLineDescriptorList outLineDescription)
-  {
+  rule <main_xib_line> (!@mainXibLineDescriptorList outLineDescription) {
     outLineDescription = []
     repeat
       select
@@ -125,14 +121,12 @@ func @mainXibDescriptorList.generateCode() -> @string outResult {
 
 //------------------------------------------------------------------------------------------------
 
-proc generateTestFile(
-  let @string inBundleIdentifier,
-  let @string inProjectName,
-  let @mainXibDescriptorList inMainXibDescriptorList,
-  let @string inOutputDirectory)
-{
+proc generateTestFile (let @string inBundleIdentifier,
+                       let @string inProjectName,
+                       let @mainXibDescriptorList inMainXibDescriptorList,
+                       let @string inOutputDirectory) {
   if (inMainXibDescriptorList.count > 0) && (inBundleIdentifier != "") then
-    var @stringlist outlet_identifier_list = []
+    var [@string] outlet_identifier_list = []
     for (mLine) in inMainXibDescriptorList do
       for (mElement) in mLine do
         switch mElement
@@ -173,7 +167,7 @@ private filewrapper testFiles in "generation-templates/xcode-project" {
   template test_py : "test.py.galgasTemplate" (
     @string BUNDLE_IDENTIFIER,
     @string PROJECT_NAME,
-    @stringlist OUTLET_IDENTIFIER_LIST
+    [@string] OUTLET_IDENTIFIER_LIST
   )
 }
 

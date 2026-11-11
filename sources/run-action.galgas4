@@ -2,7 +2,7 @@
 //   AST   
 //--------------------------------------------------------------------------------------------------
 
-enum @runActionDescriptor %equatable {
+enum @runActionDescriptor #equatable {
   case noAction 
   case action (@lstring target, @lstring action)
 }
@@ -15,7 +15,7 @@ syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   
-  rule <action_declaration> (?!@lstringlist ioActionDeclarationList) {
+  rule <action_declaration> (?![@lstring] ioActionDeclarationList) {
     $action$
     $identifier$ (?let @lstring actionName)
     $;$
@@ -31,8 +31,8 @@ syntax extension easyBindings_syntax {
 //--------------------------------------------------------------------------------------------------
 
 map @actionMap {
-  %insertSetter insertKey %errorMessage "there is already a '%K' action"
-  %searchMethod searchKey %errorMessage "the '%K' action is not defined"
+  #insertSetter insertKey #errorMessage "there is already a '%K' action"
+  #searchMethod searchKey #errorMessage "the '%K' action is not defined"
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ map @actionMap {
 //--------------------------------------------------------------------------------------------------
 
 proc buildActionMap(
-  let @lstringlist inActionDeclarationList,
+  let [@lstring] inActionDeclarationList,
   !@actionMap outActionMap)
 {
   outActionMap = ()
@@ -61,18 +61,18 @@ class @actionFileGeneration : @abstractFileGeneration {
 //--------------------------------------------------------------------------------------------------
 
 override proc @actionFileGeneration.generateCodePhase1 (
-    let @string unused inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    ?!@stringset unused ioUsedProtocolSet,
-    ?!@stringset unused ioGeneratedFileSet) {
+    let @string _inOutputDirectory,
+    let @generationStruct _inGenerationStruct,
+    ?!@stringset _ioUsedProtocolSet,
+    ?!@stringset _ioGeneratedFileSet) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
 override proc @actionFileGeneration.generateCodePhase2 (
     let @string inOutputDirectory,
-    let @generationStruct unused inGenerationStruct,
-    @stringset unused inUsedProtocolSet,
+    let @generationStruct _inGenerationStruct,
+    @stringset _inUsedProtocolSet,
     ?!@stringset ioGeneratedFileSet) {
  let s = filewrapper [actionGenerationTemplate.actionGeneration:
     self.mClassName,

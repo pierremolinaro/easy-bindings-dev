@@ -10,10 +10,10 @@ style keywordsStyle -> "Keywords"
 style idfStyle -> "identifiers"
 style IdfStyle -> "Identifiers"
 
-$identifier$ ! tokenString  style idfStyle %errorMessage "an identifier (beginning with a lower-case letter)"
-$Identifier$ ! tokenString  style IdfStyle %errorMessage "an identifier (beginning with a upper-case letter)"
+$identifier$ ! tokenString  style idfStyle #errorMessage "an identifier (beginning with a lower-case letter)"
+$Identifier$ ! tokenString  style IdfStyle #errorMessage "an identifier (beginning with a upper-case letter)"
 
-list lowerCaseKeyWordList style keywordsStyle %errorMessage "the '%K' keyword"{
+list lowerCaseKeyWordList style keywordsStyle #errorMessage "the '%K' keyword"{
   "abstract",
   "action",
   "all",
@@ -88,7 +88,7 @@ rule 'a'->'z' {
     enterCharacterIntoString  (!?tokenString !* )
   while 'a'->'z' | 'A'->'Z' | '0'->'9' | '_' :
   end
-  send %searchString tokenString in lowerCaseKeyWordList default $identifier$
+  send #searchString tokenString in lowerCaseKeyWordList default $identifier$
 }
 
 rule 'A'->'Z' {
@@ -105,9 +105,9 @@ rule 'A'->'Z' {
   
   style attributeStyle -> "Attributes"
   
-  $@attribute$ ! tokenString  style attributeStyle %errorMessage "an attribute @..."
+  $@attribute$ ! tokenString  style attributeStyle #errorMessage "an attribute @..."
   
-  %errorMessage attributeError : "in an attribute name, a letter, a digit or a dot should follow the '@' character"
+  #errorMessage attributeError : "in an attribute name, a letter, a digit or a dot should follow the '@' character"
   
   rule '@' {
     select
@@ -129,7 +129,7 @@ rule 'A'->'Z' {
 style bindingNameStyle -> "Binding Names"
 style reservedBindingNameStyle -> "Reserved binding names"
 
-list reservedBindingNameKeyWordList style reservedBindingNameStyle %errorMessage "the '$%K' keyword"{
+list reservedBindingNameKeyWordList style reservedBindingNameStyle #errorMessage "the '$%K' keyword"{
   "enabled",
   "graphicController",
   "hidden",
@@ -137,7 +137,7 @@ list reservedBindingNameKeyWordList style reservedBindingNameStyle %errorMessage
   "run"
 }
 
-$bindingName$ ! tokenString  style bindingNameStyle %errorMessage "a binding name (identifier prefixed by '$')"
+$bindingName$ ! tokenString  style bindingNameStyle #errorMessage "a binding name (identifier prefixed by '$')"
 
 rule '$' {
   repeat
@@ -145,7 +145,7 @@ rule '$' {
    'a'->'z' | 'A'->'Z' | '_' | '0'->'9' :
     enterCharacterIntoString (!?tokenString !*)
   end
-  send %searchString tokenString in reservedBindingNameKeyWordList default $bindingName$
+  send #searchString tokenString in reservedBindingNameKeyWordList default $bindingName$
 }
 
 //------------------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ rule '$' {
 
 style controllerNameStyle -> "Controller Names"
 
-$controllerName$ ! tokenString  style controllerNameStyle %errorMessage "a controller name (identifier prefixed by '#')"
+$controllerName$ ! tokenString  style controllerNameStyle #errorMessage "a controller name (identifier prefixed by '#')"
 
 rule '#' {
   repeat
@@ -171,7 +171,7 @@ rule '#' {
 
 style viewNameStyle -> "View Names"
 
-$viewName$ ! tokenString  style viewNameStyle %errorMessage "a view name (identifier prefixed by '\\')"
+$viewName$ ! tokenString  style viewNameStyle #errorMessage "a view name (identifier prefixed by '\\')"
 
 rule '\\' {
   repeat
@@ -189,13 +189,13 @@ rule '\\' {
 style integerStyle -> "Integer Constants"
 style floatStyle -> "Floating Point Constants"
 @uint uint32value
-$literal_integer$ !uint32value  style integerStyle %errorMessage "a 32-bit unsigned decimal number"
+$literal_integer$ !uint32value  style integerStyle #errorMessage "a 32-bit unsigned decimal number"
 @double floatValue
-$literal_double$ !floatValue !tokenString  style floatStyle %errorMessage "a float number"
-%errorMessage floatNumberConversionError : "invalid float number"
+$literal_double$ !floatValue !tokenString  style floatStyle #errorMessage "a float number"
+#errorMessage floatNumberConversionError : "invalid float number"
 
-%errorMessage decimalNumberTooLarge : "decimal number too large"
-%errorMessage internalError : "internal error"
+#errorMessage decimalNumberTooLarge : "decimal number too large"
+#errorMessage internalError : "internal error"
 
 rule '0'->'9' {
   enterCharacterIntoString  (!?tokenString !* )
@@ -225,10 +225,10 @@ rule '0'->'9' {
 //------------------------------------------------------------------------------------------------
 
 style stringStyle -> "String Constants"
-$literal_string$ ! tokenString  style stringStyle %nonAtomicSelection %errorMessage "a character string constant \"...\""
+$literal_string$ ! tokenString  style stringStyle #nonAtomicSelection #errorMessage "a character string constant \"...\""
 
 
-%errorMessage incorrectStringEnd : "string does not end with '\"'"
+#errorMessage incorrectStringEnd : "string does not end with '\"'"
 
 rule '"' {
   repeat
@@ -254,7 +254,7 @@ rule '"' {
 //------------------------------------------------------------------------------------------------
 
 style delimitersStyle -> "Delimiters"
-list delimitorsList style delimitersStyle %errorMessage "the '%K' delimitor"{
+list delimitorsList style delimitersStyle #errorMessage "the '%K' delimitor"{
   ":",    ",",    ";",   "!",  "[",  "]",  "{",  "}",
   "(",  ")", "." , "|", "&", "<", ">", "<=", ">=", "!=", "==",
   "^", "-", "="
@@ -267,7 +267,7 @@ rule list delimitorsList
 //------------------------------------------------------------------------------------------------
 
 style commentStyle -> "Comments"
-$comment$ style commentStyle %nonAtomicSelection %errorMessage "a comment"
+$comment$ style commentStyle #nonAtomicSelection #errorMessage "a comment"
 rule "//" {
   repeat
   while '\u0001' -> '\u0009' | '\u000B' | '\u000C' | '\u000E' -> '\uFFFD' :

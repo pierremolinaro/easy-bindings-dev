@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-//   AST   
+//   AST
 //--------------------------------------------------------------------------------------------------
 
 class @transientDeclarationAST : @abstractDeclarationAST {
@@ -49,13 +49,13 @@ class @transientDeclarationAST : @abstractDeclarationAST {
         !?ioGraph.addEdge (!from: node, !to: @(preferencesName () + " " + propertyName, propertyName.location))
       case prefsPropertyWithOption (@lstring propertyName, *) :
         !?ioGraph.addEdge (!from: node, !to: @(preferencesName () + " " + propertyName, propertyName.location))
-      case selfControllerProperty (@lstring controllerName, unused propertyName) :
+      case selfControllerProperty (@lstring controllerName, _propertyName) :
         !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string  + " " + controllerName, controllerName.location))
-      case selfControllerSecondaryProperty (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
+      case selfControllerSecondaryProperty (@lstring controllerName, _propertyName, _secondaryPropertyName) :
         !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string  + " " + controllerName, controllerName.location))
-      case selfControllerAllProperties (@lstring controllerName, unused propertyName, unused secondaryPropertyName) :
+      case selfControllerAllProperties (@lstring controllerName, _propertyName, _secondaryPropertyName) :
         !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string  + " " + controllerName, controllerName.location))
-      case selfControllerOneProperty (@lstring controllerName, unused propertyName) :
+      case selfControllerOneProperty (@lstring controllerName, _propertyName) :
         !?ioGraph.addEdge (!from: node, !to: @(self.mClassName.string  + " " + controllerName, controllerName.location))
       case signatureProperty (*) :
       case versionProperty (*) :
@@ -85,7 +85,7 @@ class @transientDeclarationAST : @abstractDeclarationAST {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <transient_declaration>(
             let @lstring inCurrentEntity,
             let @lstring inRootEntity,
@@ -108,7 +108,7 @@ syntax extension easyBindings_syntax {
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <transient_declaration> (@lstring inCurrentEntity,
                                 @lstring inRootEntity,
                                 ?!@astDeclarationStruct ioDeclarationAST) {
@@ -144,12 +144,12 @@ syntax extension easyBindings_syntax {
 }
 
 //--------------------------------------------------------------------------------------------------
-//   CLASS AND PROPERTY SEMANTIC ANALYSIS                       
+//   CLASS AND PROPERTY SEMANTIC ANALYSIS
 //--------------------------------------------------------------------------------------------------
 
 override proc @transientDeclarationAST.firstAnalysisPhase(
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration)
+       ?!@generationStruct _ioGeneration)
 {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
     ioSemanticContext.mClassMap.searchKey (self.mTransientTypeName, ?let classKind, ?3*)
@@ -269,7 +269,7 @@ override proc @transientDeclarationAST.thirdAnalysisPhase(
 }
 
 //--------------------------------------------------------------------------------------------------
-//   CODE GENERATION                       
+//   CODE GENERATION
 //--------------------------------------------------------------------------------------------------
 
 class @transientPropertyGeneration : @propertyGeneration {
@@ -347,11 +347,11 @@ override func @transientPropertyGeneration.bindPropertyInSelectionController () 
 
 override func @transientPropertyGeneration.propertyDeclarationCode(
    let @bool inPreferences,
-   let @bool unused inGenerationDirectAccess,
+   let @bool _inGenerationDirectAccess,
    let @stringset inOverriddenTransients) -> @string
 {
   result  = ""
-  if self.mGenerate & not inOverriddenTransients.hasKey (self.mPropertyName) then
+  if self.mGenerate & not inOverriddenTransients.contains (self.mPropertyName) then
     if inPreferences then
       result += "//" + @string.stringWithSequenceOfCharacters  ('-', 96) + "\n"
       result += "//   Transient property: " + self.mPropertyName + "\n"
@@ -400,7 +400,7 @@ override func @transientPropertyGeneration.configurationCode (let @bool inPrefer
 }
 
 //--------------------------------------------------------------------------------------------------
-//   GENERATION TYPE                       
+//   GENERATION TYPE
 //--------------------------------------------------------------------------------------------------
 
 list @transientDependencyListForGeneration {
@@ -486,20 +486,20 @@ list @transientDependencyListForGeneration {
 }
 
 //--------------------------------------------------------------------------------------------------
-//   GENERATION                            
+//   GENERATION
 //--------------------------------------------------------------------------------------------------
 
 func @observablePropertyAST.generateAddObserverCall (@bool inPreferences) -> @string {
   let prefix = if inPreferences then "preferences_" else "self." end
   switch self
-  case selfControllerProperty (@lstring controllerName, @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) :
     result = prefix + controllerName.string + "." + propertyName + "_property.startsBeingObserved"
-  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     result = prefix + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.startsBeingObserved"
-  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     result = prefix + controllerName.string + "." + propertyName + "_property.toMany_" + secondaryPropertyName + "_StartsBeingObserved"
-  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) : 
-    result = prefix + controllerName.string + "." + propertyName + "_property.<<4>>" 
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
+    result = prefix + controllerName.string + "." + propertyName + "_property.<<4>>"
   case selfWithoutProperty (*) :
     result = "" // Do not generate add observer
   case selfProperty (@lstring masterName) :
@@ -541,13 +541,13 @@ func @observablePropertyAST.generateAddObserverCall (@bool inPreferences) -> @st
 
 func @observablePropertyAST.generateRemoveObserverCall () -> @string {
   switch self
-  case selfControllerProperty (@lstring controllerName, @lstring propertyName) : 
+  case selfControllerProperty (@lstring controllerName, @lstring propertyName) :
     result = "self." + controllerName.string + "." + propertyName + "_property.stopsBeingObserved"
-  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
+  case selfControllerSecondaryProperty (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     result = "self." + controllerName.string + "." + propertyName + "_property." + secondaryPropertyName + "_property.stopsBeingObserved"
-  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) : 
+  case selfControllerAllProperties (@lstring controllerName, @lstring propertyName, @lstring secondaryPropertyName) :
     result = "self." + controllerName.string + "." + propertyName + "_property.toMany_" + secondaryPropertyName + "_StopsBeingObserved"
-  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) : 
+  case selfControllerOneProperty (@lstring controllerName, @lstring propertyName) :
     result = "self." + controllerName.string + "." + propertyName + "_property.toMany_<<5>>_StopsBeingObserved"
   case selfWithoutProperty (*) :
     result = "" // Do not generate add observer
@@ -587,7 +587,7 @@ func @observablePropertyAST.generateRemoveObserverCall () -> @string {
 }
 
 //--------------------------------------------------------------------------------------------------
-//    TRANSIENT ROUTINE GENERATION         
+//    TRANSIENT ROUTINE GENERATION
 //--------------------------------------------------------------------------------------------------
 
 class @transientRoutineGeneration : @abstractFileGeneration {
@@ -599,16 +599,16 @@ class @transientRoutineGeneration : @abstractFileGeneration {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  override proc generateCodePhase2  (@string unused inOutputDirectory,
-                                     @generationStruct unused inGenerationStruct,
-                                     @stringset unused inUsedProtocolSet,
-                                     ?!@stringset unused ioGeneratedFileSet) {
+  override proc generateCodePhase2  (@string _inOutputDirectory,
+                                     @generationStruct _inGenerationStruct,
+                                     @stringset _inUsedProtocolSet,
+                                     ?!@stringset _ioGeneratedFileSet) {
   }
-  
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   override proc generateCodePhase1  (@string inOutputDirectory,
-                                     @generationStruct unused inGenerationStruct,
+                                     @generationStruct _inGenerationStruct,
                                      ?!@stringset ioUsedProtocolSet,
                                      ?!@stringset ioGeneratedFileSet) {
     if self.mDependencyList.count > 0 then

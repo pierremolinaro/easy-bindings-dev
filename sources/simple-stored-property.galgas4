@@ -14,10 +14,10 @@ class @atomicPropertyDeclarationAST : @abstractDeclarationAST {
   public var @lstring mPropertyTypeName
   public var @lstring mPropertyName
   public var @abstractDefaultValue mDefaultValue
-  public var @bool generateResetMethod %initArgLabel
-  public let @bool generateDirectRead %initArgLabel
-  public let @bool generateDirectAccess %initArgLabel
-  public let @bool standalone %initArgLabel
+  public var @bool generateResetMethod #initArgLabel
+  public let @bool generateDirectRead #initArgLabel
+  public let @bool generateDirectAccess #initArgLabel
+  public let @bool standalone #initArgLabel
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -58,28 +58,28 @@ syntax extension easyBindings_syntax {
       $@attribute$ (?let attributeName)
       if attributeName.string == "signature" then
         if usedForSignature then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         usedForSignature = true
       elsif attributeName.string == "generateResetMethod" then
         if generateResetMethod then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         generateResetMethod = true
       elsif attributeName.string == "generateDirectRead" then
         if generateDirectRead then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         generateDirectRead = true
       elsif attributeName.string == "generateDirectAccess" then
         if generateDirectAccess then
-          error (attributeName : "duplicated attribute" fixit %remove )
+          error (attributeName : "duplicated attribute" fixit #remove )
         end
         generateDirectAccess = true
       else
         error (attributeName : "unknow attribute" fixit
-          %replaceBy "@signature", %replaceBy "@generateResetMethod",
-          %replaceBy "@generateDirectRead", %replaceBy "@generateDirectAccess"
+          #replaceBy "@signature", #replaceBy "@generateResetMethod",
+          #replaceBy "@generateDirectRead", #replaceBy "@generateDirectAccess"
         )
       end
     end
@@ -107,9 +107,9 @@ syntax extension easyBindings_syntax {
       )
     )
     !?ioAttributeList.append (
-      !attributeTypeName,
-      !attributeName,
-      !defaultValue
+      attributeTypeName,
+      attributeName,
+      defaultValue
     )
   }
 
@@ -117,7 +117,7 @@ syntax extension easyBindings_syntax {
   
   rule <simple_stored_declaration> (let @lstring inClassName,
                                     ?!@simpleStoredPropertyList ioAttributeList,
-                                    ?!@stringset unused ioSignatureList,
+                                    ?!@stringset _ioSignatureList,
                                     ?!@astDeclarationStruct ioDeclarationAST) {
     $standalone$
     $property$
@@ -139,9 +139,9 @@ syntax extension easyBindings_syntax {
       )
     )
     !?ioAttributeList.append (
-      !attributeTypeName,
-      !attributeName,
-      !defaultValue
+      attributeTypeName,
+      attributeName,
+      defaultValue
     )
   }
 
@@ -155,7 +155,7 @@ syntax extension easyBindings_syntax {
 
 override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
        ?!@semanticContext ioSemanticContext,
-       ?!@generationStruct unused ioGeneration) {
+       ?!@generationStruct _ioGeneration) {
   var entry = ioSemanticContext.mClassMap [!searchKey: self.mClassName]
 //  with %aliasOf ioSemanticContext.mClassMap [!searchKey: self.mClassName] do
     ioSemanticContext.mClassMap.searchKey (self.mPropertyTypeName, ?let classKind, ?3*)
@@ -199,10 +199,10 @@ override proc @atomicPropertyDeclarationAST.firstAnalysisPhase (
 //--------------------------------------------------------------------------------------------------
 
 class @atomicPropertyGeneration : @propertyGeneration {
-  private let @bool generateResetMethod %initArgLabel
-  private let @bool generateDirectRead %initArgLabel
-  private let @bool generateDirectAccess %initArgLabel
-  private let @bool standalone %initArgLabel
+  private let @bool generateResetMethod #initArgLabel
+  private let @bool generateDirectRead #initArgLabel
+  private let @bool generateDirectAccess #initArgLabel
+  private let @bool standalone #initArgLabel
   public let @typeKind mType
   private let @bool mIsProxy
   private let @string mDefaultValueInSwift
@@ -288,9 +288,9 @@ override func @atomicPropertyGeneration.bindPropertyInSelectionController() -> @
 //--------------------------------------------------------------------------------------------------
 
 override func @atomicPropertyGeneration.propertyDeclarationCode (
-   let @bool unused inPreferences,
+   let @bool _inPreferences,
    let @bool inGenerationDirectAccess,
-   let @stringset unused inOverriddenTransients) -> @string
+   let @stringset _inOverriddenTransients) -> @string
 {
   if self.mInPreferences then
     result  = "//" + @string.stringWithSequenceOfCharacters  ('-', 98) + "\n"
@@ -348,7 +348,7 @@ override func @atomicPropertyGeneration.initCode () -> @string {
 
 //--------------------------------------------------------------------------------------------------
 
-override func @atomicPropertyGeneration.configurationCode (let @bool unused inPreferences) -> @string {
+override func @atomicPropertyGeneration.configurationCode (let @bool _inPreferences) -> @string {
   if self.standalone || self.mInPreferences then
     result = ""
   else

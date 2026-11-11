@@ -31,7 +31,7 @@ list @outletClassBindingSpecificationList {
 syntax extension easyBindings_syntax {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  
+
   rule <outlet_binding_specification> (?!@outletClassBindingSpecificationList ioControllerTemplateList) {
     $binding$
     $Identifier$ (?let @lstring outletClassName)
@@ -74,10 +74,10 @@ syntax extension easyBindings_syntax {
     end
     $;$
     !?ioControllerTemplateList.append (
-      !outletClassName,
-      !bindingName,
-      !outletClassBindingSpecificationModelList,
-      !bindingOptionList
+      outletClassName,
+      bindingName,
+      outletClassBindingSpecificationModelList,
+      bindingOptionList
     )
   }
 
@@ -92,9 +92,9 @@ syntax extension easyBindings_syntax {
 map @bindingSpecificationMap {
   public var @lstring mOutletSuperClassName
   public var @outletBindingSpecificationMap mBindingMap
-  %insertSetter insertKey %errorMessage "the '%K' binding is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' binding"
-  %removeSetter removeKey %errorMessage "there is no '%K' binding"
+  #insertSetter insertKey #errorMessage "the '%K' binding is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' binding"
+  #removeSetter removeKey #errorMessage "there is no '%K' binding"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -116,8 +116,8 @@ list @controllerBindingOptionDecoratedList {
 map @outletBindingSpecificationMap {
   public var @outletBindingSpecificationModelList mOutletBindingSpecificationModelList
   public var @controllerBindingOptionDecoratedList mControllerBindingOptionList
-  %insertSetter insertKey %errorMessage "the '%K' binding is already declared in %L"
-  %searchMethod searchKey %errorMessage "there is no '%K' binding"
+  #insertSetter insertKey #errorMessage "the '%K' binding is already declared in %L"
+  #searchMethod searchKey #errorMessage "there is no '%K' binding"
 }
 
 //------------------------------------------------------------------------------------------------
@@ -131,8 +131,8 @@ proc buildBindingSpecificationMap(
     for (mModelTypeName, mModelShouldBeWritableProperty) in mOutletClassBindingSpecificationModelList do
       if mModelTypeName.string == "enum" then
         !?outletBindingSpecificationModelList.append (
-          !.enumType (!enumTypeName: "", !constantMap: (), !funcMap: ()), // Any enum type
-          !mModelShouldBeWritableProperty
+          .enumType (!enumTypeName: "", !constantMap: (), !funcMap: ()), // Any enum type
+          mModelShouldBeWritableProperty
         )
       else
         ioSemanticContext.mClassMap.searchKey (mModelTypeName, ?let @classKind classKind, ?3*)
@@ -169,7 +169,7 @@ proc buildBindingSpecificationMap(
   //-- Insert in binding map
     var @outletBindingSpecificationMap bindingMap
     let @lstring outletSuperClassName
-    if ioSemanticContext.mBindingSpecificationMap.hasKey (mOutletClassName.string) then
+    if ioSemanticContext.mBindingSpecificationMap.contains (mOutletClassName.string) then
       !?ioSemanticContext.mBindingSpecificationMap.removeKey (mOutletClassName, ?outletSuperClassName, ?bindingMap)
     else
       bindingMap = ()

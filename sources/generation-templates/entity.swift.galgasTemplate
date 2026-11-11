@@ -10,7 +10,7 @@ if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in SIMPLE_STORED_PROPERTY_LIST_FOR_GENERATION do
 %//--------------------------------------------------------------------------------------------------
 
-%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%if [USED_PROTOCOL_SET contains !ENTITY_NAME + "_" + mProperty.mPropertyName] then
 %@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]% { get }
 }
@@ -28,7 +28,7 @@ if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in PROXY_LIST_FOR_GENERATION do
 %//--------------------------------------------------------------------------------------------------
 
-%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%if [USED_PROTOCOL_SET contains !ENTITY_NAME + "_" + mProperty.mPropertyName] then
 %@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
@@ -44,7 +44,7 @@ if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
 for (mProperty) in TRANSIENT_LIST_FOR_IMPLEMENTATION do
 %//--------------------------------------------------------------------------------------------------
 
-%if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+%if [USED_PROTOCOL_SET contains !ENTITY_NAME + "_" + mProperty.mPropertyName] then
 %@MainActor protocol %!ENTITY_NAME%_%!mProperty.mPropertyName% : AnyObject {
   var %!mProperty.mPropertyName% : %![mProperty.mType swiftTypeName]%? { get }
 }
@@ -69,8 +69,8 @@ end
 %class %!ENTITY_NAME% : %!SUPER_CLASS_NAME%\n%
 if GENERATE_PROPERTY_ACCESS_PROTOCOLS then
   for (mProperty) in PROPERTY_LIST_FOR_GENERATION do
-    if (mProperty is == @atomicPropertyGeneration) | (mProperty is == @transientPropertyGeneration)  | (mProperty is == @atomicProxyGeneration) then
-      if [USED_PROTOCOL_SET hasKey !ENTITY_NAME + "_" + mProperty.mPropertyName] then
+    if (mProperty is @atomicPropertyGeneration) | (mProperty is @transientPropertyGeneration)  | (mProperty is @atomicProxyGeneration) then
+      if [USED_PROTOCOL_SET contains !ENTITY_NAME + "_" + mProperty.mPropertyName] then
         %    , %!ENTITY_NAME%_%!mProperty.mPropertyName%\n%
       else
         %    // %!ENTITY_NAME%_%!mProperty.mPropertyName% // Commented out, not used\n%
